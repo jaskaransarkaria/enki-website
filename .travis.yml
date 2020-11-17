@@ -22,7 +22,7 @@ jobs:
       script:
         - kubectl version --client
         - gcloud auth activate-service-account travis-deployer@jobspeed.iam.gserviceaccount.com --key-file=client-secret.json
-        - gcloud container clusters get-credentials jobspeed-production --zone europe-west2-a --project jobspeed
+        - gcloud container clusters get-credentials enki --zone europe-west2-a --project jobspeed
         - sed -i "s/replace_with_git_tag/$TRAVIS_TAG/" .kubernetes/deployment.yaml
         - kubectl apply -f .kubernetes/deployment.yaml
 
