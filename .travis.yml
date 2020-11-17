@@ -8,11 +8,6 @@ services:
 
 jobs:
   include:
-    - stage: "Tests, Linting and Formating"
-      script:
-        - npm run format
-        - npm run lint
-        - npm run test
     - stage: "Build and Push Docker Image"
       script:
         - npm i
@@ -29,11 +24,9 @@ jobs:
         - gcloud auth activate-service-account travis-deployer@jobspeed.iam.gserviceaccount.com --key-file=client-secret.json
         - gcloud container clusters get-credentials jobspeed-production --zone europe-west2-a --project jobspeed
         - sed -i "s/replace_with_git_tag/$TRAVIS_TAG/" .kubernetes/deployment.yaml
-        - sed -i "s/replace_with_client_secret/$CLIENT_SECRET/" .kubernetes/config-map.yaml
         - kubectl apply -f .kubernetes/deployment.yaml
 
 stages:
-  - name: Tests, Linting and Formating
   - name: Build and Push Docker Image
     if: tag IS present
   - name: Deploy to Kubernetes
