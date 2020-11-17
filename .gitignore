@@ -2,3 +2,9 @@
 /public/build/
 
 .DS_Store
+
+tls.crt
+
+tls.key
+
+secret.yaml
