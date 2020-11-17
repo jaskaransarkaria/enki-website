@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: enki
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "7200"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "7200"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "7200"
+    cert-manager.io/issuer: "letsencrypt-staging"
+spec:
+  tls:
+    - secretName: enki-website
+      hosts:
+        - enki.jobspeed.uk
+  rules:
+    - host: enki.jobspeed.uk
+      http:
+        paths:
+          - path: /*
+            backend:
+              servicePort: 5000
+              serviceName: enki-website

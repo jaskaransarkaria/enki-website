@@ -1,0 +1,40 @@
+sudo: required
+language: node_js
+node_js:
+  - 12
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: "Tests, Linting and Formating"
+      script:
+        - npm run format
+        - npm run lint
+        - npm run test
+    - stage: "Build and Push Docker Image"
+      script:
+        - npm i
+        - npm run build
+        - docker build -t jaskaransarkaria/jobspeed-client:"$TRAVIS_TAG" .
+        - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+        - docker push jaskaransarkaria/enki-website:"$TRAVIS_TAG"
+    - stage: Deploy to Kubernetes
+      before_install:
+        - openssl aes-256-cbc -K $encrypted_2fd045226a67_key -iv $encrypted_2fd045226a67_iv -in client-secret.json.enc -out client-secret.json -d
+        - curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
+      script:
+        - kubectl version --client
+        - gcloud auth activate-service-account travis-deployer@jobspeed.iam.gserviceaccount.com --key-file=client-secret.json
+        - gcloud container clusters get-credentials jobspeed-production --zone europe-west2-a --project jobspeed
+        - sed -i "s/replace_with_git_tag/$TRAVIS_TAG/" .kubernetes/deployment.yaml
+        - sed -i "s/replace_with_client_secret/$CLIENT_SECRET/" .kubernetes/config-map.yaml
+        - kubectl apply -f .kubernetes/deployment.yaml
+
+stages:
+  - name: Tests, Linting and Formating
+  - name: Build and Push Docker Image
+    if: tag IS present
+  - name: Deploy to Kubernetes
+    if: tag IS present

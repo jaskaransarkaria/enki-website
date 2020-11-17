@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: enki
+  name: enki-website
+spec:
+  selector:
+    matchLabels:
+      app: enki-website
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: enki-website
+    spec:
+      containers:
+        - name: enki-website
+          image: jaskaransarkaria/enki-website:replace_with_git_tag
+          ports:
+            - containerPort: 5000
+          livenessProbe:
+            exec:
+              command:
+                - cat
+                - /usr/src/app/public/build/bundle.js
+            initialDelaySeconds: 240
+            periodSeconds: 5
