@@ -4,7 +4,7 @@ metadata:
   name: enki-website
 spec:
   selector:
-    app: wnki-website
+    app: enki-website
   ports:
     - port: 5000
       targetPort: 5000
