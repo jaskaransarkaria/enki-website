@@ -16,6 +16,7 @@
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-typescript": "^6.0.0",
+    "@roxi/routify": "^2.7.3",
     "@sveltech/routify": "^1.9.10",
     "@testing-library/svelte": "^3.0.0",
     "@tsconfig/svelte": "^1.0.0",
@@ -47,5 +48,8 @@
     "hooks": {
       "pre-push": "npm run validate && npm run format && npm run test"
     }
+  },
+  "routify": {
+    "extensions": "svelte,html,svx,md"
   }
 }

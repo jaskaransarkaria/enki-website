@@ -5,7 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
-import { routify } from '@sveltech/routify';
+import routify from '@roxi/routify/plugins/rollup';
 
 const production = !process.env.ROLLUP_WATCH;
 
