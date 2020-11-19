@@ -8,6 +8,11 @@ services:
 
 jobs:
   include:
+   - stage: "Tests, Linting and Formating"
+      script:
+        - npm run validate
+        - npm run format
+        - npm run test
     - stage: "Build and Push Docker Image"
       script:
         - npm i
@@ -27,6 +32,7 @@ jobs:
         - kubectl apply -f .kubernetes/deployment.yaml
 
 stages:
+  - name: Tests, Linting and Formating
   - name: Build and Push Docker Image
     if: tag IS present
   - name: Deploy to Kubernetes
