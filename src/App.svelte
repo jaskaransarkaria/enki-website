@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Router from '@roxi//routify/runtime/Router.svelte';
-  import { routes } from '../.routify/routes';
+  import Router from '@sveltech/routify/runtime/Router.svelte';
+  import { routes } from '@sveltech/routify/tmp/routes';
 </script>
 
 <style>
@@ -19,5 +19,6 @@
 </style>
 
 <main>
+  {/* // @ts-ignore */}
   <Router {routes} />
 </main>
