@@ -2,9 +2,8 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "routify -b && rollup -c",
-    "dev": "routify -c server",
-    "server": "rollup -c -w",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "start": "sirv public --single",
     "validate": "svelte-check",
     "format": "prettier --write \"{,!(node_modules|public)/**/}*.{js,svelte,ts}\"",
@@ -46,7 +45,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-push": "npm run validate && npm run format"
+      "pre-push": "npm run validate && npm run format && npm run test"
     }
   }
 }
