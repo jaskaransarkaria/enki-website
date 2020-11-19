@@ -1,7 +1,6 @@
 <script lang="ts">
   export let scoped: any;
   $: ({ name } = scoped);
-  console.log("hellow", scoped);
 </script>
 
 <style>
