@@ -1,5 +1,5 @@
 <script>
-  import { url } from "@sveltech/routify";
+  import { url } from '@sveltech/routify';
 </script>
 
 <!-- relative -->
