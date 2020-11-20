@@ -50,7 +50,7 @@ export default {
 				css.write('bundle.css');
 			},
 			preprocess: sveltePreprocess(),
-		}),
+    }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
