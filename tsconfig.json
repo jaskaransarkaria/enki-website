@@ -11,6 +11,18 @@
     ],
     "moduleResolution": "node",
     "target": "es2020",
-    "noEmit": true
+    "noEmit": true,
+    "module": "ESNEXT",
+    "lib": [
+      "ESNEXT",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strictNullChecks": true,
   }
 }

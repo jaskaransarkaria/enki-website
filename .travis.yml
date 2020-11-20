@@ -10,7 +10,6 @@ jobs:
   include:
    - stage: "Tests, Linting and Formating"
       script:
-        - npm run validate
         - npm run format
         - npm run test
     - stage: "Build and Push Docker Image"

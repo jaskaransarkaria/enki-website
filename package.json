@@ -53,7 +53,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-push": "npm run validate && npm run format && npm run test"
+      "pre-push": "npm run format && npm run test"
     }
   },
   "routify": {
