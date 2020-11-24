@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Checkout from '../components/Checkout.svelte'
+
   export let scoped: any;
   $: ({ name } = scoped);
 </script>
@@ -14,6 +16,7 @@
 
 <div>
   <h1>Hello {name}!</h1>
+  <Checkout/>
   <p>
     Visit the
     <a href="https://svelte.dev/tutorial">Svelte tutorial</a>

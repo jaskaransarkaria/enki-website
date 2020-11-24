@@ -6,6 +6,8 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import routify from '@roxi/routify/plugins/rollup';
+import { config } from 'dotenv';
+import replace from '@rollup/plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -65,7 +67,12 @@ export default {
 		typescript({
 			sourceMap: !production,
 			inlineSources: !production
-		}),
+    }),
+    replace({
+      process: JSON.stringify({
+        env: {
+          ...config().parsed // attached the .env config
+    }})}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

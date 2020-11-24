@@ -8,3 +8,5 @@ tls.crt
 tls.key
 
 secret.yaml
+
+.env

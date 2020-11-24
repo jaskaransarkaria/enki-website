@@ -18,10 +18,3 @@ spec:
           image: jaskaransarkaria/enki-website:replace_with_git_tag
           ports:
             - containerPort: 5000
-          livenessProbe:
-            exec:
-              command:
-                - cat
-                - /usr/src/app/public/build/bundle.js
-            initialDelaySeconds: 240
-            periodSeconds: 5

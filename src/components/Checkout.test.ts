@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/svelte';
-import Placeholder from './Placeholder.svelte';
+import Placeholder from './Checkout.svelte';
 
 describe('expect text has correctly rendered', () => {
-  it('hello world', () => {
+  it('checkout', () => {
     const { getByText } = render(Placeholder);
 
-    expect(getByText('Hello World!')).toBeInTheDocument();
+    expect(getByText('Checkout')).toBeInTheDocument();
   });
 });
