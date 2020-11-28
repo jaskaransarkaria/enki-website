@@ -12,7 +12,7 @@
     // Create a new Checkout Session using the server-side endpoint you
     // created in step 3.
     const response = await fetch(
-      'http://localhost:8080/create-checkout-session',
+      `${process.env.SERVER_URL}/create-checkout-session`,
       {
         method: 'POST',
       }

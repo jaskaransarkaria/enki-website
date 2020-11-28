@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { url } from '@roxi/routify';
   import Checkout from '../components/Checkout.svelte';
 
   export let scoped: any;
@@ -16,6 +17,8 @@
 
 <div>
   <h1>Hello {name}!</h1>
+  <!-- absolute -->
+  <a href={$url('/about')}>About page</a>
   <Checkout />
   <p>
     Visit the

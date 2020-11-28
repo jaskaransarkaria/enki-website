@@ -6,7 +6,6 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import routify from '@roxi/routify/plugins/rollup';
-import { config } from 'dotenv';
 import replace from '@rollup/plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -69,10 +68,11 @@ export default {
 			inlineSources: !production
     }),
     replace({
-      process: JSON.stringify({
-        env: {
-          ...config().parsed // attached the .env config
-    }})}),
+      'process.env.SERVER_URL': production ?
+        JSON.stringify('https://server.enki.jobspeed.uk/') :
+        JSON.stringify('http://127.0.0.1:8180/'),
+      'process.env.STRIPE_KEY': 'pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp'
+    }),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
