@@ -69,9 +69,9 @@ export default {
     }),
     replace({
       'process.env.SERVER_URL': production ?
-        JSON.stringify('https://server.enki.jobspeed.uk/') :
-        JSON.stringify('http://127.0.0.1:8180/'),
-      'process.env.STRIPE_KEY': 'pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp'
+        JSON.stringify('https://server.enki.jobspeed.uk') :
+        JSON.stringify('http://localhost:8080'),
+      'process.env.STRIPE_KEY': JSON.stringify('pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp')
     }),
 
 		// In dev mode, call `npm run start` once
