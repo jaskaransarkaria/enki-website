@@ -1,28 +1,34 @@
 <script lang="ts">
   import { url } from '@roxi/routify';
-  import Checkout from '../components/Checkout.svelte';
+  import { fade } from 'svelte/transition';
 
-  export let scoped: any;
-  $: ({ name } = scoped);
+  // this is how to pass down a prop from the router
+  // export let scoped: any;
+  // $: ({ name } = scoped);
+
+  let selected = false;
 </script>
 
 <style>
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
+  .homepage-background {
+    width: 80vw;
+    height: 100vh;
+    background-image: url('/outer-shop.png');
+    background-repeat: no-repeat;
+    /* border: lawngreen 5px solid; */
+  }
+
+  .homepage-background.selected {
+    background-image: url('/homepage-mock.jpeg');
   }
 </style>
 
-<div>
-  <h1>Hello {name}!</h1>
+<main
+  class="homepage-background"
+  class:selected
+  on:click={() => (selected = !selected)}
+  in:fade>
   <!-- absolute -->
   <a href={$url('/about')}>About page</a>
-  <Checkout />
-  <p>
-    Visit the
-    <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
-    to learn how to build Svelte apps.
-  </p>
-</div>
+  <a href={$url('/services')}>Repairs and commissions</a>
+</main>
