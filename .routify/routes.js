@@ -1,11 +1,11 @@
 
 /**
  * @roxi/routify 2.7.3
- * File generated Mon Nov 30 2020 21:04:03 GMT+0000 (Greenwich Mean Time)
+ * File generated Wed Dec 02 2020 21:23:48 GMT+0000 (Greenwich Mean Time)
  */
 
 export const __version = "2.7.3"
-export const __timestamp = "2020-11-30T21:04:03.290Z"
+export const __timestamp = "2020-12-02T21:23:48.017Z"
 
 //buildRoutes
 import { buildClientTree } from "@roxi/routify/runtime/buildRoutes"
@@ -73,6 +73,31 @@ export const _tree = {
       "path": "/cancel",
       "id": "_cancel",
       "component": () => import('../src/pages/cancel.svelte').then(m => m.default)
+    },
+    {
+      "isFile": true,
+      "isDir": false,
+      "file": "checkout.svelte",
+      "filepath": "/checkout.svelte",
+      "name": "checkout",
+      "ext": "svelte",
+      "badExt": false,
+      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/checkout.svelte",
+      "importPath": "../src/pages/checkout.svelte",
+      "isLayout": false,
+      "isReset": false,
+      "isIndex": false,
+      "isFallback": false,
+      "isPage": true,
+      "ownMeta": {},
+      "meta": {
+        "recursive": true,
+        "preload": false,
+        "prerender": true
+      },
+      "path": "/checkout",
+      "id": "_checkout",
+      "component": () => import('../src/pages/checkout.svelte').then(m => m.default)
     },
     {
       "isFile": true,
