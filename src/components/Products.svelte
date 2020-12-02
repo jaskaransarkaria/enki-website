@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Gifts from '../components/Gifts.svelte'
-  import Services from '../components/Services.svelte'
-  import Classes from '../components/Classes.svelte'
+  import Gifts from '../components/Gifts.svelte';
+  import Services from '../components/Services.svelte';
+  import Classes from '../components/Classes.svelte';
 </script>
 
 <style>
@@ -26,7 +26,6 @@
     grid-row: 2 /4;
     grid-column: 1 / 4;
   }
-
 </style>
 
 <div class="product-container">
@@ -39,5 +38,4 @@
     <Services />
     <Classes />
   </div>
-
 </div>

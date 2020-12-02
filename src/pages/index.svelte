@@ -2,7 +2,7 @@
   import { url } from '@roxi/routify';
   import { fade } from 'svelte/transition';
   import Navbar from '../components/Navbar.svelte';
-  import Products from '../components/Products.svelte'
+  import Products from '../components/Products.svelte';
 
   // this is how to pass down a prop from the router
   // export let scoped: any;
@@ -27,7 +27,8 @@
     font-size: 24px;
   }
 
-  .tagline h5, a {
+  .tagline h5,
+  a {
     font-size: 18px;
   }
 
@@ -46,22 +47,34 @@
     /* border: lawngreen 5px solid; */
   }
 
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+  /* Firefox < 16 */
+  @-moz-keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+  /* Safari, Chrome and Opera > 12.1 */
+  @-webkit-keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   .homepage-background.selected {
     background-image: url('/homepage-mock.jpeg');
@@ -72,17 +85,16 @@
     animation: fadein 0.6s;
   }
 
+  @media only screen and (min-width: 960px) {
+    .tagline h3 {
+      font-size: 34px;
+    }
 
-@media only screen and (min-width: 960px) {
-  .tagline h3 {
-    font-size: 34px;
+    .tagline h5,
+    a {
+      font-size: 24px;
+    }
   }
-
-  .tagline h5, a {
-    font-size: 24px;
-  }
-}
-
 </style>
 
 <main
@@ -91,8 +103,7 @@
   on:click={() => (selected = true)}
   in:fade>
   <Navbar />
-  <div
-  class="tagline">
+  <div class="tagline">
     <h3>Artisan gifts and cards delivered</h3>
     <h3>to your door</h3>
     <h5>Jewellery repairs, commissions and classes</h5>

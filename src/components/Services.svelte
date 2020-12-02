@@ -1,6 +1,6 @@
-
 <style>
-  img, button {
+  img,
+  button {
     width: 150px;
   }
 </style>
