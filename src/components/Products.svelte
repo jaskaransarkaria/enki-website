@@ -1,18 +1,15 @@
 <script lang="ts">
-  import Gifts from '../components/Gifts.svelte';
-  import Services from '../components/Services.svelte';
-  import Classes from '../components/Classes.svelte';
+  import { goto } from '@roxi/routify';  
 </script>
-
 <style>
   .product-container {
     display: grid;
-    grid-template-rows: 10% 40% 50%;
+    grid-template-rows: 25% 25% 50%;
     grid-template-columns: 1fr 1fr 1fr;
   }
 
   .opening-times {
-    display: flex;
+    display: block;
     flex-direction: column;
     grid-row: 1;
     grid-column: 2;
@@ -22,9 +19,24 @@
   .products {
     display: flex;
     justify-content: space-around;
-    width: 80vw;
-    grid-row: 2 /4;
+    grid-row: 2 /3;
     grid-column: 1 / 4;
+  }
+
+
+  img,
+  button {
+    width: 22.5vw;
+    height: 45vh
+  }
+
+  button, button:active {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
   }
 </style>
 
@@ -34,8 +46,8 @@
     <h2>Monday - Sunday: 10am - 5pm</h2>
   </div>
   <div class="products">
-    <Gifts />
-    <Services />
-    <Classes />
+    <button id="cards-button" on:click={$goto("/online-shop/cards")}><img src="/cards.png" alt="cards button" /></button>
+    <button id="gifts-button" on:click={$goto("/online-shop/gifts")}><img src="/gifts.png" alt="gifts button" /></button>
+    <button id="childrens-gifts-button" on:click={$goto("/online-shop/childrens-gifts")}><img src="/childrens-gifts.png" alt="childrens gifts button" /></button>
   </div>
 </div>

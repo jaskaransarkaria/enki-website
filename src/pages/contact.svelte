@@ -3,12 +3,12 @@
 </script>
 
 <!-- relative -->
-<a href={$url('../')}>Home page</a>
+<a href={$url('../enki')}>Home page</a>
 
 <!-- absolute -->
-<a href={$url('/')}>Home page</a>
+<a href={$url('/enki')}>Home page</a>
 
 <!-- params -->
 <a href={$url('/:id', { id: '31' })}>Post 31</a>
 
-<h1>ABOUT</h1>
+<h1>contact</h1>
