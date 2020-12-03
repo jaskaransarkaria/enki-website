@@ -3,7 +3,6 @@
   import { goto } from '@roxi/routify';
 </script>
 
-
 <style>
   .inside-shop {
     display: grid;
@@ -20,62 +19,65 @@
     grid-row: 1 / 4;
     grid-column: 3 / 5;
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
   }
 
   .classes {
     grid-row: 1 / 4;
     grid-column: 8 / 10;
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
   }
 
   .online-shop {
     grid-row: 7 / 10;
     grid-column: 5 / 7;
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
   }
 
   .contact {
     grid-row: 8 / 11;
     grid-column: 9 / 11;
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
   }
 
   button:active {
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
   }
 </style>
 
-<main class="inside-shop"
-in:fade>
-
-<button class="jewellery-services" id="jewellery-services-button" on:click={$goto("/services")}></button>
-<button class="classes" id="classes-button" on:click={$goto("/classes")}></button>
-<button class="online-shop" id="online-shop-button" on:click={$goto("/online-shop")}></button>
-<button class="contact" id="contact-button" on:click={$goto("/contact")}></button>
-
+<main class="inside-shop" in:fade>
+  <button
+    class="jewellery-services"
+    id="jewellery-services-button"
+    on:click={$goto('/services')} />
+  <button class="classes" id="classes-button" on:click={$goto('/classes')} />
+  <button
+    class="online-shop"
+    id="online-shop-button"
+    on:click={$goto('/online-shop')} />
+  <button class="contact" id="contact-button" on:click={$goto('/contact')} />
 </main>

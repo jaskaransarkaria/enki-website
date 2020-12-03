@@ -5,7 +5,6 @@
   // this is how to pass down a prop from the router
   // export let scoped: any;
   // $: ({ name } = scoped);
-
 </script>
 
 <style>
@@ -24,8 +23,4 @@
   }
 </style>
 
-<main
-  class="homepage-background"
-  on:click={$goto('/enki')}
-  in:fade>
-</main>
+<main class="homepage-background" on:click={$goto('/enki')} in:fade />

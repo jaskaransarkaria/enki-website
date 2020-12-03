@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { goto } from '@roxi/routify';  
+  import { goto } from '@roxi/routify';
 </script>
+
 <style>
   .product-container {
     display: grid;
@@ -23,20 +24,20 @@
     grid-column: 1 / 4;
   }
 
-
   img,
   button {
     width: 22.5vw;
-    height: 45vh
+    height: 45vh;
   }
 
-  button, button:active {
+  button,
+  button:active {
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
   }
 </style>
 
@@ -46,8 +47,16 @@
     <h2>Monday - Sunday: 10am - 5pm</h2>
   </div>
   <div class="products">
-    <button id="cards-button" on:click={$goto("/online-shop/cards")}><img src="/cards.png" alt="cards button" /></button>
-    <button id="gifts-button" on:click={$goto("/online-shop/gifts")}><img src="/gifts.png" alt="gifts button" /></button>
-    <button id="childrens-gifts-button" on:click={$goto("/online-shop/childrens-gifts")}><img src="/childrens-gifts.png" alt="childrens gifts button" /></button>
+    <button id="cards-button" on:click={$goto('/online-shop/cards')}><img
+        src="/cards.png"
+        alt="cards button" /></button>
+    <button id="gifts-button" on:click={$goto('/online-shop/gifts')}><img
+        src="/gifts.png"
+        alt="gifts button" /></button>
+    <button
+      id="childrens-gifts-button"
+      on:click={$goto('/online-shop/childrens-gifts')}><img
+        src="/childrens-gifts.png"
+        alt="childrens gifts button" /></button>
   </div>
 </div>
