@@ -5,60 +5,47 @@
 
 <style>
   .inside-shop {
+    margin: 0 10%;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
     grid-template-columns: repeat(12, 1fr);
-    width: 100vw;
+    width: 80%;
     height: 100vh;
-    background-size: 100vw 100%;
-    background-image: url('/inside-enki-min.svg');
+    background-size: 100% 100%;
+    background-image: url('/inside-enki-min.png');
     background-repeat: no-repeat;
   }
 
+
   .jewellery-services {
     grid-row: 1 / 4;
-    grid-column: 3 / 5;
-    background-color: Transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
+    grid-column: 1 / 4;
   }
 
   .classes {
     grid-row: 1 / 4;
-    grid-column: 8 / 10;
-    background-color: Transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
+    grid-column: 8 / 12;
   }
 
   .online-shop {
     grid-row: 7 / 10;
-    grid-column: 5 / 7;
-    background-color: Transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
+    grid-column: 4 / 7;
   }
 
   .contact {
     grid-row: 8 / 11;
-    grid-column: 9 / 11;
-    background-color: Transparent;
+    grid-column: 10 / 14;
+  }
+
+  button {
+    background-color: transparent;
     background-repeat: no-repeat;
+    border: none;
     border: none;
     cursor: pointer;
     overflow: hidden;
     outline: none;
   }
-
   button:active {
     background-color: Transparent;
     background-repeat: no-repeat;
