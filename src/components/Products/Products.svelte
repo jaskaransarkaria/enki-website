@@ -1,5 +1,24 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
+  import { onMount } from 'svelte';
+
+  let data: object[] = []
+
+  onMount(() => {
+    // pull the category data from svelte
+    const orderCatergories = (resp: object[]) => resp.sort((a: object, b: object) => a.Name < b.Name ? -1 : 1)
+    const fetchCategories = async () => {
+      const response = await fetch(`${process.env.SERVER_URL}/categories`)
+      const parsedResult = JSON.parse(await response.json())
+      data = orderCatergories(parsedResult)
+    }
+    fetchCategories()
+  })
+
+  const kebabCaseCategory = (str: string) => {
+    // strip out non url-friendly characters
+    return str.toLowerCase().split(" ").join("-")
+  }
 </script>
 
 <style>
@@ -46,7 +65,7 @@
     <h1>OPENING TIMES</h1>
     <h2>Monday - Sunday: 10am - 5pm</h2>
   </div>
-  <div class="products">
+  <!-- <div class="products">
     <button id="cards-button" on:click={$goto('/online-shop/cards')}><img
         src="/cards.png"
         alt="cards button" /></button>
@@ -58,5 +77,9 @@
       on:click={$goto('/online-shop/childrens-gifts')}><img
         src="/childrens-gifts.png"
         alt="childrens gifts button" /></button>
-  </div>
+  </div> -->
 </div>
+
+{#each data as category}
+    <button on:click={$goto(`/online-shop/${kebabCaseCategory(category.Name)}`)}>{category.Name}</button>
+{/each}

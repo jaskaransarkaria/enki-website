@@ -16,7 +16,6 @@
     background-repeat: no-repeat;
   }
 
-
   .jewellery-services {
     grid-row: 1 / 4;
     grid-column: 1 / 4;
