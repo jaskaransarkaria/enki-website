@@ -2,23 +2,24 @@
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
 
-  let data: object[] = []
+  let data: object[] = [];
 
   onMount(() => {
     // pull the category data from svelte
-    const orderCatergories = (resp: object[]) => resp.sort((a: object, b: object) => a.Name < b.Name ? -1 : 1)
+    const orderCatergories = (resp: object[]) =>
+      resp.sort((a: object, b: object) => (a.Name < b.Name ? -1 : 1));
     const fetchCategories = async () => {
-      const response = await fetch(`${process.env.SERVER_URL}/categories`)
-      const parsedResult = JSON.parse(await response.json())
-      data = orderCatergories(parsedResult)
-    }
-    fetchCategories()
-  })
+      const response = await fetch(`${process.env.SERVER_URL}/categories`);
+      const parsedResult = JSON.parse(await response.json());
+      data = orderCatergories(parsedResult);
+    };
+    fetchCategories();
+  });
 
   const kebabCaseCategory = (str: string) => {
     // strip out non url-friendly characters
-    return str.toLowerCase().split(" ").join("-")
-  }
+    return str.toLowerCase().split(' ').join('-');
+  };
 </script>
 
 <style>
@@ -81,5 +82,6 @@
 </div>
 
 {#each data as category}
-    <button on:click={$goto(`/online-shop/${kebabCaseCategory(category.Name)}`)}>{category.Name}</button>
+  <button
+    on:click={$goto(`/online-shop/${kebabCaseCategory(category.Name)}`)}>{category.Name}</button>
 {/each}
