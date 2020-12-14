@@ -1,11 +1,11 @@
 
 /**
  * @roxi/routify 2.7.3
- * File generated Mon Dec 14 2020 20:50:18 GMT+0000 (Greenwich Mean Time)
+ * File generated Mon Dec 14 2020 21:04:48 GMT+0000 (Greenwich Mean Time)
  */
 
 export const __version = "2.7.3"
-export const __timestamp = "2020-12-14T20:50:18.397Z"
+export const __timestamp = "2020-12-14T21:04:48.187Z"
 
 //buildRoutes
 import { buildClientTree } from "@roxi/routify/runtime/buildRoutes"
@@ -184,6 +184,31 @@ export const _tree = {
       "badExt": false,
       "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/online-shop",
       "children": [
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "[category].svelte",
+          "filepath": "/online-shop/[category].svelte",
+          "name": "[category]",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/online-shop/[category].svelte",
+          "importPath": "../src/pages/online-shop/[category].svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": false,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/online-shop/:category",
+          "id": "_onlineShop__category",
+          "component": () => import('../src/pages/online-shop/[category].svelte').then(m => m.default)
+        },
         {
           "isFile": true,
           "isDir": false,

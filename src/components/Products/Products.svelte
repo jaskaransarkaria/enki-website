@@ -83,5 +83,5 @@
 
 {#each data as category}
   <button
-    on:click={$goto(`/online-shop/${kebabCaseCategory(category.Name)}`)}>{category.Name}</button>
+    on:click={$goto(`/online-shop/:${kebabCaseCategory(category.Name)}`)}>{category.Name}</button>
 {/each}
