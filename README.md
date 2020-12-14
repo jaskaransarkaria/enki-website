@@ -29,4 +29,5 @@ The repo utilises Svelte testing library and jest to test component behaviours.
 ## CI/ CD
 
 Travis CI handles the deployment pipeline deploying when a commit on master is tagged with the an incremented semver eg. v01.02.03
+
 ### Todos:
