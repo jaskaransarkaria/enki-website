@@ -18,6 +18,7 @@ The server which handles pulling product data from the epos system can be found 
 * Routify
 * Travis CI
 * Rollup
+* Husky
 ## Local Development
 
 To deploy the front end locally use `npm run dev` and find the app running on `localhost:5000`. This will provide "hot reloading" so you can watch the changes you make in code.
