@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
-  import { categories } from '../../stores/categories'
+  import { categories } from '../../stores/categories';
 
   let data: object[] = [];
 
@@ -17,11 +17,11 @@
     };
 
     fetchCategories();
-
   });
 
   // strip out non url-friendly characters
-  const kebabCaseCategory = (str: string) => str.toLowerCase().split(' ').join('-');
+  const kebabCaseCategory = (str: string) =>
+    str.toLowerCase().split(' ').join('-');
 </script>
 
 <style>
@@ -60,16 +60,14 @@
     <h1>OPENING TIMES</h1>
     <h2>Monday - Sunday: 10am - 5pm</h2>
   </div>
-
 </div>
 
 {#each data as category}
   <button
     on:click={() => {
-      categories.set(category)
-      console.log($categories)
-      $goto(`/online-shop/${kebabCaseCategory(category.Name)}`)}}
-    >
+      categories.set(category);
+      $goto(`/online-shop/${kebabCaseCategory(category.Name)}`);
+    }}>
     {category.Name}
   </button>
 {/each}
