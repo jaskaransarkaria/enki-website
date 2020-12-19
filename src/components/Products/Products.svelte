@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
   import { categories } from '../../stores/categories';
 
-  let data: object[] = [];
+  let data: object[]= [];
 
   onMount(async () => {
     // pull the category data from svelte
@@ -62,7 +62,7 @@
   <button
     on:click={() => {
       categories.set(category);
-      $goto(`/online-shop/${category.Id}`);
+      $goto(`./${category.Id}`);
     }}>
     {category.Name}
   </button>
