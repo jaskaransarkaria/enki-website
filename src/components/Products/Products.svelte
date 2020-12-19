@@ -5,7 +5,7 @@
 
   let data: object[] = [];
 
-  onMount(() => {
+  onMount(async () => {
     // pull the category data from svelte
     const orderCatergories = (resp: object[]) =>
       resp.sort((a: object, b: object) => (a.Name < b.Name ? -1 : 1));
@@ -13,15 +13,11 @@
     const fetchCategories = async () => {
       const response = await fetch(`${process.env.SERVER_URL}/categories`);
       const parsedResult = JSON.parse(await response.json());
-      data = orderCatergories(parsedResult);
+      return orderCatergories(parsedResult);
     };
 
-    fetchCategories();
+    data = await fetchCategories();
   });
-
-  // strip out non url-friendly characters
-  const kebabCaseCategory = (str: string) =>
-    str.toLowerCase().split(' ').join('-');
 </script>
 
 <style>
@@ -66,7 +62,7 @@
   <button
     on:click={() => {
       categories.set(category);
-      $goto(`/online-shop/${kebabCaseCategory(category.Name)}`);
+      $goto(`/online-shop/${category.Id}`);
     }}>
     {category.Name}
   </button>

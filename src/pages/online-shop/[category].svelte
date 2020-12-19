@@ -5,18 +5,18 @@
   export let category: any;
 
   onMount(async () => {
-    const fetchCategoryByName = async (name: string) => {
+    const fetchCategoryById = async (id: string) => {
       // TODO: set up the route to grab the relevant name
-      const response = await fetch(`${process.env.SERVER_URL}/categories`)
+      const response = await fetch(`${process.env.SERVER_URL}/category/${id}`);
       const parsedResult = JSON.parse(await response.json());
-      return parsedResult
-    }
-    if (!$categories.hasOwnProperty("Id")) {
+      return parsedResult;
+    };
+    if (!$categories.hasOwnProperty('Id')) {
       try {
-        const data = await fetchCategoryByName(category)
-        categories.set(data)
+        const data = await fetchCategoryById(category);
+        categories.set(data);
       } catch (err) {
-        console.error("fetching category failed", err)
+        console.error('fetching category failed', err);
       }
     }
   });
@@ -28,7 +28,7 @@
 <h1>{category}</h1>
 <h1>{$categories.Id}</h1>
 <h1>{$categories.Name}</h1>
-{#if $categories.Children}
+{#if $categories.Children.length > 0}
   <span> There are sub categories here </span>
   <h1>{JSON.stringify($categories.Children)}</h1>
 {:else}SHOW THE PRODUCTS HERE{/if}
