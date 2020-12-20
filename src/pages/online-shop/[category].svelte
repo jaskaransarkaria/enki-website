@@ -2,7 +2,7 @@
   import { params } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { categories } from '../../stores/categories';
-  import ProductView from '../../components/ProductView/ProductView.svelte'
+  import ProductView from '../../components/ProductView/ProductView.svelte';
 
   export let category: string;
 
@@ -34,6 +34,6 @@
     <span> There are sub categories here </span>
     <h1>{JSON.stringify($categories.Children)}</h1>
   {:else}
-    <ProductView categoryId={category}/>
+    <ProductView categoryId={category} />
   {/if}
 {/if}
