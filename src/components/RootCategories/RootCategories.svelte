@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
   import { categories } from '../../stores/categories';
 
-  let data: object[]= [];
+  let data: object[] = [];
 
   onMount(async () => {
     // pull the category data from svelte
@@ -21,7 +21,7 @@
 </script>
 
 <style>
-  .product-container {
+  .root-categories-container {
     display: grid;
     grid-template-rows: 25% 25% 50%;
     grid-template-columns: 1fr 1fr 1fr;
@@ -51,7 +51,7 @@
   }
 </style>
 
-<div class="product-container">
+<div class="root-categories-container">
   <div class="opening-times">
     <h1>OPENING TIMES</h1>
     <h2>Monday - Sunday: 10am - 5pm</h2>

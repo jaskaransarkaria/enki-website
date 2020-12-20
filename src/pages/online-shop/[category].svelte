@@ -1,13 +1,16 @@
 <script lang="ts">
-  import { params } from "@roxi/routify";
+  import { params } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { categories } from '../../stores/categories';
+  import ProductView from '../../components/ProductView/ProductView.svelte'
 
-  export let category: any;
+  export let category: string;
 
   onMount(async () => {
     const fetchCategoryById = async (id: string) => {
-      const response = await fetch(`${process.env.SERVER_URL}/category?id=${id}`);
+      const response = await fetch(
+        `${process.env.SERVER_URL}/category?id=${id}`
+      );
       const parsedResult = JSON.parse(await response.json());
       return parsedResult;
     };
@@ -20,8 +23,6 @@
       }
     }
   });
-
-  // if there are no children in the catgory then display products
 </script>
 
 <h1>PARAMS {$params.category}</h1>
@@ -32,5 +33,7 @@
   {#if $categories.Children.length > 0}
     <span> There are sub categories here </span>
     <h1>{JSON.stringify($categories.Children)}</h1>
-  {:else}SHOW THE PRODUCTS HERE{/if}
+  {:else}
+    <ProductView categoryId={category}/>
+  {/if}
 {/if}

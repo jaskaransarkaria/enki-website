@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Products from '../../components/Products/Products.svelte';
+  import RootCategories from '../../components/RootCategories/RootCategories.svelte';
 </script>
 
-<Products />
+<RootCategories />
