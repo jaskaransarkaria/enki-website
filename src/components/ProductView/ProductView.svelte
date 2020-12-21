@@ -23,13 +23,13 @@
 <style>
   .products-container {
     display: grid;
-    grid-template-rows: 25% 25% 50%;
+    grid-template-rows: 25% 25% 25% 25%;
     grid-template-columns: 1fr 1fr 1fr;
   }
 
   button {
     width: 22.5vw;
-    height: 15vh;
+    height: 25px;
   }
 
   button,
@@ -43,11 +43,10 @@
   }
 </style>
 
-<h1>{categoryId}</h1>
 <div class="products-container">
   {#each productArr as product}
     <button>
-      {`${product.Name} -- ${product.Id} -- ${product.SalePrice}`}
+      {`${product.Name} -- ${product.Id} -- ${product.SalePrice} -- ${product.ProductImages}`}
     </button>
   {/each}
 </div>
