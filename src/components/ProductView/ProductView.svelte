@@ -29,7 +29,7 @@
 
   button {
     width: 22.5vw;
-    height: 45vh;
+    height: 15vh;
   }
 
   button,
