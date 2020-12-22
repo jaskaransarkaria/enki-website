@@ -1,10 +1,11 @@
 [
   "/cancel",
-  "/checkout",
   "/classes",
   "/contact",
   "/enki",
   "/index",
+  "/online-shop/basket",
+  "/online-shop/checkout",
   "/online-shop/index",
   "/services",
   "/success"

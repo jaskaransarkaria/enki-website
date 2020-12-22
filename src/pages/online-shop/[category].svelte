@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { params } from '@roxi/routify';
+  import { params, goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { categories } from '../../stores/categories';
   import ProductView from '../../components/ProductView/ProductView.svelte';
@@ -31,8 +31,15 @@
   <h1>{$categories.Id}</h1>
   <h1>{$categories.Name}</h1>
   {#if $categories.Children.length > 0}
-    <span> There are sub categories here </span>
-    <h1>{JSON.stringify($categories.Children)}</h1>
+    {#each $categories.Children as category}
+      <button
+      on:click={() => {
+        categories.set(category);
+        $goto(`./${$params.category}/${category.Id}`);
+      }}>
+      {category.Name}
+    </button>
+    {/each}
   {:else}
     <ProductView categoryId={category} />
   {/if}

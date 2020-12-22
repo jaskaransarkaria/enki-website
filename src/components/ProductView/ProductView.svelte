@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
+  import AddToBasket from '../AddToBasket/AddToBasket.svelte';
 
   export let categoryId: string;
 
@@ -46,7 +48,15 @@
 <div class="products-container">
   {#each productArr as product}
     <button>
-      {`${product.Name} -- ${product.Id} -- ${product.SalePrice} -- ${product.ProductImages}`}
+      {`${product.Name} -- ${product.Id} -- ${product.SalePrice} -- ${product.ProductImages[0]}`}
     </button>
+    <div>
+      <AddToBasket productId={product.Id.toString()} />
+      <button
+        on:click={$goto('/online-shop/checkout')}
+        >
+          Goto Checkout
+      </button>
+    </div>
   {/each}
 </div>
