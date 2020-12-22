@@ -1,3 +1,8 @@
 import { Writable, writable } from 'svelte/store';
 
-export const basket: Writable<string[]> = writable([]);
+export interface BasketProduct {
+  id: string;
+  quantity: number;
+}
+
+export const basket: Writable<BasketProduct[]> = writable([]);
