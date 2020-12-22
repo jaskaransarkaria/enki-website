@@ -76,7 +76,7 @@
     class:swing
     on:mouseover={() => (swing = true)}
     on:mouseout={() => (swing = false)}
-    on:click={$goto('/enki')}>
+    on:click={$goto('/what-we-offer')}>
     <img src="/open.png" alt="shop open sign" />
   </button>
 </main>

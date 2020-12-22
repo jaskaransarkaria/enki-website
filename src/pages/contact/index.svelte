@@ -29,7 +29,7 @@
 </style>
 
 <!-- absolute -->
-<a href={$url('/enki')}>Home page</a>
+<a href={$url('/what-we-offer')}>Home page</a>
 
 <div class="contact-us-container">
   <img src="/faith.jpg" alt="shop creator and jeweller" />

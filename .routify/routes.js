@@ -1,11 +1,11 @@
 
 /**
  * @roxi/routify 2.7.3
- * File generated Tue Dec 22 2020 14:10:23 GMT+0000 (Greenwich Mean Time)
+ * File generated Tue Dec 22 2020 14:50:11 GMT+0000 (Greenwich Mean Time)
  */
 
 export const __version = "2.7.3"
-export const __timestamp = "2020-12-22T14:10:23.056Z"
+export const __timestamp = "2020-12-22T14:50:11.821Z"
 
 //buildRoutes
 import { buildClientTree } from "@roxi/routify/runtime/buildRoutes"
@@ -26,44 +26,46 @@ export const _tree = {
   "children": [
     {
       "isFile": true,
-      "isDir": false,
-      "file": "cancel.svelte",
-      "filepath": "/cancel.svelte",
-      "name": "cancel",
+      "isDir": true,
+      "file": "_layout.svelte",
+      "filepath": "/classes/_layout.svelte",
+      "name": "_layout",
       "ext": "svelte",
       "badExt": false,
-      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/cancel.svelte",
-      "importPath": "../src/pages/cancel.svelte",
-      "isLayout": false,
+      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/classes/_layout.svelte",
+      "children": [
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "index.svelte",
+          "filepath": "/classes/index.svelte",
+          "name": "index",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/classes/index.svelte",
+          "importPath": "../src/pages/classes/index.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": true,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/classes/index",
+          "id": "_classes_index",
+          "component": () => import('../src/pages/classes/index.svelte').then(m => m.default)
+        }
+      ],
+      "isLayout": true,
       "isReset": false,
       "isIndex": false,
       "isFallback": false,
-      "isPage": true,
-      "ownMeta": {},
-      "meta": {
-        "recursive": true,
-        "preload": false,
-        "prerender": true
-      },
-      "path": "/cancel",
-      "id": "_cancel",
-      "component": () => import('../src/pages/cancel.svelte').then(m => m.default)
-    },
-    {
-      "isFile": true,
-      "isDir": false,
-      "file": "classes.svelte",
-      "filepath": "/classes.svelte",
-      "name": "classes",
-      "ext": "svelte",
-      "badExt": false,
-      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/classes.svelte",
-      "importPath": "../src/pages/classes.svelte",
-      "isLayout": false,
-      "isReset": false,
-      "isIndex": false,
-      "isFallback": false,
-      "isPage": true,
+      "isPage": false,
+      "importPath": "../src/pages/classes/_layout.svelte",
       "ownMeta": {},
       "meta": {
         "recursive": true,
@@ -71,24 +73,51 @@ export const _tree = {
         "prerender": true
       },
       "path": "/classes",
-      "id": "_classes",
-      "component": () => import('../src/pages/classes.svelte').then(m => m.default)
+      "id": "_classes__layout",
+      "component": () => import('../src/pages/classes/_layout.svelte').then(m => m.default)
     },
     {
       "isFile": true,
-      "isDir": false,
-      "file": "contact.svelte",
-      "filepath": "/contact.svelte",
-      "name": "contact",
+      "isDir": true,
+      "file": "_layout.svelte",
+      "filepath": "/contact/_layout.svelte",
+      "name": "_layout",
       "ext": "svelte",
       "badExt": false,
-      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/contact.svelte",
-      "importPath": "../src/pages/contact.svelte",
-      "isLayout": false,
+      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/contact/_layout.svelte",
+      "children": [
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "index.svelte",
+          "filepath": "/contact/index.svelte",
+          "name": "index",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/contact/index.svelte",
+          "importPath": "../src/pages/contact/index.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": true,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/contact/index",
+          "id": "_contact_index",
+          "component": () => import('../src/pages/contact/index.svelte').then(m => m.default)
+        }
+      ],
+      "isLayout": true,
       "isReset": false,
       "isIndex": false,
       "isFallback": false,
-      "isPage": true,
+      "isPage": false,
+      "importPath": "../src/pages/contact/_layout.svelte",
       "ownMeta": {},
       "meta": {
         "recursive": true,
@@ -96,33 +125,8 @@ export const _tree = {
         "prerender": true
       },
       "path": "/contact",
-      "id": "_contact",
-      "component": () => import('../src/pages/contact.svelte').then(m => m.default)
-    },
-    {
-      "isFile": true,
-      "isDir": false,
-      "file": "enki.svelte",
-      "filepath": "/enki.svelte",
-      "name": "enki",
-      "ext": "svelte",
-      "badExt": false,
-      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/enki.svelte",
-      "importPath": "../src/pages/enki.svelte",
-      "isLayout": false,
-      "isReset": false,
-      "isIndex": false,
-      "isFallback": false,
-      "isPage": true,
-      "ownMeta": {},
-      "meta": {
-        "recursive": true,
-        "preload": false,
-        "prerender": true
-      },
-      "path": "/enki",
-      "id": "_enki",
-      "component": () => import('../src/pages/enki.svelte').then(m => m.default)
+      "id": "_contact__layout",
+      "component": () => import('../src/pages/contact/_layout.svelte').then(m => m.default)
     },
     {
       "isFile": true,
@@ -236,56 +240,6 @@ export const _tree = {
         {
           "isFile": true,
           "isDir": false,
-          "file": "basket.svelte",
-          "filepath": "/online-shop/basket.svelte",
-          "name": "basket",
-          "ext": "svelte",
-          "badExt": false,
-          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/online-shop/basket.svelte",
-          "importPath": "../src/pages/online-shop/basket.svelte",
-          "isLayout": false,
-          "isReset": false,
-          "isIndex": false,
-          "isFallback": false,
-          "isPage": true,
-          "ownMeta": {},
-          "meta": {
-            "recursive": true,
-            "preload": false,
-            "prerender": true
-          },
-          "path": "/online-shop/basket",
-          "id": "_onlineShop_basket",
-          "component": () => import('../src/pages/online-shop/basket.svelte').then(m => m.default)
-        },
-        {
-          "isFile": true,
-          "isDir": false,
-          "file": "checkout.svelte",
-          "filepath": "/online-shop/checkout.svelte",
-          "name": "checkout",
-          "ext": "svelte",
-          "badExt": false,
-          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/online-shop/checkout.svelte",
-          "importPath": "../src/pages/online-shop/checkout.svelte",
-          "isLayout": false,
-          "isReset": false,
-          "isIndex": false,
-          "isFallback": false,
-          "isPage": true,
-          "ownMeta": {},
-          "meta": {
-            "recursive": true,
-            "preload": false,
-            "prerender": true
-          },
-          "path": "/online-shop/checkout",
-          "id": "_onlineShop_checkout",
-          "component": () => import('../src/pages/online-shop/checkout.svelte').then(m => m.default)
-        },
-        {
-          "isFile": true,
-          "isDir": false,
           "file": "index.svelte",
           "filepath": "/online-shop/index.svelte",
           "name": "index",
@@ -327,19 +281,173 @@ export const _tree = {
     },
     {
       "isFile": true,
-      "isDir": false,
-      "file": "services.svelte",
-      "filepath": "/services.svelte",
-      "name": "services",
+      "isDir": true,
+      "file": "_layout.svelte",
+      "filepath": "/payment/_layout.svelte",
+      "name": "_layout",
       "ext": "svelte",
       "badExt": false,
-      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/services.svelte",
-      "importPath": "../src/pages/services.svelte",
-      "isLayout": false,
+      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/payment/_layout.svelte",
+      "children": [
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "basket.svelte",
+          "filepath": "/payment/basket.svelte",
+          "name": "basket",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/payment/basket.svelte",
+          "importPath": "../src/pages/payment/basket.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": false,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/payment/basket",
+          "id": "_payment_basket",
+          "component": () => import('../src/pages/payment/basket.svelte').then(m => m.default)
+        },
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "cancel.svelte",
+          "filepath": "/payment/cancel.svelte",
+          "name": "cancel",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/payment/cancel.svelte",
+          "importPath": "../src/pages/payment/cancel.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": false,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/payment/cancel",
+          "id": "_payment_cancel",
+          "component": () => import('../src/pages/payment/cancel.svelte').then(m => m.default)
+        },
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "checkout.svelte",
+          "filepath": "/payment/checkout.svelte",
+          "name": "checkout",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/payment/checkout.svelte",
+          "importPath": "../src/pages/payment/checkout.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": false,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/payment/checkout",
+          "id": "_payment_checkout",
+          "component": () => import('../src/pages/payment/checkout.svelte').then(m => m.default)
+        },
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "success.svelte",
+          "filepath": "/payment/success.svelte",
+          "name": "success",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/payment/success.svelte",
+          "importPath": "../src/pages/payment/success.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": false,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/payment/success",
+          "id": "_payment_success",
+          "component": () => import('../src/pages/payment/success.svelte').then(m => m.default)
+        }
+      ],
+      "isLayout": true,
       "isReset": false,
       "isIndex": false,
       "isFallback": false,
-      "isPage": true,
+      "isPage": false,
+      "importPath": "../src/pages/payment/_layout.svelte",
+      "ownMeta": {},
+      "meta": {
+        "recursive": true,
+        "preload": false,
+        "prerender": true
+      },
+      "path": "/payment",
+      "id": "_payment__layout",
+      "component": () => import('../src/pages/payment/_layout.svelte').then(m => m.default)
+    },
+    {
+      "isFile": true,
+      "isDir": true,
+      "file": "_layout.svelte",
+      "filepath": "/services/_layout.svelte",
+      "name": "_layout",
+      "ext": "svelte",
+      "badExt": false,
+      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/services/_layout.svelte",
+      "children": [
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "index.svelte",
+          "filepath": "/services/index.svelte",
+          "name": "index",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/services/index.svelte",
+          "importPath": "../src/pages/services/index.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": true,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/services/index",
+          "id": "_services_index",
+          "component": () => import('../src/pages/services/index.svelte').then(m => m.default)
+        }
+      ],
+      "isLayout": true,
+      "isReset": false,
+      "isIndex": false,
+      "isFallback": false,
+      "isPage": false,
+      "importPath": "../src/pages/services/_layout.svelte",
       "ownMeta": {},
       "meta": {
         "recursive": true,
@@ -347,33 +455,60 @@ export const _tree = {
         "prerender": true
       },
       "path": "/services",
-      "id": "_services",
-      "component": () => import('../src/pages/services.svelte').then(m => m.default)
+      "id": "_services__layout",
+      "component": () => import('../src/pages/services/_layout.svelte').then(m => m.default)
     },
     {
       "isFile": true,
-      "isDir": false,
-      "file": "success.svelte",
-      "filepath": "/success.svelte",
-      "name": "success",
+      "isDir": true,
+      "file": "_layout.svelte",
+      "filepath": "/what-we-offer/_layout.svelte",
+      "name": "_layout",
       "ext": "svelte",
       "badExt": false,
-      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/success.svelte",
-      "importPath": "../src/pages/success.svelte",
-      "isLayout": false,
+      "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/what-we-offer/_layout.svelte",
+      "children": [
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "index.svelte",
+          "filepath": "/what-we-offer/index.svelte",
+          "name": "index",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/fun/enki-website/src/pages/what-we-offer/index.svelte",
+          "importPath": "../src/pages/what-we-offer/index.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": true,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/what-we-offer/index",
+          "id": "_whatWeOffer_index",
+          "component": () => import('../src/pages/what-we-offer/index.svelte').then(m => m.default)
+        }
+      ],
+      "isLayout": true,
       "isReset": false,
       "isIndex": false,
       "isFallback": false,
-      "isPage": true,
+      "isPage": false,
+      "importPath": "../src/pages/what-we-offer/_layout.svelte",
       "ownMeta": {},
       "meta": {
         "recursive": true,
         "preload": false,
         "prerender": true
       },
-      "path": "/success",
-      "id": "_success",
-      "component": () => import('../src/pages/success.svelte').then(m => m.default)
+      "path": "/what-we-offer",
+      "id": "_whatWeOffer__layout",
+      "component": () => import('../src/pages/what-we-offer/_layout.svelte').then(m => m.default)
     }
   ],
   "isLayout": true,

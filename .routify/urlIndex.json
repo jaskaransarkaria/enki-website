@@ -1,12 +1,12 @@
 [
-  "/cancel",
-  "/classes",
-  "/contact",
-  "/enki",
+  "/classes/index",
+  "/contact/index",
   "/index",
-  "/online-shop/basket",
-  "/online-shop/checkout",
   "/online-shop/index",
-  "/services",
-  "/success"
+  "/payment/basket",
+  "/payment/cancel",
+  "/payment/checkout",
+  "/payment/success",
+  "/services/index",
+  "/what-we-offer/index"
 ]

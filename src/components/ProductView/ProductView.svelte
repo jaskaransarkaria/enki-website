@@ -10,12 +10,10 @@
   onMount(async () => {
     // fetch all the products in a specific category
     const fetchProductsByCategoryId = async (id: string) => {
-      console.log('cat', id);
       const response = await fetch(
         `${process.env.SERVER_URL}/products-by-category?id=${id}`
       );
       const result = await response.json();
-      console.log('resp', result);
       return result;
     };
     productArr = await fetchProductsByCategoryId(categoryId);
@@ -52,11 +50,7 @@
     </button>
     <div>
       <AddToBasket productId={product.Id.toString()} />
-      <button
-        on:click={$goto('/online-shop/checkout')}
-        >
-          Goto Checkout
-      </button>
+      <button on:click={$goto('/payment/checkout')}> Goto Checkout </button>
     </div>
   {/each}
 </div>

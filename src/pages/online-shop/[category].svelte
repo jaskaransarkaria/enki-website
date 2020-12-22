@@ -33,12 +33,12 @@
   {#if $categories.Children.length > 0}
     {#each $categories.Children as category}
       <button
-      on:click={() => {
-        categories.set(category);
-        $goto(`./${$params.category}/${category.Id}`);
-      }}>
-      {category.Name}
-    </button>
+        on:click={() => {
+          categories.set(category);
+          $goto(`./${$params.category}/${category.Id}`);
+        }}>
+        {category.Name}
+      </button>
     {/each}
   {:else}
     <ProductView categoryId={category} />

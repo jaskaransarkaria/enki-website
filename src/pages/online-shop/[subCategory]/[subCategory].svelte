@@ -5,6 +5,6 @@
   export let subCategory: string;
 </script>
 
-  <h1>{JSON.stringify($params.subCategory)}</h1>
-  <h1>{subCategory}</h1>
-  <ProductView categoryId={subCategory} />
+<h1>{JSON.stringify($params.subCategory)}</h1>
+<h1>{subCategory}</h1>
+<ProductView categoryId={subCategory} />

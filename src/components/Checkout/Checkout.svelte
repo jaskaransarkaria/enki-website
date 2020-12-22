@@ -3,7 +3,6 @@
   import { onMount } from 'svelte';
   // import { basket } from '../../stores/basket'
 
-
   let stripePromise;
 
   onMount(async () => {
