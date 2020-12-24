@@ -1,7 +1,7 @@
 <script>
   import { loadStripe } from '@stripe/stripe-js';
   import { onMount } from 'svelte';
-  import { basket } from '../../stores/basket'
+  import { basket } from '../../stores/basket';
 
   let stripePromise;
 
@@ -17,7 +17,7 @@
       `${process.env.SERVER_URL}/create-checkout-session`,
       {
         method: 'POST',
-        body: JSON.stringify($basket)
+        body: JSON.stringify($basket),
       }
     );
 
