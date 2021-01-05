@@ -53,7 +53,7 @@
 <h1>{category}</h1>
 
 {#if category === '1821413'}
-  <SearchJewellery/>
+  <SearchJewellery />
 {/if}
 
 {#if $categories.hasOwnProperty('Id')}
