@@ -1,7 +1,25 @@
 <script lang="ts">
   import { jewellery } from '../../stores/jewellery';
-  let searchValue: string;
+  import { onMount } from 'svelte';
+  let searchValue: string = '';
   let results: any[] = [];
+
+  const fetchJewelleryProducts = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.SERVER_URL}/jewellery-products`
+      );
+      const parsedResult = await response.json();
+      return parsedResult;
+    } catch (err) {
+      console.error('fetching jewellery products failed', err);
+    }
+  };
+
+  onMount(async () => {
+    const data = await fetchJewelleryProducts();
+    jewellery.set(data);
+  });
 
   const searchJewelleryForValue = (event: Event) =>
     event.target.value === ''
@@ -19,8 +37,10 @@
 </form>
 
 <ul>
+  {#if searchValue != ''}
+  <h1>Total matches: {results.length}</h1>
+  {/if}
   {#each results as match}
-    <h1>Total matches: {results.length}</h1>
     <h1>{match.Name}</h1>
     <h1>CategoryId: {match.CategoryId}</h1>
     <h1>Product Id: {match.Id}</h1>

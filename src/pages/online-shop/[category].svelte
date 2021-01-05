@@ -2,33 +2,10 @@
   import { params, goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { categories } from '../../stores/categories';
-  import { jewellery } from '../../stores/jewellery';
   import ProductView from '../../components/ProductView/ProductView.svelte';
   import SearchJewellery from '../../components/SearchJewellery/SearchJewellery.svelte';
 
   export let category: string;
-
-  const isCategoryJewellery = async (id: string) => {
-    try {
-      if (id === '1821413') {
-        const data = await fetchJewelleryProducts();
-        saveJewelleryToStore(data);
-      }
-    } catch (err) {
-      console.error('fetching jewellery products failed', err);
-    }
-  };
-
-  const saveJewelleryToStore = (parsedJewelleryResult: any) =>
-    jewellery.set(parsedJewelleryResult);
-
-  const fetchJewelleryProducts = async () => {
-    const response = await fetch(
-      `${process.env.SERVER_URL}/jewellery-products`
-    );
-    const parsedResult = await response.json();
-    return parsedResult;
-  };
 
   const fetchCategoryById = async (id: string) => {
     const response = await fetch(`${process.env.SERVER_URL}/category?id=${id}`);
@@ -44,7 +21,6 @@
       } catch (err) {
         console.error('fetching category failed', err);
       }
-      await isCategoryJewellery(category);
     }
   });
 </script>
