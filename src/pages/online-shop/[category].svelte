@@ -2,25 +2,47 @@
   import { params, goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { categories } from '../../stores/categories';
+  import { jewellery } from '../../stores/jewellery';
   import ProductView from '../../components/ProductView/ProductView.svelte';
 
   export let category: string;
 
-  onMount(async () => {
-    const fetchCategoryById = async (id: string) => {
-      const response = await fetch(
-        `${process.env.SERVER_URL}/category?id=${id}`
+  const isCategoryJewellery = async (id: string) => {
+    try {
+      if (id === "1821413") {
+        const data = await fetchJewelleryProducts()
+        saveJewelleryToStore(data)
+      }
+    } catch (err) {
+      console.error('fetching jewellery products failed', err)
+    }
+  }
+
+  const saveJewelleryToStore = (parsedJewelleryResult: any) => jewellery.set(parsedJewelleryResult)
+
+  const fetchJewelleryProducts = async () => {
+    const response = await fetch(`${process.env.SERVER_URL}/jewellery-products`)
+    const parsedResult = await response.json()
+    return parsedResult
+  }
+
+  const fetchCategoryById = async (id: string) => {
+    const response = await fetch(
+      `${process.env.SERVER_URL}/category?id=${id}`
       );
       const parsedResult = JSON.parse(await response.json());
       return parsedResult;
     };
-    if (!$categories.hasOwnProperty('Id')) {
-      try {
-        const data = await fetchCategoryById(category);
-        categories.set(data);
-      } catch (err) {
-        console.error('fetching category failed', err);
-      }
+    
+    onMount(async () => {
+      if (!$categories.hasOwnProperty('Id')) {
+        try {
+          const data = await fetchCategoryById(category);
+          categories.set(data);
+        } catch (err) {
+          console.error('fetching category failed', err);
+        }
+      await isCategoryJewellery(category)
     }
   });
 </script>
