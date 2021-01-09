@@ -4,37 +4,38 @@
   import AddToBasket from '../AddToBasket/AddToBasket.svelte';
   import { flow, pipe } from 'fp-ts/lib/function';
   import * as TE from 'fp-ts/lib/TaskEither';
-  import * as T from 'fp-ts/lib/Task';
   import * as E from 'fp-ts/lib/Either';
-  
-
 
   export let categoryId: string;
 
-  let productArr: unknown = [];
+  let productArr: object[] | E.Either<unknown, object[]> = [];
 
   onMount(async () => {
     // fetch all the products in a specific category
-    const get = (url: string): TE.TaskEither<Error, object[]> => TE.tryCatch(
-        () => fetch(url).then((res) => res.json()),
-        (reason) => new Error(String(reason))
-      );
+    const get = (url: string): TE.TaskEither<never[], object[]> =>
+    // TaskEither is from asynchronous operations that can fail
+    // Transforms a Promise that may reject to a Promise that never rejects and returns an Either instead.
+    // Note: f should never throw errors, they are not caught.
+    TE.tryCatch(
+      () => fetch(url).then((res) => res.json()),
+      () => [],
+    );
 
     // cast value to Either Left or Right
-    const validateResponse = () => (response: any): E.Either<Error, any> => (response ? E.right(response) : E.left(Error('Invalid api call!')));
-
+    const validateResponse = () => (response: any): E.Either<never[], any> =>
+      response ? E.right(response) : E.left(response);
 
     const getProductsByCategory = await pipe(
-      get(
-      `${process.env.SERVER_URL}/products-by-category?id=${categoryId}`
-    ),
-    TE.chain(flow(validateResponse(), TE.fromEither)),
-    TE.getOrElse((e => TE.of(e)) // get value or return the error
-    ));
+      get(`${process.env.SERVER_URL}/products-by-category?id=${categoryId}`),
+      TE.chain(flow(validateResponse(), TE.fromEither)),
+      TE.getOrElse(
+        (e) => TE.of(e) // get value or return the error
+      )
+    );
 
-    const products = await getProductsByCategory()
+    const products = await getProductsByCategory();
 
-    productArr = (products instanceof Error) ? [] : products;
+    productArr = products instanceof Error ? [] : products;
   });
 </script>
 
