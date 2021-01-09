@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.11.0",
+    "fp-ts": "^2.9.3",
     "sirv-cli": "^1.0.0"
   },
   "setupFilesAfterEnv": [

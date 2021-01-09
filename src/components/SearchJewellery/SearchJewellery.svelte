@@ -38,7 +38,7 @@
 
 <ul>
   {#if searchValue != ''}
-  <h1>Total matches: {results.length}</h1>
+    <h1>Total matches: {results.length}</h1>
   {/if}
   {#each results as match}
     <h1>{match.Name}</h1>
