@@ -2,41 +2,42 @@
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import AddToBasket from '../AddToBasket/AddToBasket.svelte';
-  import { flow, pipe } from 'fp-ts/lib/function';
+  import { pipe } from 'fp-ts/lib/function';
   import * as TE from 'fp-ts/lib/TaskEither';
-  import * as E from 'fp-ts/lib/Either';
+  import type * as E from 'fp-ts/lib/Either';
 
   export let categoryId: string;
 
-  let productArr: object[] | E.Either<unknown, object[]> = [];
+  interface Product {}
 
-  onMount(async () => {
+  interface GetProductsFn{
+    (url: string): Promise<Product[]>}
+
+  let productArr: Product[] | E.Either<Error, ReadonlyArray<Product>> = [];
+
+  const retrieveStateFn = (serverUrl: string, catId:string, getProducts: GetProductsFn)  => (): Promise<E.Either<Error, ReadonlyArray<Product>>> => {
     // fetch all the products in a specific category
-    const get = (url: string): TE.TaskEither<never[], object[]> =>
-    // TaskEither is from asynchronous operations that can fail
-    // Transforms a Promise that may reject to a Promise that never rejects and returns an Either instead.
-    // Note: f should never throw errors, they are not caught.
-    TE.tryCatch(
-      () => fetch(url).then((res) => res.json()),
-      () => [],
-    );
+    const get = (url: string): TE.TaskEither<Error, ReadonlyArray<Product>> =>
+      // TaskEither is from asynchronous operations that can fail
+      TE.tryCatch(
+        () => getProducts(url),
+        () => new Error(`Error fetching `)
+      );
 
-    // cast value to Either Left or Right
-    const validateResponse = () => (response: any): E.Either<never[], any> =>
-      response ? E.right(response) : E.left(response);
+    const getProductsByCategory = pipe(
+      `${serverUrl}/products-by-category?id=${catId}`,
+      get,
+      TE.chain(result => TE.of(result))
+    )
+    return getProductsByCategory();
+  };
 
-    const getProductsByCategory = await pipe(
-      get(`${process.env.SERVER_URL}/products-by-category?id=${categoryId}`),
-      TE.chain(flow(validateResponse(), TE.fromEither)),
-      TE.getOrElse(
-        (e) => TE.of(e) // get value or return the error
-      )
-    );
-
-    const products = await getProductsByCategory();
-
-    productArr = products instanceof Error ? [] : products;
-  });
+  const getProducts: GetProductsFn = (url: string): Promise<Product[]> => fetch(url).then(res => res.json())
+  
+  onMount(async () => {
+    productArr = await retrieveStateFn(process.env.SERVER_URL as string, categoryId, getProducts)()
+    console.log(productArr)
+    });
 </script>
 
 <style>
