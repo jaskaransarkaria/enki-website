@@ -10,12 +10,17 @@
 
   interface Product {}
 
-  interface GetProductsFn{
-    (url: string): Promise<Product[]>}
+  interface GetProductsFn {
+    (url: string): Promise<Product[]>;
+  }
 
   let productArr: Product[] | E.Either<Error, ReadonlyArray<Product>> = [];
 
-  const retrieveStateFn = (serverUrl: string, catId:string, getProducts: GetProductsFn)  => (): Promise<E.Either<Error, ReadonlyArray<Product>>> => {
+  const retrieveStateFn = (
+    serverUrl: string,
+    catId: string,
+    getProducts: GetProductsFn
+  ) => (): Promise<E.Either<Error, ReadonlyArray<Product>>> => {
     // fetch all the products in a specific category
     const get = (url: string): TE.TaskEither<Error, ReadonlyArray<Product>> =>
       // TaskEither is from asynchronous operations that can fail
@@ -27,17 +32,22 @@
     const getProductsByCategory = pipe(
       `${serverUrl}/products-by-category?id=${catId}`,
       get,
-      TE.chain(result => TE.of(result))
-    )
+      TE.chain((result) => TE.of(result))
+    );
     return getProductsByCategory();
   };
 
-  const getProducts: GetProductsFn = (url: string): Promise<Product[]> => fetch(url).then(res => res.json())
-  
+  const getProducts: GetProductsFn = (url: string): Promise<Product[]> =>
+    fetch(url).then((res) => res.json());
+
   onMount(async () => {
-    productArr = await retrieveStateFn(process.env.SERVER_URL as string, categoryId, getProducts)()
-    console.log(productArr)
-    });
+    productArr = await retrieveStateFn(
+      process.env.SERVER_URL as string,
+      categoryId,
+      getProducts
+    )();
+    console.log(productArr);
+  });
 </script>
 
 <style>

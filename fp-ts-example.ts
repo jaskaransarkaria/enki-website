@@ -1,49 +1,49 @@
 // We use the fp-ts library so we don't have to define the monads ourselves
 // fp-ts also gets us some neat utility functions
-import { either, taskEither } from "fp-ts";
-import { flow } from "fp-ts/lib/function";
-import { pipe } from "fp-ts/lib/pipeable";
-import axios from "axios";
-import { task } from "fp-ts/lib/Task";
+import { either, taskEither } from 'fp-ts';
+import { flow } from 'fp-ts/lib/function';
+import { pipe } from 'fp-ts/lib/pipeable';
+import axios from 'axios';
+import { task } from 'fp-ts/lib/Task';
 
 /**
  * In this real life example we fetch data from an API and validate the result with the usage of Either and TaskEither
  */
 
 enum CountryCode {
-  EUR = "EUR",
-  USD = "USD",
-  CAD = "CAD",
-  HKD = "HKD",
-  ISK = "ISK",
-  PHP = "PHP",
-  DKK = "DKK",
-  HUF = "HUF",
-  CZK = "CZK",
-  GBP = "GBP",
-  RON = "RON",
-  SEK = "SEK",
-  IDR = "IDR",
-  INR = "INR",
-  BRL = "BRL",
-  RUB = "RUB",
-  HRK = "HRK",
-  JPY = "JPY",
-  THB = "THB",
-  CHF = "CHF",
-  MYR = "MYR",
-  BGN = "BGN",
-  TRY = "TRY",
-  CNY = "CNY",
-  NOK = "NOK",
-  NZD = "NZD",
-  ZAR = "ZAR",
-  MXN = "MXN",
-  SGD = "SGD",
-  AUD = "AUD",
-  ILS = "ILS",
-  KRW = "KRW",
-  PLN = "PLN",
+  EUR = 'EUR',
+  USD = 'USD',
+  CAD = 'CAD',
+  HKD = 'HKD',
+  ISK = 'ISK',
+  PHP = 'PHP',
+  DKK = 'DKK',
+  HUF = 'HUF',
+  CZK = 'CZK',
+  GBP = 'GBP',
+  RON = 'RON',
+  SEK = 'SEK',
+  IDR = 'IDR',
+  INR = 'INR',
+  BRL = 'BRL',
+  RUB = 'RUB',
+  HRK = 'HRK',
+  JPY = 'JPY',
+  THB = 'THB',
+  CHF = 'CHF',
+  MYR = 'MYR',
+  BGN = 'BGN',
+  TRY = 'TRY',
+  CNY = 'CNY',
+  NOK = 'NOK',
+  NZD = 'NZD',
+  ZAR = 'ZAR',
+  MXN = 'MXN',
+  SGD = 'SGD',
+  AUD = 'AUD',
+  ILS = 'ILS',
+  KRW = 'KRW',
+  PLN = 'PLN',
 }
 
 interface ExchangeRates {
