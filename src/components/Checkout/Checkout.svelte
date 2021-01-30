@@ -22,6 +22,7 @@
     );
 
     const session = await response.json();
+    console.log("session", session)
 
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,

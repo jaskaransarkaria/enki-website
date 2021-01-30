@@ -2,51 +2,23 @@
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import AddToBasket from '../AddToBasket/AddToBasket.svelte';
-  import { pipe } from 'fp-ts/lib/function';
-  import * as TE from 'fp-ts/lib/TaskEither';
-  import type * as E from 'fp-ts/lib/Either';
+  import { retrieveStateFn } from '../../libs/requests'
+  import type { Product, GetProductsFn } from '../../libs/requests'
 
   export let categoryId: string;
 
-  interface Product {}
-
-  interface GetProductsFn {
-    (url: string): Promise<Product[]>;
-  }
-
-  let productArr: Product[] | E.Either<Error, ReadonlyArray<Product>> = [];
-
-  const retrieveStateFn = (
-    serverUrl: string,
-    catId: string,
-    getProducts: GetProductsFn
-  ) => (): Promise<E.Either<Error, ReadonlyArray<Product>>> => {
-    // fetch all the products in a specific category
-    const get = (url: string): TE.TaskEither<Error, ReadonlyArray<Product>> =>
-      // TaskEither is from asynchronous operations that can fail
-      TE.tryCatch(
-        () => getProducts(url),
-        () => new Error(`Error fetching `)
-      );
-
-    const getProductsByCategory = pipe(
-      `${serverUrl}/products-by-category?id=${catId}`,
-      get,
-      TE.chain((result) => TE.of(result))
-    );
-    return getProductsByCategory();
-  };
+  let productArr: readonly Product[] = [];
 
   const getProducts: GetProductsFn = (url: string): Promise<Product[]> =>
-    fetch(url).then((res) => res.json());
+  fetch(url).then((res) => res.json());
 
   onMount(async () => {
-    productArr = await retrieveStateFn(
+    const result = await retrieveStateFn(
       process.env.SERVER_URL as string,
       categoryId,
       getProducts
     )();
-    console.log(productArr);
+    productArr = result["_tag"] === "Right" ? result.right : [];
   });
 </script>
 
