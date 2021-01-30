@@ -3,13 +3,20 @@
   import { onMount } from 'svelte';
   import AddToBasket from '../AddToBasket/AddToBasket.svelte';
   import { retrieveStateFn } from '../../libs/requests';
-  import type { Product, GetProductsFn } from '../../libs/requests';
+  import type { GetFn } from '../../libs/requests';
+
+  interface Product {
+    Name: string;
+    Id: string;
+    SalePrice: string;
+    ProductImages: string[];
+  }
 
   export let categoryId: string;
 
   let productArr: readonly Product[] = [];
 
-  const getProducts: GetProductsFn = (url: string): Promise<Product[]> =>
+  const getProducts: GetFn<Product> = (url: string): Promise<ReadonlyArray<Product>> =>
     fetch(url).then((res) => res.json());
 
   onMount(async () => {
@@ -17,7 +24,7 @@
       process.env.SERVER_URL as string,
       categoryId,
       getProducts
-    )();
+    )()();
     productArr = result['_tag'] === 'Right' ? result.right : [];
   });
 </script>

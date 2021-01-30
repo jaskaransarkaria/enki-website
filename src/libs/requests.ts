@@ -11,33 +11,25 @@ export const fetchCategories = async () => {
   return orderCatergories(parsedResult);
 };
 
-export const retrieveStateFn = (
+export const retrieveStateFn = <T>(
   serverUrl: string,
   catId: string,
-  getProducts: GetProductsFn
-) => (): Promise<E.Either<Error, ReadonlyArray<Product>>> => {
+  getState: GetFn<T>,
+) => (): () => Promise<E.Either<Error, ReadonlyArray<T>>> => {
   // fetch all the products in a specific category
-  const get = (url: string): TE.TaskEither<Error, ReadonlyArray<Product>> =>
+  const get = (url: string): TE.TaskEither<Error, ReadonlyArray<T>> =>
     // TaskEither is from asynchronous operations that can fail
     TE.tryCatch(
-      () => getProducts(url),
+      () => getState(url),
       () => new Error(`Error fetching products`)
     );
 
-  const getProductsByCategory = pipe(
+  return pipe(
     `${serverUrl}/products-by-category?id=${catId}`,
     get,
     TE.chain((result) => TE.of(result))
   );
-  return getProductsByCategory();
 };
-export interface GetProductsFn {
-  (url: string): Promise<Product[]>;
-}
-
-export interface Product {
-  Name: string;
-  Id: string;
-  SalePrice: string;
-  ProductImages: string[];
+export interface GetFn <T>{
+  (url: string): Promise<ReadonlyArray<T>>;
 }
