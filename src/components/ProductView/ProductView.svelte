@@ -2,15 +2,15 @@
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import AddToBasket from '../AddToBasket/AddToBasket.svelte';
-  import { retrieveStateFn } from '../../libs/requests'
-  import type { Product, GetProductsFn } from '../../libs/requests'
+  import { retrieveStateFn } from '../../libs/requests';
+  import type { Product, GetProductsFn } from '../../libs/requests';
 
   export let categoryId: string;
 
   let productArr: readonly Product[] = [];
 
   const getProducts: GetProductsFn = (url: string): Promise<Product[]> =>
-  fetch(url).then((res) => res.json());
+    fetch(url).then((res) => res.json());
 
   onMount(async () => {
     const result = await retrieveStateFn(
@@ -18,7 +18,7 @@
       categoryId,
       getProducts
     )();
-    productArr = result["_tag"] === "Right" ? result.right : [];
+    productArr = result['_tag'] === 'Right' ? result.right : [];
   });
 </script>
 

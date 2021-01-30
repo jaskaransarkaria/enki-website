@@ -12,33 +12,32 @@ export const fetchCategories = async () => {
 };
 
 export const retrieveStateFn = (
-    serverUrl: string,
-    catId: string,
-    getProducts: GetProductsFn
-  ) => (): Promise<E.Either<Error, ReadonlyArray<Product>>> => {
-    // fetch all the products in a specific category
-    const get = (url: string): TE.TaskEither<Error, ReadonlyArray<Product>> =>
-      // TaskEither is from asynchronous operations that can fail
-      TE.tryCatch(
-        () => getProducts(url),
-        () => new Error(`Error fetching products`)
-      );
-
-    const getProductsByCategory = pipe(
-      `${serverUrl}/products-by-category?id=${catId}`,
-      get,
-      TE.chain((result) => TE.of(result))
+  serverUrl: string,
+  catId: string,
+  getProducts: GetProductsFn
+) => (): Promise<E.Either<Error, ReadonlyArray<Product>>> => {
+  // fetch all the products in a specific category
+  const get = (url: string): TE.TaskEither<Error, ReadonlyArray<Product>> =>
+    // TaskEither is from asynchronous operations that can fail
+    TE.tryCatch(
+      () => getProducts(url),
+      () => new Error(`Error fetching products`)
     );
-    return getProductsByCategory();
-  };
+
+  const getProductsByCategory = pipe(
+    `${serverUrl}/products-by-category?id=${catId}`,
+    get,
+    TE.chain((result) => TE.of(result))
+  );
+  return getProductsByCategory();
+};
 export interface GetProductsFn {
-    (url: string): Promise<Product[]>;
-  }
+  (url: string): Promise<Product[]>;
+}
 
 export interface Product {
   Name: string;
   Id: string;
   SalePrice: string;
-  ProductImages: string[]
+  ProductImages: string[];
 }
-
