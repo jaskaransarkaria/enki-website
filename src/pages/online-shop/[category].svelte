@@ -6,14 +6,13 @@
   import SearchJewellery from '../../components/SearchJewellery/SearchJewellery.svelte';
   import { retrieveStateFn, getCategoryId } from '../../libs/requests';
 
-  import type { Category } from '../../stores/categories'
+  import type { Category } from '../../stores/categories';
 
   export let category: string;
 
-  const JEWELLERY_CATEGORY = process.env.JEWELLERY_CATEGORY_ID
+  const JEWELLERY_CATEGORY = process.env.JEWELLERY_CATEGORY_ID;
 
-
-    onMount(async () => {
+  onMount(async () => {
     // This prevents the app for fetching the categories if it has already pulled them
     // but will pull them if visiting the link directly
     // if (!$categories.hasOwnProperty('Id') || $categories.Id === '') {
@@ -21,9 +20,15 @@
     //   const data: Category = result['_tag'] === 'Right' ? JSON.parse(result.right as string) : { Id: '', Name: '', Children: []}
     //   categories.set(data);
     // }
-      const result = await retrieveStateFn(`${process.env.SERVER_URL}/category?id=${category}`, getCategoryId)()()
-      const data: Category = result['_tag'] === 'Right' ? JSON.parse(result.right as string) : { Id: '', Name: '', Children: []}
-      categories.set(data);
+    const result = await retrieveStateFn(
+      `${process.env.SERVER_URL}/category?id=${category}`,
+      getCategoryId
+    )()();
+    const data: Category =
+      result['_tag'] === 'Right'
+        ? JSON.parse(result.right as string)
+        : { Id: '', Name: '', Children: [] };
+    categories.set(data);
   });
 </script>
 

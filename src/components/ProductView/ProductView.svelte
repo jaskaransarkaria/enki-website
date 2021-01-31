@@ -26,11 +26,11 @@
       `${process.env.SERVER_URL}/products-by-category?id=${id}`,
       getProducts
     )()();
-    productArr = result['_tag'] === 'Right' ? result.right as Product[] : [];
-  }
+    productArr = result['_tag'] === 'Right' ? (result.right as Product[]) : [];
+  };
 
   onMount(async () => await refreshProducts(categoryId));
-  $: refreshProducts(categoryId)
+  $: refreshProducts(categoryId);
 </script>
 
 <style>

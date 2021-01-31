@@ -1,17 +1,12 @@
 module.exports = {
-  "pages": "src/pages",
-  "sourceDir": "public",
-  "routifyDir": ".routify",
-  "ignore": "",
-  "dynamicImports": true,
-  "singleBuild": false,
-  "noHashScroll": false,
-  "distDir": "dist",
-  "extensions": [
-    "svelte",
-    "html",
-    "svx",
-    "md"
-  ],
-  "started": "2021-01-31T12:48:46.113Z"
-}
+  pages: 'src/pages',
+  sourceDir: 'public',
+  routifyDir: '.routify',
+  ignore: '',
+  dynamicImports: true,
+  singleBuild: false,
+  noHashScroll: false,
+  distDir: 'dist',
+  extensions: ['svelte', 'html', 'svx', 'md'],
+  started: '2021-01-31T12:48:46.113Z',
+};

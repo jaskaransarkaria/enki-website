@@ -1,9 +1,9 @@
 <script lang="ts">
   import { jewellery } from '../../stores/jewellery';
   import { onMount } from 'svelte';
-  
+
   let searchValue: string = '';
-  
+
   let results: any[] = [];
 
   const fetchJewelleryProducts = async () => {
@@ -12,7 +12,7 @@
         `${process.env.SERVER_URL}/jewellery-products`
       );
       const parsedResult = await response.json();
-      console.log("fetched", parsedResult)
+      console.log('fetched', parsedResult);
       return parsedResult;
     } catch (err) {
       console.error('fetching jewellery products failed', err);

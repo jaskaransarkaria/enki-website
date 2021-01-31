@@ -33,5 +33,5 @@ export interface GetFn<T> {
   (url: string): Promise<T | ReadonlyArray<T>>;
 }
 
-
-export const getCategoryId: GetFn<string> = (url: string): Promise<string> => fetch(url).then((res) => res.json());
+export const getCategoryId: GetFn<string> = (url: string): Promise<string> =>
+  fetch(url).then((res) => res.json());

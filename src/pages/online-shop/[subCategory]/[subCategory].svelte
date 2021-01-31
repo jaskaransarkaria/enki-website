@@ -25,20 +25,20 @@
 
     //   categories.set(data);
     // } else {
-      //   // show category children OR show productview
-      //   const matchedCat = [...$categories.Children];
-      //   categories.set(matchedCat.find(obj => obj.Id.toString() === subCategory)!)
-      // }
-      
-      const result = await retrieveStateFn(
-        `${process.env.SERVER_URL}/category?id=${subCategory}`,
-        getCategoryId
-        )()();
-        const data: Category =
-        result['_tag'] === 'Right'
+    //   // show category children OR show productview
+    //   const matchedCat = [...$categories.Children];
+    //   categories.set(matchedCat.find(obj => obj.Id.toString() === subCategory)!)
+    // }
+
+    const result = await retrieveStateFn(
+      `${process.env.SERVER_URL}/category?id=${subCategory}`,
+      getCategoryId
+    )()();
+    const data: Category =
+      result['_tag'] === 'Right'
         ? JSON.parse(result.right as string)
         : { Id: '', Name: '', Children: [] };
-          categories.set(data);
+    categories.set(data);
   });
 </script>
 
@@ -54,20 +54,20 @@
     {#each $categories.Children as cat}
       <button
         on:click={() => {
-          showProduct = true
-          console.log(cat.Id)
-          productToShow = cat.Id
-          console.log(productToShow)
-          }}>
+          showProduct = true;
+          console.log(cat.Id);
+          productToShow = cat.Id;
+          console.log(productToShow);
+        }}>
         {cat.Name}
       </button>
-      {/each}
-      {:else}
-      <ProductView categoryId={subCategory} />
-      {/if}
-      
+    {/each}
+  {:else}
+    <ProductView categoryId={subCategory} />
+  {/if}
+
   {#if showProduct}
-    {console.log("product to show:", productToShow)}
+    {console.log('product to show:', productToShow)}
     <ProductView categoryId={productToShow} />
   {/if}
 {/if}
