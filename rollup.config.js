@@ -71,7 +71,8 @@ export default {
       'process.env.SERVER_URL': production ?
         JSON.stringify('https://server.enki.jobspeed.uk') :
         JSON.stringify('http://localhost:8080'),
-      'process.env.STRIPE_KEY': JSON.stringify('pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp')
+      'process.env.STRIPE_KEY': JSON.stringify('pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp'),
+      'process.env.JEWELLERY_CATEGORY_ID': JSON.stringify('1875996')
     }),
 
 		// In dev mode, call `npm run start` once

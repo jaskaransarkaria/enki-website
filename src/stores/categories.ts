@@ -1,3 +1,14 @@
 import { writable } from 'svelte/store';
 
-export const categories = writable({});
+export interface Category {
+    Id: string;
+    Name: string;
+    Children: Category[];
+  }
+
+
+export const categories = writable<Category>({
+  Id: '',
+  Name: '',
+  Children: []
+});
