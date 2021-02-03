@@ -11,10 +11,12 @@
   const JEWELLERY_CATEGORY = process.env.JEWELLERY_CATEGORY_ID;
 
   onMount(async () => {
-    const data = await refreshCategory(`${process.env.SERVER_URL}/category?id=${category}`)
+    const data = await refreshCategory(
+      `${process.env.SERVER_URL}/category?id=${category}`
+    );
     categories.set(data);
   });
-  $: refreshCategory(`${process.env.SERVER_URL}/category?id=${category}`)
+  $: refreshCategory(`${process.env.SERVER_URL}/category?id=${category}`);
 </script>
 
 <h1>PARAMS {$params.category}</h1>

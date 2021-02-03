@@ -2,14 +2,14 @@
   import { onMount } from 'svelte';
   import { jewellery } from '../../stores/jewellery';
   import { retrieveStateFn } from '../../libs/requests';
-  
-  import type { JewelleryProduct } from '../../types/jewellery-product'
+
+  import type { JewelleryProduct } from '../../types/jewellery-product';
   import type { GetFn } from '../../libs/requests';
 
   let searchValue: string = '';
 
   let data: readonly JewelleryProduct[] = [];
-  
+
   const searchJewelleryForValue = (event: Event) =>
     event.target.value === ''
       ? []
@@ -17,19 +17,24 @@
           obj.Name.toLowerCase().match(event.target.value.toLowerCase())
         );
 
-  const getJewelleryProducts: GetFn<JewelleryProduct> = (url: string): Promise<ReadonlyArray<JewelleryProduct>> => fetch(url).then(res => res.json())
+  const getJewelleryProducts: GetFn<JewelleryProduct> = (
+    url: string
+  ): Promise<ReadonlyArray<JewelleryProduct>> =>
+    fetch(url).then((res) => res.json());
 
   const refreshJewelleryProducts = async (): Promise<JewelleryProduct[]> => {
     const result = await retrieveStateFn(
-    `${process.env.SERVER_URL}/jewellery-products`,
-    getJewelleryProducts
+      `${process.env.SERVER_URL}/jewellery-products`,
+      getJewelleryProducts
     )()();
 
-    return result['_tag'] === 'Right' ? (result.right as JewelleryProduct[]) : [];
-  }
+    return result['_tag'] === 'Right'
+      ? (result.right as JewelleryProduct[])
+      : [];
+  };
 
   onMount(async () => {
-    data = await refreshJewelleryProducts()
+    data = await refreshJewelleryProducts();
     jewellery.set(data);
   });
 </script>
@@ -52,9 +57,9 @@
       <ol>
         <h1>Tags</h1>
         {#each match.ProductTags as tag}
-        <h2>{tag.Name}</h2>
+          <h2>{tag.Name}</h2>
         {/each}
       </ol>
-      {/each}
-    {/if}
+    {/each}
+  {/if}
 </ul>

@@ -3,8 +3,6 @@ import * as TE from 'fp-ts/lib/TaskEither';
 import type E from 'fp-ts/lib/Either';
 import type { Category } from '../types/category';
 
-
-
 export const retrieveStateFn = <T>(
   url: string,
   getState: GetFn<T>
@@ -27,16 +25,17 @@ export interface GetFn<T> {
   (url: string): Promise<T | ReadonlyArray<T>>;
 }
 
-export const refreshCategory = async (url: string): Promise<Category | ReadonlyArray<Category>> => {
-    const result = await retrieveStateFn(
-      url,
-      getCategory
-    )()();
+export const refreshCategory = async (
+  url: string
+): Promise<Category | ReadonlyArray<Category>> => {
+  const result = await retrieveStateFn(url, getCategory)()();
 
-    return result['_tag'] === 'Right'
-        ? result.right
-        : { Id: '', Name: '', Children: [] };
-  }
+  return result['_tag'] === 'Right'
+    ? result.right
+    : { Id: '', Name: '', Children: [] };
+};
 
 export const getCategory: GetFn<Category> = (url: string): Promise<Category> =>
-  fetch(url).then((res) => res.json()).then(res => JSON.parse(res));
+  fetch(url)
+    .then((res) => res.json())
+    .then((res) => JSON.parse(res));

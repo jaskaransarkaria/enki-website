@@ -10,10 +10,12 @@
   let productToShow: string;
 
   onMount(async () => {
-    const data = await refreshCategory(`${process.env.SERVER_URL}/category?id=${subCategory}`)
+    const data = await refreshCategory(
+      `${process.env.SERVER_URL}/category?id=${subCategory}`
+    );
     categories.set(data);
   });
-  $: refreshCategory(`${process.env.SERVER_URL}/category?id=${subCategory}`)
+  $: refreshCategory(`${process.env.SERVER_URL}/category?id=${subCategory}`);
 </script>
 
 <h1>{JSON.stringify($params.subCategory)}</h1>

@@ -5,8 +5,7 @@
   import { retrieveStateFn } from '../../libs/requests';
 
   import type { GetFn } from '../../libs/requests';
-  import type { Product } from '../../types/product'
-
+  import type { Product } from '../../types/product';
 
   export let categoryId: string;
 
