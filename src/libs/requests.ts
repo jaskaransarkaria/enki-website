@@ -1,15 +1,9 @@
 import { pipe } from 'fp-ts/lib/function';
 import * as TE from 'fp-ts/lib/TaskEither';
 import type E from 'fp-ts/lib/Either';
+import type { Category } from '../types/category';
 
-const orderCatergories = (resp: object[]) =>
-  resp.sort((a: object, b: object) => (a.Name < b.Name ? -1 : 1));
 
-export const fetchCategories = async () => {
-  const response = await fetch(`${process.env.SERVER_URL}/categories`);
-  const parsedResult = JSON.parse(await response.json());
-  return orderCatergories(parsedResult);
-};
 
 export const retrieveStateFn = <T>(
   url: string,
@@ -33,5 +27,16 @@ export interface GetFn<T> {
   (url: string): Promise<T | ReadonlyArray<T>>;
 }
 
-export const getCategoryId: GetFn<string> = (url: string): Promise<string> =>
-  fetch(url).then((res) => res.json());
+export const refreshCategory = async (url: string): Promise<Category | ReadonlyArray<Category>> => {
+    const result = await retrieveStateFn(
+      url,
+      getCategory
+    )()();
+
+    return result['_tag'] === 'Right'
+        ? result.right
+        : { Id: '', Name: '', Children: [] };
+  }
+
+export const getCategory: GetFn<Category> = (url: string): Promise<Category> =>
+  fetch(url).then((res) => res.json()).then(res => JSON.parse(res));

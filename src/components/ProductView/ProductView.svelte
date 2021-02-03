@@ -5,13 +5,8 @@
   import { retrieveStateFn } from '../../libs/requests';
 
   import type { GetFn } from '../../libs/requests';
+  import type { Product } from '../../types/product'
 
-  interface Product {
-    Name: string;
-    Id: string;
-    SalePrice: string;
-    ProductImages: string[];
-  }
 
   export let categoryId: string;
 

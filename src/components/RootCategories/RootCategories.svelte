@@ -2,22 +2,21 @@
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { categories } from '../../stores/categories';
+  import { refreshCategory } from '../../libs/requests';
 
-  let data: object[] = [];
+  import type { Category } from '../../types/category'
+
+  let data: Category[] = [];
+  
+  const orderCategories = (resp: readonly Category[]) =>
+    resp.slice().sort((a: Category, b: Category) => (a.Name < b.Name ? -1 : 1));
 
   onMount(async () => {
     // pull the category data from svelte
-    const orderCatergories = (resp: object[]) =>
-      resp.sort((a: object, b: object) => (a.Name < b.Name ? -1 : 1));
-
-    const fetchCategories = async () => {
-      const response = await fetch(`${process.env.SERVER_URL}/categories`);
-      const parsedResult = JSON.parse(await response.json());
-      return orderCatergories(parsedResult);
-    };
-
-    data = await fetchCategories();
-  });
+    const result = await refreshCategory(`${process.env.SERVER_URL}/categories`) as Category[]
+    data = orderCategories(result);
+    }
+  );
 </script>
 
 <style>
