@@ -2,6 +2,7 @@ import { pipe } from 'fp-ts/lib/function';
 import * as TE from 'fp-ts/lib/TaskEither';
 import type E from 'fp-ts/lib/Either';
 import type { Category } from '../types/category';
+import type { Product } from '../types/product';
 
 export const retrieveStateFn = <T>(
   url: string,
@@ -39,3 +40,12 @@ export const getCategory: GetFn<Category> = (url: string): Promise<Category> =>
   fetch(url)
     .then((res) => res.json())
     .then((res) => JSON.parse(res));
+
+const getProducts: GetFn<Product> = (
+  url: string
+): Promise<ReadonlyArray<Product>> => fetch(url).then((res) => res.json());
+
+export const refreshProducts = async (url: string) => {
+  const result = await retrieveStateFn(url, getProducts)()();
+  return result['_tag'] === 'Right' ? (result.right as readonly Product[]) : [];
+};

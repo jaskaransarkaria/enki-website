@@ -5,6 +5,7 @@
   import ProductView from '../../components/ProductView/ProductView.svelte';
   import SearchJewellery from '../../components/SearchJewellery/SearchJewellery.svelte';
   import { refreshCategory } from '../../libs/requests';
+  import type { Category } from '../../types/category';
 
   export let category: string;
 
@@ -14,7 +15,7 @@
     const data = await refreshCategory(
       `${process.env.SERVER_URL}/category?id=${category}`
     );
-    categories.set(data);
+    categories.set(data as Category);
   });
   $: refreshCategory(`${process.env.SERVER_URL}/category?id=${category}`);
 </script>

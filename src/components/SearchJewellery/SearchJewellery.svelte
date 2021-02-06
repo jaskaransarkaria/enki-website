@@ -1,14 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { jewellery } from '../../stores/jewellery';
-  import { retrieveStateFn } from '../../libs/requests';
+  import { refreshProducts } from '../../libs/requests';
 
-  import type { JewelleryProduct } from '../../types/jewellery-product';
-  import type { GetFn } from '../../libs/requests';
+  import type { Product } from '../../types/product';
 
   let searchValue: string = '';
 
-  let data: readonly JewelleryProduct[] = [];
+  let data: readonly Product[] = [];
 
   const searchJewelleryForValue = (event: Event) =>
     event.target.value === ''
@@ -17,25 +16,11 @@
           obj.Name.toLowerCase().match(event.target.value.toLowerCase())
         );
 
-  const getJewelleryProducts: GetFn<JewelleryProduct> = (
-    url: string
-  ): Promise<ReadonlyArray<JewelleryProduct>> =>
-    fetch(url).then((res) => res.json());
-
-  const refreshJewelleryProducts = async (): Promise<JewelleryProduct[]> => {
-    const result = await retrieveStateFn(
-      `${process.env.SERVER_URL}/jewellery-products`,
-      getJewelleryProducts
-    )()();
-
-    return result['_tag'] === 'Right'
-      ? (result.right as JewelleryProduct[])
-      : [];
-  };
-
   onMount(async () => {
-    data = await refreshJewelleryProducts();
-    jewellery.set(data);
+    data = await refreshProducts(
+      `${process.env.SERVER_URL}/jewellery-products`
+    );
+    jewellery.set(data as readonly Product[]);
   });
 </script>
 

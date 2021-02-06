@@ -4,6 +4,7 @@
   import ProductView from '../../../components/ProductView/ProductView.svelte';
   import { categories } from '../../../stores/categories';
   import { refreshCategory } from '../../../libs/requests';
+  import type { Category } from '../../../types/category';
 
   export let subCategory: string;
   let showProduct = false;
@@ -13,7 +14,7 @@
     const data = await refreshCategory(
       `${process.env.SERVER_URL}/category?id=${subCategory}`
     );
-    categories.set(data);
+    categories.set(data as Category);
   });
   $: refreshCategory(`${process.env.SERVER_URL}/category?id=${subCategory}`);
 </script>

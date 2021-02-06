@@ -1,4 +1,4 @@
 import { writable } from 'svelte/store';
-import type { JewelleryProduct } from '../types/jewellery-product';
+import type { Product } from '../types/product';
 
-export const jewellery = writable<readonly JewelleryProduct[]>([]);
+export const jewellery = writable<readonly Product[]>([]);
