@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { basket } from '../../stores/basket';
+  import { basket } from '#/stores/basket';
 </script>
 
 <style>

@@ -16,5 +16,8 @@ module.exports = {
   verbose: true,
   testPathIgnorePatterns: ["node_modules"],
   transformIgnorePatterns: ["node_modules"],
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"]
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  "moduleNameMapper": {
+    "^#(.*)$": "<rootDir>/src$1",
+  } 
 };

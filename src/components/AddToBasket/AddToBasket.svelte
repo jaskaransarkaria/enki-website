@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { BasketProduct } from '../../stores/basket';
-  import { basket } from '../../stores/basket';
+  import type { BasketProduct } from '#/stores/basket';
+  import { basket } from '#/stores/basket';
 
   export let productId: string;
 

@@ -1,26 +1,29 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { jewellery } from '../../stores/jewellery';
-  import { refreshProducts } from '../../libs/requests';
+  import { jewellery } from '#/stores/jewellery';
+  import { refreshProducts } from '#/libs/requests';
 
-  import type { Product } from '../../types/product';
+  import type { Product } from '#/types/product';
 
   let searchValue: string = '';
 
   let data: readonly Product[] = [];
 
-  const searchJewelleryForValue = (event: Event) =>
-    event.target.value === ''
+  const searchJewelleryForValue = (value: string) =>
+    value === ''
       ? []
       : $jewellery.filter((obj) =>
-          obj.Name.toLowerCase().match(event.target.value.toLowerCase())
+          obj.Name.toLowerCase().match(value.toLowerCase())
         );
 
   onMount(async () => {
-    data = await refreshProducts(
-      `${process.env.SERVER_URL}/jewellery-products`
-    );
-    jewellery.set(data as readonly Product[]);
+    if ($jewellery.length === 0) {
+      data = await refreshProducts(
+        `${process.env.SERVER_URL}/jewellery-products`
+      );
+      jewellery.set(data as readonly Product[]);
+    }
+    console.log($jewellery);
   });
 </script>
 
@@ -28,7 +31,7 @@
   <input
     type="search"
     bind:value={searchValue}
-    on:input={(e) => (data = searchJewelleryForValue(e))} />
+    on:input={(e) => (data = searchJewelleryForValue(e.currentTarget.value))} />
 </form>
 
 <ul>

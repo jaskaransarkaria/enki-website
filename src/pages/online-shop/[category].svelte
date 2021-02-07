@@ -1,46 +1,23 @@
 <script lang="ts">
   import { params, goto } from '@roxi/routify';
-  import { onMount } from 'svelte';
-  import { categories } from '../../stores/categories';
-  import ProductView from '../../components/ProductView/ProductView.svelte';
-  import SearchJewellery from '../../components/SearchJewellery/SearchJewellery.svelte';
-  import { refreshCategory } from '../../libs/requests';
-  import type { Category } from '../../types/category';
-
-  export let category: string;
+  import { categories } from '#/stores/categories';
+  import type { Category } from '#/types/category';
+  import CategoryView from '#/components/CategoryView/CategoryView.svelte';
 
   const JEWELLERY_CATEGORY = process.env.JEWELLERY_CATEGORY_ID;
 
-  onMount(async () => {
-    const data = await refreshCategory(
-      `${process.env.SERVER_URL}/category?id=${category}`
+  export let category: string;
+  const selectCategory = (category: Category): void => {
+    categories.set(category);
+    $goto(
+      `./${$params.category}/${category.Id}${
+        $params.category === JEWELLERY_CATEGORY ? '?search=true' : ''
+      }`
     );
-    categories.set(data as Category);
-  });
-  $: refreshCategory(`${process.env.SERVER_URL}/category?id=${category}`);
+  };
 </script>
 
 <h1>PARAMS {$params.category}</h1>
 <h1>{category}</h1>
 
-{#if category === JEWELLERY_CATEGORY}
-  <SearchJewellery />
-{/if}
-
-{#if $categories.Id !== JEWELLERY_CATEGORY}
-  <h1>{$categories.Id}</h1>
-  <h1>{$categories.Name}</h1>
-  {#if $categories.Children.length > 0}
-    {#each $categories.Children as cat}
-      <button
-        on:click={() => {
-          // categories.set(cat);
-          $goto(`./${$params.category}/${cat.Id}`);
-        }}>
-        {cat.Name}
-      </button>
-    {/each}
-  {:else}
-    <ProductView categoryId={category} />
-  {/if}
-{/if}
+<CategoryView categoryFn={selectCategory} bind:categoryId={category} />

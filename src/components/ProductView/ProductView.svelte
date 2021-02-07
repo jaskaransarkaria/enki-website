@@ -1,10 +1,10 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
-  import AddToBasket from '../AddToBasket/AddToBasket.svelte';
-  import { refreshProducts } from '../../libs/requests';
+  import AddToBasket from '#/components/AddToBasket/AddToBasket.svelte';
+  import { refreshProducts } from '#/libs/requests';
 
-  import type { Product } from '../../types/product';
+  import type { Product } from '#/types/product';
 
   export let categoryId: string;
 
