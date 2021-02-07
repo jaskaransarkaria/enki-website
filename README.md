@@ -43,3 +43,4 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 - [ ] product images (s3 bucket etc)
 - [ ] style the site
 - [ ] storybook
+- [ ] testing
