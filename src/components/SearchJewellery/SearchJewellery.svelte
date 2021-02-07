@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import SingleProduct from '#/components/SingleProduct/SingleProduct.svelte';
   import { jewellery } from '#/stores/jewellery';
   import { refreshProducts } from '#/libs/requests';
 
@@ -23,7 +24,6 @@
       );
       jewellery.set(data as readonly Product[]);
     }
-    console.log($jewellery);
   });
 </script>
 
@@ -38,16 +38,7 @@
   {#if searchValue != ''}
     <h1>Total matches: {data.length}</h1>
     {#each data as match}
-      <h1>{match.Name}</h1>
-      <h1>CategoryId: {match.CategoryId}</h1>
-      <h1>Product Id: {match.Id}</h1>
-      <h1>Price: {match.SalePrice}</h1>
-      <ol>
-        <h1>Tags</h1>
-        {#each match.ProductTags as tag}
-          <h2>{tag.Name}</h2>
-        {/each}
-      </ol>
+      <SingleProduct product={match} />
     {/each}
   {/if}
 </ul>
