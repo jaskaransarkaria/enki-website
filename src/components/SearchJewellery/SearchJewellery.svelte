@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import SingleProduct from '#/components/SingleProduct/SingleProduct.svelte';
-  import { jewellery } from '#/stores/jewellery';
-  import { refreshProducts } from '#/libs/requests';
+  import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
+  import { jewellery } from '@/stores/jewellery';
+  import { refreshProducts } from '@/libs/requests';
 
-  import type { Product } from '#/types/product';
+  import type { Product } from '@/types/product';
 
   let searchValue: string = '';
 

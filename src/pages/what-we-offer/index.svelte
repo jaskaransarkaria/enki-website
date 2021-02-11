@@ -10,14 +10,16 @@
 
 <style>
   .inside-shop {
-    margin: 0 10%;
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+    width: 80vw;
+    height: 80vh;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
     grid-template-columns: repeat(12, 1fr);
-    background-size: auto;
-    background-position: center;
-    background-image: url('/enki_pic_final.jpg');
-    background-repeat: no-repeat;
+    border: 3px solid salmon;
+    object-fit: cover;
   }
 
   .classes-button {
@@ -73,10 +75,25 @@
     overflow: hidden;
     outline: none;
   }
+
+  .background {
+    border: 2px solid lawngreen;
+    grid-column: 1 / 13;
+    grid-row: 1 / 13;
+    z-index: -1;
+  }
 </style>
 
-<main class="inside-shop" in:fade>
-  <button
+<div class="inside-shop" in:fade>
+  <picture class="background">
+    <source
+      srcset={`https://enki.imgix.net/inside-enki.png?&auto=format&w=${window.screen.width - (window.screen.width / 100) * 20}`}
+      media="(min-width:500px)" />
+    <img
+      src={`https://enki.imgix.net/inside-enki.png?&fit=crop&w=${window.screen.width}&h=${window.screen.height}`}
+      alt="inside the shop at enki" />
+  </picture>
+  <!-- <button
     class="classes-button"
     id="classes-button"
     on:mouseover={() => (classesImg = '/classes-1.gif')}
@@ -110,5 +127,5 @@
       src={repairsAndCommissionsImg}
       class="repairs-and-commissions-button"
       alt="repairs and commissions button" />
-  </button>
-</main>
+  </button> -->
+</div>

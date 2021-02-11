@@ -1,8 +1,8 @@
 <script lang="ts">
   import { params, goto } from '@roxi/routify';
-  import { categories } from '#/stores/categories';
-  import type { Category } from '#/types/category';
-  import CategoryView from '#/components/CategoryView/CategoryView.svelte';
+  import { categories } from '@/stores/categories';
+  import type { Category } from '@/types/category';
+  import CategoryView from '@/components/CategoryView/CategoryView.svelte';
 
   const JEWELLERY_CATEGORY = process.env.JEWELLERY_CATEGORY_ID;
 

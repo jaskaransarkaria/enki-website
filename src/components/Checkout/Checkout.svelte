@@ -1,7 +1,7 @@
 <script>
   import { loadStripe } from '@stripe/stripe-js';
   import { onMount } from 'svelte';
-  import { basket } from '#/stores/basket';
+  import { basket } from '@/stores/basket';
 
   let stripePromise;
 

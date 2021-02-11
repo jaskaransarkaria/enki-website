@@ -18,6 +18,6 @@ module.exports = {
   transformIgnorePatterns: ["node_modules"],
   setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
   "moduleNameMapper": {
-    "^#(.*)$": "<rootDir>/src$1",
+    "^@/(.*)$": "<rootDir>/src/$1",
   } 
 };

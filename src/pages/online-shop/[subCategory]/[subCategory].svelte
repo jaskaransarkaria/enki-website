@@ -1,8 +1,8 @@
 <script lang="ts">
   import { params } from '@roxi/routify';
-  import CategoryView from '#/components/CategoryView/CategoryView.svelte';
-  import ProductView from '#/components/ProductView/ProductView.svelte';
-  import type { Category } from '#/types/category';
+  import CategoryView from '@/components/CategoryView/CategoryView.svelte';
+  import ProductView from '@/components/ProductView/ProductView.svelte';
+  import type { Category } from '@/types/category';
 
   export let subCategory: string;
   let showProduct = false;

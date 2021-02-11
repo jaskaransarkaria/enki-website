@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
-  import AddToBasket from '#/components/AddToBasket/AddToBasket.svelte';
-  import type { Product } from '#/types/product';
+  import AddToBasket from '@/components/AddToBasket/AddToBasket.svelte';
+  import type { Product } from '@/types/product';
 
   export let product: Product;
 </script>

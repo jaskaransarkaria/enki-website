@@ -1,10 +1,10 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
-  import { categories } from '#/stores/categories';
-  import { refreshCategory } from '#/libs/requests';
+  import { categories } from '@/stores/categories';
+  import { refreshCategory } from '@/libs/requests';
 
-  import type { Category } from '#/types/category';
+  import type { Category } from '@/types/category';
 
   let data: Category[] = [];
 

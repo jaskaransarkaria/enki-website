@@ -1,11 +1,11 @@
 <script lang="ts">
   import { params } from '@roxi/routify';
   import { onMount } from 'svelte';
-  import ProductView from '#/components/ProductView/ProductView.svelte';
-  import SearchJewellery from '#/components/SearchJewellery/SearchJewellery.svelte';
-  import { refreshCategory } from '#/libs/requests';
-  import { categories } from '#/stores/categories';
-  import type { Category } from '#/types/category';
+  import ProductView from '@/components/ProductView/ProductView.svelte';
+  import SearchJewellery from '@/components/SearchJewellery/SearchJewellery.svelte';
+  import { refreshCategory } from '@/libs/requests';
+  import { categories } from '@/stores/categories';
+  import type { Category } from '@/types/category';
 
   export let categoryFn: (cat: Category) => void;
   export let categoryId: string;
