@@ -1,6 +1,7 @@
 <style>
   h1 {
     text-align: center;
+    width: 100px;
   }
 </style>
 

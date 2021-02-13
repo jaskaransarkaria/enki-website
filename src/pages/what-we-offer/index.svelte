@@ -10,22 +10,129 @@
 
 <style>
   .inside-shop {
-    transform: translateX(-50%);
-    left: 50%;
-    position: relative;
-    width: 80vw;
-    height: 80vh;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
     grid-template-columns: repeat(12, 1fr);
-    border: 3px solid salmon;
-    object-fit: cover;
+    border: 2px solid salmon;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 90vh;
   }
 
-  .classes-button {
-    grid-row: 1 /4;
-    grid-column: 9/ 13;
-    justify-self: start;
+  @media (min-width: 960px) {
+    .inside-shop {
+      background-image: url('/inside-enki-960.webp');
+    }
+    .classes-button {
+      grid-row: 3 / 6;
+      grid-column: 8/ 10;
+      justify-self: start;
+    }
+
+    .classes-img {
+      width: 13.75rem;
+    }
+
+    .online-shop-button {
+      grid-column: 4 / 9;
+      grid-row: 7/ 8;
+      justify-self: center;
+      align-self: flex-end;
+    }
+
+    .online-shop-img {
+      width: 12rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .inside-shop {
+      background-image: url('/inside-enki-1280.webp');
+    }
+
+    .classes-button {
+      grid-row: 1 / 5;
+      grid-column: 7/ 12;
+      justify-self: center;
+    }
+
+    .classes-img {
+      width: 16rem;
+    }
+
+    .online-shop-button {
+      grid-column: 5 / 9;
+      grid-row: 6 / 8;
+      justify-self: flex-start;
+      align-self: flex-start;
+    }
+
+    .online-shop-img {
+      width: 14rem;
+    }
+  }
+  @media (min-width: 1424px) {
+    .inside-shop {
+      background-image: url('/inside-enki-1424.webp');
+    }
+    .classes-button {
+      grid-column: 6/ 12;
+      grid-row: 2/ 5;
+    }
+
+    .classes-img {
+      width: 14.7rem;
+    }
+
+    .online-shop-img {
+      width: 15.5rem;
+    }
+  }
+
+  @media (min-width: 1824px) {
+    .inside-shop {
+      background-image: url('/inside-enki-1824.webp');
+    }
+    .classes-button {
+      grid-row: 1/ 5;
+    }
+
+    .classes-img {
+      width: 17.5rem;
+    }
+
+    .online-shop-button {
+      grid-column: 4 / 9;
+      justify-self: center;
+    }
+
+    .online-shop-img {
+      width: 19rem;
+    }
+  }
+  @media (min-width: 2040px) {
+    .classes-button {
+      grid-column: 8/ 10;
+      grid-row: 1/ 5;
+      justify-self: flex-start;
+    }
+  }
+  @media (min-width: 2080px) {
+    .classes-button {
+      grid-column: 7/ 11;
+      justify-self: center;
+    }
+  }
+  @media (min-width: 2240px) {
+    .classes-button {
+      grid-column: 8/ 12;
+      align-self: flex-end;
+      justify-self: flex-start;
+    }
+
+    .classes-img {
+      width: 18rem;
+    }
   }
 
   .contact-button {
@@ -35,13 +142,6 @@
     align-self: flex-start;
     transform: translateX(-10%);
     transform: translateY(5%);
-  }
-
-  .online-shop-button {
-    grid-column: 4 / 7;
-    grid-row: 6/ 11;
-    justify-self: center;
-    align-self: center;
   }
 
   .repairs-and-commissions-button {
@@ -75,48 +175,50 @@
     overflow: hidden;
     outline: none;
   }
-
-  .background {
-    border: 2px solid lawngreen;
-    grid-column: 1 / 13;
-    grid-row: 1 / 13;
-    z-index: -1;
-  }
 </style>
 
 <div class="inside-shop" in:fade>
-  <picture class="background">
-    <source
-      srcset={`https://enki.imgix.net/inside-enki.png?&auto=format&w=${window.screen.width - (window.screen.width / 100) * 20}`}
-      media="(min-width:500px)" />
-    <img
-      src={`https://enki.imgix.net/inside-enki.png?&fit=crop&w=${window.screen.width}&h=${window.screen.height}`}
-      alt="inside the shop at enki" />
-  </picture>
-  <!-- <button
+  <!-- <picture class="image"> -->
+  <!-- "https://enki.imgix.net/inside-enki.png?&auto=format&fit=crop&w=1340&h=1000&crop=faces" -->
+  <!-- "https://enki.imgix.net/inside-enki.png?&auto=format&fit=fill&w=1800" -->
+  <!-- <source
+    srcset={`/inside-enki-1824.webp`}
+    media="(min-width:1824px)" /> -->
+  <!-- <source
+    srcset={`/inside-enki-1424.webp`}
+    media="(min-width:1424px)" /> -->
+  <!-- <source
+    srcset={`/inside-enki-1280.webp`}
+    media="(min-width:1280px)" /> -->
+  <!-- <source
+    srcset={`/inside-enki-960.webp`}
+    media="(min-width:960px)" /> -->
+  <!-- <img
+    src={`https://enki.imgix.net/inside-enki.png?&fit=fill&w=${window.screen.width}&h=${window.screen.height}`}
+    alt="inside the shop at enki" /> -->
+  <!-- </picture> -->
+  <!-- <div class="background">
+  </div> -->
+  <button
     class="classes-button"
-    id="classes-button"
     on:mouseover={() => (classesImg = '/classes-1.gif')}
     on:mouseout={() => (classesImg = '/classes-1.jpg')}
     on:click={$goto('/classes')}>
-    <img src={classesImg} class="classes-button" alt="classes button" />
-  </button>
-  <button
-    class="contact-button"
-    on:mouseover={() => (contactImg = '/contact-1.gif')}
-    on:mouseout={() => (contactImg = '/contact-1.jpg')}
-    on:click={$goto('/contact')}>
-    <img src={contactImg} class="contact-button" alt="contact button" />
+    <img src={classesImg} class="classes-img" alt="classes button" />
   </button>
   <button
     class="online-shop-button"
     on:mouseover={() => (onlineShopImg = '/online-shop-1.gif')}
     on:mouseout={() => (onlineShopImg = '/online-shop-1.jpg')}
     on:click={$goto('/online-shop')}>
-    <img
-      src={onlineShopImg}
-      class="online-shop-button"
-      alt="online shop button" />
+    <img src={onlineShopImg} class="online-shop-img" alt="online shop button" />
+  </button>
+  <!-- <button
+    class="contact-button"
+    on:mouseover={() => (contactImg = '/contact-1.gif')}
+    on:mouseout={() => (contactImg = '/contact-1.jpg')}
+    on:click={$goto('/contact')}>
+    <img src={contactImg} class="contact-button" alt="contact button" />
   </button>
   <button
     class="repairs-and-commissions-button"
