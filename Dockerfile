@@ -12,4 +12,8 @@ EXPOSE 5000
 
 ENV HOST=0.0.0.0
 
+RUN chown -R node:node /usr/src/app
+
+USER node
+
 CMD ["npm", "start" ]
