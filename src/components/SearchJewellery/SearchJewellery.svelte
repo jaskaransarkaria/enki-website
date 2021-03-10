@@ -22,7 +22,7 @@
       data = await refreshProducts(
         `${process.env.SERVER_URL}/jewellery-products`
       );
-      jewellery.set(data as readonly Product[]);
+      jewellery.set(data);
     }
   });
 </script>

@@ -34,17 +34,19 @@ The repo utilises Svelte testing library and jest to test component behaviours.
 
 The site pulls optimized images from Imgix service. To add a file to Imgix you must add the properly named file to the connected Imgix "source" in google cloud storage. I must then add the base url for that image to the associated
 product or category. In future to automate this we will need another service where by the user can upload their files themselves, for the time being we can upload them manually (or with a script) to the connected google cloud storage bucket.
+
 ## CI/ CD
 
 Travis CI handles the deployment pipeline deploying when a commit on master is tagged with the an incremented semver eg. v01.02.03
 
 ### Todos:
 
-- [x] product images (s3 bucket etc)
 - [ ] make sure stock is correctly displayed
 - [ ] search by tags
+- [ ] figure out variants/ multi choice products
 - [ ] classes
-- [ ] promotions
+- [ ] testing
 - [ ] style the site
 - [ ] storybook
-- [ ] testing
+- [ ] use prod stripe api key
+- [ ] promotions

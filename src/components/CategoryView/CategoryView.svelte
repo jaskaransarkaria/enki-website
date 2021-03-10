@@ -18,7 +18,7 @@
       const data = await refreshCategory(
         `${process.env.SERVER_URL}/category?id=${id}`
       );
-      categories.set(data as Category);
+      categories.set(data);
     }
   };
 
