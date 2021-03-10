@@ -3,6 +3,9 @@ import * as TE from 'fp-ts/lib/TaskEither';
 import * as T from 'fp-ts/lib/Task';
 import type { Category } from '../types/category';
 import type { Product } from '../types/product';
+interface GetFn<T> {
+  (url: string): Promise<T>;
+}
 
 export const retrieveStateFn = <T>(
   url: string,
@@ -19,14 +22,17 @@ export const retrieveStateFn = <T>(
       ),
     TE.getOrElse(() => T.of(defaultValue))
   )(url);
-export interface GetFn<T> {
-  (url: string): Promise<T>;
-}
 
 export const refreshCategory = async (url: string): Promise<Category> =>
   retrieveStateFn(url, getCategory, { Id: '', Name: '', Children: [] })();
 
-export const getCategory: GetFn<Category> = (url: string): Promise<Category> =>
+export const refreshProducts = async (url: string) =>
+  retrieveStateFn(url, getProductArray, [])();
+
+export const refreshCategories = async (url: string) =>
+  retrieveStateFn(url, getCategoriesArray, [])();
+
+const getCategory: GetFn<Category> = (url: string): Promise<Category> =>
   fetch(url)
     .then((res) => res.json())
     .then((res) => JSON.parse(res));
@@ -41,9 +47,3 @@ const getCategoriesArray: GetFn<ReadonlyArray<Category>> = (
   fetch(url)
     .then((res) => res.json())
     .then((obj) => JSON.parse(obj)); // think I have to do this because it's double json encoded
-
-export const refreshProducts = async (url: string) =>
-  retrieveStateFn(url, getProductArray, [])();
-
-export const refreshCategories = async (url: string) =>
-  retrieveStateFn(url, getCategoriesArray, [])();
