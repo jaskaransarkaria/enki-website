@@ -33,9 +33,7 @@ export const refreshCategories = async (url: string) =>
   retrieveStateFn(url, getCategoriesArray, [])();
 
 const getCategory: GetFn<Category> = (url: string): Promise<Category> =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((res) => JSON.parse(res));
+  fetch(url).then((res) => res.json());
 
 const getProductArray: GetFn<ReadonlyArray<Product>> = (
   url: string
@@ -43,7 +41,4 @@ const getProductArray: GetFn<ReadonlyArray<Product>> = (
 
 const getCategoriesArray: GetFn<ReadonlyArray<Category>> = (
   url: string
-): Promise<ReadonlyArray<Category>> =>
-  fetch(url)
-    .then((res) => res.json())
-    .then((obj) => JSON.parse(obj)); // think I have to do this because it's double json encoded
+): Promise<ReadonlyArray<Category>> => fetch(url).then((res) => res.json());

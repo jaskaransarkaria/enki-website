@@ -45,6 +45,7 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 - [ ] search by tags
 - [ ] figure out variants/ multi choice products
 - [ ] classes
+- [ ] server is double encoding category and categories requests
 - [ ] testing
 - [ ] style the site
 - [ ] storybook
