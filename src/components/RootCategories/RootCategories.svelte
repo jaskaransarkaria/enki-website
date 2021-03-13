@@ -12,7 +12,7 @@
     resp.sort((a: Category, b: Category) => (a.Name < b.Name ? -1 : 1));
 
   onMount(async () => {
-    // pull the category data from svelte
+    // pull the category data from api
     const result = await refreshCategories(
       `${process.env.SERVER_URL}/categories`
     );

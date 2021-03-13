@@ -7,11 +7,7 @@ interface GetFn<T> {
   (url: string): Promise<T>;
 }
 
-export const retrieveStateFn = <T>(
-  url: string,
-  getState: GetFn<T>,
-  defaultValue: T
-) =>
+const retrieveStateFn = <T>(url: string, getState: GetFn<T>, defaultValue: T) =>
   // fetch all the products in a specific category
   // TaskEither is from asynchronous operations that can fail
   flow(
