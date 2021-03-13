@@ -1,11 +1,11 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
+  import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.svelte';
   import { products } from '@/stores/products';
   import { refreshProducts } from '@/libs/requests';
 
   import type { Product } from '@/types/product';
-  import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.svelte';
-  import { onMount } from 'svelte';
 
   let searchValue: string = '';
   let loading: boolean = false;

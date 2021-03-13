@@ -47,8 +47,8 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 - [ ] figure out variants/ multi choice products
 - [ ] classes
 - [ ] testing
-- [ ] style the site
 - [ ] storybook
+- [ ] style the site
 - [ ] use prod stripe api key
 - [ ] promotions
 

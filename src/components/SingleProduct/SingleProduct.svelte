@@ -13,6 +13,11 @@
 </style>
 
 <div class="container">
+  {#each product.ProductImages as _, idx}
+    <img
+      src={`https://enki.imgix.net/${product.Id}-${idx}`}
+      alt={`${product.Id} image number ${idx + 1} of ${product.ProductImages.length}`} />
+  {/each}
   <button>
     {`${product.Name} -- ${product.Id} -- ${product.SalePrice} -- ${product.ProductImages[0]}`}
   </button>

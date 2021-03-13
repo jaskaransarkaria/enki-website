@@ -19,19 +19,19 @@
   };
 
   onMount(async () => {
-    if (!($categories.hasOwnProperty('Id') && $categories.Id !== '')) {
-      refreshSetCategories(categoryId);
+    if ($categories.hasOwnProperty('Id') && $categories.Id === '') {
+      await refreshSetCategories(categoryId);
     }
   });
 
   $: refreshSetCategories(categoryId);
 </script>
 
-{#if $categories.hasOwnProperty('Id') || $categories.Id !== ''}
+{#if $categories.hasOwnProperty('Id') && $categories.Id !== ''}
   {#if $categories.Id !== JEWELLERY_CATEGORY}
     <h1>{$categories.Id}</h1>
     <h1>{$categories.Name}</h1>
-    {#if $categories.Children.length > 0}
+    {#if $categories.Children && $categories.Children.length > 0}
       {#each $categories.Children as cat}
         <button on:click={() => categoryFn(cat)}> {cat.Name} </button>
       {/each}
