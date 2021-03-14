@@ -7,6 +7,7 @@
 
   import type { Product } from '@/types/product';
 
+  const DEBOUNCE_CHAR_LIMIT = 2;
   let searchValue: string = '';
   let loading: boolean = false;
   let data: readonly Product[] = [];
@@ -16,7 +17,7 @@
   });
 
   const searchForProduct = (value: string) =>
-    value.length < 2
+    value.length < DEBOUNCE_CHAR_LIMIT
       ? []
       : $products.filter((obj) =>
           obj.Name.toLowerCase().match(value.toLowerCase())
@@ -40,13 +41,10 @@
   <input
     type="search"
     bind:value={searchValue}
-    on:input={(e) => {
-      // fetchAllProducts()
-      data = searchForProduct(e.currentTarget.value);
-    }} />
+    on:input={(e) => (data = searchForProduct(e.currentTarget.value))} />
 
   <ul>
-    {#if searchValue.length > 2}
+    {#if searchValue.length > DEBOUNCE_CHAR_LIMIT}
       <h1>Total matches: {data.length}</h1>
       {#each data as match}
         <SingleProduct product={match} />
