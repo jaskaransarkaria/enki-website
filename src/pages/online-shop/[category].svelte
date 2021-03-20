@@ -4,16 +4,10 @@
   import type { Category } from '@/types/category';
   import CategoryView from '@/components/CategoryView/CategoryView.svelte';
 
-  const JEWELLERY_CATEGORY = process.env.JEWELLERY_CATEGORY_ID;
-
   export let category: string;
   const selectCategory = (category: Category): void => {
     categories.set(category);
-    $goto(
-      `./${$params.category}/${category.Id}${
-        $params.category === JEWELLERY_CATEGORY ? '?search=true' : ''
-      }`
-    );
+    $goto(`./${$params.category}/${category.Id}`);
   };
 </script>
 
