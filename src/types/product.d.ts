@@ -1,3 +1,5 @@
+import type { Tag } from './tag';
+
 export interface Product {
   Name: string;
   Id: number;
@@ -5,4 +7,5 @@ export interface Product {
   Description: string;
   SalePrice: string;
   ProductImages: string[];
+  ProductTags: Tag[];
 }

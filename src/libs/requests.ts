@@ -1,8 +1,10 @@
 import { flow } from 'fp-ts/lib/function';
 import * as TE from 'fp-ts/lib/TaskEither';
 import * as T from 'fp-ts/lib/Task';
-import type { Category } from '../types/category';
-import type { Product } from '../types/product';
+import type { Category } from '@/types/category';
+import type { Product } from '@/types/product';
+import type { Tag } from '@/types/tag';
+
 interface GetFn<T> {
   (url: string): Promise<T>;
 }
@@ -28,6 +30,9 @@ export const refreshProducts = async (url: string) =>
 export const refreshCategories = async (url: string) =>
   retrieveStateFn(url, getCategoriesArray, [])();
 
+export const refreshTags = async (url: string) =>
+  retrieveStateFn(url, getTagsArray, [])();
+
 const getCategory: GetFn<Category> = (url: string): Promise<Category> =>
   fetch(url).then((res) => res.json());
 
@@ -38,3 +43,7 @@ const getProductArray: GetFn<ReadonlyArray<Product>> = (
 const getCategoriesArray: GetFn<ReadonlyArray<Category>> = (
   url: string
 ): Promise<ReadonlyArray<Category>> => fetch(url).then((res) => res.json());
+
+const getTagsArray: GetFn<ReadonlyArray<Tag>> = (
+  url: string
+): Promise<ReadonlyArray<Tag>> => fetch(url).then((res) => res.json());
