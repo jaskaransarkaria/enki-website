@@ -25,6 +25,9 @@
   });
 
   $: refreshSetCategories(categoryId);
+
+  // TODO: ensure that you can show sub categories and also if that category
+  // and has any products in it. show products and categories on the same level
 </script>
 
 {#if $categories.hasOwnProperty('Id') && $categories.Id !== ''}
@@ -35,6 +38,7 @@
       {#each $categories.Children as cat}
         <button on:click={() => categoryFn(cat)}> {cat.Name} </button>
       {/each}
+      <ProductView bind:categoryId />
     {:else}
       <ProductView bind:categoryId />
     {/if}

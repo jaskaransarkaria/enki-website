@@ -38,10 +38,6 @@
   .open-sign-button:hover {
     animation-play-state: running;
   }
-  img {
-    width: 10vw;
-    height: 16vh;
-  }
 
   @keyframes swing {
     20% {
@@ -77,6 +73,6 @@
     on:mouseover={() => (swing = true)}
     on:mouseout={() => (swing = false)}
     on:click={$goto('/what-we-offer')}>
-    <img src="/open.png" alt="shop open sign" />
+    <img src="/open.png" alt="shop open sign" width="200px" />
   </button>
 </main>
