@@ -17,7 +17,7 @@
     width: 100vw;
     height: 100vh;
     background-size: 100vw 100%;
-    background-image: url('/outside-enki.png');
+    background-image: url('/outside-enki.webp');
     background-repeat: no-repeat;
   }
 
@@ -73,6 +73,6 @@
     on:mouseover={() => (swing = true)}
     on:mouseout={() => (swing = false)}
     on:click={$goto('/what-we-offer')}>
-    <img src="/open.png" alt="shop open sign" width="200px" />
+    <img src="/open.jpg" loading="eager" alt="shop open sign" width="200px" />
   </button>
 </main>

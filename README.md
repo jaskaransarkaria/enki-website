@@ -48,6 +48,11 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 - [ ] classes
 - [ ] testing
 - [ ] storybook
+
+- [ ] move heavy initial requests to a web worker
+- [ ] add caching headers to css and assets
+- [ ] add security headers too (webpagetest.org)
+
 - [ ] style the site
 - [ ] use prod stripe api key
 - [ ] promotions
