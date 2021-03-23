@@ -1,5 +1,4 @@
 <script>
-  import { loadStripe } from '@stripe/stripe-js';
   import { onMount } from 'svelte';
   import { basket } from '@/stores/basket';
 
@@ -7,7 +6,7 @@
 
   onMount(async () => {
     // Create an instance of the Stripe object with your publishable API key
-    stripePromise = loadStripe(process.env.STRIPE_KEY);
+    stripePromise = await window.Stripe(process.env.STRIPE_KEY);
   });
   const createCheckoutSession = async () => {
     const stripe = await stripePromise;
