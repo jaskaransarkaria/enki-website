@@ -6,7 +6,7 @@
 
   onMount(async () => {
     // Create an instance of the Stripe object with your publishable API key
-    stripePromise = await window.Stripe(process.env.STRIPE_KEY);
+    stripePromise = await Stripe(process.env.STRIPE_KEY);
   });
   const createCheckoutSession = async () => {
     const stripe = await stripePromise;
