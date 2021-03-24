@@ -7,7 +7,6 @@
   export let category: string;
   const selectCategory = (category: Category): void => {
     categories.set(category);
-    console.log('cat', category);
     $goto(`./${$params.category}/${category.Id}`);
   };
 </script>

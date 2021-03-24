@@ -25,9 +25,6 @@
   });
 
   $: refreshSetCategories(categoryId);
-
-  // TODO: ensure that you can show sub categories and also if that category
-  // and has any products in it. show products and categories on the same level
 </script>
 
 {#if $categories.hasOwnProperty('Id') && $categories.Id !== ''}
