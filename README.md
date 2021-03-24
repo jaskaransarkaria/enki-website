@@ -42,9 +42,8 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 
 ### Todos:
 
-- [ ] figure out how to display products which have variants
-
 - [ ] make sure stock is correctly displayed
+- [ ] show image for category
 - [ ] classes
 - [ ] testing
 - [ ] storybook
