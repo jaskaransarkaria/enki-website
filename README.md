@@ -55,7 +55,7 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 
 - [ ] style the site
 - [ ] use prod stripe api key
-- [ ] promotions
+- [ ] promotions and offers hmmm
 
 - [ ] follow lighthouse tips to increase accessibility/ performance
 - [ ] purge the imgix cache before releasing to prod https://docs.imgix.com/setup/purging-images

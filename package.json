@@ -26,6 +26,7 @@
     "@testing-library/svelte": "^3.0.0",
     "@tsconfig/svelte": "^1.0.0",
     "@types/jest": "^26.0.15",
+    "@types/lodash.groupby": "^4.6.6",
     "babel-jest": "^26.6.3",
     "babel-plugin-import": "^1.13.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
@@ -49,7 +50,9 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.168",
     "fp-ts": "^2.9.3",
+    "lodash.groupby": "^4.6.0",
     "sirv-cli": "^1.0.0"
   },
   "setupFilesAfterEnv": [

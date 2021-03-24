@@ -8,4 +8,5 @@ export interface Product {
   SalePrice: string;
   ProductImages: string[];
   ProductTags: Tag[];
+  VariantGroupId: number;
 }
