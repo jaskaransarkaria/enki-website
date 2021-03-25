@@ -23,8 +23,6 @@
   onMount(async () => await refreshProductView(categoryId));
 
   $: refreshProductView(categoryId);
-
-  // TODO: seperate the variants into a variant view and the regular products continue display like dis
 </script>
 
 <style>

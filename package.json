@@ -50,6 +50,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^1.13.2",
     "@types/lodash": "^4.14.168",
     "fp-ts": "^2.9.3",
     "lodash.groupby": "^4.6.0",
