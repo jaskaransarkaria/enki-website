@@ -21,8 +21,6 @@
       : false
   );
 
-  $: console.log('data', data);
-
   onMount(async () => {
     await fetchAllTags();
     await fetchAllProducts();

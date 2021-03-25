@@ -7,8 +7,9 @@
 
   export let variantProducts: readonly Product[];
   let selectedProduct: Product;
-
   let groupedVariantProducts: Array<readonly Product[]>;
+
+  $: selectedProduct = variantProducts[0];
   $: groupedVariantProducts = Object.values(
     groupBy(variantProducts, 'VariantGroupId')
   );

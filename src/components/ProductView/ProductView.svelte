@@ -20,9 +20,10 @@
   onMount(async () => categoryId && (await refreshProductView(categoryId)));
 
   $: refreshProductView(categoryId);
-  $: if (productArr.length > 0) {
+  $: if (productArr.length) {
     variantArr = productArr.filter((product) => !!product.VariantGroupId);
     nonVariantArr = productArr.filter((product) => !!!product.VariantGroupId);
+    console.log('non var', nonVariantArr);
   }
 </script>
 
@@ -32,27 +33,14 @@
     grid-template-rows: 25% 25% 25% 25%;
     grid-template-columns: 1fr 1fr 1fr;
   }
-
-  button {
-    width: 22.5vw;
-    height: 25px;
-  }
-
-  button,
-  button:active {
-    background-color: Transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
-  }
 </style>
 
 <div class="products-container">
-  {#each nonVariantArr as product}
-    <SingleProduct {product} />
-  {/each}
+  {#if nonVariantArr.length}
+    {#each nonVariantArr as product}
+      <SingleProduct {product} />
+    {/each}
+  {/if}
   {#if variantArr.length}
     <VariantProducts variantProducts={variantArr} />
   {/if}

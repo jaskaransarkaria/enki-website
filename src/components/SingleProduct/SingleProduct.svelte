@@ -4,7 +4,6 @@
   import type { Product } from '@/types/product';
 
   export let product: Product;
-  $: console.log('sing', product);
 </script>
 
 <style>
