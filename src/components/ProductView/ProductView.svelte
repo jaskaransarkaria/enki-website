@@ -7,22 +7,23 @@
   import type { Product } from '@/types/product';
 
   export let categoryId: string;
-
-  let productArr: readonly Product[] = [];
+  export let productArr: readonly Product[] = [];
 
   let variantArr: readonly Product[] = [];
-  $: variantArr = productArr.filter((product) => !!product.VariantGroupId);
   let nonVariantArr: readonly Product[] = [];
-  $: nonVariantArr = productArr.filter((product) => !!!product.VariantGroupId);
 
   const refreshProductView = async (id: string) =>
     (productArr = await refreshProducts(
       `${process.env.SERVER_URL}/products-by-category?id=${id}`
     ));
 
-  onMount(async () => await refreshProductView(categoryId));
+  onMount(async () => categoryId && (await refreshProductView(categoryId)));
 
   $: refreshProductView(categoryId);
+  $: if (productArr.length > 0) {
+    variantArr = productArr.filter((product) => !!product.VariantGroupId);
+    nonVariantArr = productArr.filter((product) => !!!product.VariantGroupId);
+  }
 </script>
 
 <style>

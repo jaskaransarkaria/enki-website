@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
+  import ProductView from '@/components/ProductView/ProductView.svelte';
   import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.svelte';
   import { products } from '@/stores/products';
   import { refreshProducts, refreshTags } from '@/libs/requests';
@@ -20,6 +20,8 @@
       ? true
       : false
   );
+
+  $: console.log('data', data);
 
   onMount(async () => {
     await fetchAllTags();
@@ -97,9 +99,9 @@
   <ul>
     {#if searchValue.length > DEBOUNCE_CHAR_LIMIT || selectedTags.length > 0}
       <h1>Total matches: {data.length}</h1>
-      {#each data as match}
-        <SingleProduct product={match} />
-      {/each}
+      {#if data.length}
+        <ProductView productArr={data} categoryId="" />
+      {/if}
     {/if}
   </ul>
 {/if}

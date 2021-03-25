@@ -42,9 +42,7 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 
 ### Todos:
 
-- [ ] show search with variants as well
 - [ ] make sure stock is correctly displayed
-- [ ] check stripe is async in all the places it needs to be
 - [ ] show image for category
 - [ ] classes
 - [ ] testing
