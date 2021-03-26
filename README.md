@@ -43,14 +43,13 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 ### Todos:
 
 - [ ] make sure stock is correctly displayed
-- [ ] move heavy initial requests to a web worker
+- [ ] move heavy initial requests to a web worker?
 
 - [ ] show image for category
 - [ ] classes
 - [ ] testing
 - [ ] storybook
 
-- [ ] add caching headers to css and assets
 - [ ] add security headers too (webpagetest.org)
 
 - [ ] style the site
@@ -59,3 +58,4 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 
 - [ ] follow lighthouse tips to increase accessibility/ performance
 - [ ] purge the imgix cache before releasing to prod https://docs.imgix.com/setup/purging-images
+- [ ] tweak max-age of cached resources

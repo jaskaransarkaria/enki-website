@@ -4,9 +4,9 @@ module.exports = {
   routifyDir: '.routify',
   ignore: '',
   dynamicImports: true,
-  singleBuild: true,
+  singleBuild: false,
   noHashScroll: false,
   distDir: 'dist',
   extensions: ['svelte', 'html', 'svx', 'md'],
-  started: '2021-03-26T10:54:34.657Z',
+  started: '2021-03-26T13:23:18.710Z',
 };
