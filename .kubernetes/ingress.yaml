@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "7200"
     cert-manager.io/issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_headers "Cache-Control: public, max-age=604800";
+      more_set_headers "Cache-Control: public, max-age=7889400";
 spec:
   tls:
     - secretName: enki-website

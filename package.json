@@ -7,7 +7,8 @@
     "start": "sirv public/ --single",
     "validate": "svelte-check",
     "format": "prettier --write \"{,!(node_modules|public)/**/}*.{js,svelte,ts}\"",
-    "test": "jest"
+    "test": "jest",
+    "clear-cache": "rm -rf public/build/"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

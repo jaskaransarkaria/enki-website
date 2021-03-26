@@ -62,7 +62,7 @@ export default {
           <title>${title}</title>
           
           <link rel='icon' type='image/png' href='/favicon.png'>
-          <link rel='stylesheet' href='/global-${currentDate}.css'>
+          <link rel='stylesheet' href='/global.css'>
           <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
           
           <script defer src='/build/bundle-${currentDate}.js'></script>
@@ -82,7 +82,7 @@ export default {
         // we'll extract any component CSS out into
         // a separate file - better for performance
         css: css => {
-          css.write('bundle-' + currentDate + '.css');
+          css.write('build/bundle-' + currentDate + '.css');
         },
         preprocess: sveltePreprocess(),
       }),
