@@ -43,12 +43,13 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 ### Todos:
 
 - [ ] make sure stock is correctly displayed
+- [ ] move heavy initial requests to a web worker
+
 - [ ] show image for category
 - [ ] classes
 - [ ] testing
 - [ ] storybook
 
-- [ ] move heavy initial requests to a web worker
 - [ ] add caching headers to css and assets
 - [ ] add security headers too (webpagetest.org)
 
