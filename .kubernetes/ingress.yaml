@@ -9,6 +9,8 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "7200"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "7200"
     cert-manager.io/issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Cache-Control: public, max-age=604800";
 spec:
   tls:
     - secretName: enki-website
@@ -19,36 +21,6 @@ spec:
       http:
         paths:
           - path: /*
-            backend:
-              servicePort: 5000
-              serviceName: enki-website
-
----
-
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: enki
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "7200"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "7200"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "7200"
-    cert-manager.io/issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_headers "Cache-Control: public, max-age=604800";
-
-spec:
-  tls:
-    - secretName: enki-website
-      hosts:
-        - enki.jobspeed.uk
-  rules:
-    - host: enki.jobspeed.uk
-      http:
-        paths:
-          - path: /static/*
             backend:
               servicePort: 5000
               serviceName: enki-website

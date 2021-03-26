@@ -4,7 +4,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --single",
+    "start": "sirv public/ --single",
     "validate": "svelte-check",
     "format": "prettier --write \"{,!(node_modules|public)/**/}*.{js,svelte,ts}\"",
     "test": "jest"
