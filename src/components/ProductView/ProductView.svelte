@@ -23,7 +23,6 @@
   $: if (productArr.length) {
     variantArr = productArr.filter((product) => !!product.VariantGroupId);
     nonVariantArr = productArr.filter((product) => !!!product.VariantGroupId);
-    console.log('non var', nonVariantArr);
   }
 </script>
 

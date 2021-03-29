@@ -22,5 +22,5 @@
     {`${product.Name} -- ${product.Id} -- ${product.SalePrice}`}
   </button>
   <AddToBasket productId={product.Id.toString()} />
-  <button on:click={$goto('/payment/checkout')}> Goto Checkout </button>
+  <button on:click={$goto('/payment/checkout')}>Goto Checkout</button>
 </div>
