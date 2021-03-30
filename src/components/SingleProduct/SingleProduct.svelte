@@ -19,7 +19,7 @@
       alt={`${product.Id} image number ${idx + 1} of ${product.ProductImages.length}`} />
   {/each}
   <button>
-    {`${product.Name} -- ${product.Id} -- ${product.SalePrice}`}
+    {`${product.Name} -- ${product.Id} -- ${product.SalePrice} -- ${product.CurrentStock} in stock`}
   </button>
   <AddToBasket productId={product.Id.toString()} />
   <button on:click={$goto('/payment/checkout')}>Goto Checkout</button>

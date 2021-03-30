@@ -9,4 +9,5 @@ export interface Product {
   ProductImages: string[];
   ProductTags: Tag[];
   VariantGroupId: number;
+  CurrentStock: number;
 }
