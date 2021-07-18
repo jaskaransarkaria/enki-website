@@ -1,17 +1,21 @@
 <script lang="ts">
-  import { params } from '@roxi/routify';
+  import { params, goto } from '@roxi/routify';
   import CategoryView from '@/components/CategoryView/CategoryView.svelte';
   import type { Category } from '@/types/category';
 
-  export let subCategory: string;
-  let idToDisplay: string = $params.subCategory;
+  let idToDisplay: number = parseInt($params.subCategory, 10);
 
   const showId = (cat: Category) => {
     idToDisplay = cat.Id;
+    console.log(
+      'updating category to display from subcat page',
+      cat.Id,
+      idToDisplay
+    );
+    $goto(`./${cat.Id}`);
   };
 </script>
 
 <h1>{JSON.stringify($params.subCategory)}</h1>
-<h1>{subCategory}</h1>
 
-<CategoryView categoryFn={showId} bind:categoryId={idToDisplay} />
+<CategoryView categoryFn={showId} categoryId={idToDisplay} />

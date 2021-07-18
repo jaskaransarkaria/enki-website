@@ -5,6 +5,8 @@
   import CategoryView from '@/components/CategoryView/CategoryView.svelte';
 
   export let category: string;
+  let categoryId: number = parseInt(category, 10);
+
   const selectCategory = (category: Category): void => {
     categories.set(category);
     $goto(`./${$params.category}/${category.Id}`);
@@ -14,4 +16,4 @@
 <h1>PARAMS {$params.category}</h1>
 <h1>{category}</h1>
 
-<CategoryView categoryFn={selectCategory} bind:categoryId={category} />
+<CategoryView categoryFn={selectCategory} bind:categoryId />

@@ -34,7 +34,7 @@
         );
 
   const fetchAllProducts = async () => {
-    if ($products && $products.length == 0) {
+    if ($products && $products.length === 0) {
       loading = true;
       data = await refreshProducts(
         `${process.env.SERVER_URL}/get-all-products`

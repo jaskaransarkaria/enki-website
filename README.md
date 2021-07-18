@@ -59,3 +59,6 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 - [ ] follow lighthouse tips to increase accessibility/ performance
 - [ ] purge the imgix cache before releasing to prod https://docs.imgix.com/setup/purging-images
 - [ ] tweak max-age of cached resources
+-
+- [ ] BUG: changing on sub cat level is changing the url for the category level
+-

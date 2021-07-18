@@ -6,23 +6,27 @@
 
   import type { Product } from '@/types/product';
 
-  export let categoryId: string;
+  export let categoryId: number;
   export let productArr: readonly Product[] = [];
 
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
 
-  const refreshProductView = async (id: string) =>
-    (productArr = await refreshProducts(
-      `${process.env.SERVER_URL}/products-by-category?id=${id}`
-    ));
+  const refreshProductView = async (id: number) =>
+    await refreshProducts(
+      `${process.env.SERVER_URL}/products-by-category?id=${id.toString()}`
+    );
 
-  onMount(async () => categoryId && (await refreshProductView(categoryId)));
+  onMount(async () => {
+    productArr = await refreshProductView(categoryId);
+  });
 
-  $: refreshProductView(categoryId);
+  $: refreshProductView(categoryId).then((data) => (productArr = data));
   $: if (productArr.length) {
-    variantArr = productArr.filter((product) => !!product.VariantGroupId);
-    nonVariantArr = productArr.filter((product) => !!!product.VariantGroupId);
+    variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
+    nonVariantArr = productArr.filter(
+      ({ VariantGroupId }) => !!!VariantGroupId
+    );
   }
 </script>
 

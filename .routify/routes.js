@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Mon Mar 29 2021 19:58:02 GMT+0100 (British Summer Time)
+ * File generated Sun Jul 18 2021 08:19:07 GMT+0100 (British Summer Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2021-03-29T18:58:02.191Z';
+export const __timestamp = '2021-07-18T07:19:07.176Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -20,7 +20,7 @@ export const _tree = {
   filepath: '/_layout.svelte',
   root: true,
   ownMeta: {},
-  absolutePath: '/home/jaskaran/fun/enki-website/src/pages/_layout.svelte',
+  absolutePath: '/home/jaskaran/repos/enki-website/src/pages/_layout.svelte',
   children: [
     {
       isFile: true,
@@ -31,7 +31,7 @@ export const _tree = {
       ext: 'svelte',
       badExt: false,
       absolutePath:
-        '/home/jaskaran/fun/enki-website/src/pages/classes/_layout.svelte',
+        '/home/jaskaran/repos/enki-website/src/pages/classes/_layout.svelte',
       children: [
         {
           isFile: true,
@@ -42,7 +42,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/classes/index.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/classes/index.svelte',
           importPath: '../src/pages/classes/index.svelte',
           isLayout: false,
           isReset: false,
@@ -87,7 +87,7 @@ export const _tree = {
       ext: 'svelte',
       badExt: false,
       absolutePath:
-        '/home/jaskaran/fun/enki-website/src/pages/contact/_layout.svelte',
+        '/home/jaskaran/repos/enki-website/src/pages/contact/_layout.svelte',
       children: [
         {
           isFile: true,
@@ -98,7 +98,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/contact/index.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/contact/index.svelte',
           importPath: '../src/pages/contact/index.svelte',
           isLayout: false,
           isReset: false,
@@ -142,7 +142,7 @@ export const _tree = {
       name: 'index',
       ext: 'svelte',
       badExt: false,
-      absolutePath: '/home/jaskaran/fun/enki-website/src/pages/index.svelte',
+      absolutePath: '/home/jaskaran/repos/enki-website/src/pages/index.svelte',
       importPath: '../src/pages/index.svelte',
       isLayout: false,
       isReset: false,
@@ -169,7 +169,7 @@ export const _tree = {
       ext: 'svelte',
       badExt: false,
       absolutePath:
-        '/home/jaskaran/fun/enki-website/src/pages/online-shop/_layout.svelte',
+        '/home/jaskaran/repos/enki-website/src/pages/online-shop/_layout.svelte',
       children: [
         {
           isFile: true,
@@ -180,7 +180,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/online-shop/[category].svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/online-shop/[category].svelte',
           importPath: '../src/pages/online-shop/[category].svelte',
           isLayout: false,
           isReset: false,
@@ -209,7 +209,7 @@ export const _tree = {
           ext: '',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/online-shop/[subCategory]',
+            '/home/jaskaran/repos/enki-website/src/pages/online-shop/[subCategory]',
           children: [
             {
               isFile: true,
@@ -220,7 +220,7 @@ export const _tree = {
               ext: 'svelte',
               badExt: false,
               absolutePath:
-                '/home/jaskaran/fun/enki-website/src/pages/online-shop/[subCategory]/[subCategory].svelte',
+                '/home/jaskaran/repos/enki-website/src/pages/online-shop/[subCategory]/[subCategory].svelte',
               importPath:
                 '../src/pages/online-shop/[subCategory]/[subCategory].svelte',
               isLayout: false,
@@ -264,7 +264,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/online-shop/index.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/online-shop/index.svelte',
           importPath: '../src/pages/online-shop/index.svelte',
           isLayout: false,
           isReset: false,
@@ -313,7 +313,7 @@ export const _tree = {
       ext: 'svelte',
       badExt: false,
       absolutePath:
-        '/home/jaskaran/fun/enki-website/src/pages/payment/_layout.svelte',
+        '/home/jaskaran/repos/enki-website/src/pages/payment/_layout.svelte',
       children: [
         {
           isFile: true,
@@ -324,7 +324,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/payment/basket.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/payment/basket.svelte',
           importPath: '../src/pages/payment/basket.svelte',
           isLayout: false,
           isReset: false,
@@ -351,7 +351,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/payment/cancel.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/payment/cancel.svelte',
           importPath: '../src/pages/payment/cancel.svelte',
           isLayout: false,
           isReset: false,
@@ -378,7 +378,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/payment/checkout.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/payment/checkout.svelte',
           importPath: '../src/pages/payment/checkout.svelte',
           isLayout: false,
           isReset: false,
@@ -407,7 +407,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/payment/success.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/payment/success.svelte',
           importPath: '../src/pages/payment/success.svelte',
           isLayout: false,
           isReset: false,
@@ -454,7 +454,7 @@ export const _tree = {
       ext: 'svelte',
       badExt: false,
       absolutePath:
-        '/home/jaskaran/fun/enki-website/src/pages/services/_layout.svelte',
+        '/home/jaskaran/repos/enki-website/src/pages/services/_layout.svelte',
       children: [
         {
           isFile: true,
@@ -465,7 +465,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/services/index.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/services/index.svelte',
           importPath: '../src/pages/services/index.svelte',
           isLayout: false,
           isReset: false,
@@ -510,7 +510,7 @@ export const _tree = {
       ext: 'svelte',
       badExt: false,
       absolutePath:
-        '/home/jaskaran/fun/enki-website/src/pages/what-we-offer/_layout.svelte',
+        '/home/jaskaran/repos/enki-website/src/pages/what-we-offer/_layout.svelte',
       children: [
         {
           isFile: true,
@@ -521,7 +521,7 @@ export const _tree = {
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/fun/enki-website/src/pages/what-we-offer/index.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/what-we-offer/index.svelte',
           importPath: '../src/pages/what-we-offer/index.svelte',
           isLayout: false,
           isReset: false,

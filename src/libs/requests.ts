@@ -21,8 +21,9 @@ const retrieveStateFn = <T>(url: string, getState: GetFn<T>, defaultValue: T) =>
     TE.getOrElse(() => T.of(defaultValue))
   )(url);
 
-export const refreshCategory = async (url: string): Promise<Category> =>
-  retrieveStateFn(url, getCategory, { Id: '', Name: '', Children: [] })();
+export const refreshCategory = async (
+  url: string
+): Promise<ReadonlyArray<Category>> => retrieveStateFn(url, getCategory, [])();
 
 export const refreshProducts = async (url: string) =>
   retrieveStateFn(url, getProductArray, [])();
@@ -33,8 +34,9 @@ export const refreshCategories = async (url: string) =>
 export const refreshTags = async (url: string) =>
   retrieveStateFn(url, getTagsArray, [])();
 
-const getCategory: GetFn<Category> = (url: string): Promise<Category> =>
-  fetch(url).then((res) => res.json());
+const getCategory: GetFn<ReadonlyArray<Category>> = (
+  url: string
+): Promise<ReadonlyArray<Category>> => fetch(url).then((res) => res.json());
 
 const getProductArray: GetFn<ReadonlyArray<Product>> = (
   url: string
