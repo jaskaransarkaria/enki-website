@@ -30,13 +30,7 @@
     categoryStore: Category
   ): Category | undefined => {
     // find the id from $categories (store)
-    console.log('catStore from fn', categoryStore, id, categoryId);
     if (categoryStore.Id === id) {
-      console.log(
-        'MATCH catId from showCategory int comparision',
-        id,
-        categoryStore
-      );
       return categoryStore;
     } else if (categoryStore.Children) {
       // serach each category/children branch recursively
@@ -52,26 +46,21 @@
       }
     } else {
       // category id doesn't match and is the end of the branch in the tree
-      console.log('catShow from else', categoryToShow, categoryStore);
       return;
     }
   };
 
   onMount(async () => {
     // prevent from making unnecessary http calls will only call if there is nothing in store
-    //categoryToShow = IS_VALID_CATEGORY_STORE ? showCategory(categoryId, Object.assign({}, $categories)) : undefined;
-    if (!$categories || $categories?.Id === 0) {
+    categoryToShow = IS_VALID_CATEGORY_STORE
+      ? showCategory(categoryId, Object.assign({}, $categories))
+      : undefined;
+    if (!categoryToShow || !$categories || $categories?.Id === 0) {
       await refreshSetCategories(categoryId);
     }
   });
 
   $: categoryToShow = showCategory(categoryId, Object.assign({}, $categories));
-  $: console.log(
-    'catStore from reactive',
-    categoryToShow,
-    categoryId,
-    $categories
-  );
 </script>
 
 {#if categoryToShow}

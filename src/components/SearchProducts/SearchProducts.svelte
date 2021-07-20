@@ -98,7 +98,7 @@
     {#if searchValue.length > DEBOUNCE_CHAR_LIMIT || selectedTags.length > 0}
       <h1>Total matches: {data.length}</h1>
       {#if data.length}
-        <ProductView productArr={data} categoryId="" />
+        <ProductView productArr={data} categoryId={0} />
       {/if}
     {/if}
   </ul>

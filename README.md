@@ -61,4 +61,5 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 - [ ] tweak max-age of cached resources
 -
 - [ ] BUG: changing on sub cat level is changing the url for the category level
--
+- [ ] remove the sub category page and introduct a product page
+- [ ] introduce "breadcrumbs" for category navigation

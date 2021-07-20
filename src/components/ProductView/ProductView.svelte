@@ -18,7 +18,9 @@
     );
 
   onMount(async () => {
-    productArr = await refreshProductView(categoryId);
+    if (!productArr.length) {
+      productArr = await refreshProductView(categoryId);
+    }
   });
 
   $: refreshProductView(categoryId).then((data) => (productArr = data));
