@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import VariantProducts from '@/components/VariantProducts/VariantProducts.svelte';
   import { refreshProducts } from '@/libs/requests';
@@ -17,12 +16,6 @@
     await refreshProducts(
       `${process.env.SERVER_URL}/products-by-category?id=${id.toString()}`
     );
-
-  onMount(async () => {
-    if (!productArr.length && categoryId !== 0) {
-      productArr = await refreshProductView(categoryId);
-    }
-  });
 
   $: categoryId === 0
     ? null

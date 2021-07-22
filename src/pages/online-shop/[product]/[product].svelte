@@ -3,16 +3,16 @@
   import { params } from '@roxi/routify';
   import { products } from '@/stores/products';
   import ProductView from '@/components/ProductView/ProductView.svelte';
+  import { refreshProducts } from '@/libs/requests';
 
   import type { Product } from '@/types/product';
 
-  let productToShow: Product[];
+  let productToShow: readonly Product[];
 
-  onMount(() => {
-    // check to see if we have a products stores
-    // if we don't pull the correct product by idToDisplay
+  onMount(async () => {
+    // check to see if we have a products store
     // if we do then search and display the correct product
-    if ($products) {
+    if ($products.length) {
       // will return the falsy value of 0 if product is not a variant
       const variantId = $products.find(
         (obj) => obj.Id === parseInt($params.product, 10)
@@ -27,6 +27,11 @@
           (obj) => obj.Id === parseInt($params.product, 10)
         );
       }
+    } else {
+      // if we don't pull the correct product by idToDisplay
+      productToShow = await refreshProducts(
+        `${process.env.SERVER_URL}/product?id=${$params.product}`
+      );
     }
   });
 </script>

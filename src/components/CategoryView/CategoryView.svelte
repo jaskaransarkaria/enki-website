@@ -51,10 +51,10 @@
   };
 
   onMount(async () => {
-    // prevent from making unnecessary http calls will only call if there is nothing in store
     categoryToShow = IS_VALID_CATEGORY_STORE
       ? showCategory(categoryId, Object.assign({}, $categories))
       : undefined;
+    // prevent from making unnecessary http calls will only call if there is nothing in store
     if (!categoryToShow || !$categories || $categories?.Id === 0) {
       await refreshSetCategories(categoryId);
     }
@@ -70,5 +70,5 @@
     {/each}
   {/if}
 {/if}
-<h1>{categoryToShow?.Id || 'ok'}{categoryToShow?.Name || 'ok'}</h1>
+<h1>{categoryToShow?.Id || 'no "categoryToShow" from CategoryView'}</h1>
 <ProductView bind:categoryId />
