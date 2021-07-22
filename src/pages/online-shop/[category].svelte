@@ -1,6 +1,5 @@
 <script lang="ts">
   import { params, goto } from '@roxi/routify';
-  import { categories } from '@/stores/categories';
   import type { Category } from '@/types/category';
   import CategoryView from '@/components/CategoryView/CategoryView.svelte';
 
@@ -8,12 +7,12 @@
   let categoryId: number = parseInt(category, 10);
 
   const selectCategory = (category: Category): void => {
-    categories.set(category);
-    $goto(`./${$params.category}/${category.Id}`);
+    categoryId = category.Id;
+    $goto(`./${category.Id}`);
   };
 </script>
 
 <h1>PARAMS {$params.category}</h1>
 <h1>{category}</h1>
 
-<CategoryView categoryFn={selectCategory} bind:categoryId />
+<CategoryView categoryFn={selectCategory} {categoryId} />

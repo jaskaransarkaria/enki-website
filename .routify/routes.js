@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Tue Jul 20 2021 08:41:03 GMT+0100 (British Summer Time)
+ * File generated Thu Jul 22 2021 11:01:19 GMT+0100 (British Summer Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2021-07-20T07:41:03.142Z';
+export const __timestamp = '2021-07-22T10:01:19.982Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -203,26 +203,25 @@ export const _tree = {
         {
           isFile: false,
           isDir: true,
-          file: '[subCategory]',
-          filepath: '/online-shop/[subCategory]',
-          name: '[subCategory]',
+          file: '[product]',
+          filepath: '/online-shop/[product]',
+          name: '[product]',
           ext: '',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/online-shop/[subCategory]',
+            '/home/jaskaran/repos/enki-website/src/pages/online-shop/[product]',
           children: [
             {
               isFile: true,
               isDir: false,
-              file: '[subCategory].svelte',
-              filepath: '/online-shop/[subCategory]/[subCategory].svelte',
-              name: '[subCategory]',
+              file: '[product].svelte',
+              filepath: '/online-shop/[product]/[product].svelte',
+              name: '[product]',
               ext: 'svelte',
               badExt: false,
               absolutePath:
-                '/home/jaskaran/repos/enki-website/src/pages/online-shop/[subCategory]/[subCategory].svelte',
-              importPath:
-                '../src/pages/online-shop/[subCategory]/[subCategory].svelte',
+                '/home/jaskaran/repos/enki-website/src/pages/online-shop/[product]/[product].svelte',
+              importPath: '../src/pages/online-shop/[product]/[product].svelte',
               isLayout: false,
               isReset: false,
               isIndex: false,
@@ -234,14 +233,38 @@ export const _tree = {
                 preload: false,
                 prerender: true,
               },
-              path: '/online-shop/:subCategory/:subCategory',
-              id: '_onlineShop__subCategory__subCategory',
+              path: '/online-shop/:product/:product',
+              id: '_onlineShop__product__product',
               component: () =>
                 import(
-                  '../src/pages/online-shop/[subCategory]/[subCategory].svelte'
+                  '../src/pages/online-shop/[product]/[product].svelte'
                 ).then((m) => m.default),
             },
           ],
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: false,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/online-shop/:product',
+        },
+        {
+          isFile: false,
+          isDir: true,
+          file: '[subCategory]',
+          filepath: '/online-shop/[subCategory]',
+          name: '[subCategory]',
+          ext: '',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/online-shop/[subCategory]',
+          children: [],
           isLayout: false,
           isReset: false,
           isIndex: false,
