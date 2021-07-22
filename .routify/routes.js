@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Thu Jul 22 2021 11:01:19 GMT+0100 (British Summer Time)
+ * File generated Thu Jul 22 2021 14:16:34 GMT+0100 (British Summer Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2021-07-22T10:01:19.982Z';
+export const __timestamp = '2021-07-22T13:16:34.504Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -253,30 +253,6 @@ export const _tree = {
             prerender: true,
           },
           path: '/online-shop/:product',
-        },
-        {
-          isFile: false,
-          isDir: true,
-          file: '[subCategory]',
-          filepath: '/online-shop/[subCategory]',
-          name: '[subCategory]',
-          ext: '',
-          badExt: false,
-          absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/online-shop/[subCategory]',
-          children: [],
-          isLayout: false,
-          isReset: false,
-          isIndex: false,
-          isFallback: false,
-          isPage: false,
-          ownMeta: {},
-          meta: {
-            recursive: true,
-            preload: false,
-            prerender: true,
-          },
-          path: '/online-shop/:subCategory',
         },
         {
           isFile: true,

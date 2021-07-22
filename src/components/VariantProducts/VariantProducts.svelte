@@ -6,10 +6,11 @@
   import type { Product } from '@/types/product';
 
   export let variantProducts: readonly Product[];
-  let selectedProduct: Product;
+  export let showDetailedView: boolean = false;
+
+  let selectedProduct: Product = variantProducts[0];
   let groupedVariantProducts: Array<readonly Product[]>;
 
-  $: selectedProduct = variantProducts[0];
   $: groupedVariantProducts = Object.values(
     groupBy(variantProducts, 'VariantGroupId')
   );
@@ -22,14 +23,16 @@
 </style>
 
 <div class="container">
-  {#each groupedVariantProducts as variants}
-    <select bind:value={selectedProduct}>
-      {#each variants as variant}
-        <option value={variant}>{variant.Name}</option>
-      {/each}
-    </select>
-  {/each}
+  {#if showDetailedView}
+    {#each groupedVariantProducts as variants}
+      <select bind:value={selectedProduct}>
+        {#each variants as variant}
+          <option value={variant}>{variant.Name}</option>
+        {/each}
+      </select>
+    {/each}
+  {/if}
   {#if selectedProduct}
-    <SingleProduct product={selectedProduct} />
+    <SingleProduct product={selectedProduct} {showDetailedView} />
   {/if}
 </div>

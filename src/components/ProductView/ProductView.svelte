@@ -8,6 +8,7 @@
 
   export let categoryId: number;
   export let productArr: readonly Product[] = [];
+  export let showDetailedView: boolean = false;
 
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
@@ -18,12 +19,14 @@
     );
 
   onMount(async () => {
-    if (!productArr.length) {
+    if (!productArr.length && categoryId !== 0) {
       productArr = await refreshProductView(categoryId);
     }
   });
 
-  $: refreshProductView(categoryId).then((data) => (productArr = data));
+  $: categoryId === 0
+    ? null
+    : refreshProductView(categoryId).then((data) => (productArr = data));
   $: if (productArr.length) {
     variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
     nonVariantArr = productArr.filter(
@@ -43,10 +46,10 @@
 <div class="products-container">
   {#if nonVariantArr.length}
     {#each nonVariantArr as product}
-      <SingleProduct {product} />
+      <SingleProduct {product} {showDetailedView} />
     {/each}
   {/if}
   {#if variantArr.length}
-    <VariantProducts variantProducts={variantArr} />
+    <VariantProducts variantProducts={variantArr} {showDetailedView} />
   {/if}
 </div>
