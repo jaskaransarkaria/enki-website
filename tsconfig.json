@@ -10,7 +10,7 @@
       "node"
     ],
     "moduleResolution": "node",
-    "target": "es2020",
+    "target": "es6",
     "noEmit": true,
     "module": "ESNEXT",
     "lib": [
