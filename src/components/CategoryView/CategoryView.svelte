@@ -21,7 +21,7 @@
       const data: ReadonlyArray<Category> = await refreshCategory(
         `${process.env.SERVER_URL}/category?id=${id.toString()}`
       );
-      categories.set(data[0]);
+      categories.set(showCategory(id, data[0]) as Category);
     }
   };
 
