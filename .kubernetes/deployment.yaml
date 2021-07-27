@@ -18,3 +18,5 @@ spec:
           image: jaskaransarkaria/enki-website:replace_with_git_tag
           ports:
             - containerPort: 5000
+      imagePullSecrets:
+        - name: regcred
