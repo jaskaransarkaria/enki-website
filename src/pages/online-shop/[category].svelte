@@ -4,12 +4,14 @@
   import CategoryView from '@/components/CategoryView/CategoryView.svelte';
 
   export let category: string;
-  let categoryId: number = parseInt(category, 10);
+  let categoryId: number;
 
   const selectCategory = (category: Category): void => {
     categoryId = category.Id;
     $goto(`./${category.Id}`);
   };
+
+  $: categoryId = parseInt(category, 10);
 </script>
 
 <h1>PARAMS {$params.category}</h1>

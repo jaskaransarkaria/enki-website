@@ -36,13 +36,15 @@
   }
 </style>
 
-<div class="products-container">
-  {#if nonVariantArr.length}
-    {#each nonVariantArr as product}
-      <SingleProduct {product} {showDetailedView} />
-    {/each}
-  {/if}
-  {#if variantArr.length}
-    <VariantProducts variantProducts={variantArr} {showDetailedView} />
-  {/if}
-</div>
+{#if categoryId && productArr.length}
+  <div class="products-container">
+    {#if nonVariantArr.length}
+      {#each nonVariantArr as product}
+        <SingleProduct {product} {showDetailedView} />
+      {/each}
+    {/if}
+    {#if variantArr.length}
+      <VariantProducts variantProducts={variantArr} {showDetailedView} />
+    {/if}
+  </div>
+{/if}

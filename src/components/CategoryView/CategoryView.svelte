@@ -69,6 +69,6 @@
       <button on:click={() => categoryFn(cat)}> {cat.Name} {cat.Id}</button>
     {/each}
   {/if}
+  <ProductView {categoryId} />
 {/if}
 <h1>{categoryToShow?.Id || 'no "categoryToShow" from CategoryView'}</h1>
-<ProductView bind:categoryId />
