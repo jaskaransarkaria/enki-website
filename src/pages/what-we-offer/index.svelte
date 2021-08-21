@@ -8,6 +8,63 @@
   let onlineShopImg = '/online-shop-1.jpg';
 </script>
 
+<div class="inside-shop" in:fade>
+  <!-- <picture class="image"> -->
+  <!-- "https://enki.imgix.net/inside-enki.png?&auto=format&fit=crop&w=1340&h=1000&crop=faces" -->
+  <!-- "https://enki.imgix.net/inside-enki.png?&auto=format&fit=fill&w=1800" -->
+  <!-- <source
+    srcset={`/inside-enki-1824.webp`}
+    media="(min-width:1824px)" /> -->
+  <!-- <source
+    srcset={`/inside-enki-1424.webp`}
+    media="(min-width:1424px)" /> -->
+  <!-- <source
+    srcset={`/inside-enki-1280.webp`}
+    media="(min-width:1280px)" /> -->
+  <!-- <source
+    srcset={`/inside-enki-960.webp`}
+    media="(min-width:960px)" /> -->
+  <!-- <img
+    src={`https://enki.imgix.net/inside-enki.png?&fit=fill&w=${window.screen.width}&h=${window.screen.height}`}
+    alt="inside the shop at enki" /> -->
+  <!-- </picture> -->
+  <!-- <div class="background">
+  </div> -->
+  <button
+    class="classes-button"
+    on:mouseover={() => (classesImg = '/classes-1.gif')}
+    on:mouseout={() => (classesImg = '/classes-1.jpg')}
+    on:click={$goto('/classes')}
+  >
+    <img src={classesImg} class="classes-img" alt="classes button" />
+  </button>
+  <button
+    class="online-shop-button"
+    on:mouseover={() => (onlineShopImg = '/online-shop-1.gif')}
+    on:mouseout={() => (onlineShopImg = '/online-shop-1.jpg')}
+    on:click={$goto('/online-shop')}
+  >
+    <img src={onlineShopImg} class="online-shop-img" alt="online shop button" />
+  </button>
+  <!-- <button
+    class="contact-button"
+    on:mouseover={() => (contactImg = '/contact-1.gif')}
+    on:mouseout={() => (contactImg = '/contact-1.jpg')}
+    on:click={$goto('/contact')}>
+    <img src={contactImg} class="contact-button" alt="contact button" />
+  </button>
+  <button
+    class="repairs-and-commissions-button"
+    on:mouseover={() => (repairsAndCommissionsImg = '/rep-and-comm-1.gif')}
+    on:mouseout={() => (repairsAndCommissionsImg = '/rep-and-comm-1.jpg')}
+    on:click={$goto('/services')}>
+    <img
+      src={repairsAndCommissionsImg}
+      class="repairs-and-commissions-button"
+      alt="repairs and commissions button" />
+  </button> -->
+</div>
+
 <style>
   .inside-shop {
     display: grid;
@@ -176,58 +233,3 @@
     outline: none;
   }
 </style>
-
-<div class="inside-shop" in:fade>
-  <!-- <picture class="image"> -->
-  <!-- "https://enki.imgix.net/inside-enki.png?&auto=format&fit=crop&w=1340&h=1000&crop=faces" -->
-  <!-- "https://enki.imgix.net/inside-enki.png?&auto=format&fit=fill&w=1800" -->
-  <!-- <source
-    srcset={`/inside-enki-1824.webp`}
-    media="(min-width:1824px)" /> -->
-  <!-- <source
-    srcset={`/inside-enki-1424.webp`}
-    media="(min-width:1424px)" /> -->
-  <!-- <source
-    srcset={`/inside-enki-1280.webp`}
-    media="(min-width:1280px)" /> -->
-  <!-- <source
-    srcset={`/inside-enki-960.webp`}
-    media="(min-width:960px)" /> -->
-  <!-- <img
-    src={`https://enki.imgix.net/inside-enki.png?&fit=fill&w=${window.screen.width}&h=${window.screen.height}`}
-    alt="inside the shop at enki" /> -->
-  <!-- </picture> -->
-  <!-- <div class="background">
-  </div> -->
-  <button
-    class="classes-button"
-    on:mouseover={() => (classesImg = '/classes-1.gif')}
-    on:mouseout={() => (classesImg = '/classes-1.jpg')}
-    on:click={$goto('/classes')}>
-    <img src={classesImg} class="classes-img" alt="classes button" />
-  </button>
-  <button
-    class="online-shop-button"
-    on:mouseover={() => (onlineShopImg = '/online-shop-1.gif')}
-    on:mouseout={() => (onlineShopImg = '/online-shop-1.jpg')}
-    on:click={$goto('/online-shop')}>
-    <img src={onlineShopImg} class="online-shop-img" alt="online shop button" />
-  </button>
-  <!-- <button
-    class="contact-button"
-    on:mouseover={() => (contactImg = '/contact-1.gif')}
-    on:mouseout={() => (contactImg = '/contact-1.jpg')}
-    on:click={$goto('/contact')}>
-    <img src={contactImg} class="contact-button" alt="contact button" />
-  </button>
-  <button
-    class="repairs-and-commissions-button"
-    on:mouseover={() => (repairsAndCommissionsImg = '/rep-and-comm-1.gif')}
-    on:mouseout={() => (repairsAndCommissionsImg = '/rep-and-comm-1.jpg')}
-    on:click={$goto('/services')}>
-    <img
-      src={repairsAndCommissionsImg}
-      class="repairs-and-commissions-button"
-      alt="repairs and commissions button" />
-  </button> -->
-</div>

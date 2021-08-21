@@ -9,6 +9,18 @@
   let swing = true;
 </script>
 
+<main class="homepage-background" in:fade>
+  <button
+    class="open-sign-button"
+    class:swing
+    on:mouseover={() => (swing = true)}
+    on:mouseout={() => (swing = false)}
+    on:click={$goto('/what-we-offer')}
+  >
+    <img src="/open.jpg" loading="eager" alt="shop open sign" width="200px" />
+  </button>
+</main>
+
 <style>
   .homepage-background {
     display: grid;
@@ -65,14 +77,3 @@
   @media only screen and (min-width: 960px) {
   }
 </style>
-
-<main class="homepage-background" in:fade>
-  <button
-    class="open-sign-button"
-    class:swing
-    on:mouseover={() => (swing = true)}
-    on:mouseout={() => (swing = false)}
-    on:click={$goto('/what-we-offer')}>
-    <img src="/open.jpg" loading="eager" alt="shop open sign" width="200px" />
-  </button>
-</main>

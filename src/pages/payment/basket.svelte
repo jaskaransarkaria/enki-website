@@ -2,7 +2,7 @@
   import { basket } from '@/stores/basket';
 </script>
 
+<h1>{$basket}</h1>
+
 <style>
 </style>
-
-<h1>{$basket}</h1>

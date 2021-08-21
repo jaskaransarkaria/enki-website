@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="typescript">
   import type { BasketProduct } from '@/stores/basket';
   import { basket } from '@/stores/basket';
 
@@ -57,16 +57,20 @@
   };
 </script>
 
-<style>
-</style>
-
 <button
-  on:click={() => basket.set(updateBasket(productId, $basket, 'incrementQuantity'))}>
+  on:click={() =>
+    basket.set(updateBasket(productId, $basket, 'incrementQuantity'))}
+>
   Add to Basket
 </button>
 {#if $basket.findIndex((obj) => obj.id === productId) >= 0}
   <button
-    on:click={() => basket.set(updateBasket(productId, $basket, 'decrementQuantity'))}>
+    on:click={() =>
+      basket.set(updateBasket(productId, $basket, 'decrementQuantity'))}
+  >
     Remove from Basket
   </button>
 {/if}
+
+<style>
+</style>

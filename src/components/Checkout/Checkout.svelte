@@ -12,6 +12,7 @@
     // https://mtlynch.io/stripe-recording-its-customers/
     stripePromise = await loadStripe(process.env.STRIPE_KEY);
   });
+
   const createCheckoutSession = async () => {
     const stripe = await stripePromise;
     // Create a new Checkout Session using the server-side endpoint you
@@ -30,6 +31,7 @@
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
+
     // If `redirectToCheckout` fails due to a browser or network
     // error, you should display the localized error message to your
     // customer using `error.message`.

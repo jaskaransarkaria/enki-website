@@ -1,3 +1,7 @@
+<button id="services-button">
+  <img src="/services.png" alt="services button" />
+</button>
+
 <style>
   img,
   button {
@@ -5,7 +9,3 @@
     height: 45vh;
   }
 </style>
-
-<button id="services-button">
-  <img src="/services.png" alt="services button" />
-</button>

@@ -1,23 +1,23 @@
+const esModules = ['@roxi'].join('|');
+
 module.exports = {
   transform: {
-    '^.+\\.js$': 'babel-jest',
-    '^.+\\.svelte$': 'svelte-jester',
-    "^.+\\.ts$": "ts-jest",
-    "^.+\\.(css|less|scss)$": "babel-jest"
-
+    '^.+@roxi.+\\.js$': 'babel-jest',
+    '^.+\\.svelte$': [
+      'svelte-jester',
+      {
+        preprocess: true,
+      },
+    ],
+    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.(css|less|scss)$': 'babel-jest',
   },
-  moduleFileExtensions: [
-    "html",
-    'ts',
-    'js',
-    'mjs',
-    'svelte',
-  ],
+  moduleFileExtensions: ['ts', 'js', 'mjs', 'svelte'],
   verbose: true,
-  testPathIgnorePatterns: ["node_modules"],
-  transformIgnorePatterns: ["node_modules"],
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
-  "moduleNameMapper": {
-    "^@/(.*)$": "<rootDir>/src/$1",
-  } 
+  testPathIgnorePatterns: ['node_modules'],
+  transformIgnorePatterns: [`node_modules/?!(${esModules})/`], // ignore everything in node_modules but roxi
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
 };

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="typescript">
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { categories } from '@/stores/categories';
@@ -19,6 +19,26 @@
     data = orderCategories([...result]);
   });
 </script>
+
+<div class="root-categories-container">
+  <div class="opening-times">
+    <h1>OPENING TIMES</h1>
+    <h2>Monday - Sunday: 10am - 5pm</h2>
+  </div>
+</div>
+
+{#each data as category}
+  <button
+    on:click={() => {
+      categories.set(category);
+      $goto(`./${category.Id}`);
+    }}
+  >
+    {category.Name}
+  </button>
+{:else}
+  <p>loading...</p>
+{/each}
 
 <style>
   .root-categories-container {
@@ -50,20 +70,3 @@
     outline: none;
   }
 </style>
-
-<div class="root-categories-container">
-  <div class="opening-times">
-    <h1>OPENING TIMES</h1>
-    <h2>Monday - Sunday: 10am - 5pm</h2>
-  </div>
-</div>
-
-{#each data as category}
-  <button
-    on:click={() => {
-      categories.set(category);
-      $goto(`./${category.Id}`);
-    }}>
-    {category.Name}
-  </button>
-{/each}

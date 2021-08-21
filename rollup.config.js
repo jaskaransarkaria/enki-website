@@ -3,56 +3,63 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import routify from '@roxi/routify/plugins/rollup';
 import replace from '@rollup/plugin-replace';
 import alias from '@rollup/plugin-alias';
 import html from '@rollup/plugin-html';
+import sveltePreprocess from 'svelte-preprocess';
+
 var path = require('path');
 
 const production = !process.env.ROLLUP_WATCH;
-const currentDate = (new Date()).valueOf().toString()
+const currentDate = new Date().valueOf().toString();
 
 function serve() {
-	let server;
-	
-	function toExit() {
-		if (server) server.kill(0);
-	}
+  let server;
 
-	return {
-		writeBundle() {
-			if (server) return;
-			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-				stdio: ['ignore', 'inherit', 'inherit'],
-				shell: true
-			});
+  function toExit() {
+    if (server) server.kill(0);
+  }
 
-			process.on('SIGTERM', toExit);
-			process.on('exit', toExit);
-		}
-	};
+  return {
+    writeBundle() {
+      if (server) return;
+      server = require('child_process').spawn(
+        'npm',
+        ['run', 'start', '--', '--dev'],
+        {
+          stdio: ['ignore', 'inherit', 'inherit'],
+          shell: true,
+        }
+      );
+
+      process.on('SIGTERM', toExit);
+      process.on('exit', toExit);
+    },
+  };
 }
 
 export default {
   input: 'src/main.ts',
   inlineDynamicImports: true,
-	output: [{
-		sourcemap: true,
-		format: 'iife',
-		name: 'app',
-		file: 'public/build/bundle-' + currentDate + '.js',
-    watch: {
-      clearScreen: false
+  output: [
+    {
+      sourcemap: true,
+      format: 'iife',
+      name: 'app',
+      file: 'public/build/bundle-' + currentDate + '.js',
+      watch: {
+        clearScreen: false,
+      },
     },
-	},
-  {
-    file: 'public/index.html',
-    plugins: [
-      html({ fileName: 'index.html', 
-    title: 'Enki',
-    template: ({ attributes, title}) => `
+    {
+      file: 'public/index.html',
+      plugins: [
+        html({
+          fileName: 'index.html',
+          title: 'Enki',
+          template: ({ attributes, title }) => `
 <!DOCTYPE html>
 <html lang="${attributes.html.lang}">
   <head>
@@ -69,60 +76,79 @@ export default {
   </head>
   <body>
   </body>
-</html>`
-        })
+</html>`,
+        }),
       ],
-    }
-    ],
-    plugins: [
-      routify({ singleBuild: production }),
-      svelte({
-        // enable run-time checks when not in production
-        dev: !production,
-        // we'll extract any component CSS out into
-        // a separate file - better for performance
-        css: css => {
-          css.write('build/bundle-' + currentDate + '.css');
+    },
+  ],
+  plugins: [
+    routify({ singleBuild: production }),
+    svelte({
+      // enable run-time checks when not in production
+      dev: !production,
+      // we'll extract any component CSS out into
+      // a separate file - better for performance
+      css: (css) => {
+        css.write('build/bundle-' + currentDate + '.css');
+      },
+      preprocess: sveltePreprocess({
+        babel: {
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                loose: true,
+                // No need for babel to resolve modules
+                modules: false,
+                targets: {
+                  // ! Very important. Target es6+
+                  esmodules: true,
+                },
+              },
+            ],
+          ],
         },
-        preprocess: sveltePreprocess(),
       }),
-      alias({
-        entries: [
-          { find: /^@\/(.*)$/, replacement: path.resolve(__dirname) + '/src/$1' },
-        ]
-      }),
-  
-      // If you have external dependencies installed from
-      // npm, you'll most likely need these plugins. In
-      // some cases you'll need additional configuration -
-      // consult the documentation for details:
-      // https://github.com/rollup/plugins/tree/master/packages/commonjs
-      resolve({
-        browser: true,
-        dedupe: ['svelte']
-      }),
-      commonjs(),
-      typescript({
-        sourceMap: !production,
-        inlineSources: !production
-      }),
-      replace({
-        'process.env.SERVER_URL': production ?
-          JSON.stringify('https://server.enki.jobspeed.uk') :
-          JSON.stringify('http://localhost:8080'),
-        'process.env.STRIPE_KEY': JSON.stringify('pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp'),
-        'process.env.JEWELLERY_CATEGORY_ID': JSON.stringify('1875996')
-      }),
-      // In dev mode, call `npm run start` once
-      // the bundle has been generated
-      !production && serve(),
-  
-      // Watch the `public` directory and refresh the
-      // browser on changes when not in production
-      !production && livereload('public'),
-  
-      // If we're building for production (npm run build
-      // instead of npm run dev), minify
-      production && terser()
-    ]
+    }),
+    alias({
+      entries: [
+        { find: /^@\/(.*)$/, replacement: path.resolve(__dirname) + '/src/$1' },
+      ],
+    }),
+
+    // If you have external dependencies installed from
+    // npm, you'll most likely need these plugins. In
+    // some cases you'll need additional configuration -
+    // consult the documentation for details:
+    // https://github.com/rollup/plugins/tree/master/packages/commonjs
+    resolve({
+      browser: true,
+      dedupe: ['svelte'],
+    }),
+    commonjs(),
+    typescript({
+      sourceMap: !production,
+      inlineSources: !production,
+    }),
+    replace({
+      'process.env.SERVER_URL': production
+        ? JSON.stringify('https://server.enki.jobspeed.uk')
+        : JSON.stringify('http://localhost:8080'),
+      'process.env.STRIPE_KEY': JSON.stringify(
+        'pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp'
+      ),
+      'process.env.JEWELLERY_CATEGORY_ID': JSON.stringify('1875996'),
+    }),
+    // In dev mode, call `npm run start` once
+    // the bundle has been generated
+    !production && serve(),
+
+    // Watch the `public` directory and refresh the
+    // browser on changes when not in production
+    !production && livereload('public'),
+
+    // If we're building for production (npm run build
+    // instead of npm run dev), minify
+    production && terser(),
+  ],
 };

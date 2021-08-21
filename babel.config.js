@@ -1,13 +1,7 @@
 module.exports = {
   presets: [
-    [
-      '@babel/preset-env',
-      {
-        useBuiltIns: 'usage',
-        corejs: 3,
-      },
-    ],
-    "@babel/preset-typescript",
+    ['@babel/preset-env', { targets: { node: 'current' } }],
+    '@babel/preset-typescript',
   ],
-    "plugins": ["@babel/plugin-syntax-dynamic-import"]
-}
+  plugins: ['@babel/plugin-syntax-dynamic-import'],
+};

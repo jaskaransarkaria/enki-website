@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="typescript">
   import groupBy from 'lodash/groupBy';
 
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
@@ -16,12 +16,6 @@
   );
 </script>
 
-<style>
-  .container {
-    border: 2px solid seagreen;
-  }
-</style>
-
 <div class="container">
   {#if showDetailedView}
     {#each groupedVariantProducts as variants}
@@ -36,3 +30,9 @@
     <SingleProduct product={selectedProduct} {showDetailedView} />
   {/if}
 </div>
+
+<style>
+  .container {
+    border: 2px solid seagreen;
+  }
+</style>

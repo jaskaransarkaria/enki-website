@@ -10,17 +10,17 @@ The server which handles pulling product data from the epos system can be found 
 
 ## App Structure
 
-* Svelte & typescript
-* Docker
-* Kubernetes
-* Prettier
-* Svelte Testing Library
-* Stripe
-* Jest
-* Routify
-* Travis CI
-* Rollup
-* Husky
+- Svelte & typescript
+- Docker
+- Kubernetes
+- Prettier
+- Svelte Testing Library
+- Stripe
+- Jest
+- Routify
+- Travis CI
+- Rollup
+- Husky
 
 ## Local Development
 

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="typescript">
   import { onMount } from 'svelte';
   import ProductView from '@/components/ProductView/ProductView.svelte';
   import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.svelte';
@@ -59,6 +59,34 @@
       : [...tagArr.slice(), tagId];
 </script>
 
+{#if loading}
+  <LoadingSpinner />
+{:else}
+  <input
+    type="search"
+    bind:value={searchValue}
+    on:input={(e) => (data = searchForProduct(e.currentTarget.value))}
+  />
+  <div class="tag-container">
+    {#each tags as tag}
+      <h4
+        class={selectedTags.includes(tag.Id) ? 'selected-tag' : undefined}
+        on:click={() => (selectedTags = toggleSelected(tag.Id, selectedTags))}
+      >
+        {tag.Name}
+      </h4>
+    {/each}
+  </div>
+  <ul>
+    {#if searchValue.length > DEBOUNCE_CHAR_LIMIT || selectedTags.length > 0}
+      <h1>Total matches: {data.length}</h1>
+      {#if data.length}
+        <ProductView productArr={data} categoryId={0} />
+      {/if}
+    {/if}
+  </ul>
+{/if}
+
 <style>
   .tag-container {
     display: flex;
@@ -77,29 +105,3 @@
     border-radius: 45%;
   }
 </style>
-
-{#if loading}
-  <LoadingSpinner />
-{:else}
-  <input
-    type="search"
-    bind:value={searchValue}
-    on:input={(e) => (data = searchForProduct(e.currentTarget.value))} />
-  <div class="tag-container">
-    {#each tags as tag}
-      <h4
-        class={selectedTags.includes(tag.Id) ? 'selected-tag' : undefined}
-        on:click={() => (selectedTags = toggleSelected(tag.Id, selectedTags))}>
-        {tag.Name}
-      </h4>
-    {/each}
-  </div>
-  <ul>
-    {#if searchValue.length > DEBOUNCE_CHAR_LIMIT || selectedTags.length > 0}
-      <h1>Total matches: {data.length}</h1>
-      {#if data.length}
-        <ProductView productArr={data} categoryId={0} />
-      {/if}
-    {/if}
-  </ul>
-{/if}

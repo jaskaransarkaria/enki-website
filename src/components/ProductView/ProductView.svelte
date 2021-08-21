@@ -28,14 +28,6 @@
   }
 </script>
 
-<style>
-  .products-container {
-    display: grid;
-    grid-template-rows: 25% 25% 25% 25%;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-</style>
-
 {#if categoryId && productArr.length}
   <div class="products-container">
     {#if nonVariantArr.length}
@@ -48,3 +40,11 @@
     {/if}
   </div>
 {/if}
+
+<style>
+  .products-container {
+    display: grid;
+    grid-template-rows: 25% 25% 25% 25%;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+</style>
