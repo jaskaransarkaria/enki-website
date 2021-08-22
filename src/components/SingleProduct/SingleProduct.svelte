@@ -4,7 +4,7 @@
   import type { Product } from '@/types/product';
 
   export let product: Product;
-  export let showDetailedView: boolean = false;
+  export let showDetailedView = false;
 </script>
 
 <div class="container">

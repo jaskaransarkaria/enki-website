@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import { categories } from '@/stores/categories';
   import { refreshCategories } from '@/libs/requests';
+  import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
 
   import type { Category } from '@/types/category';
 
@@ -37,7 +38,7 @@
     {category.Name}
   </button>
 {:else}
-  <p>loading...</p>
+  <LoadingSpinner />
 {/each}
 
 <style>

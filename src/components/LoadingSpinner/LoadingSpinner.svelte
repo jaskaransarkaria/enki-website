@@ -1,4 +1,4 @@
-<div class="lds-ring">
+<div class="lds-ring" data-testid="loading-spinner">
   <div />
   <div />
   <div />

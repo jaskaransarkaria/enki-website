@@ -6,7 +6,7 @@
   import type { Product } from '@/types/product';
 
   export let variantProducts: readonly Product[];
-  export let showDetailedView: boolean = false;
+  export let showDetailedView = false;
 
   let selectedProduct: Product = variantProducts[0];
   let groupedVariantProducts: Array<readonly Product[]>;

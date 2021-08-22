@@ -4,7 +4,7 @@
 
 <SearchProducts />
 <slot />
-<!-- optional fallback -->
 
+<!-- optional fallback -->
 <style>
 </style>

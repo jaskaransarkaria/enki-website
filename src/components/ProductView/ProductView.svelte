@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="typescript">
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import VariantProducts from '@/components/VariantProducts/VariantProducts.svelte';
   import { refreshProducts } from '@/libs/requests';
@@ -7,7 +7,7 @@
 
   export let categoryId: number;
   export let productArr: readonly Product[] = [];
-  export let showDetailedView: boolean = false;
+  export let showDetailedView = false;
 
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
@@ -22,9 +22,7 @@
     : refreshProductView(categoryId).then((data) => (productArr = data));
   $: if (productArr.length) {
     variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
-    nonVariantArr = productArr.filter(
-      ({ VariantGroupId }) => !!!VariantGroupId
-    );
+    nonVariantArr = productArr.filter(({ VariantGroupId }) => !VariantGroupId);
   }
 </script>
 

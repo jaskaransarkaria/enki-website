@@ -10,8 +10,8 @@
 
   const DEBOUNCE_CHAR_LIMIT = 2;
   let selectedTags: string[] = [];
-  let searchValue: string = '';
-  let loading: boolean = false;
+  let searchValue = '';
+  let loading = false;
   let data: readonly Product[] = [];
   let tags: readonly Tag[] = [];
 
