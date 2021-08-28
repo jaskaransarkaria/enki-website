@@ -12,9 +12,7 @@
 
   let categoryToShow: Category | undefined;
   let IS_VALID_CATEGORY_STORE =
-    $categories &&
-    $categories?.Children !== undefined &&
-    categoryId !== undefined;
+    $categories && $categories?.Children !== undefined && categoryId !== 0;
 
   const refreshSetCategories = async (id: number) => {
     if (id) {
@@ -46,7 +44,7 @@
       }
     } else {
       // category id doesn't match and is the end of the branch in the tree
-      return;
+      return undefined;
     }
   };
 

@@ -1,8 +1,12 @@
 import { writable } from 'svelte/store';
 import type { Category } from '@/types/category';
 
-export const categories = writable<Category>({
+const initialValue = {
   Id: 0,
   Name: '',
   Children: [],
-});
+};
+
+export const categories = writable<Category>(initialValue);
+
+export const reset = () => categories.set(initialValue);

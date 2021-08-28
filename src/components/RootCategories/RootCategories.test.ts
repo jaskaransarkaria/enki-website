@@ -1,20 +1,13 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/svelte';
-import MockStore from '@/mocks/store';
 import RootCategories from './RootCategories.svelte';
 import { refreshCategories } from '@/libs/requests';
-import type { Category } from '@/types/category';
-
-declare let global: any;
 
 jest.mock('@/libs/requests');
-
-const mockedStore = new MockStore('');
 
 describe('GIVEN RootCategories', () => {
   beforeEach(() => {
     (refreshCategories as jest.Mock).mockResolvedValue([]);
-    global.goto = mockedStore;
   });
 
   describe('WHEN rendered', () => {
