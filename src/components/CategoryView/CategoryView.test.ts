@@ -9,6 +9,30 @@ import type { Category } from '@/types/category';
 
 jest.mock('@/libs/requests');
 
+const nestedCategories = {
+  Id: -1,
+  Name: '',
+  Children: [
+    {
+      Id: 123,
+      Name: 'Clothes',
+      Children: [
+        {
+          Id: 456,
+          Name: 'Shoes',
+          Children: [
+            {
+              Id: 789,
+              Name: 'Hats',
+              Children: [],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 describe('GIVEN CategoryView', () => {
   beforeEach(() => {
     (refreshCategory as jest.Mock).mockResolvedValue([]);
@@ -25,6 +49,12 @@ describe('GIVEN CategoryView', () => {
       expect(screen.getByRole('heading')).toHaveTextContent(
         'no "categoryToShow" from CategoryView'
       );
+      expect(refreshCategory).toHaveBeenCalledTimes(0);
+      expect(get(categories)).toMatchObject({
+        Id: 0,
+        Name: '',
+        Children: [],
+      });
     });
   });
 
@@ -39,6 +69,12 @@ describe('GIVEN CategoryView', () => {
       render(CategoryView, {
         categoryId: 123,
         categoryFn: (cat: Category) => categories.set(cat),
+      });
+
+      expect(get(categories)).toMatchObject({
+        Id: 123,
+        Name: 'Clothes',
+        Children: [],
       });
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       expect(screen.getByRole('heading')).toHaveTextContent('123');
@@ -59,6 +95,11 @@ describe('GIVEN CategoryView', () => {
         categoryFn: (cat: Category) => categories.set(cat),
       });
 
+      expect(get(categories)).toMatchObject({
+        Id: 0,
+        Name: '',
+        Children: [],
+      });
       expect(refreshCategory).toHaveBeenCalledTimes(1);
       await tick();
       await tick();
@@ -69,6 +110,31 @@ describe('GIVEN CategoryView', () => {
         Children: [],
       });
       expect(screen.getByRole('heading')).toHaveTextContent('456');
+      cleanup();
+    });
+
+    it('THEN display the correct category even when it is a child in the store tree', () => {
+      categories.set({ ...nestedCategories });
+
+      render(CategoryView, {
+        categoryFn: (cat: Category) => categories.set(cat),
+        categoryId: 789,
+      });
+      expect(screen.getByRole('heading')).toHaveTextContent('789');
+      expect(refreshCategory).toHaveBeenCalledTimes(0);
+      cleanup();
+    });
+
+    it('THEN displays any children categories', () => {
+      categories.set({ ...nestedCategories });
+
+      render(CategoryView, {
+        categoryFn: (cat: Category) => categories.set(cat),
+        categoryId: 456,
+      });
+      expect(screen.getByRole('heading')).toHaveTextContent('456');
+      expect(screen.getByRole('button', { name: /hats/i })).toBeInTheDocument();
+      expect(refreshCategory).toHaveBeenCalledTimes(0);
       cleanup();
     });
   });

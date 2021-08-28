@@ -7,12 +7,16 @@
 
   import type { Category } from '@/types/category';
 
+  const INVALID_CATEGORY_ID = 0;
+
   export let categoryFn: (cat: Category) => void;
   export let categoryId: number;
 
   let categoryToShow: Category | undefined;
-  let IS_VALID_CATEGORY_STORE =
-    $categories && $categories?.Children !== undefined && categoryId !== 0;
+  let isValidCategoryStore =
+    $categories &&
+    $categories?.Children !== undefined &&
+    categoryId !== INVALID_CATEGORY_ID;
 
   const refreshSetCategories = async (id: number) => {
     if (id) {
@@ -49,11 +53,15 @@
   };
 
   onMount(async () => {
-    categoryToShow = IS_VALID_CATEGORY_STORE
+    categoryToShow = isValidCategoryStore
       ? showCategory(categoryId, Object.assign({}, $categories))
       : undefined;
     // prevent from making unnecessary http calls will only call if there is nothing in store
-    if (!categoryToShow || !$categories || $categories?.Id === 0) {
+    if (
+      !categoryToShow ||
+      !$categories ||
+      $categories?.Id === INVALID_CATEGORY_ID
+    ) {
       await refreshSetCategories(categoryId);
     }
   });
