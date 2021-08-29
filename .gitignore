@@ -11,4 +11,4 @@ secret.yaml
 
 .env
 
-coverage/
+coverage/**/*
