@@ -9,6 +9,7 @@
   export let productArr: readonly Product[] = [];
   export let showDetailedView = false;
 
+  const productObj: any = {};
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
 
@@ -24,15 +25,21 @@
   const hasCategoryId = (
     productArr: readonly Product[],
     catId: number
-  ): boolean => !!productArr.find((prod) => prod.CategoryId === catId);
+  ): boolean => {
+    // this guards against repeatedly calling refresh when the response is an empty array of products
+    if (productObj?.[catId]?.isEmpty) {
+      return true;
+    }
+
+    // if the response is an empty array of products let's remember that so we don't make unnecessary refreshes
+    if (!productArr.length) {
+      productObj[catId] = { isEmpty: true };
+    }
+    return !!productArr.find((prod) => prod.CategoryId === catId);
+  };
 
   // make sure that we have the right category to show BUG: if there is no products then it keeps refreshing
   $: !hasCategoryId(productArr, categoryId) && refreshProductView(categoryId);
-  // this prevents getting the data if we already have it (productArray.length)
-  // or if we haven't got an id to look up
-  //$: productArr.length
-  //  ? null
-  //  : refreshProductView(categoryId);
   $: if (productArr.length) {
     variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
     nonVariantArr = productArr.filter(({ VariantGroupId }) => !VariantGroupId);
