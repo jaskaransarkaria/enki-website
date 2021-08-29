@@ -7,6 +7,7 @@
     "start": "sirv public/ --single",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
+    "test:coverage": "npm run test -- --coverage",
     "clear-cache": "rm -rf public/build/",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",

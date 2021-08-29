@@ -2,7 +2,7 @@
   import type { BasketProduct } from '@/stores/basket';
   import { basket } from '@/stores/basket';
 
-  export let productId: string;
+  export let productId: number;
 
   const removeItemFromBasket = (
     currentQuantity: number,
@@ -59,14 +59,18 @@
 
 <button
   on:click={() =>
-    basket.set(updateBasket(productId, $basket, 'incrementQuantity'))}
+    basket.set(
+      updateBasket(productId.toString(), $basket, 'incrementQuantity')
+    )}
 >
   Add to Basket
 </button>
-{#if $basket.findIndex((obj) => obj.id === productId) >= 0}
+{#if $basket.findIndex((obj) => obj.id === productId.toString()) >= 0}
   <button
     on:click={() =>
-      basket.set(updateBasket(productId, $basket, 'decrementQuantity'))}
+      basket.set(
+        updateBasket(productId.toString(), $basket, 'decrementQuantity')
+      )}
   >
     Remove from Basket
   </button>

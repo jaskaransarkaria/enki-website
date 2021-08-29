@@ -10,3 +10,5 @@ tls.key
 secret.yaml
 
 .env
+
+coverage/

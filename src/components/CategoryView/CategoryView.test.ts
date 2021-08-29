@@ -59,7 +59,7 @@ describe('GIVEN CategoryView', () => {
   });
 
   describe('WHEN rendered with props', () => {
-    it('THEN display the correct category from the store', async () => {
+    it('THEN display the correct category from the store', () => {
       categories.set({
         Id: 123,
         Name: 'Clothes',
@@ -101,7 +101,7 @@ describe('GIVEN CategoryView', () => {
         Children: [],
       });
       expect(refreshCategory).toHaveBeenCalledTimes(1);
-      await tick();
+      await tick(); // using tick helps to flush any state changes in the component
       await tick();
       await tick();
       expect(get(categories)).toMatchObject({

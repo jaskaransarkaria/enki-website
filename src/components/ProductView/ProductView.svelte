@@ -17,7 +17,7 @@
       `${process.env.SERVER_URL}/products-by-category?id=${id.toString()}`
     );
 
-  $: categoryId === 0
+  $: !categoryId || productArr.length
     ? null
     : refreshProductView(categoryId).then((data) => (productArr = data));
   $: if (productArr.length) {

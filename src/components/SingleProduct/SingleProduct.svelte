@@ -7,32 +7,36 @@
   export let showDetailedView = false;
 </script>
 
-<div class="container">
-  {#if showDetailedView}
-    {#each product.ProductImages as _, idx}
+{#if product}
+  <div class="container">
+    {#if showDetailedView}
+      {#if product.ProductImages}
+        {#each product.ProductImages as _, idx (idx)}
+          <img
+            src={`https://enki.imgix.net/${product.Id}-${idx}`}
+            alt={`${product.Id} image number ${idx + 1} of ${
+              product.ProductImages.length
+            }`}
+          />
+        {/each}
+      {/if}
+      <h2>{`${product.Name} -- ${product.Id}`}</h2>
+      <h3>{`${product.Description}`}</h3>
+      <h3>{`${product.SalePrice} -- ${product.CurrentStock} in stock`}</h3>
+    {:else}
       <img
-        src={`https://enki.imgix.net/${product.Id}-${idx}`}
-        alt={`${product.Id} image number ${idx + 1} of ${
-          product.ProductImages.length
-        }`}
+        src={`https://enki.imgix.net/${product.Id}-0`}
+        alt={`${product.Name}`}
       />
-    {/each}
-    <h2>{`${product.Name} -- ${product.Id}`}</h2>
-    <h3>{`${product.Description}`}</h3>
-    <h3>{`${product.SalePrice} -- ${product.CurrentStock} in stock`}</h3>
-  {:else}
-    <img
-      src={`https://enki.imgix.net/${product.Id}-0`}
-      alt={`${product.Name}`}
-    />
-    <button on:click={$goto(`${$url()}/${product.Id}`)}>
-      {`${product.Name} -- ${product.Id} -- ${product.SalePrice} -- ${product.CurrentStock} in stock`}
-    </button>
-  {/if}
+      <button on:click={$goto(`${$url()}/${product.Id}`)}>
+        {`${product.Name} -- ${product.Id} -- ${product.SalePrice} -- ${product.CurrentStock} in stock`}
+      </button>
+    {/if}
 
-  <AddToBasket productId={product.Id.toString()} />
-  <button on:click={$goto('/payment/checkout')}>Goto Checkout</button>
-</div>
+    <AddToBasket productId={product.Id} />
+    <button on:click={$goto('/payment/checkout')}>Goto Checkout</button>
+  </div>
+{/if}
 
 <style>
   .container {
