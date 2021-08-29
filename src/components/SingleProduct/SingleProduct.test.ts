@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen, cleanup } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import SingleProduct from './SingleProduct.svelte';
 
 describe('Given SingleProduct', () => {
