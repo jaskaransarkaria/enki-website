@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Sun Aug 29 2021 11:59:04 GMT+0100 (British Summer Time)
+ * File generated Sun Aug 29 2021 17:31:34 GMT+0100 (British Summer Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2021-08-29T10:59:04.002Z';
+export const __timestamp = '2021-08-29T16:31:34.804Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -201,60 +201,6 @@ export const _tree = {
             ),
         },
         {
-          isFile: false,
-          isDir: true,
-          file: '[product]',
-          filepath: '/online-shop/[product]',
-          name: '[product]',
-          ext: '',
-          badExt: false,
-          absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/online-shop/[product]',
-          children: [
-            {
-              isFile: true,
-              isDir: false,
-              file: '[product].svelte',
-              filepath: '/online-shop/[product]/[product].svelte',
-              name: '[product]',
-              ext: 'svelte',
-              badExt: false,
-              absolutePath:
-                '/home/jaskaran/repos/enki-website/src/pages/online-shop/[product]/[product].svelte',
-              importPath: '../src/pages/online-shop/[product]/[product].svelte',
-              isLayout: false,
-              isReset: false,
-              isIndex: false,
-              isFallback: false,
-              isPage: true,
-              ownMeta: {},
-              meta: {
-                recursive: true,
-                preload: false,
-                prerender: true,
-              },
-              path: '/online-shop/:product/:product',
-              id: '_onlineShop__product__product',
-              component: () =>
-                import(
-                  '../src/pages/online-shop/[product]/[product].svelte'
-                ).then((m) => m.default),
-            },
-          ],
-          isLayout: false,
-          isReset: false,
-          isIndex: false,
-          isFallback: false,
-          isPage: false,
-          ownMeta: {},
-          meta: {
-            recursive: true,
-            preload: false,
-            prerender: true,
-          },
-          path: '/online-shop/:product',
-        },
-        {
           isFile: true,
           isDir: false,
           file: 'index.svelte',
@@ -282,6 +228,60 @@ export const _tree = {
             import('../src/pages/online-shop/index.svelte').then(
               (m) => m.default
             ),
+        },
+        {
+          isFile: false,
+          isDir: true,
+          file: 'product',
+          filepath: '/online-shop/product',
+          name: 'product',
+          ext: '',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/online-shop/product',
+          children: [
+            {
+              isFile: true,
+              isDir: false,
+              file: '[product].svelte',
+              filepath: '/online-shop/product/[product].svelte',
+              name: '[product]',
+              ext: 'svelte',
+              badExt: false,
+              absolutePath:
+                '/home/jaskaran/repos/enki-website/src/pages/online-shop/product/[product].svelte',
+              importPath: '../src/pages/online-shop/product/[product].svelte',
+              isLayout: false,
+              isReset: false,
+              isIndex: false,
+              isFallback: false,
+              isPage: true,
+              ownMeta: {},
+              meta: {
+                recursive: true,
+                preload: false,
+                prerender: true,
+              },
+              path: '/online-shop/product/:product',
+              id: '_onlineShop_product__product',
+              component: () =>
+                import(
+                  '../src/pages/online-shop/product/[product].svelte'
+                ).then((m) => m.default),
+            },
+          ],
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: false,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/online-shop/product',
         },
       ],
       isLayout: true,

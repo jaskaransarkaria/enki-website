@@ -1,4 +1,4 @@
-const esModules = ['@roxi'].join('|');
+const esModules = ['@roxi', 'lodash-es'].join('|');
 
 module.exports = {
   transform: {
@@ -19,5 +19,6 @@ module.exports = {
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^lodash-es$': 'lodash',
   },
 };

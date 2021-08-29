@@ -31,3 +31,5 @@ scripts/
 src/
 
 tests/
+
+coverage/

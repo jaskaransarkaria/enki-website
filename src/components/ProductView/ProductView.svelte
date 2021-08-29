@@ -1,4 +1,5 @@
 <script lang="typescript">
+  import { onMount } from 'svelte';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import VariantProducts from '@/components/VariantProducts/VariantProducts.svelte';
   import { refreshProducts } from '@/libs/requests';
@@ -17,6 +18,8 @@
       `${process.env.SERVER_URL}/products-by-category?id=${id.toString()}`
     );
 
+  // this prevents getting the data if we already have it (productArray.length)
+  // or if we haven't got an id to look up
   $: !categoryId || productArr.length
     ? null
     : refreshProductView(categoryId).then((data) => (productArr = data));
@@ -24,6 +27,8 @@
     variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
     nonVariantArr = productArr.filter(({ VariantGroupId }) => !VariantGroupId);
   }
+
+  $: console.log(categoryId, productArr);
 </script>
 
 {#if categoryId && productArr.length}
