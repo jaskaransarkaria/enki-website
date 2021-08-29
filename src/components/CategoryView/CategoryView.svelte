@@ -1,10 +1,8 @@
 <script lang="typescript">
   import { onMount } from 'svelte';
-
   import ProductView from '@/components/ProductView/ProductView.svelte';
   import { refreshCategory } from '@/libs/requests';
   import { categories } from '@/stores/categories';
-
   import type { Category } from '@/types/category';
 
   const INVALID_CATEGORY_ID = 0;
