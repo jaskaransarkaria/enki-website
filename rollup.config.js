@@ -9,8 +9,8 @@ import replace from '@rollup/plugin-replace';
 import alias from '@rollup/plugin-alias';
 import html from '@rollup/plugin-html';
 import sveltePreprocess from 'svelte-preprocess';
-
-var path = require('path');
+import * as child from 'child_process';
+import * as path from 'path';
 
 const production = !process.env.ROLLUP_WATCH;
 const currentDate = new Date().valueOf().toString();
@@ -25,14 +25,10 @@ function serve() {
   return {
     writeBundle() {
       if (server) return;
-      server = require('child_process').spawn(
-        'npm',
-        ['run', 'start', '--', '--dev'],
-        {
-          stdio: ['ignore', 'inherit', 'inherit'],
-          shell: true,
-        }
-      );
+      server = child.spawn('npm', ['run', 'start', '--', '--dev'], {
+        stdio: ['ignore', 'inherit', 'inherit'],
+        shell: true,
+      });
 
       process.on('SIGTERM', toExit);
       process.on('exit', toExit);
