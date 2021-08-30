@@ -9,7 +9,7 @@
   export let productArr: readonly Product[] = [];
   export let showDetailedView = false;
 
-  const productObj: any = {};
+  const productObj: { [key: string]: { isEmpty: boolean } } = {};
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
 
