@@ -6,7 +6,7 @@
   export let variantProducts: readonly Product[] = [];
   export let showDetailedView = false;
 
-  let selectedProduct: Product = variantProducts[0] || 'none selected';
+  let selectedProduct: Product = variantProducts[0];
   let groupedVariantProducts: Array<readonly Product[]>;
 
   $: groupedVariantProducts = Object.values(
@@ -16,13 +16,13 @@
 
 {#if groupedVariantProducts.length}
   <div class="container">
-    {#each groupedVariantProducts as variants}
+    {#each groupedVariantProducts as variants (variants)}
       <select
         bind:value={selectedProduct}
         id="variants"
         name="variant-drop-down"
       >
-        {#each variants as variant}
+        {#each variants as variant (variant)}
           <option value={variant}>{variant.Name}</option>
         {/each}
       </select>
