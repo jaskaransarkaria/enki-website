@@ -6,7 +6,7 @@
 
   const removeItemFromBasket = (
     currentQuantity: number,
-    list: any,
+    list: BasketProduct[],
     listIndx: number
   ): BasketProduct[] =>
     currentQuantity === 1
@@ -20,7 +20,10 @@
           ...list.slice(listIndx + 1),
         ];
 
-  const addItemToBasket = (list: any, listIndx: number): BasketProduct[] => [
+  const addItemToBasket = (
+    list: BasketProduct[],
+    listIndx: number
+  ): BasketProduct[] => [
     ...list.slice(0, listIndx),
     {
       id: list[listIndx].id,
@@ -39,7 +42,7 @@
 
   const updateBasket = (
     id: string,
-    list: any,
+    list: BasketProduct[],
     updateType: string
   ): BasketProduct[] => {
     const indx = list.findIndex((obj: BasketProduct) => obj.id === id);
@@ -57,23 +60,25 @@
   };
 </script>
 
-<button
-  on:click={() =>
-    basket.set(
-      updateBasket(productId.toString(), $basket, 'incrementQuantity')
-    )}
->
-  Add to Basket
-</button>
-{#if $basket.findIndex((obj) => obj.id === productId.toString()) >= 0}
+{#if productId}
   <button
     on:click={() =>
       basket.set(
-        updateBasket(productId.toString(), $basket, 'decrementQuantity')
+        updateBasket(productId.toString(), $basket, 'incrementQuantity')
       )}
   >
-    Remove from Basket
+    Add to Basket
   </button>
+  {#if $basket.findIndex((obj) => obj.id === productId.toString()) >= 0}
+    <button
+      on:click={() =>
+        basket.set(
+          updateBasket(productId.toString(), $basket, 'decrementQuantity')
+        )}
+    >
+      Remove from Basket
+    </button>
+  {/if}
 {/if}
 
 <style>

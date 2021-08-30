@@ -6,3 +6,5 @@ export interface BasketProduct {
 }
 
 export const basket: Writable<BasketProduct[]> = writable([]);
+
+export const reset = () => basket.set([]);

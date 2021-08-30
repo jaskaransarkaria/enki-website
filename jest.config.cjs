@@ -14,11 +14,21 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'mjs', 'svelte'],
   verbose: true,
-  testPathIgnorePatterns: ['node_modules'],
+  testPathIgnorePatterns: ['node_modules', 'createCheckoutSession.ts'],
   transformIgnorePatterns: [`node_modules/?!(${esModules})/`], // ignore everything in node_modules but roxi
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^lodash-es$': 'lodash',
   },
+  collectCoverageFrom: [
+    'src/**/*',
+    '!src/main.ts',
+    '!src/App.svelte',
+    '!src/components/Navbar/*',
+    '!src/mocks/**/*',
+    '!src/pages/**/*',
+    '!src/components/Checkout/createCheckoutSession.ts',
+    '!src/types/*',
+  ],
 };
