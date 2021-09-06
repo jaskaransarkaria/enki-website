@@ -8,10 +8,11 @@
   import type { Product } from '@/types/product';
   import type { Tag } from '@/types/tag';
 
+  export let loading = true;
+
   const DEBOUNCE_CHAR_LIMIT = 2;
   let selectedTags: string[] = [];
   let searchValue = '';
-  let loading = false;
   let data: readonly Product[] = [];
   let tags: readonly Tag[] = [];
 
@@ -24,6 +25,7 @@
   onMount(async () => {
     await fetchAllTags();
     await fetchAllProducts();
+    loading = false;
   });
 
   const searchForProduct = (value: string) =>
@@ -35,12 +37,10 @@
 
   const fetchAllProducts = async () => {
     if ($products && $products.length === 0) {
-      loading = true;
       data = await refreshProducts(
         `${process.env.SERVER_URL}/get-all-products`
       );
       products.set(data);
-      loading = false;
     }
   };
 
