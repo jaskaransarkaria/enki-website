@@ -30,5 +30,6 @@ module.exports = {
     '!src/pages/**/*',
     '!src/components/Checkout/createCheckoutSession.ts',
     '!src/types/*',
+    '!src/libs/requests.ts',
   ],
 };
