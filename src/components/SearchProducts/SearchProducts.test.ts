@@ -2,13 +2,7 @@ import '@testing-library/jest-dom';
 import { tick } from 'svelte';
 import { get } from 'svelte/store';
 import userEvent from '@testing-library/user-event';
-import {
-  render,
-  screen,
-  cleanup,
-  fireEvent,
-  createEvent,
-} from '@testing-library/svelte';
+import { render, screen, cleanup } from '@testing-library/svelte';
 import SearchProducts from './SearchProducts.svelte';
 import { refreshProducts, refreshTags } from '@/libs/requests';
 import { products, reset as resetProductsStore } from '@/stores/products';

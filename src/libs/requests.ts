@@ -25,13 +25,16 @@ export const refreshCategory = async (
   url: string
 ): Promise<ReadonlyArray<Category>> => retrieveStateFn(url, getCategory, [])();
 
-export const refreshProducts = async (url: string) =>
-  retrieveStateFn(url, getProductArray, [])();
+export const refreshProducts = async (
+  url: string
+): Promise<readonly Product[]> => retrieveStateFn(url, getProductArray, [])();
 
-export const refreshCategories = async (url: string) =>
+export const refreshCategories = async (
+  url: string
+): Promise<readonly Category[]> =>
   retrieveStateFn(url, getCategoriesArray, [])();
 
-export const refreshTags = async (url: string) =>
+export const refreshTags = async (url: string): Promise<readonly Tag[]> =>
   retrieveStateFn(url, getTagsArray, [])();
 
 const getCategory: GetFn<ReadonlyArray<Category>> = (

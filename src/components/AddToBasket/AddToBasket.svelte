@@ -32,7 +32,10 @@
     ...list.slice(listIndx + 1),
   ];
 
-  const addNewItemToBasket = (id: string, list: any): BasketProduct[] => [
+  const addNewItemToBasket = (
+    id: string,
+    list: BasketProduct[]
+  ): BasketProduct[] => [
     {
       id: id,
       quantity: 1,

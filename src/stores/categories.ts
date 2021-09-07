@@ -9,4 +9,4 @@ const initialValue = {
 
 export const categories = writable<Category>(initialValue);
 
-export const reset = () => categories.set(initialValue);
+export const reset: () => void = () => categories.set(initialValue);
