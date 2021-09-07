@@ -63,9 +63,12 @@
   <LoadingSpinner />
 {:else}
   <input
+    data-testid="search-bar"
     type="search"
     bind:value={searchValue}
-    on:input={(e) => (data = searchForProduct(e.currentTarget.value))}
+    on:input={(e) => {
+      data = searchForProduct(e.currentTarget.value);
+    }}
   />
   <div class="tag-container">
     {#each tags as tag}
@@ -81,7 +84,9 @@
     {#if searchValue.length > DEBOUNCE_CHAR_LIMIT || selectedTags.length > 0}
       <h1>Total matches: {data.length}</h1>
       {#if data.length}
-        <ProductView productArr={data} categoryId={0} />
+        {#each data as prod}
+          <ProductView productArr={[prod]} categoryId={prod.CategoryId} />
+        {/each}
       {/if}
     {/if}
   </ul>
