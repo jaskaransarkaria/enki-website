@@ -29,7 +29,15 @@ Note that prod data can be mutated during local development, so tread carefully.
 
 ## Testing
 
-The repo utilises Svelte testing library and jest to test component behaviours.
+The repo utilises Svelte testing library and jest to test component behaviours. Unfortunately I came against a blocker \
+which prevented me from introducting end to end tests usings cypress. Mainly, I had trouble trying to mock out a \
+package used from routing called "routify".
+
+Testing the svelte application with the presence of routify proved particularly difficult. In future I would love to \
+move this application over to svelte kit and solve my routing issues there.
+
+In addition to this, you may notice svelte ticks present accross some of the tests, as reactive statements happen \
+asynchronously we need to used tick to wait for the DOM to completely finish updating.
 
 ## Site Images
 
@@ -43,12 +51,9 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 ### Todos:
 
 - [ ] make sure stock is correctly displayed
-- [ ] move heavy initial requests to a web worker?
 
 - [ ] show image for category
 - [ ] classes
-- [ ] testing
-- [ ] storybook
 
 - [ ] add security headers too (webpagetest.org)
 
