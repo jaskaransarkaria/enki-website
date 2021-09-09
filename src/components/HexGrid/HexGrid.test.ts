@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen, cleanup } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import HexGrid from './HexGrid.svelte';
 
 import type { Category } from '@/types/category';
