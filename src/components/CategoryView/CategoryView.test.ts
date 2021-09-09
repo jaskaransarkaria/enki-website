@@ -133,7 +133,7 @@ describe('GIVEN CategoryView', () => {
         categoryId: 456,
       });
       expect(screen.getByRole('heading')).toHaveTextContent('456');
-      expect(screen.getByRole('button', { name: /hats/i })).toBeInTheDocument();
+      expect(screen.getByRole('listitem')).toHaveTextContent('Hats');
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       cleanup();
     });

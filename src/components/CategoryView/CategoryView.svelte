@@ -4,6 +4,7 @@
   import { refreshCategory } from '@/libs/requests';
   import { categories } from '@/stores/categories';
   import type { Category } from '@/types/category';
+  import HexGrid from '@/components/HexGrid/HexGrid.svelte';
 
   const INVALID_CATEGORY_ID = 0;
 
@@ -69,10 +70,8 @@
 
 {#if categoryToShow}
   {#if categoryToShow.Children.length}
-    {#each categoryToShow.Children as cat}
-      <button on:click={() => categoryFn(cat)}> {cat.Name} {cat.Id}</button>
-    {/each}
+    <HexGrid data={categoryToShow.Children} {categoryFn} />
   {/if}
-  <ProductView {categoryId} />
+  <ProductView bind:categoryId />
 {/if}
 <h1>{categoryToShow?.Id || 'no "categoryToShow" from CategoryView'}</h1>

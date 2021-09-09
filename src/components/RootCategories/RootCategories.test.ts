@@ -40,9 +40,7 @@ describe('GIVEN RootCategories', () => {
       render(RootCategories);
 
       expect(refreshCategories).toHaveBeenCalled();
-      expect(
-        await screen.findByRole('button', { name: /clothes/i })
-      ).toBeInTheDocument();
+      expect(await screen.findByRole('listitem')).toHaveTextContent('Clothes');
       expect(
         await screen.queryByTestId('loading-spinner')
       ).not.toBeInTheDocument();
@@ -65,7 +63,7 @@ describe('GIVEN RootCategories', () => {
 
       expect(refreshCategories).toHaveBeenCalled();
 
-      const buttons = await screen.findAllByRole('button');
+      const buttons = await screen.findAllByRole('listitem');
 
       expect(buttons[0]).toHaveTextContent('Books');
       expect(buttons[1]).toHaveTextContent('Clothes');

@@ -13,40 +13,45 @@
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
 
-  const refreshProductView = async (id: number) => {
+  const refreshProductsArr = async (id: number) => {
     if (id) {
       const data = await refreshProducts(
         `${process.env.SERVER_URL}/products-by-category?id=${id.toString()}`
       );
       productArr = data;
+      return data;
     }
   };
 
-  const hasCategoryId = (
-    productArr: readonly Product[],
-    catId: number
-  ): boolean => {
+  const refreshProductView = async (arr: readonly Product[], catId: number) => {
     // this guards against repeatedly calling refresh when the response is an empty array of products
     if (productObj?.[catId]?.isEmpty) {
-      return true;
+      return;
     }
 
-    // if the response is an empty array of products let's remember that so we don't make unnecessary refreshes
-    if (!productArr.length) {
-      productObj[catId] = { isEmpty: true };
+    // if the category already is in the product array then we don't need to make another api call
+    if (arr.find((prod) => prod.CategoryId === categoryId)) {
+      return;
     }
-    return !!productArr.find((prod) => prod.CategoryId === catId);
+
+    arr = (await refreshProductsArr(catId)) || [];
+
+    // if the response is an empty array of products let's remember that so we don't make unnecessary refreshes
+    if (!arr.length) {
+      productObj[catId] = { isEmpty: true };
+      return;
+    }
   };
 
   // make sure that we have the right category to show BUG: if there is no products then it keeps refreshing
-  $: !hasCategoryId(productArr, categoryId) && refreshProductView(categoryId);
+  $: refreshProductView(productArr, categoryId);
   $: if (productArr.length) {
     variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
     nonVariantArr = productArr.filter(({ VariantGroupId }) => !VariantGroupId);
   }
 </script>
 
-{#if categoryId && productArr.length}
+{#if categoryId && productArr.length && !productObj?.[categoryId]?.isEmpty}
   <div class="products-container">
     {#if nonVariantArr.length}
       {#each nonVariantArr as product}

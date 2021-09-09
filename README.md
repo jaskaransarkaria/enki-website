@@ -41,8 +41,12 @@ asynchronously we need to used tick to wait for the DOM to completely finish upd
 
 ## Site Images
 
-The site pulls optimized images from Imgix service. To add a file to Imgix you must add the properly named file to the connected Imgix "source" in google cloud storage. I must then add the base url for that image to the associated
-product or category. In future to automate this we will need another service where by the user can upload their files themselves, for the time being we can upload them manually (or with a script) to the connected google cloud storage bucket.
+The site pulls optimized images from Imgix service. To add a file to Imgix you must add the properly named file to the \
+connected Imgix "source" in google cloud storage. I must then add the base url for that image to the associated \
+product or category. In future to automate this we will need another service where by the user can upload their files \
+themselves, for the time being we can upload them manually (or with a script) to the connected google cloud storage \
+bucket. Note that images are cached for a long time for performance so if an image changes you should also purge the \
+cache for that specific image
 
 ## CI/ CD
 
@@ -51,9 +55,10 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 ### Todos:
 
 - [ ] make sure stock is correctly displayed
-
+- [ ] tags need to be treated as a category rather than a search filter
+-
 - [ ] show image for category
-- [ ] classes
+- [ ] classes/ courses
 
 - [ ] add security headers too (webpagetest.org)
 
@@ -62,7 +67,6 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 - [ ] promotions and offers hmmm
 
 - [ ] follow lighthouse tips to increase accessibility/ performance
-- [ ] purge the imgix cache before releasing to prod https://docs.imgix.com/setup/purging-images
 - [ ] tweak max-age of cached resources
 -
 - [ ] introduce "breadcrumbs" for category navigation
