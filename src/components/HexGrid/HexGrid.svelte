@@ -12,9 +12,12 @@
     <li class="hex">
       <div class="hex-in">
         <div class="hex-link">
+          <img src="/faith.jpg" alt="placeholder" />
           <img
-            src="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg"
-            alt=""
+            src={`https://enki.imgix.net/hex_${Math.floor(
+              Math.random() * (6 - 1 + 1) + 1
+            )}.svg`}
+            alt="hexagon shape for the category button"
           />
           <button
             on:click={/*istanbul ignore next */ () => categoryFn(category)}
@@ -32,13 +35,12 @@
 <style>
   .root-categories-container {
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 45px;
     grid-template-columns: repeat(10, 1fr);
     width: 90%;
     margin: 0 auto;
     font-size: 15px;
     list-style-type: none;
-    overflow: hidden;
   }
 
   .hex {
@@ -100,13 +102,14 @@
     width: 100%;
     padding: 5%;
     box-sizing: border-box;
-    background-color: rgba(0, 128, 128, 0.8);
+    background-color: rgba(46, 49, 49, 0.7);
     font-weight: 300;
     -webkit-transform: 0.2s ease-out, opacity 0.3s ease-out;
     transform: 0.2s ease-out, opacity 0.3s ease-out;
   }
   .hex button {
     font-size: 1.5em;
+    color: white;
     z-index: 1;
     -webkit-transform: translate3d(0, -100%, 0);
     -ms-transform: translate3d(0, -100%, 0);

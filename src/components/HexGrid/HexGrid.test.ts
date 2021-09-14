@@ -34,7 +34,7 @@ describe('GIVEN HexGrid', () => {
       ).toBeInTheDocument();
       expect(screen.getByRole('listitem').querySelector('img')).toHaveAttribute(
         'src',
-        'https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg'
+        '/faith.jpg'
       );
     });
 
