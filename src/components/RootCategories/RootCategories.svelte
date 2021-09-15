@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { refreshCategories } from '@/libs/requests';
   import HexGrid from '@/components/HexGrid/HexGrid.svelte';
-  import { categories } from '@/stores/categories';
+  import { categories, readonlyAllCategories } from '@/stores/categories';
   import { goto } from '@roxi/routify';
 
   import type { Category } from '@/types/category';
@@ -24,6 +24,8 @@
     const result = await refreshCategories(
       `${process.env.SERVER_URL}/categories`
     );
+    readonlyAllCategories.set([...result]);
+
     data = orderCategories([...result]);
   });
 </script>

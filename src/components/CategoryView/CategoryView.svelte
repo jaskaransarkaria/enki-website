@@ -1,10 +1,12 @@
 <script lang="typescript">
   import { onMount } from 'svelte';
   import ProductView from '@/components/ProductView/ProductView.svelte';
+  import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
   import { refreshCategory } from '@/libs/requests';
   import { categories } from '@/stores/categories';
-  import type { Category } from '@/types/category';
   import HexGrid from '@/components/HexGrid/HexGrid.svelte';
+
+  import type { Category } from '@/types/category';
 
   const INVALID_CATEGORY_ID = 0;
 
@@ -69,6 +71,7 @@
 </script>
 
 {#if categoryToShow}
+  <Breadcrumbs selectedCategoryId={categoryToShow.Id} />
   {#if categoryToShow.Children.length}
     <HexGrid data={categoryToShow.Children} {categoryFn} />
   {/if}

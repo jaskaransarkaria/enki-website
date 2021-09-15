@@ -11,18 +11,22 @@ jest.mock('@/libs/requests');
 
 const nestedCategories = {
   Id: -1,
+  ParentId: null,
   Name: '',
   Children: [
     {
       Id: 123,
+      ParentId: null,
       Name: 'Clothes',
       Children: [
         {
           Id: 456,
+          ParentId: null,
           Name: 'Shoes',
           Children: [
             {
               Id: 789,
+              ParentId: null,
               Name: 'Hats',
               Children: [],
             },
@@ -52,6 +56,7 @@ describe('GIVEN CategoryView', () => {
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       expect(get(categories)).toMatchObject({
         Id: 0,
+        ParentId: null,
         Name: '',
         Children: [],
       });
@@ -62,6 +67,7 @@ describe('GIVEN CategoryView', () => {
     it('THEN display the correct category from the store', () => {
       categories.set({
         Id: 123,
+        ParentId: null,
         Name: 'Clothes',
         Children: [],
       });
@@ -73,6 +79,7 @@ describe('GIVEN CategoryView', () => {
 
       expect(get(categories)).toMatchObject({
         Id: 123,
+        ParentId: null,
         Name: 'Clothes',
         Children: [],
       });
@@ -85,6 +92,7 @@ describe('GIVEN CategoryView', () => {
       (refreshCategory as jest.Mock).mockResolvedValueOnce([
         {
           Id: 456,
+          ParentId: null,
           Name: 'Shoes',
           Children: [],
         },
@@ -97,6 +105,7 @@ describe('GIVEN CategoryView', () => {
 
       expect(get(categories)).toMatchObject({
         Id: 0,
+        ParentId: null,
         Name: '',
         Children: [],
       });
@@ -107,6 +116,7 @@ describe('GIVEN CategoryView', () => {
       expect(get(categories)).toMatchObject({
         Id: 456,
         Name: 'Shoes',
+        ParentId: null,
         Children: [],
       });
       expect(screen.getByRole('heading')).toHaveTextContent('456');
@@ -133,7 +143,7 @@ describe('GIVEN CategoryView', () => {
         categoryId: 456,
       });
       expect(screen.getByRole('heading')).toHaveTextContent('456');
-      expect(screen.getByRole('listitem')).toHaveTextContent('Hats');
+      expect(screen.getByTestId('hex-category-name')).toHaveTextContent('Hats');
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       cleanup();
     });

@@ -9,6 +9,7 @@ const mockData: Category[] = [
   {
     Id: 123,
     Name: 'Elephant',
+    ParentId: null,
     Children: [],
   },
 ];
@@ -28,11 +29,11 @@ describe('GIVEN HexGrid', () => {
         data: mockData,
       });
       expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
-      expect(screen.getByRole('listitem')).toHaveTextContent('Elephant');
-      expect(
-        screen.getByRole('listitem').querySelector('img')
-      ).toBeInTheDocument();
-      expect(screen.getByRole('listitem').querySelector('img')).toHaveAttribute(
+      expect(screen.getByTestId('hex-category-name')).toHaveTextContent(
+        'Elephant'
+      );
+      expect(screen.getByTestId('hex-image')).toBeInTheDocument();
+      expect(screen.getByTestId('hex-image')).toHaveAttribute(
         'src',
         '/faith.jpg'
       );
@@ -47,10 +48,7 @@ describe('GIVEN HexGrid', () => {
 
       expect(mockFn).toHaveBeenCalledTimes(0);
 
-      userEvent.click(
-        screen.getByRole('listitem').querySelector('button') ??
-          screen.getByRole('listitem')
-      );
+      userEvent.click(screen.getByTestId('hex-button'));
 
       expect(mockFn).toHaveBeenCalledTimes(1);
     });

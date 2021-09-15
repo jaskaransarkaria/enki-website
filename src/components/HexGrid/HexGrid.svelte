@@ -12,18 +12,19 @@
     <li class="hex">
       <div class="hex-in">
         <div class="hex-link">
-          <img src="/faith.jpg" alt="placeholder" />
+          <img src="/faith.jpg" alt="placeholder" data-testid="hex-image" />
           <img
             src={`https://enki.imgix.net/hex_${Math.floor(
               Math.random() * (6 - 1 + 1) + 1
             )}.svg`}
             alt="hexagon shape for the category button"
+            class="hexagon-shape"
           />
           <button
+            data-testid="hex-button"
             on:click={/*istanbul ignore next */ () => categoryFn(category)}
-          >
-            {category.Name}
-          </button>
+          />
+          <h3 data-testid="hex-category-name">{category.Name}</h3>
         </div>
       </div>
     </li>
@@ -46,7 +47,7 @@
   .hex {
     grid-column-end: span 2;
     position: relative;
-    visibility: visibile; /* was initially hidden */
+    visibility: hidden; /* was initially hidden */
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition -- color should be transparent*/
   }
 
@@ -87,7 +88,8 @@
   }
 
   .hex img,
-  button {
+  button,
+  h3 {
     left: -100%;
     right: -100%;
     width: auto;
@@ -107,6 +109,13 @@
     -webkit-transform: 0.2s ease-out, opacity 0.3s ease-out;
     transform: 0.2s ease-out, opacity 0.3s ease-out;
   }
+
+  .hex h3 {
+    position: absolute;
+    text-align: center;
+    top: 45%;
+  }
+
   .hex button {
     font-size: 1.5em;
     color: white;

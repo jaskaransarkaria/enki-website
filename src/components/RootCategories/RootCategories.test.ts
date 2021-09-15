@@ -32,6 +32,7 @@ describe('GIVEN RootCategories', () => {
       (refreshCategories as jest.Mock).mockResolvedValueOnce([
         {
           Id: 123,
+          ParentId: -1,
           Name: 'Clothes',
           Children: [],
         },
@@ -40,7 +41,9 @@ describe('GIVEN RootCategories', () => {
       render(RootCategories);
 
       expect(refreshCategories).toHaveBeenCalled();
-      expect(await screen.findByRole('listitem')).toHaveTextContent('Clothes');
+      expect(await screen.findByTestId('hex-category-name')).toHaveTextContent(
+        'Clothes'
+      );
       expect(
         await screen.queryByTestId('loading-spinner')
       ).not.toBeInTheDocument();
@@ -50,11 +53,13 @@ describe('GIVEN RootCategories', () => {
       (refreshCategories as jest.Mock).mockResolvedValueOnce([
         {
           Id: 123,
+          ParentId: -1,
           Name: 'Clothes',
           Children: [],
         },
         {
           Id: 456,
+          ParentId: -1,
           Name: 'Books',
         },
       ]);
@@ -63,7 +68,7 @@ describe('GIVEN RootCategories', () => {
 
       expect(refreshCategories).toHaveBeenCalled();
 
-      const buttons = await screen.findAllByRole('listitem');
+      const buttons = await screen.findAllByTestId('hex-category-name');
 
       expect(buttons[0]).toHaveTextContent('Books');
       expect(buttons[1]).toHaveTextContent('Clothes');

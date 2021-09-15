@@ -1,0 +1,92 @@
+<script lang="typescript">
+  import { goto } from '@roxi/routify';
+  import { onMount } from 'svelte';
+  import { refreshCategories } from '@/libs/requests';
+  import { readonlyAllCategories } from '@/stores/categories';
+  import type { Category } from '@/types/category';
+
+  export let selectedCategoryId: number;
+
+  let breadcrumbs: Category[];
+
+  const rootShop: Category = {
+    Id: 0,
+    Name: 'Shop',
+    ParentId: 0,
+    Children: [],
+  };
+
+  onMount(async () => {
+    if (!$readonlyAllCategories.length) {
+      // pull the category data from api
+      const result = await refreshCategories(
+        `${process.env.SERVER_URL}/categories`
+      );
+      readonlyAllCategories.set([...result]);
+    }
+  });
+
+  const recursiveCatSearch = (
+    id: number,
+    categories: Category[],
+    results: Category[]
+  ): Category[] => {
+    // dive deep and find the category then work upwards to the root
+    for (const cat of categories) {
+      if (cat.Id === id) {
+        if (cat.ParentId === null) {
+          return [...results, cat];
+        }
+        // search for the ParentId
+        return recursiveCatSearch(cat.ParentId, $readonlyAllCategories, [
+          ...results,
+          cat,
+        ]);
+      } else if (cat.Children.length) {
+        results = recursiveCatSearch(id, cat.Children, results);
+      }
+    }
+
+    return results;
+  };
+
+  $: breadcrumbs = [
+    rootShop,
+    ...recursiveCatSearch(
+      selectedCategoryId,
+      $readonlyAllCategories,
+      []
+    ).reverse(),
+  ];
+</script>
+
+{#if selectedCategoryId}
+  {#each breadcrumbs as breadcrumb}
+    <button
+      on:click={() =>
+        breadcrumb.Name === 'Shop'
+          ? $goto('/online-shop')
+          : $goto(`/online-shop/${breadcrumb.Id}`)}
+    >
+      <img src="https://enki.imgix.net/hex_1.svg" alt="breadcrumb icon" />
+      {breadcrumb.Name}
+    </button>
+  {/each}
+{/if}
+
+<style>
+  button {
+    display: inline-flex;
+    align-items: center;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+
+  img {
+    width: 30px;
+  }
+</style>
