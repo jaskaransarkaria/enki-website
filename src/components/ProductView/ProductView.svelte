@@ -56,7 +56,12 @@
 </script>
 
 {#if categoryId && productArr.length && !productObj?.[categoryId]?.isEmpty}
-  <div in:fade={{ delay: 750 }} class="products-container">
+  <div
+    in:fade={{ delay: 750 }}
+    class={showDetailedView
+      ? 'detailed-products-container'
+      : 'products-container'}
+  >
     {#if nonVariantArr.length}
       {#each nonVariantArr as product}
         <SingleProduct {product} {showDetailedView} />
@@ -73,5 +78,9 @@
     display: grid;
     grid-template-rows: 25% 25% 25% 25%;
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .detailed-products-container {
+    display: flex;
   }
 </style>

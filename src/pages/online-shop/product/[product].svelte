@@ -3,11 +3,12 @@
   import { params } from '@roxi/routify';
   import { products } from '@/stores/products';
   import ProductView from '@/components/ProductView/ProductView.svelte';
+  import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
   import { refreshProducts } from '@/libs/requests';
 
   import type { Product } from '@/types/product';
 
-  let productToShow: readonly Product[];
+  let productToShow: readonly Product[] = [];
 
   onMount(async () => {
     // check to see if we have a products store
@@ -36,5 +37,21 @@
   });
 </script>
 
-<h1>{'product' + JSON.stringify($params.product)}</h1>
-<ProductView categoryId={0} productArr={productToShow} showDetailedView />
+{#if productToShow.length}
+  <Breadcrumbs selectedCategoryId={productToShow[0].CategoryId} />
+  <figure>
+    <ProductView
+      categoryId={productToShow[0].CategoryId}
+      productArr={productToShow}
+      showDetailedView
+    />
+  </figure>
+{/if}
+
+<style>
+  figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

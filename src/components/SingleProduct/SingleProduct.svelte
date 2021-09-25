@@ -10,6 +10,7 @@
 {#if product}
   <div class="container">
     {#if showDetailedView}
+      <h1>{`${product.Name}`}</h1>
       {#if product.ProductImages}
         {#each product.ProductImages as _, idx (idx)}
           <figure class="img-container">
@@ -22,12 +23,20 @@
           </figure>
         {/each}
       {/if}
-      <h2>{`${product.Name} -- ${product.Id}`}</h2>
       <h3>{`${product.Description}`}</h3>
-      <h3>{`${product.SalePrice} -- ${product.CurrentStock} in stock`}</h3>
+      <h3>
+        {`${product.SalePrice} -- ${
+          product.CurrentStock === 0
+            ? 'sold out'
+            : product.CurrentStock + ' in stock'
+        }`}
+      </h3>
     {:else}
       <h1>{`${product.Name}`}</h1>
-      <figure on:click={$goto(`${$url()}/${product.Id}`)} class="img-container">
+      <figure
+        on:click={$goto(`/online-shop/product/${product.Id}`)}
+        class="img-container"
+      >
         <img
           src={`https://enki.imgix.net/${product.Id}-0`}
           alt={`${product.Name}`}

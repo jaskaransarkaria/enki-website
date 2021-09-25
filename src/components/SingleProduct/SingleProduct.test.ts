@@ -46,8 +46,8 @@ describe('Given SingleProduct', () => {
       const multiImages = screen.getAllByRole('img', { name: /456/i });
 
       expect(
-        screen.getByRole('heading', { level: 2, name: /blue jacket/i })
-      ).toHaveTextContent('Blue jacket -- 456');
+        screen.getByRole('heading', { level: 1, name: /blue jacket/i })
+      ).toHaveTextContent('Blue jacket');
       expect(
         screen.getByRole('heading', { level: 3, name: /very/i })
       ).toHaveTextContent('A very blue jacket');
@@ -80,8 +80,8 @@ describe('Given SingleProduct', () => {
         },
       });
       expect(
-        screen.getByRole('heading', { level: 2, name: /green jacket/i })
-      ).toHaveTextContent('Green jacket -- 789');
+        screen.getByRole('heading', { level: 1, name: /green jacket/i })
+      ).toHaveTextContent('Green jacket');
       expect(
         screen.getByRole('heading', { level: 3, name: /greeny/i })
       ).toHaveTextContent('greeny');
