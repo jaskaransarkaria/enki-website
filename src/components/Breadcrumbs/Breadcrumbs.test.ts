@@ -1,14 +1,12 @@
 import '@testing-library/jest-dom';
 import { tick } from 'svelte';
-import { get } from 'svelte/store';
-import { render, screen, cleanup, getAllByRole } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import Breadcrumbs from './Breadcrumbs.svelte';
 import { refreshCategories } from '@/libs/requests';
 import {
   readonlyAllCategories,
   resetReadonlyAllCategoriesStore,
 } from '@/stores/categories';
-import type { Category } from '@/types/category';
 
 jest.mock('@/libs/requests');
 
