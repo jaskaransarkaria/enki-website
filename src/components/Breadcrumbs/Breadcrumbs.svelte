@@ -1,8 +1,6 @@
 <script lang="typescript">
   import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
-  import { flip } from 'svelte/animate';
-  import { bounceOut } from 'svelte/easing';
   import { refreshCategories } from '@/libs/requests';
   import { readonlyAllCategories } from '@/stores/categories';
   import type { Category } from '@/types/category';
