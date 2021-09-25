@@ -85,4 +85,7 @@
 {/if}
 
 <style>
+  button {
+    cursor: pointer;
+  }
 </style>

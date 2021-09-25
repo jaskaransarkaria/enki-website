@@ -1,4 +1,5 @@
 <script lang="typescript">
+  import { fade } from 'svelte/transition';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import VariantProducts from '@/components/VariantProducts/VariantProducts.svelte';
   import { refreshProducts } from '@/libs/requests';
@@ -13,7 +14,9 @@
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
 
-  const refreshProductsArr = async (id: number) => {
+  const refreshProductsArr = async (
+    id: number
+  ): Promise<readonly Product[]> => {
     if (id) {
       const data = await refreshProducts(
         `${process.env.SERVER_URL}/products-by-category?id=${id.toString()}`
@@ -21,6 +24,7 @@
       productArr = data;
       return data;
     }
+    return [];
   };
 
   const refreshProductView = async (arr: readonly Product[], catId: number) => {
@@ -34,7 +38,7 @@
       return;
     }
 
-    arr = (await refreshProductsArr(catId)) || [];
+    arr = await refreshProductsArr(catId);
 
     // if the response is an empty array of products let's remember that so we don't make unnecessary refreshes
     if (!arr.length) {
@@ -52,7 +56,7 @@
 </script>
 
 {#if categoryId && productArr.length && !productObj?.[categoryId]?.isEmpty}
-  <div class="products-container">
+  <div in:fade={{ delay: 750 }} class="products-container">
     {#if nonVariantArr.length}
       {#each nonVariantArr as product}
         <SingleProduct {product} {showDetailedView} />

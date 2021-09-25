@@ -20,17 +20,14 @@ describe('Given SingleProduct', () => {
         },
       });
       expect(
-        screen.getByRole('button', { name: /red jacket/i })
-      ).toHaveTextContent('Red jacket -- 123 -- 1000 -- 1 in stock');
+        screen.getByRole('heading', { name: /red jacket/i })
+      ).toHaveTextContent('Red jacket');
       expect(screen.getByRole('img', { name: /red jacket/i })).toHaveAttribute(
         'src',
         'https://enki.imgix.net/123-0'
       );
       expect(
         screen.getByRole('button', { name: /basket/i })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole('button', { name: /goto checkout/i })
       ).toBeInTheDocument();
     });
 
@@ -69,9 +66,6 @@ describe('Given SingleProduct', () => {
       expect(
         screen.getByRole('button', { name: /basket/i })
       ).toBeInTheDocument();
-      expect(
-        screen.getByRole('button', { name: /goto checkout/i })
-      ).toBeInTheDocument();
     });
 
     it('THEN show no image', async () => {
@@ -97,9 +91,6 @@ describe('Given SingleProduct', () => {
       expect(screen.queryAllByRole('img', { name: /789/i })).toHaveLength(0);
       expect(
         screen.getByRole('button', { name: /basket/i })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole('button', { name: /goto checkout/i })
       ).toBeInTheDocument();
     });
   });

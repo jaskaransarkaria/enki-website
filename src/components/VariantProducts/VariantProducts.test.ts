@@ -60,8 +60,8 @@ describe('GIVEN VariantProducts', () => {
         variantProducts: [...variantProductsArr],
       });
       expect(
-        screen.getByRole('button', { name: /red book/i })
-      ).toHaveTextContent('Red book --');
+        screen.getByRole('heading', { name: /red book/i })
+      ).toHaveTextContent('Red book');
       expect(
         (screen.getByRole('option', { name: 'Red book' }) as HTMLOptionElement)
           .selected

@@ -38,7 +38,10 @@ describe('GIVEN ProductView', () => {
         });
         expect(refreshProducts).toHaveBeenCalledTimes(1);
         expect(
-          await screen.findByRole('button', { name: /gold necklace/i })
+          await screen.findByRole('heading', {
+            level: 1,
+            name: /gold necklace/i,
+          })
         ).toBeInTheDocument();
         cleanup();
       });
@@ -62,7 +65,7 @@ describe('GIVEN ProductView', () => {
         });
         expect(refreshProducts).toHaveBeenCalledTimes(0);
         expect(
-          await screen.findByRole('button', { name: /silver ring/i })
+          await screen.findByRole('heading', { level: 1, name: /silver ring/i })
         ).toBeInTheDocument();
       });
     });

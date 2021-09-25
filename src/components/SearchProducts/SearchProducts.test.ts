@@ -180,7 +180,7 @@ describe('GIVEN SearchProducts', () => {
         await tick();
 
         expect(
-          screen.queryByRole('button', { name: /gold necklace/i })
+          screen.queryByRole('heading', { name: /gold necklace/i })
         ).not.toBeInTheDocument();
         expect(
           screen.queryByRole('heading', { name: /total matches:/i })
@@ -197,7 +197,7 @@ describe('GIVEN SearchProducts', () => {
           screen.getByRole('heading', { name: /total matches/i })
         ).toHaveTextContent('Total matches: 1');
         expect(
-          screen.getByRole('button', { name: /gold necklace/i })
+          screen.getByRole('heading', { name: /gold necklace/i })
         ).toBeInTheDocument();
       });
 
@@ -265,7 +265,7 @@ describe('GIVEN SearchProducts', () => {
           },
         ]);
         expect(
-          screen.queryByRole('button', { name: /gold necklace/i })
+          screen.queryByRole('heading', { name: /gold necklace/i })
         ).not.toBeInTheDocument();
         expect(
           screen.queryByRole('heading', { name: /total matches:/i })
@@ -275,7 +275,7 @@ describe('GIVEN SearchProducts', () => {
 
         expect(screen.getByTestId('search-bar')).toHaveValue('go');
         expect(
-          screen.queryByRole('button', { name: /gold necklace/i })
+          screen.queryByRole('heading', { name: /gold necklace/i })
         ).not.toBeInTheDocument();
 
         userEvent.type(screen.getByTestId('search-bar'), 'ld');
@@ -285,7 +285,7 @@ describe('GIVEN SearchProducts', () => {
         await tick();
 
         expect(
-          screen.getByRole('button', { name: /gold necklace/i })
+          screen.getByRole('heading', { name: /gold necklace/i })
         ).toBeInTheDocument();
       });
     });

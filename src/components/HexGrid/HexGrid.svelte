@@ -1,4 +1,5 @@
 <script lang="typescript">
+  import { fly, fade } from 'svelte/transition';
   import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
 
   import type { Category } from '@/types/category';
@@ -7,9 +8,18 @@
   export let categoryFn: (cat: Category) => void;
 </script>
 
-<ul class="root-categories-container">
-  {#each data as category}
-    <li class="hex">
+<ul in:fade class="root-categories-container">
+  {#each data as category, idx}
+    <li
+      out:fly={{
+        x: (idx + 1) ** 2 * -1,
+        y: (idx + 1) ** 0.5 * -1,
+        duration: 685,
+        delay: 200,
+      }}
+      in:fade={{ delay: 650, duration: 950 }}
+      class="hex"
+    >
       <div class="hex-in">
         <div class="hex-link">
           <img src="/faith.jpg" alt="placeholder" data-testid="hex-image" />
