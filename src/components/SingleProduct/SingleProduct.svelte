@@ -1,5 +1,5 @@
 <script lang="typescript">
-  import { goto, url } from '@roxi/routify';
+  import { goto } from '@roxi/routify';
   import AddToBasket from '@/components/AddToBasket/AddToBasket.svelte';
   import type { Product } from '@/types/product';
 
