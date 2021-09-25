@@ -5,6 +5,8 @@
 
   export let product: Product;
   export let showDetailedView = false;
+
+  let selectedIdx = 0;
 </script>
 
 {#if product}
@@ -12,16 +14,27 @@
     {#if showDetailedView}
       <h1>{`${product.Name}`}</h1>
       {#if product.ProductImages}
-        {#each product.ProductImages as _, idx (idx)}
-          <figure class="img-container">
+        <figure class="img-thumbnail-container">
+          <figure class="selected-image">
             <img
-              src={`https://enki.imgix.net/${product.Id}-${idx}`}
-              alt={`${product.Id} image number ${idx + 1} of ${
+              src={`https://enki.imgix.net/${product.Id}-${selectedIdx}`}
+              alt={`${product.Id} image number ${selectedIdx + 1} of ${
                 product.ProductImages.length
               }`}
             />
           </figure>
-        {/each}
+          <figure class="thumbnails">
+            {#each product.ProductImages as _, idx (idx)}
+              <img
+                on:click={() => (selectedIdx = idx)}
+                src={`https://enki.imgix.net/${product.Id}-${idx}`}
+                alt={`${product.Id} image number ${idx + 1} of ${
+                  product.ProductImages.length
+                }`}
+              />
+            {/each}
+          </figure>
+        </figure>
       {/if}
       <h3>{`${product.Description}`}</h3>
       <h3>
@@ -69,12 +82,25 @@
     width: 80%;
   }
 
-  .img-container img {
+  .img-thumbnail-container {
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+  }
+
+  .img-container,
+  .img-thumbnail-container img {
     display: block;
     max-width: 100%;
     max-height: 100%;
     width: auto;
     height: auto;
     margin: auto;
+  }
+
+  .thumbnails img {
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    padding: 10px;
   }
 </style>

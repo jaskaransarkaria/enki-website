@@ -54,12 +54,16 @@ describe('Given SingleProduct', () => {
       expect(
         screen.getByRole('heading', { level: 3, name: /2000/i })
       ).toHaveTextContent('2000 -- 2 in stock');
-      expect(multiImages).toHaveLength(2);
+      expect(multiImages).toHaveLength(3);
       expect(multiImages[0]).toHaveAttribute(
         'src',
         'https://enki.imgix.net/456-0'
       );
       expect(multiImages[1]).toHaveAttribute(
+        'src',
+        'https://enki.imgix.net/456-0'
+      );
+      expect(multiImages[2]).toHaveAttribute(
         'src',
         'https://enki.imgix.net/456-1'
       );
