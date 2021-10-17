@@ -122,4 +122,28 @@
       1.5
     ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
+
+  @media (max-width: 700px) {
+    .thumbnails img {
+      height: 60px;
+      width: 60px;
+    }
+
+    .thumbnails {
+      margin-right: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .img-thumbnail-container {
+      align-items: center;
+    }
+
+    .thumbnails {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 </style>
