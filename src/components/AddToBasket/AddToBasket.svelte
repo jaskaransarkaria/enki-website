@@ -1,85 +1,54 @@
 <script lang="typescript">
-  import type { BasketProduct } from '@/stores/basket';
+  import { fade } from 'svelte/transition';
   import { basket } from '@/stores/basket';
+  import { updateBasket } from '@/libs/basket';
+  import { goto } from '@roxi/routify';
 
   export let productId: number;
+  export let productName: string;
 
-  const removeItemFromBasket = (
-    currentQuantity: number,
-    list: BasketProduct[],
-    listIndx: number
-  ): BasketProduct[] =>
-    currentQuantity === 1
-      ? [...list.slice(0, listIndx), ...list.slice(listIndx + 1)]
-      : [
-          ...list.slice(0, listIndx),
-          {
-            id: list[listIndx].id,
-            quantity: list[listIndx].quantity - 1,
-          },
-          ...list.slice(listIndx + 1),
-        ];
+  let flipped = true;
+  let flipTranistionEnded = false;
 
-  const addItemToBasket = (
-    list: BasketProduct[],
-    listIndx: number
-  ): BasketProduct[] => [
-    ...list.slice(0, listIndx),
-    {
-      id: list[listIndx].id,
-      quantity: list[listIndx].quantity + 1,
-    },
-    ...list.slice(listIndx + 1),
-  ];
-
-  const addNewItemToBasket = (
-    id: string,
-    list: BasketProduct[]
-  ): BasketProduct[] => [
-    {
-      id: id,
-      quantity: 1,
-    },
-    ...list,
-  ];
-
-  const updateBasket = (
-    id: string,
-    list: BasketProduct[],
-    updateType: string
-  ): BasketProduct[] => {
-    const indx = list.findIndex((obj: BasketProduct) => obj.id === id);
-    updateType = indx >= 0 ? updateType : 'newItem';
-    switch (updateType) {
-      case 'incrementQuantity':
-        return addItemToBasket(list, indx);
-      case 'decrementQuantity':
-        return removeItemFromBasket(list[indx].quantity, list, indx);
-      case 'newItem':
-        return addNewItemToBasket(id, list);
-      default:
-        return [];
-    }
-  };
+  function flip(node: HTMLElement, { delay = 0, duration = 600 }) {
+    return {
+      delay,
+      duration,
+      css: (t: any, u: number) => `
+        transform: rotateX(${1 - u * 180}deg);
+				opacity: ${1 - u};
+			`,
+    };
+  }
 </script>
 
 {#if productId}
-  <button
-    on:click={() =>
-      basket.set(
-        updateBasket(productId.toString(), $basket, 'incrementQuantity')
-      )}
-  >
-    Add to Basket
-  </button>
-  {#if $basket.findIndex((obj) => obj.id === productId.toString()) >= 0}
+  {#if flipped}
     <button
-      on:click={() =>
+      class="add-to-basket"
+      transition:flip
+      on:outroend={() => (flipTranistionEnded = true)}
+      on:click={() => {
         basket.set(
-          updateBasket(productId.toString(), $basket, 'decrementQuantity')
-        )}
+          updateBasket(
+            { id: productId.toString(), name: productName },
+            $basket,
+            'incrementQuantity'
+          )
+        );
+        flipped = false;
+      }}
     >
-      Remove from Basket
+      Add to Basket
+    </button>
+  {/if}
+  {#if flipTranistionEnded}
+    <button
+      class="goto-basket"
+      transition:fade={{ delay: 100, duration: 700 }}
+      on:click={$goto('/online-shop/basket')}
+    >
+      Goto Basket
     </button>
   {/if}
 {/if}
@@ -87,5 +56,21 @@
 <style>
   button {
     cursor: pointer;
+    border: none;
+    width: 80%;
+    border-radius: 4px;
+    transition: filter 0.25s;
+  }
+
+  .add-to-basket {
+    background-color: #fa6603;
+  }
+
+  .goto-basket {
+    background-color: #30a74b;
+  }
+
+  .add-to-basket:hover {
+    filter: grayscale(20%);
   }
 </style>

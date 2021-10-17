@@ -31,7 +31,7 @@ describe('Given SingleProduct', () => {
       ).toBeInTheDocument();
     });
 
-    it('THEN show the detailed product', () => {
+    it('THEN show the detailed product (with thumbnails)', () => {
       render(SingleProduct, {
         showDetailedView: true,
         product: {

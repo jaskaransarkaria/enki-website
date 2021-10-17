@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Sun Oct 17 2021 11:46:54 GMT+0100 (British Summer Time)
+ * File generated Sun Oct 17 2021 16:14:23 GMT+0100 (British Summer Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2021-10-17T10:46:54.898Z';
+export const __timestamp = '2021-10-17T15:14:23.541Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -201,6 +201,60 @@ export const _tree = {
             ),
         },
         {
+          isFile: false,
+          isDir: true,
+          file: 'basket',
+          filepath: '/online-shop/basket',
+          name: 'basket',
+          ext: '',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/online-shop/basket',
+          children: [
+            {
+              isFile: true,
+              isDir: false,
+              file: 'index.svelte',
+              filepath: '/online-shop/basket/index.svelte',
+              name: 'index',
+              ext: 'svelte',
+              badExt: false,
+              absolutePath:
+                '/home/jaskaran/repos/enki-website/src/pages/online-shop/basket/index.svelte',
+              importPath: '../src/pages/online-shop/basket/index.svelte',
+              isLayout: false,
+              isReset: false,
+              isIndex: true,
+              isFallback: false,
+              isPage: true,
+              ownMeta: {},
+              meta: {
+                recursive: true,
+                preload: false,
+                prerender: true,
+              },
+              path: '/online-shop/basket/index',
+              id: '_onlineShop_basket_index',
+              component: () =>
+                import('../src/pages/online-shop/basket/index.svelte').then(
+                  (m) => m.default
+                ),
+            },
+          ],
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: false,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/online-shop/basket',
+        },
+        {
           isFile: true,
           isDir: false,
           file: 'index.svelte',
@@ -314,33 +368,6 @@ export const _tree = {
       absolutePath:
         '/home/jaskaran/repos/enki-website/src/pages/payment/_layout.svelte',
       children: [
-        {
-          isFile: true,
-          isDir: false,
-          file: 'basket.svelte',
-          filepath: '/payment/basket.svelte',
-          name: 'basket',
-          ext: 'svelte',
-          badExt: false,
-          absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/payment/basket.svelte',
-          importPath: '../src/pages/payment/basket.svelte',
-          isLayout: false,
-          isReset: false,
-          isIndex: false,
-          isFallback: false,
-          isPage: true,
-          ownMeta: {},
-          meta: {
-            recursive: true,
-            preload: false,
-            prerender: true,
-          },
-          path: '/payment/basket',
-          id: '_payment_basket',
-          component: () =>
-            import('../src/pages/payment/basket.svelte').then((m) => m.default),
-        },
         {
           isFile: true,
           isDir: false,

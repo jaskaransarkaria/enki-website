@@ -29,7 +29,7 @@ describe('GIVEN AddToBasket', () => {
       ).toBeInTheDocument();
     });
 
-    it('THEN increment the number of items in the basket', () => {
+    it('THEN increment the number of items in the basket', async (done) => {
       render(AddToBasket, {
         productId: 1,
       });
@@ -37,30 +37,42 @@ describe('GIVEN AddToBasket', () => {
       expect(get(basket)).toEqual([]);
       userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
       expect(get(basket)).toEqual([{ id: '1', quantity: 1 }]);
-      userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
-      expect(get(basket)).toEqual([{ id: '1', quantity: 2 }]);
-    });
-
-    it('THEN remove items from the basket', async () => {
-      render(AddToBasket, {
-        productId: 1,
-      });
-
-      expect(get(basket)).toEqual([]);
-      userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
-      expect(get(basket)).toEqual([{ id: '1', quantity: 1 }]);
-      userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
-      expect(get(basket)).toEqual([{ id: '1', quantity: 2 }]);
       await tick();
-      userEvent.click(
-        screen.getByRole('button', { name: /remove from basket/i })
-      );
-      expect(get(basket)).toEqual([{ id: '1', quantity: 1 }]);
-      userEvent.click(
-        screen.getByRole('button', { name: /remove from basket/i })
-      );
-      expect(get(basket)).toEqual([]);
+      await tick();
+      await tick();
+      await tick();
+      setTimeout(() => {
+        expect(
+          screen.queryByRole('button', { name: /add to basket/i })
+        ).not.toBeInTheDocument();
+        expect(
+          screen.queryByRole('button', { name: /goto basket/i })
+        ).toBeInTheDocument();
+        done();
+      }, 1000);
     });
+
+    // move this test logic to libs/basket || pages/online-shop/basket
+    //it('THEN remove items from the basket', async () => {
+    //  render(AddToBasket, {
+    //    productId: 1,
+    //  });
+
+    //  expect(get(basket)).toEqual([]);
+    //  userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
+    //  expect(get(basket)).toEqual([{ id: '1', quantity: 1 }]);
+    //  userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
+    //  expect(get(basket)).toEqual([{ id: '1', quantity: 2 }]);
+    //  await tick();
+    //  userEvent.click(
+    //    screen.getByRole('button', { name: /remove from basket/i })
+    //  );
+    //  expect(get(basket)).toEqual([{ id: '1', quantity: 1 }]);
+    //  userEvent.click(
+    //    screen.getByRole('button', { name: /remove from basket/i })
+    //  );
+    //  expect(get(basket)).toEqual([]);
+    //});
 
     it('THEN add a new item to the basket', () => {
       const { container } = render(AddToBasket, {
@@ -70,8 +82,6 @@ describe('GIVEN AddToBasket', () => {
       expect(get(basket)).toEqual([]);
       userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
       expect(get(basket)).toEqual([{ id: '1', quantity: 1 }]);
-      userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
-      expect(get(basket)).toEqual([{ id: '1', quantity: 2 }]);
 
       render(AddToBasket, {
         target: container,
@@ -84,7 +94,7 @@ describe('GIVEN AddToBasket', () => {
       );
       expect(get(basket)).toMatchObject([
         { id: '2', quantity: 1 },
-        { id: '1', quantity: 2 },
+        { id: '1', quantity: 1 },
       ]);
     });
   });

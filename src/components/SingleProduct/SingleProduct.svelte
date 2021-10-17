@@ -63,7 +63,7 @@
         }`}
       </h2>
     {/if}
-    <AddToBasket productId={product.Id} />
+    <AddToBasket productId={product.Id} productName={product.Name} />
   </div>
 {/if}
 
