@@ -6,6 +6,7 @@
 
   export let productId: number;
   export let productName: string;
+  export let detailed = false;
 
   let addedToBasket = false;
 </script>
@@ -13,7 +14,7 @@
 {#if productId}
   {#if !addedToBasket}
     <button
-      class="add-to-basket"
+      class={`add-to-basket ${detailed ? 'narrow' : ''}`}
       on:click={() => {
         basket.set(
           updateBasket(
@@ -27,10 +28,9 @@
     >
       Add to Basket
     </button>
-  {/if}
-  {#if addedToBasket}
+  {:else}
     <button
-      class="goto-basket"
+      class={`goto-basket ${detailed ? 'narrow' : ''}`}
       in:fade={{ duration: 500 }}
       on:click={() => $goto('/online-shop/basket')}
     >
@@ -46,6 +46,10 @@
     width: 80%;
     border-radius: 4px;
     transition: filter 0.25s;
+  }
+
+  .narrow {
+    width: 35%;
   }
 
   .add-to-basket {
