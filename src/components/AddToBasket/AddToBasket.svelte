@@ -7,27 +7,13 @@
   export let productId: number;
   export let productName: string;
 
-  let flipped = true;
-  let flipTranistionEnded = false;
-
-  function flip(node: HTMLElement, { delay = 0, duration = 600 }) {
-    return {
-      delay,
-      duration,
-      css: (t: any, u: number) => `
-        transform: rotateX(${1 - u * 180}deg);
-				opacity: ${1 - u};
-			`,
-    };
-  }
+  let addedToBasket = false;
 </script>
 
 {#if productId}
-  {#if flipped}
+  {#if !addedToBasket}
     <button
       class="add-to-basket"
-      transition:flip
-      on:outroend={() => (flipTranistionEnded = true)}
       on:click={() => {
         basket.set(
           updateBasket(
@@ -36,17 +22,17 @@
             'incrementQuantity'
           )
         );
-        flipped = false;
+        addedToBasket = true;
       }}
     >
       Add to Basket
     </button>
   {/if}
-  {#if flipTranistionEnded}
+  {#if addedToBasket}
     <button
       class="goto-basket"
-      transition:fade={{ delay: 100, duration: 700 }}
-      on:click={$goto('/online-shop/basket')}
+      in:fade={{ duration: 500 }}
+      on:click={() => $goto('/online-shop/basket')}
     >
       Goto Basket
     </button>
