@@ -2,7 +2,7 @@ import { Writable, writable } from 'svelte/store';
 
 export interface BasketProduct {
   name: string;
-  id: number;
+  id: string;
   quantity: number;
   price: number;
   currentStock: number;

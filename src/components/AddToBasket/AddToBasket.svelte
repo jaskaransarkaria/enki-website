@@ -13,8 +13,6 @@
     $basket.findIndex((item) => item.id === product.Id.toString()) === -1
       ? false
       : true;
-
-  console.log(product, $basket);
 </script>
 
 {#if product}
