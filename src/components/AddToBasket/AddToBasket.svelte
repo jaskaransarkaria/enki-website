@@ -1,28 +1,23 @@
 <script lang="typescript">
+  import { goto } from '@roxi/routify';
   import { fade } from 'svelte/transition';
   import { basket } from '@/stores/basket';
   import { updateBasket } from '@/libs/basket';
-  import { goto } from '@roxi/routify';
 
-  export let productId: number;
-  export let productName: string;
+  import type { Product } from '@/types/product';
+
+  export let product: Product;
   export let detailed = false;
 
   let addedToBasket = false;
 </script>
 
-{#if productId}
+{#if product}
   {#if !addedToBasket}
     <button
       class={`add-to-basket ${detailed ? 'narrow' : ''}`}
       on:click={() => {
-        basket.set(
-          updateBasket(
-            { id: productId.toString(), name: productName },
-            $basket,
-            'incrementQuantity'
-          )
-        );
+        basket.set(updateBasket(product, $basket, 'incrementQuantity'));
         addedToBasket = true;
       }}
     >

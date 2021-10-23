@@ -1,4 +1,5 @@
 import type { BasketProduct } from '@/stores/basket';
+import type { Product } from '@/types/product';
 
 const removeItemFromBasket = (
   currentQuantity: number,
@@ -13,6 +14,8 @@ const removeItemFromBasket = (
           id: list[listIndx].id,
           name: list[listIndx].name,
           quantity: list[listIndx].quantity - 1,
+          price: list[listIndx].price,
+          currentStock: list[listIndx].currentStock,
         },
         ...list.slice(listIndx + 1),
       ];
@@ -26,28 +29,34 @@ const addItemToBasket = (
     id: list[listIndx].id,
     name: list[listIndx].name,
     quantity: list[listIndx].quantity + 1,
+    price: list[listIndx].price,
+    currentStock: list[listIndx].currentStock,
   },
   ...list.slice(listIndx + 1),
 ];
 
 const addNewItemToBasket = (
-  product: { id: string; name: string },
+  product: Pick<Product, 'Id' | 'Name' | 'SalePrice' | 'CurrentStock'>,
   list: BasketProduct[]
 ): BasketProduct[] => [
   {
-    id: product.id,
-    name: product.name,
+    id: product.Id.toString(),
+    name: product.Name,
     quantity: 1,
+    price: product.SalePrice,
+    currentStock: product.CurrentStock,
   },
   ...list,
 ];
 
 export const updateBasket = (
-  product: { id: string; name: string },
+  product: Pick<Product, 'Id' | 'Name' | 'SalePrice' | 'CurrentStock'>,
   list: BasketProduct[],
   updateType: string
 ): BasketProduct[] => {
-  const indx = list.findIndex((obj: BasketProduct) => obj.id === product.id);
+  const indx = list.findIndex(
+    (obj: BasketProduct) => obj.id === product.Id.toString()
+  );
   updateType = indx >= 0 ? updateType : 'newItem';
   switch (updateType) {
     case 'incrementQuantity':

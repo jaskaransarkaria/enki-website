@@ -22,7 +22,12 @@
     on:click={() =>
       basket.set(
         updateBasket(
-          { id: productObj.id.toString(), name: productObj.name },
+          {
+            Id: parseInt(productObj.id, 10),
+            Name: productObj.name,
+            SalePrice: productObj.price,
+            CurrentStock: productObj.currentStock,
+          },
           $basket,
           'incrementQuantity'
         )
@@ -50,7 +55,12 @@
     on:click={() =>
       basket.set(
         updateBasket(
-          { id: productObj.id.toString(), name: productObj.name },
+          {
+            Id: parseInt(productObj.id, 10),
+            Name: productObj.name,
+            SalePrice: productObj.price,
+            CurrentStock: productObj.currentStock,
+          },
           $basket,
           'decrementQuantity'
         )
@@ -72,17 +82,12 @@
   }
 
   .counter button {
-    width: 2em;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 0;
     background-color: transparent;
     color: black;
-    font-size: 2rem;
-    height: 100%;
-    margin: auto;
+    text-align: center;
+    margin: 0;
   }
 
   .counter button:hover {
@@ -102,7 +107,7 @@
   }
 
   .counter-viewport {
-    width: 8em;
+    width: 20em;
     height: 4em;
     overflow: hidden;
     text-align: center;
@@ -116,14 +121,12 @@
     height: 100%;
     font-weight: 400;
     color: var(--accent-color);
-    font-size: 4rem;
+    font-size: 2.5rem;
     align-items: center;
     justify-content: center;
   }
 
   .counter-digits {
-    position: absolute;
-    width: 100%;
     height: 100%;
   }
 </style>

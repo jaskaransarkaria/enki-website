@@ -5,7 +5,7 @@ export interface Product {
   Id: number;
   CategoryId: number;
   Description: string;
-  SalePrice: string;
+  SalePrice: number;
   ProductImages: string[];
   ProductTags: Tag[];
   VariantGroupId: number;

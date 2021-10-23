@@ -38,7 +38,7 @@
       {/if}
       <h3>{`${product.Description}`}</h3>
       <h3>
-        {`${product.SalePrice} -- ${
+        {`£${product.SalePrice} -- ${
           product.CurrentStock === 0
             ? 'sold out'
             : product.CurrentStock + ' in stock'
@@ -56,18 +56,14 @@
         />
       </figure>
       <h2>
-        {`${product.SalePrice} -- ${
+        {`£${product.SalePrice} -- ${
           product.CurrentStock === 0
             ? 'sold out'
             : product.CurrentStock + ' in stock'
         }`}
       </h2>
     {/if}
-    <AddToBasket
-      productId={product.Id}
-      productName={product.Name}
-      detailed={showDetailedView}
-    />
+    <AddToBasket {product} detailed={showDetailedView} />
   </div>
 {/if}
 

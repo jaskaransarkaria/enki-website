@@ -22,7 +22,10 @@ describe('GIVEN AddToBasket', () => {
   describe('WHEN rendered with props', () => {
     it('THEN display the component', () => {
       render(AddToBasket, {
-        productId: 1,
+        product: {
+          Id: 123,
+          Name: 'Red jacket',
+        },
       });
       expect(
         screen.getByRole('button', { name: /add to basket/i })
@@ -31,12 +34,17 @@ describe('GIVEN AddToBasket', () => {
 
     it('THEN increment the number of items in the basket', async (done) => {
       render(AddToBasket, {
-        productId: 1,
+        product: {
+          Id: 123,
+          Name: 'Red jacket',
+        },
       });
 
       expect(get(basket)).toEqual([]);
       userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
-      expect(get(basket)).toEqual([{ id: '1', quantity: 1 }]);
+      expect(get(basket)).toEqual([
+        { id: '123', quantity: 1, name: 'Red jacket' },
+      ]);
       await tick();
       await tick();
       await tick();
@@ -74,33 +82,41 @@ describe('GIVEN AddToBasket', () => {
     //  expect(get(basket)).toEqual([]);
     //});
 
-    // it('THEN add a new item to the basket', async () => {
-    //   const { container } = render(AddToBasket, {
-    //     productId: 1,
-    //   });
+    //it('THEN add a new item to the basket', async () => {
+    //  const { container } = render(AddToBasket, {
+    //  product: {
+    //     Id: 123,
+    //     Name: 'Red jacket',
+    //     SalePrice: 1000,
+    //     CurrentStock: 1,
+    //   },
+    //  });
 
-    //   expect(get(basket)).toEqual([]);
-    //   userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
-    //   expect(get(basket)).toEqual([{ id: '1', quantity: 1 }]);
+    //  expect(get(basket)).toEqual([]);
+    //  userEvent.click(screen.getByRole('button', { name: /add to basket/i }));
+    //  expect(get(basket)).toEqual([{ id: '123', quantity: 1, name: "Red jacket", price: 1000, currentStock: 1 }]);
 
-    //   render(AddToBasket, {
-    //     target: container,
-    //     props: {
-    //       productId: 2,
-    //     },
-    //   });
-    //   await tick()
-    //   await tick()
-    //   await tick()
-    //   await tick()
-    //     console.log(screen.getAllByRole('button', { name: /add to basket/i }))
-    //   userEvent.click(
-    //     screen.getAllByRole('button', { name: /add to basket/i })[1]
-    //   );
-    //   expect(get(basket)).toMatchObject([
-    //     { id: '2', quantity: 1 },
-    //     { id: '1', quantity: 1 },
-    //   ]);
-    // });
+    //  render(AddToBasket, {
+    //    target: container,
+    //    props: {
+    //      product: {
+    //         Id: 456,
+    //         Name: 'Blue jacket',
+    //       },
+    //    },
+    //  });
+    //  await tick()
+    //  await tick()
+    //  await tick()
+    //  await tick()
+    //    console.log(screen.getAllByRole('button', { name: /add to basket/i }))
+    //  userEvent.click(
+    //    screen.getAllByRole('button', { name: /add to basket/i })[1]
+    //  );
+    //  expect(get(basket)).toMatchObject([
+    //    { id: '456', quantity: 1 },
+    //    { id: '123', quantity: 1 },
+    //  ]);
+    //});
   });
 });
