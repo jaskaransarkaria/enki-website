@@ -17,6 +17,17 @@
 
 <button
   id="checkout-button"
+  class="goto-checkout"
   on:click={() => createCheckoutSession(stripePromise, $basket)}
   >Checkout</button
 >
+
+<style>
+  .goto-checkout {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: filter 0.25s;
+    background-color: #30a74b;
+  }
+</style>

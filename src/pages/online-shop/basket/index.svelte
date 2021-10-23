@@ -3,6 +3,7 @@
   import { fade } from 'svelte/transition';
   import { basket } from '@/stores/basket';
   import BasketCounter from '@/components/BasketCounter/BasketCounter.svelte';
+  import Checkout from '@/components/Checkout/Checkout.svelte';
 
   let basketTotalArr: any;
   let total: string;
@@ -40,7 +41,10 @@
     {/each}
     <div class="total">
       <h2>Total (excluding delivery):</h2>
-      <h2>£{total}</h2>
+      <div class="checkout">
+        <h2>£{total}</h2>
+        <Checkout />
+      </div>
     </div>
   {:else}
     <h1>You have nothing in your basket, continue shopping</h1>
