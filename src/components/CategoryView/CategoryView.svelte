@@ -76,7 +76,11 @@
   <Breadcrumbs selectedCategoryId={categoryToShow.Id} />
   {#if categoryToShow.Children.length}
     {#if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
-      <TagView data={categoryToShow.Children} {categoryFn} />
+      <TagView
+        data={categoryToShow.Children}
+        {categoryFn}
+        categoryId={categoryToShow.Id}
+      />
     {:else}
       <HexGrid data={categoryToShow.Children} {categoryFn} />
     {/if}

@@ -8,6 +8,7 @@
   import type { Category } from '@/types/category';
   import type { BaseFn, Base } from '@/types/base';
 
+  export let categoryId: number;
   export let data: Category[];
   export let categoryFn: BaseFn;
 
@@ -22,10 +23,12 @@
     if (isCategory(cat)) {
       categoryFn(cat);
     }
-
     // if tag selected display relevant products on tag page
     if (isTag(cat)) {
-      $goto(`/online-shop/tag/${cat.Name}`);
+      $goto(`/online-shop/tag/${cat.Name}`, {
+        catId: categoryId,
+        tagId: cat.Id,
+      });
     }
   };
 

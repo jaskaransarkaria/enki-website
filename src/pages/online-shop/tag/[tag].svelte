@@ -1,7 +1,8 @@
 <script lang="typescript">
-  import { params } from '@roxi/routify';
+  import { params, url } from '@roxi/routify';
   import { onMount } from 'svelte';
-  import ProductView from '@/components/ProductView/ProductView.svelte';
+  import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
+  import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
   import { products } from '@/stores/products';
   import { refreshProducts } from '@/libs/requests';
   import type { Product } from '@/types/product';
@@ -24,18 +25,19 @@
   );
 </script>
 
-<div class="container">
-  {#if data.length}
-    {#each data as prod}
-      <ProductView productArr={[prod]} categoryId={prod.CategoryId} />
-    {/each}
-  {/if}
-</div>
-
-<style>
-  .container {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-  }
-</style>
+<Breadcrumbs
+  selectedCategoryId={parseInt($params.catId, 10)}
+  extraCrumbs={[
+    {
+      Name: $params.tag,
+      Id: $params.tagId,
+      tagUrl: $url(),
+      params: `?catId=${$params.catId}&tagId=${$params.tagId}`,
+    },
+  ]}
+/>
+{#if data.length}
+  {#each data as prod (prod.Id)}
+    <SingleProduct product={prod} />
+  {/each}
+{/if}

@@ -3,11 +3,19 @@
   import { onMount } from 'svelte';
   import { refreshCategories } from '@/libs/requests';
   import { readonlyAllCategories } from '@/stores/categories';
-  import type { Category } from '@/types/category';
 
+  import type { Category } from '@/types/category';
+  import type { Base } from '@/types/base';
+
+  interface TagCrumb extends Base {
+    tagUrl: string;
+    params: string;
+  }
+
+  export let extraCrumbs: TagCrumb[] = [];
   export let selectedCategoryId: number;
 
-  let breadcrumbs: Category[];
+  let breadcrumbs: Base[];
 
   const rootShop: Category = {
     Id: 0,
@@ -50,6 +58,15 @@
     return results;
   };
 
+  const handleBreadcrumbClick = (breadcrumb: Base | TagCrumb) => {
+    const breadcrumbUrl =
+      'tagUrl' in breadcrumb
+        ? `${breadcrumb.tagUrl}${breadcrumb.params}`
+        : `/online-shop/${breadcrumb.Id}`;
+
+    breadcrumb.Name === 'Shop' ? $goto('/online-shop') : $goto(breadcrumbUrl);
+  };
+
   $: breadcrumbs = [
     rootShop,
     ...recursiveCatSearch(
@@ -57,17 +74,13 @@
       $readonlyAllCategories,
       []
     ).reverse(),
+    ...extraCrumbs,
   ];
 </script>
 
 {#if selectedCategoryId}
   {#each breadcrumbs as breadcrumb (breadcrumb.Id)}
-    <button
-      on:click={() =>
-        breadcrumb.Name === 'Shop'
-          ? $goto('/online-shop')
-          : $goto(`/online-shop/${breadcrumb.Id}`)}
-    >
+    <button on:click={() => handleBreadcrumbClick(breadcrumb)}>
       <img src="https://enki.imgix.net/hex_1.svg" alt="breadcrumb icon" />
       {breadcrumb.Name}
     </button>
