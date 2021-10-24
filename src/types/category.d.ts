@@ -1,6 +1,6 @@
-export interface Category {
-  Id: number;
+import type { Base } from '@/types/base';
+
+export interface Category extends Base {
   ParentId: number | null;
-  Name: string;
   Children: Category[];
 }

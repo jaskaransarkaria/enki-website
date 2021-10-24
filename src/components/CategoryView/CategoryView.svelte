@@ -5,12 +5,14 @@
   import { refreshCategory } from '@/libs/requests';
   import { categories } from '@/stores/categories';
   import HexGrid from '@/components/HexGrid/HexGrid.svelte';
+  import TagView from '@/components/TagView/TagView.svelte';
 
   import type { Category } from '@/types/category';
+  import type { BaseFn } from '@/types/base';
 
   const INVALID_CATEGORY_ID = 0;
 
-  export let categoryFn: (cat: Category) => void;
+  export let categoryFn: BaseFn;
   export let categoryId: number;
 
   let categoryToShow: Category | undefined;
@@ -73,7 +75,11 @@
 {#if categoryToShow}
   <Breadcrumbs selectedCategoryId={categoryToShow.Id} />
   {#if categoryToShow.Children.length}
-    <HexGrid data={categoryToShow.Children} {categoryFn} />
+    {#if categoryToShow.Id === 1875997 || 1875998}
+      <TagView data={categoryToShow.Children} {categoryFn} />
+    {:else}
+      <HexGrid data={categoryToShow.Children} {categoryFn} />
+    {/if}
   {/if}
   <ProductView bind:categoryId />
 {/if}

@@ -1,12 +1,13 @@
 <script lang="ts">
   import { params, goto } from '@roxi/routify';
-  import type { Category } from '@/types/category';
   import CategoryView from '@/components/CategoryView/CategoryView.svelte';
+
+  import type { Base } from '@/types/base';
 
   export let category: string;
   let categoryId: number;
 
-  const selectCategory = (category: Category): void => {
+  const selectCategory = (category: Base) => {
     categoryId = category.Id;
     $goto(`./${category.Id}`);
   };

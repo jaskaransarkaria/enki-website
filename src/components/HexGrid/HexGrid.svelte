@@ -2,10 +2,10 @@
   import { fly, fade } from 'svelte/transition';
   import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
 
-  import type { Category } from '@/types/category';
+  import type { Base, BaseFn } from '@/types/base';
 
-  export let data: Category[] = [];
-  export let categoryFn: (cat: Category) => void;
+  export let data: Base[] = [];
+  export let categoryFn: BaseFn;
 </script>
 
 <ul in:fade class="root-categories-container">

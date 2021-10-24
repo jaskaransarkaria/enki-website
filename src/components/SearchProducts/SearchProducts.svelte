@@ -3,10 +3,9 @@
   import ProductView from '@/components/ProductView/ProductView.svelte';
   import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.svelte';
   import { products } from '@/stores/products';
-  import { refreshProducts, refreshTags } from '@/libs/requests';
+  import { refreshProducts } from '@/libs/requests';
 
   import type { Product } from '@/types/product';
-  import type { Tag } from '@/types/tag';
 
   export let loading = true;
 
@@ -14,16 +13,8 @@
   let selectedTags: string[] = [];
   let searchValue = '';
   let data: readonly Product[] = [];
-  let tags: readonly Tag[] = [];
-
-  $: data = $products.filter((obj) =>
-    obj.ProductTags.filter((tag) => selectedTags.includes(tag.Id)).length > 0
-      ? true
-      : false
-  );
 
   onMount(async () => {
-    await fetchAllTags();
     await fetchAllProducts();
     loading = false;
   });
@@ -43,20 +34,6 @@
       products.set(data);
     }
   };
-
-  const fetchAllTags = async () => {
-    tags = await refreshTags(`${process.env.SERVER_URL}/tags`);
-  };
-
-  const removeTag = (tagId: string, tagArr: string[]): string[] => {
-    const idx = tagArr.findIndex((tag) => tag === tagId);
-    return [...tagArr.slice(0, idx), ...tagArr.slice(idx + 1)];
-  };
-
-  const toggleSelected = (tagId: string, tagArr: string[]): string[] =>
-    tagArr.includes(tagId)
-      ? removeTag(tagId, selectedTags)
-      : [...tagArr.slice(), tagId];
 </script>
 
 {#if loading}
@@ -70,16 +47,6 @@
       data = searchForProduct(e.currentTarget.value);
     }}
   />
-  <div class="tag-container">
-    {#each tags as tag}
-      <h4
-        class={selectedTags.includes(tag.Id) ? 'selected-tag' : undefined}
-        on:click={() => (selectedTags = toggleSelected(tag.Id, selectedTags))}
-      >
-        {tag.Name}
-      </h4>
-    {/each}
-  </div>
   <ul>
     {#if searchValue.length > DEBOUNCE_CHAR_LIMIT || selectedTags.length > 0}
       <h1>Total matches: {data.length}</h1>
@@ -93,20 +60,4 @@
 {/if}
 
 <style>
-  .tag-container {
-    display: flex;
-  }
-
-  .tag-container > * {
-    padding: 1rem;
-  }
-
-  .tag-container > *:hover {
-    cursor: pointer;
-  }
-
-  .selected-tag {
-    border: cornflowerblue 0.25rem solid;
-    border-radius: 45%;
-  }
 </style>
