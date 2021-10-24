@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Sun Oct 24 2021 12:14:17 GMT+0100 (British Summer Time)
+ * File generated Sun Oct 24 2021 15:05:18 GMT+0100 (British Summer Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2021-10-24T11:14:17.721Z';
+export const __timestamp = '2021-10-24T14:05:18.726Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -336,6 +336,60 @@ export const _tree = {
             prerender: true,
           },
           path: '/online-shop/product',
+        },
+        {
+          isFile: false,
+          isDir: true,
+          file: 'tag',
+          filepath: '/online-shop/tag',
+          name: 'tag',
+          ext: '',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/online-shop/tag',
+          children: [
+            {
+              isFile: true,
+              isDir: false,
+              file: '[tag].svelte',
+              filepath: '/online-shop/tag/[tag].svelte',
+              name: '[tag]',
+              ext: 'svelte',
+              badExt: false,
+              absolutePath:
+                '/home/jaskaran/repos/enki-website/src/pages/online-shop/tag/[tag].svelte',
+              importPath: '../src/pages/online-shop/tag/[tag].svelte',
+              isLayout: false,
+              isReset: false,
+              isIndex: false,
+              isFallback: false,
+              isPage: true,
+              ownMeta: {},
+              meta: {
+                recursive: true,
+                preload: false,
+                prerender: true,
+              },
+              path: '/online-shop/tag/:tag',
+              id: '_onlineShop_tag__tag',
+              component: () =>
+                import('../src/pages/online-shop/tag/[tag].svelte').then(
+                  (m) => m.default
+                ),
+            },
+          ],
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: false,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/online-shop/tag',
         },
       ],
       isLayout: true,

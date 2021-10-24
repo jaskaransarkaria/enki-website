@@ -28,10 +28,11 @@
 
   const fetchAllProducts = async () => {
     if ($products && $products.length === 0) {
-      data = await refreshProducts(
+      const data = await refreshProducts(
         `${process.env.SERVER_URL}/get-all-products`
       );
       products.set(data);
+      return data;
     }
   };
 </script>

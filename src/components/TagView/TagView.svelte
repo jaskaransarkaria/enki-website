@@ -1,4 +1,5 @@
 <script lang="typescript">
+  import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import HexGrid from '@/components/HexGrid/HexGrid.svelte';
   import { refreshTags } from '@/libs/requests';
@@ -17,14 +18,14 @@
   });
 
   const selectFn: BaseFn = <T extends Base>(cat: T) => {
-    // if tag selected show serach results from tags
     // if category selected goto category page as usual
     if (isCategory(cat)) {
       categoryFn(cat);
     }
 
+    // if tag selected display relevant products on tag page
     if (isTag(cat)) {
-      console.log('woo', cat);
+      $goto(`/online-shop/tag/${cat.Name}`);
     }
   };
 
