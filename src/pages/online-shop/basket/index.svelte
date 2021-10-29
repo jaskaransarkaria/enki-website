@@ -1,11 +1,11 @@
 <script lang="typescript">
   import { goto } from '@roxi/routify';
   import { fade } from 'svelte/transition';
-  import { basket } from '@/stores/basket';
+  import { basket, BasketProduct } from '@/stores/basket';
   import BasketCounter from '@/components/BasketCounter/BasketCounter.svelte';
   import Checkout from '@/components/Checkout/Checkout.svelte';
 
-  let basketTotalArr: any;
+  let basketTotalArr: { total: number }[];
   let total: string;
   $: {
     basketTotalArr = $basket.map((basketItem) => ({
