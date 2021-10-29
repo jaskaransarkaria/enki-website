@@ -8,8 +8,8 @@
   import type { Category } from '@/types/category';
   import type { BaseFn, Base } from '@/types/base';
 
+  export let data: Category[] = [];
   export let categoryId: number;
-  export let data: Category[];
   export let categoryFn: BaseFn;
 
   let tags: readonly Tag[] = [];
