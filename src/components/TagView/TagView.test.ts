@@ -6,7 +6,6 @@ import TagView from './TagView.svelte';
 import { refreshTags } from '@/libs/requests';
 
 import type { Category } from '@/types/category';
-import type { Tag } from '@/types/tag';
 
 jest.mock('@/libs/requests');
 
