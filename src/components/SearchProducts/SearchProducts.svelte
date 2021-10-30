@@ -1,6 +1,7 @@
 <script lang="typescript">
   import { onMount } from 'svelte';
-  import ProductView from '@/components/ProductView/ProductView.svelte';
+  import { slide, fade } from 'svelte/transition';
+  import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.svelte';
   import { products } from '@/stores/products';
   import { refreshProducts } from '@/libs/requests';
@@ -13,18 +14,24 @@
   let selectedTags: string[] = [];
   let searchValue = '';
   let data: readonly Product[] = [];
+  let showSearchView = false;
 
   onMount(async () => {
     await fetchAllProducts();
     loading = false;
   });
 
-  const searchForProduct = (value: string) =>
-    value.length < DEBOUNCE_CHAR_LIMIT
+  const searchForProduct = (value: string) => {
+    const reg = new RegExp(`\\b${value}`, 'i');
+    return value.length < DEBOUNCE_CHAR_LIMIT
       ? []
-      : $products.filter((obj) =>
-          obj.Name.toLowerCase().match(value.toLowerCase())
-        );
+      : $products.filter((obj) => obj.Name.toLowerCase().match(reg));
+  };
+
+  const displaySearchView = (value: string) =>
+    value.length > DEBOUNCE_CHAR_LIMIT
+      ? (showSearchView = true)
+      : (showSearchView = false);
 
   const fetchAllProducts = async () => {
     if ($products && $products.length === 0) {
@@ -46,19 +53,46 @@
     bind:value={searchValue}
     on:input={(e) => {
       data = searchForProduct(e.currentTarget.value);
+      displaySearchView(e.currentTarget.value);
+    }}
+    on:keydown={(e) => {
+      if (e.key === 'Escape') {
+        showSearchView = false;
+      }
     }}
   />
-  <ul>
-    {#if searchValue.length > DEBOUNCE_CHAR_LIMIT || selectedTags.length > 0}
-      <h1>Total matches: {data.length}</h1>
-      {#if data.length}
-        {#each data as prod}
-          <ProductView productArr={[prod]} categoryId={prod.CategoryId} />
-        {/each}
-      {/if}
-    {/if}
-  </ul>
+  {#if showSearchView}
+    <div class="search-view" transition:slide|local>
+      <ul transition:fade|local>
+        {#if searchValue.length > DEBOUNCE_CHAR_LIMIT || selectedTags.length > 0}
+          <h1>Total matches: {data.length}</h1>
+          <div class="matches-container">
+            {#if data.length}
+              {#each data as prod}
+                <SingleProduct product={prod} />
+              {/each}
+            {/if}
+          </div>
+        {/if}
+      </ul>
+    </div>
+  {/if}
 {/if}
 
 <style>
+  .search-view {
+    background-color: white;
+    z-index: 99;
+    width: 100vw;
+    position: absolute;
+  }
+
+  .matches-container {
+    display: grid;
+    grid-gap: 16px;
+    padding: 16px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-flow: column;
+    overflow-x: auto;
+  }
 </style>

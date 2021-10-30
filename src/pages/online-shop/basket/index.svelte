@@ -1,7 +1,7 @@
 <script lang="typescript">
   import { goto } from '@roxi/routify';
   import { fade } from 'svelte/transition';
-  import { basket, BasketProduct } from '@/stores/basket';
+  import { basket } from '@/stores/basket';
   import BasketCounter from '@/components/BasketCounter/BasketCounter.svelte';
   import Checkout from '@/components/Checkout/Checkout.svelte';
 
