@@ -25,7 +25,7 @@ module.exports = {
     'src/**/*',
     '!src/main.ts',
     '!src/App.svelte',
-    '!src/components/BasketCounter.svelte',
+    '!src/components/BasketCounter/*',
     '!src/components/Navbar/*',
     '!src/mocks/**/*',
     '!src/pages/**/*',
