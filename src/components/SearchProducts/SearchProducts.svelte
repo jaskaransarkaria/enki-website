@@ -58,6 +58,7 @@
     on:keydown={(e) => {
       if (e.key === 'Escape') {
         showSearchView = false;
+        searchValue = '';
       }
     }}
   />
@@ -76,6 +77,15 @@
         {/if}
       </ul>
     </div>
+    <button
+      class="close-search"
+      on:click={() => {
+        showSearchView = false;
+        searchValue = '';
+      }}
+    >
+      x
+    </button>
   {/if}
 {/if}
 
@@ -94,5 +104,13 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-auto-flow: column;
     overflow-x: auto;
+  }
+
+  .close-search {
+    position: absolute;
+    right: 0;
+    margin: 0.15%;
+    background: none;
+    cursor: pointer;
   }
 </style>
