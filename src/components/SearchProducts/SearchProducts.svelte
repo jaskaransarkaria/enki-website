@@ -79,6 +79,7 @@
     </div>
     <button
       class="close-search"
+      transition:fade|local
       on:click={() => {
         showSearchView = false;
         searchValue = '';
@@ -101,7 +102,6 @@
     display: grid;
     grid-gap: 16px;
     padding: 16px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-auto-flow: column;
     overflow-x: auto;
   }
@@ -112,5 +112,13 @@
     margin: 0.15%;
     background: none;
     cursor: pointer;
+  }
+
+  @media (min-width: 960px) {
+    .matches-container {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-auto-flow: row;
+      overflow-x: none;
+    }
   }
 </style>
