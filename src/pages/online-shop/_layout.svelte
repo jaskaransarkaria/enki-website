@@ -3,6 +3,7 @@
 </script>
 
 <SearchProducts />
+<br />
 <slot />
 
 <!-- optional fallback -->

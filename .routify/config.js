@@ -8,5 +8,5 @@ module.exports = {
   noHashScroll: false,
   distDir: 'dist',
   extensions: ['svelte', 'html', 'svx', 'md'],
-  started: '2021-11-02T20:15:08.194Z',
+  started: '2021-11-03T08:59:12.927Z',
 };
