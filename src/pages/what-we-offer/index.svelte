@@ -42,7 +42,7 @@
     class="online-shop-button"
     on:mouseover={() => (onlineShopImg = '/online-shop-1.gif')}
     on:mouseout={() => (onlineShopImg = '/online-shop-1.jpg')}
-    on:click={$goto('/online-shop')}
+    on:click={$goto('/shop')}
   >
     <img src={onlineShopImg} class="online-shop-img" alt="online shop button" />
   </button>

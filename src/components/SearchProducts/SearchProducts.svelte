@@ -1,10 +1,12 @@
 <script lang="typescript">
+  import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { slide, fade } from 'svelte/transition';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import LoadingSpinner from '../LoadingSpinner/LoadingSpinner.svelte';
   import { products } from '@/stores/products';
   import { refreshProducts } from '@/libs/requests';
+  import { searchProducts } from '@/libs/search';
 
   import type { Product } from '@/types/product';
 
@@ -25,7 +27,7 @@
     const reg = new RegExp(`\\b${value}`, 'i');
     return value.length < DEBOUNCE_CHAR_LIMIT
       ? []
-      : $products.filter((obj) => obj.Name.toLowerCase().match(reg));
+      : searchProducts(reg, $products);
   };
 
   const displaySearchView = (value: string) =>
@@ -58,6 +60,13 @@
     on:keydown={(e) => {
       if (e.key === 'Escape') {
         showSearchView = false;
+        searchValue = '';
+      }
+      if (e.key === 'Enter') {
+        showSearchView = false;
+        $goto(`/shop/search`, {
+          'search-term': encodeURIComponent(searchValue),
+        });
         searchValue = '';
       }
     }}

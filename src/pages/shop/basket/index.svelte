@@ -24,7 +24,7 @@
         <img
           src={`https://enki.imgix.net/${obj.id}-0`}
           alt={`${obj.name}`}
-          on:click={() => $goto(`/online-shop/product/${obj.id}`)}
+          on:click={() => $goto(`/shop/product/${obj.id}`)}
         />
         <div class="product-details">
           <h2>{obj.name}</h2>

@@ -2,10 +2,11 @@
   "/classes/index",
   "/contact/index",
   "/index",
-  "/online-shop/basket/index",
-  "/online-shop/index",
   "/payment/cancel",
   "/payment/success",
   "/services/index",
+  "/shop/basket/index",
+  "/shop/index",
+  "/shop/search/index",
   "/what-we-offer/index"
 ]

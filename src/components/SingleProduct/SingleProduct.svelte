@@ -47,7 +47,7 @@
     {:else}
       <h1>{`${product.Name}`}</h1>
       <figure
-        on:click={$goto(`/online-shop/product/${product.Id}`)}
+        on:click={$goto(`/shop/product/${product.Id}`)}
         class="img-container"
       >
         <img

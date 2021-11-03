@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Wed Nov 03 2021 13:32:22 GMT+0000 (Greenwich Mean Time)
+ * File generated Wed Nov 03 2021 20:52:57 GMT+0000 (Greenwich Mean Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2021-11-03T13:32:22.826Z';
+export const __timestamp = '2021-11-03T20:52:57.182Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -164,257 +164,6 @@ export const _tree = {
       isFile: true,
       isDir: true,
       file: '_layout.svelte',
-      filepath: '/online-shop/_layout.svelte',
-      name: '_layout',
-      ext: 'svelte',
-      badExt: false,
-      absolutePath:
-        '/home/jaskaran/repos/enki-website/src/pages/online-shop/_layout.svelte',
-      children: [
-        {
-          isFile: true,
-          isDir: false,
-          file: '[category].svelte',
-          filepath: '/online-shop/[category].svelte',
-          name: '[category]',
-          ext: 'svelte',
-          badExt: false,
-          absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/online-shop/[category].svelte',
-          importPath: '../src/pages/online-shop/[category].svelte',
-          isLayout: false,
-          isReset: false,
-          isIndex: false,
-          isFallback: false,
-          isPage: true,
-          ownMeta: {},
-          meta: {
-            recursive: true,
-            preload: false,
-            prerender: true,
-          },
-          path: '/online-shop/:category',
-          id: '_onlineShop__category',
-          component: () =>
-            import('../src/pages/online-shop/[category].svelte').then(
-              (m) => m.default
-            ),
-        },
-        {
-          isFile: false,
-          isDir: true,
-          file: 'basket',
-          filepath: '/online-shop/basket',
-          name: 'basket',
-          ext: '',
-          badExt: false,
-          absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/online-shop/basket',
-          children: [
-            {
-              isFile: true,
-              isDir: false,
-              file: 'index.svelte',
-              filepath: '/online-shop/basket/index.svelte',
-              name: 'index',
-              ext: 'svelte',
-              badExt: false,
-              absolutePath:
-                '/home/jaskaran/repos/enki-website/src/pages/online-shop/basket/index.svelte',
-              importPath: '../src/pages/online-shop/basket/index.svelte',
-              isLayout: false,
-              isReset: false,
-              isIndex: true,
-              isFallback: false,
-              isPage: true,
-              ownMeta: {},
-              meta: {
-                recursive: true,
-                preload: false,
-                prerender: true,
-              },
-              path: '/online-shop/basket/index',
-              id: '_onlineShop_basket_index',
-              component: () =>
-                import('../src/pages/online-shop/basket/index.svelte').then(
-                  (m) => m.default
-                ),
-            },
-          ],
-          isLayout: false,
-          isReset: false,
-          isIndex: false,
-          isFallback: false,
-          isPage: false,
-          ownMeta: {},
-          meta: {
-            recursive: true,
-            preload: false,
-            prerender: true,
-          },
-          path: '/online-shop/basket',
-        },
-        {
-          isFile: true,
-          isDir: false,
-          file: 'index.svelte',
-          filepath: '/online-shop/index.svelte',
-          name: 'index',
-          ext: 'svelte',
-          badExt: false,
-          absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/online-shop/index.svelte',
-          importPath: '../src/pages/online-shop/index.svelte',
-          isLayout: false,
-          isReset: false,
-          isIndex: true,
-          isFallback: false,
-          isPage: true,
-          ownMeta: {},
-          meta: {
-            recursive: true,
-            preload: false,
-            prerender: true,
-          },
-          path: '/online-shop/index',
-          id: '_onlineShop_index',
-          component: () =>
-            import('../src/pages/online-shop/index.svelte').then(
-              (m) => m.default
-            ),
-        },
-        {
-          isFile: false,
-          isDir: true,
-          file: 'product',
-          filepath: '/online-shop/product',
-          name: 'product',
-          ext: '',
-          badExt: false,
-          absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/online-shop/product',
-          children: [
-            {
-              isFile: true,
-              isDir: false,
-              file: '[product].svelte',
-              filepath: '/online-shop/product/[product].svelte',
-              name: '[product]',
-              ext: 'svelte',
-              badExt: false,
-              absolutePath:
-                '/home/jaskaran/repos/enki-website/src/pages/online-shop/product/[product].svelte',
-              importPath: '../src/pages/online-shop/product/[product].svelte',
-              isLayout: false,
-              isReset: false,
-              isIndex: false,
-              isFallback: false,
-              isPage: true,
-              ownMeta: {},
-              meta: {
-                recursive: true,
-                preload: false,
-                prerender: true,
-              },
-              path: '/online-shop/product/:product',
-              id: '_onlineShop_product__product',
-              component: () =>
-                import(
-                  '../src/pages/online-shop/product/[product].svelte'
-                ).then((m) => m.default),
-            },
-          ],
-          isLayout: false,
-          isReset: false,
-          isIndex: false,
-          isFallback: false,
-          isPage: false,
-          ownMeta: {},
-          meta: {
-            recursive: true,
-            preload: false,
-            prerender: true,
-          },
-          path: '/online-shop/product',
-        },
-        {
-          isFile: false,
-          isDir: true,
-          file: 'tag',
-          filepath: '/online-shop/tag',
-          name: 'tag',
-          ext: '',
-          badExt: false,
-          absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/online-shop/tag',
-          children: [
-            {
-              isFile: true,
-              isDir: false,
-              file: '[tag].svelte',
-              filepath: '/online-shop/tag/[tag].svelte',
-              name: '[tag]',
-              ext: 'svelte',
-              badExt: false,
-              absolutePath:
-                '/home/jaskaran/repos/enki-website/src/pages/online-shop/tag/[tag].svelte',
-              importPath: '../src/pages/online-shop/tag/[tag].svelte',
-              isLayout: false,
-              isReset: false,
-              isIndex: false,
-              isFallback: false,
-              isPage: true,
-              ownMeta: {},
-              meta: {
-                recursive: true,
-                preload: false,
-                prerender: true,
-              },
-              path: '/online-shop/tag/:tag',
-              id: '_onlineShop_tag__tag',
-              component: () =>
-                import('../src/pages/online-shop/tag/[tag].svelte').then(
-                  (m) => m.default
-                ),
-            },
-          ],
-          isLayout: false,
-          isReset: false,
-          isIndex: false,
-          isFallback: false,
-          isPage: false,
-          ownMeta: {},
-          meta: {
-            recursive: true,
-            preload: false,
-            prerender: true,
-          },
-          path: '/online-shop/tag',
-        },
-      ],
-      isLayout: true,
-      isReset: false,
-      isIndex: false,
-      isFallback: false,
-      isPage: false,
-      importPath: '../src/pages/online-shop/_layout.svelte',
-      ownMeta: {},
-      meta: {
-        recursive: true,
-        preload: false,
-        prerender: true,
-      },
-      path: '/online-shop',
-      id: '_onlineShop__layout',
-      component: () =>
-        import('../src/pages/online-shop/_layout.svelte').then(
-          (m) => m.default
-        ),
-    },
-    {
-      isFile: true,
-      isDir: true,
-      file: '_layout.svelte',
       filepath: '/payment/_layout.svelte',
       name: '_layout',
       ext: 'svelte',
@@ -551,6 +300,306 @@ export const _tree = {
       id: '_services__layout',
       component: () =>
         import('../src/pages/services/_layout.svelte').then((m) => m.default),
+    },
+    {
+      isFile: true,
+      isDir: true,
+      file: '_layout.svelte',
+      filepath: '/shop/_layout.svelte',
+      name: '_layout',
+      ext: 'svelte',
+      badExt: false,
+      absolutePath:
+        '/home/jaskaran/repos/enki-website/src/pages/shop/_layout.svelte',
+      children: [
+        {
+          isFile: true,
+          isDir: false,
+          file: '[category].svelte',
+          filepath: '/shop/[category].svelte',
+          name: '[category]',
+          ext: 'svelte',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/shop/[category].svelte',
+          importPath: '../src/pages/shop/[category].svelte',
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: true,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/shop/:category',
+          id: '_shop__category',
+          component: () =>
+            import('../src/pages/shop/[category].svelte').then(
+              (m) => m.default
+            ),
+        },
+        {
+          isFile: false,
+          isDir: true,
+          file: 'basket',
+          filepath: '/shop/basket',
+          name: 'basket',
+          ext: '',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/shop/basket',
+          children: [
+            {
+              isFile: true,
+              isDir: false,
+              file: 'index.svelte',
+              filepath: '/shop/basket/index.svelte',
+              name: 'index',
+              ext: 'svelte',
+              badExt: false,
+              absolutePath:
+                '/home/jaskaran/repos/enki-website/src/pages/shop/basket/index.svelte',
+              importPath: '../src/pages/shop/basket/index.svelte',
+              isLayout: false,
+              isReset: false,
+              isIndex: true,
+              isFallback: false,
+              isPage: true,
+              ownMeta: {},
+              meta: {
+                recursive: true,
+                preload: false,
+                prerender: true,
+              },
+              path: '/shop/basket/index',
+              id: '_shop_basket_index',
+              component: () =>
+                import('../src/pages/shop/basket/index.svelte').then(
+                  (m) => m.default
+                ),
+            },
+          ],
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: false,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/shop/basket',
+        },
+        {
+          isFile: true,
+          isDir: false,
+          file: 'index.svelte',
+          filepath: '/shop/index.svelte',
+          name: 'index',
+          ext: 'svelte',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/shop/index.svelte',
+          importPath: '../src/pages/shop/index.svelte',
+          isLayout: false,
+          isReset: false,
+          isIndex: true,
+          isFallback: false,
+          isPage: true,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/shop/index',
+          id: '_shop_index',
+          component: () =>
+            import('../src/pages/shop/index.svelte').then((m) => m.default),
+        },
+        {
+          isFile: false,
+          isDir: true,
+          file: 'product',
+          filepath: '/shop/product',
+          name: 'product',
+          ext: '',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/shop/product',
+          children: [
+            {
+              isFile: true,
+              isDir: false,
+              file: '[product].svelte',
+              filepath: '/shop/product/[product].svelte',
+              name: '[product]',
+              ext: 'svelte',
+              badExt: false,
+              absolutePath:
+                '/home/jaskaran/repos/enki-website/src/pages/shop/product/[product].svelte',
+              importPath: '../src/pages/shop/product/[product].svelte',
+              isLayout: false,
+              isReset: false,
+              isIndex: false,
+              isFallback: false,
+              isPage: true,
+              ownMeta: {},
+              meta: {
+                recursive: true,
+                preload: false,
+                prerender: true,
+              },
+              path: '/shop/product/:product',
+              id: '_shop_product__product',
+              component: () =>
+                import('../src/pages/shop/product/[product].svelte').then(
+                  (m) => m.default
+                ),
+            },
+          ],
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: false,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/shop/product',
+        },
+        {
+          isFile: false,
+          isDir: true,
+          file: 'search',
+          filepath: '/shop/search',
+          name: 'search',
+          ext: '',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/shop/search',
+          children: [
+            {
+              isFile: true,
+              isDir: false,
+              file: 'index.svelte',
+              filepath: '/shop/search/index.svelte',
+              name: 'index',
+              ext: 'svelte',
+              badExt: false,
+              absolutePath:
+                '/home/jaskaran/repos/enki-website/src/pages/shop/search/index.svelte',
+              importPath: '../src/pages/shop/search/index.svelte',
+              isLayout: false,
+              isReset: false,
+              isIndex: true,
+              isFallback: false,
+              isPage: true,
+              ownMeta: {},
+              meta: {
+                recursive: true,
+                preload: false,
+                prerender: true,
+              },
+              path: '/shop/search/index',
+              id: '_shop_search_index',
+              component: () =>
+                import('../src/pages/shop/search/index.svelte').then(
+                  (m) => m.default
+                ),
+            },
+          ],
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: false,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/shop/search',
+        },
+        {
+          isFile: false,
+          isDir: true,
+          file: 'tag',
+          filepath: '/shop/tag',
+          name: 'tag',
+          ext: '',
+          badExt: false,
+          absolutePath: '/home/jaskaran/repos/enki-website/src/pages/shop/tag',
+          children: [
+            {
+              isFile: true,
+              isDir: false,
+              file: '[tag].svelte',
+              filepath: '/shop/tag/[tag].svelte',
+              name: '[tag]',
+              ext: 'svelte',
+              badExt: false,
+              absolutePath:
+                '/home/jaskaran/repos/enki-website/src/pages/shop/tag/[tag].svelte',
+              importPath: '../src/pages/shop/tag/[tag].svelte',
+              isLayout: false,
+              isReset: false,
+              isIndex: false,
+              isFallback: false,
+              isPage: true,
+              ownMeta: {},
+              meta: {
+                recursive: true,
+                preload: false,
+                prerender: true,
+              },
+              path: '/shop/tag/:tag',
+              id: '_shop_tag__tag',
+              component: () =>
+                import('../src/pages/shop/tag/[tag].svelte').then(
+                  (m) => m.default
+                ),
+            },
+          ],
+          isLayout: false,
+          isReset: false,
+          isIndex: false,
+          isFallback: false,
+          isPage: false,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/shop/tag',
+        },
+      ],
+      isLayout: true,
+      isReset: false,
+      isIndex: false,
+      isFallback: false,
+      isPage: false,
+      importPath: '../src/pages/shop/_layout.svelte',
+      ownMeta: {},
+      meta: {
+        recursive: true,
+        preload: false,
+        prerender: true,
+      },
+      path: '/shop',
+      id: '_shop__layout',
+      component: () =>
+        import('../src/pages/shop/_layout.svelte').then((m) => m.default),
     },
     {
       isFile: true,

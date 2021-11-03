@@ -25,7 +25,7 @@
     }
     // if tag selected display relevant products on tag page
     if (isTag(cat)) {
-      $goto(`/online-shop/tag/${cat.Name}`, {
+      $goto(`/shop/tag/${cat.Name}`, {
         catId: categoryId,
         tagId: cat.Id,
       });

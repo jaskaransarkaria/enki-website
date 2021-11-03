@@ -30,7 +30,7 @@
     <button
       class={`goto-basket ${detailed ? 'narrow' : ''}`}
       in:fade={{ duration: 500 }}
-      on:click={() => $goto('/online-shop/basket')}
+      on:click={() => $goto('/shop/basket')}
     >
       Goto Basket
     </button>

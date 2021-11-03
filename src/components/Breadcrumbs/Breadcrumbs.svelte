@@ -62,9 +62,9 @@
     const breadcrumbUrl =
       'tagUrl' in breadcrumb
         ? `${breadcrumb.tagUrl}${breadcrumb.params}`
-        : `/online-shop/${breadcrumb.Id}`;
+        : `/shop/${breadcrumb.Id}`;
 
-    breadcrumb.Name === 'Shop' ? $goto('/online-shop') : $goto(breadcrumbUrl);
+    breadcrumb.Name === 'Shop' ? $goto('/shop') : $goto(breadcrumbUrl);
   };
 
   $: breadcrumbs = [
