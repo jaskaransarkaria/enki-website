@@ -29,7 +29,18 @@
 
 <Breadcrumbs selectedCategoryId={1} />
 {#if data.length}
-  {#each data as prod (prod.Id)}
-    <SingleProduct product={prod} showDetailedView />
-  {/each}
+  <div class="search-container">
+    {#each data as prod (prod.Id)}
+      <SingleProduct product={prod} showDetailedView />
+    {/each}
+  </div>
 {/if}
+
+<style>
+  .search-container {
+    display: grid;
+    grid-gap: 16px;
+    padding: 16px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+</style>
