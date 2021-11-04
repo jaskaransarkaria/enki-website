@@ -35,7 +35,7 @@ describe('GIVEN HexGrid', () => {
       expect(screen.getByTestId('hex-image')).toBeInTheDocument();
       expect(screen.getByTestId('hex-image')).toHaveAttribute(
         'src',
-        '/faith.jpg'
+        'https://enki.imgix.net/123-0'
       );
     });
 

@@ -22,7 +22,11 @@
     >
       <div class="hex-in">
         <div class="hex-link">
-          <img src="/faith.jpg" alt="placeholder" data-testid="hex-image" />
+          <img
+            src={`https://enki.imgix.net/${category.Id}-0`}
+            alt="placeholder"
+            data-testid="hex-image"
+          />
           <img
             src={`https://enki.imgix.net/hex_${Math.floor(
               Math.random() * (6 - 1 + 1) + 1
