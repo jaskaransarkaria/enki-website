@@ -35,7 +35,7 @@ describe('GIVEN HexGrid', () => {
       expect(screen.getByTestId('hex-image')).toBeInTheDocument();
       expect(screen.getByTestId('hex-image')).toHaveAttribute(
         'src',
-        'https://enki.imgix.net/123-0'
+        'https://enki.imgix.net/123'
       );
     });
 
