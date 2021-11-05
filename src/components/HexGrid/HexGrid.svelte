@@ -23,7 +23,7 @@
       <div class="hex-in">
         <div class="hex-link">
           <img
-            src={`https://enki.imgix.net/${category.Id}-0`}
+            src={`https://enki.imgix.net/${category.Id}`}
             alt="placeholder"
             data-testid="hex-image"
           />
