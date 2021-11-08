@@ -16,8 +16,8 @@ jobs:
       script:
         - npm i
         - npm run build
-        - docker build -t jaskaransarkaria/enki-website:"$TRAVIS_TAG" .
         - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+        - docker build -t jaskaransarkaria/enki-website:"$TRAVIS_TAG" .
         - docker push jaskaransarkaria/enki-website:"$TRAVIS_TAG"
     - stage: Deploy to Kubernetes
       before_install:
