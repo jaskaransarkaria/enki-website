@@ -76,8 +76,9 @@
 <style>
   .products-container {
     display: grid;
-    grid-template-rows: 25% 25% 25% 25%;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 40em;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
   }
 
   .detailed-products-container {

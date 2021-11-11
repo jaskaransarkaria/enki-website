@@ -11,8 +11,8 @@
 
 {#if product}
   <div class="container">
+    <h2>{`${product.Name}`}</h2>
     {#if showDetailedView}
-      <h1>{`${product.Name}`}</h1>
       {#if product.ProductImages}
         <figure class="img-thumbnail-container">
           <figure class="selected-image">
@@ -45,7 +45,6 @@
         }`}
       </h3>
     {:else}
-      <h1>{`${product.Name}`}</h1>
       <figure
         on:click={$goto(`/shop/product/${product.Id}`)}
         class="img-container"
@@ -73,6 +72,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 0.25em;
+    margin: 4%;
+    height: 90%;
   }
 
   .img-container {
@@ -87,11 +90,11 @@
     grid-template-columns: 8fr 2fr;
   }
 
-  .img-container,
+  .img-container img,
   .img-thumbnail-container img {
     display: block;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 90%;
     width: auto;
     height: auto;
     margin: auto;
@@ -121,6 +124,12 @@
     transform: scale(
       1.5
     ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-align: center;
   }
 
   @media (max-width: 700px) {
