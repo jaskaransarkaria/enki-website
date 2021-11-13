@@ -76,13 +76,19 @@
 <style>
   .products-container {
     display: grid;
-    grid-auto-rows: 30em;
+    grid-auto-rows: 28em;
     grid-template-columns: 1fr;
     align-items: center;
   }
 
   .detailed-products-container {
     display: flex;
+  }
+
+  @media (min-width: 360px) {
+    .products-container {
+      grid-auto-rows: 30em;
+    }
   }
 
   @media (min-width: 700px) {

@@ -74,8 +74,8 @@
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 0.25em;
     margin: 4%;
-    height: 450px;
-    width: 450px;
+    height: 350px;
+    width: 350px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     background: none;
@@ -90,7 +90,7 @@
 
   .img-container {
     display: flex;
-    height: 200px;
+    height: 175px;
   }
 
   .img-thumbnail-container {
@@ -133,33 +133,27 @@
     ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
 
+  h2 {
+    font-size: 1em;
+  }
   h1,
   h2,
   h3 {
     text-align: center;
   }
 
-  @media (max-width: 700px) {
-    .thumbnails img {
-      height: 60px;
-      width: 60px;
+  @media (min-width: 360px) {
+    .container {
+      height: 400px;
+      width: 400px;
     }
 
-    .thumbnails {
-      margin-right: 0;
+    .img-container {
+      height: 200px;
     }
 
-    h1 {
-      text-align: center;
-    }
-
-    .img-thumbnail-container {
-      align-items: center;
-    }
-
-    .thumbnails {
-      display: flex;
-      flex-direction: column;
+    h2 {
+      font-size: 1.17em;
     }
   }
 
@@ -171,6 +165,10 @@
 
     .img-container {
       height: 250px;
+    }
+
+    h2 {
+      font-size: 1.5em;
     }
   }
 
