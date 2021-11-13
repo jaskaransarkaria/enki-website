@@ -6,6 +6,16 @@
 
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
+
+  const createEmptyArray = () => new Array(data.length).fill(undefined);
+
+  let imgElemArr: HTMLImageElement[] = [...createEmptyArray()];
+  let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray()];
+
+  const handleError = (idx: number) => {
+    imgElemArr[idx].onerror = null;
+    sourceElemArr[idx].srcset = imgElemArr[idx].src;
+  };
 </script>
 
 <ul in:fade class="root-categories-container">
@@ -22,11 +32,21 @@
     >
       <div class="hex-in">
         <div class="hex-link">
-          <img
-            src={`https://enki.imgix.net/${category.Id}`}
-            alt="placeholder"
-            data-testid="hex-image"
-          />
+          <picture>
+            <source
+              srcset={`https://enki.imgix.net/${category.Id}`}
+              type="image/jpg"
+              bind:this={sourceElemArr[idx]}
+              data-testid="hex-image"
+            />
+            <img
+              src="/faith.jpg"
+              alt="placeholder"
+              data-testid="hex-image-fallback"
+              bind:this={imgElemArr[idx]}
+              on:error={() => handleError(idx)}
+            />
+          </picture>
           <img
             src={`https://enki.imgix.net/hex_${Math.floor(
               Math.random() * (6 - 1 + 1) + 1
@@ -101,6 +121,7 @@
     transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
   }
 
+  .hex picture,
   .hex img,
   button,
   h3 {

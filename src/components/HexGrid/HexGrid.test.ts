@@ -33,8 +33,12 @@ describe('GIVEN HexGrid', () => {
         'Elephant'
       );
       expect(screen.getByTestId('hex-image')).toBeInTheDocument();
-      expect(screen.getByTestId('hex-image')).toHaveAttribute(
+      expect(screen.getByTestId('hex-image-fallback')).toHaveAttribute(
         'src',
+        '/faith.jpg'
+      );
+      expect(screen.getByTestId('hex-image')).toHaveAttribute(
+        'srcset',
         'https://enki.imgix.net/123'
       );
     });
