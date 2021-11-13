@@ -10,7 +10,7 @@
 </script>
 
 {#if product}
-  <div class="container">
+  <button class="container" on:click={$goto(`/shop/product/${product.Id}`)}>
     <h2>{`${product.Name}`}</h2>
     {#if showDetailedView}
       {#if product.ProductImages}
@@ -45,10 +45,7 @@
         }`}
       </h3>
     {:else}
-      <figure
-        on:click={$goto(`/shop/product/${product.Id}`)}
-        class="img-container"
-      >
+      <figure class="img-container">
         <img
           src={`https://enki.imgix.net/${product.Id}-0`}
           alt={`${product.Name}`}
@@ -63,7 +60,7 @@
       </h2>
     {/if}
     <AddToBasket {product} detailed={showDetailedView} />
-  </div>
+  </button>
 {/if}
 
 <style>
@@ -72,17 +69,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    align-self: center;
+    justify-self: center;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 0.25em;
     margin: 4%;
-    height: 90%;
+    height: 450px;
+    width: 450px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+  }
+
+  .container:hover {
+    transform: scale(1.06);
+    box-shadow: 0 3px 65px rgb(0 0 0 / 0.2);
   }
 
   .img-container {
-    cursor: pointer;
     display: flex;
-    height: 60%;
-    width: 80%;
+    height: 200px;
   }
 
   .img-thumbnail-container {
@@ -95,7 +103,6 @@
     display: block;
     max-width: 100%;
     max-height: 90%;
-    width: auto;
     height: auto;
     margin: auto;
   }
@@ -153,6 +160,59 @@
     .thumbnails {
       display: flex;
       flex-direction: column;
+    }
+  }
+
+  @media (min-width: 700px) {
+    .container {
+      height: 550px;
+      width: 550px;
+    }
+
+    .img-container {
+      height: 250px;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .container {
+      height: 450px;
+      width: 450px;
+    }
+
+    .img-container {
+      height: 200px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container {
+      height: 385px;
+      width: 385px;
+    }
+
+    .img-container {
+      height: 150px;
+    }
+  }
+  @media (min-width: 1600px) {
+    .container {
+      height: 385px;
+      width: 385px;
+    }
+
+    .img-container {
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 2000px) {
+    .container {
+      height: 450px;
+      width: 450px;
+    }
+
+    .img-container {
+      height: 200px;
     }
   }
 </style>

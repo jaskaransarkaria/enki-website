@@ -72,7 +72,6 @@
     display: grid;
     grid-gap: 45px;
     grid-template-columns: repeat(10, 1fr);
-    width: 90%;
     margin: 0 auto;
     font-size: 15px;
     list-style-type: none;
@@ -98,8 +97,6 @@
     overflow: hidden;
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-    -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-    -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
   }
 
@@ -116,8 +113,6 @@
     text-align: center;
     color: #fff;
     overflow: hidden;
-    -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-    -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
     transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
   }
 
@@ -130,8 +125,6 @@
     width: auto;
     height: 100%;
     margin: 0 auto;
-    -webkit-transform: rotate3d(0, 0, 0, 0deg);
-    -ms-transform: rotate3d(0, 0, 0, 0deg);
     transform: rotate3d(0, 0, 0, 0deg);
   }
 
@@ -155,8 +148,6 @@
     font-size: 1.5em;
     color: white;
     z-index: 1;
-    -webkit-transform: translate3d(0, -100%, 0);
-    -ms-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
   .hex button::after {
@@ -172,8 +163,6 @@
   .hex-link:hover button,
   .hex-link:focus button {
     cursor: pointer;
-    -webkit-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 

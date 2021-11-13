@@ -27,7 +27,7 @@ describe('Given SingleProduct', () => {
         'https://enki.imgix.net/123-0'
       );
       expect(
-        screen.getByRole('button', { name: /basket/i })
+        screen.getByRole('button', { name: 'Add to Basket' })
       ).toBeInTheDocument();
     });
 
@@ -68,7 +68,7 @@ describe('Given SingleProduct', () => {
         'https://enki.imgix.net/456-1'
       );
       expect(
-        screen.getByRole('button', { name: /basket/i })
+        screen.getByRole('button', { name: 'Add to Basket' })
       ).toBeInTheDocument();
     });
 
@@ -94,7 +94,7 @@ describe('Given SingleProduct', () => {
       ).toHaveTextContent('3000 -- 3 in stock');
       expect(screen.queryAllByRole('img', { name: /789/i })).toHaveLength(0);
       expect(
-        screen.getByRole('button', { name: /basket/i })
+        screen.getByRole('button', { name: 'Add to Basket' })
       ).toBeInTheDocument();
     });
   });
