@@ -76,7 +76,7 @@
 <style>
   .products-container {
     display: grid;
-    grid-auto-rows: 28em;
+    grid-auto-rows: 18em;
     grid-template-columns: 1fr;
     align-items: center;
   }
@@ -87,7 +87,7 @@
 
   @media (min-width: 360px) {
     .products-container {
-      grid-auto-rows: 30em;
+      grid-auto-rows: 22em;
     }
   }
 
@@ -99,19 +99,18 @@
   }
   @media (min-width: 960px) {
     .products-container {
-      grid-auto-rows: 34em;
+      grid-auto-rows: 32em;
       grid-template-columns: 1fr 1fr;
     }
   }
   @media (min-width: 1280px) {
     .products-container {
-      grid-auto-rows: 30em;
+      grid-auto-rows: 28em;
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
   @media (min-width: 1600px) {
     .products-container {
-      grid-auto-rows: 28em;
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }

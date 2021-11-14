@@ -56,23 +56,23 @@ export default {
           fileName: 'index.html',
           title: 'Enki',
           template: ({ attributes, title }) => `
-            <!DOCTYPE html>
-            <html lang="${attributes.html.lang}">
-              <head>
-              <meta charset='utf-8'>
-              <meta name='viewport' content='width=device-width,initial-scale=1'>
-                <meta name="description" content="Enki Jewellery & Craft Gallery shop in Kings Heath, Birmingham, UK">
-                <title>${title}</title>
-                
-                <link rel='icon' type='image/png' href='/favicon.png'>
-                <link rel='stylesheet' href='/global.css'>
-                <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
-                
-                <script defer src='/build/bundle-${currentDate}.js'></script>
-              </head>
-              <body>
-              </body>
-            </html>`,
+<!DOCTYPE html>
+<html lang="${attributes.html.lang}">
+  <head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="description" content="Enki Jewellery & Craft Gallery shop in Kings Heath, Birmingham, UK">
+    <title>${title}</title>
+    
+    <link rel='icon' type='image/png' href='/favicon.png'>
+    <link rel='stylesheet' href='/global.css'>
+    <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
+    
+    <script defer src='/build/bundle-${currentDate}.js'></script>
+  </head>
+  <body>
+  </body>
+</html>`,
         }),
       ],
     },

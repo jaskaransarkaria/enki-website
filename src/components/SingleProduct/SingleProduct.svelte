@@ -74,8 +74,8 @@
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 0.25em;
     margin: 4%;
-    height: 350px;
-    width: 350px;
+    height: 250px;
+    width: 250px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     background: none;
@@ -90,7 +90,7 @@
 
   .img-container {
     display: flex;
-    height: 175px;
+    height: 100px;
   }
 
   .img-thumbnail-container {
@@ -134,7 +134,7 @@
   }
 
   h2 {
-    font-size: 1em;
+    font-size: 0.8em;
   }
   h1,
   h2,
@@ -144,12 +144,8 @@
 
   @media (min-width: 360px) {
     .container {
-      height: 400px;
-      width: 400px;
-    }
-
-    .img-container {
-      height: 200px;
+      height: 300px;
+      width: 300px;
     }
 
     h2 {
