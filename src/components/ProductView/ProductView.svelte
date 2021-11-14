@@ -83,6 +83,8 @@
 
   .detailed-products-container {
     display: flex;
+    width: 100%;
+    justify-content: center;
   }
 
   @media (min-width: 360px) {

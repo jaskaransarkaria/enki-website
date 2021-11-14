@@ -49,10 +49,10 @@ describe('Given SingleProduct', () => {
         screen.getByRole('heading', { level: 2, name: /blue jacket/i })
       ).toHaveTextContent('Blue jacket');
       expect(
-        screen.getByRole('heading', { level: 3, name: /very/i })
+        screen.getByRole('heading', { level: 4, name: /very/i })
       ).toHaveTextContent('A very blue jacket');
       expect(
-        screen.getByRole('heading', { level: 3, name: /2000/i })
+        screen.getByRole('heading', { level: 4, name: /2000/i })
       ).toHaveTextContent('2000 -- 2 in stock');
       expect(multiImages).toHaveLength(3);
       expect(multiImages[0]).toHaveAttribute(
@@ -84,13 +84,13 @@ describe('Given SingleProduct', () => {
         },
       });
       expect(
-        screen.getByRole('heading', { level: 2, name: /green jacket/i })
+        screen.getByRole('heading', { level: 2, name: 'Green jacket' })
       ).toHaveTextContent('Green jacket');
       expect(
-        screen.getByRole('heading', { level: 3, name: /greeny/i })
+        screen.getByRole('heading', { level: 4, name: /greeny/i })
       ).toHaveTextContent('greeny');
       expect(
-        screen.getByRole('heading', { level: 3, name: /3000/i })
+        screen.getByRole('heading', { level: 4, name: /3000/i })
       ).toHaveTextContent('3000 -- 3 in stock');
       expect(screen.queryAllByRole('img', { name: /789/i })).toHaveLength(0);
       expect(

@@ -48,6 +48,7 @@
 
   .narrow {
     width: 35%;
+    font-size: 0.65em;
   }
 
   .add-to-basket {
@@ -60,5 +61,12 @@
 
   .add-to-basket:hover {
     filter: grayscale(20%);
+  }
+
+  @media (min-width: 700px) {
+    .narrow {
+      font-size: 1em;
+      width: 80%;
+    }
   }
 </style>

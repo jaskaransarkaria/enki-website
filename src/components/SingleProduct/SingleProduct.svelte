@@ -10,9 +10,12 @@
 </script>
 
 {#if product}
-  <button class="container" on:click={$goto(`/shop/product/${product.Id}`)}>
-    <h2>{`${product.Name}`}</h2>
+  <button
+    class={showDetailedView ? 'details-container' : 'container'}
+    on:click={$goto(`/shop/product/${product.Id}`)}
+  >
     {#if showDetailedView}
+      <h2>{`${product.Name}`}</h2>
       {#if product.ProductImages}
         <figure class="img-thumbnail-container">
           <figure class="selected-image">
@@ -36,15 +39,21 @@
           </figure>
         </figure>
       {/if}
-      <h3>{`${product.Description}`}</h3>
-      <h3>
-        {`£${product.SalePrice} -- ${
-          product.CurrentStock === 0
-            ? 'sold out'
-            : product.CurrentStock + ' in stock'
-        }`}
-      </h3>
+      <div class="detailed-products-footer">
+        <div class="product-details">
+          <h4>{`${product.Description}`}</h4>
+          <h4>
+            {`£${product.SalePrice} -- ${
+              product.CurrentStock === 0
+                ? 'sold out'
+                : product.CurrentStock + ' in stock'
+            }`}
+          </h4>
+        </div>
+        <AddToBasket {product} detailed={showDetailedView} />
+      </div>
     {:else}
+      <h2>{`${product.Name}`}</h2>
       <figure class="img-container">
         <img
           src={`https://enki.imgix.net/${product.Id}-0`}
@@ -58,13 +67,14 @@
             : product.CurrentStock + ' in stock'
         }`}
       </h2>
+      <AddToBasket {product} detailed={showDetailedView} />
     {/if}
-    <AddToBasket {product} detailed={showDetailedView} />
   </button>
 {/if}
 
 <style>
-  .container {
+  .container,
+  .details-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,6 +93,13 @@
     border: none;
   }
 
+  .details-container {
+    height: 275px;
+    width: 275px;
+    justify-content: auto;
+    justify-self: auto;
+  }
+
   .container:hover {
     transform: scale(1.06);
     box-shadow: 0 3px 65px rgb(0 0 0 / 0.2);
@@ -96,24 +113,48 @@
   .img-thumbnail-container {
     display: grid;
     grid-template-columns: 8fr 2fr;
+    margin: 0;
   }
 
-  .img-container img,
-  .img-thumbnail-container img {
-    display: block;
+  .img-container img {
     max-width: 100%;
     max-height: 90%;
     height: auto;
-    margin: auto;
+  }
+
+  .img-thumbnail-container img {
+    width: 100%;
   }
 
   .selected-image {
     margin-right: 0;
+    padding-right: 15px;
+    width: 130px;
+  }
+
+  .selected-image img {
+    transition: all 0.4s ease-in-out;
+  }
+
+  .selected-image img:hover {
+    transform: scale(3) translateY(25%);
+    cursor: zoom-in;
+  }
+
+  .detailed-products-footer {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .product-details {
+    display: flex;
   }
 
   .thumbnails {
     display: grid;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 1fr 1fr;
     grid-auto-flow: column;
     margin-left: 0;
@@ -121,13 +162,15 @@
 
   .thumbnails img {
     cursor: pointer;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
     width: 70px;
     transition: transform 0.2s;
     height: 70px;
-    padding: 10px;
+    padding: 4px;
   }
 
   .thumbnails img:hover {
+    box-shadow: none;
     transform: scale(
       1.5
     ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
@@ -136,6 +179,10 @@
   h2 {
     font-size: 0.8em;
   }
+
+  h4 {
+    font-size: 0.7em;
+  }
   h1,
   h2,
   h3 {
@@ -143,13 +190,14 @@
   }
 
   @media (min-width: 360px) {
-    .container {
+    .container,
+    .details-container {
       height: 300px;
       width: 300px;
     }
 
-    h2 {
-      font-size: 1.17em;
+    .img-thumbnail-container {
+      height: 175px;
     }
   }
 
@@ -159,12 +207,52 @@
       width: 550px;
     }
 
+    .details-container {
+      height: 650px;
+      width: 650px;
+    }
+
     .img-container {
       height: 250px;
     }
 
     h2 {
-      font-size: 1.5em;
+      font-size: 2em;
+      justify-self: start;
+    }
+
+    h4 {
+      font-size: 1em;
+    }
+
+    .img-thumbnail-container {
+      height: 375px;
+    }
+
+    .selected-image {
+      width: 300px;
+      justify-self: center;
+    }
+
+    .product-details {
+      display: block;
+    }
+
+    .detailed-products-footer {
+      width: 100%;
+      height: 110px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      justify-content: center;
+    }
+
+    .thumbnails {
+      grid-template-rows: repeat(3, 1fr);
+    }
+
+    .thumbnails img {
+      width: 90px;
+      height: 90px;
     }
   }
 
@@ -174,8 +262,38 @@
       width: 450px;
     }
 
+    .details-container {
+      height: 750px;
+      width: 750px;
+    }
+
+    .img-thumbnail-container {
+      height: 500px;
+      margin: 10px;
+    }
+
+    .selected-image {
+      width: 330px;
+      align-self: center;
+      justify-self: center;
+    }
+
+    .detailed-products-footer {
+      height: 200px;
+    }
+
     .img-container {
       height: 200px;
+    }
+
+    h4 {
+      font-size: 1.25em;
+    }
+
+    .thumbnails img {
+      width: 130px;
+      height: 130px;
+      padding: 10px;
     }
   }
   @media (min-width: 1280px) {
@@ -184,8 +302,17 @@
       width: 385px;
     }
 
+    .details-container {
+      width: 850px;
+      height: 850px;
+    }
+
     .img-container {
       height: 150px;
+    }
+
+    .selected-image {
+      width: 400px;
     }
   }
   @media (min-width: 1600px) {
