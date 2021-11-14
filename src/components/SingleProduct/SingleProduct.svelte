@@ -137,7 +137,7 @@
   }
 
   .selected-image img:hover {
-    transform: scale(3) translateY(25%);
+    transform: scale(1.75) translateY(7.5%);
     cursor: zoom-in;
   }
 
