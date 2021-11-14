@@ -53,20 +53,20 @@
         <AddToBasket {product} detailed={showDetailedView} />
       </div>
     {:else}
-      <h2>{`${product.Name}`}</h2>
+      <h3 class="basic-header">{`${product.Name}`}</h3>
       <figure class="img-container">
         <img
           src={`https://enki.imgix.net/${product.Id}-0`}
           alt={`${product.Name}`}
         />
       </figure>
-      <h2>
+      <h3 class="basic-header">
         {`£${product.SalePrice} -- ${
           product.CurrentStock === 0
             ? 'sold out'
             : product.CurrentStock + ' in stock'
         }`}
-      </h2>
+      </h3>
       <AddToBasket {product} detailed={showDetailedView} />
     {/if}
   </button>
@@ -183,6 +183,11 @@
   h4 {
     font-size: 0.7em;
   }
+
+  h3 {
+    font-size: 0.7em;
+  }
+
   h1,
   h2,
   h3 {
@@ -198,6 +203,14 @@
 
     .img-thumbnail-container {
       height: 175px;
+    }
+
+    .img-container {
+      height: 125px;
+    }
+
+    h3 {
+      font-size: 0.8;
     }
   }
 
@@ -253,6 +266,10 @@
     .thumbnails img {
       width: 90px;
       height: 90px;
+    }
+
+    h3 {
+      font-size: 1.4em;
     }
   }
 
