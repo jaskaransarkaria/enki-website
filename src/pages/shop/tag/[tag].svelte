@@ -1,7 +1,7 @@
 <script lang="typescript">
   import { params, url } from '@roxi/routify';
   import { onMount } from 'svelte';
-  import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
+  import ProductView from '@/components/ProductView/ProductView.svelte';
   import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
   import { products } from '@/stores/products';
   import { refreshProducts } from '@/libs/requests';
@@ -37,7 +37,5 @@
   ]}
 />
 {#if data.length}
-  {#each data as prod (prod.Id)}
-    <SingleProduct product={prod} />
-  {/each}
+  <ProductView productArr={data} />
 {/if}

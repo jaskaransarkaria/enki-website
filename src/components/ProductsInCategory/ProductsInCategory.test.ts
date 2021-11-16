@@ -1,18 +1,18 @@
 import '@testing-library/jest-dom';
 import { render, screen, cleanup } from '@testing-library/svelte';
-import ProductView from './ProductView.svelte';
+import ProductsInCategory from './ProductsInCategory.svelte';
 import { refreshProducts } from '@/libs/requests';
 
 jest.mock('@/libs/requests');
 
-describe('GIVEN ProductView', () => {
+describe('GIVEN ProductsInCategory', () => {
   beforeEach(() => (refreshProducts as jest.Mock).mockResolvedValue([]));
 
   afterEach(() => jest.clearAllMocks());
 
   describe('WHEN rendered with no props', () => {
     it("THEN don't display any products", () => {
-      const { container } = render(ProductView);
+      const { container } = render(ProductsInCategory);
       expect(container.children).toHaveLength(1);
       expect(refreshProducts).toHaveBeenCalledTimes(0);
       cleanup();
@@ -33,7 +33,7 @@ describe('GIVEN ProductView', () => {
             CurrentStock: 0,
           },
         ]);
-        render(ProductView, {
+        render(ProductsInCategory, {
           categoryId: 1,
         });
         expect(refreshProducts).toHaveBeenCalledTimes(1);
@@ -47,7 +47,7 @@ describe('GIVEN ProductView', () => {
       });
 
       it("THEN display the products which are passed in as a prop AND don't call the api", async () => {
-        render(ProductView, {
+        render(ProductsInCategory, {
           categoryId: 2,
           productArr: [
             {

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { params } from '@roxi/routify';
   import { products } from '@/stores/products';
-  import ProductView from '@/components/ProductView/ProductView.svelte';
+  import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
   import { refreshProducts } from '@/libs/requests';
 
@@ -40,11 +40,7 @@
 {#if productToShow.length}
   <Breadcrumbs selectedCategoryId={productToShow[0].CategoryId} />
   <figure>
-    <ProductView
-      categoryId={productToShow[0].CategoryId}
-      productArr={productToShow}
-      showDetailedView
-    />
+    <SingleProduct product={productToShow} showDetailedView />
   </figure>
 {/if}
 

@@ -35,6 +35,45 @@
 
 <style>
   .container {
-    border: 2px solid seagreen;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  select {
+    font-size: 0.7em;
+    text-align: center;
+    background: none;
+    border: none;
+    margin: auto;
+    border-bottom: 1px solid #fa6603;
+  }
+
+  @media (min-width: 360px) {
+    select {
+      font-size: 0.8em;
+    }
+  }
+
+  @media (min-width: 700px) {
+    select {
+      font-size: 0.8em;
+    }
+  }
+
+  @media (min-width: 960px) {
+    select {
+      font-size: 0.9em;
+    }
+  }
+
+  @media (min-width: 2000px) {
+    select {
+      font-size: 1em;
+    }
+
+    .container {
+      margin: auto;
+    }
   }
 </style>

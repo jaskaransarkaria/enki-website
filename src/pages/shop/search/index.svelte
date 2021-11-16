@@ -1,7 +1,7 @@
 <script lang="typescript">
   import { params } from '@roxi/routify';
   import { onMount } from 'svelte';
-  import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
+  import ProductView from '@/components/ProductView/ProductView.svelte';
   import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
   import { products } from '@/stores/products';
   import { refreshProducts } from '@/libs/requests';
@@ -29,18 +29,5 @@
 
 <Breadcrumbs selectedCategoryId={1} />
 {#if data.length}
-  <div class="search-container">
-    {#each data as prod (prod.Id)}
-      <SingleProduct product={prod} showDetailedView />
-    {/each}
-  </div>
+  <ProductView productArr={data} />
 {/if}
-
-<style>
-  .search-container {
-    display: grid;
-    grid-gap: 16px;
-    padding: 16px;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-</style>

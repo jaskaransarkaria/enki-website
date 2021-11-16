@@ -1,7 +1,7 @@
 <script lang="typescript">
   import { onMount } from 'svelte';
-  import ProductView from '@/components/ProductView/ProductView.svelte';
   import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
+  import ProductsInCategory from '../ProductsInCategory/ProductsInCategory.svelte';
   import { refreshCategory } from '@/libs/requests';
   import { categories } from '@/stores/categories';
   import HexGrid from '@/components/HexGrid/HexGrid.svelte';
@@ -85,6 +85,6 @@
       <HexGrid data={categoryToShow.Children} {categoryFn} />
     {/if}
   {/if}
-  <ProductView bind:categoryId />
+  <ProductsInCategory bind:categoryId />
 {/if}
 <h1>{categoryToShow?.Id || 'no "categoryToShow" from CategoryView'}</h1>
