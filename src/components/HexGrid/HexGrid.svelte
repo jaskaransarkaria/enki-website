@@ -58,7 +58,9 @@
             data-testid="hex-button"
             on:click={/*istanbul ignore next */ () => categoryFn(category)}
           />
-          <h3 data-testid="hex-category-name">{category.Name}</h3>
+          <div class="category-name">
+            <h3 data-testid="hex-category-name">{category.Name}</h3>
+          </div>
         </div>
       </div>
     </li>
@@ -73,8 +75,19 @@
     grid-gap: 45px;
     grid-template-columns: repeat(10, 1fr);
     margin: 0 auto;
-    font-size: 15px;
+    overflow: hidden;
     list-style-type: none;
+    padding: 4.5%;
+  }
+
+  .category-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    top: 40%;
+    width: 100%;
+    height: 15%;
   }
 
   .hex {
@@ -126,6 +139,7 @@
     height: 100%;
     margin: 0 auto;
     transform: rotate3d(0, 0, 0, 0deg);
+    font-size: 0.6em;
   }
 
   .hex button {
@@ -139,9 +153,9 @@
   }
 
   .hex h3 {
-    position: absolute;
-    text-align: center;
-    top: 45%;
+    width: 125px;
+    vertical-align: middle;
+    height: auto;
   }
 
   .hex button {
@@ -166,11 +180,50 @@
     transform: translate3d(0, 0, 0);
   }
 
+  @media (min-width: 360px) {
+    .hex h3 {
+      width: 150px;
+    }
+  }
+
+  @media (min-width: 700px) {
+    .hex h3 {
+      width: 175px;
+      font-size: 0.8em;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .hex h3 {
+      width: 185px;
+      font-size: 0.85em;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .hex h3 {
+      width: 195px;
+      font-size: 0.9em;
+    }
+  }
+
+  @media (min-width: 2000px) {
+    .hex h3 {
+      width: 200px;
+      font-size: 1em;
+    }
+  }
+
+  @media (min-width: 2400px) {
+    .hex h3 {
+      width: 205px;
+      font-size: 1.2em;
+    }
+  }
+
+  /*The media queries below are for ordering the hexagons, awkard */
   @media (min-width: 1201px) {
     /* <- 5-4  hexagons per row */
-    .root-categories-container {
-      padding-bottom: 4.4%;
-    }
     .hex:nth-child(9n + 6) {
       /* first hexagon of even rows */
       grid-column-start: 2;
@@ -211,12 +264,6 @@
     .hex:nth-child(3n + 3) {
       /* first hexagon of even rows */
       grid-column-start: 2;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .root-categories-container {
-      font-size: 13px;
     }
   }
 </style>

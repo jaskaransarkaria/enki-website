@@ -39,13 +39,13 @@
 
 {#if productToShow.length}
   <Breadcrumbs selectedCategoryId={productToShow[0].CategoryId} />
-  <figure>
-    <SingleProduct product={productToShow} showDetailedView />
-  </figure>
+  <div>
+    <SingleProduct product={productToShow[0]} showDetailedView />
+  </div>
 {/if}
 
 <style>
-  figure {
+  div {
     display: flex;
     justify-content: center;
     align-items: center;

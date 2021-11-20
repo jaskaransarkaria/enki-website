@@ -142,7 +142,9 @@ describe('GIVEN CategoryView', () => {
         categoryFn: (cat: Category) => categories.set(cat),
         categoryId: 456,
       });
-      expect(screen.getByRole('heading')).toHaveTextContent('456');
+      expect(screen.getByRole('heading', { name: '456' })).toHaveTextContent(
+        '456'
+      );
       expect(screen.getByTestId('hex-category-name')).toHaveTextContent('Hats');
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       cleanup();
