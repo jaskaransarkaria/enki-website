@@ -1,5 +1,7 @@
 <script lang="typescript">
-  import { fly, fade } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
+  import { crossfade, fade } from 'svelte/transition';
+  import { quintOut } from 'svelte/easing';
   import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
 
   import type { Base, BaseFn } from '@/types/base';
@@ -12,22 +14,39 @@
   let imgElemArr: HTMLImageElement[] = [...createEmptyArray()];
   let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray()];
 
+  const [send, receive] = crossfade({
+    duration: (d) => Math.sqrt(d * 200),
+
+    fallback(node, params) {
+      const style = getComputedStyle(node);
+      const transform = style.transform === 'none' ? '' : style.transform;
+
+      return {
+        duration: 600,
+        easing: quintOut,
+        css: (t) => `
+					transform: ${transform} scale(${t});
+					opacity: ${t}
+				`,
+      };
+    },
+  });
+
   const handleError = (idx: number) => {
     imgElemArr[idx].onerror = null;
     sourceElemArr[idx].srcset = imgElemArr[idx].src;
   };
 </script>
 
-<ul in:fade class="root-categories-container">
-  {#each data as category, idx}
+<ul
+  transition:fade={{ delay: 200, duration: 800 }}
+  class="root-categories-container"
+>
+  {#each data as category, idx (category.Id)}
     <li
-      out:fly={{
-        x: (idx + 1) ** 2 * -1,
-        y: (idx + 1) ** 0.5 * -1,
-        duration: 685,
-        delay: 200,
-      }}
-      in:fade={{ delay: 650, duration: 950 }}
+      in:receive={{ key: category.Id }}
+      out:send={{ key: category.Id }}
+      animate:flip
       class="hex"
     >
       <div class="hex-in">

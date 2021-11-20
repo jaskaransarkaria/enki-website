@@ -18,7 +18,7 @@
 </script>
 
 <div
-  in:fade={{ delay: 750 }}
+  in:fade={{ delay: 500 }}
   class={showDetailedView || productArr.length - variantArr.length <= 2
     ? 'detailed-products-container'
     : 'products-container'}
