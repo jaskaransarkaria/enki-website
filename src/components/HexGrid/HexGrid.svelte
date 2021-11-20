@@ -15,14 +15,14 @@
   let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray()];
 
   const [send, receive] = crossfade({
-    duration: (d) => Math.sqrt(d * 200),
+    duration: (d) => Math.sqrt(d * 250),
 
     fallback(node, params) {
       const style = getComputedStyle(node);
       const transform = style.transform === 'none' ? '' : style.transform;
 
       return {
-        duration: 600,
+        duration: 800,
         easing: quintOut,
         css: (t) => `
 					transform: ${transform} scale(${t});
@@ -38,13 +38,10 @@
   };
 </script>
 
-<ul
-  transition:fade={{ delay: 200, duration: 800 }}
-  class="root-categories-container"
->
+<ul in:fade={{ delay: 200, duration: 900 }} class="root-categories-container">
   {#each data as category, idx (category.Id)}
     <li
-      in:receive={{ key: category.Id }}
+      in:receive={{ duration: 900, key: category.Id }}
       out:send={{ key: category.Id }}
       animate:flip
       class="hex"
