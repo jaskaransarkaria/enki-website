@@ -1,7 +1,5 @@
 <script lang="typescript">
-  import { flip } from 'svelte/animate';
-  import { crossfade, fade } from 'svelte/transition';
-  import { quintOut } from 'svelte/easing';
+  import { fade } from 'svelte/transition';
   import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
 
   import type { Base, BaseFn } from '@/types/base';
@@ -14,38 +12,15 @@
   let imgElemArr: HTMLImageElement[] = [...createEmptyArray()];
   let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray()];
 
-  const [send, receive] = crossfade({
-    duration: (d) => Math.sqrt(d * 250),
-
-    fallback(node, params) {
-      const style = getComputedStyle(node);
-      const transform = style.transform === 'none' ? '' : style.transform;
-
-      return {
-        duration: 800,
-        easing: quintOut,
-        css: (t) => `
-					transform: ${transform} scale(${t});
-					opacity: ${t}
-				`,
-      };
-    },
-  });
-
   const handleError = (idx: number) => {
     imgElemArr[idx].onerror = null;
     sourceElemArr[idx].srcset = imgElemArr[idx].src;
   };
 </script>
 
-<ul in:fade={{ delay: 200, duration: 900 }} class="root-categories-container">
+<ul in:fade={{ delay: 300, duration: 900 }} class="root-categories-container">
   {#each data as category, idx (category.Id)}
-    <li
-      in:receive={{ duration: 900, key: category.Id }}
-      out:send={{ key: category.Id }}
-      animate:flip
-      class="hex"
-    >
+    <li class="hex">
       <div class="hex-in">
         <div class="hex-link">
           <picture>
