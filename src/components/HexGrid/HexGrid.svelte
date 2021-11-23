@@ -25,12 +25,14 @@
         <div class="hex-link">
           <picture>
             <source
+              transition:fade|local
               srcset={`https://enki.imgix.net/${category.Id}`}
               type="image/jpg"
               bind:this={sourceElemArr[idx]}
               data-testid="hex-image"
             />
             <img
+              transition:fade|local
               src="/faith.jpg"
               alt="placeholder"
               data-testid="hex-image-fallback"

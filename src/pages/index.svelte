@@ -5,75 +5,66 @@
   // this is how to pass down a prop from the router
   // export let scoped: any;
   // $: ({ name } = scoped);
-
-  let swing = true;
 </script>
 
-<main class="homepage-background" in:fade>
-  <button
-    class="open-sign-button"
-    class:swing
-    on:mouseover={() => (swing = true)}
-    on:mouseout={() => (swing = false)}
-    on:click={$goto('/what-we-offer')}
-  >
-    <img src="/open.jpg" loading="eager" alt="shop open sign" width="200px" />
-  </button>
-</main>
+<div class="container">
+  <div transition:fade={{ duration: 1000 }} class="parallax">
+    <h1>Welcome</h1>
+  </div>
+  <div class="inside-shop" />
+</div>
 
 <style>
-  .homepage-background {
-    display: grid;
-    grid-template-rows: 20% auto 10%;
-    grid-template-columns: 25% 31% 10% 24% 10%;
-    width: 100vw;
-    height: 100vh;
-    background-size: 100vw 100%;
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    z-index: 99;
+    color: white;
+    background-color: rgba(236, 236, 236, 0.7);
+    width: 100%;
+    text-align: center;
+  }
+
+  .parallax {
+    /* The image used */
     background-image: url('/outside-enki.webp');
+
+    /* Set a specific height */
+    min-height: 1500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
+    transition: opacity 2s;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .open-sign-button,
-  .open-sign-button:active {
-    grid-row: 2;
-    grid-column: 3;
-    background-color: Transparent;
+  .parallax:hover {
+    opacity: 0.95;
+  }
+
+  .inside-shop {
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
-    animation-duration: 3s;
-    animation-fill-mode: both;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100vh;
   }
 
-  .open-sign-button:hover {
-    animation-play-state: running;
-  }
-
-  @keyframes swing {
-    20% {
-      transform: rotate(7.5deg);
+  @media (min-width: 2400px) {
+    .inside-shop {
+      background-image: url('/inside-enki-1824.webp');
     }
-    40% {
-      transform: rotate(-4deg);
-    }
-    60% {
-      transform: rotate(2.5deg);
-    }
-    80% {
-      transform: rotate(-2.5deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-
-  .swing {
-    animation-name: swing;
-    transform-origin: top center;
-  }
-
-  @media only screen and (min-width: 960px) {
   }
 </style>
