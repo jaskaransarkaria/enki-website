@@ -21,32 +21,34 @@
   }
 </script>
 
-{#if variantArr.length}
-  {#each groupedVariantProducts as variants (variants)}
+{#if productArr}
+  {#if variantArr.length}
+    {#each groupedVariantProducts as variants (variants)}
+      <div
+        in:fade={{ delay: 500 }}
+        class={showDetailedView
+          ? 'detailed-products-container'
+          : 'products-container'}
+      >
+        {#each variants as variant (variant)}
+          <SingleProduct product={variant} />
+        {/each}
+      </div>
+    {/each}
+  {:else}
     <div
       in:fade={{ delay: 500 }}
       class={showDetailedView
         ? 'detailed-products-container'
         : 'products-container'}
     >
-      {#each variants as variant (variant)}
-        <SingleProduct product={variant} />
-      {/each}
+      {#if nonVariantArr.length}
+        {#each nonVariantArr as product}
+          <SingleProduct {product} {showDetailedView} />
+        {/each}
+      {/if}
     </div>
-  {/each}
-{:else}
-  <div
-    in:fade={{ delay: 500 }}
-    class={showDetailedView
-      ? 'detailed-products-container'
-      : 'products-container'}
-  >
-    {#if nonVariantArr.length}
-      {#each nonVariantArr as product}
-        <SingleProduct {product} {showDetailedView} />
-      {/each}
-    {/if}
-  </div>
+  {/if}
 {/if}
 
 <style>
