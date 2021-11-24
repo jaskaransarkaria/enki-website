@@ -1,8 +1,7 @@
 <script lang="typescript">
+  import { groupBy } from 'lodash-es';
   import { fade } from 'svelte/transition';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
-  import VariantProducts from '@/components/VariantProducts/VariantProducts.svelte';
-
   import type { Product } from '@/types/product';
 
   export let productArr: readonly Product[] = [];
@@ -10,6 +9,11 @@
 
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
+  let groupedVariantProducts: Array<readonly Product[]>;
+
+  $: groupedVariantProducts = Object.values(
+    groupBy(variantArr, 'VariantGroupId')
+  );
 
   $: if (productArr.length) {
     variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
@@ -17,21 +21,33 @@
   }
 </script>
 
-<div
-  in:fade={{ delay: 500 }}
-  class={showDetailedView || productArr.length - variantArr.length <= 2
-    ? 'detailed-products-container'
-    : 'products-container'}
->
-  {#if nonVariantArr.length}
-    {#each nonVariantArr as product}
-      <SingleProduct {product} {showDetailedView} />
-    {/each}
-  {/if}
-  {#if variantArr.length}
-    <VariantProducts variantProducts={variantArr} {showDetailedView} />
-  {/if}
-</div>
+{#if variantArr.length}
+  {#each groupedVariantProducts as variants (variants)}
+    <div
+      in:fade={{ delay: 500 }}
+      class={showDetailedView
+        ? 'detailed-products-container'
+        : 'products-container'}
+    >
+      {#each variants as variant (variant)}
+        <SingleProduct product={variant} />
+      {/each}
+    </div>
+  {/each}
+{:else}
+  <div
+    in:fade={{ delay: 500 }}
+    class={showDetailedView
+      ? 'detailed-products-container'
+      : 'products-container'}
+  >
+    {#if nonVariantArr.length}
+      {#each nonVariantArr as product}
+        <SingleProduct {product} {showDetailedView} />
+      {/each}
+    {/if}
+  </div>
+{/if}
 
 <style>
   .products-container {
