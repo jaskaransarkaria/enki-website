@@ -7,10 +7,11 @@
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
 
-  const createEmptyArray = () => new Array(data.length).fill(undefined);
+  const createEmptyArray = (length: number) =>
+    new Array(length).fill(undefined);
 
-  let imgElemArr: HTMLImageElement[] = [...createEmptyArray()];
-  let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray()];
+  let imgElemArr: HTMLImageElement[] = [...createEmptyArray(data.length)];
+  let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray(data.length)];
 
   const handleError = (idx: number) => {
     imgElemArr[idx].onerror = null;

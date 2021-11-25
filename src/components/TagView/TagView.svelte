@@ -43,4 +43,4 @@
   };
 </script>
 
-<HexGrid data={[...tags, ...data]} categoryFn={selectFn} />
+<HexGrid data={[...data, ...tags]} categoryFn={selectFn} />

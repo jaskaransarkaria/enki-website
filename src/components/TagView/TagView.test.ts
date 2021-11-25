@@ -71,8 +71,8 @@ describe('Given TagView', () => {
         'hex-category-name'
       );
       expect(allDisplayedCats).toHaveLength(2);
-      expect(allDisplayedCats[0]).toHaveTextContent('Zebra');
-      expect(allDisplayedCats[1]).toHaveTextContent('Elephant');
+      expect(allDisplayedCats[0]).toHaveTextContent('Elephant');
+      expect(allDisplayedCats[1]).toHaveTextContent('Zebra');
     });
 
     it('AND a non tag category is clicked THEN fire the categoryFn', async () => {
@@ -100,12 +100,12 @@ describe('Given TagView', () => {
       );
 
       expect(allDisplayedCats).toHaveLength(2);
-      expect(allDisplayedCats[0]).toHaveTextContent('Buffalo');
-      expect(allDisplayedCats[1]).toHaveTextContent('Elephant');
+      expect(allDisplayedCats[0]).toHaveTextContent('Elephant');
+      expect(allDisplayedCats[1]).toHaveTextContent('Buffalo');
 
       const allButtons = await screen.queryAllByTestId('hex-button');
 
-      userEvent.click(allButtons[1]);
+      userEvent.click(allButtons[0]);
       expect(mockFn).toHaveBeenCalledTimes(1);
     });
 
