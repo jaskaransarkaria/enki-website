@@ -7,8 +7,22 @@
   export let showDetailedView = false;
 
   let selectedIdx = 0;
+
+  const handleArrowKeydown = (event: KeyboardEvent) => {
+    if (showDetailedView)
+      if (event.key === 'ArrowLeft' && selectedIdx !== 0) {
+        selectedIdx -= 1;
+      }
+    if (
+      event.key === 'ArrowRight' &&
+      selectedIdx + 1 !== product.ProductImages.length
+    ) {
+      selectedIdx += 1;
+    }
+  };
 </script>
 
+<svelte:window on:keydown={handleArrowKeydown} />
 {#if product}
   <button
     class={showDetailedView ? 'details-container' : 'container'}
