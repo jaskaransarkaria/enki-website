@@ -17,11 +17,21 @@
     imgElemArr[idx].onerror = null;
     sourceElemArr[idx].srcset = imgElemArr[idx].src;
   };
+
+  // switch to flex box if screen is wider than 360 and item numbers are less than 3
+  $: outerWidth = 0;
+  $: showGrid = outerWidth >= 360 ? (data.length > 3 ? true : false) : true;
+
+  $: console.log(outerWidth);
 </script>
 
-<ul in:fade={{ delay: 300, duration: 900 }} class="root-categories-container">
+<svelte:window bind:outerWidth />
+<ul
+  in:fade={{ delay: 300, duration: 900 }}
+  class={showGrid ? 'root-categories-container' : 'flexbox-container'}
+>
   {#each data as category, idx (category.Id)}
-    <li class="hex">
+    <li class={showGrid ? 'hex' : 'hex-flex'}>
       <div class="hex-in">
         <div class="hex-link">
           <picture>
@@ -72,6 +82,15 @@
     overflow: hidden;
     list-style-type: none;
     padding: 4.5%;
+    padding-bottom: 15%;
+  }
+
+  .flexbox-container {
+    display: flex;
+    margin: 0 auto;
+    overflow: hidden;
+    list-style-type: none;
+    justify-content: center;
   }
 
   .category-name {
@@ -84,6 +103,7 @@
     height: 15%;
   }
 
+  .hex-flex,
   .hex {
     grid-column-end: span 2;
     position: relative;
@@ -91,6 +111,7 @@
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition -- color should be transparent*/
   }
 
+  .hex-flex::after,
   .hex::after {
     content: '';
     display: block;
@@ -123,6 +144,8 @@
     transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
   }
 
+  .hex-flex picture,
+  .hex-flex img,
   .hex picture,
   .hex img,
   button,
@@ -136,28 +159,29 @@
     font-size: 0.6em;
   }
 
+  .hex-flex button,
   .hex button {
     width: 100%;
     padding: 5%;
     box-sizing: border-box;
     background-color: rgba(46, 49, 49, 0.7);
     font-weight: 300;
+    font-size: 1.5em;
+    color: white;
+    z-index: 1;
+    transform: translate3d(0, -100%, 0);
     -webkit-transform: 0.2s ease-out, opacity 0.3s ease-out;
     transform: 0.2s ease-out, opacity 0.3s ease-out;
   }
 
+  .hex-flex h3,
   .hex h3 {
     width: 125px;
     vertical-align: middle;
     height: auto;
   }
 
-  .hex button {
-    font-size: 1.5em;
-    color: white;
-    z-index: 1;
-    transform: translate3d(0, -100%, 0);
-  }
+  .hex-flex button::after,
   .hex button::after {
     content: '';
     position: absolute;
@@ -177,6 +201,16 @@
   @media (min-width: 360px) {
     .hex h3 {
       width: 150px;
+    }
+
+    .flexbox-container {
+      padding: 0;
+      padding-bottom: 15%;
+    }
+
+    .hex-flex {
+      width: 40%;
+      margin: 1%;
     }
   }
 
@@ -252,7 +286,6 @@
     /* <- 2-1  hexagons per row */
     .root-categories-container {
       grid-template-columns: repeat(4, 1fr);
-      padding-bottom: 11.2%;
       grid-gap: 5px;
     }
     .hex:nth-child(3n + 3) {
