@@ -21,8 +21,6 @@
   // switch to flex box if screen is wider than 360 and item numbers are less than 3
   $: outerWidth = 0;
   $: showGrid = outerWidth >= 360 ? (data.length > 3 ? true : false) : true;
-
-  $: console.log(outerWidth);
 </script>
 
 <svelte:window bind:outerWidth />
@@ -165,8 +163,6 @@
     padding: 5%;
     box-sizing: border-box;
     background-color: rgba(46, 49, 49, 0.7);
-    font-weight: 300;
-    font-size: 1.5em;
     color: white;
     z-index: 1;
     transform: translate3d(0, -100%, 0);
@@ -176,7 +172,8 @@
 
   .hex-flex h3,
   .hex h3 {
-    width: 125px;
+    width: 130px;
+    font-size: 0.65em;
     vertical-align: middle;
     height: auto;
   }
@@ -199,8 +196,10 @@
   }
 
   @media (min-width: 360px) {
-    .hex h3 {
+    .hex h3,
+    .hex-flex h3 {
       width: 150px;
+      font-size: 0.7em;
     }
 
     .flexbox-container {
@@ -215,37 +214,67 @@
   }
 
   @media (min-width: 700px) {
+    .hex-flex h3,
     .hex h3 {
       width: 175px;
       font-size: 0.8em;
     }
+
+    .hex-flex {
+      width: 25%;
+      margin: 1%;
+    }
   }
 
   @media (min-width: 960px) {
+    .hex-flex h3,
     .hex h3 {
       width: 185px;
       font-size: 0.85em;
     }
+
+    .hex-flex {
+      width: 18%;
+      margin: 1%;
+    }
   }
 
   @media (min-width: 1600px) {
+    .hex-flex h3,
     .hex h3 {
       width: 195px;
       font-size: 0.9em;
     }
+
+    .hex-flex {
+      width: 15%;
+      margin: 1%;
+    }
   }
 
   @media (min-width: 2000px) {
+    .hex-flex h3,
     .hex h3 {
       width: 200px;
       font-size: 1em;
     }
+
+    .hex-flex {
+      width: 12.5%;
+      margin: 1%;
+    }
   }
 
   @media (min-width: 2400px) {
+    .hex-flex h3,
     .hex h3 {
       width: 205px;
       font-size: 1.2em;
+    }
+
+    .hex-flex {
+      width: 10%;
+      margin: 1%;
     }
   }
 
