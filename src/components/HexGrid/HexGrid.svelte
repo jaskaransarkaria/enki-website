@@ -166,7 +166,6 @@
     color: white;
     z-index: 1;
     transform: translate3d(0, -100%, 0);
-    -webkit-transform: 0.2s ease-out, opacity 0.3s ease-out;
     transform: 0.2s ease-out, opacity 0.3s ease-out;
   }
 
