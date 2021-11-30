@@ -171,8 +171,8 @@
 
   .hex-flex h3,
   .hex h3 {
-    width: 130px;
-    font-size: 0.65em;
+    width: 95px;
+    font-size: 0.5em;
     vertical-align: middle;
     height: auto;
   }
@@ -197,8 +197,8 @@
   @media (min-width: 360px) {
     .hex h3,
     .hex-flex h3 {
-      width: 150px;
-      font-size: 0.7em;
+      width: 110px;
+      font-size: 0.55em;
     }
 
     .flexbox-container {
@@ -239,6 +239,16 @@
   }
 
   @media (min-width: 1600px) {
+    .root-categories-container {
+      grid-template-columns: repeat(14, 1fr);
+      grid-gap: 10px;
+    }
+    /* <- 7-6  hexagons per row */
+    .hex:nth-child(13n + 8) {
+      /* first hexagon of even rows */
+      grid-column-start: 2;
+    }
+
     .hex-flex h3,
     .hex h3 {
       width: 195px;
@@ -278,7 +288,10 @@
   }
 
   /*The media queries below are for ordering the hexagons, awkard */
-  @media (min-width: 1201px) {
+  @media (min-width: 1201px) and (max-width: 1599px) {
+    .root-categories-container {
+      grid-gap: 10px;
+    }
     /* <- 5-4  hexagons per row */
     .hex:nth-child(9n + 6) {
       /* first hexagon of even rows */
@@ -290,6 +303,7 @@
     /* <- 4-3  hexagons per row */
     .root-categories-container {
       grid-template-columns: repeat(8, 1fr);
+      grid-gap: 15px;
       padding-bottom: 5.5%;
     }
     .hex:nth-child(7n + 5) {
@@ -303,6 +317,7 @@
     .root-categories-container {
       grid-template-columns: repeat(6, 1fr);
       padding-bottom: 7.4%;
+      grid-gap: 20px;
     }
     .hex:nth-child(5n + 4) {
       /* first hexagon of even rows */
@@ -313,10 +328,11 @@
   @media (max-width: 600px) {
     /* <- 2-1  hexagons per row */
     .root-categories-container {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       grid-gap: 5px;
     }
-    .hex:nth-child(3n + 3) {
+
+    .hex:nth-child(5n + 4) {
       /* first hexagon of even rows */
       grid-column-start: 2;
     }
