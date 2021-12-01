@@ -20,7 +20,7 @@
 
   // switch to flex box if screen is wider than 360 and item numbers are less than 3
   $: outerWidth = 0;
-  $: showGrid = outerWidth >= 360 ? (data.length > 3 ? true : false) : true;
+  $: showGrid = data.length >= 3 ? true : false;
 </script>
 
 <svelte:window bind:outerWidth />
@@ -89,6 +89,13 @@
     overflow: hidden;
     list-style-type: none;
     justify-content: center;
+    padding: 0;
+    padding-bottom: 15%;
+  }
+
+  .hex-flex {
+    width: 40%;
+    margin: 1%;
   }
 
   .category-name {
@@ -200,16 +207,6 @@
       width: 110px;
       font-size: 0.55em;
     }
-
-    .flexbox-container {
-      padding: 0;
-      padding-bottom: 15%;
-    }
-
-    .hex-flex {
-      width: 40%;
-      margin: 1%;
-    }
   }
 
   @media (min-width: 700px) {
@@ -217,6 +214,10 @@
     .hex h3 {
       width: 175px;
       font-size: 0.8em;
+    }
+
+    .flexbox-container {
+      padding-bottom: 8%;
     }
 
     .hex-flex {
@@ -230,6 +231,10 @@
     .hex h3 {
       width: 185px;
       font-size: 0.85em;
+    }
+
+    .flexbox-container {
+      padding-bottom: 5%;
     }
 
     .hex-flex {
@@ -328,11 +333,11 @@
   @media (max-width: 600px) {
     /* <- 2-1  hexagons per row */
     .root-categories-container {
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       grid-gap: 5px;
     }
 
-    .hex:nth-child(5n + 4) {
+    .hex:nth-child(3n + 3) {
       /* first hexagon of even rows */
       grid-column-start: 2;
     }

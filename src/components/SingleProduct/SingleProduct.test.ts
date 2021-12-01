@@ -31,7 +31,7 @@ describe('Given SingleProduct', () => {
       ).toBeInTheDocument();
     });
 
-    it('THEN show the detailed product (with thumbnails)', () => {
+    it.skip('THEN show the detailed product (with thumbnails) this belongs in ProductImage', () => {
       render(SingleProduct, {
         showDetailedView: true,
         product: {
