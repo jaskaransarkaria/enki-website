@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
   import { params } from '@roxi/routify';
   import { products } from '@/stores/products';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
@@ -47,6 +48,7 @@
 <style>
   div {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

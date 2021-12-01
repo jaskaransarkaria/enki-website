@@ -21,7 +21,6 @@
       {/if}
       <div class="detailed-products-footer">
         <div class="product-details">
-          <h4>{`${product.Description}`}</h4>
           <h4>
             {`£${product.SalePrice} -- ${
               product.CurrentStock === 0
@@ -50,6 +49,10 @@
       <AddToBasket {product} detailed={showDetailedView} />
     {/if}
   </button>
+
+  {#if showDetailedView}
+    <h4>{`${product.Description}`}</h4>
+  {/if}
 {/if}
 
 <style>
@@ -116,6 +119,7 @@
   }
 
   h3 {
+    display: block;
     font-size: 0.7em;
   }
 

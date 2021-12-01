@@ -78,7 +78,7 @@
 <svelte:window on:keydown={handleArrowKeydown} bind:outerWidth />
 {#if product}
   <div class="swipe-holder">
-    <Swipe bind:activeItem bind:this={SwipeComp} {...swipeConfig}>
+    <Swipe bind:active_item={activeItem} bind:this={SwipeComp} {...swipeConfig}>
       {#each product.ProductImages as _, idx ('main' + idx)}
         <SwipeItem allow_dynamic_height={true}>
           <img

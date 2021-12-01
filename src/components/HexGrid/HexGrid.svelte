@@ -18,18 +18,15 @@
     sourceElemArr[idx].srcset = imgElemArr[idx].src;
   };
 
-  // switch to flex box if screen is wider than 360 and item numbers are less than 3
-  $: outerWidth = 0;
   $: showGrid = data.length >= 3 ? true : false;
 </script>
 
-<svelte:window bind:outerWidth />
-<ul
-  in:fade={{ delay: 300, duration: 900 }}
-  class={showGrid ? 'root-categories-container' : 'flexbox-container'}
->
+<ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>
   {#each data as category, idx (category.Id)}
-    <li class={showGrid ? 'hex' : 'hex-flex'}>
+    <li
+      in:fade={{ delay: 400, duration: 1200 }}
+      class={showGrid ? 'hex' : 'hex-flex'}
+    >
       <div class="hex-in">
         <div class="hex-link">
           <picture>
