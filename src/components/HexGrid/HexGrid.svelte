@@ -23,22 +23,17 @@
 
 <ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>
   {#each data as category, idx (category.Id)}
-    <li
-      in:fade={{ delay: 400, duration: 1200 }}
-      class={showGrid ? 'hex' : 'hex-flex'}
-    >
+    <li class={showGrid ? 'hex' : 'hex-flex'}>
       <div class="hex-in">
         <div class="hex-link">
-          <picture>
+          <picture in:fade={{ duration: 250 }}>
             <source
-              transition:fade|local
               srcset={`https://enki.imgix.net/${category.Id}`}
               type="image/jpg"
               bind:this={sourceElemArr[idx]}
               data-testid="hex-image"
             />
             <img
-              transition:fade|local
               src="/faith.jpg"
               alt="placeholder"
               data-testid="hex-image-fallback"
@@ -47,6 +42,7 @@
             />
           </picture>
           <img
+            in:fade={{ delay: 250, duration: 350 }}
             src={`https://enki.imgix.net/hex_${Math.floor(
               Math.random() * (6 - 1 + 1) + 1
             )}.svg`}
