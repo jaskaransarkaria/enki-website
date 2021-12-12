@@ -237,16 +237,6 @@
   }
 
   @media (min-width: 1600px) {
-    .root-categories-container {
-      grid-template-columns: repeat(14, 1fr);
-      grid-gap: 10px;
-    }
-    /* <- 7-6  hexagons per row */
-    .hex:nth-child(13n + 8) {
-      /* first hexagon of even rows */
-      grid-column-start: 2;
-    }
-
     .hex-flex h3,
     .hex h3 {
       width: 195px;
@@ -259,7 +249,18 @@
     }
   }
 
-  @media (min-width: 2000px) {
+  @media (min-width: 1960px) {
+    .root-categories-container {
+      grid-template-columns: repeat(14, 1fr);
+      grid-gap: 10px;
+    }
+
+    /* <- 7-6  hexagons per row */
+    .hex:nth-child(13n + 8) {
+      /* first hexagon of even rows */
+      grid-column-start: 2;
+    }
+
     .hex-flex h3,
     .hex h3 {
       width: 200px;
@@ -267,7 +268,7 @@
     }
 
     .hex-flex {
-      width: 12.5%;
+      width: 10%;
       margin: 1%;
     }
   }
@@ -286,7 +287,7 @@
   }
 
   /*The media queries below are for ordering the hexagons, awkard */
-  @media (min-width: 1201px) and (max-width: 1599px) {
+  @media (min-width: 1201px) and (max-width: 1959px) {
     .root-categories-container {
       grid-gap: 10px;
     }
