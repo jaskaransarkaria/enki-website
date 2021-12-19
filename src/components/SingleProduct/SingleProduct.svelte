@@ -41,7 +41,7 @@
       </figure>
       <h3 class="basic-header">
         {`£${product.SalePrice} -- ${
-          product.CurrentStock === 0
+          product.CurrentStock >= 0
             ? 'sold out'
             : product.CurrentStock + ' in stock'
         }`}
