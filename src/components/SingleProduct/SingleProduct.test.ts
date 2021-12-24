@@ -22,10 +22,6 @@ describe('Given SingleProduct', () => {
       expect(
         screen.getByRole('heading', { name: /red jacket/i })
       ).toHaveTextContent('Red jacket');
-      expect(screen.getByRole('img', { name: /red jacket/i })).toHaveAttribute(
-        'src',
-        'https://enki.imgix.net/123-0'
-      );
       expect(
         screen.getByRole('button', { name: 'Add to Basket' })
       ).toBeInTheDocument();

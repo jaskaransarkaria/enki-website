@@ -2,6 +2,7 @@
   import { goto } from '@roxi/routify';
   import AddToBasket from '@/components/AddToBasket/AddToBasket.svelte';
   import ProductImage from '@/components/ProductImage/ProductImage.svelte';
+  import ImageLoader from '@/components/Image/ImageLoader.svelte';
 
   import type { Product } from '@/types/product';
 
@@ -33,12 +34,10 @@
       </div>
     {:else}
       <h3 class="basic-header">{`${product.Name}`}</h3>
-      <figure class="img-container">
-        <img
-          src={`https://enki.imgix.net/${product.Id}-0`}
-          alt={`${product.Name}`}
-        />
-      </figure>
+      <ImageLoader
+        src={`https://enki.imgix.net/${product.Id}-0`}
+        alt={`${product.Name}`}
+      />
       <h3 class="basic-header">
         {`£${product.SalePrice} -- ${
           product.CurrentStock >= 0
@@ -88,17 +87,6 @@
     box-shadow: 0 3px 65px rgb(0 0 0 / 0.2);
   }
 
-  .img-container {
-    display: flex;
-    height: 100px;
-  }
-
-  .img-container img {
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-  }
-
   .detailed-products-footer {
     display: flex;
     height: 70px;
@@ -136,10 +124,6 @@
       width: 300px;
     }
 
-    .img-container {
-      height: 125px;
-    }
-
     h3 {
       font-size: 0.8;
     }
@@ -154,10 +138,6 @@
     .details-container {
       height: 650px;
       width: 650px;
-    }
-
-    .img-container {
-      height: 250px;
     }
 
     h2 {
@@ -202,10 +182,6 @@
       height: 250px;
     }
 
-    .img-container {
-      height: 200px;
-    }
-
     h4 {
       font-size: 1.25em;
     }
@@ -221,19 +197,12 @@
       width: 900px;
       height: 900px;
     }
-
-    .img-container {
-      height: 150px;
-    }
   }
+
   @media (min-width: 1600px) {
     .simple-container {
       height: 385px;
       width: 385px;
-    }
-
-    .img-container {
-      height: 150px;
     }
   }
 
@@ -241,10 +210,6 @@
     .simple-container {
       height: 450px;
       width: 450px;
-    }
-
-    .img-container {
-      height: 200px;
     }
   }
 </style>

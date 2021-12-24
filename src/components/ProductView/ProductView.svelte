@@ -26,7 +26,7 @@
     {#each groupedVariantProducts as variants (variants)}
       <div
         in:fade={{ delay: 500 }}
-        class={showDetailedView
+        class={showDetailedView || productArr.length <= 3
           ? 'detailed-products-container'
           : 'products-container'}
       >
@@ -38,7 +38,7 @@
   {:else}
     <div
       in:fade={{ delay: 500 }}
-      class={showDetailedView
+      class={showDetailedView || productArr.length <= 3
         ? 'detailed-products-container'
         : 'products-container'}
     >

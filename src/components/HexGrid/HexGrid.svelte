@@ -1,11 +1,19 @@
 <script lang="typescript">
-  import { fade } from 'svelte/transition';
+  import { fade, slide } from 'svelte/transition';
   import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
 
   import type { Base, BaseFn } from '@/types/base';
 
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
+
+  const gridCols: { [key: string]: number } = {
+    lessThan360AndDefault: 10,
+    upTo600: 4,
+    '600to900': 6,
+    '900to1200': 8,
+    '1960plus': 14,
+  };
 
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
@@ -18,7 +26,24 @@
     sourceElemArr[idx].srcset = imgElemArr[idx].src;
   };
 
-  $: showGrid = data.length >= 3 ? true : false;
+  const getGridCols = (width: number) => {
+    if (width >= 1960) {
+      return gridCols['1960plus'];
+    }
+    if (width >= 900 && width <= 1200) {
+      return gridCols['900to1200'];
+    }
+    if (width >= 600 && width <= 900) {
+      return gridCols['600to900'];
+    }
+    if (width <= 600) {
+      return gridCols['upTo600'];
+    }
+    return gridCols['lessThan360AndDefault'];
+  };
+
+  $: showGrid =
+    getGridCols(window.innerWidth) - data.length * 2 <= 2 ? true : false;
 </script>
 
 <ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>
@@ -26,7 +51,7 @@
     <li class={showGrid ? 'hex' : 'hex-flex'}>
       <div class="hex-in">
         <div class="hex-link">
-          <picture in:fade={{ duration: 250 }}>
+          <picture in:fade={{ duration: 1000 }}>
             <source
               srcset={`https://enki.imgix.net/${category.Id}`}
               type="image/jpg"
@@ -42,7 +67,7 @@
             />
           </picture>
           <img
-            in:fade={{ delay: 250, duration: 350 }}
+            in:fade|local={{ delay: 200, duration: 1200 }}
             src={`https://enki.imgix.net/hex_${Math.floor(
               Math.random() * (6 - 1 + 1) + 1
             )}.svg`}
