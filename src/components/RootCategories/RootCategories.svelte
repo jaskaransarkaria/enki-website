@@ -6,16 +6,15 @@
   import { goto } from '@roxi/routify';
 
   import type { Category } from '@/types/category';
+  import type { Base, BaseFn } from '@/types/base';
 
-  let data: Category[] = [];
+  let data: Base[] = [];
 
-  const orderCategories = (resp: Category[]) =>
-    resp.sort((a: Category, b: Category) => (a.Name < b.Name ? -1 : 1));
+  const orderCategories = (resp: Base[]) =>
+    resp.sort((a: Base, b: Base) => (a.Name < b.Name ? -1 : 1));
 
-  const categoryFn: (cat: Category) => void = /*istanbul ignore next*/ (
-    category: Category
-  ) => {
-    categories.set(category);
+  const categoryFn: BaseFn = /*istanbul ignore next*/ (category: Base) => {
+    categories.set(category as Category);
     $goto(`./${category.Id}`);
   };
 
