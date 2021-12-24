@@ -1,19 +1,12 @@
 <script lang="typescript">
-  import { fade, slide } from 'svelte/transition';
+  import { fade } from 'svelte/transition';
+  import { calcShowGrid } from '@/libs/gridCalc';
   import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
 
   import type { Base, BaseFn } from '@/types/base';
 
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
-
-  const gridCols: { [key: string]: number } = {
-    lessThan360AndDefault: 10,
-    upTo600: 4,
-    '600to900': 6,
-    '900to1200': 8,
-    '1960plus': 14,
-  };
 
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
@@ -26,24 +19,7 @@
     sourceElemArr[idx].srcset = imgElemArr[idx].src;
   };
 
-  const getGridCols = (width: number) => {
-    if (width >= 1960) {
-      return gridCols['1960plus'];
-    }
-    if (width >= 900 && width <= 1200) {
-      return gridCols['900to1200'];
-    }
-    if (width >= 600 && width <= 900) {
-      return gridCols['600to900'];
-    }
-    if (width <= 600) {
-      return gridCols['upTo600'];
-    }
-    return gridCols['lessThan360AndDefault'];
-  };
-
-  $: showGrid =
-    getGridCols(window.innerWidth) - data.length * 2 <= 2 ? true : false;
+  $: showGrid = calcShowGrid(window.innerWidth, data.length);
 </script>
 
 <ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>

@@ -1,6 +1,7 @@
 <script lang="typescript">
   import { groupBy } from 'lodash-es';
   import { fade } from 'svelte/transition';
+  import { calcShowGrid } from '@/libs/gridCalc';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import type { Product } from '@/types/product';
 
@@ -26,7 +27,8 @@
     {#each groupedVariantProducts as variants (variants)}
       <div
         in:fade={{ delay: 500 }}
-        class={showDetailedView || productArr.length <= 3
+        class={showDetailedView ||
+        !calcShowGrid(window.innerWidth, productArr.length)
           ? 'detailed-products-container'
           : 'products-container'}
       >
@@ -38,7 +40,8 @@
   {:else}
     <div
       in:fade={{ delay: 500 }}
-      class={showDetailedView || productArr.length <= 3
+      class={showDetailedView ||
+      !calcShowGrid(window.innerWidth, productArr.length)
         ? 'detailed-products-container'
         : 'products-container'}
     >
