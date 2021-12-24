@@ -11,11 +11,11 @@
 </script>
 
 {#if product}
-  <button
-    class={showDetailedView ? 'details-container' : 'simple-container'}
-    on:click={$goto(`/shop/product/${product.Id}`)}
-  >
-    {#if showDetailedView}
+  {#if showDetailedView}
+    <div
+      class="details-container"
+      on:click={$goto(`/shop/product/${product.Id}`)}
+    >
       <h2>{`${product.Name}`}</h2>
       {#if product.ProductImages}
         <ProductImage {product} />
@@ -32,13 +32,18 @@
         </div>
         <AddToBasket {product} detailed={showDetailedView} />
       </div>
-    {:else}
+    </div>
+  {:else}
+    <button
+      class="simple-container"
+      on:click={$goto(`/shop/product/${product.Id}`)}
+    >
       <h3 class="basic-header">{`${product.Name}`}</h3>
       <ImageLoader
         src={`https://enki.imgix.net/${product.Id}-0`}
         alt={`${product.Name}`}
       />
-      <h3 class="basic-header">
+      <h3>
         {`£${product.SalePrice} -- ${
           product.CurrentStock >= 0
             ? 'sold out'
@@ -46,8 +51,8 @@
         }`}
       </h3>
       <AddToBasket {product} detailed={showDetailedView} />
-    {/if}
-  </button>
+    </button>
+  {/if}
 
   {#if showDetailedView}
     <h4>{`${product.Description}`}</h4>
@@ -80,6 +85,8 @@
     width: 300px;
     justify-content: auto;
     justify-self: auto;
+    text-align: center;
+    cursor: auto;
   }
 
   .simple-container:hover {

@@ -33,6 +33,7 @@
               type="image/jpg"
               bind:this={sourceElemArr[idx]}
               data-testid="hex-image"
+              loading="eager"
             />
             <img
               src="/faith.jpg"
@@ -40,6 +41,7 @@
               data-testid="hex-image-fallback"
               bind:this={imgElemArr[idx]}
               on:error={() => handleError(idx)}
+              loading="eager"
             />
           </picture>
           <img
@@ -49,6 +51,7 @@
             )}.svg`}
             alt="hexagon shape for the category button"
             class="hexagon-shape"
+            loading="lazy"
           />
           <button
             data-testid="hex-button"

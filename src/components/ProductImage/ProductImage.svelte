@@ -110,7 +110,7 @@
   .swipe-holder {
     height: 35vh;
     width: 100%;
-    cursor: auto;
+    cursor: grab;
   }
   .is-center {
     display: flex;
