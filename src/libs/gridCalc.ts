@@ -7,7 +7,6 @@ const gridCols: { [key: string]: number } = {
 };
 
 const getGridCols = (width: number) => {
-  console.log('width', width);
   if (width >= 1960) {
     return gridCols['1960plus'];
   }
