@@ -13,6 +13,7 @@
 
   let imgElemArr: HTMLImageElement[] = [...createEmptyArray(data.length)];
   let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray(data.length)];
+  let loadedElemArr: boolean[] = [...createEmptyArray(data.length)];
 
   const handleError = (idx: number) => {
     imgElemArr[idx].onerror = null;
@@ -26,14 +27,15 @@
   {#each data as category, idx (category.Id)}
     <li class={showGrid ? 'hex' : 'hex-flex'}>
       <div class="hex-in">
-        <div class="hex-link">
-          <picture in:fade={{ duration: 1000 }}>
+        <div class={loadedElemArr[idx] ? 'hex-link' : 'hex-link hex-loading'}>
+          <picture in:fade={{ duration: 800 }}>
             <source
               srcset={`https://enki.imgix.net/${category.Id}`}
               type="image/jpg"
               bind:this={sourceElemArr[idx]}
               data-testid="hex-image"
               loading="eager"
+              on:load={() => (loadedElemArr[idx] = true)}
             />
             <img
               src="/faith.jpg"
@@ -42,17 +44,20 @@
               bind:this={imgElemArr[idx]}
               on:error={() => handleError(idx)}
               loading="eager"
+              on:load={() => (loadedElemArr[idx] = true)}
             />
           </picture>
-          <img
-            in:fade|local={{ delay: 200, duration: 1200 }}
-            src={`https://enki.imgix.net/hex_${Math.floor(
-              Math.random() * (6 - 1 + 1) + 1
-            )}.svg`}
-            alt="hexagon shape for the category button"
-            class="hexagon-shape"
-            loading="lazy"
-          />
+          {#if loadedElemArr[idx]}
+            <img
+              in:fade|local={{ duration: 800 }}
+              src={`https://enki.imgix.net/hex_${Math.floor(
+                Math.random() * (6 - 1 + 1) + 1
+              )}.svg`}
+              alt="hexagon shape for the category button"
+              class="hexagon-shape"
+              loading="lazy"
+            />
+          {/if}
           <button
             data-testid="hex-button"
             on:click={/*istanbul ignore next */ () => categoryFn(category)}
@@ -196,6 +201,10 @@
   .hex-link:focus button {
     cursor: pointer;
     transform: translate3d(0, 0, 0);
+  }
+
+  .hex-loading {
+    background-color: rgba(238, 238, 238, 1);
   }
 
   @media (min-width: 360px) {
