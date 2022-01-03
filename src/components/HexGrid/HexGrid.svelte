@@ -54,7 +54,6 @@
                 Math.random() * (6 - 1 + 1) + 1
               )}.svg`}
               alt="hexagon shape for the category button"
-              class="hexagon-shape"
               loading="lazy"
             />
           {/if}
@@ -146,7 +145,7 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    color: #fff;
+    color: black;
     overflow: hidden;
     transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
   }
@@ -159,7 +158,7 @@
   h3 {
     left: -100%;
     right: -100%;
-    width: auto;
+    width: 98%;
     height: 100%;
     margin: 0 auto;
     transform: rotate3d(0, 0, 0, 0deg);
@@ -181,7 +180,7 @@
   .hex-flex h3,
   .hex h3 {
     width: 95px;
-    font-size: 0.5em;
+    font-size: 0.55em;
     vertical-align: middle;
     height: auto;
   }
@@ -211,7 +210,7 @@
     .hex h3,
     .hex-flex h3 {
       width: 110px;
-      font-size: 0.55em;
+      font-size: 0.7em;
     }
   }
 
@@ -219,7 +218,7 @@
     .hex-flex h3,
     .hex h3 {
       width: 175px;
-      font-size: 0.8em;
+      font-size: 1em;
     }
 
     .flexbox-container {
@@ -236,7 +235,7 @@
     .hex-flex h3,
     .hex h3 {
       width: 185px;
-      font-size: 0.85em;
+      font-size: 1.1em;
     }
 
     .flexbox-container {
@@ -253,7 +252,7 @@
     .hex-flex h3,
     .hex h3 {
       width: 195px;
-      font-size: 0.9em;
+      font-size: 1.2em;
     }
 
     .hex-flex {
@@ -277,7 +276,7 @@
     .hex-flex h3,
     .hex h3 {
       width: 200px;
-      font-size: 1em;
+      font-size: 1.2em;
     }
 
     .hex-flex {
@@ -290,7 +289,7 @@
     .hex-flex h3,
     .hex h3 {
       width: 205px;
-      font-size: 1.2em;
+      font-size: 1.285em;
     }
 
     .hex-flex {
