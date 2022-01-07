@@ -8,6 +8,7 @@
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
 
+  const TEST_ENV = process.env.NODE_ENV === 'test';
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
 
@@ -62,7 +63,7 @@
             on:click={/*istanbul ignore next */ () => categoryFn(category)}
           />
           <div class="category-name">
-            {#if loadedElemArr[idx] || process.env.NODE_ENV === 'test'}
+            {#if loadedElemArr[idx] || TEST_ENV}
               <!--jest never renders this and fails-->
               <h3 data-testid="hex-category-name">{category.Name}</h3>
             {/if}

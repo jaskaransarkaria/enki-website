@@ -134,6 +134,9 @@ export default {
         'pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp'
       ),
       'process.env.JEWELLERY_CATEGORY_ID': JSON.stringify('1875996'),
+      'process.env.NODE_ENV': production
+        ? JSON.stringify('production')
+        : JSON.stringify('development'),
     }),
     // In dev mode, call `npm run start` once
     // the bundle has been generated
