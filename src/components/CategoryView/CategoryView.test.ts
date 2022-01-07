@@ -135,7 +135,7 @@ describe('GIVEN CategoryView', () => {
       cleanup();
     });
 
-    it('THEN displays any children categories', () => {
+    it('THEN displays any children categories', async () => {
       categories.set({ ...nestedCategories });
 
       render(CategoryView, {
@@ -145,7 +145,8 @@ describe('GIVEN CategoryView', () => {
       expect(screen.getByRole('heading', { name: '456' })).toHaveTextContent(
         '456'
       );
-      expect(screen.getByTestId('hex-category-name')).toHaveTextContent('Hats');
+
+      expect(screen.getByText('Hats')).toBeInTheDocument();
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       cleanup();
     });

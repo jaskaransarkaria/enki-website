@@ -30,18 +30,30 @@
 </script>
 
 <div class="opening-times">
-  <h1>OPENING TIMES</h1>
-  <h2>Monday - Sunday: 10am - 5pm</h2>
+  <img
+    src="https://enki.imgix.net/moving_header.svg?wm=webp&q=90"
+    alt="Enki"
+    loading="eager"
+  />
+  <h1>online shop</h1>
 </div>
 
 <HexGrid {data} {categoryFn} />
 
 <style>
   .opening-times {
+    position: relative;
+    top: 135px;
+    margin-bottom: 100px;
+
     display: block;
     flex-direction: column;
     grid-row: 1;
     grid-column: 2;
     text-align: center;
+  }
+
+  h1 {
+    font-family: 'Welcomehome3 Regular';
   }
 </style>

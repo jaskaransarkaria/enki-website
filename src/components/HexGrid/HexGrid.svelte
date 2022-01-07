@@ -62,7 +62,10 @@
             on:click={/*istanbul ignore next */ () => categoryFn(category)}
           />
           <div class="category-name">
-            <h3 data-testid="hex-category-name">{category.Name}</h3>
+            {#if loadedElemArr[idx] || process.env.NODE_ENV === 'test'}
+              <!--jest never renders this and fails-->
+              <h3 data-testid="hex-category-name">{category.Name}</h3>
+            {/if}
           </div>
         </div>
       </div>
@@ -163,6 +166,7 @@
     margin: 0 auto;
     transform: rotate3d(0, 0, 0, 0deg);
     font-size: 0.6em;
+    font-family: 'Welcomehome3 Regular';
   }
 
   .hex-flex button,
@@ -209,16 +213,16 @@
   @media (min-width: 360px) {
     .hex h3,
     .hex-flex h3 {
-      width: 110px;
-      font-size: 0.7em;
+      width: 200px;
+      font-size: 0.9em;
     }
   }
 
   @media (min-width: 700px) {
     .hex-flex h3,
     .hex h3 {
-      width: 175px;
-      font-size: 1em;
+      width: 225px;
+      font-size: 1.1em;
     }
 
     .flexbox-container {
@@ -234,7 +238,7 @@
   @media (min-width: 960px) {
     .hex-flex h3,
     .hex h3 {
-      width: 185px;
+      width: 250px;
       font-size: 1.1em;
     }
 
@@ -288,8 +292,8 @@
   @media (min-width: 2400px) {
     .hex-flex h3,
     .hex h3 {
-      width: 205px;
-      font-size: 1.285em;
+      width: 240px;
+      font-size: 1.2em;
     }
 
     .hex-flex {

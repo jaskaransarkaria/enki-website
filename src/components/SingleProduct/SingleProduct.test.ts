@@ -22,9 +22,6 @@ describe('Given SingleProduct', () => {
       expect(
         screen.getByRole('heading', { name: /red jacket/i })
       ).toHaveTextContent('Red jacket');
-      expect(
-        screen.getByRole('button', { name: 'Add to Basket' })
-      ).toBeInTheDocument();
     });
 
     it.skip('THEN show the detailed product (with thumbnails) this belongs in ProductImage', () => {

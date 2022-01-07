@@ -3,11 +3,16 @@
   src: url('fonts/enki-regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Caviar Dreams';
+  src: url(fonts/CaviarDreams.ttf) format('truetype');
+}
+
 body {
   margin: 0;
-  font-family: 'Welcomehome3 Regular', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Welcomehome3 Regular', 'Caviar Dreams' -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    'Helvetica Neue', sans-serif;
 }
 
 a {

@@ -38,19 +38,16 @@
       class="simple-container"
       on:click={$goto(`/shop/product/${product.Id}`)}
     >
+      <div class="position-img">
+        <ImageLoader
+          src={`https://enki.imgix.net/${product.Id}-0`}
+          alt={`${product.Name}`}
+        />
+      </div>
       <h3 class="basic-header">{`${product.Name}`}</h3>
-      <ImageLoader
-        src={`https://enki.imgix.net/${product.Id}-0`}
-        alt={`${product.Name}`}
-      />
       <h3>
-        {`£${product.SalePrice} -- ${
-          product.CurrentStock >= 0
-            ? 'sold out'
-            : product.CurrentStock + ' in stock'
-        }`}
+        {`£${product.SalePrice}`}
       </h3>
-      <AddToBasket {product} detailed={showDetailedView} />
     </button>
   {/if}
 
@@ -94,6 +91,10 @@
     box-shadow: 0 3px 65px rgb(0 0 0 / 0.2);
   }
 
+  .position-img {
+    justify-self: center;
+  }
+
   .detailed-products-footer {
     display: flex;
     height: 70px;
@@ -118,10 +119,15 @@
     font-size: 0.7em;
   }
 
-  h1,
   h2,
   h3 {
     text-align: center;
+  }
+
+  h2,
+  h3,
+  h4 {
+    font-family: 'Caviar Dreams';
   }
 
   @media (min-width: 360px) {

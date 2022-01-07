@@ -14,10 +14,7 @@ describe('GIVEN RootCategories', () => {
     it('THEN display opening times', () => {
       render(RootCategories);
 
-      expect(screen.getByText('OPENING TIMES')).toBeInTheDocument();
-      expect(
-        screen.getByText('Monday - Sunday: 10am - 5pm')
-      ).toBeInTheDocument();
+      expect(screen.getByText('online shop')).toBeInTheDocument();
     });
 
     it('THEN display the loading spinner if no categories are present', () => {

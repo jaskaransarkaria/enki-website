@@ -1,8 +1,8 @@
 <script lang="ts">
-  import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
+  import Header from '@/components/Header/Header.svelte';
 </script>
 
-<SearchProducts />
+<Header />
 <br />
 <slot />
 
