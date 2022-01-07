@@ -1,6 +1,30 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
   import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
+  import { tweened } from 'svelte/motion';
+  import { quartInOut } from 'svelte/easing';
+
+  const left = tweened(0, {
+    duration: 500,
+  });
+
+  const growSearch = tweened(0, {
+    duration: 500,
+  });
+
+  const searchLeft = tweened(0, {
+    duration: 500,
+  });
+
+  function handleClick() {
+    left.set(-1250);
+    searchLeft.set(-1250);
+    //growSearch.set(300)
+    showSearch = !showSearch;
+  }
+  const move = (x: number) => `transform: translateX(${x}px);`;
+  const grow = (width: number, x: number) =>
+    `width: ${width}px; transform: translateX(${x}px);`;
 
   let showSearch = false;
 </script>
@@ -21,10 +45,13 @@
       class="search-icon"
       src="https://enki.imgix.net/search_icon.svg?q=50"
       alt="search"
-      on:click={() => (showSearch = !showSearch)}
+      style={move($left)}
+      on:click={handleClick}
     />
     {#if showSearch}
-      <SearchProducts />
+      <div class="search-bar" style={grow($growSearch, $searchLeft)}>
+        <SearchProducts />
+      </div>
     {/if}
     <img
       class="basket-icon"
@@ -54,6 +81,19 @@
     padding-right: 20px;
   }
 
+  .slide-search {
+    animation-name: slide-search;
+    animation-duration: 1s;
+  }
+
+  @keyframes slide-search {
+    from {
+      transform: scaleX(0%);
+    }
+    to {
+      transform: scaleX(100%);
+    }
+  }
   .right-container * {
     margin-right: 10px;
     align-self: center;
