@@ -14,7 +14,9 @@ describe('GIVEN RootCategories', () => {
     it('THEN display opening times', () => {
       render(RootCategories);
 
-      expect(screen.getByText('online shop')).toBeInTheDocument();
+      expect(
+        screen.getByText('welcome to the online shop')
+      ).toBeInTheDocument();
     });
 
     it('THEN display the loading spinner if no categories are present', () => {

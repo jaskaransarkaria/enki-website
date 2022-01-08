@@ -1,14 +1,15 @@
 <script lang="typescript">
   import { goto } from '@roxi/routify';
-  export let width = 300;
+  export let width: string;
 
   let searchValue = '';
 </script>
 
 <input
   data-testid="search-bar"
+  autofocus
   type="search"
-  style={`width: ${width}px`}
+  style={width}
   bind:value={searchValue}
   on:keydown={(e) => {
     if (e.key === 'Enter') {
@@ -19,3 +20,13 @@
     }
   }}
 />
+
+<style>
+  input {
+    font-family: 'WelcomeHome3 Regular';
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+  }
+</style>

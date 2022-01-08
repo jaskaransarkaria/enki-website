@@ -2,7 +2,10 @@
   import { goto } from '@roxi/routify';
   import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
   import { tweened } from 'svelte/motion';
-  import { quartInOut } from 'svelte/easing';
+
+  const width = tweened(0, {
+    duration: 500,
+  });
 
   const left = tweened(0, {
     duration: 500,
@@ -17,14 +20,22 @@
   });
 
   function handleClick() {
-    left.set(-1250);
-    searchLeft.set(-1250);
-    //growSearch.set(300)
-    showSearch = !showSearch;
+    if (!showSearch) {
+      left.set(-300);
+      searchLeft.set(-300);
+      width.set(300);
+      showSearch = !showSearch;
+    } else {
+      left.set(0);
+      searchLeft.set(0);
+      width.set(0);
+      setTimeout(() => (showSearch = !showSearch), 500);
+    }
   }
   const move = (x: number) => `transform: translateX(${x}px);`;
   const grow = (width: number, x: number) =>
     `width: ${width}px; transform: translateX(${x}px);`;
+  const growSearchWidth = (width: number) => `width: ${width}px`;
 
   let showSearch = false;
 </script>
@@ -36,11 +47,19 @@
     alt="home"
     on:click={$goto('/')}
   />
+  <img
+    src="https://enki.imgix.net/moving_header.svg?wm=webp&q=90"
+    alt="Enki"
+    loading="eager"
+    class="enki-logo"
+    on:click={$goto('/')}
+  />
+
   <div class="right-container">
-    <button on:click={$goto('/shop')}> shop </button>
-    <button on:click={$goto('/repairs')}> repairs </button>
-    <button on:click={$goto('/classes')}> classes </button>
-    <button on:click={$goto('/about')}> about </button>
+    <button style={move($left)} on:click={$goto('/shop')}> shop </button>
+    <button style={move($left)} on:click={$goto('/repairs')}> repairs </button>
+    <button style={move($left)} on:click={$goto('/classes')}> classes </button>
+    <button style={move($left)} on:click={$goto('/about')}> about </button>
     <img
       class="search-icon"
       src="https://enki.imgix.net/search_icon.svg?q=50"
@@ -50,7 +69,7 @@
     />
     {#if showSearch}
       <div class="search-bar" style={grow($growSearch, $searchLeft)}>
-        <SearchProducts />
+        <SearchProducts width={growSearchWidth($width)} />
       </div>
     {/if}
     <img
@@ -81,19 +100,6 @@
     padding-right: 20px;
   }
 
-  .slide-search {
-    animation-name: slide-search;
-    animation-duration: 1s;
-  }
-
-  @keyframes slide-search {
-    from {
-      transform: scaleX(0%);
-    }
-    to {
-      transform: scaleX(100%);
-    }
-  }
   .right-container * {
     margin-right: 10px;
     align-self: center;
@@ -107,6 +113,14 @@
     width: 45px;
   }
 
+  .enki-logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 250px;
+    transform: translateX(-50%);
+  }
+
   button {
     all: unset;
     font-family: 'WelcomeHome3 Regular';
@@ -114,6 +128,6 @@
   }
 
   button:focus {
-    outline: orange 5px auto;
+    border-bottom: 3px solid orange;
   }
 </style>

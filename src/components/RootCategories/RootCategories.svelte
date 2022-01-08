@@ -30,12 +30,7 @@
 </script>
 
 <div class="opening-times">
-  <img
-    src="https://enki.imgix.net/moving_header.svg?wm=webp&q=90"
-    alt="Enki"
-    loading="eager"
-  />
-  <h1>online shop</h1>
+  <h1>welcome to the online shop</h1>
 </div>
 
 <HexGrid {data} {categoryFn} />
@@ -43,8 +38,8 @@
 <style>
   .opening-times {
     position: relative;
-    top: 135px;
-    margin-bottom: 100px;
+    top: 100px;
+    margin-bottom: 80px;
 
     display: block;
     flex-direction: column;

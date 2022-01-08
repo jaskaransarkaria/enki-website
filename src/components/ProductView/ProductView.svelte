@@ -23,35 +23,26 @@
 </script>
 
 {#if productArr}
-  {#if variantArr.length}
-    {#each groupedVariantProducts as variants (variants)}
-      <div
-        in:fade={{ delay: 500 }}
-        class={showDetailedView ||
-        !calcShowGrid(window.innerWidth, productArr.length)
-          ? 'detailed-products-container'
-          : 'products-container'}
-      >
+  <div
+    in:fade={{ delay: 500 }}
+    class={showDetailedView ||
+    !calcShowGrid(window.innerWidth, productArr.length)
+      ? 'detailed-products-container'
+      : 'products-container'}
+  >
+    {#if variantArr.length}
+      {#each groupedVariantProducts as variants (variants)}
         {#each variants as variant (variant)}
           <SingleProduct product={variant} />
         {/each}
-      </div>
-    {/each}
-  {:else}
-    <div
-      in:fade={{ delay: 500 }}
-      class={showDetailedView ||
-      !calcShowGrid(window.innerWidth, productArr.length)
-        ? 'detailed-products-container'
-        : 'products-container'}
-    >
-      {#if nonVariantArr.length}
-        {#each nonVariantArr as product}
-          <SingleProduct {product} {showDetailedView} />
-        {/each}
-      {/if}
-    </div>
-  {/if}
+      {/each}
+    {/if}
+    {#if nonVariantArr.length}
+      {#each nonVariantArr as product}
+        <SingleProduct {product} {showDetailedView} />
+      {/each}
+    {/if}
+  </div>
 {/if}
 
 <style>
