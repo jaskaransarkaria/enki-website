@@ -3,6 +3,7 @@
   import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
   import Hamburger from '@/components/Hamburger/Hamburger.svelte';
   import { tweened } from 'svelte/motion';
+  import { fade } from 'svelte/transition';
 
   const lessThan960 = 150;
   const moreThan960 = 300;
@@ -55,18 +56,21 @@
   {:else}
     <img
       class="home-icon"
-      src="https://enki.imgix.net/home_icon.svg?q=50"
+      src="https://enki.imgix.net/home_icon.svg?q=50&auto=compress&auto=format"
       alt="home"
       on:click={$goto('/')}
     />
   {/if}
-  <img
-    src="https://enki.imgix.net/moving_header.svg?wm=webp&q=90"
-    alt="Enki"
-    loading="eager"
-    class="enki-logo"
-    on:click={$goto('/')}
-  />
+  {#if !showSearch}
+    <img
+      transition:fade|local
+      src="https://enki.imgix.net/moving_header.svg?q=50&auto=compress&auto=format"
+      alt="Enki"
+      loading="eager"
+      class="enki-logo"
+      on:click={$goto('/')}
+    />
+  {/if}
   <div class="right-container">
     {#if outerWidth > 960}
       <button style={move($left)} on:click={$goto('/shop')}> shop </button>
@@ -80,7 +84,7 @@
     {/if}
     <img
       class="search-icon"
-      src="https://enki.imgix.net/search_icon.svg?q=50"
+      src="https://enki.imgix.net/search_icon.svg?q=50&auto=compress&auto=format"
       alt="search"
       style={move($left)}
       on:click={handleClick}
@@ -92,7 +96,7 @@
     {/if}
     <img
       class="basket-icon"
-      src="https://enki.imgix.net/basket_icon.svg?q=50"
+      src="https://enki.imgix.net/basket_icon.svg?q=50&auto=compress&auto=format"
       alt="basket"
     />
   </div>
@@ -116,11 +120,11 @@
     align-self: flex-end;
     position: absolute;
     left: 100%;
+    height: 100%;
     transform: translateX(-100%);
   }
 
   .right-container * {
-    margin-right: 10px;
     align-self: flex-end;
   }
 
@@ -128,15 +132,21 @@
     cursor: pointer;
   }
 
-  img {
-    width: 45px;
+  .basket-icon {
+    margin-right: 10px;
+  }
+
+  .basket-icon,
+  .search-icon {
+    width: 25px;
+    align-self: center;
   }
 
   .enki-logo {
     position: absolute;
-    top: 0;
+    top: 22.5%;
     left: 50%;
-    width: 250px;
+    width: 140px;
     transform: translateX(-50%);
   }
 
@@ -150,45 +160,72 @@
     border-bottom: 3px solid orange;
   }
 
-  @media (min-width: 960px) {
-    .header {
-      display: flex;
-      justify-content: space-between;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 55px;
-      z-index: 99;
-      background-color: white;
-      box-shadow: 0 0 20px 0 #a3a8a5;
+  @media (min-width: 360px) {
+    .basket-icon,
+    .search-icon {
+      width: 30px;
     }
 
+    .enki-logo {
+      top: 10%;
+      width: 200px;
+    }
+  }
+
+  @media (min-width: 700px) {
+    .basket-icon,
+    .search-icon {
+      width: 35px;
+    }
+
+    .enki-logo {
+      top: 0;
+      width: 250px;
+    }
+  }
+
+  @media (min-width: 960px) {
     .right-container {
       display: flex;
       justify-content: flex-end;
-      width: 50%;
-      padding-right: 20px;
+      width: 35%;
     }
 
     .right-container * {
       margin-right: 10px;
-      align-self: flex-end;
+      align-self: center;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .header {
+      height: 65px;
     }
 
-    img:hover {
-      cursor: pointer;
+    .basket-icon,
+    .search-icon {
+      width: 40px;
     }
 
-    img {
+    .enki-logo {
+      top: 0;
+      width: 300px;
+    }
+  }
+
+  @media (min-width: 1960px) {
+    .header {
+      height: 75px;
+    }
+
+    .basket-icon,
+    .search-icon {
       width: 45px;
     }
 
     .enki-logo {
-      position: absolute;
       top: 0;
-      left: 50%;
-      width: 250px;
-      transform: translateX(-50%);
+      width: 350px;
     }
   }
 </style>
