@@ -89,6 +89,7 @@
 
 <style>
   button {
+    margin-top: 17.5%;
     display: inline-flex;
     align-items: center;
     background-color: Transparent;
@@ -101,5 +102,35 @@
 
   img {
     width: 30px;
+  }
+
+  @media (min-width: 360px) {
+    button {
+      margin-top: 15%;
+    }
+  }
+
+  @media (min-width: 700px) {
+    button {
+      margin-top: 7.5%;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    button {
+      margin-top: 5%;
+    }
+  }
+
+  @media (min-width: 1960px) {
+    button {
+      margin-top: 4%;
+    }
+  }
+
+  @media (min-width: 2400px) {
+    button {
+      margin-top: 2.5%;
+    }
   }
 </style>
