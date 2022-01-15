@@ -25,7 +25,7 @@
   };
 
   onMount(async () => {
-    if (!$readonlyAllCategories.length) {
+    if (!$readonlyAllCategories?.length) {
       // pull the category data from api
       const result = await refreshCategories(
         `${process.env.SERVER_URL}/categories`
@@ -50,7 +50,7 @@
           ...results,
           cat,
         ]);
-      } else if (cat.Children.length) {
+      } else if (cat?.Children?.length) {
         results = recursiveCatSearch(id, cat.Children, results);
       }
     }

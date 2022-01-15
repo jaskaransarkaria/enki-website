@@ -39,7 +39,7 @@ describe('GIVEN HexGrid', () => {
       );
       expect(screen.getByTestId('hex-image')).toHaveAttribute(
         'srcset',
-        'https://enki.imgix.net/123'
+        'https://enki.imgix.net/123?auto=format'
       );
     });
 

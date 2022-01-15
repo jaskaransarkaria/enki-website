@@ -31,7 +31,7 @@
         <div class={loadedElemArr[idx] ? 'hex-link' : 'hex-link hex-loading'}>
           <picture in:fade={{ duration: 800 }}>
             <source
-              srcset={`https://enki.imgix.net/${category.Id}`}
+              srcset={`https://enki.imgix.net/${category.Id}?auto=format`}
               type="image/jpg"
               bind:this={sourceElemArr[idx]}
               data-testid="hex-image"

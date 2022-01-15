@@ -1,9 +1,10 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
-  import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
-  import Hamburger from '@/components/Hamburger/Hamburger.svelte';
   import { tweened } from 'svelte/motion';
   import { fade } from 'svelte/transition';
+  import Basket from '@/components/Basket/Basket.svelte';
+  import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
+  import Hamburger from '@/components/Hamburger/Hamburger.svelte';
 
   const lessThan960 = 150;
   const moreThan960 = 300;
@@ -42,21 +43,23 @@
     `width: ${width}px; transform: translateX(${x}px);`;
   const growSearchWidth = (width: number) => `width: ${width}px`;
 
+  const showBasketItems = () => (showBasket = !showBasket);
+
   let showSearch = false;
+  let showBasket = false;
 
   $: outerWidth = 0;
   $: offset = outerWidth < 960 ? lessThan960 : moreThan960;
 </script>
 
 <svelte:window bind:outerWidth />
-
 <div class="header">
   {#if outerWidth < 960}
     <Hamburger />
   {:else}
     <img
       class="home-icon"
-      src="https://enki.imgix.net/home_icon.svg?q=50&auto=compress&auto=format"
+      src="https://enki.imgix.net/home_icon.svg"
       alt="home"
       on:click={$goto('/')}
     />
@@ -64,7 +67,7 @@
   {#if !showSearch}
     <img
       transition:fade|local
-      src="https://enki.imgix.net/moving_header.svg?q=50&auto=compress&auto=format"
+      src="https://enki.imgix.net/moving_header.svg"
       alt="Enki"
       loading="eager"
       class="enki-logo"
@@ -84,7 +87,7 @@
     {/if}
     <img
       class="search-icon"
-      src="https://enki.imgix.net/search_icon.svg?q=50&auto=compress&auto=format"
+      src="https://enki.imgix.net/search_icon.svg"
       alt="search"
       style={move($left)}
       on:click={handleClick}
@@ -96,11 +99,15 @@
     {/if}
     <img
       class="basket-icon"
-      src="https://enki.imgix.net/basket_icon.svg?q=50&auto=compress&auto=format"
+      src="https://enki.imgix.net/basket_icon.svg"
       alt="basket"
+      on:click={showBasketItems}
     />
   </div>
 </div>
+{#if showBasket && outerWidth < 960}
+  <Basket />
+{/if}
 
 <style>
   .header {

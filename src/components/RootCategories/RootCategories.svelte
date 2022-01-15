@@ -38,7 +38,7 @@
 <style>
   .opening-times {
     position: relative;
-    top: 100px;
+    top: 65px;
     margin-bottom: 80px;
 
     display: block;
