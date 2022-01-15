@@ -2,6 +2,11 @@
   import { goto } from '@roxi/routify';
 
   let toggleOpen = false;
+
+  const toggleAndGo = (dest: string) => {
+    toggleOpen = !toggleOpen;
+    $goto(dest);
+  };
 </script>
 
 <div
@@ -17,10 +22,10 @@
 
 {#if toggleOpen}
   <div class="menu">
-    <button on:click={$goto('/shop')}> shop </button>
-    <button on:click={$goto('/repairs')}> repairs </button>
-    <button on:click={$goto('/classes')}> classes </button>
-    <button on:click={$goto('/about')}> about </button>
+    <button on:click={() => toggleAndGo('/shop')}> shop </button>
+    <button on:click={() => toggleAndGo('/repairs')}> repairs </button>
+    <button on:click={() => toggleAndGo('/classes')}> classes </button>
+    <button on:click={() => toggleAndGo('/about')}> about </button>
   </div>
 {/if}
 
@@ -50,6 +55,7 @@
   button:focus {
     border-bottom: 3px solid orange;
   }
+
   #nav-icon3 {
     position: absolute;
     width: 40px;

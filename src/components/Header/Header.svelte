@@ -2,6 +2,7 @@
   import { goto } from '@roxi/routify';
   import { tweened } from 'svelte/motion';
   import { fade } from 'svelte/transition';
+  import { basket as basketStore } from '@/stores/basket';
   import Basket from '@/components/Basket/Basket.svelte';
   import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
   import Hamburger from '@/components/Hamburger/Hamburger.svelte';
@@ -50,6 +51,7 @@
 
   $: outerWidth = 0;
   $: offset = outerWidth < 960 ? lessThan960 : moreThan960;
+  $: isMobile = outerWidth < 960;
 </script>
 
 <svelte:window bind:outerWidth />
@@ -97,12 +99,49 @@
         <SearchProducts width={growSearchWidth($width)} />
       </div>
     {/if}
-    <img
-      class="basket-icon"
-      src="https://enki.imgix.net/basket_icon.svg"
-      alt="basket"
-      on:click={showBasketItems}
-    />
+    <div
+      class={isMobile
+        ? 'mobile-basket-icon-container'
+        : 'basket-icon-container'}
+    >
+      <img
+        class="basket-icon"
+        src="https://enki.imgix.net/basket_icon.svg"
+        alt="basket"
+        on:click={() => (isMobile ? showBasketItems() : $goto('/shop/basket'))}
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve"
+        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+        viewBox="0 0 100 100"
+        width={isMobile ? '15' : '25'}
+        height={isMobile ? '15' : '25'}
+        class="num-basket-items"
+        on:click={() => (isMobile ? showBasketItems() : $goto('/shop/basket'))}
+      >
+        <g id="UrTavla">
+          <circle
+            style="fill:#fa6603;stroke:#fa6603;stroke-width:1.6871;stroke-miterlimit:10;"
+            cx="50"
+            cy="50"
+            r="50"
+          />
+          <text
+            x="47.5%"
+            y="40%"
+            text-anchor="middle"
+            stroke="white"
+            fill="white"
+            stroke-width="2.5px"
+            dy=".45em"
+            font-size="5em"
+            >{$basketStore.reduce((acc, curr) => acc + curr.quantity, 0)}</text
+          >
+        </g>
+      </svg>
+    </div>
   </div>
 </div>
 {#if showBasket && outerWidth < 960}
@@ -133,6 +172,25 @@
 
   .right-container * {
     align-self: flex-end;
+  }
+
+  .mobile-basket-icon-container {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .num-basket-items {
+    position: absolute;
+    cursor: pointer;
+    transform: translate(-10%, 10%);
+  }
+
+  @media (min-width: 960px) {
+    .num-basket-items {
+      transform: translate(-120%, 100%);
+    }
   }
 
   img:hover {

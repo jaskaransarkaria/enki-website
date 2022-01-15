@@ -138,7 +138,6 @@
     justify-content: space-between;
     align-items: center;
     height: 100px;
-    margin: 10%;
   }
 
   .mobile-quantity-and-price {
