@@ -39,13 +39,13 @@
 
   @media (min-width: 360px) {
     .img-container {
-      height: 190px;
+      height: 75px;
     }
   }
 
   @media (min-width: 700px) {
     .img-container {
-      height: 350px;
+      height: 115px;
     }
   }
 

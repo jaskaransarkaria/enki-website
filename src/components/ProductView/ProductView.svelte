@@ -73,20 +73,26 @@
 
   @media (min-width: 360px) {
     .products-container {
-      grid-auto-rows: 22em;
+      grid-auto-rows: 12em;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 550px) {
+    .products-container {
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 
   @media (min-width: 700px) {
     .products-container {
-      grid-auto-rows: 38em;
-      grid-template-columns: 1fr;
+      grid-auto-rows: 20em;
+      grid-template-columns: 1fr 1fr;
     }
   }
   @media (min-width: 960px) {
     .products-container {
       grid-auto-rows: 32em;
-      grid-template-columns: 1fr 1fr;
     }
   }
   @media (min-width: 1280px) {

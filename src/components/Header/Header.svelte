@@ -39,6 +39,7 @@
       setTimeout(() => (showSearch = !showSearch), 500);
     }
   }
+
   const move = (x: number) => `transform: translateX(${x}px);`;
   const grow = (width: number, x: number) =>
     `width: ${width}px; transform: translateX(${x}px);`;
@@ -48,10 +49,15 @@
 
   let showSearch = false;
   let showBasket = false;
+  let animateBasketNumber = false;
 
   $: outerWidth = 0;
   $: offset = outerWidth < 960 ? lessThan960 : moreThan960;
   $: isMobile = outerWidth < 960;
+  $: basketNumber = $basketStore.reduce((acc, curr) => acc + curr.quantity, 0);
+  $: if (basketNumber) {
+    animateBasketNumber = !animateBasketNumber;
+  }
 </script>
 
 <svelte:window bind:outerWidth />
@@ -121,7 +127,7 @@
         class="num-basket-items"
         on:click={() => (isMobile ? showBasketItems() : $goto('/shop/basket'))}
       >
-        <g id="UrTavla">
+        <g>
           <circle
             style="fill:#fa6603;stroke:#fa6603;stroke-width:1.6871;stroke-miterlimit:10;"
             cx="50"
@@ -129,6 +135,11 @@
             r="50"
           />
           <text
+            class={`${
+              animateBasketNumber
+                ? 'animate-basket-number-odd'
+                : 'animate-basket-number-even'
+            }`}
             x="47.5%"
             y="40%"
             text-anchor="middle"
@@ -136,8 +147,7 @@
             fill="white"
             stroke-width="2.5px"
             dy=".45em"
-            font-size="5em"
-            >{$basketStore.reduce((acc, curr) => acc + curr.quantity, 0)}</text
+            font-size="5em">{basketNumber}</text
           >
         </g>
       </svg>
@@ -187,6 +197,25 @@
     transform: translate(-10%, 10%);
   }
 
+  .animate-basket-number-even {
+    animation: blinker 0.75s linear 1;
+  }
+
+  .animate-basket-number-odd {
+    animation: blinker-odd 0.75s linear 1;
+  }
+
+  @keyframes blinker-odd {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
   @media (min-width: 960px) {
     .num-basket-items {
       transform: translate(-120%, 100%);

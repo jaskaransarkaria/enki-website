@@ -21,6 +21,7 @@
       />
     </div>
     <h3 class="basic-header">{`${variantCategory.Name}`}</h3>
+    <h3>prices vary</h3>
   </button>
 {/if}
 
@@ -145,21 +146,25 @@
   }
 
   @media (min-width: 360px) {
-    .simple-container,
     .details-container {
       height: 300px;
       width: 300px;
     }
 
+    .simple-container {
+      height: 150px;
+      width: 150px;
+    }
+
     h3 {
-      font-size: 0.8;
+      font-size: 0.6em;
     }
   }
 
   @media (min-width: 700px) {
     .simple-container {
-      height: 550px;
-      width: 550px;
+      height: 300px;
+      width: 300px;
     }
 
     .details-container {
@@ -190,7 +195,7 @@
     }
 
     h3 {
-      font-size: 1.4em;
+      font-size: 1.2em;
     }
   }
 
