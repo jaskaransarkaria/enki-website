@@ -36,7 +36,7 @@ describe('GIVEN HexGrid', () => {
       expect(screen.getByTestId('hex-image')).toBeInTheDocument();
       expect(screen.getByTestId('hex-image-fallback')).toHaveAttribute(
         'src',
-        '/faith.jpg'
+        'https://enki.imgix.net/faith.jpg?auto=format'
       );
       expect(screen.getByTestId('hex-image')).toHaveAttribute(
         'srcset',

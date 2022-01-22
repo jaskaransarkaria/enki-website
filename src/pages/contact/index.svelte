@@ -6,7 +6,10 @@
 <a href={$url('/what-we-offer')}>Home page</a>
 
 <div class="contact-us-container">
-  <img src="/faith.jpg" alt="shop creator and jeweller" />
+  <img
+    src={`https://enki.imgix.net/faith.jpg?auto=format`}
+    alt="shop creator and jeweller"
+  />
   <div class="contact-description">
     <p>
       Enki was started by Faith, a Birmingham trained jeweller who as well as

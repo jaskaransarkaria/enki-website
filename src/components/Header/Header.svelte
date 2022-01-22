@@ -67,7 +67,7 @@
   {:else}
     <img
       class="home-icon"
-      src="https://enki.imgix.net/home_icon.svg"
+      src="https://enki.imgix.net/home-icon.png?auto=format"
       alt="home"
       on:click={$goto('/')}
     />
@@ -75,7 +75,7 @@
   {#if !showSearch}
     <img
       transition:fade|local
-      src="https://enki.imgix.net/moving_header.svg"
+      src="https://enki.imgix.net/moving-header.png?auto=format"
       alt="Enki"
       loading="eager"
       class="enki-logo"
@@ -95,7 +95,7 @@
     {/if}
     <img
       class="search-icon"
-      src="https://enki.imgix.net/search_icon.svg"
+      src="https://enki.imgix.net/search-icon.png?auto=format"
       alt="search"
       style={move($left)}
       on:click={handleClick}
@@ -112,7 +112,7 @@
     >
       <img
         class="basket-icon"
-        src="https://enki.imgix.net/basket_icon.svg"
+        src="https://enki.imgix.net/basket-icon.png?auto=format"
         alt="basket"
         on:click={() => (isMobile ? showBasketItems() : $goto('/shop/basket'))}
       />

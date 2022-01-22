@@ -21,7 +21,7 @@
       />
     </div>
     <h3 class="basic-header">{`${variantCategory.Name}`}</h3>
-    <h3>prices vary</h3>
+    <h3>Individually priced</h3>
   </button>
 {/if}
 

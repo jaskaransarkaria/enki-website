@@ -39,7 +39,7 @@
               on:load={() => (loadedElemArr[idx] = true)}
             />
             <img
-              src="/faith.jpg"
+              src={`https://enki.imgix.net/faith.jpg?auto=format`}
               alt="placeholder"
               data-testid="hex-image-fallback"
               bind:this={imgElemArr[idx]}
@@ -50,7 +50,7 @@
           </picture>
           {#if loadedElemArr[idx]}
             <img
-              in:fade|local={{ duration: 800 }}
+              in:fade|local={{ delay: 200, duration: 800 }}
               src={`https://enki.imgix.net/hex_${Math.floor(
                 Math.random() * (6 - 1 + 1) + 1
               )}.svg`}
