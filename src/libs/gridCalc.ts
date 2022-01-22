@@ -23,4 +23,4 @@ const getGridCols = (width: number) => {
 };
 
 export const calcShowGrid = (width: number, dataLength: number): boolean =>
-  getGridCols(width) - dataLength * 2 <= 2 ? true : false;
+  getGridCols(width) - dataLength * 2 < 2 ? true : false;

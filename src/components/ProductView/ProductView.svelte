@@ -30,7 +30,12 @@
   <div
     in:fade={{ delay: 500 }}
     class={showDetailedView ||
-    !calcShowGrid(window.innerWidth, productArr.length)
+    !calcShowGrid(
+      window.innerWidth,
+      variantCategories.length
+        ? variantCategories.length + nonVariantArr.length
+        : productArr.length
+    )
       ? 'detailed-products-container'
       : 'products-container'}
   >
