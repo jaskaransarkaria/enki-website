@@ -33,7 +33,11 @@
     !calcShowGrid(
       window.innerWidth,
       variantCategories.length
-        ? variantCategories.length + nonVariantArr.length
+        ? variantCategories.length +
+            nonVariantArr.length +
+            variantArr.filter(
+              (vars) => !variantCategoryIds.includes(vars.CategoryId)
+            ).length
         : productArr.length
     )
       ? 'detailed-products-container'

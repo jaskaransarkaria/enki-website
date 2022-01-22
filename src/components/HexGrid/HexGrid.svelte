@@ -86,6 +86,7 @@
     list-style-type: none;
     padding: 4.5%;
     padding-bottom: 15%;
+    padding-top: 2%;
   }
 
   .flexbox-container {

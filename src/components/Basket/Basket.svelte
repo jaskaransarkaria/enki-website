@@ -55,12 +55,15 @@
       </div>
     {/each}
     <div class={isMobile ? 'mobile-total' : 'total'}>
-      <h2>Total (excluding delivery):</h2>
+      <h2>Total (exc. delivery):</h2>
       <div class="checkout">
         <h2>£{total}</h2>
         <Checkout />
       </div>
     </div>
+    {#if isMobile}
+      <div class="spacer" />
+    {/if}
   {:else}
     <h1>You have nothing in your basket, continue shopping</h1>
   {/if}
@@ -79,6 +82,14 @@
     border-radius: 3px;
     box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1);
     z-index: 98;
+  }
+
+  .spacer {
+    position: relative;
+    bottom: 100;
+    height: 100px;
+    width: 100vw;
+    border-top: 3px double #8c8b8b;
   }
 
   .container {
@@ -172,10 +183,12 @@
 
   .mobile-total {
     border-top: 3px double #8c8b8b;
+    border-bottom: 3px double #8c8b8b;
     margin: 1.5%;
     display: flex;
     margin-top: auto;
     margin-bottom: 55px;
+    justify-content: space-between;
   }
 
   .mobile-product-img {

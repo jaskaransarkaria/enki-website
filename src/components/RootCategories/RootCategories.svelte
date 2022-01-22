@@ -38,9 +38,6 @@
 <style>
   .opening-times {
     position: relative;
-    top: 65px;
-    margin-bottom: 80px;
-
     display: block;
     flex-direction: column;
     grid-row: 1;
