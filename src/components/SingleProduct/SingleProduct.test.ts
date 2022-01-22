@@ -90,5 +90,21 @@ describe('Given SingleProduct', () => {
         screen.getByRole('button', { name: 'Add to Basket' })
       ).toBeInTheDocument();
     });
+
+    it('THEN show the variant category', () => {
+      render(SingleProduct, {
+        product: null,
+        variantCategory: {
+          Id: 123,
+          Name: 'Variant',
+          NominalCode: '',
+          Children: [],
+        },
+      });
+
+      expect(
+        screen.getByRole('heading', { level: 3, name: 'Variant' })
+      ).toHaveTextContent('Variant');
+    });
   });
 });
