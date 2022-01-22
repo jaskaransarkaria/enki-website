@@ -160,5 +160,27 @@ describe('GIVEN CategoryView', () => {
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       cleanup();
     });
+
+    it("AND it is a variant category THEN don't show the category", async () => {
+      categories.set({
+        Id: 890,
+        Name: 'Variant',
+        ParentId: null,
+        Children: [],
+        NominalCode: '',
+      });
+
+      render(CategoryView, {
+        categoryFn: (cat: Category) => categories.set(cat),
+        categoryId: 890,
+      });
+      expect(
+        screen.queryByRole('heading', { name: '890', level: 3 })
+      ).not.toBeInTheDocument();
+
+      expect(screen.queryByText('Variant')).not.toBeInTheDocument();
+      expect(refreshCategory).toHaveBeenCalledTimes(0);
+      cleanup();
+    });
   });
 });

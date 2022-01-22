@@ -2,7 +2,6 @@
   import { groupBy } from 'lodash-es';
   import { fade } from 'svelte/transition';
   import { calcShowGrid } from '@/libs/gridCalc';
-  import VariantCategory from '../VariantCategory/VariantCategory.svelte';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import type { Category } from '@/types/category';
   import type { Product } from '@/types/product';
