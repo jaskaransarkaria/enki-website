@@ -45,29 +45,6 @@ describe('GIVEN ProductsInCategory', () => {
         ).toBeInTheDocument();
         cleanup();
       });
-
-      it("THEN display the products which are passed in as a prop AND don't call the api", async () => {
-        render(ProductsInCategory, {
-          categoryId: 2,
-          productArr: [
-            {
-              Name: 'Silver ring',
-              Id: 456,
-              CategoryId: 2,
-              Description: '',
-              SalePrice: '2000',
-              ProductImages: [],
-              ProductTags: [],
-              VariantGroupId: 0,
-              CurrentStock: 0,
-            },
-          ],
-        });
-        expect(refreshProducts).toHaveBeenCalledTimes(0);
-        expect(
-          await screen.findByRole('heading', { level: 3, name: /silver ring/i })
-        ).toBeInTheDocument();
-      });
     });
   });
 });

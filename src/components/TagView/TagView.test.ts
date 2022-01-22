@@ -15,6 +15,7 @@ const mockData: Category[] = [
     Name: 'Elephant',
     ParentId: null,
     Children: [],
+    NominalCode: '',
   },
 ];
 

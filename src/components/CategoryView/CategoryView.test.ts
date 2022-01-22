@@ -13,21 +13,25 @@ const nestedCategories = {
   Id: -1,
   ParentId: null,
   Name: '',
+  NominalCode: 'TRUE',
   Children: [
     {
       Id: 123,
       ParentId: null,
       Name: 'Clothes',
+      NominalCode: 'TRUE',
       Children: [
         {
           Id: 456,
           ParentId: null,
           Name: 'Shoes',
+          NominalCode: 'TRUE',
           Children: [
             {
               Id: 789,
               ParentId: null,
               Name: 'Hats',
+              NominalCode: 'TRUE',
               Children: [],
             },
           ],
@@ -59,6 +63,7 @@ describe('GIVEN CategoryView', () => {
         ParentId: null,
         Name: '',
         Children: [],
+        NominalCode: '',
       });
     });
   });
@@ -70,6 +75,7 @@ describe('GIVEN CategoryView', () => {
         ParentId: null,
         Name: 'Clothes',
         Children: [],
+        NominalCode: 'TRUE',
       });
 
       render(CategoryView, {
@@ -82,6 +88,7 @@ describe('GIVEN CategoryView', () => {
         ParentId: null,
         Name: 'Clothes',
         Children: [],
+        NominalCode: 'TRUE',
       });
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       expect(screen.getByRole('heading')).toHaveTextContent('123');
@@ -95,6 +102,7 @@ describe('GIVEN CategoryView', () => {
           ParentId: null,
           Name: 'Shoes',
           Children: [],
+          NominalCode: 'TRUE',
         },
       ]);
 
@@ -108,6 +116,7 @@ describe('GIVEN CategoryView', () => {
         ParentId: null,
         Name: '',
         Children: [],
+        NominalCode: '',
       });
       expect(refreshCategory).toHaveBeenCalledTimes(1);
       await tick(); // using tick helps to flush any state changes in the component
@@ -118,6 +127,7 @@ describe('GIVEN CategoryView', () => {
         Name: 'Shoes',
         ParentId: null,
         Children: [],
+        NominalCode: 'TRUE',
       });
       expect(screen.getByRole('heading')).toHaveTextContent('456');
       cleanup();

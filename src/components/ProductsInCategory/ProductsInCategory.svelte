@@ -3,11 +3,13 @@
   import { refreshProducts } from '@/libs/requests';
 
   import type { Product } from '@/types/product';
+  import type { Category } from '@/types/category';
 
   export let categoryId: number;
-  export let productArr: readonly Product[] = [];
+  export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
 
+  let productArr: readonly Product[] = [];
   const productObj: { [key: string]: { isEmpty: boolean } } = {};
 
   const refreshProductsArr = async (
@@ -46,6 +48,6 @@
   $: refreshProductView(productArr, categoryId);
 </script>
 
-{#if categoryId && productArr.length && !productObj?.[categoryId]?.isEmpty}
-  <ProductView {productArr} {showDetailedView} />
+{#if categoryId && ((productArr.length && !productObj?.[categoryId]?.isEmpty) || variantCategories.length)}
+  <ProductView {productArr} {showDetailedView} {variantCategories} />
 {/if}

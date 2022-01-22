@@ -22,6 +22,7 @@
     Name: 'Shop',
     ParentId: 0,
     Children: [],
+    NominalCode: '',
   };
 
   onMount(async () => {

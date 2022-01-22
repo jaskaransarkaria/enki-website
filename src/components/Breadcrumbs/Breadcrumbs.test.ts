@@ -32,12 +32,14 @@ describe('GIVEN Breadcrumbs', () => {
           Id: 123,
           ParentId: null,
           Name: 'Clothes',
+          NominalCode: '',
           Children: [
             {
               Id: 456,
               ParentId: 123,
               Name: 'Adult Clothes',
               Chlidren: [],
+              NominalCode: '',
             },
           ],
         },
@@ -65,11 +67,13 @@ describe('GIVEN Breadcrumbs', () => {
           Id: 123,
           ParentId: null,
           Name: 'Clothes',
+          NominalCode: '',
           Children: [
             {
               Id: 456,
               ParentId: 123,
               Name: 'Adult Clothes',
+              NominalCode: '',
               Children: [],
             },
           ],

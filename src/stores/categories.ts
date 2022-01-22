@@ -6,6 +6,7 @@ const initialValue = {
   ParentId: null,
   Name: '',
   Children: [],
+  NominalCode: '',
 };
 
 export const categories = writable<Category>(initialValue);

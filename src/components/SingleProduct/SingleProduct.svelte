@@ -5,10 +5,24 @@
   import ImageLoader from '@/components/Image/ImageLoader.svelte';
 
   import type { Product } from '@/types/product';
+  import type { Category } from '@/types/category';
 
-  export let product: Product;
+  export let variantCategory: Category | null = null;
+  export let product: Product | null;
   export let showDetailedView = false;
 </script>
+
+{#if variantCategory}
+  <button class="simple-container" on:click={$goto(`./${variantCategory.Id}`)}>
+    <div class="position-img">
+      <ImageLoader
+        src={`https://enki.imgix.net/${variantCategory.Id}?auto=format`}
+        alt={`${variantCategory.Name}`}
+      />
+    </div>
+    <h3 class="basic-header">{`${variantCategory.Name}`}</h3>
+  </button>
+{/if}
 
 {#if product}
   {#if showDetailedView}

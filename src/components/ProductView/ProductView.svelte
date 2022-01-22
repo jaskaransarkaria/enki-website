@@ -2,10 +2,13 @@
   import { groupBy } from 'lodash-es';
   import { fade } from 'svelte/transition';
   import { calcShowGrid } from '@/libs/gridCalc';
+  import VariantCategory from '../VariantCategory/VariantCategory.svelte';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
+  import type { Category } from '@/types/category';
   import type { Product } from '@/types/product';
 
   export let productArr: readonly Product[] = [];
+  export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
 
   let variantArr: readonly Product[] = [];
@@ -15,6 +18,8 @@
   $: groupedVariantProducts = Object.values(
     groupBy(variantArr, 'VariantGroupId')
   );
+
+  $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
 
   $: if (productArr.length) {
     variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
@@ -30,10 +35,17 @@
       ? 'detailed-products-container'
       : 'products-container'}
   >
+    {#if variantCategories.length}
+      {#each variantCategories as variantCategory (variantCategory.Id)}
+        <SingleProduct {variantCategory} product={null} />
+      {/each}
+    {/if}
     {#if variantArr.length}
       {#each groupedVariantProducts as variants (variants)}
         {#each variants as variant (variant)}
-          <SingleProduct product={variant} />
+          {#if !variantCategoryIds.includes(variant.CategoryId)}
+            <SingleProduct product={variant} />
+          {/if}
         {/each}
       {/each}
     {/if}

@@ -55,6 +55,9 @@
     }
   };
 
+  const removeVariantCategories = (categories: Category[]) =>
+    categories.filter((cat) => cat.NominalCode === 'TRUE');
+
   onMount(async () => {
     categoryToShow = isValidCategoryStore
       ? showCategory(categoryId, Object.assign({}, $categories))
@@ -70,21 +73,27 @@
   });
 
   $: categoryToShow = showCategory(categoryId, Object.assign({}, $categories));
+  $: variantCategories = categoryToShow?.Children.filter(
+    (cat) => cat.NominalCode === null
+  );
 </script>
 
 {#if categoryToShow}
   <Breadcrumbs selectedCategoryId={categoryToShow.Id} />
-  {#if categoryToShow.Children.length}
+  {#if removeVariantCategories(categoryToShow.Children).length}
     {#if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
       <TagView
-        data={categoryToShow.Children}
+        data={removeVariantCategories(categoryToShow.Children)}
         {categoryFn}
         categoryId={categoryToShow.Id}
       />
     {:else}
-      <HexGrid data={categoryToShow.Children} {categoryFn} />
+      <HexGrid
+        data={removeVariantCategories(categoryToShow.Children)}
+        {categoryFn}
+      />
     {/if}
   {/if}
-  <ProductsInCategory bind:categoryId />
+  <ProductsInCategory bind:categoryId bind:variantCategories />
 {/if}
 <h1>{categoryToShow?.Id || 'no "categoryToShow" from CategoryView'}</h1>
