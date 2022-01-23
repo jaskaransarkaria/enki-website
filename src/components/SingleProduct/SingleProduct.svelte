@@ -94,8 +94,8 @@
   }
 
   .details-container {
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     justify-content: auto;
     justify-self: auto;
     text-align: center;
@@ -113,14 +113,21 @@
 
   .detailed-products-footer {
     display: flex;
-    flex-direction: column;
     height: 70px;
     align-items: center;
     justify-content: space-between;
+    width: 70%;
   }
 
   .product-details {
     display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .product-details > * {
+    padding: 10px;
+    margin: 0;
   }
 
   h2 {
@@ -214,6 +221,7 @@
 
     .detailed-products-footer {
       height: 250px;
+      flex-direction: column;
     }
 
     h4 {
