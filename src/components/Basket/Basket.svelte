@@ -92,7 +92,6 @@
     bottom: 100;
     height: 100px;
     width: 100vw;
-    border-top: 3px double #8c8b8b;
   }
 
   .container {
