@@ -84,7 +84,7 @@ describe('Given SingleProduct', () => {
       ).toHaveTextContent('greeny');
       expect(
         screen.getByRole('heading', { level: 4, name: /3000/i })
-      ).toHaveTextContent('3000 -- 3 in stock');
+      ).toHaveTextContent('£3000');
       expect(screen.queryAllByRole('img', { name: /789/i })).toHaveLength(0);
       expect(
         screen.getByRole('button', { name: 'Add to Basket' })

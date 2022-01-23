@@ -37,9 +37,10 @@
       {/if}
       <div class="detailed-products-footer">
         <div class="product-details">
+          <h4>{`£${product.SalePrice}`}</h4>
           <h4>
-            {`£${product.SalePrice} -- ${
-              product.CurrentStock === 0
+            {`${
+              product.CurrentStock <= 0
                 ? 'sold out'
                 : product.CurrentStock + ' in stock'
             }`}
@@ -112,6 +113,7 @@
 
   .detailed-products-footer {
     display: flex;
+    flex-direction: column;
     height: 70px;
     align-items: center;
     justify-content: space-between;
