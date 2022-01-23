@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { afterUpdate } from 'svelte';
   import { goto } from '@roxi/routify';
   import { tweened } from 'svelte/motion';
   import { fade } from 'svelte/transition';
@@ -25,6 +26,10 @@
   const searchLeft = tweened(0, {
     duration: 500,
   });
+
+  afterUpdate(
+    () => (isBasketPage = window.location.pathname === '/shop/basket')
+  );
 
   function handleClick() {
     if (!showSearch) {
@@ -58,6 +63,8 @@
   $: if (basketNumber) {
     animateBasketNumber = !animateBasketNumber;
   }
+
+  $: isBasketPage = window.location.pathname === '/shop/basket';
 </script>
 
 <svelte:window bind:outerWidth />
@@ -114,7 +121,12 @@
         class="basket-icon"
         src="https://enki.imgix.net/basket-icon.png?auto=format"
         alt="basket"
-        on:click={() => (isMobile ? showBasketItems() : $goto('/shop/basket'))}
+        on:click={() =>
+          isBasketPage
+            ? null
+            : isMobile
+            ? showBasketItems()
+            : $goto('/shop/basket')}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +137,12 @@
         width={isMobile ? '15' : '25'}
         height={isMobile ? '15' : '25'}
         class="num-basket-items"
-        on:click={() => (isMobile ? showBasketItems() : $goto('/shop/basket'))}
+        on:click={() =>
+          isBasketPage
+            ? null
+            : isMobile
+            ? showBasketItems()
+            : $goto('/shop/basket')}
       >
         <g>
           <circle
