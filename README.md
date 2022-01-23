@@ -56,12 +56,10 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 
 - [ ] make sure stock is correctly displayed (what do we do with stock that is out of stock?)
 - [ ] tags need to be treated as a category rather than a search filter
-- [ ] show image for category
 - [ ] classes/ courses
 
 - [ ] add security headers too (webpagetest.org)
 
-- [ ] style the site
 - [ ] use prod stripe api key
 - [ ] promotions and offers hmmm
 
