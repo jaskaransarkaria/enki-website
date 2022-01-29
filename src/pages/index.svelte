@@ -8,7 +8,8 @@
   // 'fit=crop&crop=focalpoint&fp-x=0.525&fp-y=0.3&fp-z=1.4'
   $: outerWidth = 0;
   $: onlineShopHover = false;
-  $: repairsAndCommissions = false;
+  $: repairsAndCommissionsHover = false;
+  $: classesHover = false;
 </script>
 
 <svelte:window bind:outerWidth />
@@ -24,8 +25,8 @@
     class="repairs-and-comms"
     src="/rep-and-comm-2.png"
     alt="repair and commissions button hover over me"
-    on:mouseenter={() => (repairsAndCommissions = true)}
-    on:mouseleave={() => (repairsAndCommissions = false)}
+    on:mouseenter={() => (repairsAndCommissionsHover = true)}
+    on:mouseleave={() => (repairsAndCommissionsHover = false)}
     on:click={$goto('/services')}
   />
   <img

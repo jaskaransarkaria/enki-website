@@ -34,6 +34,8 @@ describe('GIVEN RootCategories', () => {
           ParentId: -1,
           Name: 'Clothes',
           Children: [],
+          IsWet: false,
+          NominalCode: '',
         },
       ]);
 
@@ -55,11 +57,16 @@ describe('GIVEN RootCategories', () => {
           ParentId: -1,
           Name: 'Clothes',
           Children: [],
+          IsWet: false,
+          NominalCode: '',
         },
         {
           Id: 456,
           ParentId: -1,
           Name: 'Books',
+          Children: [],
+          IsWet: false,
+          NominalCode: '',
         },
       ]);
 

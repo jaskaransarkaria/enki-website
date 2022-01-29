@@ -16,6 +16,7 @@ const mockData: Category[] = [
     ParentId: null,
     Children: [],
     NominalCode: '',
+    IsWet: false,
   },
 ];
 

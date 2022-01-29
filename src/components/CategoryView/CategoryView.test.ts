@@ -14,24 +14,28 @@ const nestedCategories = {
   ParentId: null,
   Name: '',
   NominalCode: 'TRUE',
+  IsWet: false,
   Children: [
     {
       Id: 123,
       ParentId: null,
       Name: 'Clothes',
       NominalCode: 'TRUE',
+      IsWet: false,
       Children: [
         {
           Id: 456,
           ParentId: null,
           Name: 'Shoes',
           NominalCode: 'TRUE',
+          IsWet: false,
           Children: [
             {
               Id: 789,
               ParentId: null,
               Name: 'Hats',
               NominalCode: 'TRUE',
+              IsWet: false,
               Children: [],
             },
           ],
@@ -64,6 +68,7 @@ describe('GIVEN CategoryView', () => {
         Name: '',
         Children: [],
         NominalCode: '',
+        IsWet: false,
       });
     });
   });
@@ -76,6 +81,7 @@ describe('GIVEN CategoryView', () => {
         Name: 'Clothes',
         Children: [],
         NominalCode: 'TRUE',
+        IsWet: false,
       });
 
       render(CategoryView, {
@@ -89,6 +95,7 @@ describe('GIVEN CategoryView', () => {
         Name: 'Clothes',
         Children: [],
         NominalCode: 'TRUE',
+        IsWet: false,
       });
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       expect(screen.getByRole('heading')).toHaveTextContent('123');
@@ -103,6 +110,7 @@ describe('GIVEN CategoryView', () => {
           Name: 'Shoes',
           Children: [],
           NominalCode: 'TRUE',
+          IsWet: false,
         },
       ]);
 
@@ -117,6 +125,7 @@ describe('GIVEN CategoryView', () => {
         Name: '',
         Children: [],
         NominalCode: '',
+        IsWet: false,
       });
       expect(refreshCategory).toHaveBeenCalledTimes(1);
       await tick(); // using tick helps to flush any state changes in the component
@@ -128,6 +137,7 @@ describe('GIVEN CategoryView', () => {
         ParentId: null,
         Children: [],
         NominalCode: 'TRUE',
+        IsWet: false,
       });
       expect(screen.getByRole('heading')).toHaveTextContent('456');
       cleanup();
@@ -167,6 +177,7 @@ describe('GIVEN CategoryView', () => {
         Name: 'Variant',
         ParentId: null,
         Children: [],
+        IsWet: false,
         NominalCode: '',
       });
 

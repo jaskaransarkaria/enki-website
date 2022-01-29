@@ -2,8 +2,11 @@
   import { fade } from 'svelte/transition';
   import { calcShowGrid } from '@/libs/gridCalc';
   import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
+  import isCategory from '@/types/isCategory';
+  import isTag from '@/types/isTag';
 
   import type { Base, BaseFn } from '@/types/base';
+  import type { Category } from '@/types/category';
 
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
@@ -26,51 +29,53 @@
 
 <ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>
   {#each data as category, idx (category.Id)}
-    <li class={showGrid ? 'hex' : 'hex-flex'}>
-      <div class="hex-in">
-        <div class={loadedElemArr[idx] ? 'hex-link' : 'hex-link hex-loading'}>
-          <picture in:fade={{ duration: 800 }}>
-            <source
-              srcset={`https://enki.imgix.net/${category.Id}?auto=format`}
-              type="image/jpg"
-              bind:this={sourceElemArr[idx]}
-              data-testid="hex-image"
-              loading="eager"
-              on:load={() => (loadedElemArr[idx] = true)}
-            />
-            <img
-              src={`https://enki.imgix.net/faith.jpg?auto=format`}
-              alt="placeholder"
-              data-testid="hex-image-fallback"
-              bind:this={imgElemArr[idx]}
-              on:error={() => handleError(idx)}
-              loading="eager"
-              on:load={() => (loadedElemArr[idx] = true)}
-            />
-          </picture>
-          {#if loadedElemArr[idx]}
-            <img
-              in:fade|local={{ delay: 200, duration: 800 }}
-              src={`https://enki.imgix.net/hex_${Math.floor(
-                Math.random() * (6 - 1 + 1) + 1
-              )}.svg`}
-              alt="hexagon shape for the category button"
-              loading="lazy"
-            />
-          {/if}
-          <button
-            data-testid="hex-button"
-            on:click={/*istanbul ignore next */ () => categoryFn(category)}
-          />
-          <div class="category-name">
-            {#if loadedElemArr[idx] || TEST_ENV}
-              <!--jest never renders this and fails-->
-              <h3 data-testid="hex-category-name">{category.Name}</h3>
+    {#if isTag(category) || (isCategory(category) && category.IsWet === false)}
+      <li class={showGrid ? 'hex' : 'hex-flex'}>
+        <div class="hex-in">
+          <div class={loadedElemArr[idx] ? 'hex-link' : 'hex-link hex-loading'}>
+            <picture in:fade={{ duration: 800 }}>
+              <source
+                srcset={`https://enki.imgix.net/${category.Id}?auto=format`}
+                type="image/jpg"
+                bind:this={sourceElemArr[idx]}
+                data-testid="hex-image"
+                loading="eager"
+                on:load={() => (loadedElemArr[idx] = true)}
+              />
+              <img
+                src={`https://enki.imgix.net/faith.jpg?auto=format`}
+                alt="placeholder"
+                data-testid="hex-image-fallback"
+                bind:this={imgElemArr[idx]}
+                on:error={() => handleError(idx)}
+                loading="eager"
+                on:load={() => (loadedElemArr[idx] = true)}
+              />
+            </picture>
+            {#if loadedElemArr[idx]}
+              <img
+                in:fade|local={{ delay: 200, duration: 800 }}
+                src={`https://enki.imgix.net/hex_${Math.floor(
+                  Math.random() * (6 - 1 + 1) + 1
+                )}.svg`}
+                alt="hexagon shape for the category button"
+                loading="lazy"
+              />
             {/if}
+            <button
+              data-testid="hex-button"
+              on:click={/*istanbul ignore next */ () => categoryFn(category)}
+            />
+            <div class="category-name">
+              {#if loadedElemArr[idx] || TEST_ENV}
+                <!--jest never renders this and fails-->
+                <h3 data-testid="hex-category-name">{category.Name}</h3>
+              {/if}
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    {/if}
   {:else}
     <LoadingSpinner />
   {/each}

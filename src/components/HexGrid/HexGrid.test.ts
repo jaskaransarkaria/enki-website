@@ -12,6 +12,7 @@ const mockData: Category[] = [
     ParentId: null,
     Children: [],
     NominalCode: '',
+    IsWet: false,
   },
 ];
 
@@ -33,6 +34,29 @@ describe('GIVEN HexGrid', () => {
       expect(screen.getByTestId('hex-category-name')).toHaveTextContent(
         'Elephant'
       );
+      expect(screen.getByTestId('hex-image')).toBeInTheDocument();
+      expect(screen.getByTestId('hex-image-fallback')).toHaveAttribute(
+        'src',
+        'https://enki.imgix.net/faith.jpg?auto=format'
+      );
+      expect(screen.getByTestId('hex-image')).toHaveAttribute(
+        'srcset',
+        'https://enki.imgix.net/123?auto=format'
+      );
+    });
+
+    it("AND IsWet property is 'true' THEN do not render that hexagon", () => {
+      render(HexGrid, {
+        data: [
+          ...mockData,
+          { ...mockData[0], Id: 456, IsWet: true, Name: 'Dog' },
+        ],
+      });
+      expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
+      expect(screen.getByTestId('hex-category-name')).toHaveTextContent(
+        'Elephant'
+      );
+      expect(screen.queryByText('Dog')).not.toBeInTheDocument();
       expect(screen.getByTestId('hex-image')).toBeInTheDocument();
       expect(screen.getByTestId('hex-image-fallback')).toHaveAttribute(
         'src',
