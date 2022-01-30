@@ -12,7 +12,6 @@ const mockData: Category[] = [
     ParentId: null,
     Children: [],
     NominalCode: '',
-    IsWet: false,
   },
 ];
 
@@ -45,11 +44,11 @@ describe('GIVEN HexGrid', () => {
       );
     });
 
-    it("AND IsWet property is 'true' THEN do not render that hexagon", () => {
+    it("AND NominalCode property is 'NOT_WEB' THEN do not render that hexagon", () => {
       render(HexGrid, {
         data: [
           ...mockData,
-          { ...mockData[0], Id: 456, IsWet: true, Name: 'Dog' },
+          { ...mockData[0], Id: 456, NominalCode: 'NOT_WEB', Name: 'Dog' },
         ],
       });
       expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();

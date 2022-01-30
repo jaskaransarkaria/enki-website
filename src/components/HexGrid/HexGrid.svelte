@@ -29,7 +29,7 @@
 
 <ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>
   {#each data as category, idx (category.Id)}
-    {#if isTag(category) || (isCategory(category) && category.IsWet === false)}
+    {#if isTag(category) || (isCategory(category) && category.NominalCode !== 'NOT_WEB')}
       <li class={showGrid ? 'hex' : 'hex-flex'}>
         <div class="hex-in">
           <div class={loadedElemArr[idx] ? 'hex-link' : 'hex-link hex-loading'}>

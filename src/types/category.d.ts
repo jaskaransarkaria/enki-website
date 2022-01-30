@@ -4,5 +4,4 @@ export interface Category extends Base {
   ParentId: number | null;
   Children: Category[];
   NominalCode: string;
-  IsWet: boolean;
 }
