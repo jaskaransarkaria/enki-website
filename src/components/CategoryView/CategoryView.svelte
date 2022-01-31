@@ -56,7 +56,7 @@
   };
 
   const removeVariantCategories = (categories: Category[]) =>
-    categories.filter((cat) => cat.NominalCode === 'TRUE');
+    categories.filter((cat) => cat.NominalCode === 'CATEGORY');
 
   onMount(async () => {
     categoryToShow = isValidCategoryStore

@@ -18,8 +18,8 @@
   <img
     class="inside-shop"
     src={`http://enki.imgix.net/inside-enki${
-      outerWidth <= 360 ? '-mobile' : '-no-signs'
-    }.png?${outerWidth <= 360 ? 'fit=crop' : 'format=auto'}&w=${outerWidth}`}
+      outerWidth <= 450 ? '-mobile' : '-no-signs'
+    }.png?${outerWidth <= 450 ? 'fit=crop' : 'format=auto'}&w=${outerWidth}`}
     alt="welcome to the shop, this ilustration shows the shopkeeper behind her bench"
   />
   <img

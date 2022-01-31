@@ -13,28 +13,25 @@ const nestedCategories = {
   Id: -1,
   ParentId: null,
   Name: '',
-  NominalCode: 'TRUE',
-
+  NominalCode: 'CATEGORY',
   Children: [
     {
       Id: 123,
       ParentId: null,
       Name: 'Clothes',
-      NominalCode: 'TRUE',
-
+      NominalCode: 'CATEGORY',
       Children: [
         {
           Id: 456,
           ParentId: null,
           Name: 'Shoes',
-          NominalCode: 'TRUE',
-
+          NominalCode: 'CATEGORY',
           Children: [
             {
               Id: 789,
               ParentId: null,
               Name: 'Hats',
-              NominalCode: 'TRUE',
+              NominalCode: 'CATEGORY',
 
               Children: [],
             },
@@ -79,7 +76,7 @@ describe('GIVEN CategoryView', () => {
         ParentId: null,
         Name: 'Clothes',
         Children: [],
-        NominalCode: 'TRUE',
+        NominalCode: 'CATEGORY',
       });
 
       render(CategoryView, {
@@ -92,7 +89,7 @@ describe('GIVEN CategoryView', () => {
         ParentId: null,
         Name: 'Clothes',
         Children: [],
-        NominalCode: 'TRUE',
+        NominalCode: 'CATEGORY',
       });
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       expect(screen.getByRole('heading')).toHaveTextContent('123');
@@ -106,7 +103,7 @@ describe('GIVEN CategoryView', () => {
           ParentId: null,
           Name: 'Shoes',
           Children: [],
-          NominalCode: 'TRUE',
+          NominalCode: 'CATEGORY',
         },
       ]);
 
@@ -131,7 +128,7 @@ describe('GIVEN CategoryView', () => {
         Name: 'Shoes',
         ParentId: null,
         Children: [],
-        NominalCode: 'TRUE',
+        NominalCode: 'CATEGORY',
       });
       expect(screen.getByRole('heading')).toHaveTextContent('456');
       cleanup();
@@ -171,7 +168,6 @@ describe('GIVEN CategoryView', () => {
         Name: 'Variant',
         ParentId: null,
         Children: [],
-
         NominalCode: '',
       });
 
