@@ -9,4 +9,9 @@ export interface Product extends Base {
   ProductTags: Tag[];
   VariantGroupId: number;
   CurrentStock: number;
+  ProductDetails: ProductDetails | null;
+}
+
+interface ProductDetails {
+  DetailedDescription: string;
 }

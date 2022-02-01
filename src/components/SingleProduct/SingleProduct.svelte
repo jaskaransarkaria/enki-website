@@ -10,6 +10,13 @@
   export let variantCategory: Category | null = null;
   export let product: Product | null;
   export let showDetailedView = false;
+
+  let productDescription: string;
+
+  $: if (product) {
+    productDescription =
+      product?.ProductDetails?.DetailedDescription || product.Description;
+  }
 </script>
 
 {#if variantCategory}
@@ -49,6 +56,9 @@
         <AddToBasket {product} detailed={showDetailedView} />
       </div>
     </div>
+    <div class="detailed-description">
+      <h4>{`${productDescription}`}</h4>
+    </div>
   {:else}
     <button
       class="simple-container"
@@ -65,10 +75,6 @@
         {`£${product.SalePrice}`}
       </h3>
     </button>
-  {/if}
-
-  {#if showDetailedView}
-    <h4>{`${product.Description}`}</h4>
   {/if}
 {/if}
 
@@ -100,6 +106,11 @@
     justify-self: auto;
     text-align: center;
     cursor: auto;
+  }
+
+  .detailed-description {
+    width: 250px;
+    text-align: center;
   }
 
   .simple-container:hover {
@@ -165,6 +176,10 @@
       width: 150px;
     }
 
+    .detailed-description {
+      width: 300px;
+    }
+
     h3 {
       font-size: 0.6em;
     }
@@ -178,6 +193,10 @@
 
     .details-container {
       height: 650px;
+      width: 650px;
+    }
+
+    .detailed-description {
       width: 650px;
     }
 
@@ -219,6 +238,9 @@
       width: 775px;
     }
 
+    .detailed-description {
+      width: 775px;
+    }
     .detailed-products-footer {
       height: 250px;
       flex-direction: column;
@@ -238,6 +260,10 @@
     .details-container {
       width: 900px;
       height: 900px;
+    }
+
+    .detailed-description {
+      width: 900px;
     }
   }
 
