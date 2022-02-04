@@ -31,6 +31,36 @@
     () => (isBasketPage = window.location.pathname === '/shop/basket')
   );
 
+  function clickOutside(
+    node: HTMLElement,
+    { enabled: initialEnabled, cb }: { enabled: boolean; cb: () => void }
+  ) {
+    const handleOutsideClick: (this: Window, ev: MouseEvent) => void = ({
+      target,
+    }: {
+      target: HTMLElement;
+    }) => {
+      if (!node.contains(target)) {
+        cb();
+      }
+    };
+
+    function update({ enabled }: { enabled: boolean }) {
+      if (enabled) {
+        window.addEventListener('click', handleOutsideClick);
+      } else {
+        window.removeEventListener('click', handleOutsideClick);
+      }
+    }
+
+    update({ enabled: initialEnabled });
+    return {
+      update,
+      destroy() {
+        window.removeEventListener('click', handleOutsideClick);
+      },
+    };
+  }
   function handleClick() {
     if (!showSearch) {
       left.set(-offset);
@@ -106,6 +136,7 @@
       alt="search"
       style={move($left)}
       on:click={handleClick}
+      use:clickOutside={{ enabled: showSearch, cb: handleClick }}
     />
     {#if showSearch}
       <div class="search-bar" style={grow($growSearch, $searchLeft)}>

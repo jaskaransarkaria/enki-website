@@ -11,57 +11,93 @@
   $: repairsAndCommissionsHover = false;
   $: classesHover = false;
   $: contactHover = false;
+  $: isMobile = outerWidth <= 450 ? true : false;
 </script>
 
 <svelte:window bind:outerWidth />
-<figure>
+<figure class={isMobile ? 'mobile-container' : 'container'}>
   <img
-    class="inside-shop"
+    class={isMobile ? 'parrallax-inside-shop' : 'inside-shop'}
     src={`http://enki.imgix.net/inside-enki${
       outerWidth <= 450 ? '-mobile' : '-no-signs'
     }.png?${outerWidth <= 450 ? 'fit=crop' : 'format=auto'}&w=${outerWidth}`}
     alt="welcome to the shop, this ilustration shows the shopkeeper behind her bench"
   />
-  <img
-    class="repairs-and-comms"
-    src={repairsAndCommissionsHover
-      ? '/jewellery_services.gif'
-      : '/jewellery_services.png'}
-    alt="repair and commissions button hover over me"
-    on:mouseenter={() => (repairsAndCommissionsHover = true)}
-    on:mouseleave={() => (repairsAndCommissionsHover = false)}
-    on:click={$goto('/services')}
-  />
-  <img
-    class="classes"
-    src={classesHover ? '/classes.gif' : '/classes.png'}
-    alt="classes button hover over me"
-    on:mouseenter={() => (classesHover = true)}
-    on:mouseleave={() => (classesHover = false)}
-    on:click={$goto('/classes')}
-  />
-  <img
-    class="online-shop"
-    src={`https://enki.imgix.net/${
-      onlineShopHover ? 'online_shop.gif' : 'online-shop.png'
-    }`}
-    alt="online shop button hover over me"
-    on:mouseenter={() => (onlineShopHover = true)}
-    on:mouseleave={() => (onlineShopHover = false)}
-    on:click={$goto('/shop')}
-  />
-  <img
-    class="contact"
-    src={contactHover ? '/contact.gif' : '/contact.png'}
-    alt="online shop button hover over me"
-    on:mouseenter={() => (contactHover = true)}
-    on:mouseleave={() => (contactHover = false)}
-    on:click={$goto('/contact')}
-  />
+  {#if isMobile}
+    <div class="mobile-button-container">
+      <img
+        class="mobile-online-shop"
+        src="/mobile_online_shop.png"
+        alt="online shop button"
+        on:click={$goto('/shop')}
+      />
+      <img
+        class="mobile-repairs-and-comms"
+        src="/mobile_jewellery_services.png"
+        alt="jewellery services button"
+        on:click={$goto('/services')}
+      />
+      <img
+        class="mobile-classes"
+        src="/mobile_jewellery_classes.png"
+        alt="classes button"
+        on:click={$goto('/classes')}
+      />
+      <img
+        class="mobile-contact-us"
+        src="/mobile_contact_us.png"
+        alt="contact us button"
+        on:click={$goto('/contact')}
+      />
+      <img
+        class="mobile-about-us"
+        src="/mobile_about_us.png"
+        alt="about us button"
+        on:click={$goto('/about')}
+      />
+    </div>
+  {:else}
+    <img
+      class="repairs-and-comms"
+      src={repairsAndCommissionsHover
+        ? '/jewellery_services.gif'
+        : '/jewellery_services.png'}
+      alt="repair and commissions button hover over me"
+      on:mouseenter={() => (repairsAndCommissionsHover = true)}
+      on:mouseleave={() => (repairsAndCommissionsHover = false)}
+      on:click={$goto('/services')}
+    />
+    <img
+      class="classes"
+      src={classesHover ? '/classes.gif' : '/classes.png'}
+      alt="classes button hover over me"
+      on:mouseenter={() => (classesHover = true)}
+      on:mouseleave={() => (classesHover = false)}
+      on:click={$goto('/classes')}
+    />
+    <img
+      class="online-shop"
+      src={`https://enki.imgix.net/${
+        onlineShopHover ? 'online_shop.gif' : 'online-shop.png'
+      }`}
+      alt="online shop button hover over me"
+      on:mouseenter={() => (onlineShopHover = true)}
+      on:mouseleave={() => (onlineShopHover = false)}
+      on:click={$goto('/shop')}
+    />
+    <img
+      class="contact"
+      src={contactHover ? '/contact.gif' : '/contact.png'}
+      alt="online shop button hover over me"
+      on:mouseenter={() => (contactHover = true)}
+      on:mouseleave={() => (contactHover = false)}
+      on:click={$goto('/contact')}
+    />
+  {/if}
 </figure>
 
 <style>
-  figure {
+  .container {
     display: grid;
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
@@ -70,11 +106,37 @@
     margin-right: 0;
   }
 
+  .mobile-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .mobile-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 175vh;
+    width: 100vw;
+  }
+
+  .mobile-button-container > * {
+    width: 80%;
+    align-self: center;
+    padding: 10px;
+  }
+
   .inside-shop {
     grid-column-start: 1;
     grid-column-end: span end;
     grid-row-start: 1;
     grid-row-end: span end;
+  }
+
+  .parrallax-inside-shop {
+    position: fixed;
   }
 
   .contact,
