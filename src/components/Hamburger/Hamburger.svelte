@@ -26,6 +26,7 @@
     <button on:click={() => toggleAndGo('/repairs')}> repairs </button>
     <button on:click={() => toggleAndGo('/classes')}> classes </button>
     <button on:click={() => toggleAndGo('/about')}> about </button>
+    <button on:click={() => toggleAndGo('/contact')}> contact </button>
   </div>
 {/if}
 
@@ -47,9 +48,9 @@
   button {
     all: unset;
     font-family: 'WelcomeHome3 Regular';
-    font-size: 3.25em;
+    font-size: 3.2em;
     cursor: pointer;
-    margin: 40px;
+    margin: 30px;
   }
 
   button:focus {
