@@ -5,7 +5,6 @@
   // this is how to pass down a prop from the router
   // export let scoped: any;
   // $: ({ name } = scoped);
-  // 'fit=crop&crop=focalpoint&fp-x=0.525&fp-y=0.3&fp-z=1.4'
   $: outerWidth = 0;
   $: onlineShopHover = false;
   $: repairsAndCommissionsHover = false;
@@ -129,6 +128,7 @@
   }
 
   .inside-shop {
+    z-index: -1;
     grid-column-start: 1;
     grid-column-end: span end;
     grid-row-start: 1;
@@ -137,6 +137,7 @@
 
   .parrallax-inside-shop {
     position: fixed;
+    z-index: -1;
   }
 
   .contact,

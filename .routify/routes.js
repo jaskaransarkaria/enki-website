@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Fri Feb 04 2022 16:18:31 GMT+0000 (Greenwich Mean Time)
+ * File generated Fri Feb 04 2022 18:14:58 GMT+0000 (Greenwich Mean Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2022-02-04T16:18:31.644Z';
+export const __timestamp = '2022-02-04T18:14:58.160Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -22,6 +22,62 @@ export const _tree = {
   ownMeta: {},
   absolutePath: '/home/jaskaran/repos/enki-website/src/pages/_layout.svelte',
   children: [
+    {
+      isFile: true,
+      isDir: true,
+      file: '_layout.svelte',
+      filepath: '/about/_layout.svelte',
+      name: '_layout',
+      ext: 'svelte',
+      badExt: false,
+      absolutePath:
+        '/home/jaskaran/repos/enki-website/src/pages/about/_layout.svelte',
+      children: [
+        {
+          isFile: true,
+          isDir: false,
+          file: 'index.svelte',
+          filepath: '/about/index.svelte',
+          name: 'index',
+          ext: 'svelte',
+          badExt: false,
+          absolutePath:
+            '/home/jaskaran/repos/enki-website/src/pages/about/index.svelte',
+          importPath: '../src/pages/about/index.svelte',
+          isLayout: false,
+          isReset: false,
+          isIndex: true,
+          isFallback: false,
+          isPage: true,
+          ownMeta: {},
+          meta: {
+            recursive: true,
+            preload: false,
+            prerender: true,
+          },
+          path: '/about/index',
+          id: '_about_index',
+          component: () =>
+            import('../src/pages/about/index.svelte').then((m) => m.default),
+        },
+      ],
+      isLayout: true,
+      isReset: false,
+      isIndex: false,
+      isFallback: false,
+      isPage: false,
+      importPath: '../src/pages/about/_layout.svelte',
+      ownMeta: {},
+      meta: {
+        recursive: true,
+        preload: false,
+        prerender: true,
+      },
+      path: '/about',
+      id: '_about__layout',
+      component: () =>
+        import('../src/pages/about/_layout.svelte').then((m) => m.default),
+    },
     {
       isFile: true,
       isDir: true,

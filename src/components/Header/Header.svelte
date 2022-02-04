@@ -129,6 +129,9 @@
         classes
       </button>
       <button style={move($left)} on:click={$goto('/about')}> about </button>
+      <button style={move($left)} on:click={$goto('/contact')}>
+        contact
+      </button>
     {/if}
     <img
       class="search-icon"
