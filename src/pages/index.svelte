@@ -100,7 +100,7 @@
     display: grid;
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
-    width: 100vw;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
   }
@@ -128,6 +128,7 @@
   }
 
   .inside-shop {
+    width: 100vw;
     z-index: -1;
     grid-column-start: 1;
     grid-column-end: span end;

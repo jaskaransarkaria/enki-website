@@ -1,18 +1,14 @@
 <script lang="ts">
   import Header from '@/components/Header/Header.svelte';
+  import Footer from '@/components/Footer/Footer.svelte';
 </script>
 
 <Header />
 <div class="header-block" />
 <slot scoped={{ name: 'world' }} />
-<h1>footer</h1>
+<Footer />
 
 <style>
-  h1 {
-    text-align: center;
-    width: 100px;
-  }
-
   .header-block {
     top: 0%;
     height: 55px;

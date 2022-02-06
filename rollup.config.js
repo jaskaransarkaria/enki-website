@@ -67,6 +67,7 @@ export default {
     <link rel='icon' type='image/png' href='/favicon.png'>
     <link rel='stylesheet' href='/global.css'>
     <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
+    <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" rel="stylesheet" type="text/css">
     
     <script defer src='/build/bundle-${currentDate}.js'></script>
   </head>
