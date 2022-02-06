@@ -64,7 +64,7 @@ export default {
     <meta name="description" content="Enki Jewellery & Craft Gallery shop in Kings Heath, Birmingham, UK">
     <title>${title}</title>
     
-    <link rel='icon' type='image/png' href='/favicon.png'>
+    <link rel='icon' type='image/png' href='/enki_icon.jpg'>
     <link rel='stylesheet' href='/global.css'>
     <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
     <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" rel="stylesheet" type="text/css">

@@ -215,7 +215,7 @@
     justify-content: space-between;
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: 100%;
     height: 55px;
     z-index: 99;
     background-color: white;
@@ -226,6 +226,9 @@
     display: flex;
     align-self: flex-end;
     height: 100%;
+    position: absolute;
+    left: 100%;
+    transform: translateX(-100%);
   }
 
   .right-container * {
