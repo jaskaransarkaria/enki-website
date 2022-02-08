@@ -199,5 +199,14 @@
     .footer {
       height: 15vh;
     }
+
+    .right-container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .trust-container {
+      width: 80%;
+    }
   }
 </style>
