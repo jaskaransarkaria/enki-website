@@ -340,6 +340,10 @@
       margin-right: 10px;
       align-self: center;
     }
+
+    button {
+      font-size: 0.75em;
+    }
   }
 
   @media (min-width: 1280px) {
@@ -371,6 +375,10 @@
     .enki-logo {
       top: 0;
       width: 350px;
+    }
+
+    button {
+      font-size: 1em;
     }
   }
 </style>

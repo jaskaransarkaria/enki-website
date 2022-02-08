@@ -17,10 +17,10 @@
 <figure class={isMobile ? 'mobile-container' : 'container'}>
   <img
     class={isMobile ? 'parrallax-inside-shop' : 'inside-shop'}
-    src={`http://enki.imgix.net/inside-enki${
-      outerWidth <= 450 ? '-mobile' : '-no-signs'
+    src={`http://enki.imgix.net/${
+      outerWidth <= 450 ? 'mobile_landing_page_2' : 'inside_enki_desktop_3'
     }.png?${
-      outerWidth <= 450 ? 'fit=crop' : 'fit=crop'
+      outerWidth <= 450 ? 'fit=crop' : 'auto=format'
     }&h=${outerHeight}&w=${outerWidth}`}
     alt="welcome to the shop, this ilustration shows the shopkeeper behind her bench"
   />
@@ -119,7 +119,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 175vh;
+    height: 200vh;
     width: 100vw;
   }
 
@@ -425,14 +425,14 @@
     .contact {
       grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 67;
       grid-row-end: span end;
     }
 
     .online-shop {
       grid-column-start: 40;
       grid-column-end: span end;
-      grid-row-start: 44;
+      grid-row-start: 63;
       grid-row-end: span end;
     }
 
@@ -446,7 +446,7 @@
 
     .classes {
       width: 280px;
-      grid-column-start: 68;
+      grid-column-start: 75;
       grid-column-end: span end;
       grid-row-start: 5;
       grid-row-end: span end;
