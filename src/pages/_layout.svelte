@@ -3,12 +3,19 @@
   import Footer from '@/components/Footer/Footer.svelte';
 </script>
 
-<Header />
-<div class="header-block" />
-<slot scoped={{ name: 'world' }} />
-<Footer />
+<div class="container">
+  <Header />
+  <div class="header-block" />
+  <slot scoped={{ name: 'world' }} />
+  <Footer />
+</div>
 
 <style>
+  .container {
+    position: relative;
+    min-height: 100%;
+  }
+
   .header-block {
     top: 0%;
     height: 55px;

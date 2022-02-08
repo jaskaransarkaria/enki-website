@@ -63,7 +63,6 @@
     bottom: 0;
     width: 100vw;
     height: 50vh;
-    z-index: 99;
     background-color: white;
     box-shadow: 0 -2.5px 20px 0 #a3a8a5;
     margin-left: 0;
@@ -170,6 +169,8 @@
   @media (min-width: 600px) {
     .footer {
       height: 15vh;
+      position: absolute;
+      bottom: -225px;
     }
 
     .right-container {

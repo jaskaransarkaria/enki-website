@@ -181,7 +181,7 @@
     width: 100%;
     padding: 5%;
     box-sizing: border-box;
-    background-color: rgba(46, 49, 49, 0.7);
+    background-color: transparent;
     color: white;
     z-index: 1;
     transform: translate3d(0, -100%, 0);
@@ -205,6 +205,11 @@
     width: 10%;
     text-align: center;
     border-bottom: 1px solid #fff;
+  }
+
+  .hex:hover,
+  .hex-flex:hover {
+    transform: scale(1.06);
   }
 
   .hex-link:hover button,
@@ -297,6 +302,10 @@
   }
 
   @media (min-width: 2400px) {
+    .root-categories-container {
+      padding-bottom: 5%;
+    }
+
     .hex-flex h3,
     .hex h3 {
       width: 240px;

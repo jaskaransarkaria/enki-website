@@ -1,11 +1,11 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
-  import { fade } from 'svelte/transition';
 
   // this is how to pass down a prop from the router
   // export let scoped: any;
   // $: ({ name } = scoped);
   $: outerWidth = 0;
+  $: outerHeight = 0;
   $: onlineShopHover = false;
   $: repairsAndCommissionsHover = false;
   $: classesHover = false;
@@ -13,13 +13,15 @@
   $: isMobile = outerWidth <= 450 ? true : false;
 </script>
 
-<svelte:window bind:outerWidth />
+<svelte:window bind:outerWidth bind:outerHeight />
 <figure class={isMobile ? 'mobile-container' : 'container'}>
   <img
     class={isMobile ? 'parrallax-inside-shop' : 'inside-shop'}
     src={`http://enki.imgix.net/inside-enki${
       outerWidth <= 450 ? '-mobile' : '-no-signs'
-    }.png?${outerWidth <= 450 ? 'fit=crop' : 'format=auto'}&w=${outerWidth}`}
+    }.png?${
+      outerWidth <= 450 ? 'fit=crop' : 'fit=crop'
+    }&h=${outerHeight}&w=${outerWidth}`}
     alt="welcome to the shop, this ilustration shows the shopkeeper behind her bench"
   />
   {#if isMobile}

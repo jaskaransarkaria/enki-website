@@ -1,8 +1,8 @@
 <script lang="typescript">
+  import { onMount } from 'svelte';
+
   export let src: string;
   export let alt: string;
-
-  import { onMount } from 'svelte';
 
   let loaded = false;
   let thisImage: HTMLElement;
@@ -15,7 +15,7 @@
 </script>
 
 <div class="img-container">
-  <img {src} {alt} class:loaded bind:this={thisImage} loading="lazy" />
+  <img {src} {alt} class:loaded bind:this={thisImage} />
 </div>
 
 <style>
@@ -31,7 +31,7 @@
     max-height: 100%;
     height: auto;
     opacity: 0;
-    transition: opacity 1300ms ease-out;
+    transition: opacity 300ms ease-out;
   }
   img.loaded {
     opacity: 1;
