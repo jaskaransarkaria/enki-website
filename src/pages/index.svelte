@@ -130,7 +130,6 @@
   }
 
   .inside-shop {
-    width: 100vw;
     z-index: -1;
     grid-column-start: 1;
     grid-column-end: span end;
@@ -152,32 +151,32 @@
 
   @media (min-width: 450px) {
     .contact {
-      width: 50px;
-      grid-column-start: 70;
+      width: 90px;
+      grid-column-start: 84;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
     .online-shop {
-      width: 70px;
-      grid-column-start: 38;
+      width: 120px;
+      grid-column-start: 25;
       grid-column-end: span end;
-      grid-row-start: 43;
+      grid-row-start: 45;
       grid-row-end: span end;
     }
 
     .repairs-and-comms {
-      width: 70px;
-      grid-column-start: 12;
+      width: 90px;
+      grid-column-start: 2;
       grid-column-end: span end;
       grid-row-start: 5;
       grid-row-end: span end;
     }
 
     .classes {
-      width: 70px;
-      grid-column-start: 66;
+      width: 90px;
+      grid-column-start: 80;
       grid-column-end: span end;
       grid-row-start: 5;
       grid-row-end: span end;
@@ -186,18 +185,18 @@
 
   @media (min-width: 600px) {
     .contact {
-      width: 80px;
-      grid-column-start: 70;
+      width: 100px;
+      grid-column-start: 80;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 60;
       grid-row-end: span end;
     }
 
     .online-shop {
-      width: 100px;
-      grid-column-start: 37;
+      width: 120px;
+      grid-column-start: 32;
       grid-column-end: span end;
-      grid-row-start: 43;
+      grid-row-start: 45;
       grid-row-end: span end;
     }
 
@@ -211,9 +210,9 @@
 
     .classes {
       width: 100px;
-      grid-column-start: 66;
+      grid-column-start: 77;
       grid-column-end: span end;
-      grid-row-start: 1;
+      grid-row-start: 5;
       grid-row-end: span end;
     }
   }
@@ -221,33 +220,33 @@
   @media (min-width: 800px) {
     .contact {
       width: 100px;
-      grid-column-start: 70;
+      grid-column-start: 72;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 60;
       grid-row-end: span end;
     }
 
     .online-shop {
       width: 120px;
-      grid-column-start: 38;
+      grid-column-start: 36;
       grid-column-end: span end;
-      grid-row-start: 43;
+      grid-row-start: 45;
       grid-row-end: span end;
     }
 
     .repairs-and-comms {
       width: 120px;
-      grid-column-start: 12;
+      grid-column-start: 10;
       grid-column-end: span end;
-      grid-row-start: 5;
+      grid-row-start: 3;
       grid-row-end: span end;
     }
 
     .classes {
       width: 120px;
-      grid-column-start: 66;
+      grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 1;
+      grid-row-start: 4;
       grid-row-end: span end;
     }
   }
@@ -307,15 +306,15 @@
       width: 180px;
       grid-column-start: 12;
       grid-column-end: span end;
-      grid-row-start: 5;
+      grid-row-start: 2;
       grid-row-end: span end;
     }
 
     .classes {
       width: 180px;
-      grid-column-start: 66;
+      grid-column-start: 69;
       grid-column-end: span end;
-      grid-row-start: 5;
+      grid-row-start: 1;
       grid-row-end: span end;
     }
   }

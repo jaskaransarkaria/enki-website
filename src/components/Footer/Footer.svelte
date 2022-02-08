@@ -168,22 +168,36 @@
 
   @media (min-width: 600px) {
     .footer {
-      height: 15vh;
+      height: 60vh;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .footer {
+      height: 40vh;
       position: absolute;
       bottom: -225px;
     }
 
     .right-container {
       margin-right: 1%;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .trust-container {
-      width: 80%;
+      width: 100%;
     }
 
     .enki-icon {
       width: 180px;
       height: auto;
+    }
+  }
+
+  @media (min-width: 2400px) {
+    .footer {
+      height: 15vh;
     }
   }
 </style>
