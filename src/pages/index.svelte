@@ -324,7 +324,7 @@
       width: 170px;
       grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 64;
       grid-row-end: span end;
     }
 
@@ -332,7 +332,7 @@
       width: 190px;
       grid-column-start: 39;
       grid-column-end: span end;
-      grid-row-start: 43;
+      grid-row-start: 63;
       grid-row-end: span end;
     }
 

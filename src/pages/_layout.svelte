@@ -7,13 +7,12 @@
   <Header />
   <div class="header-block" />
   <slot scoped={{ name: 'world' }} />
-  <Footer />
 </div>
+<Footer />
 
 <style>
   .container {
-    position: relative;
-    min-height: 100%;
+    min-height: 100vh;
   }
 
   .header-block {

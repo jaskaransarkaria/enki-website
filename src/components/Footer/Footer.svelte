@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
+  import { fade } from 'svelte/transition';
   import MailChimpSubscribe from '@/components/MailChimpSubscribe/MailChimpSubscribe.svelte';
   import BackToTop from '@/components/BackToTop/BackToTop.svelte';
 
@@ -8,7 +9,7 @@
 </script>
 
 <svelte:window bind:outerWidth />
-<div class="footer">
+<div class="footer" transition:fade={{ delay: 600, duration: 800 }}>
   <div class="left-container">
     <img class="enki-icon" src="/enki_icon.jpg" alt="enki icon/ logo" />
   </div>
@@ -175,8 +176,7 @@
   @media (min-width: 960px) {
     .footer {
       height: 40vh;
-      position: absolute;
-      bottom: -225px;
+      bottom: 0;
     }
 
     .right-container {
@@ -192,6 +192,12 @@
     .enki-icon {
       width: 180px;
       height: auto;
+    }
+  }
+
+  @media (min-width: 1260px) {
+    .footer {
+      height: 22.5vh;
     }
   }
 
