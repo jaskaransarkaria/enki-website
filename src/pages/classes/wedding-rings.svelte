@@ -39,16 +39,32 @@
 
   .class-pics {
     display: flex;
-    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 10%;
     justify-content: space-around;
+    margin-bottom: 10%;
   }
 
   .class-pics > * {
-    width: 350px;
+    width: 100%;
     padding: 5px;
   }
 
-  .extra-width {
-    width: 400px;
+  @media (min-width: 1280px) {
+    .class-pics {
+      flex-direction: row;
+      width: 80%;
+      margin-bottom: 2%;
+    }
+
+    .class-pics > * {
+      width: 25%;
+    }
+
+    .extra-width {
+      width: 30%;
+    }
   }
 </style>

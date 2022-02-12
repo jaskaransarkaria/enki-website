@@ -23,7 +23,7 @@
 {#if toggleOpen}
   <div class="menu">
     <button on:click={() => toggleAndGo('/shop')}> shop </button>
-    <button on:click={() => toggleAndGo('/repairs')}> repairs </button>
+    <button on:click={() => toggleAndGo('/services')}> services </button>
     <button on:click={() => toggleAndGo('/classes')}> classes </button>
     <button on:click={() => toggleAndGo('/about')}> about </button>
     <button on:click={() => toggleAndGo('/contact')}> contact </button>

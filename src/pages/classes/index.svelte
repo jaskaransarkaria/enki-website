@@ -43,8 +43,11 @@
 
   .class-pics {
     display: flex;
-    width: 70%;
+    flex-direction: column;
+    width: 100%;
+    height: 10%;
     justify-content: space-around;
+    margin-bottom: 10%;
   }
 
   .class-button {
@@ -62,7 +65,15 @@
   }
 
   .class-button > img {
-    width: 500px;
+    width: 100%;
     padding: 5px;
+  }
+
+  @media (min-width: 1280px) {
+    .class-pics {
+      flex-direction: row;
+      width: 70%;
+      margin-bottom: 2%;
+    }
   }
 </style>

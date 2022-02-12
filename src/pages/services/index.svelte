@@ -2,6 +2,7 @@
   <h1>Services</h1>
   <div class="shop-pics">
     <img
+      class="extra-width"
       src="https://enki.imgix.net/services_1.jpg?auto=format"
       alt="a ring being polished on a polishing machine"
     />
@@ -10,6 +11,7 @@
       alt="a jewellery machine for pressing metal"
     />
     <img
+      class="extra-width"
       src="https://enki.imgix.net/services_3.jpg?auto=format"
       alt="some jewellery pliers and some jewellery being inspected"
     />
@@ -47,13 +49,18 @@
     display: flex;
     flex-direction: row;
     width: 70%;
+    height: 10%;
     align-self: center;
     justify-content: center;
   }
 
   .shop-pics > * {
-    height: 300px;
+    width: 25%;
     padding: 5px;
+  }
+
+  .extra-width {
+    width: 45%;
   }
 
   p {
