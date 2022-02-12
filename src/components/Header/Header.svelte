@@ -122,8 +122,8 @@
   <div class="right-container">
     {#if outerWidth > 960}
       <button style={move($left)} on:click={$goto('/shop')}> shop </button>
-      <button style={move($left)} on:click={$goto('/repairs')}>
-        repairs
+      <button style={move($left)} on:click={$goto('/services')}>
+        services
       </button>
       <button style={move($left)} on:click={$goto('/classes')}>
         classes
