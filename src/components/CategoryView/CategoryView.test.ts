@@ -68,41 +68,17 @@ describe('GIVEN CategoryView', () => {
 
   describe('WHEN rendered with props', () => {
     it('THEN display the correct category from the store', () => {
-      categories.set({
-        Id: 123,
-        ParentId: null,
-        Name: 'Clothes',
-        Children: [{
-          Id: 999,
-          ParentId: 123,
-          Name: "Child Clothes",
-          Children: [],
-          NominalCode: 'CATEGORY'
-        }],
-        NominalCode: 'CATEGORY',
-      });
+      categories.set({ ...nestedCategories });
 
       render(CategoryView, {
-        categoryId: 123,
+        categoryId: -1,
         categoryFn: (cat: Category) => categories.set(cat),
       });
 
-      expect(get(categories)).toMatchObject({
-        Id: 123,
-        ParentId: null,
-        Name: 'Clothes',
-        Children: [{
-          Id: 999,
-          ParentId: 123,
-          Name: "Child Clothes",
-          Children: [],
-          NominalCode: 'CATEGORY'
-        }],
-        NominalCode: 'CATEGORY',
-      });
+      expect(get(categories)).toMatchObject({ ...nestedCategories });
       expect(refreshCategory).toHaveBeenCalledTimes(0);
 
-      expect(screen.getByRole('heading')).toHaveTextContent("Child Clothes")
+      expect(screen.getByText('Clothes')).toBeInTheDocument()
       cleanup(); // it doesn't unmount unless called here, needed to prevent props from interfering accross tests
     });
 

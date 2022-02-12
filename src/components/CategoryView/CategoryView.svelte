@@ -14,6 +14,7 @@
 
   export let categoryFn: BaseFn;
   export let categoryId: number;
+  export let showBreadcrumbs = true;
 
   let categoryToShow: Category | undefined;
   let isValidCategoryStore =
@@ -60,7 +61,7 @@
 
   onMount(async () => {
     categoryToShow = isValidCategoryStore
-      ? showCategory(categoryId, Object.assign({}, $categories))
+      ? showCategory(categoryId, { ...$categories })
       : undefined;
     // prevent from making unnecessary http calls will only call if there is nothing in store
     if (
@@ -72,14 +73,16 @@
     }
   });
 
-  $: categoryToShow = showCategory(categoryId, Object.assign({}, $categories));
+  $: categoryToShow = showCategory(categoryId, { ...$categories });
   $: variantCategories = categoryToShow?.Children.filter(
     (cat) => cat.NominalCode === null
   );
 </script>
 
 {#if categoryToShow}
-  <Breadcrumbs selectedCategoryId={categoryToShow.Id} />
+  {#if showBreadcrumbs}
+    <Breadcrumbs selectedCategoryId={categoryToShow.Id} />
+  {/if}
   {#if removeVariantCategories(categoryToShow.Children).length}
     {#if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
       <TagView
@@ -94,5 +97,5 @@
       />
     {/if}
   {/if}
-  <ProductsInCategory bind:categoryId {variantCategories} />
+  <ProductsInCategory bind:categoryId bind:variantCategories />
 {/if}

@@ -118,7 +118,6 @@ describe('GIVEN AddToBasket', () => {
       await tick();
       await tick();
       await tick();
-      console.log(screen.getAllByRole('button', { name: /add to basket/i }));
       userEvent.click(
         screen.getAllByRole('button', { name: /add to basket/i })[1]
       );

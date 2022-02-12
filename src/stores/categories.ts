@@ -11,7 +11,7 @@ const initialValue = {
 
 export const categories = writable<Category>(initialValue);
 
-export const readonlyAllCategories = writable<Category[]>([]);
+export const readonlyAllCategories = writable<readonly Category[]>([]);
 
 export const reset: () => void = () => categories.set(initialValue);
 

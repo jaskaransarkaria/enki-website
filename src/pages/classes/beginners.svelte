@@ -1,3 +1,20 @@
+<script lang="ts">
+  import { goto } from '@roxi/routify';
+
+  import CategoryView from '@/components/CategoryView/CategoryView.svelte';
+  import type { Base } from '@/types/base';
+
+  const GROUP_CLASSES_ID = 2735617;
+  const CLASSES_ID = 2735613;
+
+  let categoryId: number;
+
+  const selectCategory = (category: Base) => {
+    categoryId = category.Id;
+    $goto(`/shop/${category.Id}`);
+  };
+</script>
+
 <div class="container">
   <h1>Beginner's Classes</h1>
   <p>
@@ -7,6 +24,17 @@
     make your jewellery, soft and hot drinks and cake from the wonderful Early
     Bird Bakery next door.
   </p>
+
+  <CategoryView
+    categoryFn={selectCategory}
+    categoryId={CLASSES_ID}
+    showBreadcrumbs={false}
+  />
+  <CategoryView
+    categoryFn={selectCategory}
+    categoryId={GROUP_CLASSES_ID}
+    showBreadcrumbs={false}
+  />
 </div>
 
 <style>
