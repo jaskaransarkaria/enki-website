@@ -1,11 +1,11 @@
 
 /**
  * @roxi/routify 2.7.3
- * File generated Sat Feb 12 2022 17:09:24 GMT+0000 (Greenwich Mean Time)
+ * File generated Sat Feb 12 2022 18:37:57 GMT+0000 (Greenwich Mean Time)
  */
 
 export const __version = "2.7.3"
-export const __timestamp = "2022-02-12T17:09:24.951Z"
+export const __timestamp = "2022-02-12T18:37:57.638Z"
 
 //buildRoutes
 import { buildClientTree } from "@roxi/routify/runtime/buildRoutes"
@@ -656,58 +656,6 @@ export const _tree = {
       "path": "/shop",
       "id": "_shop__layout",
       "component": () => import('../src/pages/shop/_layout.svelte').then(m => m.default)
-    },
-    {
-      "isFile": true,
-      "isDir": true,
-      "file": "_layout.svelte",
-      "filepath": "/what-we-offer/_layout.svelte",
-      "name": "_layout",
-      "ext": "svelte",
-      "badExt": false,
-      "absolutePath": "/home/jaskaran/projects/enki-website/src/pages/what-we-offer/_layout.svelte",
-      "children": [
-        {
-          "isFile": true,
-          "isDir": false,
-          "file": "index.svelte",
-          "filepath": "/what-we-offer/index.svelte",
-          "name": "index",
-          "ext": "svelte",
-          "badExt": false,
-          "absolutePath": "/home/jaskaran/projects/enki-website/src/pages/what-we-offer/index.svelte",
-          "importPath": "../src/pages/what-we-offer/index.svelte",
-          "isLayout": false,
-          "isReset": false,
-          "isIndex": true,
-          "isFallback": false,
-          "isPage": true,
-          "ownMeta": {},
-          "meta": {
-            "recursive": true,
-            "preload": false,
-            "prerender": true
-          },
-          "path": "/what-we-offer/index",
-          "id": "_whatWeOffer_index",
-          "component": () => import('../src/pages/what-we-offer/index.svelte').then(m => m.default)
-        }
-      ],
-      "isLayout": true,
-      "isReset": false,
-      "isIndex": false,
-      "isFallback": false,
-      "isPage": false,
-      "importPath": "../src/pages/what-we-offer/_layout.svelte",
-      "ownMeta": {},
-      "meta": {
-        "recursive": true,
-        "preload": false,
-        "prerender": true
-      },
-      "path": "/what-we-offer",
-      "id": "_whatWeOffer__layout",
-      "component": () => import('../src/pages/what-we-offer/_layout.svelte').then(m => m.default)
     }
   ],
   "isLayout": true,

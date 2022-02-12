@@ -55,9 +55,6 @@ describe('GIVEN CategoryView', () => {
   describe('WHEN rendered with no props', () => {
     it('THEN display no categories message', () => {
       render(CategoryView);
-      expect(screen.getByRole('heading')).toHaveTextContent(
-        'no "categoryToShow" from CategoryView'
-      );
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       expect(get(categories)).toMatchObject({
         Id: 0,
@@ -75,7 +72,13 @@ describe('GIVEN CategoryView', () => {
         Id: 123,
         ParentId: null,
         Name: 'Clothes',
-        Children: [],
+        Children: [{
+          Id: 999,
+          ParentId: 123,
+          Name: "Child Clothes",
+          Children: [],
+          NominalCode: 'CATEGORY'
+        }],
         NominalCode: 'CATEGORY',
       });
 
@@ -88,11 +91,18 @@ describe('GIVEN CategoryView', () => {
         Id: 123,
         ParentId: null,
         Name: 'Clothes',
-        Children: [],
+        Children: [{
+          Id: 999,
+          ParentId: 123,
+          Name: "Child Clothes",
+          Children: [],
+          NominalCode: 'CATEGORY'
+        }],
         NominalCode: 'CATEGORY',
       });
       expect(refreshCategory).toHaveBeenCalledTimes(0);
-      expect(screen.getByRole('heading')).toHaveTextContent('123');
+
+      expect(screen.getByRole('heading')).toHaveTextContent("Child Clothes")
       cleanup(); // it doesn't unmount unless called here, needed to prevent props from interfering accross tests
     });
 
@@ -102,7 +112,13 @@ describe('GIVEN CategoryView', () => {
           Id: 456,
           ParentId: null,
           Name: 'Shoes',
-          Children: [],
+          Children: [{
+            Id: 999,
+            ParentId: 123,
+            Name: "Child Shoes",
+            Children: [],
+            NominalCode: 'CATEGORY'
+          }],
           NominalCode: 'CATEGORY',
         },
       ]);
@@ -127,10 +143,16 @@ describe('GIVEN CategoryView', () => {
         Id: 456,
         Name: 'Shoes',
         ParentId: null,
-        Children: [],
+        Children: [{
+          Id: 999,
+          ParentId: 123,
+          Name: "Child Shoes",
+          Children: [],
+          NominalCode: 'CATEGORY'
+        }],
         NominalCode: 'CATEGORY',
       });
-      expect(screen.getByRole('heading')).toHaveTextContent('456');
+      expect(screen.getByRole('heading')).toHaveTextContent("Child Shoes")
       cleanup();
     });
 
@@ -139,9 +161,9 @@ describe('GIVEN CategoryView', () => {
 
       render(CategoryView, {
         categoryFn: (cat: Category) => categories.set(cat),
-        categoryId: 789,
+        categoryId: 456,
       });
-      expect(screen.getByRole('heading')).toHaveTextContent('789');
+      expect(screen.getByRole('heading')).toHaveTextContent('Hats');
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       cleanup();
     });
@@ -153,11 +175,9 @@ describe('GIVEN CategoryView', () => {
         categoryFn: (cat: Category) => categories.set(cat),
         categoryId: 456,
       });
-      expect(screen.getByRole('heading', { name: '456' })).toHaveTextContent(
-        '456'
+      expect(screen.getByRole('heading', { name: 'Hats' })).toHaveTextContent(
+        'Hats'
       );
-
-      expect(screen.getByText('Hats')).toBeInTheDocument();
       expect(refreshCategory).toHaveBeenCalledTimes(0);
       cleanup();
     });

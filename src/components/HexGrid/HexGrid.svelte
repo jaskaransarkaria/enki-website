@@ -6,7 +6,6 @@
   import isTag from '@/types/isTag';
 
   import type { Base, BaseFn } from '@/types/base';
-  import type { Category } from '@/types/category';
 
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
@@ -95,6 +94,7 @@
   }
 
   .flexbox-container {
+    margin: auto;
     display: flex;
     margin: 0 auto;
     overflow: hidden;
@@ -256,6 +256,9 @@
 
     .flexbox-container {
       padding-bottom: 5%;
+      height: 55vh;
+      align-items: center;
+      justify-content: center;
     }
 
     .hex-flex {

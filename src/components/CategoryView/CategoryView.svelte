@@ -94,6 +94,5 @@
       />
     {/if}
   {/if}
-  <ProductsInCategory bind:categoryId bind:variantCategories />
+  <ProductsInCategory bind:categoryId {variantCategories} />
 {/if}
-<h1>{categoryToShow?.Id || 'no "categoryToShow" from CategoryView'}</h1>
