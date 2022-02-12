@@ -5,6 +5,7 @@
   onMount(() => {
     resetBasketStore();
   });
+  //TODO: have a thank you for your purchase thing here
 </script>
 
 <h1>success</h1>

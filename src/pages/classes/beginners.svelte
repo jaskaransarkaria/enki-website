@@ -7,10 +7,7 @@
   const GROUP_CLASSES_ID = 2735617;
   const CLASSES_ID = 2735613;
 
-  let categoryId: number;
-
   const selectCategory = (category: Base) => {
-    categoryId = category.Id;
     $goto(`/shop/${category.Id}`);
   };
 </script>
