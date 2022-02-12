@@ -4,7 +4,7 @@
   import CategoryView from '@/components/CategoryView/CategoryView.svelte';
   import type { Base } from '@/types/base';
 
-  const GROUP_CLASSES_ID = 2735617;
+  const GROUP_CLASSES_ID = 2735617; // a child of "Classes" but blacklisted by HexGrid
   const CLASSES_ID = 2735613;
 
   const selectCategory = (category: Base) => {

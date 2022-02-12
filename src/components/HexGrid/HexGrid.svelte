@@ -67,7 +67,6 @@
             />
             <div class="category-name">
               {#if loadedElemArr[idx] || TEST_ENV}
-                <!--jest never renders this and fails-->
                 <h3 data-testid="hex-category-name">{category.Name}</h3>
               {/if}
             </div>
@@ -225,8 +224,8 @@
   @media (min-width: 360px) {
     .hex h3,
     .hex-flex h3 {
-      width: 200px;
-      font-size: 0.9em;
+      width: 170px;
+      font-size: 0.7em;
     }
   }
 

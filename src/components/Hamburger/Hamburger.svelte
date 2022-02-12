@@ -32,11 +32,12 @@
 
 <style>
   .menu {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     z-index: 100;
     background-color: white;
     display: flex;

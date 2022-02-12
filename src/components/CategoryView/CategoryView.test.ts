@@ -158,6 +158,14 @@ describe('GIVEN CategoryView', () => {
       cleanup();
     });
 
+    it("AND showBreadcrumbs is false THEN don't show breadcrumbs", () => {
+      render(CategoryView, {
+        showBreadcrumbs: false
+      });
+      expect(screen.queryByText("Shop")).not.toBeInTheDocument()
+      cleanup()
+    })
+
     it("AND it is a variant category THEN don't show the category", async () => {
       categories.set({
         Id: 890,

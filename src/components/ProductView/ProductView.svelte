@@ -82,6 +82,7 @@
 
   @media (min-width: 360px) {
     .products-container {
+      grid-gap: 25px;
       grid-auto-rows: 12em;
       grid-template-columns: 1fr 1fr;
     }
@@ -89,7 +90,7 @@
 
   @media (min-width: 550px) {
     .products-container {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
