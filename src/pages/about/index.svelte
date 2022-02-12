@@ -2,16 +2,16 @@
   <h1>About Enki</h1>
   <div class="shop-pics">
     <img
-      src="https://enki.imgix.net/left_enki.jpg"
+      src="https://enki.imgix.net/left_enki.jpg?auto=format"
       alt="a rectangular wooden display inside the shop"
     />
     <img
       class="center-image"
-      src="https://enki.imgix.net/outside_enki_1.png"
+      src="https://enki.imgix.net/outside_enki_1.png?auto=format"
       alt="the shop front and it's window display"
     />
     <img
-      src="https://enki.imgix.net/right_enki.png"
+      src="https://enki.imgix.net/right_enki.png?auto=format"
       alt="a wooden jeweller's work bench inside the shop"
     />
   </div>

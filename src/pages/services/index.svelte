@@ -2,19 +2,19 @@
   <h1>Services</h1>
   <div class="shop-pics">
     <img
-      src="https://enki.imgix.net/services_1.jpg"
+      src="https://enki.imgix.net/services_1.jpg?auto=format"
       alt="a ring being polished on a polishing machine"
     />
     <img
-      src="https://enki.imgix.net/services_2.jpg"
+      src="https://enki.imgix.net/services_2.jpg?auto=format"
       alt="a jewellery machine for pressing metal"
     />
     <img
-      src="https://enki.imgix.net/services_3.jpg"
+      src="https://enki.imgix.net/services_3.jpg?auto=format"
       alt="some jewellery pliers and some jewellery being inspected"
     />
     <img
-      src="https://enki.imgix.net/services_4.jpg"
+      src="https://enki.imgix.net/services_4.jpg?auto=format"
       alt="a medallion being heated with a blow touch"
     />
   </div>

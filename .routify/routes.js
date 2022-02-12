@@ -1,11 +1,11 @@
 
 /**
  * @roxi/routify 2.7.3
- * File generated Sat Feb 12 2022 14:38:36 GMT+0000 (Greenwich Mean Time)
+ * File generated Sat Feb 12 2022 17:09:24 GMT+0000 (Greenwich Mean Time)
  */
 
 export const __version = "2.7.3"
-export const __timestamp = "2022-02-12T14:38:36.119Z"
+export const __timestamp = "2022-02-12T17:09:24.951Z"
 
 //buildRoutes
 import { buildClientTree } from "@roxi/routify/runtime/buildRoutes"
@@ -89,6 +89,31 @@ export const _tree = {
         {
           "isFile": true,
           "isDir": false,
+          "file": "beginners.svelte",
+          "filepath": "/classes/beginners.svelte",
+          "name": "beginners",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/projects/enki-website/src/pages/classes/beginners.svelte",
+          "importPath": "../src/pages/classes/beginners.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": false,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/classes/beginners",
+          "id": "_classes_beginners",
+          "component": () => import('../src/pages/classes/beginners.svelte').then(m => m.default)
+        },
+        {
+          "isFile": true,
+          "isDir": false,
           "file": "index.svelte",
           "filepath": "/classes/index.svelte",
           "name": "index",
@@ -110,6 +135,31 @@ export const _tree = {
           "path": "/classes/index",
           "id": "_classes_index",
           "component": () => import('../src/pages/classes/index.svelte').then(m => m.default)
+        },
+        {
+          "isFile": true,
+          "isDir": false,
+          "file": "wedding-rings.svelte",
+          "filepath": "/classes/wedding-rings.svelte",
+          "name": "wedding-rings",
+          "ext": "svelte",
+          "badExt": false,
+          "absolutePath": "/home/jaskaran/projects/enki-website/src/pages/classes/wedding-rings.svelte",
+          "importPath": "../src/pages/classes/wedding-rings.svelte",
+          "isLayout": false,
+          "isReset": false,
+          "isIndex": false,
+          "isFallback": false,
+          "isPage": true,
+          "ownMeta": {},
+          "meta": {
+            "recursive": true,
+            "preload": false,
+            "prerender": true
+          },
+          "path": "/classes/wedding-rings",
+          "id": "_classes_weddingRings",
+          "component": () => import('../src/pages/classes/wedding-rings.svelte').then(m => m.default)
         }
       ],
       "isLayout": true,
