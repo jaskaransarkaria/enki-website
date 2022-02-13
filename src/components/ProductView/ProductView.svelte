@@ -14,16 +14,73 @@
   let nonVariantArr: readonly Product[] = [];
   let groupedVariantProducts: Array<readonly Product[]>;
 
-  $: groupedVariantProducts = Object.values(
-    groupBy(variantArr, 'VariantGroupId')
-  );
+  enum ItemType {
+    VARIANT_PRODUCT = 'VARIANT_PRODUCT',
+    NONVARIANT_PRODUCT = 'NONVARIANT_PRODUCT',
+    VARIANT_CATEGORY = 'VARIANT_CATEGORY',
+  }
+
+  type CollatedItem = (Product | Category) & { Type: ItemType };
+
+  const showGroupedVariant = (group: Array<readonly Product[]>) =>
+    group
+      .flat(1)
+      .filter((variant) => !variantCategoryIds.includes(variant.CategoryId))
+      .map(
+        (variant: Product): CollatedItem => ({
+          ...variant,
+          Type: ItemType.VARIANT_PRODUCT,
+        })
+      );
+
+  const collateArray = (
+    varCatsArr: readonly CollatedItem[],
+    nonVarArr: readonly CollatedItem[],
+    groupedVariantProducts: Array<readonly Product[]>
+  ): readonly CollatedItem[] => [
+    ...varCatsArr,
+    ...nonVarArr,
+    ...showGroupedVariant(groupedVariantProducts),
+  ];
 
   $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
 
   $: if (productArr.length) {
     variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
+
     nonVariantArr = productArr.filter(({ VariantGroupId }) => !VariantGroupId);
   }
+
+  $: variantCategories.map(
+    (category: Category): CollatedItem => ({
+      ...category,
+      Type: ItemType.VARIANT_CATEGORY,
+    })
+  );
+
+  $: groupedVariantProducts = Object.values(
+    groupBy(variantArr, 'VariantGroupId')
+  );
+
+  $: typedVariantCategories = variantCategories.map(
+    (variant: Category): CollatedItem => ({
+      ...variant,
+      Type: ItemType.VARIANT_CATEGORY,
+    })
+  );
+
+  $: typedNonVariantProductArr = nonVariantArr.map(
+    (nonVariant: Product): CollatedItem => ({
+      ...nonVariant,
+      Type: ItemType.NONVARIANT_PRODUCT,
+    })
+  );
+
+  $: collatedArray = collateArray(
+    typedVariantCategories,
+    typedNonVariantProductArr,
+    groupedVariantProducts
+  );
 </script>
 
 {#if productArr}
@@ -43,25 +100,15 @@
       ? 'detailed-products-container'
       : 'products-container'}
   >
-    {#if variantCategories.length}
-      {#each variantCategories as variantCategory (variantCategory.Id)}
-        <SingleProduct {variantCategory} product={null} />
-      {/each}
-    {/if}
-    {#if variantArr.length}
-      {#each groupedVariantProducts as variants (variants)}
-        {#each variants as variant (variant)}
-          {#if !variantCategoryIds.includes(variant.CategoryId)}
-            <SingleProduct product={variant} />
-          {/if}
-        {/each}
-      {/each}
-    {/if}
-    {#if nonVariantArr.length}
-      {#each nonVariantArr as product}
-        <SingleProduct {product} {showDetailedView} />
-      {/each}
-    {/if}
+    {#each collatedArray as item (item.Id)}
+      <SingleProduct
+        variantCategory={item.Type === ItemType.VARIANT_CATEGORY ? item : null}
+        product={item.Type === ItemType.VARIANT_CATEGORY ? null : item}
+        showDetailedView={item.Type === ItemType.NONVARIANT_PRODUCT
+          ? true
+          : false}
+      />
+    {/each}
   </div>
 {/if}
 

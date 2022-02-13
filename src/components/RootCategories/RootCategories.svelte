@@ -1,9 +1,9 @@
 <script lang="typescript">
+  import { goto } from '@roxi/routify';
   import { onMount } from 'svelte';
   import { refreshCategories } from '@/libs/requests';
   import HexGrid from '@/components/HexGrid/HexGrid.svelte';
   import { categories, readonlyAllCategories } from '@/stores/categories';
-  import { goto } from '@roxi/routify';
 
   import type { Category } from '@/types/category';
   import type { Base, BaseFn } from '@/types/base';
