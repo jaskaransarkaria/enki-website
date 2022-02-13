@@ -1,15 +1,21 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition';
   export let active: boolean;
   export let msg: string;
 </script>
 
-<h3>{active}</h3>
+{#key msg}
+  <h3 in:fade={{ duration: 1200 }}>{msg}</h3>
+{/key}
 <label class="switch">
   <input type="checkbox" on:click={() => (active = !active)} />
   <span class="slider round" />
 </label>
 
 <style>
+  h3 {
+    font-family: 'Caviar Dreams';
+  }
   /* The switch - the box around the slider */
   .switch {
     position: relative;

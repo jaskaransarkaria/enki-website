@@ -3,6 +3,7 @@
   import { fade } from 'svelte/transition';
   import { calcShowGrid } from '@/libs/gridCalc';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
+  import Switch from '@/components/Switch/Switch.svelte';
   import type { Category } from '@/types/category';
   import type { Product } from '@/types/product';
 
@@ -10,107 +11,77 @@
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
 
+  let sortBy = false;
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
   let groupedVariantProducts: Array<readonly Product[]>;
-
-  enum ItemType {
-    VARIANT_PRODUCT = 'VARIANT_PRODUCT',
-    NONVARIANT_PRODUCT = 'NONVARIANT_PRODUCT',
-    VARIANT_CATEGORY = 'VARIANT_CATEGORY',
-  }
-
-  type CollatedItem = (Product | Category) & { Type: ItemType };
-
-  const showGroupedVariant = (group: Array<readonly Product[]>) =>
-    group
-      .flat(1)
-      .filter((variant) => !variantCategoryIds.includes(variant.CategoryId))
-      .map(
-        (variant: Product): CollatedItem => ({
-          ...variant,
-          Type: ItemType.VARIANT_PRODUCT,
-        })
-      );
-
-  const collateArray = (
-    varCatsArr: readonly CollatedItem[],
-    nonVarArr: readonly CollatedItem[],
-    groupedVariantProducts: Array<readonly Product[]>
-  ): readonly CollatedItem[] => [
-    ...varCatsArr,
-    ...nonVarArr,
-    ...showGroupedVariant(groupedVariantProducts),
-  ];
-
-  $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
-
-  $: if (productArr.length) {
-    variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
-
-    nonVariantArr = productArr.filter(({ VariantGroupId }) => !VariantGroupId);
-  }
-
-  $: variantCategories.map(
-    (category: Category): CollatedItem => ({
-      ...category,
-      Type: ItemType.VARIANT_CATEGORY,
-    })
-  );
 
   $: groupedVariantProducts = Object.values(
     groupBy(variantArr, 'VariantGroupId')
   );
 
-  $: typedVariantCategories = variantCategories.map(
-    (variant: Category): CollatedItem => ({
-      ...variant,
-      Type: ItemType.VARIANT_CATEGORY,
-    })
-  );
+  $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
 
-  $: typedNonVariantProductArr = nonVariantArr.map(
-    (nonVariant: Product): CollatedItem => ({
-      ...nonVariant,
-      Type: ItemType.NONVARIANT_PRODUCT,
-    })
-  );
-
-  $: collatedArray = collateArray(
-    typedVariantCategories,
-    typedNonVariantProductArr,
-    groupedVariantProducts
-  );
+  $: if (productArr.length) {
+    variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
+    nonVariantArr = productArr.filter(({ VariantGroupId }) => !VariantGroupId);
+  }
 </script>
 
-{#if productArr}
-  <div
-    in:fade={{ delay: 500 }}
-    class={showDetailedView ||
-    !calcShowGrid(
-      window.innerWidth,
-      variantCategories.length
-        ? variantCategories.length +
-            nonVariantArr.length +
-            variantArr.filter(
-              (vars) => !variantCategoryIds.includes(vars.CategoryId)
-            ).length
-        : productArr.length
-    )
-      ? 'detailed-products-container'
-      : 'products-container'}
-  >
-    {#each collatedArray as item (item.Id)}
-      <SingleProduct
-        variantCategory={item.Type === ItemType.VARIANT_CATEGORY ? item : null}
-        product={item.Type === ItemType.VARIANT_CATEGORY ? null : item}
-        {showDetailedView}
-      />
-    {/each}
+<div class="container">
+  <div class="switch-container">
+    <Switch
+      bind:active={sortBy}
+      msg={sortBy ? 'price (highest to lowest)' : 'alphabetically'}
+    />
   </div>
-{/if}
+  {#if productArr}
+    <div
+      in:fade={{ delay: 500 }}
+      class={showDetailedView ||
+      !calcShowGrid(
+        window.innerWidth,
+        variantCategories.length
+          ? variantCategories.length +
+              nonVariantArr.length +
+              variantArr.filter(
+                (vars) => !variantCategoryIds.includes(vars.CategoryId)
+              ).length
+          : productArr.length
+      )
+        ? 'detailed-products-container'
+        : 'products-container'}
+    >
+      {#if variantCategories.length}
+        {#each variantCategories as variantCategory (variantCategory.Id)}
+          <SingleProduct {variantCategory} product={null} />
+        {/each}
+      {/if}
+      {#if variantArr.length}
+        {#each groupedVariantProducts as variants (variants)}
+          {#each variants as variant (variant)}
+            {#if !variantCategoryIds.includes(variant.CategoryId)}
+              <SingleProduct product={variant} />
+            {/if}
+          {/each}
+        {/each}
+      {/if}
+      {#if nonVariantArr.length}
+        {#each nonVariantArr as product}
+          <SingleProduct {product} {showDetailedView} />
+        {/each}
+      {/if}
+    </div>
+  {/if}
+</div>
 
 <style>
+  .switch-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 40px;
+  }
+
   .products-container {
     display: grid;
     grid-auto-rows: 18em;
