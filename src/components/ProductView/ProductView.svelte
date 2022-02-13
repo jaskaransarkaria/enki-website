@@ -104,9 +104,7 @@
       <SingleProduct
         variantCategory={item.Type === ItemType.VARIANT_CATEGORY ? item : null}
         product={item.Type === ItemType.VARIANT_CATEGORY ? null : item}
-        showDetailedView={item.Type === ItemType.NONVARIANT_PRODUCT
-          ? true
-          : false}
+        {showDetailedView}
       />
     {/each}
   </div>
