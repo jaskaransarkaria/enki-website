@@ -26,6 +26,42 @@ The server which handles pulling product data from the epos system can be found 
 
 The project is a hybrid spa, hybrid in that it's a single page application with routing that resembles SSR. See the `pages/` dir for an example.
 
+```
+src/pages
+├── about
+│   ├── index.svelte
+│   └── _layout.svelte
+├── classes
+│   ├── beginners.svelte
+│   ├── index.svelte
+│   ├── _layout.svelte
+│   └── wedding-rings.svelte
+├── contact
+│   ├── index.svelte
+│   └── _layout.svelte
+├── _fallback.svelte
+├── index.svelte
+├── _layout.svelte
+├── payment
+│   ├── _layout.svelte
+│   └── success.svelte
+├── services
+│   ├── index.svelte
+│   └── _layout.svelte
+└── shop
+    ├── basket
+    │   └── index.svelte
+    ├── [category].svelte
+    ├── index.svelte
+    ├── _layout.svelte
+    ├── product
+    │   └── [product].svelte
+    ├── search
+    │   └── index.svelte
+    └── tag
+        └── [tag].svelte
+```
+
 We lean on functional programming at the boundaries which is why you find the requests `libs/` written with the `fp-ts` library.
 
 We pull all the products, categories and tags as early as possible (when `/shop` loads), we then store using a svelte store and query it as the user navigates through the site (reducing api calls to the server to a minimum). If a user navigates directly to a specific page and the context hasn't initialised we hae checks in the relevant components so we pull the data when there is none in our svelte store.

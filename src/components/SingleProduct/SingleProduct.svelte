@@ -269,8 +269,8 @@
 
   @media (min-width: 1600px) {
     .simple-container {
-      height: 385px;
-      width: 385px;
+      height: 340px;
+      width: 340px;
     }
   }
 
