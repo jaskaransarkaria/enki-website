@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
+  import ScrollDown from '@/components/ScrollDown/ScrollDown.svelte';
 
   // this is how to pass down a prop from the router
   // export let scoped: any;
@@ -25,6 +26,7 @@
     alt="welcome to the shop, this ilustration shows the shopkeeper behind her bench"
   />
   {#if isMobile}
+    <ScrollDown />
     <div class="mobile-button-container">
       <img
         class="mobile-online-shop"

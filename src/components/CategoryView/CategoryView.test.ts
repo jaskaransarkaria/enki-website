@@ -78,7 +78,7 @@ describe('GIVEN CategoryView', () => {
       expect(get(categories)).toMatchObject({ ...nestedCategories });
       expect(refreshCategory).toHaveBeenCalledTimes(0);
 
-      expect(screen.getByText('Clothes')).toBeInTheDocument()
+      expect(screen.getByText('Clothes')).toBeInTheDocument();
       cleanup(); // it doesn't unmount unless called here, needed to prevent props from interfering accross tests
     });
 
@@ -88,13 +88,15 @@ describe('GIVEN CategoryView', () => {
           Id: 456,
           ParentId: null,
           Name: 'Shoes',
-          Children: [{
-            Id: 999,
-            ParentId: 123,
-            Name: "Child Shoes",
-            Children: [],
-            NominalCode: 'CATEGORY'
-          }],
+          Children: [
+            {
+              Id: 999,
+              ParentId: 123,
+              Name: 'Child Shoes',
+              Children: [],
+              NominalCode: 'CATEGORY',
+            },
+          ],
           NominalCode: 'CATEGORY',
         },
       ]);
@@ -119,16 +121,18 @@ describe('GIVEN CategoryView', () => {
         Id: 456,
         Name: 'Shoes',
         ParentId: null,
-        Children: [{
-          Id: 999,
-          ParentId: 123,
-          Name: "Child Shoes",
-          Children: [],
-          NominalCode: 'CATEGORY'
-        }],
+        Children: [
+          {
+            Id: 999,
+            ParentId: 123,
+            Name: 'Child Shoes',
+            Children: [],
+            NominalCode: 'CATEGORY',
+          },
+        ],
         NominalCode: 'CATEGORY',
       });
-      expect(screen.getByRole('heading')).toHaveTextContent("Child Shoes")
+      expect(screen.getByRole('heading')).toHaveTextContent('Child Shoes');
       cleanup();
     });
 
@@ -160,11 +164,11 @@ describe('GIVEN CategoryView', () => {
 
     it("AND showBreadcrumbs is false THEN don't show breadcrumbs", () => {
       render(CategoryView, {
-        showBreadcrumbs: false
+        showBreadcrumbs: false,
       });
-      expect(screen.queryByText("Shop")).not.toBeInTheDocument()
-      cleanup()
-    })
+      expect(screen.queryByText('Shop')).not.toBeInTheDocument();
+      cleanup();
+    });
 
     it("AND it is a variant category THEN don't show the category", async () => {
       categories.set({
