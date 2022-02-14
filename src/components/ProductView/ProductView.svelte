@@ -1,5 +1,5 @@
 <script lang="typescript">
-  import { groupBy, orderBy } from 'lodash-es';
+  import { groupBy } from 'lodash-es';
   import { fade } from 'svelte/transition';
   import { calcShowGrid } from '@/libs/gridCalc';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
