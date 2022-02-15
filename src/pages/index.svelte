@@ -1,6 +1,18 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
   import ScrollDown from '@/components/ScrollDown/ScrollDown.svelte';
+  import { onMount } from 'svelte';
+  import { products } from '@/stores/products';
+  import { refreshProducts } from '@/libs/requests';
+
+  onMount(async () => {
+    if ($products && $products.length === 0) {
+      const fetchedData = await refreshProducts(
+        `${process.env.SERVER_URL}/get-all-products`
+      );
+      products.set(fetchedData);
+    }
+  });
 
   // this is how to pass down a prop from the router
   // export let scoped: any;
