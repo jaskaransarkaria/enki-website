@@ -11,9 +11,9 @@
   type="search"
   style={width}
   bind:value={searchValue}
-  on:keydown={(e) => {
+  on:keydown={async (e) => {
     if (e.key === 'Enter') {
-      $goto(`/shop/search`, {
+      await $goto(`/shop/search`, {
         'search-term': encodeURIComponent(searchValue),
       });
       searchValue = '';

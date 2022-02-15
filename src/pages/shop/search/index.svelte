@@ -21,7 +21,7 @@
   });
 
   $: reg = new RegExp(`\\b${decodeURIComponent($params['search-term'])}`, 'i');
-  $: if ($params['search-term']) {
+  $: if ($params['search-term'] && $products.length) {
     data = searchProducts(reg, $products);
   }
 </script>
