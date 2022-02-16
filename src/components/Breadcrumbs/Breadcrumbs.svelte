@@ -98,6 +98,7 @@
     cursor: pointer;
     overflow: hidden;
     outline: none;
+    font-family: 'Caviar Dreams';
   }
 
   img {

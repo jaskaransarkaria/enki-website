@@ -167,7 +167,7 @@
   h3 {
     left: -100%;
     right: -100%;
-    width: 98%;
+    width: 100%;
     height: 100%;
     margin: 0 auto;
     transform: rotate3d(0, 0, 0, 0deg);

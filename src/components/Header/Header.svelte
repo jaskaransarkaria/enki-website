@@ -191,14 +191,15 @@
                 ? 'animate-basket-number-odd'
                 : 'animate-basket-number-even'
             }`}
-            x="47.5%"
-            y="40%"
+            x="55%"
+            y="45%"
             text-anchor="middle"
             stroke="white"
             fill="white"
             stroke-width="2.5px"
-            dy=".45em"
-            font-size="5em">{basketNumber}</text
+            dy=".5em"
+            font-size="4em"
+            font-family="Caviar Dreams">{basketNumber}</text
           >
         </g>
       </svg>
