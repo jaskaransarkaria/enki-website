@@ -27,9 +27,10 @@
     duration: 500,
   });
 
-  afterUpdate(
-    () => (isBasketPage = window.location.pathname === '/shop/basket')
-  );
+  afterUpdate(() => {
+    isBasketPage = window.location.pathname === '/shop/basket';
+    selected = window.location.pathname;
+  });
 
   function clickOutside(
     node: HTMLElement,
@@ -76,6 +77,7 @@
   }
 
   const move = (x: number) => `transform: translateX(${x}px);`;
+  const highlight = (page: string) => window.location.pathname.includes(page);
   const grow = (width: number, x: number) =>
     `width: ${width}px; transform: translateX(${x}px);`;
   const growSearchWidth = (width: number) => `width: ${width}px`;
@@ -94,6 +96,8 @@
     animateBasketNumber = !animateBasketNumber;
   }
 
+  $: selected = window.location.pathname;
+
   $: isBasketPage = window.location.pathname === '/shop/basket';
 </script>
 
@@ -102,12 +106,38 @@
   {#if outerWidth < 960}
     <Hamburger />
   {:else}
-    <img
-      class="home-icon"
-      src="https://enki.imgix.net/home-icon.png?auto=format"
-      alt="home"
-      on:click={$goto('/')}
-    />
+    <div class="left-container">
+      <button
+        class={selected.includes('shop') ? 'selected' : ''}
+        on:click={$goto('/shop')}
+      >
+        shop
+      </button>
+      <button
+        class={selected.includes('services') ? 'selected' : ''}
+        on:click={$goto('/services')}
+      >
+        services
+      </button>
+      <button
+        class={selected.includes('classes') ? 'selected' : ''}
+        on:click={$goto('/classes')}
+      >
+        classes
+      </button>
+      <button
+        class={selected.includes('about') ? 'selected' : ''}
+        on:click={$goto('/about')}
+      >
+        about
+      </button>
+      <button
+        class={selected.includes('contact') ? 'selected' : ''}
+        on:click={$goto('/contact')}
+      >
+        contact
+      </button>
+    </div>
   {/if}
   {#if !showSearch}
     <img
@@ -120,19 +150,6 @@
     />
   {/if}
   <div class="right-container">
-    {#if outerWidth > 960}
-      <button style={move($left)} on:click={$goto('/shop')}> shop </button>
-      <button style={move($left)} on:click={$goto('/services')}>
-        services
-      </button>
-      <button style={move($left)} on:click={$goto('/classes')}>
-        classes
-      </button>
-      <button style={move($left)} on:click={$goto('/about')}> about </button>
-      <button style={move($left)} on:click={$goto('/contact')}>
-        contact
-      </button>
-    {/if}
     <img
       class="search-icon"
       src="https://enki.imgix.net/search-icon.png?auto=format"
@@ -223,6 +240,13 @@
     box-shadow: 0 0 20px 0 #a3a8a5;
   }
 
+  .left-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    width: 18%;
+  }
+
   .right-container {
     display: flex;
     align-self: flex-end;
@@ -302,7 +326,7 @@
     cursor: pointer;
   }
 
-  button:focus {
+  .selected {
     border-bottom: 3px solid orange;
   }
 

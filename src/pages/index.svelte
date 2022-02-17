@@ -165,24 +165,24 @@
 
   @media (min-width: 450px) {
     .contact {
-      width: 90px;
-      grid-column-start: 84;
+      width: 70px;
+      grid-column-start: 66;
       grid-column-end: span end;
       grid-row-start: 62;
       grid-row-end: span end;
     }
 
     .online-shop {
-      width: 120px;
-      grid-column-start: 25;
+      width: 80px;
+      grid-column-start: 36;
       grid-column-end: span end;
-      grid-row-start: 45;
+      grid-row-start: 58;
       grid-row-end: span end;
     }
 
     .repairs-and-comms {
       width: 90px;
-      grid-column-start: 2;
+      grid-column-start: 10;
       grid-column-end: span end;
       grid-row-start: 5;
       grid-row-end: span end;
@@ -199,18 +199,18 @@
 
   @media (min-width: 600px) {
     .contact {
-      width: 100px;
-      grid-column-start: 80;
+      width: 80px;
+      grid-column-start: 68;
       grid-column-end: span end;
       grid-row-start: 60;
       grid-row-end: span end;
     }
 
     .online-shop {
-      width: 120px;
-      grid-column-start: 32;
+      width: 80px;
+      grid-column-start: 38;
       grid-column-end: span end;
-      grid-row-start: 45;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
@@ -234,17 +234,17 @@
   @media (min-width: 800px) {
     .contact {
       width: 100px;
-      grid-column-start: 72;
+      grid-column-start: 68;
       grid-column-end: span end;
-      grid-row-start: 60;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
     .online-shop {
       width: 120px;
-      grid-column-start: 36;
+      grid-column-start: 39;
       grid-column-end: span end;
-      grid-row-start: 45;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
@@ -270,7 +270,7 @@
       width: 120px;
       grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 64;
       grid-row-end: span end;
     }
 
@@ -278,7 +278,7 @@
       width: 140px;
       grid-column-start: 39;
       grid-column-end: span end;
-      grid-row-start: 43;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
@@ -304,7 +304,7 @@
       width: 160px;
       grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
@@ -312,7 +312,7 @@
       width: 180px;
       grid-column-start: 38;
       grid-column-end: span end;
-      grid-row-start: 43;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
@@ -372,7 +372,7 @@
       width: 210px;
       grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
@@ -380,7 +380,7 @@
       width: 230px;
       grid-column-start: 39;
       grid-column-end: span end;
-      grid-row-start: 43;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 

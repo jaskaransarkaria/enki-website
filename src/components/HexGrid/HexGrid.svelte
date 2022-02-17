@@ -208,7 +208,7 @@
 
   .hex:hover,
   .hex-flex:hover {
-    transform: scale(1.06);
+    transform: scale(1.015);
   }
 
   .hex-link:hover button,
