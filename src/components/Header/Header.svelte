@@ -77,7 +77,6 @@
   }
 
   const move = (x: number) => `transform: translateX(${x}px);`;
-  const highlight = (page: string) => window.location.pathname.includes(page);
   const grow = (width: number, x: number) =>
     `width: ${width}px; transform: translateX(${x}px);`;
   const growSearchWidth = (width: number) => `width: ${width}px`;
