@@ -291,11 +291,6 @@
       opacity: 0;
     }
   }
-  @media (min-width: 960px) {
-    .num-basket-items {
-      transform: translate(-120%, 100%);
-    }
-  }
 
   img:hover {
     cursor: pointer;
@@ -368,6 +363,14 @@
     button {
       font-size: 0.75em;
     }
+
+    .left-container {
+      width: 30%;
+    }
+
+    .num-basket-items {
+      transform: translate(-120%, 100%);
+    }
   }
 
   @media (min-width: 1280px) {
@@ -383,6 +386,12 @@
     .enki-logo {
       top: 0;
       width: 300px;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .left-container {
+      width: 25%;
     }
   }
 
@@ -403,6 +412,10 @@
 
     button {
       font-size: 1em;
+    }
+
+    .left-container {
+      width: 22.5%;
     }
   }
 </style>
