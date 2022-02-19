@@ -90,6 +90,8 @@
     padding: 4.5%;
     padding-bottom: 15%;
     padding-top: 2%;
+    height: 50vh;
+    align-items: center;
   }
 
   .flexbox-container {
@@ -238,6 +240,9 @@
 
     .flexbox-container {
       padding-bottom: 8%;
+      height: 55vh;
+      align-items: center;
+      justify-content: center;
     }
 
     .hex-flex {
@@ -255,9 +260,6 @@
 
     .flexbox-container {
       padding-bottom: 5%;
-      height: 55vh;
-      align-items: center;
-      justify-content: center;
     }
 
     .hex-flex {

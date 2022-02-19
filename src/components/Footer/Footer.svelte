@@ -2,7 +2,6 @@
   import { goto } from '@roxi/routify';
   import { fade } from 'svelte/transition';
   import MailChimpSubscribe from '@/components/MailChimpSubscribe/MailChimpSubscribe.svelte';
-  import BackToTop from '@/components/BackToTop/BackToTop.svelte';
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;
@@ -14,7 +13,6 @@
     <img class="enki-icon" src="/enki_icon.jpg" alt="enki icon/ logo" />
   </div>
   <div class="centre-container">
-    <BackToTop />
     <h3>want to be the first to find out about new products and classes?</h3>
     <MailChimpSubscribe />
     {#if isMobile}

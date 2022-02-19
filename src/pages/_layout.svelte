@@ -1,5 +1,6 @@
 <script lang="ts">
   import Header from '@/components/Header/Header.svelte';
+  import BackToTop from '@/components/BackToTop/BackToTop.svelte';
   import Footer from '@/components/Footer/Footer.svelte';
 </script>
 
@@ -7,6 +8,7 @@
   <Header />
   <div class="header-block" />
   <slot scoped={{ name: 'world' }} />
+  <BackToTop />
 </div>
 <Footer />
 

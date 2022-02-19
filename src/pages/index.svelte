@@ -4,6 +4,7 @@
   import { onMount } from 'svelte';
   import { products } from '@/stores/products';
   import { refreshProducts } from '@/libs/requests';
+  import BackToTop from '@/components/BackToTop/BackToTop.svelte';
 
   onMount(async () => {
     if ($products && $products.length === 0) {
@@ -110,6 +111,7 @@
     />
   {/if}
 </figure>
+<BackToTop />
 
 <style>
   .container {
