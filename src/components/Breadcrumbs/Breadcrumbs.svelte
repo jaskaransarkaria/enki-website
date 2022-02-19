@@ -37,9 +37,9 @@
 
   const recursiveCatSearch = (
     id: number,
-    categories: Category[],
-    results: Category[]
-  ): Category[] => {
+    categories: readonly Category[],
+    results: readonly Category[]
+  ): readonly Category[] => {
     // dive deep and find the category then work upwards to the root
     for (const cat of categories) {
       if (cat.Id === id) {
@@ -70,11 +70,9 @@
 
   $: breadcrumbs = [
     rootShop,
-    ...recursiveCatSearch(
-      selectedCategoryId,
-      $readonlyAllCategories,
-      []
-    ).reverse(),
+    ...recursiveCatSearch(selectedCategoryId, $readonlyAllCategories, [])
+      .slice()
+      .reverse(),
     ...extraCrumbs,
   ];
 </script>

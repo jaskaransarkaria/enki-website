@@ -6,7 +6,7 @@ const gridCols: { [key: string]: number } = {
   '1960plus': 14,
 };
 
-const getGridCols = (width: number) => {
+export const getGridCols = (width: number): number => {
   if (width >= 1960) {
     return gridCols['1960plus'];
   }
@@ -24,3 +24,26 @@ const getGridCols = (width: number) => {
 
 export const calcShowGrid = (width: number, dataLength: number): boolean =>
   getGridCols(width) - dataLength * 2 < 2 ? true : false;
+
+export const calcRowNumber = (
+  arrLength: number,
+  rowWidth: number,
+  rowCount: number
+): number => {
+  if (rowCount % 2 === 0) {
+    if (arrLength <= rowWidth - 1) {
+      return rowCount;
+    }
+    // its even row so - 1
+    arrLength -= rowWidth - 1;
+    return calcRowNumber(arrLength, rowWidth, ++rowCount);
+  }
+
+  if (arrLength <= rowWidth) {
+    return rowCount;
+  }
+
+  // it's a odd row keep row width as is
+  arrLength -= rowWidth;
+  return calcRowNumber(arrLength, rowWidth, ++rowCount);
+};

@@ -1,16 +1,17 @@
 <script lang="typescript">
-  import { fade } from 'svelte/transition';
-  import { calcShowGrid } from '@/libs/gridCalc';
+  import { getGridCols, calcShowGrid, calcRowNumber } from '@/libs/gridCalc';
   import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.svelte';
+  import Hex from '@/components/Hex/Hex.svelte';
   import isCategory from '@/types/isCategory';
   import isTag from '@/types/isTag';
 
   import type { Base, BaseFn } from '@/types/base';
+  import type { Category } from '@/types/category';
+  import type { Tag } from '@/types/tag';
 
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
 
-  const TEST_ENV = process.env.NODE_ENV === 'test';
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
 
@@ -18,61 +19,60 @@
   let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray(data.length)];
   let loadedElemArr: boolean[] = [...createEmptyArray(data.length)];
 
-  const handleError = (idx: number) => {
-    imgElemArr[idx].onerror = null;
-    sourceElemArr[idx].srcset = imgElemArr[idx].src;
-  };
+  $: gridColumnNumber = getGridCols(window.innerWidth) / 2;
+  $: filteredData = data.filter(
+    (base: Base): base is Category | Tag =>
+      isTag(base) ||
+      (isCategory(base) &&
+        base.NominalCode !== 'NOT_WEB' &&
+        base.NominalCode !== 'CLASSES')
+  );
+  $: showGrid = calcShowGrid(window.innerWidth, filteredData.length);
 
-  $: showGrid = calcShowGrid(window.innerWidth, data.length);
+  $: rowNumber =
+    filteredData.length > gridColumnNumber
+      ? calcRowNumber(filteredData.length, gridColumnNumber, 1)
+      : 1;
+
+  $: rowOffset = Math.floor(
+    rowNumber % 2 === 0 ? rowNumber / 2 : (rowNumber - 1) / 2
+  ); // the even rows are 1 shorter
+  $: hexesForCompleteGrid = rowNumber * gridColumnNumber - rowOffset;
+  $: emptyHexes = createEmptyArray(hexesForCompleteGrid - filteredData.length);
+  $: itemsOnLastRow =
+    (rowNumber % 2 === 0 ? gridColumnNumber - rowOffset : gridColumnNumber) -
+    emptyHexes.length;
 </script>
 
 <ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>
-  {#each data as category, idx (category.Id)}
-    {#if isTag(category) || (isCategory(category) && category.NominalCode !== 'NOT_WEB' && category.NominalCode !== 'CLASSES')}
-      <li class={showGrid ? 'hex' : 'hex-flex'}>
-        <div class="hex-in">
-          <div class={loadedElemArr[idx] ? 'hex-link' : 'hex-link hex-loading'}>
-            <picture in:fade={{ duration: 800 }}>
-              <source
-                srcset={`https://enki.imgix.net/${category.Id}?auto=format`}
-                type="image/jpg"
-                bind:this={sourceElemArr[idx]}
-                data-testid="hex-image"
-                loading="eager"
-                on:load={() => (loadedElemArr[idx] = true)}
-              />
-              <img
-                src={`https://enki.imgix.net/faith.jpg?auto=format`}
-                alt="placeholder"
-                data-testid="hex-image-fallback"
-                bind:this={imgElemArr[idx]}
-                on:error={() => handleError(idx)}
-                loading="eager"
-                on:load={() => (loadedElemArr[idx] = true)}
-              />
-            </picture>
-            {#if loadedElemArr[idx]}
-              <img
-                in:fade|local={{ delay: 200, duration: 800 }}
-                src={`https://enki.imgix.net/hex_${Math.floor(
-                  Math.random() * (6 - 1 + 1) + 1
-                )}.svg`}
-                alt="hexagon shape for the category button"
-                loading="lazy"
-              />
-            {/if}
-            <button
-              data-testid="hex-button"
-              on:click={/*istanbul ignore next */ () => categoryFn(category)}
-            />
-            <div class="category-name">
-              {#if loadedElemArr[idx] || TEST_ENV}
-                <h3 data-testid="hex-category-name">{category.Name}</h3>
-              {/if}
-            </div>
-          </div>
-        </div>
-      </li>
+  {#each filteredData as category, idx (category.Id)}
+    {#if idx === filteredData.length - itemsOnLastRow}
+      {#if filteredData.length > gridColumnNumber && emptyHexes.length}
+        {#each emptyHexes.slice(0, Math.ceil(emptyHexes.length / 2)) as _}
+          <li class={showGrid ? 'hex' : 'hex-flex'}>
+            <Hex isEmpty />
+          </li>
+        {/each}
+      {/if}
+    {/if}
+    <li class={showGrid ? 'hex' : 'hex-flex'}>
+      <Hex
+        {categoryFn}
+        {loadedElemArr}
+        {idx}
+        {category}
+        {sourceElemArr}
+        {imgElemArr}
+      />
+    </li>
+    {#if idx === filteredData.length - 1}
+      {#if filteredData.length > gridColumnNumber && emptyHexes.length}
+        {#each emptyHexes.length === 1 ? emptyHexes : emptyHexes.slice(0, Math.floor(emptyHexes.length / 2)) as _}
+          <li class={showGrid ? 'hex' : 'hex-flex'}>
+            <Hex isEmpty />
+          </li>
+        {/each}
+      {/if}
     {/if}
   {:else}
     <LoadingSpinner />
@@ -90,7 +90,7 @@
     padding: 4.5%;
     padding-bottom: 15%;
     padding-top: 2%;
-    height: 50vh;
+    min-height: 50vh;
     align-items: center;
   }
 
@@ -110,16 +110,6 @@
     margin: 1%;
   }
 
-  .category-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    top: 40%;
-    width: 100%;
-    height: 15%;
-  }
-
   .hex-flex,
   .hex {
     grid-column-end: span 2;
@@ -135,109 +125,12 @@
     padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
   }
 
-  .hex-in {
-    position: absolute;
-    width: 100%;
-    padding-bottom: 115.47%; /* =  width / sin(60) */
-    overflow: hidden;
-    visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-  }
-
-  .hex-in * {
-    position: absolute;
-    visibility: visible;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-  }
-
-  .hex-link {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    color: black;
-    overflow: hidden;
-    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-  }
-
-  .hex-flex picture,
-  .hex-flex img,
-  .hex picture,
-  .hex img,
-  button,
-  h3 {
-    left: -100%;
-    right: -100%;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    transform: rotate3d(0, 0, 0, 0deg);
-    font-size: 0.6em;
-    font-family: 'Welcomehome3 Regular';
-  }
-
-  .hex-flex button,
-  .hex button {
-    width: 100%;
-    padding: 5%;
-    box-sizing: border-box;
-    background-color: transparent;
-    color: white;
-    z-index: 1;
-    transform: translate3d(0, -100%, 0);
-    transform: 0.2s ease-out, opacity 0.3s ease-out;
-  }
-
-  .hex-flex h3,
-  .hex h3 {
-    width: 95px;
-    font-size: 0.55em;
-    vertical-align: middle;
-    height: auto;
-  }
-
-  .hex-flex button::after,
-  .hex button::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 45%;
-    width: 10%;
-    text-align: center;
-    border-bottom: 1px solid #fff;
-  }
-
   .hex:hover,
   .hex-flex:hover {
     transform: scale(1.015);
   }
 
-  .hex-link:hover button,
-  .hex-link:focus button {
-    cursor: pointer;
-    transform: translate3d(0, 0, 0);
-  }
-
-  .hex-loading {
-    background-color: rgba(238, 238, 238, 1);
-  }
-
-  @media (min-width: 360px) {
-    .hex h3,
-    .hex-flex h3 {
-      width: 170px;
-      font-size: 0.7em;
-    }
-  }
-
   @media (min-width: 700px) {
-    .hex-flex h3,
-    .hex h3 {
-      width: 225px;
-      font-size: 1.1em;
-    }
-
     .flexbox-container {
       padding-bottom: 8%;
       height: 55vh;
@@ -252,12 +145,6 @@
   }
 
   @media (min-width: 960px) {
-    .hex-flex h3,
-    .hex h3 {
-      width: 250px;
-      font-size: 1.1em;
-    }
-
     .flexbox-container {
       padding-bottom: 5%;
     }
@@ -269,12 +156,6 @@
   }
 
   @media (min-width: 1600px) {
-    .hex-flex h3,
-    .hex h3 {
-      width: 195px;
-      font-size: 1.2em;
-    }
-
     .hex-flex {
       width: 15%;
       margin: 1%;
@@ -293,12 +174,6 @@
       grid-column-start: 2;
     }
 
-    .hex-flex h3,
-    .hex h3 {
-      width: 200px;
-      font-size: 1.2em;
-    }
-
     .hex-flex {
       width: 10%;
       margin: 1%;
@@ -308,12 +183,6 @@
   @media (min-width: 2400px) {
     .root-categories-container {
       padding-bottom: 5%;
-    }
-
-    .hex-flex h3,
-    .hex h3 {
-      width: 240px;
-      font-size: 1.2em;
     }
 
     .hex-flex {
