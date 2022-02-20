@@ -13,17 +13,22 @@
   };
 
   const setSize = (screenWidth: number) => {
+    if (screenWidth < 360) {
+      size.height = 125;
+      size.width = 130;
+    }
+
     if (screenWidth >= 360 && screenWidth < 700) {
-      size.height = 135;
-      size.width = 200;
+      size.height = 160;
+      size.width = 400;
       return;
     }
-    if (screenWidth >= 700 && screenWidth < 960) {
+    if (screenWidth >= 700 && screenWidth < 900) {
       size.height = 300;
       size.width = 600;
       return;
     }
-    if (screenWidth >= 960 && screenWidth < 1280) {
+    if (screenWidth >= 900 && screenWidth < 1280) {
       size.height = 400;
       size.width = 700;
       return;
@@ -48,7 +53,7 @@
   const swipeConfig = {
     autoplay: false,
     delay: 2000,
-    showIndicators: true,
+    showIndicators: false,
     transitionDuration: 1000,
     defaultIndex: 0,
   };
@@ -84,7 +89,7 @@
           <img
             class="img-fluid"
             src={`https://enki.imgix.net/${product.Id}-${idx}?fit=max&w=${size.width}&h=${size.height}`}
-            alt=""
+            alt={`${product.Name} image ${idx + 1}`}
           />
         </SwipeItem>
       {/each}
@@ -99,7 +104,7 @@
             : 'img-thumbnail'} thumbnails"
           on:click={() => changeSlide(idx)}
           src={`https://enki.imgix.net/${product.Id}-${idx}`}
-          alt=""
+          alt={`${product.Name} thumbnail ${idx + 1}`}
         />
       {/each}
     </div>
@@ -112,6 +117,7 @@
     width: 100%;
     cursor: grab;
   }
+
   .is-center {
     display: flex;
     justify-content: center;
