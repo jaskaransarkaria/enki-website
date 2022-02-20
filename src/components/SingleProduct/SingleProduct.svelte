@@ -66,7 +66,7 @@
     >
       <div class="position-img">
         <ImageLoader
-          src={`https://enki.imgix.net/${product.Id}-0`}
+          src={`https://enki.imgix.net/${product.Id}-0?auto=format`}
           alt={`${product.Name}`}
         />
       </div>
