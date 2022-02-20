@@ -61,16 +61,17 @@ export default {
   <head>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <meta name="description" content="Enki Jewellery & Craft Gallery shop in Kings Heath, Birmingham, UK">
+    <meta name='description' content=''Enki Jewellery & Craft Gallery shop in Kings Heath, Birmingham, UK'>
     <title>${title}</title>
     
     <link rel='icon' type='image/png' href='/enki_icon.jpg'>
     <link rel='stylesheet' href='/global.css'>
     <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
-    <link rel="preload" href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel='preload' href='fonts/CaviarDreams.ttf' as='font' type='font/ttf' crossorigin />
-    <link rel='preload' href='fonts/enki-regular.ttf' as='font' type='font/ttf' crossorigin />
-    
+    <link rel='preload' href='//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css' as='style' onload='this.onload=null;this.rel="stylesheet"'>
+    <link rel='preload' href='fonts/CaviarDreams.ttf' as='font' type='font/ttf' crossorigin >
+    <link rel='preload' href='fonts/enki-regular.ttf' as='font' type='font/ttf' crossorigin >
+    <link rel='preconnect' href='https://enki.imgix.net'> 
+
     <script defer src='/build/bundle-${currentDate}.js'></script>
     <script defer data-domain='enki.jobspeed.uk' src='https://plausible.io/js/plausible.js'></script>
   </head>
