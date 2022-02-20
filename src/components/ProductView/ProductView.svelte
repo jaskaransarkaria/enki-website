@@ -158,22 +158,24 @@
 
   @media (min-width: 360px) {
     .products-container {
-      grid-gap: 25px;
       grid-auto-rows: 12em;
       grid-template-columns: 1fr 1fr;
+      margin: 10px;
     }
   }
 
   @media (min-width: 550px) {
     .products-container {
       grid-template-columns: 1fr 1fr;
+      margin: 25px;
     }
   }
 
   @media (min-width: 700px) {
     .products-container {
-      grid-auto-rows: 20em;
+      grid-auto-rows: 22em;
       grid-template-columns: 1fr 1fr;
+      margin: 35px;
     }
   }
   @media (min-width: 960px) {
