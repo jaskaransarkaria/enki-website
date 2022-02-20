@@ -18,6 +18,7 @@
   let imgElemArr: HTMLImageElement[] = [...createEmptyArray(data.length)];
   let sourceElemArr: HTMLSourceElement[] = [...createEmptyArray(data.length)];
   let loadedElemArr: boolean[] = [...createEmptyArray(data.length)];
+  let itemsOnLastRow: number;
 
   $: gridColumnNumber = getGridCols(window.innerWidth) / 2;
   $: filteredData = data.filter(
@@ -33,15 +34,16 @@
     filteredData.length > gridColumnNumber
       ? calcRowNumber(filteredData.length, gridColumnNumber, 1)
       : 1;
-
   $: rowOffset = Math.floor(
     rowNumber % 2 === 0 ? rowNumber / 2 : (rowNumber - 1) / 2
   ); // the even rows are 1 shorter
   $: hexesForCompleteGrid = rowNumber * gridColumnNumber - rowOffset;
   $: emptyHexes = createEmptyArray(hexesForCompleteGrid - filteredData.length);
-  $: itemsOnLastRow =
-    (rowNumber % 2 === 0 ? gridColumnNumber - rowOffset : gridColumnNumber) -
-    emptyHexes.length;
+  $: if (rowNumber) {
+    itemsOnLastRow =
+      (rowNumber % 2 === 0 ? gridColumnNumber - 1 : gridColumnNumber) -
+      emptyHexes.length;
+  }
 </script>
 
 <ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>
@@ -67,7 +69,7 @@
     </li>
     {#if idx === filteredData.length - 1}
       {#if filteredData.length > gridColumnNumber && emptyHexes.length}
-        {#each emptyHexes.length === 1 ? emptyHexes : emptyHexes.slice(0, Math.floor(emptyHexes.length / 2)) as _}
+        {#each emptyHexes.slice(0, Math.floor(emptyHexes.length / 2)) as _}
           <li class={showGrid ? 'hex' : 'hex-flex'}>
             <Hex isEmpty />
           </li>
