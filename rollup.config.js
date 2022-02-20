@@ -71,6 +71,7 @@ export default {
     <link rel='preload' href='fonts/CaviarDreams.ttf' as='font' type='font/ttf' crossorigin >
     <link rel='preload' href='fonts/enki-regular.ttf' as='font' type='font/ttf' crossorigin >
     <link rel='preconnect' href='https://enki.imgix.net'> 
+    <link rel='preconnect' href='https://server.enki.jobspeed.uk'> 
 
     <script defer src='/build/bundle-${currentDate}.js'></script>
     <script defer data-domain='enki.jobspeed.uk' src='https://plausible.io/js/plausible.js'></script>

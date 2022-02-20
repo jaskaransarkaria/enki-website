@@ -12,3 +12,14 @@
     }
   });
 </script>
+
+<svelte:head>
+  {#if $products && $products.length === 0}
+    <link
+      rel="preload"
+      as="fetch"
+      href={`${process.env.SERVER_URL}/get-all-products`}
+      crossorigin="anonymous"
+    />
+  {/if}
+</svelte:head>
