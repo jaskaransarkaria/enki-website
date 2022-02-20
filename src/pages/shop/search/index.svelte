@@ -1,9 +1,8 @@
 <script lang="typescript">
   import { params } from '@roxi/routify';
-  import { onMount } from 'svelte';
+  import GetProducts from '@/components/GetProducts/GetProducts.svelte';
   import ProductView from '@/components/ProductView/ProductView.svelte';
   import { products } from '@/stores/products';
-  import { refreshProducts } from '@/libs/requests';
   import { searchProducts } from '@/libs/search';
 
   import type { Product } from '@/types/product';
@@ -11,21 +10,13 @@
   let data: readonly Product[] = [];
   let reg: RegExp;
 
-  onMount(async () => {
-    if ($products && $products.length === 0) {
-      const fetchedData = await refreshProducts(
-        `${process.env.SERVER_URL}/get-all-products`
-      );
-      products.set(fetchedData);
-    }
-  });
-
   $: reg = new RegExp(`\\b${decodeURIComponent($params['search-term'])}`, 'i');
   $: if ($params['search-term'] && $products.length) {
     data = searchProducts(reg, $products);
   }
 </script>
 
+<GetProducts />
 {#if data.length}
   <h2>
     we found {data.length} results for "{decodeURIComponent(
