@@ -31,27 +31,27 @@
     <link
       rel="preload"
       as="image"
-      href="https://enki.imgix.net/mobile_online_shop.png"
+      href="https://enki.imgix.net/mobile_online_shop.png?auto=format"
     />
     <link
       rel="preload"
       as="image"
-      href="https://enki.imgix.net/mobile_jewellery_services.png"
+      href="https://enki.imgix.net/mobile_jewellery_services.png?auto=format"
     />
     <link
       rel="preload"
       as="image"
-      href="https://enki.imgix.net/mobile_jewellery_classes.png"
+      href="https://enki.imgix.net/mobile_jewellery_classes.png?auto=format"
     />
     <link
       rel="preload"
       as="image"
-      href="https://enki.imgix.net/mobile_contact_us.png"
+      href="https://enki.imgix.net/mobile_contact_us.png?auto=format"
     />
     <link
       rel="preload"
       as="image"
-      href="https://enki.imgix.net/mobile_about_us.png"
+      href="https://enki.imgix.net/mobile_about_us.png?auto=format"
     />
   {:else}
     <link
@@ -62,10 +62,14 @@
     <link
       rel="preload"
       as="image"
-      href="https://enki.imgix.net/jewellery_services.png"
+      href="https://enki.imgix.net/jewellery_services.png?auto=format"
     />
     <link rel="preload" as="image" href="https://enki.imgix.net/classes.gif" />
-    <link rel="preload" as="image" href="https://enki.imgix.net/classes.png" />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/classes.png?auto=format"
+    />
     <link
       rel="preload"
       as="image"
@@ -74,10 +78,14 @@
     <link
       rel="preload"
       as="image"
-      href="https://enki.imgix.net/online-shop.png"
+      href="https://enki.imgix.net/online-shop.png?auto=format"
     />
     <link rel="preload" as="image" href="https://enki.imgix.net/contact.gif" />
-    <link rel="preload" as="image" href="https://enki.imgix.net/contact.png" />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/contact.png?auto=format"
+    />
   {/if}
 </svelte:head>
 <GetProducts />
@@ -96,31 +104,31 @@
     <div class="mobile-button-container">
       <img
         class="mobile-online-shop"
-        src="https://enki.imgix.net/mobile_online_shop.png"
+        src="https://enki.imgix.net/mobile_online_shop.png?auto=format"
         alt="online shop button"
         on:click={$goto('/shop')}
       />
       <img
         class="mobile-repairs-and-comms"
-        src="https://enki.imgix.net/mobile_jewellery_services.png"
+        src="https://enki.imgix.net/mobile_jewellery_services.png?auto=format"
         alt="jewellery services button"
         on:click={$goto('/services')}
       />
       <img
         class="mobile-classes"
-        src="https://enki.imgix.net/mobile_jewellery_classes.png"
+        src="https://enki.imgix.net/mobile_jewellery_classes.png?auto=format"
         alt="classes button"
         on:click={$goto('/classes')}
       />
       <img
         class="mobile-contact-us"
-        src="https://enki.imgix.net/mobile_contact_us.png"
+        src="https://enki.imgix.net/mobile_contact_us.png?auto=format"
         alt="contact us button"
         on:click={$goto('/contact')}
       />
       <img
         class="mobile-about-us"
-        src="https://enki.imgix.net/mobile_about_us.png"
+        src="https://enki.imgix.net/mobile_about_us.png?auto=format"
         alt="about us button"
         on:click={$goto('/about')}
       />
@@ -130,7 +138,7 @@
       class="repairs-and-comms"
       src={repairsAndCommissionsHover
         ? 'https://enki.imgix.net/jewellery_services.gif'
-        : 'https://enki.imgix.net/jewellery_services.png'}
+        : 'https://enki.imgix.net/jewellery_services.png?auto=format'}
       alt="repair and commissions button hover over me"
       on:mouseenter={() => (repairsAndCommissionsHover = true)}
       on:mouseleave={() => (repairsAndCommissionsHover = false)}
@@ -140,7 +148,7 @@
       class="classes"
       src={classesHover
         ? 'https://enki.imgix.net/classes.gif'
-        : 'https://enki.imgix.net/classes.png'}
+        : 'https://enki.imgix.net/classes.png?auto=format'}
       alt="classes button hover over me"
       on:mouseenter={() => (classesHover = true)}
       on:mouseleave={() => (classesHover = false)}
@@ -149,7 +157,7 @@
     <img
       class="online-shop"
       src={`https://enki.imgix.net/${
-        onlineShopHover ? 'online_shop.gif' : 'online-shop.png'
+        onlineShopHover ? 'online_shop.gif' : 'online-shop.png?auto=format'
       }`}
       alt="online shop button hover over me"
       on:mouseenter={() => (onlineShopHover = true)}
@@ -160,7 +168,7 @@
       class="contact"
       src={contactHover
         ? 'https://enki.imgix.net/contact.gif'
-        : 'https://enki.imgix.net/contact.png'}
+        : 'https://enki.imgix.net/contact.png?auto=format'}
       alt="online shop button hover over me"
       on:mouseenter={() => (contactHover = true)}
       on:mouseleave={() => (contactHover = false)}
