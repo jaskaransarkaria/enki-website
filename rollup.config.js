@@ -67,7 +67,7 @@ export default {
     <link rel='icon' type='image/png' href='/enki_icon.jpg'>
     <link rel='stylesheet' href='/global.css'>
     <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
-    <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" rel="stylesheet" type="text/css">
+    <link rel="preload" href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <script defer src='/build/bundle-${currentDate}.js'></script>
     <script defer data-domain='enki.jobspeed.uk' src='https://plausible.io/js/plausible.js'></script>
