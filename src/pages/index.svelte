@@ -27,6 +27,58 @@
       outerWidth <= 450 ? 'fit=crop' : 'auto=format'
     }&h=${outerHeight}&w=${outerWidth}`}
   />
+  {#if isMobile}
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/mobile_online_shop.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/mobile_jewellery_services.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/mobile_jewellery_classes.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/mobile_contact_us.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/mobile_about_us.png"
+    />
+  {:else}
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/jewellery_services.gif"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/jewellery_services.png"
+    />
+    <link rel="preload" as="image" href="https://enki.imgix.net/classes.gif" />
+    <link rel="preload" as="image" href="https://enki.imgix.net/classes.png" />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/online_shop.gif"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://enki.imgix.net/online-shop.png"
+    />
+    <link rel="preload" as="image" href="https://enki.imgix.net/contact.gif" />
+    <link rel="preload" as="image" href="https://enki.imgix.net/contact.png" />
+  {/if}
 </svelte:head>
 <GetProducts />
 <figure class={isMobile ? 'mobile-container' : 'container'}>
@@ -44,31 +96,31 @@
     <div class="mobile-button-container">
       <img
         class="mobile-online-shop"
-        src="/mobile_online_shop.png"
+        src="https://enki.imgix.net/mobile_online_shop.png"
         alt="online shop button"
         on:click={$goto('/shop')}
       />
       <img
         class="mobile-repairs-and-comms"
-        src="/mobile_jewellery_services.png"
+        src="https://enki.imgix.net/mobile_jewellery_services.png"
         alt="jewellery services button"
         on:click={$goto('/services')}
       />
       <img
         class="mobile-classes"
-        src="/mobile_jewellery_classes.png"
+        src="https://enki.imgix.net/mobile_jewellery_classes.png"
         alt="classes button"
         on:click={$goto('/classes')}
       />
       <img
         class="mobile-contact-us"
-        src="/mobile_contact_us.png"
+        src="https://enki.imgix.net/mobile_contact_us.png"
         alt="contact us button"
         on:click={$goto('/contact')}
       />
       <img
         class="mobile-about-us"
-        src="/mobile_about_us.png"
+        src="https://enki.imgix.net/mobile_about_us.png"
         alt="about us button"
         on:click={$goto('/about')}
       />
@@ -77,8 +129,8 @@
     <img
       class="repairs-and-comms"
       src={repairsAndCommissionsHover
-        ? '/jewellery_services.gif'
-        : '/jewellery_services.png'}
+        ? 'https://enki.imgix.net/jewellery_services.gif'
+        : 'https://enki.imgix.net/jewellery_services.png'}
       alt="repair and commissions button hover over me"
       on:mouseenter={() => (repairsAndCommissionsHover = true)}
       on:mouseleave={() => (repairsAndCommissionsHover = false)}
@@ -86,7 +138,9 @@
     />
     <img
       class="classes"
-      src={classesHover ? '/classes.gif' : '/classes.png'}
+      src={classesHover
+        ? 'https://enki.imgix.net/classes.gif'
+        : 'https://enki.imgix.net/classes.png'}
       alt="classes button hover over me"
       on:mouseenter={() => (classesHover = true)}
       on:mouseleave={() => (classesHover = false)}
@@ -104,7 +158,9 @@
     />
     <img
       class="contact"
-      src={contactHover ? '/contact.gif' : '/contact.png'}
+      src={contactHover
+        ? 'https://enki.imgix.net/contact.gif'
+        : 'https://enki.imgix.net/contact.png'}
       alt="online shop button hover over me"
       on:mouseenter={() => (contactHover = true)}
       on:mouseleave={() => (contactHover = false)}
