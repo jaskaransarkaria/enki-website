@@ -70,6 +70,7 @@ export default {
     <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" rel="stylesheet" type="text/css">
     
     <script defer src='/build/bundle-${currentDate}.js'></script>
+    <script defer data-domain='enki.jobspeed.uk' src='https://plausible.io/js/plausible.js'></script>
   </head>
   <body>
   </body>
