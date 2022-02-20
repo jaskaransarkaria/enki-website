@@ -17,11 +17,22 @@
 </script>
 
 <svelte:window bind:outerWidth bind:outerHeight />
+<svelte:head>
+  <link
+    rel="preload"
+    as="image"
+    href={`https://enki.imgix.net/${
+      outerWidth <= 450 ? 'mobile_landing_page_2' : 'inside_enki_desktop_3'
+    }.png?${
+      outerWidth <= 450 ? 'fit=crop' : 'auto=format'
+    }&h=${outerHeight}&w=${outerWidth}`}
+  />
+</svelte:head>
 <GetProducts />
 <figure class={isMobile ? 'mobile-container' : 'container'}>
   <img
     class={isMobile ? 'parrallax-inside-shop' : 'inside-shop'}
-    src={`http://enki.imgix.net/${
+    src={`https://enki.imgix.net/${
       outerWidth <= 450 ? 'mobile_landing_page_2' : 'inside_enki_desktop_3'
     }.png?${
       outerWidth <= 450 ? 'fit=crop' : 'auto=format'
