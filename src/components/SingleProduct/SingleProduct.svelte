@@ -23,7 +23,7 @@
   <button class="simple-container" on:click={$goto(`./${variantCategory.Id}`)}>
     <div class="position-img">
       <ImageLoader
-        src={`https://enki.imgix.net/${variantCategory.Id}?auto=format`}
+        src={`https://enki.imgix.net/${variantCategory.Id}?auto=format,compress`}
         alt={`${variantCategory.Name}`}
       />
     </div>
@@ -66,7 +66,7 @@
     >
       <div class="position-img">
         <ImageLoader
-          src={`https://enki.imgix.net/${product.Id}-0?auto=format`}
+          src={`https://enki.imgix.net/${product.Id}-0?auto=format,compress`}
           alt={`${product.Name}`}
         />
       </div>

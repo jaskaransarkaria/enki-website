@@ -29,7 +29,7 @@
     {#each $basket as obj (obj.id)}
       <div class={isMobile ? 'mobile-product' : 'product'} transition:fade>
         <img
-          src={`https://enki.imgix.net/${obj.id}-0?auto=format`}
+          src={`https://enki.imgix.net/${obj.id}-0?auto=format,compress`}
           alt={`${obj.name}`}
           on:click={() => $goto(`/shop/product/${obj.id}`)}
           class={isMobile ? 'mobile-product-img' : 'product-img'}

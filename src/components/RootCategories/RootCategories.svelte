@@ -20,14 +20,27 @@
 
   onMount(async () => {
     // pull the category data from api
-    const result = await refreshCategories(
-      `${process.env.SERVER_URL}/categories`
-    );
-    readonlyAllCategories.set([...result]);
+    if ($readonlyAllCategories && $readonlyAllCategories.length === 0) {
+      const result = await refreshCategories(
+        `${process.env.SERVER_URL}/categories`
+      );
+      readonlyAllCategories.set([...result]);
 
-    data = orderCategories([...result]);
+      data = orderCategories([...result]);
+    }
   });
 </script>
+
+<svelte:head>
+  {#if $readonlyAllCategories && $readonlyAllCategories.length === 0}
+    <link
+      rel="preload"
+      as="fetch"
+      href={`${process.env.SERVER_URL}/categories`}
+      crossorigin="anonymous"
+    />
+  {/if}
+</svelte:head>
 
 <div class="opening-times">
   <h1>welcome to the online shop</h1>

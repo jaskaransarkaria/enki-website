@@ -2,16 +2,16 @@
   <h1>About Enki</h1>
   <div class="shop-pics">
     <img
-      src="https://enki.imgix.net/left_enki.jpg?auto=format"
+      src="https://enki.imgix.net/left_enki.jpg?auto=format,compress"
       alt="a rectangular wooden display inside the shop"
     />
     <img
       class="center-image"
-      src="https://enki.imgix.net/outside_enki_1.png?auto=format"
+      src="https://enki.imgix.net/outside_enki_1.png?auto=format,compress"
       alt="the shop front and it's window display"
     />
     <img
-      src="https://enki.imgix.net/right_enki.png?auto=format"
+      src="https://enki.imgix.net/right_enki.png?auto=format,compress"
       alt="a wooden jeweller's work bench inside the shop"
     />
   </div>
@@ -36,21 +36,21 @@
   <div class="employee-cards">
     <div class="card">
       <img
-        src="https://enki.imgix.net/faith.jpg?auto=format"
+        src="https://enki.imgix.net/faith.jpg?auto=format,compress"
         alt="shop owner faith"
       />
       <p>Faith blah blah</p>
     </div>
     <div class="card">
       <img
-        src="https://enki.imgix.net/faith.jpg?auto=format"
+        src="https://enki.imgix.net/faith.jpg?auto=format,compress"
         alt="shop owner faith"
       />
       <p>Faith blah blah</p>
     </div>
     <div class="card">
       <img
-        src="https://enki.imgix.net/faith.jpg?auto=format"
+        src="https://enki.imgix.net/faith.jpg?auto=format,compress"
         alt="shop owner faith"
       />
       <p>Faith blah blah</p>

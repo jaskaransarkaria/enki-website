@@ -41,14 +41,14 @@
     <div class={loadedElemArr[idx] ? 'hex-link' : 'hex-link hex-loading'}>
       <picture in:fade={{ duration: 800 }}>
         <source
-          srcset={`https://enki.imgix.net/${category.Id}?auto=format`}
+          srcset={`https://enki.imgix.net/${category.Id}?auto=format,compress`}
           type="image/jpg"
           bind:this={sourceElemArr[idx]}
           data-testid="hex-image"
           on:load={() => (loadedElemArr[idx] = true)}
         />
         <img
-          src={`https://enki.imgix.net/faith.jpg?auto=format`}
+          src={`https://enki.imgix.net/faith.jpg?auto=format,compress`}
           alt="placeholder"
           data-testid="hex-image-fallback"
           bind:this={imgElemArr[idx]}

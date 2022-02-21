@@ -141,7 +141,7 @@
   {#if !showSearch}
     <img
       transition:fade|local
-      src="https://enki.imgix.net/moving-header.png?auto=format"
+      src="https://enki.imgix.net/moving-header.png?auto=format,compress"
       alt="Enki"
       loading="eager"
       class="enki-logo"
@@ -151,7 +151,7 @@
   <div class="right-container">
     <img
       class="search-icon"
-      src="https://enki.imgix.net/search-icon.png?auto=format"
+      src="https://enki.imgix.net/search-icon.png?auto=format,compress"
       alt="search"
       style={move($left)}
       on:click={handleClick}
@@ -169,7 +169,7 @@
     >
       <img
         class="basket-icon"
-        src="https://enki.imgix.net/basket-icon.png?auto=format"
+        src="https://enki.imgix.net/basket-icon.png?auto=format,compress"
         alt="basket"
         on:click={() =>
           isBasketPage

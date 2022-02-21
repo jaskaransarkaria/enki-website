@@ -4,6 +4,30 @@
   import ScrollDown from '@/components/ScrollDown/ScrollDown.svelte';
   import BackToTop from '@/components/BackToTop/BackToTop.svelte';
 
+  const MOBILE_ONLINE_SHOP =
+    'https://enki.imgix.net/mobile_online_shop.png?auto=format,compress';
+  const MOBILE_JEWELLERY_SERVICES =
+    'https://enki.imgix.net/mobile_jewellery_services.png?auto=format,compress';
+  const MOBILE_JEWELLERY_CLASSES =
+    'https://enki.imgix.net/mobile_jewellery_classes.png?auto=format,compress';
+  const MOBILE_CONTACT_US =
+    'https://enki.imgix.net/mobile_contact_us.png?auto=format,compress';
+  const MOBILE_ABOUT_US =
+    'https://enki.imgix.net/mobile_about_us.png?auto=format,compress';
+  const DESKTOP_JEWELLERY_SERVICES_GIF =
+    'https://enki.imgix.net/jewellery_services.gif';
+  const DESKTOP_JEWELLERY_SERVICES_STATIC =
+    'https://enki.imgix.net/jewellery_services.png?auto=format,compress';
+  const DESKTOP_JEWELLERY_CLASSES_GIF = 'https://enki.imgix.net/classes.gif';
+  const DESKTOP_JEWELLERY_CLASSES_STATIC =
+    'https://enki.imgix.net/classes.png?auto=format,compress';
+  const DESKTOP_ONLINE_SHOP_GIF = 'https://enki.imgix.net/online_shop.gif';
+  const DESKTOP_ONLINE_SHOP_STATIC =
+    'https://enki.imgix.net/online-shop.png?auto=format,compress';
+  const DESKTOP_CONTACT_GIF = 'https://enki.imgix.net/contact.gif';
+  const DESKTOP_CONTACT_STATIC =
+    'https://enki.imgix.net/contact.png?auto=format,compress';
+
   // this is how to pass down a prop from the router
   // export let scoped: any;
   // $: ({ name } = scoped);
@@ -24,68 +48,24 @@
     href={`https://enki.imgix.net/${
       outerWidth <= 450 ? 'mobile_landing_page_2' : 'inside_enki_desktop_3'
     }.png?${
-      outerWidth <= 450 ? 'fit=crop' : 'auto=format'
+      outerWidth <= 450 ? 'fit=crop' : 'auto=format,compress'
     }&h=${outerHeight}&w=${outerWidth}`}
   />
   {#if isMobile}
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/mobile_online_shop.png?auto=format"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/mobile_jewellery_services.png?auto=format"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/mobile_jewellery_classes.png?auto=format"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/mobile_contact_us.png?auto=format"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/mobile_about_us.png?auto=format"
-    />
+    <link rel="preload" as="image" href={MOBILE_ONLINE_SHOP} />
+    <link rel="preload" as="image" href={MOBILE_JEWELLERY_SERVICES} />
+    <link rel="preload" as="image" href={MOBILE_JEWELLERY_CLASSES} />
+    <link rel="preload" as="image" href={MOBILE_CONTACT_US} />
+    <link rel="preload" as="image" href={MOBILE_ABOUT_US} />
   {:else}
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/jewellery_services.gif"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/jewellery_services.png?auto=format"
-    />
-    <link rel="preload" as="image" href="https://enki.imgix.net/classes.gif" />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/classes.png?auto=format"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/online_shop.gif"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/online-shop.png?auto=format"
-    />
-    <link rel="preload" as="image" href="https://enki.imgix.net/contact.gif" />
-    <link
-      rel="preload"
-      as="image"
-      href="https://enki.imgix.net/contact.png?auto=format"
-    />
+    <link rel="preload" as="image" href={DESKTOP_JEWELLERY_SERVICES_GIF} />
+    <link rel="preload" as="image" href={DESKTOP_JEWELLERY_SERVICES_STATIC} />
+    <link rel="preload" as="image" href={DESKTOP_JEWELLERY_CLASSES_GIF} />
+    <link rel="preload" as="image" href={DESKTOP_JEWELLERY_CLASSES_STATIC} />
+    <link rel="preload" as="image" href={DESKTOP_ONLINE_SHOP_GIF} />
+    <link rel="preload" as="image" href={DESKTOP_ONLINE_SHOP_STATIC} />
+    <link rel="preload" as="image" href={DESKTOP_CONTACT_GIF} />
+    <link rel="preload" as="image" href={DESKTOP_CONTACT_STATIC} />
   {/if}
 </svelte:head>
 <GetProducts />
@@ -95,7 +75,7 @@
     src={`https://enki.imgix.net/${
       outerWidth <= 450 ? 'mobile_landing_page_2' : 'inside_enki_desktop_3'
     }.png?${
-      outerWidth <= 450 ? 'fit=crop' : 'auto=format'
+      outerWidth <= 450 ? 'fit=crop' : 'auto=format,compress'
     }&h=${outerHeight}&w=${outerWidth}`}
     alt="welcome to the shop, this ilustration shows the shopkeeper behind her bench"
   />
@@ -104,31 +84,31 @@
     <div class="mobile-button-container">
       <img
         class="mobile-online-shop"
-        src="https://enki.imgix.net/mobile_online_shop.png?auto=format"
+        src={MOBILE_ONLINE_SHOP}
         alt="online shop button"
         on:click={$goto('/shop')}
       />
       <img
         class="mobile-repairs-and-comms"
-        src="https://enki.imgix.net/mobile_jewellery_services.png?auto=format"
+        src={MOBILE_JEWELLERY_SERVICES}
         alt="jewellery services button"
         on:click={$goto('/services')}
       />
       <img
         class="mobile-classes"
-        src="https://enki.imgix.net/mobile_jewellery_classes.png?auto=format"
+        src={MOBILE_JEWELLERY_CLASSES}
         alt="classes button"
         on:click={$goto('/classes')}
       />
       <img
         class="mobile-contact-us"
-        src="https://enki.imgix.net/mobile_contact_us.png?auto=format"
+        src={MOBILE_CONTACT_US}
         alt="contact us button"
         on:click={$goto('/contact')}
       />
       <img
         class="mobile-about-us"
-        src="https://enki.imgix.net/mobile_about_us.png?auto=format"
+        src={MOBILE_ABOUT_US}
         alt="about us button"
         on:click={$goto('/about')}
       />
@@ -137,8 +117,8 @@
     <img
       class="repairs-and-comms"
       src={repairsAndCommissionsHover
-        ? 'https://enki.imgix.net/jewellery_services.gif'
-        : 'https://enki.imgix.net/jewellery_services.png?auto=format'}
+        ? DESKTOP_JEWELLERY_SERVICES_GIF
+        : DESKTOP_JEWELLERY_SERVICES_STATIC}
       alt="repair and commissions button hover over me"
       on:mouseenter={() => (repairsAndCommissionsHover = true)}
       on:mouseleave={() => (repairsAndCommissionsHover = false)}
@@ -147,8 +127,8 @@
     <img
       class="classes"
       src={classesHover
-        ? 'https://enki.imgix.net/classes.gif'
-        : 'https://enki.imgix.net/classes.png?auto=format'}
+        ? DESKTOP_JEWELLERY_CLASSES_GIF
+        : DESKTOP_JEWELLERY_CLASSES_STATIC}
       alt="classes button hover over me"
       on:mouseenter={() => (classesHover = true)}
       on:mouseleave={() => (classesHover = false)}
@@ -157,7 +137,9 @@
     <img
       class="online-shop"
       src={`https://enki.imgix.net/${
-        onlineShopHover ? 'online_shop.gif' : 'online-shop.png?auto=format'
+        onlineShopHover
+          ? 'online_shop.gif'
+          : 'online-shop.png?auto=format,compress'
       }`}
       alt="online shop button hover over me"
       on:mouseenter={() => (onlineShopHover = true)}
@@ -166,9 +148,7 @@
     />
     <img
       class="contact"
-      src={contactHover
-        ? 'https://enki.imgix.net/contact.gif'
-        : 'https://enki.imgix.net/contact.png?auto=format'}
+      src={contactHover ? DESKTOP_CONTACT_GIF : DESKTOP_CONTACT_STATIC}
       alt="online shop button hover over me"
       on:mouseenter={() => (contactHover = true)}
       on:mouseleave={() => (contactHover = false)}

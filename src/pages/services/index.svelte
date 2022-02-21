@@ -3,20 +3,20 @@
   <div class="shop-pics">
     <img
       class="extra-width"
-      src="https://enki.imgix.net/services_1.jpg?auto=format"
+      src="https://enki.imgix.net/services_1.jpg?auto=format,compress"
       alt="a ring being polished on a polishing machine"
     />
     <img
-      src="https://enki.imgix.net/services_2.jpg?auto=format"
+      src="https://enki.imgix.net/services_2.jpg?auto=format,compress"
       alt="a jewellery machine for pressing metal"
     />
     <img
       class="extra-width"
-      src="https://enki.imgix.net/services_3.jpg?auto=format"
+      src="https://enki.imgix.net/services_3.jpg?auto=format,compress"
       alt="some jewellery pliers and some jewellery being inspected"
     />
     <img
-      src="https://enki.imgix.net/services_4.jpg?auto=format"
+      src="https://enki.imgix.net/services_4.jpg?auto=format,compress"
       alt="a medallion being heated with a blow touch"
     />
   </div>

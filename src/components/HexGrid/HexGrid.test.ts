@@ -36,11 +36,11 @@ describe('GIVEN HexGrid', () => {
       expect(screen.getByTestId('hex-image')).toBeInTheDocument();
       expect(screen.getByTestId('hex-image-fallback')).toHaveAttribute(
         'src',
-        'https://enki.imgix.net/faith.jpg?auto=format'
+        'https://enki.imgix.net/faith.jpg?auto=format,compress'
       );
       expect(screen.getByTestId('hex-image')).toHaveAttribute(
         'srcset',
-        'https://enki.imgix.net/123?auto=format'
+        'https://enki.imgix.net/123?auto=format,compress'
       );
     });
 
@@ -59,11 +59,11 @@ describe('GIVEN HexGrid', () => {
       expect(screen.getByTestId('hex-image')).toBeInTheDocument();
       expect(screen.getByTestId('hex-image-fallback')).toHaveAttribute(
         'src',
-        'https://enki.imgix.net/faith.jpg?auto=format'
+        'https://enki.imgix.net/faith.jpg?auto=format,compress'
       );
       expect(screen.getByTestId('hex-image')).toHaveAttribute(
         'srcset',
-        'https://enki.imgix.net/123?auto=format'
+        'https://enki.imgix.net/123?auto=format,compress'
       );
     });
 

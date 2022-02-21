@@ -7,7 +7,7 @@
 
 <div class="contact-us-container">
   <img
-    src={`https://enki.imgix.net/faith.jpg?auto=format`}
+    src={`https://enki.imgix.net/faith.jpg?auto=format,compress`}
     alt="shop creator and jeweller"
   />
   <div class="contact-description">

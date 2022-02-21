@@ -2,12 +2,14 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/svelte';
 import RootCategories from './RootCategories.svelte';
 import { refreshCategories } from '@/libs/requests';
+import { resetReadonlyAllCategoriesStore } from '@/stores/categories';
 
 jest.mock('@/libs/requests');
 
 describe('GIVEN RootCategories', () => {
   beforeEach(() => {
     (refreshCategories as jest.Mock).mockResolvedValue([]);
+    resetReadonlyAllCategoriesStore();
   });
 
   describe('WHEN rendered', () => {
