@@ -27,6 +27,8 @@
       readonlyAllCategories.set([...result]);
 
       data = orderCategories([...result]);
+    } else {
+      data = orderCategories([...$readonlyAllCategories]);
     }
   });
 </script>
