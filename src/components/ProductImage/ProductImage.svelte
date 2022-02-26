@@ -88,7 +88,7 @@
         <SwipeItem allow_dynamic_height={true}>
           <img
             class="img-fluid"
-            src={`https://enki.imgix.net/${product.Id}-${idx}?fit=max&w=${size.width}&h=${size.height}`}
+            src={`https://enki.imgix.net/${product.Id}-${idx}?fit=max&w=${size.width}&h=${size.height}&q=100`}
             alt={`${product.Name} image ${idx + 1}`}
           />
         </SwipeItem>
@@ -103,7 +103,7 @@
             ? 'rounded'
             : 'img-thumbnail'} thumbnails"
           on:click={() => changeSlide(idx)}
-          src={`https://enki.imgix.net/${product.Id}-${idx}`}
+          src={`https://enki.imgix.net/${product.Id}-${idx}?auto=format,compress&q=10`}
           alt={`${product.Name} thumbnail ${idx + 1}`}
         />
       {/each}
