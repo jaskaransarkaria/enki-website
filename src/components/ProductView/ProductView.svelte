@@ -10,6 +10,7 @@
   export let productArr: readonly Product[] = [];
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
+  export let showSwitch = true;
 
   let sortBy = false;
   let variantArr: readonly Product[] = [];
@@ -98,12 +99,14 @@
 </script>
 
 <div class="container">
-  <div class="switch-container">
-    <Switch
-      bind:active={sortBy}
-      msg={sortBy ? 'price (highest to lowest)' : 'alphabetically'}
-    />
-  </div>
+  {#if showSwitch}
+    <div class="switch-container">
+      <Switch
+        bind:active={sortBy}
+        msg={sortBy ? 'price (highest to lowest)' : 'alphabetically'}
+      />
+    </div>
+  {/if}
   {#key sortBy}
     {#if productArr}
       <div

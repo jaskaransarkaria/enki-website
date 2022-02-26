@@ -15,6 +15,7 @@
   export let categoryFn: BaseFn;
   export let categoryId: number;
   export let showBreadcrumbs = true;
+  export let showSwitch = true;
 
   let categoryToShow: Category | undefined;
   let isValidCategoryStore =
@@ -97,5 +98,5 @@
       />
     {/if}
   {/if}
-  <ProductsInCategory bind:categoryId bind:variantCategories />
+  <ProductsInCategory bind:categoryId bind:variantCategories {showSwitch} />
 {/if}

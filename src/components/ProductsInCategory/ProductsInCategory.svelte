@@ -8,6 +8,7 @@
   export let categoryId: number;
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
+  export let showSwitch = true;
 
   let productArr: readonly Product[] = [];
   const productObj: { [key: string]: { isEmpty: boolean } } = {};
@@ -49,5 +50,10 @@
 </script>
 
 {#if categoryId && ((productArr.length && !productObj?.[categoryId]?.isEmpty) || variantCategories.length)}
-  <ProductView {productArr} {showDetailedView} {variantCategories} />
+  <ProductView
+    {productArr}
+    {showDetailedView}
+    {variantCategories}
+    {showSwitch}
+  />
 {/if}

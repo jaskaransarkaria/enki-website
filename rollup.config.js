@@ -144,6 +144,8 @@ export default {
       'process.env.NODE_ENV': production
         ? JSON.stringify('production')
         : JSON.stringify('development'),
+      'process.env.GROUP_CLASSES_ID': JSON.stringify('2735617'),
+      'process.env.CLASSES_ID': JSON.stringify('2735613'),
     }),
     // In dev mode, call `npm run start` once
     // the bundle has been generated

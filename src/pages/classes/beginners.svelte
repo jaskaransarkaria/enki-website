@@ -4,8 +4,8 @@
   import CategoryView from '@/components/CategoryView/CategoryView.svelte';
   import type { Base } from '@/types/base';
 
-  const GROUP_CLASSES_ID = 2735617; // a child of "Classes" but blacklisted by HexGrid
-  const CLASSES_ID = 2735613;
+  const GROUP_CLASSES_ID = parseInt(process.env.GROUP_CLASSES_ID as string); // a child of "Classes" but blacklisted by HexGrid
+  const CLASSES_ID = parseInt(process.env.CLASSES_ID as string);
 
   const selectCategory = (category: Base) => {
     $goto(`/shop/${category.Id}`);
@@ -26,11 +26,13 @@
     categoryFn={selectCategory}
     categoryId={CLASSES_ID}
     showBreadcrumbs={false}
+    showSwitch={false}
   />
   <CategoryView
     categoryFn={selectCategory}
     categoryId={GROUP_CLASSES_ID}
     showBreadcrumbs={false}
+    showSwitch={false}
   />
 </div>
 
