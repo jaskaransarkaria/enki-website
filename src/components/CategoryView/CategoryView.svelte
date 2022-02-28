@@ -1,6 +1,7 @@
 <script lang="typescript">
   import { onMount } from 'svelte';
   import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
+  import JewelleryView from '@/components/JewelleryView/JewelleryView.svelte';
   import ProductsInCategory from '../ProductsInCategory/ProductsInCategory.svelte';
   import { refreshCategory } from '@/libs/requests';
   import { categories } from '@/stores/categories';
@@ -78,18 +79,26 @@
   $: variantCategories = categoryToShow?.Children.filter(
     (cat) => cat.NominalCode === null
   );
+
+  $: console.log('to show', categoryToShow?.Id === 1875997);
 </script>
 
 {#if categoryToShow}
   {#if showBreadcrumbs}
     <Breadcrumbs selectedCategoryId={categoryToShow.Id} />
   {/if}
-  {#if removeVariantCategories(categoryToShow.Children).length}
-    {#if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
+  {#if removeVariantCategories(categoryToShow.Children).length || categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
+    {#if categoryToShow.Id === 1875996}
+      <JewelleryView
+        data={removeVariantCategories(categoryToShow.Children)}
+        {categoryFn}
+      />
+    {:else if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
       <TagView
         data={removeVariantCategories(categoryToShow.Children)}
         {categoryFn}
         categoryId={categoryToShow.Id}
+        prefix={categoryToShow.Name.split(' ')[0].toUpperCase()}
       />
     {:else}
       <HexGrid

@@ -68,8 +68,8 @@ export default {
     <link rel='stylesheet' href='/global.css'>
     <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
     <link rel='preload' href='//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css' as='style' onload='this.onload=null;this.rel="stylesheet"'>
-    <link rel='preload' href='fonts/CaviarDreams.ttf' as='font' type='font/ttf' crossorigin >
-    <link rel='preload' href='fonts/enki-regular.ttf' as='font' type='font/ttf' crossorigin >
+    <link rel='preload' href='/fonts/CaviarDreams.ttf' as='font' type='font/ttf' crossorigin >
+    <link rel='preload' href='/fonts/enki-regular.ttf' as='font' type='font/ttf' crossorigin >
     <link rel='preconnect' href='https://enki.imgix.net'> 
     <link rel='preconnect' href='https://server.enki.jobspeed.uk'> 
     <link rel='preconnect' href='https://plausible.io'> 

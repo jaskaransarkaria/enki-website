@@ -11,6 +11,7 @@
 
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
+  export let showFullPage = true;
 
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
@@ -46,7 +47,13 @@
   }
 </script>
 
-<ul class={showGrid ? 'root-categories-container' : 'flexbox-container'}>
+<ul
+  class={showGrid
+    ? 'root-categories-container'
+    : showFullPage
+    ? 'flexbox-container'
+    : 'flexbox-container flexbox-container-no-height'}
+>
   {#each filteredData as category, idx (category.Id)}
     {#if idx === filteredData.length - itemsOnLastRow}
       {#if filteredData.length > gridColumnNumber && emptyHexes.length}
@@ -107,6 +114,10 @@
     padding-bottom: 15%;
   }
 
+  .flexbox-container-no-height {
+    height: auto;
+  }
+
   .hex-flex {
     width: 40%;
     margin: 1%;
@@ -138,6 +149,10 @@
       height: 55vh;
       align-items: center;
       justify-content: center;
+    }
+
+    .flexbox-container-no-height {
+      height: auto;
     }
 
     .hex-flex {

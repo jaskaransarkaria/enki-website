@@ -11,6 +11,7 @@
   export let data: Category[] = [];
   export let categoryId: number;
   export let categoryFn: BaseFn;
+  export let prefix = '';
 
   let tags: readonly Tag[] = [];
 
@@ -33,14 +34,20 @@
   };
 
   const isCategory = (group: unknown): group is Category =>
-    (group as Category).Children !== undefined;
+    'Children' in (group as Category);
 
-  const isTag = (group: unknown): group is Tag =>
-    (group as Tag).TagTypeId !== undefined;
+  const isTag = (group: unknown): group is Tag => 'TagTypeId' in (group as Tag);
 
   const fetchAllTags = async () => {
     tags = await refreshTags(`${process.env.SERVER_URL}/tags`);
   };
+
+  $: treatedTags = tags
+    .filter((tag: Tag) => !tag.Name.includes('SOR '))
+    .filter((tag: Tag) => tag.Name.includes(prefix))
+    .map((tag: Tag) =>
+      prefix ? { ...tag, Name: tag.Name.replace(prefix + '-', '') } : tag
+    );
 </script>
 
-<HexGrid data={[...data, ...tags]} categoryFn={selectFn} />
+<HexGrid data={[...data, ...treatedTags]} categoryFn={selectFn} />

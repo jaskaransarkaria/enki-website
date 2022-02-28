@@ -81,7 +81,7 @@
   {#each breadcrumbs as breadcrumb (breadcrumb.Id)}
     <button on:click={() => handleBreadcrumbClick(breadcrumb)}>
       <img src="https://enki.imgix.net/hex_1.svg" alt="breadcrumb icon" />
-      {breadcrumb.Name}
+      {'' + breadcrumb.Name}
     </button>
   {/each}
 {/if}
@@ -97,6 +97,7 @@
     overflow: hidden;
     outline: none;
     font-family: 'Caviar Dreams';
+    text-transform: capitalize;
   }
 
   img {

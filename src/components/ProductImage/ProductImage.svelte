@@ -1,10 +1,12 @@
 <script lang="typescript">
   import { Swipe, SwipeItem } from 'svelte-swipe';
+  import { fade } from 'svelte/transition';
 
   import type { Product } from '@/types/product';
 
   export let product: Product;
 
+  let fullScreenImage = false;
   let activeItem = 0; //readonly
   let SwipeComp: any;
   let size = {
@@ -78,17 +80,28 @@
 
   $: outerWidth = 0;
   $: setSize(outerWidth);
-
-  //src={`https://enki.imgix.net/${product.Id}-${idx}?fit=max&w=${size.width}&h=${size.height}&q=100`}
 </script>
 
 <svelte:window on:keydown={handleArrowKeydown} bind:outerWidth />
 {#if product}
-  <div class="swipe-holder">
+  <div class={`swipe-holder`} on:click={() => (fullScreenImage = false)}>
+    {#if fullScreenImage}
+      <div class="full-screen">
+        <div class="img-view">
+          <img
+            in:fade={{ duration: 1200 }}
+            class="img-fluid-full-screen"
+            src={`https://enki.imgix.net/${product.Id}-${activeItem}?q=100`}
+            alt={`${product.Name} image ${activeItem + 1}`}
+          />
+        </div>
+      </div>
+    {/if}
     <Swipe bind:active_item={activeItem} bind:this={SwipeComp} {...swipeConfig}>
       {#each product.ProductImages as _, idx ('main' + idx)}
         <SwipeItem allow_dynamic_height={true}>
           <img
+            in:fade={{ duration: 1200 }}
             class="img-fluid-detailed"
             style="max-height: {size.height}px"
             src={`https://enki.imgix.net/${product.Id}-${idx}?q=100`}
@@ -134,6 +147,36 @@
 
   .img-fluid-detailed {
     object-fit: contain;
+  }
+
+  .img-view {
+    position: relative;
+    overflow: hidden;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .img-fluid-full-screen {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: zoom-in;
+    transition: all 1s ease;
+  }
+
+  .img-fluid-full-screen:hover {
+    transform: scale(2);
+    -webkit-transform: scale(2);
+  }
+
+  .full-screen {
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(2.5px);
   }
 
   .thumbnails {

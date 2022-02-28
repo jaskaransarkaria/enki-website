@@ -76,6 +76,13 @@ Basket -> held in local storage via svelte store
 
 Image -> The images only load when they come into view (we use `IntersectionObserver`) for that. This allows us to load all of our products onto one page (no need for pagination)
 
+### Categories and NominalCode
+
+'NOT_WEB' -- the category won't be shown on the site but will on the till
+'CLASSES' -- the category won't be show in the online shop but will be shown on the `classes` page and on the till
+'CATEGORY' -- means the category will be shown in the online shop and on the till
+'' (or null) -- means the category will be treated as a variant category and will be shown more like a product
+
 ## Local Development
 
 To run the front end locally use `npm run dev` and find the app running on `localhost:5000`. This will provide "hot reloading". The front-end populates product data from the server so run the server to have a full local stack.
