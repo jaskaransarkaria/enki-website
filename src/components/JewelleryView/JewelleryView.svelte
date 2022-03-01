@@ -19,10 +19,10 @@
   );
 </script>
 
-<h1>Shop by artist</h1>
-<HexGrid data={shopByArtist} {categoryFn} />
 <h1>Shop by type</h1>
 <HexGrid data={shopByType} {categoryFn} showFullPage={false} />
+<h1>Shop by artist</h1>
+<HexGrid data={shopByArtist} {categoryFn} />
 
 <style>
   h1 {

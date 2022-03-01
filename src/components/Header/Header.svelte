@@ -7,6 +7,7 @@
   import Basket from '@/components/Basket/Basket.svelte';
   import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
   import Hamburger from '@/components/Hamburger/Hamburger.svelte';
+  import { clickOutside } from '@/libs/clickOutside';
 
   const lessThan960 = 150;
   const moreThan960 = 300;
@@ -32,36 +33,6 @@
     selected = window.location.pathname;
   });
 
-  function clickOutside(
-    node: HTMLElement,
-    { enabled: initialEnabled, cb }: { enabled: boolean; cb: () => void }
-  ) {
-    const handleOutsideClick: (this: Window, ev: MouseEvent) => void = ({
-      target,
-    }: {
-      target: HTMLElement;
-    }) => {
-      if (!node.contains(target)) {
-        cb();
-      }
-    };
-
-    function update({ enabled }: { enabled: boolean }) {
-      if (enabled) {
-        window.addEventListener('click', handleOutsideClick);
-      } else {
-        window.removeEventListener('click', handleOutsideClick);
-      }
-    }
-
-    update({ enabled: initialEnabled });
-    return {
-      update,
-      destroy() {
-        window.removeEventListener('click', handleOutsideClick);
-      },
-    };
-  }
   function handleClick() {
     if (!showSearch) {
       left.set(-offset);

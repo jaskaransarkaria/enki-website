@@ -1,6 +1,7 @@
 <script lang="typescript">
   import { Swipe, SwipeItem } from 'svelte-swipe';
   import { fade } from 'svelte/transition';
+  import { clickOutside } from '@/libs/clickOutside';
 
   import type { Product } from '@/types/product';
 
@@ -9,6 +10,7 @@
   let fullScreenImage = false;
   let activeItem = 0; //readonly
   let SwipeComp: any;
+  let FullScreenSwipeComp: any;
   let size = {
     width: 200,
     height: 135,
@@ -57,7 +59,7 @@
     delay: 2000,
     showIndicators: false,
     transitionDuration: 1000,
-    defaultIndex: 0,
+    defaultIndex: activeItem,
   };
 
   const changeSlide = (i: number) => {
@@ -67,33 +69,66 @@
   const handleArrowKeydown = (event: KeyboardEvent) => {
     if (event.key === 'ArrowLeft' && activeItem !== 0) {
       activeItem -= 1;
-      SwipeComp.goTo(activeItem);
+      if (fullScreenImage) {
+        FullScreenSwipeComp.goTo(activeItem);
+      } else {
+        SwipeComp.goTo(activeItem);
+      }
     }
     if (
       event.key === 'ArrowRight' &&
       activeItem + 1 !== product.ProductImages.length
     ) {
       activeItem += 1;
-      SwipeComp.goTo(activeItem);
+      if (fullScreenImage) {
+        FullScreenSwipeComp.goTo(activeItem);
+      } else {
+        SwipeComp.goTo(activeItem);
+      }
+    }
+  };
+
+  const handleClose = () => {
+    if (counter > 2) {
+      counter = 0;
+      fullScreenImage = false;
+    } else {
+      ++counter;
     }
   };
 
   $: outerWidth = 0;
   $: setSize(outerWidth);
+  $: counter = 0;
 </script>
 
 <svelte:window on:keydown={handleArrowKeydown} bind:outerWidth />
 {#if product}
-  <div class={`swipe-holder`} on:click={() => (fullScreenImage = false)}>
+  <div class="swipe-holder" on:click={() => (fullScreenImage = true)}>
     {#if fullScreenImage}
       <div class="full-screen">
         <div class="img-view">
-          <img
-            in:fade={{ duration: 1200 }}
-            class="img-fluid-full-screen"
-            src={`https://enki.imgix.net/${product.Id}-${activeItem}?q=100`}
-            alt={`${product.Name} image ${activeItem + 1}`}
-          />
+          <Swipe
+            bind:active_item={activeItem}
+            bind:this={FullScreenSwipeComp}
+            {...swipeConfig}
+            defaultIndex={activeItem}
+          >
+            {#each product.ProductImages as _, idx ('full-screen-main' + idx)}
+              <SwipeItem allow_dynamic_height={true}>
+                <img
+                  in:fade={{ duration: 1200 }}
+                  class="img-fluid-full-screen"
+                  src={`https://enki.imgix.net/${product.Id}-${idx}?q=100`}
+                  alt={`${product.Name} image ${idx + 1}`}
+                  use:clickOutside={{
+                    enabled: fullScreenImage,
+                    cb: handleClose,
+                  }}
+                />
+              </SwipeItem>
+            {/each}
+          </Swipe>
         </div>
       </div>
     {/if}
@@ -151,7 +186,7 @@
 
   .img-view {
     position: relative;
-    overflow: hidden;
+    height: 50%;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -160,13 +195,6 @@
     position: relative;
     max-width: 100%;
     max-height: 100%;
-    cursor: zoom-in;
-    transition: all 1s ease;
-  }
-
-  .img-fluid-full-screen:hover {
-    transform: scale(2);
-    -webkit-transform: scale(2);
   }
 
   .full-screen {
