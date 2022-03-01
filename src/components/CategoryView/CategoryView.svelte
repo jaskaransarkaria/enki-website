@@ -79,8 +79,6 @@
   $: variantCategories = categoryToShow?.Children.filter(
     (cat) => cat.NominalCode === null
   );
-
-  $: console.log('to show', categoryToShow?.Id === 1875997);
 </script>
 
 {#if categoryToShow}
