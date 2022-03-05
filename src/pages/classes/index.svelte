@@ -3,10 +3,8 @@
 </script>
 
 <div class="container">
-  <h1>Classes</h1>
   <div class="class-pics">
     <button class="class-button">
-      <h2>Beginner's Classes</h2>
       <img
         src="https://enki.imgix.net/group.png?auto=format,compress"
         alt="group of people showing the backs of their hands and pointing at the rings they made during the class"
@@ -14,7 +12,6 @@
       />
     </button>
     <button class="class-button">
-      <h2>Make each other's Wedding Rings</h2>
       <img
         src="https://enki.imgix.net/wedding.png?auto=format,compress"
         alt="somebody adjusting an engagement ring on someone's hand"
@@ -26,12 +23,6 @@
 </div>
 
 <style>
-  h1,
-  h2 {
-    text-align: center;
-    font-family: 'WelcomeHome3 Regular';
-  }
-
   .container {
     display: flex;
     min-height: 100vh;
