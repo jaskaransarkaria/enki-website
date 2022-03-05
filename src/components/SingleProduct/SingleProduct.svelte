@@ -17,8 +17,11 @@
     productDescription =
       product?.ProductDetails?.DetailedDescription || product.Description;
   }
+  $: outerWidth = 0;
+  $: isMobile = outerWidth < 960;
 </script>
 
+<svelte:window bind:outerWidth />
 {#if variantCategory}
   <button class="simple-container" on:click={$goto(`./${variantCategory.Id}`)}>
     <div class="position-img">
@@ -43,21 +46,24 @@
         <ProductImage {product} />
       {/if}
       <div class="detailed-products-footer">
-        <div class="product-details">
+        {#if !isMobile}
           <h4>{`£${product.SalePrice}`}</h4>
-          <h4>
-            {`${
-              product.CurrentStock <= 0
-                ? 'sold out'
-                : product.CurrentStock + ' in stock'
-            }`}
-          </h4>
-        </div>
+        {/if}
         <AddToBasket {product} detailed={showDetailedView} />
       </div>
     </div>
     <div class="detailed-description">
       <h4>{`${productDescription}`}</h4>
+      {#if isMobile}
+        <h4>{`£${product.SalePrice}`}</h4>
+      {/if}
+      <h4>
+        {`${
+          product.CurrentStock <= 0
+            ? 'sold out'
+            : product.CurrentStock + ' in stock'
+        }`}
+      </h4>
     </div>
   {:else}
     <button
@@ -128,10 +134,10 @@
 
   .detailed-products-footer {
     display: flex;
-    height: 70px;
     align-items: center;
-    justify-content: space-between;
-    width: 70%;
+    justify-content: center;
+    width: 60%;
+    margin: 0.6em;
   }
 
   .product-details {
@@ -156,6 +162,7 @@
   h3 {
     display: block;
     font-size: 0.7em;
+    margin-top: 0;
   }
 
   h2,
@@ -187,6 +194,10 @@
     h3 {
       font-size: 0.6em;
     }
+
+    .detailed-products-footer {
+      margin: 0.8em;
+    }
   }
 
   @media (min-width: 700px) {
@@ -198,6 +209,7 @@
     .details-container {
       height: 650px;
       width: 650px;
+      justify-content: space-evenly;
     }
 
     .detailed-description {
@@ -218,12 +230,8 @@
     }
 
     .detailed-products-footer {
-      width: 100%;
-      height: 110px;
-      padding: 1.5%;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      justify-content: center;
+      width: 45%;
+      margin: 1em;
     }
 
     h3 {
@@ -248,6 +256,7 @@
     .detailed-products-footer {
       height: 250px;
       flex-direction: column;
+      justify-content: flex-start;
     }
 
     h4 {

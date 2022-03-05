@@ -18,7 +18,6 @@
 
 <style>
   img {
-    max-width: 100%;
     max-height: 100%;
     opacity: 0;
     transition: opacity 300ms ease-out;

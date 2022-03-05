@@ -233,6 +233,11 @@
     .swipe-holder {
       height: 70vh;
     }
+
+    .thumbnails {
+      height: 45px;
+      width: 45px;
+    }
   }
 
   @media (min-width: 1280px) {
@@ -242,5 +247,9 @@
   }
 
   @media (min-width: 2000px) {
+    .thumbnails {
+      height: 50px;
+      width: 50px;
+    }
   }
 </style>
