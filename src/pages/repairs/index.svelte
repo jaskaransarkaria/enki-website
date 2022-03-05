@@ -38,6 +38,7 @@
       additional piece added, not the slightest sign anything had happened . Would
       recommend her to anyone. Thank you.
     </p>
+    <hr style="width: 100%" />
     <p>
       I ran into trouble restoring an old Gretsch snare drum of huge sentimental
       value to me - the modern part I'd sourced in the USA arrived but some
@@ -47,6 +48,7 @@
       happier and would highly recommend the store, its staff and their
       considerable - and adaptable - expertise.
     </p>
+    <hr style="width: 100%" />
     <p>
       I took a diamond ring to Enki to be repaired. The lady listened to my
       description of what was wrong. She used several tools to look at the ring
@@ -74,7 +76,7 @@
 
   .testimonials-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 60%;
   }
 
@@ -105,5 +107,20 @@
     align-self: center;
     text-align: center;
     font-family: 'Caviar Dreams';
+  }
+
+  @media (min-width: 960px) {
+    .testimonials-container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .testimonials-container > p {
+      align-self: flex-start;
+    }
+
+    hr {
+      display: none;
+    }
   }
 </style>

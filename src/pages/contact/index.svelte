@@ -5,7 +5,7 @@
       alt="hand drawn street map symbol with location pin"
     />
     <address>
-      High Street Kings Heath, B14 7JT <br /> Open every day 10am-5pm
+      30 High Street Kings Heath, B14 7JT <br /> Open every day 10am-5pm
     </address>
     <img
       src="https://enki.imgix.net/telephone.png?auto=format,compress"
