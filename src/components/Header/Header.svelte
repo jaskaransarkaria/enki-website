@@ -84,10 +84,10 @@
         shop
       </button>
       <button
-        class={selected.includes('services') ? 'selected' : ''}
-        on:click={$goto('/services')}
+        class={selected.includes('repairs') ? 'selected' : ''}
+        on:click={$goto('/repairs')}
       >
-        services
+        repairs
       </button>
       <button
         class={selected.includes('classes') ? 'selected' : ''}
@@ -112,7 +112,7 @@
   {#if !showSearch}
     <img
       transition:fade|local
-      src="https://enki.imgix.net/moving-header.png?auto=format,compress"
+      src="https://enki.imgix.net/header_1.png?auto=format,compress"
       alt="Enki"
       loading="eager"
       class="enki-logo"
@@ -281,7 +281,7 @@
     position: absolute;
     top: 22.5%;
     left: 50%;
-    width: 140px;
+    width: 75px;
     transform: translateX(-50%);
   }
 
@@ -303,7 +303,7 @@
 
     .enki-logo {
       top: 10%;
-      width: 200px;
+      width: 100px;
     }
   }
 
@@ -314,8 +314,8 @@
     }
 
     .enki-logo {
-      top: 0;
-      width: 250px;
+      top: 10%;
+      width: 75px;
     }
   }
 
@@ -355,8 +355,8 @@
     }
 
     .enki-logo {
-      top: 0;
-      width: 300px;
+      top: 10%;
+      width: 100px;
     }
   }
 
@@ -377,8 +377,8 @@
     }
 
     .enki-logo {
-      top: 0;
-      width: 350px;
+      top: 10%;
+      width: 125px;
     }
 
     button {

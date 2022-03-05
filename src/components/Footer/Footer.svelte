@@ -10,7 +10,12 @@
 <svelte:window bind:outerWidth />
 <div class="footer" transition:fade={{ delay: 600, duration: 800 }}>
   <div class="left-container">
-    <img class="enki-icon" src="/enki_icon.jpg" alt="enki icon/ logo" />
+    <img
+      class="telephone"
+      src="https://enki.imgix.net/telephone.png?auto=format,compress"
+      alt="contact us"
+      on:click={$goto('/contact')}
+    />
   </div>
   <div class="centre-container">
     <h3>want to be the first to find out about new products and classes?</h3>
@@ -31,12 +36,6 @@
     {/if}
   </div>
   <div class="right-container">
-    <img
-      class="telephone"
-      src="/telephone_footer.png"
-      alt="contact us"
-      on:click={$goto('/contact')}
-    />
     {#if !isMobile}
       <div class="trust-container">
         <a
@@ -71,14 +70,9 @@
 
   .left-container {
     height: 100%;
+    width: 7.5%;
     display: flex;
     justify-content: center;
-  }
-
-  .enki-icon {
-    width: 60px;
-    height: auto;
-    align-self: center;
   }
 
   .centre-container {
@@ -107,8 +101,9 @@
   }
 
   .telephone {
+    width: 95px;
+    height: 95px;
     align-self: center;
-    width: 50px;
   }
 
   .telephone:hover {
@@ -185,11 +180,6 @@
 
     .trust-container {
       width: 100%;
-    }
-
-    .enki-icon {
-      width: 180px;
-      height: auto;
     }
   }
 

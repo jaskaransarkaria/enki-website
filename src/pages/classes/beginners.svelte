@@ -1,51 +1,50 @@
-<script lang="ts">
-  import { goto } from '@roxi/routify';
-
-  import CategoryView from '@/components/CategoryView/CategoryView.svelte';
-  import type { Base } from '@/types/base';
-
-  const GROUP_CLASSES_ID = parseInt(process.env.GROUP_CLASSES_ID as string); // a child of "Classes" but blacklisted by HexGrid
-  const CLASSES_ID = parseInt(process.env.CLASSES_ID as string);
-
-  const selectCategory = (category: Base) => {
-    $goto(`/shop/${category.Id}`);
-  };
-</script>
-
 <div class="container">
   <h1>Beginner's Classes</h1>
   <p>
-    Ever wanted to learn to make your own jewellery? Looking for a unique
-    present for a friend? At Enki workshops you can meet new people and learn a
-    new craft. The one off classes include all the tools and materials needed to
-    make your jewellery, soft and hot drinks and cake from the wonderful Early
-    Bird Bakery next door.
+    Ever wanted to learn to make your own jewellery? <br /> Looking for a unique
+    present for a friend? <br /><br />At Enki workshops you can meet new people
+    and learn a new craft. The one off classes include all the tools and
+    materials needed to make your jewellery, soft and hot drinks, and cake from
+    the wonderful Early Bird Bakery next door. <br /><br />We also take group
+    bookings where you can choose the date and topic, get in contact here with
+    any enquiries.
   </p>
-
-  <CategoryView
-    categoryFn={selectCategory}
-    categoryId={CLASSES_ID}
-    showBreadcrumbs={false}
-    showSwitch={false}
-  />
-  <CategoryView
-    categoryFn={selectCategory}
-    categoryId={GROUP_CLASSES_ID}
-    showBreadcrumbs={false}
-    showSwitch={false}
-  />
+</div>
+<!-- Ticket Tailor Widget. Paste this into your website where you want the widget to appear. Do not change the code or the widget may not work properly. -->
+<div class="tt-widget">
+  <div class="tt-widget-fallback">
+    <p>
+      <a
+        href="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget"
+        target="_blank">Click here to buy tickets</a
+      ><br /><small
+        ><a href="https://www.tickettailor.com?rf=wdg" class="tt-widget-powered"
+          >Sell tickets online with Ticket Tailor</a
+        ></small
+      >
+    </p>
+  </div>
+  <script
+    src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
+    data-url="https://www.tickettailor.com/all-tickets/enki/"
+    data-type="inline"
+    data-inline-minimal="true"
+    data-inline-show-logo="false"
+    data-inline-bg-fill="false"
+    data-inline-inherit-ref-from-url-param=""
+    data-inline-ref="website_widget"></script>
 </div>
 
+<!-- End of Ticket Tailor Widget -->
 <style>
-  h1,
-  h2 {
+  h1 {
     text-align: center;
     font-family: 'WelcomeHome3 Regular';
   }
 
   .container {
     display: flex;
-    min-height: 100vh;
+    margin: 1em;
     width: 100vw;
     flex-direction: column;
     align-items: center;

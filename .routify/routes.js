@@ -1,10 +1,10 @@
 /**
  * @roxi/routify 2.7.3
- * File generated Tue Mar 01 2022 10:20:03 GMT+0000 (Greenwich Mean Time)
+ * File generated Sat Mar 05 2022 11:06:01 GMT+0000 (Greenwich Mean Time)
  */
 
 export const __version = '2.7.3';
-export const __timestamp = '2022-03-01T10:20:03.519Z';
+export const __timestamp = '2022-03-05T11:06:01.699Z';
 
 //buildRoutes
 import { buildClientTree } from '@roxi/routify/runtime/buildRoutes';
@@ -363,24 +363,24 @@ export const _tree = {
       isFile: true,
       isDir: true,
       file: '_layout.svelte',
-      filepath: '/services/_layout.svelte',
+      filepath: '/repairs/_layout.svelte',
       name: '_layout',
       ext: 'svelte',
       badExt: false,
       absolutePath:
-        '/home/jaskaran/repos/enki-website/src/pages/services/_layout.svelte',
+        '/home/jaskaran/repos/enki-website/src/pages/repairs/_layout.svelte',
       children: [
         {
           isFile: true,
           isDir: false,
           file: 'index.svelte',
-          filepath: '/services/index.svelte',
+          filepath: '/repairs/index.svelte',
           name: 'index',
           ext: 'svelte',
           badExt: false,
           absolutePath:
-            '/home/jaskaran/repos/enki-website/src/pages/services/index.svelte',
-          importPath: '../src/pages/services/index.svelte',
+            '/home/jaskaran/repos/enki-website/src/pages/repairs/index.svelte',
+          importPath: '../src/pages/repairs/index.svelte',
           isLayout: false,
           isReset: false,
           isIndex: true,
@@ -392,10 +392,10 @@ export const _tree = {
             preload: false,
             prerender: true,
           },
-          path: '/services/index',
-          id: '_services_index',
+          path: '/repairs/index',
+          id: '_repairs_index',
           component: () =>
-            import('../src/pages/services/index.svelte').then((m) => m.default),
+            import('../src/pages/repairs/index.svelte').then((m) => m.default),
         },
       ],
       isLayout: true,
@@ -403,17 +403,17 @@ export const _tree = {
       isIndex: false,
       isFallback: false,
       isPage: false,
-      importPath: '../src/pages/services/_layout.svelte',
+      importPath: '../src/pages/repairs/_layout.svelte',
       ownMeta: {},
       meta: {
         recursive: true,
         preload: false,
         prerender: true,
       },
-      path: '/services',
-      id: '_services__layout',
+      path: '/repairs',
+      id: '_repairs__layout',
       component: () =>
-        import('../src/pages/services/_layout.svelte').then((m) => m.default),
+        import('../src/pages/repairs/_layout.svelte').then((m) => m.default),
     },
     {
       isFile: true,

@@ -16,44 +16,50 @@
     />
   </div>
   <p>
-    Enki was started by Faith, a Birmingham trained jeweller who wanted to make
-    a small contribution towards saving the dying jewellery trade from high
-    street chains and overseas mass production. As well as making her own
-    jewelelry collections she repairs old jewellery and teaches classes in an
-    attempt to share her skills with the rest of Birmingham.<br /><br />The
-    Kings Heath store shows the work of many independent crafts people who have
-    become almost invisible on the high street today. From baby clothes to
-    pottery, jewellery to cushions, Enki has just the gift you're looking for.
-    They also sell beautiful and unique cards have a free gift wrapping service
-    to make your present that bit more special. Faith grew up in the Welsh
-    borders and moved to Birmingham in 2012 to attend the school of jewellery
-    and has never looked back. After a year as artist in residence at the school
-    and working in a few companies in the jewelelry quarter she decided to go
-    out on her own and opened Enki in 2017. She has always liked making things
-    and has had a passion for repairing things too.
+    Enki is a unique gift shop and fully functioning jewelers workshop rolled
+    into one. We repair all types of jewellery onsite and also teach group and
+    private jewellery classes. The Kings Heath store shows the work of many
+    independent crafts people who have become almost invisible on the high
+    street today. From baby clothes to pottery, jewellery to cushions, we has
+    just the gift you're looking for. <br /><br />We also sell beautiful and
+    unique cards and wrapping paper to make your present that bit more special.
   </p>
   <h2>Meet the team</h2>
   <div class="employee-cards">
     <div class="card">
       <img
-        src="https://enki.imgix.net/faith.jpg?auto=format,compress"
+        src="https://enki.imgix.net/faith.png?auto=format,compress"
         alt="shop owner faith"
       />
-      <p>Faith blah blah</p>
+      <p>
+        Faith started Enki in 2017 in a small shop round the corner from the
+        current location, she is a jeweller with over ten years of experience
+        who specialises in repairing antique jewellery. She also loves to read
+        and cook. She has a dog called Dodi who sometimes joins her at work! You
+        can find her at Enki from Tuesday to Friday.
+      </p>
     </div>
     <div class="card">
       <img
-        src="https://enki.imgix.net/faith.jpg?auto=format,compress"
+        src="https://enki.imgix.net/dora.png?auto=format,compress"
         alt="shop owner faith"
       />
-      <p>Faith blah blah</p>
+      <p>
+        Dora joined Enki in 2018 and has been learning jewellery making ever
+        since, she’s always been a crafter and can do amazing things with beads!
+        She comes from Germany but has been in Brum for the last six years. You
+        can find her at Enki Wednesday to Saturday and every other Sunday.
+      </p>
     </div>
     <div class="card">
       <img
-        src="https://enki.imgix.net/faith.jpg?auto=format,compress"
+        src="https://enki.imgix.net/ash.png?auto=format,compress"
         alt="shop owner faith"
       />
-      <p>Faith blah blah</p>
+      <p>
+        Ash Joined Enki in 2021, he’s a web developer who dabbles in photography
+        among other things!
+      </p>
     </div>
   </div>
 </div>
@@ -102,7 +108,7 @@
   .employee-cards {
     width: 70%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     margin: 30px;
   }
@@ -112,11 +118,16 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
 
+  .card > p {
+    justify-content: flex-start;
+    vertical-align: top;
+  }
+
   .card > img {
-    width: 60%;
+    height: 60%;
+    width: 70%;
   }
 </style>

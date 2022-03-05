@@ -8,7 +8,7 @@
     <button class="class-button">
       <h2>Beginner's Classes</h2>
       <img
-        src="https://enki.imgix.net/beginner_classes.jpg"
+        src="https://enki.imgix.net/group.png?auto=format,compress"
         alt="group of people showing the backs of their hands and pointing at the rings they made during the class"
         on:click={$goto('./beginners')}
       />
@@ -16,7 +16,7 @@
     <button class="class-button">
       <h2>Make each other's Wedding Rings</h2>
       <img
-        src="https://enki.imgix.net/wedding_ring_class.jpg"
+        src="https://enki.imgix.net/wedding.png?auto=format,compress"
         alt="somebody adjusting an engagement ring on someone's hand"
         on:click={$goto('./wedding-rings')}
       />

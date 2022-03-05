@@ -119,7 +119,11 @@
   }
 
   .position-img {
-    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 70%;
   }
 
   .detailed-products-footer {

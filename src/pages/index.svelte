@@ -17,16 +17,16 @@
   const DESKTOP_JEWELLERY_SERVICES_GIF =
     'https://enki.imgix.net/jewellery_services.gif';
   const DESKTOP_JEWELLERY_SERVICES_STATIC =
-    'https://enki.imgix.net/jewellery_services.png?auto=format,compress';
+    'https://enki.imgix.net/jewellery_services.png?auto=compress';
   const DESKTOP_JEWELLERY_CLASSES_GIF = 'https://enki.imgix.net/classes.gif';
   const DESKTOP_JEWELLERY_CLASSES_STATIC =
-    'https://enki.imgix.net/classes.png?auto=format,compress';
+    'https://enki.imgix.net/classes.png?auto=compress';
   const DESKTOP_ONLINE_SHOP_GIF = 'https://enki.imgix.net/online_shop.gif';
   const DESKTOP_ONLINE_SHOP_STATIC =
-    'https://enki.imgix.net/online-shop.png?auto=format,compress';
+    'https://enki.imgix.net/online-shop.png?auto=compress';
   const DESKTOP_CONTACT_GIF = 'https://enki.imgix.net/contact.gif';
   const DESKTOP_CONTACT_STATIC =
-    'https://enki.imgix.net/contact.png?auto=format,compress';
+    'https://enki.imgix.net/contact.png?auto=compress';
 
   // this is how to pass down a prop from the router
   // export let scoped: any;

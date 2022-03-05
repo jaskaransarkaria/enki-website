@@ -28,6 +28,33 @@
     earring! Click here to get in touch.
   </p>
   <h2>Testimonials</h2>
+  <div class="testimonials-container">
+    <p>
+      Beautiful little shop. I needed a bracelet repaired and a ring setting.
+      Faith gave me some great advice and the repairs were done quickly.
+      <br />
+      <br />
+      Had my wedding ring cut off due to swollen finger, it was repaired with an
+      additional piece added, not the slightest sign anything had happened . Would
+      recommend her to anyone. Thank you.
+    </p>
+    <p>
+      I ran into trouble restoring an old Gretsch snare drum of huge sentimental
+      value to me - the modern part I'd sourced in the USA arrived but some
+      delicate filing was needed in order to fit the part to the existing
+      mechanism… The staff were friendly and took a real interest in the project
+      and carefully carried out the delicate job there and then. I could not be
+      happier and would highly recommend the store, its staff and their
+      considerable - and adaptable - expertise.
+    </p>
+    <p>
+      I took a diamond ring to Enki to be repaired. The lady listened to my
+      description of what was wrong. She used several tools to look at the ring
+      and complete the repair. I was in and out in ten minutes with my ring
+      repaired and very shiny. Fantastic service and very knowledgeable. Highly
+      recommended.
+    </p>
+  </div>
 </div>
 
 <style>
@@ -43,6 +70,16 @@
     width: 100vw;
     flex-direction: column;
     align-items: center;
+  }
+
+  .testimonials-container {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+  }
+
+  .testimonials-container > p {
+    margin: 1em;
   }
 
   .shop-pics {
