@@ -59,6 +59,7 @@
 
   address {
     text-align: center;
+    align-self: center;
   }
 
   h1 {

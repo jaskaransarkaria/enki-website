@@ -105,5 +105,5 @@
       />
     {/if}
   {/if}
-  <ProductsInCategory bind:categoryId bind:variantCategories {showSwitch} />
+  <ProductsInCategory {categoryId} {variantCategories} {showSwitch} />
 {/if}

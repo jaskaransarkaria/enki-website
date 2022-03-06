@@ -140,17 +140,6 @@
     margin: 0.6em;
   }
 
-  .product-details {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-  }
-
-  .product-details > * {
-    padding: 10px;
-    margin: 0;
-  }
-
   h2 {
     font-size: 0.8em;
   }
@@ -223,10 +212,6 @@
 
     h4 {
       font-size: 1em;
-    }
-
-    .product-details {
-      display: block;
     }
 
     .detailed-products-footer {

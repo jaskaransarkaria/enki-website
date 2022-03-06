@@ -3,7 +3,7 @@
 </script>
 
 <div class="container">
-  <h1>Services</h1>
+  <h1>Repairs</h1>
   <div class="shop-pics">
     <img
       in:fade={{ duration: 1200 }}

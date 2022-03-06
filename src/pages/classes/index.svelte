@@ -9,7 +9,7 @@
       <img
         in:fade={{ duration: 1200 }}
         src="https://enki.imgix.net/group.png?auto=format,compress"
-        alt="group of people showing the backs of their hands and pointing at the rings they made during the class"
+        alt="carton button with a hammer"
         on:click={$goto('./beginners')}
       />
     </button>
@@ -17,7 +17,7 @@
       <img
         in:fade={{ duration: 1200 }}
         src="https://enki.imgix.net/wedding.png?auto=format,compress"
-        alt="somebody adjusting an engagement ring on someone's hand"
+        alt="cartoon button with a boquet of flowers"
         on:click={$goto('./wedding-rings')}
       />
     </button>

@@ -109,16 +109,14 @@
       </button>
     </div>
   {/if}
-  {#if !showSearch}
-    <img
-      transition:fade|local
-      src="https://enki.imgix.net/header_1.png?auto=format,compress"
-      alt="Enki"
-      loading="eager"
-      class="enki-logo"
-      on:click={$goto('/')}
-    />
-  {/if}
+  <img
+    transition:fade|local
+    src="https://enki.imgix.net/header_1.png?auto=format,compress"
+    alt="Enki"
+    loading="eager"
+    class="enki-logo"
+    on:click={$goto('/')}
+  />
   <div class="right-container">
     <img
       class="search-icon"

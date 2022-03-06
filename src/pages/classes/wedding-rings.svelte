@@ -32,22 +32,22 @@
   <div class="class-pics">
     <img
       in:fade={{ duration: 1200 }}
-      src="https://enki.imgix.net/wedding_bands_1.jpg"
+      src="https://enki.imgix.net/wedding_bands_1.jpg?auto=compress"
       alt="A man and a woman, the man is holding the rings in the palm of his hands"
     />
     <img
       in:fade={{ duration: 1200 }}
-      src="https://enki.imgix.net/wedding_bands_2.jpg"
+      src="https://enki.imgix.net/wedding_bands_2.jpg?auto=compress"
       alt="two women looking longingly into each other's eyes wearing their rings"
     />
     <img
       in:fade={{ duration: 1200 }}
-      src="https://enki.imgix.net/wedding_bands_3.jpg"
+      src="https://enki.imgix.net/wedding_bands_3.jpg?auto=compress"
       alt="enki jewellery ring boxes"
     />
     <img
       in:fade={{ duration: 1200 }}
-      src="https://enki.imgix.net/wedding_bands_4.jpg"
+      src="https://enki.imgix.net/wedding_bands_4.jpg?auto=compress"
       alt="a couple embracing sporting the rings they made"
     />
   </div>
@@ -91,8 +91,16 @@
   @media (min-width: 1280px) {
     .class-pics {
       flex-direction: row;
-      width: 80%;
+      width: 40%;
       margin-bottom: 2%;
+    }
+
+    p {
+      width: 40%;
+    }
+
+    h1 {
+      width: 60%;
     }
 
     .class-pics > img {
