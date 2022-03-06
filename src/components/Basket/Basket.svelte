@@ -27,7 +27,7 @@
 >
   {#if $basket.length}
     {#each $basket as obj (obj.id)}
-      <div class={isMobile ? 'mobile-product' : 'product'} transition:fade>
+      <div class={isMobile ? 'mobile-product' : 'product'} in:fade>
         <img
           src={`https://enki.imgix.net/${obj.id}-0?auto=format,compress`}
           alt={`${obj.name}`}

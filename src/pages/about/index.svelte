@@ -106,8 +106,9 @@
   }
 
   .employee-cards {
-    width: 70%;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     margin: 30px;
@@ -129,5 +130,14 @@
   .card > img {
     height: 60%;
     width: 70%;
+  }
+
+  @media (min-width: 960px) {
+    .employee-cards {
+      width: 70%;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+    }
   }
 </style>
