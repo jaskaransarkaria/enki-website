@@ -15,18 +15,18 @@
   const MOBILE_ABOUT_US =
     'https://enki.imgix.net/mobile_about_us.png?auto=format,compress';
   const DESKTOP_JEWELLERY_SERVICES_GIF =
-    'https://enki.imgix.net/jewellery_services.gif';
+    'https://enki.imgix.net/jewellery_services_1.gif';
   const DESKTOP_JEWELLERY_SERVICES_STATIC =
-    'https://enki.imgix.net/jewellery_services.png?auto=compress';
-  const DESKTOP_JEWELLERY_CLASSES_GIF = 'https://enki.imgix.net/classes.gif';
+    'https://enki.imgix.net/jewellery_services_1.png?auto=compress';
+  const DESKTOP_JEWELLERY_CLASSES_GIF = 'https://enki.imgix.net/classes_2.gif';
   const DESKTOP_JEWELLERY_CLASSES_STATIC =
-    'https://enki.imgix.net/classes.png?auto=compress';
-  const DESKTOP_ONLINE_SHOP_GIF = 'https://enki.imgix.net/online_shop.gif';
+    'https://enki.imgix.net/classes_2.png?auto=compress';
+  const DESKTOP_ONLINE_SHOP_GIF = 'https://enki.imgix.net/online_shop_3.gif';
   const DESKTOP_ONLINE_SHOP_STATIC =
-    'https://enki.imgix.net/online-shop.png?auto=compress';
-  const DESKTOP_CONTACT_GIF = 'https://enki.imgix.net/contact.gif';
-  const DESKTOP_CONTACT_STATIC =
-    'https://enki.imgix.net/contact.png?auto=compress';
+    'https://enki.imgix.net/online_shop_3.png?auto=compress';
+  const DESKTOP_ABOUT_GIF = 'https://enki.imgix.net/about_us_1.gif';
+  const DESKTOP_ABOUT_STATIC =
+    'https://enki.imgix.net/about_us_1.png?auto=compress';
 
   // this is how to pass down a prop from the router
   // export let scoped: any;
@@ -36,7 +36,7 @@
   $: onlineShopHover = false;
   $: repairsAndCommissionsHover = false;
   $: classesHover = false;
-  $: contactHover = false;
+  $: aboutHover = false;
   $: isMobile = outerWidth <= 450 ? true : false;
 </script>
 
@@ -64,8 +64,8 @@
     <link rel="preload" as="image" href={DESKTOP_JEWELLERY_CLASSES_STATIC} />
     <link rel="preload" as="image" href={DESKTOP_ONLINE_SHOP_GIF} />
     <link rel="preload" as="image" href={DESKTOP_ONLINE_SHOP_STATIC} />
-    <link rel="preload" as="image" href={DESKTOP_CONTACT_GIF} />
-    <link rel="preload" as="image" href={DESKTOP_CONTACT_STATIC} />
+    <link rel="preload" as="image" href={DESKTOP_ABOUT_GIF} />
+    <link rel="preload" as="image" href={DESKTOP_ABOUT_STATIC} />
   {/if}
 </svelte:head>
 <GetProducts />
@@ -136,23 +136,21 @@
     />
     <img
       class="online-shop"
-      src={`https://enki.imgix.net/${
-        onlineShopHover
-          ? 'online_shop.gif'
-          : 'online-shop.png?auto=format,compress'
-      }`}
+      src={onlineShopHover
+        ? DESKTOP_ONLINE_SHOP_GIF
+        : DESKTOP_ONLINE_SHOP_STATIC}
       alt="online shop button hover over me"
       on:mouseenter={() => (onlineShopHover = true)}
       on:mouseleave={() => (onlineShopHover = false)}
       on:click={$goto('/shop')}
     />
     <img
-      class="contact"
-      src={contactHover ? DESKTOP_CONTACT_GIF : DESKTOP_CONTACT_STATIC}
+      class="about"
+      src={aboutHover ? DESKTOP_ABOUT_GIF : DESKTOP_ABOUT_STATIC}
       alt="online shop button hover over me"
-      on:mouseenter={() => (contactHover = true)}
-      on:mouseleave={() => (contactHover = false)}
-      on:click={$goto('/contact')}
+      on:mouseenter={() => (aboutHover = true)}
+      on:mouseleave={() => (aboutHover = false)}
+      on:click={$goto('/about')}
     />
   {/if}
 </figure>
@@ -203,7 +201,7 @@
     z-index: -1;
   }
 
-  .contact,
+  .about,
   .classes,
   .repairs-and-comms,
   .online-shop:hover {
@@ -211,15 +209,15 @@
   }
 
   @media (min-width: 450px) {
-    .contact {
-      width: 70px;
-      grid-column-start: 66;
+    .online-shop {
+      width: 80px;
+      grid-column-start: 68;
       grid-column-end: span end;
       grid-row-start: 62;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       width: 80px;
       grid-column-start: 36;
       grid-column-end: span end;
@@ -245,15 +243,15 @@
   }
 
   @media (min-width: 600px) {
-    .contact {
-      width: 80px;
+    .online-shop {
+      width: 100px;
       grid-column-start: 68;
       grid-column-end: span end;
-      grid-row-start: 60;
+      grid-row-start: 64;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       width: 80px;
       grid-column-start: 38;
       grid-column-end: span end;
@@ -279,15 +277,15 @@
   }
 
   @media (min-width: 800px) {
-    .contact {
-      width: 100px;
+    .online-shop {
+      width: 130px;
       grid-column-start: 68;
       grid-column-end: span end;
-      grid-row-start: 62;
+      grid-row-start: 64;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       width: 120px;
       grid-column-start: 39;
       grid-column-end: span end;
@@ -313,15 +311,15 @@
   }
 
   @media (min-width: 1024px) {
-    .contact {
-      width: 120px;
+    .online-shop {
+      width: 150px;
       grid-column-start: 70;
       grid-column-end: span end;
       grid-row-start: 64;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       width: 140px;
       grid-column-start: 39;
       grid-column-end: span end;
@@ -347,15 +345,15 @@
   }
 
   @media (min-width: 1280px) {
-    .contact {
-      width: 160px;
+    .online-shop {
+      width: 180px;
       grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 62;
+      grid-row-start: 64;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       width: 180px;
       grid-column-start: 38;
       grid-column-end: span end;
@@ -381,15 +379,15 @@
   }
 
   @media (min-width: 1440px) {
-    .contact {
-      width: 170px;
+    .online-shop {
+      width: 200px;
       grid-column-start: 70;
       grid-column-end: span end;
       grid-row-start: 64;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       width: 190px;
       grid-column-start: 39;
       grid-column-end: span end;
@@ -415,15 +413,15 @@
   }
 
   @media (min-width: 1650px) {
-    .contact {
-      width: 210px;
+    .online-shop {
+      width: 230px;
       grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 62;
+      grid-row-start: 64;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       width: 230px;
       grid-column-start: 39;
       grid-column-end: span end;
@@ -449,19 +447,19 @@
   }
 
   @media (min-width: 1960px) {
-    .contact {
+    .online-shop {
       width: 270px;
       grid-column-start: 70;
       grid-column-end: span end;
-      grid-row-start: 50;
+      grid-row-start: 64;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       width: 290px;
       grid-column-start: 38;
       grid-column-end: span end;
-      grid-row-start: 43;
+      grid-row-start: 62;
       grid-row-end: span end;
     }
 
@@ -483,14 +481,15 @@
   }
 
   @media (min-width: 2200px) {
-    .contact {
-      grid-column-start: 70;
+    .online-shop {
+      width: 300px;
+      grid-column-start: 64;
       grid-column-end: span end;
-      grid-row-start: 67;
+      grid-row-start: 64;
       grid-row-end: span end;
     }
 
-    .online-shop {
+    .about {
       grid-column-start: 40;
       grid-column-end: span end;
       grid-row-start: 63;
@@ -511,6 +510,15 @@
       grid-column-end: span end;
       grid-row-start: 5;
       grid-row-end: span end;
+    }
+  }
+
+  @media (min-width: 2400px) {
+    .online-shop {
+      width: 325px;
+      grid-column-start: 70;
+      grid-column-end: span end;
+      grid-row-start: 64;
     }
   }
 </style>

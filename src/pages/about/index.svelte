@@ -1,16 +1,23 @@
+<script lang="ts">
+  import { fade } from 'svelte/transition';
+</script>
+
 <div class="container">
   <h1>About Enki</h1>
   <div class="shop-pics">
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/left_enki.jpg?auto=format,compress"
       alt="a rectangular wooden display inside the shop"
     />
     <img
+      in:fade={{ duration: 1200 }}
       class="center-image"
       src="https://enki.imgix.net/outside_enki_1.png?auto=format,compress"
       alt="the shop front and it's window display"
     />
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/right_enki.png?auto=format,compress"
       alt="a wooden jeweller's work bench inside the shop"
     />
@@ -28,6 +35,7 @@
   <div class="employee-cards">
     <div class="card">
       <img
+        in:fade={{ duration: 1200 }}
         src="https://enki.imgix.net/faith.png?auto=format,compress"
         alt="shop owner faith"
       />
@@ -41,6 +49,7 @@
     </div>
     <div class="card">
       <img
+        in:fade={{ duration: 1200 }}
         src="https://enki.imgix.net/dora.png?auto=format,compress"
         alt="shop owner faith"
       />
@@ -53,6 +62,7 @@
     </div>
     <div class="card">
       <img
+        in:fade={{ duration: 1200 }}
         src="https://enki.imgix.net/ash.png?auto=format,compress"
         alt="shop owner faith"
       />

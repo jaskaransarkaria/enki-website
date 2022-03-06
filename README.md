@@ -112,7 +112,6 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 ### Todos:
 
 - [ ] make sure stock is correctly displayed (what do we do with stock that is out of stock?)
-- [ ] classes/ courses
 
 - [ ] add security headers too (webpagetest.org)
 

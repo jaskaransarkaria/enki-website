@@ -1,3 +1,7 @@
+<script lang="ts">
+  import { fade } from 'svelte/transition';
+</script>
+
 <div class="container">
   <h1>
     Make each others wedding rings, because it’s more than just a band of gold
@@ -27,18 +31,22 @@
   <br />
   <div class="class-pics">
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/wedding_bands_1.jpg"
       alt="A man and a woman, the man is holding the rings in the palm of his hands"
     />
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/wedding_bands_2.jpg"
       alt="two women looking longingly into each other's eyes wearing their rings"
     />
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/wedding_bands_3.jpg"
       alt="enki jewellery ring boxes"
     />
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/wedding_bands_4.jpg"
       alt="a couple embracing sporting the rings they made"
     />

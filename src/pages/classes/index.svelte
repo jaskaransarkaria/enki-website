@@ -1,11 +1,13 @@
 <script lang="ts">
   import { goto } from '@roxi/routify';
+  import { fade } from 'svelte/transition';
 </script>
 
 <div class="container">
   <div class="class-pics">
     <button class="class-button">
       <img
+        in:fade={{ duration: 1200 }}
         src="https://enki.imgix.net/group.png?auto=format,compress"
         alt="group of people showing the backs of their hands and pointing at the rings they made during the class"
         on:click={$goto('./beginners')}
@@ -13,6 +15,7 @@
     </button>
     <button class="class-button">
       <img
+        in:fade={{ duration: 1200 }}
         src="https://enki.imgix.net/wedding.png?auto=format,compress"
         alt="somebody adjusting an engagement ring on someone's hand"
         on:click={$goto('./wedding-rings')}

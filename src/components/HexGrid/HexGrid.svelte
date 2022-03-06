@@ -57,7 +57,7 @@
   {#each filteredData as category, idx (category.Id)}
     {#if idx === filteredData.length - itemsOnLastRow}
       {#if filteredData.length > gridColumnNumber && emptyHexes.length}
-        {#each emptyHexes.slice(0, Math.ceil(emptyHexes.length / 2)) as _}
+        {#each emptyHexes.slice(0, Math.floor(emptyHexes.length / 2)) as _}
           <li class={showGrid ? 'hex' : 'hex-flex'}>
             <Hex isEmpty />
           </li>
@@ -76,7 +76,7 @@
     </li>
     {#if idx === filteredData.length - 1}
       {#if filteredData.length > gridColumnNumber && emptyHexes.length}
-        {#each emptyHexes.slice(0, Math.floor(emptyHexes.length / 2)) as _}
+        {#each emptyHexes.slice(0, Math.ceil(emptyHexes.length / 2)) as _}
           <li class={showGrid ? 'hex' : 'hex-flex'}>
             <Hex isEmpty />
           </li>

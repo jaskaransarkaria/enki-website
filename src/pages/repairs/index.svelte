@@ -1,21 +1,29 @@
+<script lang="ts">
+  import { fade } from 'svelte/transition';
+</script>
+
 <div class="container">
   <h1>Services</h1>
   <div class="shop-pics">
     <img
+      in:fade={{ duration: 1200 }}
       class="extra-width"
       src="https://enki.imgix.net/services_1.jpg?auto=format,compress"
       alt="a ring being polished on a polishing machine"
     />
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/services_2.jpg?auto=format,compress"
       alt="a jewellery machine for pressing metal"
     />
     <img
+      in:fade={{ duration: 1200 }}
       class="extra-width"
       src="https://enki.imgix.net/services_3.jpg?auto=format,compress"
       alt="some jewellery pliers and some jewellery being inspected"
     />
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/services_4.jpg?auto=format,compress"
       alt="a medallion being heated with a blow touch"
     />

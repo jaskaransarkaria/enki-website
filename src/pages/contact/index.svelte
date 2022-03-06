@@ -1,6 +1,11 @@
+<script lang="ts">
+  import { fade } from 'svelte/transition';
+</script>
+
 <div class="contact-us-container">
   <div class="contact-info">
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/maps.png?auto=format,compress"
       alt="hand drawn street map symbol with location pin"
     />
@@ -8,6 +13,7 @@
       30 High Street Kings Heath, B14 7JT <br /> Open every day 10am-5pm
     </address>
     <img
+      in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/telephone.png?auto=format,compress"
       alt="hand drawn old style home telephone with handset on top and dial around keys"
     />
