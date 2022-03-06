@@ -15,9 +15,9 @@
   const MOBILE_ABOUT_US =
     'https://enki.imgix.net/mobile_about_us.png?auto=format,compress';
   const DESKTOP_JEWELLERY_SERVICES_GIF =
-    'https://enki.imgix.net/jewellery_services_1.gif';
+    'https://enki.imgix.net/jewellery_services_2.gif';
   const DESKTOP_JEWELLERY_SERVICES_STATIC =
-    'https://enki.imgix.net/jewellery_services_1.png?auto=compress';
+    'https://enki.imgix.net/jewellery_services_2.png?auto=compress';
   const DESKTOP_JEWELLERY_CLASSES_GIF = 'https://enki.imgix.net/classes_2.gif';
   const DESKTOP_JEWELLERY_CLASSES_STATIC =
     'https://enki.imgix.net/classes_2.png?auto=compress';
