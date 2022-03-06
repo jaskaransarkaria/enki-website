@@ -18,12 +18,10 @@
       alt="hand drawn old style home telephone with handset on top and dial around keys"
     />
     <p>
-      01214444453 | 07712442736 | <a href="mailto: faith@enkionline.com"
-        >faith@enkionline.com</a
-      >
+      <a href="tel:01214444453">01214444453</a> |
+      <a href="tel:07712442736">07712442736</a>
+      | <a href="mailto: faith@enkionline.com">faith@enkionline.com</a>
     </p>
-  </div>
-  <div class="contact-description">
     <h1>Submissions</h1>
     <p>
       If you have a product you would like us to consider stocking at Enki,
@@ -38,19 +36,27 @@
 <style>
   .contact-us-container {
     display: flex;
-    width: 100vw;
-    height: 70vh;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: space-evenly;
     padding: 20px;
+    margin-top: 1em;
   }
 
   .contact-info {
-    display: grid;
-    width: 25%;
-    grid-template-columns: 75px 1fr;
-    grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    align-items: center;
+  }
+
+  .contact-info > * {
+    margin: 0.5em;
+  }
+
+  .contact-info > img {
+    height: 50px;
+    width: 50px;
   }
 
   .contact-us-container > div {
@@ -65,14 +71,18 @@
   h1 {
     text-align: center;
     font-family: 'WelcomeHome3 Regular';
+    width: 50%;
   }
 
   p {
     font-family: 'Caviar Dreams';
     text-align: center;
+    width: 50%;
   }
 
-  .contact-description {
-    width: 60%;
+  @media (min-width: 600px) {
+    .contact-info {
+      width: 100%;
+    }
   }
 </style>
