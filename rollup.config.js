@@ -68,6 +68,7 @@ export default {
     <link rel='stylesheet' href='/global.css'>
     <link rel='stylesheet' href='/build/bundle-${currentDate}.css'>
     <link rel='preload' href='//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css' as='style' onload='this.onload=null;this.rel="stylesheet"'>
+    <link rel='preload' href='//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css' as='style' onload='this.onload=null;this.rel="stylesheet"'>
     <link rel='preload' href='/fonts/CaviarDreams.ttf' as='font' type='font/ttf' crossorigin >
     <link rel='preload' href='/fonts/enki-regular.ttf' as='font' type='font/ttf' crossorigin >
     <link rel='preconnect' href='https://enki.imgix.net'> 
@@ -75,19 +76,8 @@ export default {
     <link rel='preconnect' href='https://plausible.io'> 
     <link rel='preconnect' href='https://tickettailor.com'> 
 
-    <script defer src='/build/bundle-${currentDate}.js'></script>
     <script defer data-domain='enki.jobspeed.uk' src='https://plausible.io/js/plausible.js'></script>
-    <script
-      defer
-      src='https://cdn.tickettailor.com/js/widgets/min/widget.js'
-      data-url='https://www.tickettailor.com/all-tickets/enki/'
-      data-type='inline'
-      data-inline-minimal='false'
-      data-inline-show-logo='true'
-      data-inline-bg-fill='false'
-      data-inline-inherit-ref-from-url-param=''
-      data-inline-ref='website_widget'>
-    </script>
+    <script defer src='/build/bundle-${currentDate}.js'></script>
   </head>
   <body>
   </body>

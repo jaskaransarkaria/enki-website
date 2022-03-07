@@ -3,3 +3,4 @@ jest.config.js
 rollup.config.js
 public/*
 coverage/**
+beginners.svelte
