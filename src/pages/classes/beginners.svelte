@@ -32,6 +32,7 @@
     />
   </div>
 </div>
+
 <!-- Ticket Tailor Widget. Paste this into your website where you want the widget to appear. Do not change the code or the widget may not work properly. -->
 <div class="tt-widget">
   <div class="tt-widget-fallback">
