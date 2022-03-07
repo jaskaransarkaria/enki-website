@@ -33,7 +33,6 @@
   </div>
 </div>
 
-<!-- Ticket Tailor Widget. Paste this into your website where you want the widget to appear. Do not change the code or the widget may not work properly. -->
 <div class="tt-widget">
   <div class="tt-widget-fallback">
     <p>
@@ -47,18 +46,8 @@
       >
     </p>
   </div>
-  <script
-    src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
-    data-url="https://www.tickettailor.com/all-tickets/enki/"
-    data-type="inline"
-    data-inline-minimal="false"
-    data-inline-show-logo="true"
-    data-inline-bg-fill="false"
-    data-inline-inherit-ref-from-url-param=""
-    data-inline-ref="website_widget"></script>
 </div>
 
-<!-- End of Ticket Tailor Widget -->
 <style>
   a {
     cursor: pointer;

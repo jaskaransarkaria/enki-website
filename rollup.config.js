@@ -73,9 +73,21 @@ export default {
     <link rel='preconnect' href='https://enki.imgix.net'> 
     <link rel='preconnect' href='https://server.enki.jobspeed.uk'> 
     <link rel='preconnect' href='https://plausible.io'> 
+    <link rel='preconnect' href='https://tickettailor.com'> 
 
     <script defer src='/build/bundle-${currentDate}.js'></script>
     <script defer data-domain='enki.jobspeed.uk' src='https://plausible.io/js/plausible.js'></script>
+    <script
+      defer
+      src='https://cdn.tickettailor.com/js/widgets/min/widget.js'
+      data-url='https://www.tickettailor.com/all-tickets/enki/'
+      data-type='inline'
+      data-inline-minimal='false'
+      data-inline-show-logo='true'
+      data-inline-bg-fill='false'
+      data-inline-inherit-ref-from-url-param=''
+      data-inline-ref='website_widget'>
+    </script>
   </head>
   <body>
   </body>
