@@ -3,7 +3,6 @@
 </script>
 
 <div class="container">
-  <h1>About Enki</h1>
   <div class="shop-pics">
     <img
       in:fade={{ duration: 1200 }}
@@ -13,7 +12,7 @@
     <img
       in:fade={{ duration: 1200 }}
       class="center-image"
-      src="https://enki.imgix.net/outside_enki_1.png?auto=format,compress"
+      src="https://enki.imgix.net/about_shop_1.jpg?auto=format,compress"
       alt="the shop front and it's window display"
     />
     <img
@@ -22,14 +21,14 @@
       alt="a wooden jeweller's work bench inside the shop"
     />
   </div>
-  <p>
-    Enki is a unique gift shop and fully functioning jewelers workshop rolled
-    into one. We repair all types of jewellery onsite and also teach group and
-    private jewellery classes. The Kings Heath store shows the work of many
-    independent crafts people who have become almost invisible on the high
-    street today. From baby clothes to pottery, jewellery to cushions, we has
-    just the gift you're looking for. <br /><br />We also sell beautiful and
-    unique cards and wrapping paper to make your present that bit more special.
+  <p class="about-shop">
+    Enki is a unique gift shop and fully functioning jewellers workshop. We
+    repair all types of jewellery onsite and also teach group and private
+    jewellery classes. The Kings Heath store shows the work of many independent
+    crafts people who have become almost invisible on the high street today.
+    From baby clothes to pottery, jewellery to cushions, we have just the gift
+    you're looking for. <br /><br />We also sell beautiful and unique cards and
+    wrapping paper to make your present that bit more special.
   </p>
   <h2>Meet the team</h2>
   <div class="employee-cards">
@@ -41,7 +40,7 @@
       />
       <p>
         Faith started Enki in 2017 in a small shop round the corner from the
-        current location, she is a jeweller with over ten years of experience
+        current location. She is a jeweller with over ten years of experience
         who specialises in repairing antique jewellery. She also loves to read
         and cook. She has a dog called Dodi who sometimes joins her at work! You
         can find her at Enki from Tuesday to Friday.
@@ -108,8 +107,11 @@
     width: 60%;
   }
 
+  .about-shop {
+    width: 90%;
+  }
+
   p {
-    width: 60%;
     align-self: center;
     text-align: center;
     font-family: 'Caviar Dreams';
@@ -125,7 +127,7 @@
   }
 
   .card {
-    width: 30%;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -147,7 +149,7 @@
       width: 70%;
       flex-direction: row;
       align-items: flex-start;
-      justify-content: center;
+      justify-content: space-between;
     }
   }
 </style>

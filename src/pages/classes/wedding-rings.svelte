@@ -3,32 +3,6 @@
 </script>
 
 <div class="container">
-  <h1>
-    Make each others wedding rings, because it’s more than just a band of gold
-  </h1>
-  <p>
-    Learn a new skill and make the most important piece of jewellery you'll ever
-    own. To make your wedding rings you will have the exclusive use of the
-    workshop, soft and hot drinks and cake from the wonderful Early Bird Bakery
-    next door. I will have the metal ready for you to make a practice ring in
-    silver to get you acquainted with how it all works then you will go ahead in
-    your chosen metal for the real thing! I will be guiding you all the way as
-    much or as little as you like but whatever happens you will come out with
-    two professional standard rings. After the class I will take them away to be
-    hallmarked and will return them to you within two weeks. You can take away
-    your silver samples at the end of the evening. If you aren't local I can
-    give you lots of tips on where to stay and what to do in the area if you
-    want to make a mini-break of it.
-  </p>
-  <br />
-  <p>
-    If you have any queries please contact me <a
-      href="mailto: faith@enkionline.com">here</a
-    >
-  </p>
-  <br />
-  <br />
-  <br />
   <div class="class-pics">
     <img
       in:fade={{ duration: 1200 }}
@@ -51,17 +25,46 @@
       alt="a couple embracing sporting the rings they made"
     />
   </div>
+  <h1>
+    Make your partner the most important piece of jewellery they’ll ever own
+  </h1>
+  <p>
+    In this private class for you and your partner, you will make each other a
+    wedding ring, guided by our resident jeweller, Faith.
+    <br />
+    <br />
+    You will start with an initial silver practice ring which you will be able to
+    take home after the class. You will then make the real thing in gold or the metal
+    of your choice. After the class Faith will take them away to be hallmarked and
+    will return them to you within two weeks.
+    <br />
+    <br />
+    To make the experience extra special we provide cake from the wonderful Early
+    Bird Bakery next door. If you aren't local we can give you lots of tips on where
+    to stay and what to do in the area if you want to make a mini-break of it. If
+    you have any queries please contact us here
+  </p>
+  <br />
+  <p>
+    If you have any queries please contact me <a
+      href="mailto: faith@enkionline.com">here</a
+    >
+  </p>
+  <br />
+  <br />
+  <br />
 </div>
 
 <style>
-  h1 {
+  h1,
+  p {
     text-align: center;
-    font-family: 'WelcomeHome3 Regular';
+    font-family: 'Caviar Dreams';
   }
 
   p {
     text-align: center;
-    width: 60%;
+    width: 90%;
   }
 
   .container {
@@ -75,36 +78,43 @@
 
   .class-pics {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+    flex-direction: row;
+    width: 70%;
     height: 10%;
-    justify-content: space-around;
-    margin-bottom: 10%;
+    align-self: center;
+    justify-content: center;
   }
 
   .class-pics > img {
-    height: 300px;
+    height: 80px;
     padding: 5px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 600px) {
     .class-pics {
       flex-direction: row;
       width: 40%;
       margin-bottom: 2%;
     }
 
-    p {
-      width: 40%;
+    .class-pics > img {
+      height: 200px;
     }
+  }
 
-    h1 {
-      width: 60%;
+  @media (min-width: 960px) {
+    .class-pics {
+      flex-direction: row;
+      width: 40%;
+      margin-bottom: 2%;
     }
 
     .class-pics > img {
       height: 300px;
+    }
+
+    p {
+      width: 50%;
     }
   }
 </style>

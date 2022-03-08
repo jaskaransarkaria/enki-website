@@ -31,7 +31,7 @@
     <div class="hex-link">
       <img
         in:fade={{ delay: 250, duration: 1400 }}
-        src="https://enki.imgix.net/empty_hex_1.png?auto=format,compress"
+        src="https://enki.imgix.net/empty_hex_3.png?auto=format,compress"
         alt="hexagon shape for the category button"
       />
     </div>

@@ -4,6 +4,7 @@
 
 <div class="contact-us-container">
   <div class="contact-info">
+    <h1>Contact us</h1>
     <img
       in:fade={{ duration: 1200 }}
       src="https://enki.imgix.net/maps.png?auto=format,compress"
@@ -23,12 +24,12 @@
       | <a href="mailto: faith@enkionline.com">faith@enkionline.com</a>
     </p>
     <h1>Submissions</h1>
-    <p>
+    <p class="submissions-text">
       If you have a product you would like us to consider stocking at Enki,
       please send us an email with images, cost prices, minimum order quantities
       and links to your website and social media. We get a lot of these requests
-      and are limited on space so please don’t take it personally if we can't
-      stock your work.
+      and are limited on space so unfortunately are only able to take a small
+      selection of the submissions we receive.
     </p>
   </div>
 </div>
@@ -46,7 +47,6 @@
   .contact-info {
     display: flex;
     flex-direction: column;
-    width: 70%;
     align-items: center;
   }
 
@@ -59,10 +59,6 @@
     width: 50px;
   }
 
-  .contact-us-container > div {
-    margin: 4em;
-  }
-
   address {
     text-align: center;
     align-self: center;
@@ -71,18 +67,20 @@
   h1 {
     text-align: center;
     font-family: 'WelcomeHome3 Regular';
-    width: 50%;
   }
 
   p {
     font-family: 'Caviar Dreams';
     text-align: center;
-    width: 50%;
   }
 
   @media (min-width: 600px) {
     .contact-info {
       width: 100%;
+    }
+
+    .submissions-text {
+      width: 60%;
     }
   }
 </style>

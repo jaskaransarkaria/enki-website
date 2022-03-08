@@ -16,16 +16,6 @@
 </svelte:head>
 
 <div class="container">
-  <h1>Beginner's Classes</h1>
-  <p>
-    Ever wanted to learn to make your own jewellery? <br /> Looking for a unique
-    present for a friend? <br /><br />At Enki workshops you can meet new people
-    and learn a new craft. The one off classes include all the tools and
-    materials needed to make your jewellery, soft and hot drinks, and cake from
-    the wonderful Early Bird Bakery next door. <br /><br />We also take group
-    bookings where you can choose the date and topic, get in contact
-    <a on:click={$goto('/contact')}>here</a> with any enquiries.
-  </p>
   <div class="class-pics">
     <img
       in:fade={{ duration: 1200 }}
@@ -43,6 +33,15 @@
       alt="enki jewellery ring boxes"
     />
   </div>
+  <p>
+    Ever wanted to learn to make your own jewellery? Looking for a unique
+    present for a friend? <br /><br />At Enki workshops you can meet new people
+    and learn a new craft. The one off classes include all the tools and
+    materials needed to make your jewellery, soft and hot drinks, and cake from
+    the wonderful Early Bird Bakery next door. <br /><br />We also take group
+    bookings where you can choose the date and topic, get in contact
+    <a on:click={$goto('/contact')}>here</a> with any enquiries.
+  </p>
 </div>
 
 <div class="tt-widget">
@@ -88,7 +87,7 @@
   }
 
   p {
-    width: 60%;
+    width: 90%;
     align-self: center;
     text-align: center;
     font-family: 'Caviar Dreams';
@@ -96,32 +95,42 @@
 
   .class-pics {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     width: 100%;
-    height: 10%;
-    justify-content: space-around;
-    margin-bottom: 10%;
+    align-self: center;
+    justify-content: center;
   }
 
-  .class-pics > img {
-    height: 300px;
+  .class-pics > * {
+    height: 80px;
     padding: 5px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 600px) {
     .class-pics {
       flex-direction: row;
       width: 40%;
       margin-bottom: 2%;
     }
 
-    p {
+    .class-pics > img {
+      height: 200px;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .class-pics {
+      flex-direction: row;
       width: 40%;
+      margin-bottom: 2%;
     }
 
     .class-pics > img {
       height: 300px;
+    }
+
+    p {
+      width: 50%;
     }
   }
 </style>

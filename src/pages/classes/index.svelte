@@ -8,7 +8,7 @@
     <button class="class-button">
       <img
         in:fade={{ duration: 1200 }}
-        src="https://enki.imgix.net/group.png?auto=format,compress"
+        src="https://enki.imgix.net/group_portrait.png?auto=format,compress"
         alt="carton button with a hammer"
         on:click={$goto('./beginners')}
       />
@@ -16,7 +16,7 @@
     <button class="class-button">
       <img
         in:fade={{ duration: 1200 }}
-        src="https://enki.imgix.net/wedding.png?auto=format,compress"
+        src="https://enki.imgix.net/wedding_portrait.png?auto=format,compress"
         alt="cartoon button with a boquet of flowers"
         on:click={$goto('./wedding-rings')}
       />
@@ -28,28 +28,21 @@
 <style>
   .container {
     display: flex;
-    min-height: 100vh;
+    min-height: 100%;
     width: 100vw;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding-top: 5%;
   }
 
   .class-pics {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 10%;
-    justify-content: space-around;
     margin-bottom: 10%;
   }
 
   .class-button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     border: none;
     background: none;
   }
@@ -59,15 +52,26 @@
   }
 
   .class-button > img {
-    width: 100%;
+    width: 80%;
     padding: 5px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 960px) {
     .class-pics {
       flex-direction: row;
-      width: 70%;
       margin-bottom: 2%;
+    }
+  }
+
+  @media (min-width: 2200px) {
+    .class-pics {
+      width: 50%;
+      justify-content: space-evenly;
+    }
+    .class-button > img {
+      width: 100%;
+      padding: 5px;
+      margin: 10px;
     }
   }
 </style>
