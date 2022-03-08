@@ -76,7 +76,9 @@
           alt={`${product.Name}`}
         />
       </div>
-      <h3 class="basic-header">{`${product.Name}`}</h3>
+      <h3 class="simple-prod-name">
+        {`${product.Name}`}
+      </h3>
       <h3>
         {`£${product.SalePrice}`}
       </h3>
@@ -103,6 +105,10 @@
     background: none;
     outline: none;
     border: none;
+  }
+
+  .simple-container {
+    justify-content: space-evenly;
   }
 
   .details-container {
@@ -138,6 +144,10 @@
     justify-content: center;
     width: 60%;
     margin: 0.6em;
+  }
+
+  .simple-prod-name {
+    margin-bottom: 0;
   }
 
   h2 {

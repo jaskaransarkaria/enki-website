@@ -105,7 +105,5 @@
       />
     {/if}
   {/if}
-  {#if !categoryToShow.Children.length}
-    <ProductsInCategory {categoryId} {variantCategories} {showSwitch} />
-  {/if}
+  <ProductsInCategory {categoryId} {variantCategories} {showSwitch} />
 {/if}
