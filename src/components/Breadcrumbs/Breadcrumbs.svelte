@@ -101,9 +101,11 @@
     outline: none;
     font-family: 'Caviar Dreams';
     text-transform: capitalize;
+    text-align: end;
   }
 
   img {
     width: 15px;
+    padding: 0.25em;
   }
 </style>
