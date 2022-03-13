@@ -4,7 +4,6 @@
   import { tweened } from 'svelte/motion';
   import { fade } from 'svelte/transition';
   import { basket as basketStore } from '@/stores/basket';
-  import Basket from '@/components/Basket/Basket.svelte';
   import SearchProducts from '@/components/SearchProducts/SearchProducts.svelte';
   import Hamburger from '@/components/Hamburger/Hamburger.svelte';
   import { clickOutside } from '@/libs/clickOutside';
@@ -29,7 +28,6 @@
   });
 
   afterUpdate(() => {
-    isBasketPage = window.location.pathname === '/shop/basket';
     selected = window.location.pathname;
   });
 
@@ -52,10 +50,7 @@
     `width: ${width}px; transform: translateX(${x}px);`;
   const growSearchWidth = (width: number) => `width: ${width}px`;
 
-  const showBasketItems = () => (showBasket = !showBasket);
-
   let showSearch = false;
-  let showBasket = false;
   let animateBasketNumber = false;
 
   $: outerWidth = 0;
@@ -67,8 +62,6 @@
   }
 
   $: selected = window.location.pathname;
-
-  $: isBasketPage = window.location.pathname === '/shop/basket';
 </script>
 
 <svelte:window bind:outerWidth />
@@ -109,14 +102,27 @@
       </button>
     </div>
   {/if}
-  <img
-    transition:fade|local
-    src="https://enki.imgix.net/header_1.png?auto=format,compress"
-    alt="Enki"
-    loading="eager"
-    class="enki-logo"
-    on:click={$goto('/')}
-  />
+  {#if outerWidth < 960}
+    {#if !showSearch}
+      <img
+        transition:fade|local
+        src="https://enki.imgix.net/header_1.png?auto=format,compress"
+        alt="Enki"
+        loading="eager"
+        class="enki-logo"
+        on:click={$goto('/')}
+      />
+    {/if}
+  {:else}
+    <img
+      transition:fade|local
+      src="https://enki.imgix.net/header_1.png?auto=format,compress"
+      alt="Enki"
+      loading="eager"
+      class="enki-logo"
+      on:click={$goto('/')}
+    />
+  {/if}
   <div class="right-container">
     <img
       class="search-icon"
@@ -140,12 +146,7 @@
         class="basket-icon"
         src="https://enki.imgix.net/basket-icon.png?auto=format,compress"
         alt="basket"
-        on:click={() =>
-          isBasketPage
-            ? null
-            : isMobile
-            ? showBasketItems()
-            : $goto('/shop/basket')}
+        on:click={$goto('/shop/basket')}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -156,12 +157,7 @@
         width={isMobile ? '15' : '25'}
         height={isMobile ? '15' : '25'}
         class="num-basket-items"
-        on:click={() =>
-          isBasketPage
-            ? null
-            : isMobile
-            ? showBasketItems()
-            : $goto('/shop/basket')}
+        on:click={$goto('/shop/basket')}
       >
         <g>
           <circle
@@ -191,9 +187,6 @@
     </div>
   </div>
 </div>
-{#if showBasket && outerWidth < 960}
-  <Basket />
-{/if}
 
 <style>
   .header {

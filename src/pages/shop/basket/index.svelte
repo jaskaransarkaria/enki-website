@@ -2,4 +2,4 @@
   import Basket from '@/components/Basket/Basket.svelte';
 </script>
 
-<Basket showPage />
+<Basket />

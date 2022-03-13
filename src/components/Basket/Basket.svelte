@@ -5,7 +5,6 @@
   import BasketCounter from '@/components/BasketCounter/BasketCounter.svelte';
   import Checkout from '@/components/Checkout/Checkout.svelte';
 
-  export let showPage = false;
   let basketTotalArr: { total: number }[];
   let total: string;
   $: {
@@ -22,9 +21,7 @@
 </script>
 
 <svelte:window bind:outerWidth />
-<div
-  class={showPage ? 'container' : isMobile ? 'mobile-container' : 'container'}
->
+<div class={isMobile ? 'mobile-container' : 'container'}>
   {#if $basket.length}
     {#each $basket as obj (obj.id)}
       <div class={isMobile ? 'mobile-product' : 'product'} in:fade>
