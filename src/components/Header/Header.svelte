@@ -283,7 +283,7 @@
   }
 
   .selected {
-    border-bottom: 3px solid orange;
+    border-bottom: 3px solid #ff6600;
   }
 
   @media (min-width: 360px) {

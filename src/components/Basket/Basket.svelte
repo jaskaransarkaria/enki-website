@@ -35,16 +35,12 @@
           <h2 class={isMobile ? 'mobile-product-name' : 'product-name'}>
             {obj.name}
           </h2>
-          <h4 class={isMobile ? 'mobile-current-stock' : 'current-stock'}>
-            Currently {obj.currentStock} in stock
-          </h4>
           <div
             class={isMobile
               ? 'mobile-quantity-and-price'
               : 'quantity-and-price'}
           >
             <div class={isMobile ? 'mobile-quantity' : 'quantity'}>
-              <h5>Quantity</h5>
               <BasketCounter productObj={obj} />
             </div>
             <h4 class={isMobile ? 'mobile-product-total' : 'product-total'}>
@@ -55,9 +51,9 @@
       </div>
     {/each}
     <div class={isMobile ? 'mobile-total' : 'total'}>
-      <h2>Total (exc. delivery):</h2>
       <div class="checkout">
-        <h2>£{total}</h2>
+        <h2>Subtotal: £{total}</h2>
+        <h5>Tax included & shipping calculated at checkout</h5>
         <Checkout />
       </div>
     </div>
@@ -70,6 +66,10 @@
 </div>
 
 <style>
+  * {
+    font-family: 'Caviar Dreams';
+  }
+
   .mobile-container {
     position: fixed;
     display: flex;
@@ -102,7 +102,7 @@
   .product {
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 45%;
     margin: 1%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
@@ -111,14 +111,6 @@
     width: 100vw;
     height: auto;
     justify-content: space-between;
-  }
-
-  .mobile-current-stock {
-    text-align: center;
-  }
-
-  .current-stock {
-    text-align: left;
   }
 
   .quantity {
@@ -134,7 +126,7 @@
   }
 
   .mobile-product-details {
-    margin: 5%;
+    margin: 3%;
     width: 50%;
   }
 
@@ -150,17 +142,14 @@
     height: 100px;
   }
 
+  .mobile-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .mobile-quantity-and-price {
     flex-direction: column;
-  }
-
-  .quantity > h5 {
-    margin-bottom: 0;
-  }
-
-  .mobile-quantity > h5 {
-    margin-bottom: 0;
-    text-align: center;
   }
 
   .mobile-product-total {
@@ -174,10 +163,9 @@
   .total {
     border-top: 3px double #8c8b8b;
     border-bottom: 3px double #8c8b8b;
-    width: 90%;
+    width: 55%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 
   .mobile-total {
@@ -191,32 +179,57 @@
   }
 
   .mobile-product-img {
-    width: 75px;
+    width: 100px;
     margin: 5%;
     cursor: pointer;
+    flex: 0 0 20%;
   }
 
   .product-img {
     width: 125px;
     height: auto;
     cursor: pointer;
+    flex: 0 0 20%;
   }
 
-  @media (min-width: 960px) {
+  h2,
+  h4 {
+    margin-top: 1em;
+    margin-bottom: 0;
+  }
+
+  .checkout {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  @media (min-width: 600px) {
     .product-img {
       width: 150px;
     }
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 960px) {
     .product-img {
       width: 174px;
+      flex: 0 0 174px;
+    }
+
+    .product {
+      width: 55%;
     }
   }
 
   @media (min-width: 1750px) {
     .product-img {
       width: 200px;
+      flex: 0 0 200px;
+    }
+
+    .product-total {
+      font-size: 1.5em;
     }
   }
 </style>

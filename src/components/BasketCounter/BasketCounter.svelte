@@ -34,9 +34,7 @@
       )}
     aria-label="Increase the counter by one"
   >
-    <svg aria-hidden="true" viewBox="0 0 1 1">
-      <path d="M0,0.5 L1,0.5 M0.5,0 L0.5,1" />
-    </svg>
+    +
   </button>
 
   <div class="counter-viewport">
@@ -67,9 +65,7 @@
       )}
     aria-label="Decrease the counter by one"
   >
-    <svg aria-hidden="true" viewBox="0 0 1 1">
-      <path d="M0,0.5 L1,0.5" />
-    </svg>
+    -
   </button>
 </div>
 
@@ -78,36 +74,28 @@
     display: flex;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 1rem 0;
+    margin-top: 1em;
+    width: 60px;
   }
 
   .counter button {
+    font-family: 'Caviar Dreams';
     padding: 0;
     border: 0;
     background-color: transparent;
     color: black;
     text-align: center;
     margin: 0;
+    font-size: 1em;
+    width: 35px;
   }
 
   .counter button:hover {
     background-color: lightgray;
     cursor: pointer;
   }
-
-  svg {
-    width: 25%;
-    height: 25%;
-  }
-
-  path {
-    vector-effect: non-scaling-stroke;
-    stroke-width: 2px;
-    stroke: black;
-  }
-
   .counter-viewport {
-    width: 20em;
+    width: 100%;
     height: 4em;
     overflow: hidden;
     text-align: center;
@@ -119,14 +107,28 @@
     display: flex;
     width: 100%;
     height: 100%;
-    font-weight: 400;
     color: var(--accent-color);
-    font-size: 2.5rem;
+    font-size: 1.4em;
     align-items: center;
     justify-content: center;
   }
 
   .counter-digits {
     height: 100%;
+  }
+
+  @media (min-width: 960px) {
+    .counter {
+      width: 80px;
+    }
+    .counter button {
+      font-size: 1.5em;
+    }
+  }
+
+  @media (min-width: 1750px) {
+    .counter {
+      width: 100px;
+    }
   }
 </style>

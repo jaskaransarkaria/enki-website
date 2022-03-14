@@ -52,7 +52,7 @@
   }
 
   .add-to-basket {
-    background-color: #fa6603;
+    background-color: #ff6600;
   }
 
   .goto-basket {

@@ -44,23 +44,4 @@
   {/if}
 </svelte:head>
 
-<div class="opening-times">
-  <h1>welcome to the online shop</h1>
-</div>
-
 <HexGrid {data} {categoryFn} />
-
-<style>
-  .opening-times {
-    position: relative;
-    display: block;
-    flex-direction: column;
-    grid-row: 1;
-    grid-column: 2;
-    text-align: center;
-  }
-
-  h1 {
-    font-family: 'Welcomehome3 Regular';
-  }
-</style>

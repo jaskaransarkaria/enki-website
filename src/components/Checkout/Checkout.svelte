@@ -5,6 +5,7 @@
   import { createCheckoutSession } from './createCheckoutSession';
 
   let stripePromise: any;
+  let loading = false;
 
   onMount(async () => {
     // Create an instance of the Stripe object with your publishable API key
@@ -13,21 +14,32 @@
     // https://mtlynch.io/stripe-recording-its-customers/
     stripePromise = await loadStripe(process.env.STRIPE_KEY as string);
   });
+
+  const handleClick = (stripePromise: any, basket: any) => {
+    createCheckoutSession(stripePromise, basket);
+    loading = true;
+  };
 </script>
 
 <button
   id="checkout-button"
   class="goto-checkout"
-  on:click={() => createCheckoutSession(stripePromise, $basket)}
-  >Checkout</button
+  on:click={() => handleClick(stripePromise, $basket)}
+  style={`cursor: ${loading ? 'wait' : 'pointer'}`}>Checkout</button
 >
 
 <style>
   .goto-checkout {
-    cursor: pointer;
     border: none;
     border-radius: 4px;
     transition: filter 0.25s;
-    background-color: #30a74b;
+    border: 2px solid #ff6600;
+    color: #ff6600;
+  }
+
+  button:hover {
+    color: #ff8c00;
+    border: 2px solid #ff8c00;
+    cursor: pointer;
   }
 </style>
