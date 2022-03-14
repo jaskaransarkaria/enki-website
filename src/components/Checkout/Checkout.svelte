@@ -5,7 +5,7 @@
   import { createCheckoutSession } from './createCheckoutSession';
 
   let stripePromise: any;
-  let loading = false;
+  export let loading = false;
 
   onMount(async () => {
     // Create an instance of the Stripe object with your publishable API key
@@ -24,8 +24,7 @@
 <button
   id="checkout-button"
   class="goto-checkout"
-  on:click={() => handleClick(stripePromise, $basket)}
-  style={`cursor: ${loading ? 'wait' : 'pointer'}`}>Checkout</button
+  on:click={() => handleClick(stripePromise, $basket)}>Checkout</button
 >
 
 <style>

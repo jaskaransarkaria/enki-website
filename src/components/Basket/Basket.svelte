@@ -7,6 +7,8 @@
 
   let basketTotalArr: { total: number }[];
   let total: string;
+  let loading = false;
+
   $: {
     basketTotalArr = $basket.map((basketItem) => ({
       total: (basketItem.price * 100 * basketItem.quantity) / 100,
@@ -21,7 +23,7 @@
 </script>
 
 <svelte:window bind:outerWidth />
-<div class={isMobile ? 'mobile-container' : 'container'}>
+<div class="container" style={`cursor: ${loading ? 'wait' : 'default'}`}>
   {#if $basket.length}
     {#each $basket as obj (obj.id)}
       <div class={isMobile ? 'mobile-product' : 'product'} in:fade>
@@ -54,12 +56,9 @@
       <div class="checkout">
         <h2>Subtotal: £{total}</h2>
         <h5>Tax included & shipping calculated at checkout</h5>
-        <Checkout />
+        <Checkout bind:loading />
       </div>
     </div>
-    {#if isMobile}
-      <div class="spacer" />
-    {/if}
   {:else}
     <h1>You have nothing in your basket, continue shopping</h1>
   {/if}
@@ -68,27 +67,6 @@
 <style>
   * {
     font-family: 'Caviar Dreams';
-  }
-
-  .mobile-container {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    margin-top: 55px;
-    max-height: 100vh;
-    width: 100vw;
-    background-color: white;
-    border-radius: 3px;
-    box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1);
-    z-index: 98;
-  }
-
-  .spacer {
-    position: relative;
-    bottom: 100;
-    height: 100px;
-    width: 100vw;
   }
 
   .container {
