@@ -91,7 +91,7 @@
 <style>
   .root-categories-container {
     display: grid;
-    grid-gap: 45px;
+    grid-gap: 35px;
     grid-template-columns: repeat(10, 1fr);
     margin: 0 auto;
     overflow: hidden;
@@ -99,7 +99,7 @@
     padding: 4.5%;
     padding-bottom: 15%;
     padding-top: 2%;
-    min-height: 50vh;
+    min-height: 45vh;
     align-items: center;
   }
 
@@ -200,6 +200,7 @@
   @media (min-width: 2400px) {
     .root-categories-container {
       padding-bottom: 5%;
+      grid-gap: 3px;
     }
 
     .hex-flex {

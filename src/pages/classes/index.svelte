@@ -7,7 +7,7 @@
   <div class="class-pics">
     <button class="class-button">
       <img
-        in:fade={{ duration: 1200 }}
+        in:fade={{ duration: 600 }}
         src="https://enki.imgix.net/group_portrait.png?auto=format,compress"
         alt="carton button with a hammer"
         on:click={$goto('./beginners')}
@@ -15,7 +15,7 @@
     </button>
     <button class="class-button">
       <img
-        in:fade={{ duration: 1200 }}
+        in:fade={{ duration: 600 }}
         src="https://enki.imgix.net/wedding_portrait.png?auto=format,compress"
         alt="cartoon button with a boquet of flowers"
         on:click={$goto('./wedding-rings')}

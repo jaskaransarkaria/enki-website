@@ -5,7 +5,7 @@
 </script>
 
 {#key msg}
-  <h3 in:fade={{ duration: 1200 }}>{msg}</h3>
+  <h3 in:fade={{ duration: 600 }}>{msg}</h3>
 {/key}
 <label class="switch">
   <input type="checkbox" on:click={() => (active = !active)} />

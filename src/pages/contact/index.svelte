@@ -6,7 +6,7 @@
   <div class="contact-info">
     <h1>Contact us</h1>
     <img
-      in:fade={{ duration: 1200 }}
+      in:fade={{ duration: 600 }}
       src="https://enki.imgix.net/maps.png?auto=format,compress"
       alt="hand drawn street map symbol with location pin"
     />
@@ -14,7 +14,7 @@
       30 High Street Kings Heath, B14 7JT <br /> Open every day 10am-5pm
     </address>
     <img
-      in:fade={{ duration: 1200 }}
+      in:fade={{ duration: 600 }}
       src="https://enki.imgix.net/telephone.png?auto=format,compress"
       alt="hand drawn old style home telephone with handset on top and dial around keys"
     />

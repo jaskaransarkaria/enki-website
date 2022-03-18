@@ -50,5 +50,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 3em;
   }
 </style>

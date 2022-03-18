@@ -52,7 +52,12 @@
   }
 
   .add-to-basket {
-    background-color: #ff6600;
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    transition: filter 0.25s;
+    border: 2px solid #ff6600;
+    color: #ff6600;
   }
 
   .goto-basket {
@@ -60,13 +65,22 @@
   }
 
   .add-to-basket:hover {
-    filter: grayscale(20%);
+    color: #ff8c00;
+    border: 2px solid #ff8c00;
+    cursor: pointer;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 960px) {
     .narrow {
       font-size: 1em;
-      width: 80%;
+      width: 30%;
+    }
+  }
+
+  @media (min-width: 2000px) {
+    .narrow {
+      font-size: 1em;
+      width: 20%;
     }
   }
 </style>

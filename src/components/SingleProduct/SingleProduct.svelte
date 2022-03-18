@@ -1,8 +1,7 @@
 <script lang="typescript">
   import { goto } from '@roxi/routify';
-  import AddToBasket from '@/components/AddToBasket/AddToBasket.svelte';
-  import ProductImage from '@/components/ProductImage/ProductImage.svelte';
   import ImageLoader from '@/components/Image/ImageLoader.svelte';
+  import DetailedSingleProduct from '@/components/DetailedSingleProduct/DetailedSingleProduct.svelte';
 
   import type { Product } from '@/types/product';
   import type { Category } from '@/types/category';
@@ -37,45 +36,20 @@
 
 {#if product}
   {#if showDetailedView}
-    <div
-      class="details-container"
-      on:click={$goto(`/shop/product/${product.Id}`)}
-    >
-      <h2>{`${product.Name}`}</h2>
-      {#if product.ProductImages}
-        <ProductImage {product} />
-      {/if}
-      <div class="detailed-products-footer">
-        {#if !isMobile}
-          <h4>{`£${product.SalePrice}`}</h4>
-        {/if}
-        <AddToBasket {product} detailed={showDetailedView} />
-      </div>
-    </div>
-    <div class="detailed-description">
-      <h4>{`${productDescription}`}</h4>
-      {#if isMobile}
-        <h4>{`£${product.SalePrice}`}</h4>
-      {/if}
-      <h4>
-        {`${
-          product.CurrentStock <= 0
-            ? 'sold out'
-            : product.CurrentStock + ' in stock'
-        }`}
-      </h4>
-    </div>
+    <DetailedSingleProduct {product} {productDescription} {isMobile} />
   {:else}
     <button
       class="simple-container"
       on:click={$goto(`/shop/product/${product.Id}`)}
     >
-      <div class="position-img">
-        <ImageLoader
-          src={`https://enki.imgix.net/${product.Id}-0?auto=format,compress`}
-          alt={`${product.Name}`}
-        />
-      </div>
+      {#if product.ProductImages?.length}
+        <div class="position-img">
+          <ImageLoader
+            src={`https://enki.imgix.net/${product.Id}-0?auto=format,compress`}
+            alt={`${product.Name}`}
+          />
+        </div>
+      {/if}
       <h3 class="simple-prod-name">
         {`${product.Name}`}
       </h3>
@@ -87,15 +61,14 @@
 {/if}
 
 <style>
-  .simple-container,
-  .details-container {
+  .simple-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     align-self: center;
     justify-self: center;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
     border-radius: 0.25em;
     margin: 4%;
     height: 250px;
@@ -111,20 +84,6 @@
     justify-content: space-evenly;
   }
 
-  .details-container {
-    height: 250px;
-    width: 250px;
-    justify-content: auto;
-    justify-self: auto;
-    text-align: center;
-    cursor: auto;
-  }
-
-  .detailed-description {
-    width: 250px;
-    text-align: center;
-  }
-
   .simple-container:hover {
     transform: scale(1.06);
     box-shadow: 0 3px 65px rgb(0 0 0 / 0.2);
@@ -138,24 +97,8 @@
     width: 70%;
   }
 
-  .detailed-products-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    margin: 0.6em;
-  }
-
   .simple-prod-name {
     margin-bottom: 0;
-  }
-
-  h2 {
-    font-size: 0.8em;
-  }
-
-  h4 {
-    font-size: 0.7em;
   }
 
   h3 {
@@ -164,38 +107,22 @@
     margin-top: 0;
   }
 
-  h2,
   h3 {
     text-align: center;
   }
 
-  h2,
-  h3,
-  h4 {
+  h3 {
     font-family: 'Caviar Dreams';
   }
 
   @media (min-width: 360px) {
-    .details-container {
-      height: 300px;
-      width: 300px;
-    }
-
     .simple-container {
       height: 150px;
       width: 150px;
     }
 
-    .detailed-description {
-      width: 300px;
-    }
-
     h3 {
       font-size: 0.6em;
-    }
-
-    .detailed-products-footer {
-      margin: 0.8em;
     }
   }
 
@@ -203,30 +130,6 @@
     .simple-container {
       height: 300px;
       width: 300px;
-    }
-
-    .details-container {
-      height: 650px;
-      width: 650px;
-      justify-content: space-evenly;
-    }
-
-    .detailed-description {
-      width: 650px;
-    }
-
-    h2 {
-      font-size: 2em;
-      justify-self: start;
-    }
-
-    h4 {
-      font-size: 1em;
-    }
-
-    .detailed-products-footer {
-      width: 45%;
-      margin: 1em;
     }
 
     h3 {
@@ -239,39 +142,12 @@
       height: 450px;
       width: 450px;
     }
-
-    .details-container {
-      height: 775px;
-      width: 775px;
-    }
-
-    .detailed-description {
-      width: 775px;
-    }
-    .detailed-products-footer {
-      height: 250px;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    h4 {
-      font-size: 1.25em;
-    }
   }
 
   @media (min-width: 1280px) {
     .simple-container {
       height: 385px;
       width: 385px;
-    }
-
-    .details-container {
-      width: 900px;
-      height: 900px;
-    }
-
-    .detailed-description {
-      width: 900px;
     }
   }
 

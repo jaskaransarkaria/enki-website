@@ -18,17 +18,17 @@
 <div class="container">
   <div class="class-pics">
     <img
-      in:fade={{ duration: 1200 }}
+      in:fade={{ duration: 600 }}
       src="https://enki.imgix.net/classes_example_1.jpg?auto=format,compress"
       alt="A man and a woman, the man is holding the rings in the palm of his hands"
     />
     <img
-      in:fade={{ duration: 1200 }}
+      in:fade={{ duration: 600 }}
       src="https://enki.imgix.net/classes_example_2.jpg?auto=format,compress"
       alt="two women looking longingly into each other's eyes wearing their rings"
     />
     <img
-      in:fade={{ duration: 1200 }}
+      in:fade={{ duration: 600 }}
       src="https://enki.imgix.net/classes_example_3.jpg?auto=format,compress"
       alt="enki jewellery ring boxes"
     />

@@ -30,6 +30,7 @@
 <style>
   .goto-checkout {
     border: none;
+    background-color: white;
     border-radius: 4px;
     transition: filter 0.25s;
     border: 2px solid #ff6600;

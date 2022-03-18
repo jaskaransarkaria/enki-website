@@ -10,34 +10,34 @@
   <br />
   <div class="shop-pics">
     <img
-      in:fade={{ duration: 1200 }}
+      in:fade={{ duration: 600 }}
       class="extra-width"
       src="https://enki.imgix.net/services_1.jpg?auto=format,compress"
       alt="a ring being polished on a polishing machine"
     />
     {#if !isMobile}
       <img
-        in:fade={{ duration: 1200 }}
+        in:fade={{ duration: 600 }}
         src="https://enki.imgix.net/services_2.jpg?auto=format,compress"
         alt="a jewellery machine for pressing metal"
       />
     {/if}
     {#if isMobile}
       <img
-        in:fade={{ duration: 1200 }}
+        in:fade={{ duration: 600 }}
         src="https://enki.imgix.net/services_4.jpg?auto=format,compress"
         alt="a medallion being heated with a blow touch"
       />
     {/if}
     <img
-      in:fade={{ duration: 1200 }}
+      in:fade={{ duration: 600 }}
       class="extra-width"
       src="https://enki.imgix.net/services_3.jpg?auto=format,compress"
       alt="some jewellery pliers and some jewellery being inspected"
     />
     {#if !isMobile}
       <img
-        in:fade={{ duration: 1200 }}
+        in:fade={{ duration: 600 }}
         src="https://enki.imgix.net/services_4.jpg?auto=format,compress"
         alt="a medallion being heated with a blow touch"
       />

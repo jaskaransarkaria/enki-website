@@ -30,14 +30,14 @@
   {#if isEmpty}
     <div class="hex-link">
       <img
-        in:fade={{ delay: 250, duration: 1400 }}
+        in:fade={{ delay: 250, duration: 600 }}
         src="https://enki.imgix.net/empty_hex_3.png?auto=format,compress"
         alt="hexagon shape for the category button"
       />
     </div>
   {:else}
     <div class={loadedElemArr[idx] ? 'hex-link' : 'hex-link hex-loading'}>
-      <picture in:fade={{ duration: 800 }}>
+      <picture in:fade={{ duration: 600 }}>
         <source
           srcset={`https://enki.imgix.net/${category.Id}?auto=format,compress`}
           type="image/jpg"
@@ -56,7 +56,7 @@
       </picture>
       {#if loadedElemArr[idx]}
         <img
-          in:fade|local={{ delay: 200, duration: 800 }}
+          in:fade|local={{ delay: 200, duration: 600 }}
           src={`https://enki.imgix.net/hex_${Math.floor(
             Math.random() * (6 - 1 + 1) + 1
           )}.svg`}

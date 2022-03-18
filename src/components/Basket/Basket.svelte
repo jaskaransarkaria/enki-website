@@ -139,16 +139,12 @@
   }
 
   .total {
-    border-top: 3px double #8c8b8b;
-    border-bottom: 3px double #8c8b8b;
     width: 55%;
     display: flex;
     justify-content: flex-end;
   }
 
   .mobile-total {
-    border-top: 3px double #8c8b8b;
-    border-bottom: 3px double #8c8b8b;
     margin: 1.5%;
     display: flex;
     margin-top: auto;
