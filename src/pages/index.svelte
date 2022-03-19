@@ -67,7 +67,23 @@
     <link rel="preload" as="image" href={DESKTOP_ABOUT_GIF} />
     <link rel="preload" as="image" href={DESKTOP_ABOUT_STATIC} />
   {/if}
+  <meta
+    property="og:title"
+    content="Enki - Gifts, Cards and Jewellery Repairs, Kings Heath, Birmingham"
+  />
+  <meta property="og:url" content={window.location.href} />
+  <meta
+    property="og:image"
+    content={`https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress`}
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:description"
+    content="Independent jewellers and craft gallery. Address: 30 High Street, Kings Heath, Birmingham, B14 7JZ"
+  />
+  <meta property="og:locale" content="en_GB" />
 </svelte:head>
+
 <GetProducts />
 <figure class={isMobile ? 'mobile-container' : 'container'}>
   <img

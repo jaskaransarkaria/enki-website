@@ -37,6 +37,21 @@
   });
 </script>
 
+<svelte:head>
+  <meta
+    property="og:title"
+    content="Enki - Gifts, Cards and Jewellery Repairs, Kings Heath, Birmingham"
+  />
+  <meta property="og:url" content={window.location.href} />
+  <meta
+    property="og:image"
+    content={`https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress`}
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content={productToShow[0]?.Name} />
+  <meta property="og:locale" content="en_GB" />
+</svelte:head>
+
 {#if productToShow.length}
   <Breadcrumbs selectedCategoryId={productToShow[0].CategoryId} />
   <div>
