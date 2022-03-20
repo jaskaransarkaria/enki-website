@@ -13,9 +13,7 @@
   metatags.title =
     'Enki - Gifts, Cards and Jewellery Repairs, Kings Heath, Birmingham';
   metatags.url = window.location.href;
-  metatags.image = `https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress`;
   metatags.type = 'website';
-  metatags.description = productToShow[0]?.Name;
   metatags.locale = 'en_GB';
 
   onMount(async () => {
@@ -43,6 +41,9 @@
       );
     }
   });
+
+  $: metatags.description = productToShow[0]?.Name;
+  $: metatags.image = `https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress`;
 </script>
 
 {#if productToShow.length}
