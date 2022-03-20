@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, beforeUpdate } from 'svelte';
   import { params, metatags } from '@roxi/routify';
   import { products } from '@/stores/products';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
@@ -15,6 +15,11 @@
   metatags.url = window.location.href;
   metatags.type = 'website';
   metatags.locale = 'en_GB';
+
+  beforeUpdate(() => {
+    metatags.description = productToShow[0]?.Name;
+    metatags.image = `https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress`;
+  });
 
   onMount(async () => {
     // check to see if we have a products store
@@ -41,9 +46,6 @@
       );
     }
   });
-
-  $: metatags.description = productToShow[0]?.Name;
-  $: metatags.image = `https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress`;
 </script>
 
 {#if productToShow.length}
