@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { params } from '@roxi/routify';
+  import { params, metatags } from '@roxi/routify';
   import { products } from '@/stores/products';
   import SingleProduct from '@/components/SingleProduct/SingleProduct.svelte';
   import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs.svelte';
@@ -9,6 +9,14 @@
   import type { Product } from '@/types/product';
 
   let productToShow: readonly Product[] = [];
+
+  metatags.title =
+    'Enki - Gifts, Cards and Jewellery Repairs, Kings Heath, Birmingham';
+  metatags.url = window.location.href;
+  metatags.image = `https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress`;
+  metatags.type = 'website';
+  metatags.description = productToShow[0]?.Name;
+  metatags.locale = 'en_GB';
 
   onMount(async () => {
     // check to see if we have a products store
@@ -36,21 +44,6 @@
     }
   });
 </script>
-
-<svelte:head>
-  <meta
-    property="og:title"
-    content="Enki - Gifts, Cards and Jewellery Repairs, Kings Heath, Birmingham"
-  />
-  <meta property="og:url" content={window.location.href} />
-  <meta
-    property="og:image"
-    content={`https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress`}
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content={productToShow[0]?.Name} />
-  <meta property="og:locale" content="en_GB" />
-</svelte:head>
 
 {#if productToShow.length}
   <Breadcrumbs selectedCategoryId={productToShow[0].CategoryId} />
