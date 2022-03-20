@@ -60,8 +60,7 @@ export default {
 <html lang="${attributes.html.lang}">
   <head>
   <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <meta name='description' content='Enki Jewellery & Craft Gallery shop in Kings Heath, Birmingham, UK'>
+  <meta name='viewport' content='width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86'>
     <title>${title}</title>
     
     <link rel='icon' type='image/png' href='/enki_icon.jpg'>

@@ -74,7 +74,7 @@
   <meta property="og:url" content={window.location.href} />
   <meta
     property="og:image"
-    content={`https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress`}
+    content="https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress"
   />
   <meta property="og:type" content="website" />
   <meta
