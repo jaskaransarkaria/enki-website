@@ -1,2 +1,0 @@
-<slot />
-<!-- optional fallback -->

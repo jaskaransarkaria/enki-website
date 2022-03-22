@@ -1,22 +1,17 @@
-const sveltePreprocess = require('svelte-preprocess');
+import adapter from '@sveltejs/adapter-auto';
+import preprocess from 'svelte-preprocess';
 
-module.exports = {
-  preprocess: sveltePreprocess({
-    babel: {
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            loose: true,
-            // No need for babel to resolve modules
-            modules: false,
-            targets: {
-              // ! Very important. Target es6+
-              esmodules: true,
-            },
-          },
-        ],
-      ],
-    },
-  }),
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	// Consult https://github.com/sveltejs/svelte-preprocess
+	// for more information about preprocessors
+	preprocess: preprocess(),
+	kit: {
+		adapter: adapter(),
+		browser: {
+			hydrate: true
+		}
+	}
 };
+
+export default config;
