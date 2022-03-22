@@ -26,7 +26,7 @@
 		}
 		// if tag selected display relevant products on tag page
 		if (isTag(cat)) {
-			goto(`/shop/tag/${prefix.toLowerCase()}-${cat.Name.toLowerCase()}?catId=${categoryId}&tagId=${cat.Id}`);
+			goto(`/shop/tag/${cat.Name.toLowerCase()}?catid=${categoryId}&tagid=${cat.Id}`);
 		}
 	};
 
@@ -41,7 +41,6 @@
 	$: treatedTags = tags
 		.filter((tag: Tag) => !tag.Name.includes('SOR '))
 		.filter((tag: Tag) => tag.Name.includes(prefix))
-		.map((tag: Tag) => (prefix ? { ...tag, Name: tag.Name.replace(prefix + '-', '') } : tag));
 </script>
 
 <HexGrid data={[...data, ...treatedTags]} categoryFn={selectFn} />

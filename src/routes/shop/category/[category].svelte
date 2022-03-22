@@ -6,7 +6,7 @@
     id: number,
     returnedCaptegoryObj: Category
   ): Category => {
-    if (returnedCaptegoryObj.Id === id) {
+    if (returnedCaptegoryObj?.Id === id) {
       return returnedCaptegoryObj;
     } else if (returnedCaptegoryObj.Children) {
       // serach each category/children branch recursively
@@ -44,14 +44,14 @@
 </script>
 
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import CategoryView from '$lib/components/CategoryView/CategoryView.svelte';
+	import type { Base } from '$lib/types/base';
 
 	export let categoryToShow: Category;
 
-	const selectCategory = () => {
-		goto(`/shop/category/${$page.params.category}`);
+  const selectCategory = (category: Base) => {
+    goto(`/shop/category/${category.Id}`);
 	};
 
 </script>

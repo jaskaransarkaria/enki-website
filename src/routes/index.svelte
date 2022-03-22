@@ -8,7 +8,6 @@
 	// it so that it gets served as a static asset in prod
 	export const prerender = true;
 </script>
-
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import GetProducts from '$lib/components/GetProducts/GetProducts.svelte';

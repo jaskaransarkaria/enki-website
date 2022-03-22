@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/env'
 	import { groupBy } from 'lodash-es';
 	import { fade } from 'svelte/transition';
 	import { calcShowGrid } from '$lib/utils/gridCalc';
@@ -99,7 +100,7 @@
 		</div>
 	{/if}
 	{#key sortBy}
-		{#if productArr}
+		{#if productArr && browser}
 			<div
 				in:fade={{ delay: 500 }}
 				class={showDetailedView ||

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import { fade } from 'svelte/transition';
+	import type { BaseFn } from '$lib/types/base';
 	import type { Category } from '$lib/types/category';
 	import type { Tag } from '$lib/types/tag';
 
@@ -9,6 +9,7 @@
 		sourceElemArr[idx].srcset = imgElemArr[idx].src;
 	};
 
+	export let categoryFn: BaseFn;
 	export let isEmpty = false;
 	export let idx = 0;
 	export let category: Category | Tag = {
@@ -56,12 +57,12 @@
 			<button
 				data-testid="hex-button"
 				on:click={() => {
-						goto(`/shop/category/${category.Id}`)
+					categoryFn(category)
 					}
 				}
 			/>
 			<div class="category-name">
-				<h3 data-testid="hex-category-name">{category.Name}</h3>
+				<h3 data-testid="hex-category-name">{"TagTypeId" in category ? category.Name.split("-").pop() : category.Name}</h3>
 			</div>
 		</div>
 	{/if}

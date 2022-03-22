@@ -8,7 +8,6 @@
 	import type { Category } from '$lib/types/category';
 	import type { BaseFn } from '$lib/types/base';
 
-
 	export let categoryFn: BaseFn;
 	export let showBreadcrumbs = true;
 	export let showSwitch = true;

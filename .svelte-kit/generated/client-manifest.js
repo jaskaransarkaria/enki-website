@@ -17,7 +17,7 @@ export const components = [
 	() => import("../../src/routes/shop/product/[product].svelte"),
 	() => import("../../src/routes/shop/basket/index.svelte"),
 	() => import("../../src/routes/shop/search/index.svelte"),
-	() => import("../../src/routes/shop/tag/[tag].svelte")
+	() => import("../../src/routes/shop/tag/[type]-[tag].svelte")
 ];
 
 export const dictionary = {
@@ -34,5 +34,5 @@ export const dictionary = {
 	"shop/product/[product]": [[0, 10, 13], [1]],
 	"shop/basket": [[0, 10, 14], [1]],
 	"shop/search": [[0, 10, 15], [1]],
-	"shop/tag/[tag]": [[0, 10, 16], [1]]
+	"shop/tag/[type]-[tag]": [[0, 10, 16], [1]]
 };
