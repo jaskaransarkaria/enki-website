@@ -28,6 +28,14 @@
 
   export let data: readonly Product[] = [];
 </script>
+<svelte:head>
+	<meta property="og:title" content="Enki" />
+  <meta property="og:url" content={$page.url.toString()} />
+  <meta property="og:image" content={`https://enki.imgix.net/${$page.url.searchParams.get('catid')}?auto=format,compress`} />
+	<meta property="og:type" content="website" />
+  <meta property="og:description" content={`Shop at Enki for gifts in the ${$page.url.searchParams.get('tagid')} category`} />
+	<meta property="og:locale" content="en_GB" />
+</svelte:head>
 
 <Breadcrumbs
   selectedCategoryId={parseInt($page.url.searchParams.get('catid'), 10)}

@@ -3,11 +3,11 @@ import { tick } from 'svelte';
 import { render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import TagView from './TagView.svelte';
-import { refreshTags } from '@/libs/requests';
+import { refreshTags } from '$lib/utils/requests';
 
-import type { Category } from '@/types/category';
+import type { Category } from '$lib/types/category';
 
-jest.mock('@/libs/requests');
+jest.mock('$lib/utils/requests');
 
 const mockData: Category[] = [
 	{

@@ -3,11 +3,8 @@ import { tick } from 'svelte';
 import { get } from 'svelte/store';
 import { render, screen, cleanup } from '@testing-library/svelte';
 import CategoryView from './CategoryView.svelte';
-import { refreshCategory } from '@/libs/requests';
-import { categories, reset as resetCategoriesStore } from '@/stores/categories';
-import type { Category } from '@/types/category';
-
-jest.mock('@/libs/requests');
+import { categories, reset as resetCategoriesStore } from '$lib/stores/categories';
+import type { Category } from '$lib/types/category';
 
 const nestedCategories = {
 	Id: -1,
@@ -44,7 +41,6 @@ const nestedCategories = {
 
 describe('GIVEN CategoryView', () => {
 	beforeEach(() => {
-		(refreshCategory as jest.Mock).mockResolvedValue([]);
 		resetCategoriesStore();
 	});
 
@@ -55,7 +51,6 @@ describe('GIVEN CategoryView', () => {
 	describe('WHEN rendered with no props', () => {
 		it('THEN display no categories message', () => {
 			render(CategoryView);
-			expect(refreshCategory).toHaveBeenCalledTimes(0);
 			expect(get(categories)).toMatchObject({
 				Id: 0,
 				ParentId: null,
@@ -76,30 +71,12 @@ describe('GIVEN CategoryView', () => {
 			});
 
 			expect(get(categories)).toMatchObject({ ...nestedCategories });
-			expect(refreshCategory).toHaveBeenCalledTimes(0);
 
 			expect(screen.getByText('Clothes')).toBeInTheDocument();
 			cleanup(); // it doesn't unmount unless called here, needed to prevent props from interfering accross tests
 		});
 
 		it('THEN display the correct the category from the server, when not found in the store', async () => {
-			(refreshCategory as jest.Mock).mockResolvedValueOnce([
-				{
-					Id: 456,
-					ParentId: null,
-					Name: 'Shoes',
-					Children: [
-						{
-							Id: 999,
-							ParentId: 123,
-							Name: 'Child Shoes',
-							Children: [],
-							NominalCode: 'CATEGORY'
-						}
-					],
-					NominalCode: 'CATEGORY'
-				}
-			]);
 
 			render(CategoryView, {
 				categoryId: 456,
@@ -113,7 +90,6 @@ describe('GIVEN CategoryView', () => {
 				Children: [],
 				NominalCode: ''
 			});
-			expect(refreshCategory).toHaveBeenCalledTimes(1);
 			await tick(); // using tick helps to flush any state changes in the component
 			await tick();
 			await tick();
@@ -144,7 +120,6 @@ describe('GIVEN CategoryView', () => {
 				categoryId: 456
 			});
 			expect(screen.getByRole('heading')).toHaveTextContent('Hats');
-			expect(refreshCategory).toHaveBeenCalledTimes(0);
 			cleanup();
 		});
 
@@ -156,7 +131,6 @@ describe('GIVEN CategoryView', () => {
 				categoryId: 456
 			});
 			expect(screen.getByRole('heading', { name: 'Hats' })).toHaveTextContent('Hats');
-			expect(refreshCategory).toHaveBeenCalledTimes(0);
 			cleanup();
 		});
 
@@ -184,7 +158,6 @@ describe('GIVEN CategoryView', () => {
 			expect(screen.queryByRole('heading', { name: '890', level: 3 })).not.toBeInTheDocument();
 
 			expect(screen.queryByText('Variant')).not.toBeInTheDocument();
-			expect(refreshCategory).toHaveBeenCalledTimes(0);
 			cleanup();
 		});
 	});

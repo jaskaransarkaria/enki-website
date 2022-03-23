@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 import { get } from 'svelte/store';
 import AddToBasket from './AddToBasket.svelte';
-import { basket, reset as resetBasketStore } from '@/stores/basket';
+import { basket, reset as resetBasketStore } from '$lib/stores/basket';
 import { tick } from 'svelte';
 
 describe('GIVEN AddToBasket', () => {

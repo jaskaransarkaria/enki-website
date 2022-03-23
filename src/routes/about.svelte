@@ -18,6 +18,10 @@
 	import { fade } from 'svelte/transition';
 </script>
 
+<svelte:head>
+	<meta property="og:url" content="https://enkionline.com/about" />
+</svelte:head>
+
 <div class="container">
 	<div class="shop-pics">
 		<img

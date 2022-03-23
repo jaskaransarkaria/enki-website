@@ -1,12 +1,12 @@
 import { c as create_ssr_component, v as validate_component } from "../../../../chunks/index-fdb1bd20.js";
-import { d as refreshProductsFromServer } from "../../../../chunks/categories-699c3bd3.js";
+import { c as refreshProductsFromServer } from "../../../../chunks/requests-1b4d1f5b.js";
 import { S as SingleProduct } from "../../../../chunks/SingleProduct-101de88f.js";
-import { B as Breadcrumbs } from "../../../../chunks/Breadcrumbs-fa32fbcd.js";
+import { B as Breadcrumbs } from "../../../../chunks/Breadcrumbs-5b6e6191.js";
 import "fp-ts/lib/function.js";
 import "fp-ts/lib/TaskEither.js";
 import "fp-ts/lib/Task.js";
-import "../../../../chunks/index-951b6248.js";
 import "../../../../chunks/basket-ca587022.js";
+import "../../../../chunks/index-951b6248.js";
 var _product__svelte_svelte_type_style_lang = "";
 const css = {
   code: "div.svelte-ks28li{display:flex;flex-direction:column;justify-content:center;align-items:center;margin:3em}",

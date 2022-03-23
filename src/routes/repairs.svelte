@@ -20,8 +20,13 @@
 	$: outerWidth = 0;
 	$: isMobile = outerWidth < 960;
 </script>
+<svelte:head>
+	<meta property="og:image" content="https://enki.imgix.net/services_4.jpg?auto=format,compress" />
+	<meta property="og:url" content="https://enkionline.com/repairs" />
+</svelte:head>
 
 <svelte:window bind:outerWidth />
+{#if outerWidth > 0}
 <div class="container">
 	<br />
 	<div class="shop-pics">
@@ -107,6 +112,7 @@
 		</p>
 	</div>
 </div>
+{/if}
 
 <style>
 	h2 {

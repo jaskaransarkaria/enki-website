@@ -17,11 +17,21 @@
 </script>
 
 <script lang="ts">
+	import { page } from '$app/stores';
 	import SingleProduct from '$lib/components/SingleProduct/SingleProduct.svelte';
 	import Breadcrumbs from '$lib/components/Breadcrumbs/Breadcrumbs.svelte';
 
 	export let productToShow: readonly Product[] = [];
 </script>
+
+<svelte:head>
+	<meta property="og:title" content="Enki" />
+  <meta property="og:url" content={$page.url.toString()} />
+  <meta property="og:image" content={`https://enki.imgix.net/${productToShow[0].Id}-0?auto=format,compress`} />
+	<meta property="og:type" content="website" />
+  <meta property="og:description" content={`Shop at Enki for ${productToShow[0].Name}`} />
+	<meta property="og:locale" content="en_GB" />
+</svelte:head>
 
 {#if productToShow.length}
 	<Breadcrumbs selectedCategoryId={productToShow[0].CategoryId} />

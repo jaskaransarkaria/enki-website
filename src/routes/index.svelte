@@ -68,91 +68,96 @@
 		<link rel="preload" as="image" href={DESKTOP_ABOUT_GIF} />
 		<link rel="preload" as="image" href={DESKTOP_ABOUT_STATIC} />
 	{/if}
+
+	<meta property="og:url" content="https://enkionline.com/" />
+	<meta property="og:image" content="https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress" />
 </svelte:head>
 
 <GetProducts />
-<figure class={isMobile ? 'mobile-container' : 'container'}>
-	<img
-		class={isMobile ? 'parrallax-inside-shop' : 'inside-shop'}
-		src={`https://enki.imgix.net/${
-			outerWidth <= 450 ? 'mobile_landing_page_2' : 'inside_enki_desktop_3'
-		}.png?${
-			outerWidth <= 450 ? 'fit=crop' : 'auto=format,compress'
-		}&h=${outerHeight}&w=${outerWidth}`}
-		alt="welcome to the shop, this ilustration shows the shopkeeper behind her bench"
-	/>
-	{#if isMobile}
-		<ScrollDown />
-		<div class="mobile-button-container">
+{#if outerWidth > 0}
+	<figure class={isMobile ? 'mobile-container' : 'container'}>
+		<img
+			class={isMobile ? 'parrallax-inside-shop' : 'inside-shop'}
+			src={`https://enki.imgix.net/${
+				outerWidth <= 450 ? 'mobile_landing_page_2' : 'inside_enki_desktop_3'
+			}.png?${
+				outerWidth <= 450 ? 'fit=crop' : 'auto=format,compress'
+			}&h=${outerHeight}&w=${outerWidth}`}
+			alt="welcome to the shop, this ilustration shows the shopkeeper behind her bench"
+		/>
+		{#if isMobile}
+			<ScrollDown />
+			<div class="mobile-button-container">
+				<img
+					class="mobile-online-shop"
+					src={MOBILE_ONLINE_SHOP}
+					alt="online shop button"
+					on:click={() => goto('/shop')}
+				/>
+				<img
+					class="mobile-repairs-and-comms"
+					src={MOBILE_JEWELLERY_SERVICES}
+					alt="jewellery services button"
+					on:click={() => goto('/services')}
+				/>
+				<img
+					class="mobile-classes"
+					src={MOBILE_JEWELLERY_CLASSES}
+					alt="classes button"
+					on:click={() => goto('/classes')}
+				/>
+				<img
+					class="mobile-contact-us"
+					src={MOBILE_CONTACT_US}
+					alt="contact us button"
+					on:click={() => goto('/contact')}
+				/>
+				<img
+					class="mobile-about-us"
+					src={MOBILE_ABOUT_US}
+					alt="about us button"
+					on:click={() => goto('/about')}
+				/>
+			</div>
+		{:else}
 			<img
-				class="mobile-online-shop"
-				src={MOBILE_ONLINE_SHOP}
-				alt="online shop button"
-				on:click={() => goto('/shop')}
-			/>
-			<img
-				class="mobile-repairs-and-comms"
-				src={MOBILE_JEWELLERY_SERVICES}
-				alt="jewellery services button"
+				class="repairs-and-comms"
+				src={repairsAndCommissionsHover
+					? DESKTOP_JEWELLERY_SERVICES_GIF
+					: DESKTOP_JEWELLERY_SERVICES_STATIC}
+				alt="repair and commissions button hover over me"
+				on:mouseenter={() => (repairsAndCommissionsHover = true)}
+				on:mouseleave={() => (repairsAndCommissionsHover = false)}
 				on:click={() => goto('/services')}
 			/>
 			<img
-				class="mobile-classes"
-				src={MOBILE_JEWELLERY_CLASSES}
-				alt="classes button"
+				class="classes"
+				src={classesHover ? DESKTOP_JEWELLERY_CLASSES_GIF : DESKTOP_JEWELLERY_CLASSES_STATIC}
+				alt="classes button hover over me"
+				on:mouseenter={() => (classesHover = true)}
+				on:mouseleave={() => (classesHover = false)}
 				on:click={() => goto('/classes')}
 			/>
 			<img
-				class="mobile-contact-us"
-				src={MOBILE_CONTACT_US}
-				alt="contact us button"
-				on:click={() => goto('/contact')}
+				class="online-shop"
+				src={onlineShopHover ? DESKTOP_ONLINE_SHOP_GIF : DESKTOP_ONLINE_SHOP_STATIC}
+				alt="online shop button hover over me"
+				on:mouseenter={() => (onlineShopHover = true)}
+				on:mouseleave={() => (onlineShopHover = false)}
+				on:click={() => goto('/shop')}
 			/>
 			<img
-				class="mobile-about-us"
-				src={MOBILE_ABOUT_US}
-				alt="about us button"
+				class="about"
+				src={aboutHover ? DESKTOP_ABOUT_GIF : DESKTOP_ABOUT_STATIC}
+				alt="online shop button hover over me"
+				on:mouseenter={() => (aboutHover = true)}
+				on:mouseleave={() => (aboutHover = false)}
 				on:click={() => goto('/about')}
 			/>
-		</div>
-	{:else}
-		<img
-			class="repairs-and-comms"
-			src={repairsAndCommissionsHover
-				? DESKTOP_JEWELLERY_SERVICES_GIF
-				: DESKTOP_JEWELLERY_SERVICES_STATIC}
-			alt="repair and commissions button hover over me"
-			on:mouseenter={() => (repairsAndCommissionsHover = true)}
-			on:mouseleave={() => (repairsAndCommissionsHover = false)}
-			on:click={() => goto('/services')}
-		/>
-		<img
-			class="classes"
-			src={classesHover ? DESKTOP_JEWELLERY_CLASSES_GIF : DESKTOP_JEWELLERY_CLASSES_STATIC}
-			alt="classes button hover over me"
-			on:mouseenter={() => (classesHover = true)}
-			on:mouseleave={() => (classesHover = false)}
-			on:click={() => goto('/classes')}
-		/>
-		<img
-			class="online-shop"
-			src={onlineShopHover ? DESKTOP_ONLINE_SHOP_GIF : DESKTOP_ONLINE_SHOP_STATIC}
-			alt="online shop button hover over me"
-			on:mouseenter={() => (onlineShopHover = true)}
-			on:mouseleave={() => (onlineShopHover = false)}
-			on:click={() => goto('/shop')}
-		/>
-		<img
-			class="about"
-			src={aboutHover ? DESKTOP_ABOUT_GIF : DESKTOP_ABOUT_STATIC}
-			alt="online shop button hover over me"
-			on:mouseenter={() => (aboutHover = true)}
-			on:mouseleave={() => (aboutHover = false)}
-			on:click={() => goto('/about')}
-		/>
-	{/if}
-</figure>
-<BackToTop />
+		{/if}
+	</figure>
+	<BackToTop />
+{/if}
 
 <style>
 	.container {

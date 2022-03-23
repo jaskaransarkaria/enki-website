@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
+	import HexGrid from '$lib/components/HexGrid/HexGrid.svelte';
 	import { refreshCategoriesFromServer } from '$lib/utils/requests';
-	import type { Base } from '$lib/types/base';
+	import type { Base, BaseFn } from '$lib/types/base';
 
 	const orderCategories = (resp: Base[]) =>
 		resp.sort((a: Base, b: Base) => (a.Name < b.Name ? -1 : 1));
@@ -18,10 +19,12 @@
   export const prerender = true;
 </script>
 
+
 <script lang="ts">
-	import RootCategories from '$lib/components/RootCategories/RootCategories.svelte';
+	import { page } from '$app/stores';
 
   export let data: Base[];
+	const categoryFn: BaseFn = (category: Base) => `${$page.url}/category/${category.Id}`
 </script>
 
-<RootCategories {data} />
+<HexGrid {data} {categoryFn} />

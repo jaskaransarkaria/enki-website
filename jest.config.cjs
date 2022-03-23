@@ -1,8 +1,7 @@
-const esModules = ['@roxi', 'lodash-es'].join('|');
+const esModules = ['lodash-es'].join('|');
 
 module.exports = {
   transform: {
-    '^.+@roxi.+\\.js$': 'babel-jest',
     '^.+\\.svelte$': [
       'svelte-jester',
       {
@@ -14,12 +13,13 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'mjs', 'svelte'],
   verbose: true,
-  testPathIgnorePatterns: ['node_modules', 'createCheckoutSession.ts'],
+  testPathIgnorePatterns: ['node_modules', 'createCheckoutSession.ts', 'tests/'],
   transformIgnorePatterns: [`node_modules/?!(${esModules})/`], // ignore everything in node_modules but roxi
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^lodash-es$': 'lodash',
+    '^$lib/(.*)$': '<rootDir>/src/lib/$1',
+    '^lodash-es$': 'lodash', 
+    '^$app/(.*)$': '<rootDir>/.svelte-kit/dev/runtime/app$1'
   },
   collectCoverageFrom: [
     'src/**/*',
@@ -29,7 +29,7 @@ module.exports = {
     '!src/components/SearchProducts/*',
     '!src/components/Navbar/*',
     '!src/mocks/**/*',
-    '!src/pages/**/*',
+    '!src/routes/**/*',
     '!src/components/Checkout/createCheckoutSession.ts',
     '!src/types/*',
     '!src/libs/requests.ts',

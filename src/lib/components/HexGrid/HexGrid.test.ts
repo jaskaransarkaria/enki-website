@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/svelte';
 import HexGrid from './HexGrid.svelte';
 
-import type { Category } from '@/types/category';
+import type { Category } from '$lib/types/category';
 import userEvent from '@testing-library/user-event';
 
 const mockData: Category[] = [

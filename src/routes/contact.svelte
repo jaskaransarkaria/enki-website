@@ -18,6 +18,10 @@
 	import { fade } from 'svelte/transition';
 </script>
 
+<svelte:head>
+	<meta property="og:url" content="https://enkionline.com/contact" />
+</svelte:head>
+
 <div class="contact-us-container">
 	<div class="contact-info">
 		<h1>Contact us</h1>

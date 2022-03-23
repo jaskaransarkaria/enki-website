@@ -1,0 +1,13 @@
+import { flow } from "fp-ts/lib/function.js";
+import * as TE from "fp-ts/lib/TaskEither.js";
+import * as T from "fp-ts/lib/Task.js";
+const retrieveStateFn = (url, getState, defaultValue) => flow((url2) => TE.tryCatch(() => getState(url2), () => new Error(`Error fetching products`)), TE.getOrElse(() => T.of(defaultValue)))(url);
+const refreshCategoriesFromServer = async (url, fetchWrapper) => retrieveStateFn(url, getCategoriesArrayServer(fetchWrapper), [])();
+const refreshCategoryFromServer = async (url, fetchWrapper) => retrieveStateFn(url, getCategoryFromServer(fetchWrapper), [])();
+const refreshProducts = async (url) => retrieveStateFn(url, getProductArray, [])();
+const refreshProductsFromServer = async (url, fetchWrapper) => retrieveStateFn(url, getProductArrayFromServer(fetchWrapper), [])();
+const getCategoryFromServer = (fetchWrapper) => (url) => fetchWrapper(url).then((res) => res.json());
+const getProductArray = (url) => fetch(url).then((res) => res.json());
+const getProductArrayFromServer = (fetchWrapper) => (url) => fetchWrapper(url).then((res) => res.json());
+const getCategoriesArrayServer = (fetchWrapper) => (url) => fetchWrapper(url).then((res) => res.json());
+export { refreshProducts as a, refreshCategoryFromServer as b, refreshProductsFromServer as c, refreshCategoriesFromServer as r };

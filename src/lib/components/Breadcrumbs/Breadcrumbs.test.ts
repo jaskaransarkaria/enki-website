@@ -2,10 +2,10 @@ import '@testing-library/jest-dom';
 import { tick } from 'svelte';
 import { render, screen } from '@testing-library/svelte';
 import Breadcrumbs from './Breadcrumbs.svelte';
-import { refreshCategories } from '@/libs/requests';
-import { readonlyAllCategories, resetReadonlyAllCategoriesStore } from '@/stores/categories';
+import { refreshCategories } from '$lib/utils/requests';
+import { readonlyAllCategories, resetReadonlyAllCategoriesStore } from '$lib/stores/categories';
 
-jest.mock('@/libs/requests');
+jest.mock('$lib/utils/requests');
 
 describe('GIVEN Breadcrumbs', () => {
 	beforeEach(() => {

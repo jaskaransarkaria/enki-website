@@ -26,7 +26,7 @@
     }
   };
 
-  export async function load({ fetch, params, url }) {
+  export async function load({ fetch, params }) {
 		// pull the category data from api
 
 		const result = await refreshCategoryFromServer(`${import.meta.env.VITE_SERVER_URL}/category?id=${params.category}`, fetch);
@@ -43,6 +43,7 @@
 </script>
 
 <script lang="ts">
+  import { page } from '$app/stores'
 	import CategoryView from '$lib/components/CategoryView/CategoryView.svelte';
 	import type { Base } from '$lib/types/base';
 
@@ -52,5 +53,13 @@
 	
 
 </script>
+<svelte:head>
+	<meta property="og:title" content="Enki" />
+  <meta property="og:url" content={$page.url.toString()} />
+  <meta property="og:image" content={`https://enki.imgix.net/${categoryToShow.Id}?auto=format,compress`} />
+	<meta property="og:type" content="website" />
+  <meta property="og:description" content={`Shop at Enki for gifts in the ${categoryToShow.Name} category`} />
+	<meta property="og:locale" content="en_GB" />
+</svelte:head>
 
 <CategoryView categoryFn={selectCategory} {categoryToShow}  />

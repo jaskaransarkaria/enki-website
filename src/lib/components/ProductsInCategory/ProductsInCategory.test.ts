@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen, cleanup } from '@testing-library/svelte';
 import ProductsInCategory from './ProductsInCategory.svelte';
-import { refreshProducts } from '@/libs/requests';
+import { refreshProducts } from '$lib/utils/requests';
 
-jest.mock('@/libs/requests');
+jest.mock('$lib/utils/requests');
 
 describe('GIVEN ProductsInCategory', () => {
 	beforeEach(() => (refreshProducts as jest.Mock).mockResolvedValue([]));
