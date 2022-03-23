@@ -8,7 +8,7 @@
   ): Category => {
     if (returnedCaptegoryObj?.Id === id) {
       return returnedCaptegoryObj;
-    } else if (returnedCaptegoryObj.Children) {
+    } else if (returnedCaptegoryObj?.Children) {
       // serach each category/children branch recursively
       for (const cat of returnedCaptegoryObj.Children) {
         if (cat.Id === id) {
@@ -40,19 +40,16 @@
   }
 
   export const prerender = true;
-  export const browser = true;
 </script>
 
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import CategoryView from '$lib/components/CategoryView/CategoryView.svelte';
 	import type { Base } from '$lib/types/base';
 
 	export let categoryToShow: Category;
 
-  const selectCategory = (category: Base) => {
-    goto(`/shop/category/${category.Id}`);
-	};
+  const selectCategory = (category: Base) => `/shop/category/${category.Id}`;
+	
 
 </script>
 

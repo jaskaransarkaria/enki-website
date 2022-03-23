@@ -33,7 +33,7 @@
 			/>
 		</div>
 	{:else}
-		<div class='hex-link'>
+		<a sveltekit:prefetch class='hex-link' href={categoryFn(category)}>
 			<picture in:fade={{ duration: 800 }}>
 				<source
 					srcset={`https://enki.imgix.net/${category.Id}?auto=format,compress`}
@@ -54,17 +54,10 @@
 					src={`https://enki.imgix.net/hex_${Math.floor(Math.random() * (6 - 1 + 1) + 1)}.svg`}
 					alt="hexagon shape for the category button"
 				/>
-			<button
-				data-testid="hex-button"
-				on:click={() => {
-					categoryFn(category)
-					}
-				}
-			/>
 			<div class="category-name">
 				<h3 data-testid="hex-category-name">{"TagTypeId" in category ? category.Name.split("-").pop() : category.Name}</h3>
 			</div>
-		</div>
+		</a>
 	{/if}
 </div>
 
@@ -119,16 +112,6 @@
 		font-family: 'Welcomehome3 Regular';
 	}
 
-	button {
-		width: 100%;
-		padding: 5%;
-		box-sizing: border-box;
-		background-color: transparent;
-		color: white;
-		z-index: 1;
-		transform: translate3d(0, -100%, 0);
-		transform: 0.2s ease-out, opacity 0.3s ease-out;
-	}
 
 	h3 {
 		width: 95px;

@@ -15,27 +15,27 @@
 	export let categoryToShow: Category | undefined;
 
 	const removeVariantCategories = (categories: Category[]) =>
-		categories.filter((cat) => cat.NominalCode === 'CATEGORY');
+		categories?.filter((cat) => cat.NominalCode === 'CATEGORY');
 
 
 	$: variantCategories = categoryToShow?.Children.filter((cat) => cat.NominalCode === null);
 </script>
 
 {#if showBreadcrumbs}
-	<Breadcrumbs selectedCategoryId={categoryToShow.Id} />
+	<Breadcrumbs selectedCategoryId={categoryToShow?.Id} />
 {/if}
-{#if removeVariantCategories(categoryToShow.Children).length || categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
+{#if removeVariantCategories(categoryToShow?.Children)?.length || categoryToShow?.Id === 1875997 || categoryToShow?.Id === 1875998}
 	{#if categoryToShow.Id === 1875996}
-		<JewelleryView data={removeVariantCategories(categoryToShow.Children)} {categoryFn} />
+		<JewelleryView data={removeVariantCategories(categoryToShow?.Children)} {categoryFn} />
 	{:else if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
 		<TagView
 			data={removeVariantCategories(categoryToShow.Children)}
 			{categoryFn}
-			categoryId={categoryToShow.Id}
+			categoryId={categoryToShow?.Id}
 			prefix={categoryToShow.Name.split(' ')[0].toUpperCase()}
 		/>
 	{:else}
 		<HexGrid data={removeVariantCategories(categoryToShow.Children)} {categoryFn} />
 	{/if}
 {/if}
-<ProductsInCategory categoryId={categoryToShow.Id} {variantCategories} {showSwitch} />
+<ProductsInCategory categoryId={categoryToShow?.Id} {variantCategories} {showSwitch} />

@@ -14,6 +14,7 @@
   $: if ($page.url.searchParams.get('search-term') && $products.length) {
     data = searchProducts(reg, $products);
   }
+  export const prerender = true;
 </script>
 
 <GetProducts />

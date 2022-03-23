@@ -11,7 +11,6 @@
           : false
       );
 
-    console.log("aaa", filteredResult)
     return {
       props: {
       	data: filteredResult
@@ -20,7 +19,6 @@
   }
 
   export const prerender = true;
-  export const browser = true;
 </script>
 
 <script lang="ts">

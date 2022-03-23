@@ -22,11 +22,11 @@
 	const selectFn: BaseFn = <T extends Base>(cat: T) => {
 		// if category selected goto category page as usual
 		if (isCategory(cat)) {
-			categoryFn(cat);
+			return categoryFn(cat);
 		}
 		// if tag selected display relevant products on tag page
 		if (isTag(cat)) {
-			goto(`/shop/tag/${cat.Name.toLowerCase()}?catid=${categoryId}&tagid=${cat.Id}`);
+			return `/shop/tag/${cat.Name.toLowerCase()}?catid=${categoryId}&tagid=${cat.Id}`;
 		}
 	};
 

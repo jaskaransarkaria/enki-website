@@ -21,7 +21,7 @@
 
 <svelte:window bind:outerWidth />
 {#if variantCategory}
-	<button class="simple-container" on:click={() => goto(`./${variantCategory.Id}`)}>
+	<a sveltekit:prefetch class="simple-container" href={`./${variantCategory.Id}`}>
 		<div class="position-img">
 			<ImageLoader
 				src={`https://enki.imgix.net/${variantCategory.Id}?auto=format,compress`}
@@ -30,14 +30,14 @@
 		</div>
 		<h3 class="basic-header">{`${variantCategory.Name}`}</h3>
 		<h3>Individually priced</h3>
-	</button>
+	</a>
 {/if}
 
 {#if product}
 	{#if showDetailedView}
 		<DetailedSingleProduct {product} {productDescription} {isMobile} />
 	{:else}
-		<button class="simple-container" on:click={() => goto(`/shop/product/${product.Id}`)}>
+		<a sveltekit:prefetch class="simple-container" href={`/shop/product/${product.Id}`}>
 			{#if product.ProductImages?.length}
 				<div class="position-img">
 					<ImageLoader
@@ -52,7 +52,7 @@
 			<h3>
 				{`£${product.SalePrice}`}
 			</h3>
-		</button>
+		</a>
 	{/if}
 {/if}
 
@@ -107,8 +107,13 @@
 		text-align: center;
 	}
 
-	h3 {
+	h3, a {
 		font-family: 'Caviar Dreams';
+		color: black;
+	}
+
+	a:hover {
+		  text-decoration: none;
 	}
 
 	@media (min-width: 360px) {

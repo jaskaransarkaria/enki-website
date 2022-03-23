@@ -3,4 +3,4 @@ export interface Base {
 	Id: number;
 }
 
-export type BaseFn = <T extends Base>(a: T) => void;
+export type BaseFn = <T extends Base>(a: T) => string;

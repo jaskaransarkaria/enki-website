@@ -16,13 +16,12 @@
   }
 
   export const prerender = true;
-  export const browser = true;
 </script>
 
 <script lang="ts">
 	import RootCategories from '$lib/components/RootCategories/RootCategories.svelte';
 
-  export let data;
+  export let data: Base[];
 </script>
 
 <RootCategories {data} />

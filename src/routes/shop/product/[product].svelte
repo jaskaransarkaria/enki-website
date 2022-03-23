@@ -2,7 +2,7 @@
 	import { refreshProductsFromServer } from '$lib/utils/requests';
 	import type { Product } from '$lib/types/product' 
 
-  export async function load({ fetch, params, url }) {
+  export async function load({ fetch, params }) {
 		// pull the category data from api
 		const result = await refreshProductsFromServer(`${import.meta.env.VITE_SERVER_URL}/product?id=${params.product}`, fetch);
 
@@ -14,7 +14,6 @@
   }
 
   export const prerender = true;
-  export const browser = true;
 </script>
 
 <script lang="ts">
