@@ -2,7 +2,7 @@
 /public/build/
 
 build/**/*
-.sveltekit/**/*
+.svelte-kit/**/*
 
 .DS_Store
 
