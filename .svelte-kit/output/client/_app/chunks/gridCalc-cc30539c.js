@@ -1,0 +1,1 @@
+const l={lessThan360AndDefault:10,upTo600:4,"600to900":6,"900to1200":8,"1960plus":14},c=s=>s>=1960?l["1960plus"]:s>=900&&s<=1200?l["900to1200"]:s>=600&&s<=900?l["600to900"]:s<=600?l.upTo600:l.lessThan360AndDefault,n=(s,e)=>c(s)-e*3<2,f=(s,e,u)=>u%2===0?s<=e-1?u:(s-=e-1,f(s,e,++u)):s<=e?u:(s-=e,f(s,e,++u));export{f as a,n as c,c as g};

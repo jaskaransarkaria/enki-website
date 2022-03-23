@@ -1,0 +1,1 @@
+import{D as a}from"./vendor-301d67fd.js";var t;const e=a(JSON.parse((t=window.localStorage.getItem("basket"))!=null?t:"[]")),r=()=>e.set([]);e.subscribe(s=>{window.localStorage.basket=JSON.stringify(s)});export{e as b,r};

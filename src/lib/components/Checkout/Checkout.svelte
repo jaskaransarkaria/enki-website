@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { loadStripe } from '@stripe/stripe-js/pure';
+	import { loadStripe } from '@stripe/stripe-js/pure.js';
 	import { onMount } from 'svelte';
 	import { basket } from '$lib/stores/basket';
 	import { createCheckoutSession } from './createCheckoutSession';

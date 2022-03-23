@@ -1,6 +1,6 @@
-import { flow } from 'fp-ts/lib/function';
-import * as TE from 'fp-ts/lib/TaskEither';
-import * as T from 'fp-ts/lib/Task';
+import { flow } from 'fp-ts/lib/function.js';
+import * as TE from 'fp-ts/lib/TaskEither.js';
+import * as T from 'fp-ts/lib/Task.js';
 import type { Category } from '$lib/types/category';
 import type { Product } from '$lib/types/product';
 import type { Tag } from '$lib/types/tag';

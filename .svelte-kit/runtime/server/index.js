@@ -2541,7 +2541,10 @@ async function respond(request, options, state) {
 		return new Response(undefined, {
 			status: 301,
 			headers: {
-				location: normalized + (url.search === '?' ? '' : url.search)
+				location:
+					// ensure paths starting with '//' are not treated as protocol-relative
+					(normalized.startsWith('//') ? url.origin + normalized : normalized) +
+					(url.search === '?' ? '' : url.search)
 			}
 		});
 	}
