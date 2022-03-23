@@ -23,6 +23,7 @@
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.2.1",
+		"husky": "^7.0.4",
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.5.0",
 		"svelte": "^3.46.0",
@@ -42,5 +43,10 @@
 		"lodash.groupby": "^4.6.0",
 		"sirv-cli": "^1.0.0",
 		"svelte-swipe": "^1.8.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint && npm run test && git add -A ."
+		}
 	}
 }
