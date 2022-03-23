@@ -1,9 +1,9 @@
 export const manifest = {
 	appDir: "_app",
-	assets: new Set(["enki_icon.jpg","fonts/CaviarDreams.ttf","fonts/CaviarDreams_Bold.ttf","fonts/CaviarDreams_BoldItalic.ttf","fonts/CaviarDreams_Italic.ttf","fonts/enki-regular.ttf","robots.txt"]),
-	mimeTypes: {".jpg":"image/jpeg",".ttf":"font/ttf",".txt":"text/plain"},
+	assets: new Set(["enki_icon.jpg","fonts/CaviarDreams.ttf","fonts/CaviarDreams_Bold.ttf","fonts/CaviarDreams_BoldItalic.ttf","fonts/CaviarDreams_Italic.ttf","fonts/enki-regular.ttf","powered-by-stripe.svg","robots.txt","stripe-badge-white.png"]),
+	mimeTypes: {".jpg":"image/jpeg",".ttf":"font/ttf",".svg":"image/svg+xml",".txt":"text/plain",".png":"image/png"},
 	_: {
-		entry: {"file":"start-5e77bc90.js","js":["start-5e77bc90.js","chunks/vendor-301d67fd.js","chunks/singletons-d1fb5791.js"],"css":["assets/vendor-8bf8cdb1.css"]},
+		entry: {"file":"start-60324fd1.js","js":["start-60324fd1.js","chunks/vendor-301d67fd.js","chunks/singletons-d1fb5791.js"],"css":["assets/vendor-8bf8cdb1.css"]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
