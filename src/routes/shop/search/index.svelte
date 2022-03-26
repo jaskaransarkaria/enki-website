@@ -1,36 +1,63 @@
+<script context="module" lang="ts">
+  import { refreshProductsFromServer } from "$lib/utils/requests";
+
+  export async function load({ fetch, params }) {
+    // pull the category data from api
+    const result = await refreshProductsFromServer(
+      `${import.meta.env.VITE_SERVER_URL}/get-all-products`,
+      fetch
+    );
+
+    return {
+      props: {
+        data: result,
+      },
+    };
+  }
+</script>
+
 <script lang="ts">
-  import { page } from '$app/stores';
-  import GetProducts from '$lib/components/GetProducts/GetProducts.svelte';
-  import ProductView from '$lib/components/ProductView/ProductView.svelte';
-  import { products } from '$lib/stores/products';
-  import { searchProducts } from '$lib/utils/search';
+  import { page } from "$app/stores";
+  import ProductView from "$lib/components/ProductView/ProductView.svelte";
+  import { searchProducts } from "$lib/utils/search";
 
-  import type { Product } from '$lib/types/product';
+  import type { Product } from "$lib/types/product";
 
-  let data: readonly Product[] = [];
+  export let data: readonly Product[];
   let reg: RegExp;
 
-  $: reg = new RegExp(`\\b${decodeURIComponent($page.url.searchParams.get('search-term'))}`, 'i');
-  $: if ($page.url.searchParams.get('search-term') && $products.length) {
-    data = searchProducts(reg, $products);
+  $: reg = new RegExp(
+    `\\b${decodeURIComponent($page.url.searchParams.get("search-term"))}`,
+    "i"
+  );
+  $: if ($page.url.searchParams.get("search-term")) {
+    data = searchProducts(reg, data);
   }
-  export const prerender = true;
 </script>
 
 <svelte:head>
-	<meta property="og:title" content="Enki" />
-  <meta property="og:url" content={$page.url.toString()} />
-  <meta property="og:image" content={`https://enki.imgix.net/${data[0].Id}-0?auto=format,compress`} />
-	<meta property="og:type" content="website" />
-  <meta property="og:description" content={`Shop at Enki for gifts that match the search: ${$page.url.searchParams.get('search-term')}`} />
-	<meta property="og:locale" content="en_GB" />
+  {#if data.length}
+    <meta property="og:title" content="Enki" />
+    <meta property="og:url" content={$page.url.toString()} />
+    <meta
+      property="og:image"
+      content={`https://enki.imgix.net/${data[0].Id}-0?auto=format,compress`}
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content={`Shop at Enki for gifts that match the search: ${$page.url.searchParams.get(
+        "search-term"
+      )}`}
+    />
+    <meta property="og:locale" content="en_GB" />
+  {/if}
 </svelte:head>
 
-<GetProducts />
 {#if data.length}
   <h2>
     we found {data.length} results for "{decodeURIComponent(
-      $page.url.searchParams.get('search-term')
+      $page.url.searchParams.get("search-term")
     )}"
   </h2>
   <ProductView productArr={data} />
@@ -40,7 +67,7 @@
   h2 {
     margin-top: 40%;
     text-align: center;
-    font-family: 'Caviar Dreams';
+    font-family: "Caviar Dreams";
   }
 
   @media (min-width: 360px) {

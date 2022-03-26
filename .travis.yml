@@ -8,11 +8,11 @@ services:
 
 jobs:
   include:
-    - stage: 'Tests, Linting and Formating'
+    - stage: "Tests, Linting and Formating"
       script:
-        - npm run format
-        - npm run test
-    - stage: 'Build and Push Docker Image'
+        - npm run lint
+        - npm run test:integration
+    - stage: "Build and Push Docker Image"
       script:
         - npm i
         - npm run build

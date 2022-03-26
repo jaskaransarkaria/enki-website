@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
         - name: enki-website
-          image: jaskaransarkaria/enki-website:replace_with_git_tag    
+          image: jaskaransarkaria/enki-website:replace_with_git_tag
           env:
-          - name: VITE_SERVER_URL
-            value: "https://server.enki.jobspeed.uk"
-          - name: VITE_PUBLIC_STRIPE_KEY
-            value: "pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp"
+            - name: VITE_SERVER_URL
+              value: "https://server.enki.jobspeed.uk"
+            - name: VITE_PUBLIC_STRIPE_KEY
+              value: "pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp"
           ports:
             - containerPort: 5000
       imagePullSecrets:

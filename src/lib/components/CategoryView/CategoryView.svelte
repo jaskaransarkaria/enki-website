@@ -1,41 +1,52 @@
 <script lang="ts">
-	import Breadcrumbs from '$lib/components/Breadcrumbs/Breadcrumbs.svelte';
-	import JewelleryView from '$lib/components/JewelleryView/JewelleryView.svelte';
-	import ProductsInCategory from '$lib/components/ProductsInCategory/ProductsInCategory.svelte';
-	import HexGrid from '$lib/components/HexGrid/HexGrid.svelte';
-	import TagView from '$lib/components/TagView/TagView.svelte';
+  import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
+  import JewelleryView from "$lib/components/JewelleryView/JewelleryView.svelte";
+  import ProductsInCategory from "$lib/components/ProductsInCategory/ProductsInCategory.svelte";
+  import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
+  import TagView from "$lib/components/TagView/TagView.svelte";
 
-	import type { Category } from '$lib/types/category';
-	import type { BaseFn } from '$lib/types/base';
+  import type { Category } from "$lib/types/category";
+  import type { BaseFn } from "$lib/types/base";
 
-	export let categoryFn: BaseFn;
-	export let showBreadcrumbs = true;
-	export let showSwitch = true;
+  export let categoryFn: BaseFn;
+  export let showBreadcrumbs = true;
+  export let showSwitch = true;
 
-	export let categoryToShow: Category | undefined;
+  export let categoryToShow: Category | undefined;
 
-	const removeVariantCategories = (categories: Category[]) =>
-		categories?.filter((cat) => cat.NominalCode === 'CATEGORY');
+  const removeVariantCategories = (categories: Category[]) =>
+    categories?.filter((cat) => cat.NominalCode === "CATEGORY");
 
-
-	$: variantCategories = categoryToShow?.Children.filter((cat) => cat.NominalCode === null);
+  $: variantCategories = categoryToShow?.Children.filter(
+    (cat) => cat.NominalCode === null
+  );
 </script>
 
 {#if showBreadcrumbs}
-	<Breadcrumbs selectedCategoryId={categoryToShow?.Id} />
+  <Breadcrumbs selectedCategoryId={categoryToShow?.Id} />
 {/if}
 {#if removeVariantCategories(categoryToShow?.Children)?.length || categoryToShow?.Id === 1875997 || categoryToShow?.Id === 1875998}
-	{#if categoryToShow.Id === 1875996}
-		<JewelleryView data={removeVariantCategories(categoryToShow?.Children)} {categoryFn} />
-	{:else if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
-		<TagView
-			data={removeVariantCategories(categoryToShow.Children)}
-			{categoryFn}
-			categoryId={categoryToShow?.Id}
-			prefix={categoryToShow.Name.split(' ')[0].toUpperCase()}
-		/>
-	{:else}
-		<HexGrid data={removeVariantCategories(categoryToShow.Children)} {categoryFn} />
-	{/if}
+  {#if categoryToShow.Id === 1875996}
+    <JewelleryView
+      data={removeVariantCategories(categoryToShow?.Children)}
+      {categoryFn}
+    />
+  {:else if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
+    <TagView
+      data={removeVariantCategories(categoryToShow.Children)}
+      {categoryFn}
+      categoryId={categoryToShow?.Id}
+      prefix={categoryToShow.Name.split(" ")[0].toUpperCase()}
+    />
+  {:else}
+    <HexGrid
+      data={removeVariantCategories(categoryToShow.Children)}
+      {categoryFn}
+    />
+  {/if}
 {/if}
-<ProductsInCategory categoryId={categoryToShow?.Id} {variantCategories} {showSwitch} />
+<ProductsInCategory
+  categoryId={categoryToShow?.Id}
+  {variantCategories}
+  {showSwitch}
+/>

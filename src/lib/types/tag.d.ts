@@ -1,5 +1,5 @@
-import type { Base } from '$lib/types/base';
+import type { Base } from "$lib/types/base";
 
 export interface Tag extends Base {
-	TagTypeId: string;
+  TagTypeId: string;
 }
