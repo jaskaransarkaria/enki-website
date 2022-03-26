@@ -1,14 +1,4 @@
 <script context="module">
-  import { browser, dev } from "$app/env";
-
-  // we don't need any JS on this page, though we'll load
-  // it in dev so that we get hot module replacement...
-  export const hydrate = dev;
-
-  // ...but if the client-side router is already loaded
-  // (i.e. we came here from elsewhere in the app), use it
-  export const router = browser;
-
   // since there's no dynamic data here, we can prerender
   // it so that it gets served as a static asset in prod
   export const prerender = true;
@@ -37,6 +27,7 @@
       in:fade={{ duration: 600 }}
       src="https://enki.imgix.net/telephone.png?auto=format,compress"
       alt="hand drawn old style home telephone with handset on top and dial around keys"
+      class="telephone"
     />
     <p>
       <a href="tel:01214444453">01214444453</a> |
@@ -92,6 +83,51 @@
   p {
     font-family: "Caviar Dreams";
     text-align: center;
+  }
+
+  .telephone:hover {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.5s;
+    cursor: pointer;
+
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+      transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+      transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+      transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+      transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+      transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+      transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+      transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+      transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+      transform: translate(1px, -2px) rotate(-1deg);
+    }
   }
 
   @media (min-width: 600px) {

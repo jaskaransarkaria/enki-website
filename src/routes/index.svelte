@@ -1,9 +1,5 @@
 <script context="module">
   import { browser } from "$app/env";
-  // ...but if the client-side router is already loaded
-  // (i.e. we came here from elsewhere in the app), use it
-  export const router = browser;
-
   // since there's no dynamic data here, we can prerender
   // it so that it gets served as a static asset in prod
   export const prerender = true;
@@ -81,7 +77,7 @@
           class="mobile-repairs-and-comms"
           src={MOBILE_JEWELLERY_SERVICES}
           alt="jewellery services button"
-          on:click={() => goto("/services")}
+          on:click={() => goto("/repairs")}
         />
         <img
           class="mobile-classes"
@@ -111,7 +107,7 @@
         alt="repair and commissions button hover over me"
         on:mouseenter={() => (repairsAndCommissionsHover = true)}
         on:mouseleave={() => (repairsAndCommissionsHover = false)}
-        on:click={() => goto("/services")}
+        on:click={() => goto("/repairs")}
       />
       <img
         class="classes"
