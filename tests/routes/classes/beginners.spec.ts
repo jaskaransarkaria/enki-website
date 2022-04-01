@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
 
 test.only("Classes Index Page", async ({ page }) => {
+  // Run tests in this describe block with portrait-like viewport.
+  test.use({ viewport: { width: 1280, height: 2400 } });
   await page.goto("/classes/beginners")
   await expect(page.locator(".class-pics > img >> nth=0")).toHaveAttribute("src", "https://enki.imgix.net/classes_example_1.jpg?auto=format,compress")
   await expect(page.locator(".class-pics > img >> nth=1")).toHaveAttribute("src", "https://enki.imgix.net/classes_example_2.jpg?auto=format,compress")
@@ -17,7 +19,8 @@ test.only("Classes Index Page", async ({ page }) => {
     the wonderful Early Bird Bakery next door. We also take group
     bookings where you can choose the date and topic, get in contact
     here with any enquiries.`)
-    const ticketTailorStyledComponent = page.locator(".tt-widget")
 
+    await page.waitForTimeout(7000)
 
+  await expect(page.locator(".tt-widget")).toHaveText("Upcoming Classes")
 })
