@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.only("Classes Beginners Page", async ({ page }) => {
+test("Classes Beginners Page", async ({ page }) => {
   await page.goto("/classes/beginners")
   await expect(page.locator(".class-pics > img >> nth=0")).toHaveAttribute("src", "https://enki.imgix.net/classes_example_1.jpg?auto=format,compress")
   await expect(page.locator(".class-pics > img >> nth=1")).toHaveAttribute("src", "https://enki.imgix.net/classes_example_2.jpg?auto=format,compress")
