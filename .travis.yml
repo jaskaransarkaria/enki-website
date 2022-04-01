@@ -48,12 +48,13 @@ jobs:
   include:
     - stage: "Tests, Linting and Formating"
       script:
+        - npm ci
         - npm run lint
         - npx playwright install --with-deps
         - npm run test:integration
     - stage: "Build and Push Docker Image"
       script:
-        - npm i
+        - npm ci
         - npm run build
         - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
         - docker build -t jaskaransarkaria/enki-website:"$TRAVIS_TAG" .
