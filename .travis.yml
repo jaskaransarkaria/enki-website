@@ -10,7 +10,7 @@ jobs:
     - stage: "Tests, Linting and Formating"
       script:
         - npm ci
-        - npx playwright install
+        - npx playwright install --with-deps
         - npm run lint
         - npm run test:integration
     - stage: "Build and Push Docker Image"

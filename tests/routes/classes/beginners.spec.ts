@@ -19,7 +19,5 @@ test.only("Classes Index Page", async ({ page }) => {
     here with any enquiries.`)
     const ticketTailorStyledComponent = page.locator(".tt-widget")
 
-    await ticketTailorStyledComponent.waitFor({ timeout: 3000 })
 
-  await expect(page.locator(".tt-widget")).toHaveText("Upcoming Classes")
 })
