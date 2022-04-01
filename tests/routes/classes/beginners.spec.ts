@@ -17,7 +17,9 @@ test.only("Classes Index Page", async ({ page }) => {
     the wonderful Early Bird Bakery next door. We also take group
     bookings where you can choose the date and topic, get in contact
     here with any enquiries.`)
+    const ticketTailorStyledComponent = page.locator(".tt-widget")
 
-  await expect(page.locator(".tt-widget")).toHaveCount(1)
-  await expect(page.locator(".tt-widget-fallback")).toBeHidden({ timeout: 3000})
+    await ticketTailorStyledComponent.waitFor({ timeout: 3000 })
+
+  await expect(page.locator(".tt-widget")).toHaveText("Upcoming Classes")
 })
