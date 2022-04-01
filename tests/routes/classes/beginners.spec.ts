@@ -18,5 +18,6 @@ test.only("Classes Beginners Page", async ({ page }) => {
     bookings where you can choose the date and topic, get in contact
     here with any enquiries.`)
 
+  await page.waitForTimeout(40000)
   await expect(page.locator(".tt-widget")).toHaveCount(1)
 })
