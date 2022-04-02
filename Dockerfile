@@ -1,12 +1,15 @@
-FROM node:14-alpine as builder
+FROM node:14.19-alpine as builder
 
 WORKDIR /usr/src/app
 
 COPY package*.json  ./
 
-RUN npm install --production
+RUN npm ci
 
 COPY . ./
+
+ENV VITE_SERVER_URL=https://server.enki.jobspeed.uk
+ENV VITE_PUBLIC_STRIPE_KEY="pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp"
 
 RUN npm run build
 
@@ -29,6 +32,5 @@ USER node
 
 ENV PORT=5000
 
-RUN ls
 
 CMD ["node", "index.js" ]
