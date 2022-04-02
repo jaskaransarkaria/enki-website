@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
   import { refreshTags } from "$lib/utils/requests";
+  import isCategory from "$lib/types/isCategory";
 
   import type { Tag } from "$lib/types/tag";
   import type { Category } from "$lib/types/category";
@@ -16,7 +16,7 @@
   let tags: readonly Tag[] = [];
 
   onMount(async () => {
-    await fetchAllTags();
+    tags = await refreshTags(`${import.meta.env.VITE_SERVER_URL}/tags`);
   });
 
   const selectFn: BaseFn = <T extends Base>(cat: T) => {
@@ -32,14 +32,7 @@
     }
   };
 
-  const isCategory = (group: unknown): group is Category =>
-    "Children" in (group as Category);
-
   const isTag = (group: unknown): group is Tag => "TagTypeId" in (group as Tag);
-
-  const fetchAllTags = async () => {
-    tags = await refreshTags(`${import.meta.env.VITE_SERVER_URL}/tags`);
-  };
 
   $: treatedTags = tags
     .filter((tag: Tag) => !tag.Name.includes("SOR "))

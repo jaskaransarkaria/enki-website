@@ -8,12 +8,12 @@
     "preview": "svelte-kit preview --port 4000",
     "prepare": "svelte-kit sync",
     "test:unit": "jest",
-    "test:integration": "playwright test",
-    "test:integration:headed": "playwright test --headed",
+    "test:integration": "npm run mock-server && playwright test",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --write --plugin-search-dir=. . && eslint --fix",
-    "format": "prettier --write --plugin-search-dir=. ."
+    "format": "prettier --write --plugin-search-dir=. .",
+    "mock-server": "mockserver -p 8080 -m tests/mocks &"
   },
   "devDependencies": {
     "@playwright/test": "^1.20.0",
@@ -27,6 +27,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
     "husky": "^7.0.4",
+    "mockserver": "^3.1.1",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.5.0",
     "svelte": "^3.46.0",

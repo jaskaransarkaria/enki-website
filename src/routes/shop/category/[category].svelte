@@ -33,6 +33,7 @@
       `${import.meta.env.VITE_SERVER_URL}/category?id=${params.category}`,
       fetch
     );
+
     const category = traverseCategoryObj(
       parseInt(params.category, 10),
       result[0]
@@ -44,8 +45,6 @@
       },
     };
   }
-
-  export const prerender = true;
 </script>
 
 <script lang="ts">

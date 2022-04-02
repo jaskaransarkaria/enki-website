@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
   import ImageLoader from "$lib/components/Image/ImageLoader.svelte";
   import DetailedSingleProduct from "$lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
 
@@ -58,7 +57,7 @@
       <h3 class="simple-prod-name">
         {`${product.Name}`}
       </h3>
-      <h3>
+      <h3 data-testid="sale-price">
         {`£${product.SalePrice}`}
       </h3>
     </a>

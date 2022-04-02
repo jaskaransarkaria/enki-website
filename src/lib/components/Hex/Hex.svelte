@@ -30,6 +30,7 @@
         in:fade={{ duration: 800 }}
         src="https://enki.imgix.net/empty_hex_3.png?auto=format,compress"
         alt="hexagon shape for the category button"
+        data-testid="empty-hex"
       />
     </div>
   {:else}
@@ -37,9 +38,9 @@
       <picture in:fade={{ duration: 800 }}>
         <source
           srcset={`https://enki.imgix.net/${category.Id}?auto=format,compress`}
-          type="image/jpg"
+          type="image/png"
           bind:this={sourceElemArr[idx]}
-          data-testid="hex-image"
+          data-testid="cdn-img"
         />
         <img
           src={`https://enki.imgix.net/faith.jpg?auto=format,compress`}

@@ -16,18 +16,18 @@
   <div class="shop-pics">
     <img
       in:fade={{ duration: 600 }}
-      src="https://enki.imgix.net/left_enki.jpg?auto=format,compress"
+      src="https://enki.imgix.net/left_enki.jpg?auto=format,compress&q=1"
       alt="a rectangular wooden display inside the shop"
     />
     <img
       in:fade={{ duration: 600 }}
       class="center-image"
-      src="https://enki.imgix.net/about_shop_1.jpg?auto=format,compress"
+      src="https://enki.imgix.net/about_shop_1.jpg?auto=format,compress&q=1"
       alt="the shop front and it's window display"
     />
     <img
       in:fade={{ duration: 600 }}
-      src="https://enki.imgix.net/right_enki.png?auto=format,compress"
+      src="https://enki.imgix.net/right_enki.png?auto=format,compress&q=1"
       alt="a wooden jeweller's work bench inside the shop"
     />
   </div>

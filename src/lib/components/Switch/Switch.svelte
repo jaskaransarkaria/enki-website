@@ -8,7 +8,7 @@
   <h3 in:fade={{ duration: 600 }}>{msg}</h3>
 {/key}
 <label class="switch">
-  <input type="checkbox" on:click={() => (active = !active)} />
+  <input class="filter-switch" type="checkbox" on:click={() => (active = !active)} />
   <span class="slider round" />
 </label>
 
@@ -22,6 +22,7 @@
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-right: 2%;
   }
 
   /* Hide default HTML checkbox */
