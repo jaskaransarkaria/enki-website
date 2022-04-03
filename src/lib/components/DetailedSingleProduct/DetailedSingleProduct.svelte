@@ -21,7 +21,6 @@
 {#if isMobile}
   <div
     class="details-container"
-    on:click={() => goto(`/shop/product/${product.Id}`)}
   >
     {#if product.ProductImages}
       <ProductImage {product} bind:activeItem bind:SwipeComp />
@@ -44,7 +43,6 @@
 {:else}
   <div
     class="details-container"
-    on:click={() => goto(`/shop/product/${product.Id}`)}
   >
     {#if product.ProductImages?.length}
       <div class="desktop-img-container">

@@ -8,6 +8,8 @@
   export let activeItem = 0;
   export let SwipeComp: any;
 
+  let swipeHolderHeight = 0
+
   const swipeConfig = {
     autoplay: false,
     delay: 600,
@@ -16,19 +18,24 @@
     defaultIndex: activeItem,
   };
 
-  $: clientHeight = 0;
-  $: clientWidth = 0;
+
+  function heightChanged({detail}) {
+    swipeHolderHeight = detail.height;
+  }
+
   $: outerWidth = 0;
   $: outerHeight = 0;
 </script>
 
 <svelte:window bind:outerWidth bind:outerHeight />
-<div style="height: {clientHeight}px" class="swipe-holder">
+<div style="height: {swipeHolderHeight}px" class="swipe-holder">
   {#if product}
     <Swipe bind:active_item={activeItem} bind:this={SwipeComp} {...swipeConfig}>
       {#each product.ProductImages as _, idx ("main" + idx)}
-        <SwipeItem>
-          <section bind:clientHeight bind:clientWidth>
+        <SwipeItem 
+          allow_dynamic_height={true}
+          active={activeItem == idx}
+          on:swipe_item_height_change={heightChanged}>
             <img
               in:fade={{ duration: 600 }}
               src={`https://enki.imgix.net/${
@@ -36,7 +43,6 @@
               }-${idx}?q=100`}
               alt={`${product.Name} image ${idx + 1}`}
             />
-          </section>
         </SwipeItem>
       {/each}
     </Swipe>
@@ -46,11 +52,7 @@
 <style>
   img {
     max-width: 100%;
-    height: 100%;
-  }
-
-  section {
-    height: 45vh;
+    height: auto;
   }
 
   .swipe-holder {
