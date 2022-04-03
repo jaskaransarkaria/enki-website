@@ -19,15 +19,13 @@
 
 <svelte:window bind:outerHeight bind:outerWidth />
 {#if isMobile}
-  <div
-    class="details-container"
-  >
+  <div class="details-container">
     {#if product.ProductImages}
       <ProductImage {product} bind:activeItem bind:SwipeComp />
       <Thumbnails {product} bind:activeItem bind:SwipeComp />
     {/if}
     <div class="detailed-products-footer">
-    <h4>{`${product.Name}`}</h4>
+      <h4>{`${product.Name}`}</h4>
       <h4>{`£${product.SalePrice}`}</h4>
       <h4>
         {`${
@@ -41,9 +39,7 @@
     <AddToBasket {product} detailed />
   </div>
 {:else}
-  <div
-    class="details-container"
-  >
+  <div class="details-container">
     {#if product.ProductImages?.length}
       <div class="desktop-img-container">
         <ProductImage {product} bind:activeItem bind:SwipeComp />
@@ -67,8 +63,8 @@
 {/if}
 
 <style>
-
-  h2, h4 {
+  h2,
+  h4 {
     font-family: "Caviar Dreams";
   }
 

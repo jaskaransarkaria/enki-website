@@ -8,7 +8,7 @@
   export let activeItem = 0;
   export let SwipeComp: any;
 
-  let swipeHolderHeight = 0
+  let swipeHolderHeight = 0;
 
   const swipeConfig = {
     autoplay: false,
@@ -18,8 +18,7 @@
     defaultIndex: activeItem,
   };
 
-
-  function heightChanged({detail}) {
+  function heightChanged({ detail }) {
     swipeHolderHeight = detail.height;
   }
 
@@ -32,17 +31,16 @@
   {#if product}
     <Swipe bind:active_item={activeItem} bind:this={SwipeComp} {...swipeConfig}>
       {#each product.ProductImages as _, idx ("main" + idx)}
-        <SwipeItem 
+        <SwipeItem
           allow_dynamic_height={true}
           active={activeItem == idx}
-          on:swipe_item_height_change={heightChanged}>
-            <img
-              in:fade={{ duration: 600 }}
-              src={`https://enki.imgix.net/${
-                product.Id
-              }-${idx}?q=100`}
-              alt={`${product.Name} image ${idx + 1}`}
-            />
+          on:swipe_item_height_change={heightChanged}
+        >
+          <img
+            in:fade={{ duration: 600 }}
+            src={`https://enki.imgix.net/${product.Id}-${idx}?q=100`}
+            alt={`${product.Name} image ${idx + 1}`}
+          />
         </SwipeItem>
       {/each}
     </Swipe>

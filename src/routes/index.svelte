@@ -61,7 +61,9 @@
   <figure class={isMobile ? "mobile-container" : "container"}>
     <img
       class={isMobile ? "parallax-inside-shop" : "inside-shop"}
-      src={`${outerWidth <= 450 ? MOBILE_LANDING_PAGE : DESKTOP_LANDING_PAGE}&h=${outerHeight}&w=${outerWidth}`}
+      src={`${
+        outerWidth <= 450 ? MOBILE_LANDING_PAGE : DESKTOP_LANDING_PAGE
+      }&h=${outerHeight}&w=${outerWidth}`}
       alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
     />
     {#if isMobile}

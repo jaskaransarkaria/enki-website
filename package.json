@@ -1,5 +1,5 @@
 {
-  "name": "enki-website-ssr",
+  "name": "enki-website",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev --port 5000",
@@ -11,7 +11,7 @@
     "test:integration": "npm run mock-server && playwright test",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --write --plugin-search-dir=. . && eslint --fix",
+    "lint": "npm run format && eslint --fix",
     "format": "prettier --write --plugin-search-dir=. .",
     "mock-server": "mockserver -p 8080 -m tests/mocks &"
   },

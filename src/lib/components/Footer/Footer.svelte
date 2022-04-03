@@ -9,16 +9,16 @@
 
 <svelte:window bind:outerWidth />
 <div class="footer" transition:fade={{ delay: 600, duration: 800 }}>
-    {#if !isMobile}
-  <div class="left-container">
+  {#if !isMobile}
+    <div class="left-container">
       <img
         class="telephone"
         src="https://enki.imgix.net/telephone.png?auto=format,compress"
         alt="contact us"
         on:click={() => goto("/contact")}
       />
-  </div>
-    {/if}
+    </div>
+  {/if}
   <div class="centre-container">
     <h3>want to be the first to find out about new products and classes?</h3>
     <MailChimpSubscribe />
@@ -37,8 +37,8 @@
       </div>
     {/if}
   </div>
-    {#if !isMobile}
-  <div class="right-container">
+  {#if !isMobile}
+    <div class="right-container">
       <div class="trust-container">
         <a
           href="https://stripe.com/docs/payments/cards/supported-card-brands"
@@ -51,8 +51,8 @@
           />
         </a>
       </div>
-  </div>
-    {/if}
+    </div>
+  {/if}
 </div>
 
 <style>
