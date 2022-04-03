@@ -19,13 +19,13 @@ test.describe("/category/*", () => {
     await expect(page.locator("[data-testid=hex-image-fallback]")).toHaveCount(3)
     
     await expect(page.locator("div > h3 >> nth=0")).toHaveText("Bookmarks")
-    await expect(page.locator("[data-testid=cdn-img] >> nth=0")).toHaveAttribute("srcset", "https://enki.imgix.net/faith.jpg?auto=format,compress")
+    await expect(page.locator("[data-testid=cdn-img] >> nth=0")).toHaveAttribute("srcset", "https://enki.imgix.net/2743303?auto=format,compress")
 
     await expect(page.locator("div > h3 >> nth=1")).toHaveText("Books For Grownups")
-    await expect(page.locator("[data-testid=cdn-img] >> nth=1")).toHaveAttribute("srcset", "https://enki.imgix.net/faith.jpg?auto=format,compress")
+    await expect(page.locator("[data-testid=cdn-img] >> nth=1")).toHaveAttribute("srcset", "https://enki.imgix.net/2680192?auto=format,compress")
 
     await expect(page.locator("div > h3 >> nth=2")).toHaveText("Books for Kids")
-    await expect(page.locator("[data-testid=cdn-img] >> nth=2")).toHaveAttribute("srcset", "https://enki.imgix.net/faith.jpg?auto=format,compress")
+    await expect(page.locator("[data-testid=cdn-img] >> nth=2")).toHaveAttribute("srcset", "https://enki.imgix.net/2680193?auto=format,compress")
 
   })
 
