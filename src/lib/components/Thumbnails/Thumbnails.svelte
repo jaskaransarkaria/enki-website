@@ -46,6 +46,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    width: 70%;
   }
 
   .img-fluid {

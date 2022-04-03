@@ -23,11 +23,11 @@
     class="details-container"
     on:click={() => goto(`/shop/product/${product.Id}`)}
   >
-    <h2>{`${product.Name}`}</h2>
     {#if product.ProductImages}
       <ProductImage {product} bind:activeItem bind:SwipeComp />
       <Thumbnails {product} bind:activeItem bind:SwipeComp />
     {/if}
+    <h4>{`${product.Name}`}</h4>
     <div class="detailed-products-footer">
       <h4>{`£${product.SalePrice}`}</h4>
       <h4>
