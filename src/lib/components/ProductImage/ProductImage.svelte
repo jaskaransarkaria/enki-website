@@ -17,6 +17,7 @@
   };
 
   $: clientHeight = 0;
+  $: clientWidth = 0;
   $: outerWidth = 0;
   $: outerHeight = 0;
 </script>
@@ -26,13 +27,13 @@
   {#if product}
     <Swipe bind:active_item={activeItem} bind:this={SwipeComp} {...swipeConfig}>
       {#each product.ProductImages as _, idx ("main" + idx)}
-        <SwipeItem allow_dynamic_height={true}>
-          <section bind:clientHeight>
+        <SwipeItem>
+          <section bind:clientHeight bind:clientWidth>
             <img
               in:fade={{ duration: 600 }}
               src={`https://enki.imgix.net/${
                 product.Id
-              }-${idx}?q=100&fit=clip&w=${outerWidth}&h=${outerHeight / 3}`}
+              }-${idx}?q=100`}
               alt={`${product.Name} image ${idx + 1}`}
             />
           </section>
@@ -44,8 +45,12 @@
 
 <style>
   img {
-    height: auto;
     max-width: 100%;
+    height: 100%;
+  }
+
+  section {
+    height: 30vh;
   }
 
   .swipe-holder {

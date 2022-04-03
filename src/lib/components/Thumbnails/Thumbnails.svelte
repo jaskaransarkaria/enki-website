@@ -91,6 +91,10 @@
   }
 
   @media (min-width: 960px) {
+    .is-center {
+      width: inherit;
+    }
+
     .thumbnails {
       height: 45px;
       width: 45px;
