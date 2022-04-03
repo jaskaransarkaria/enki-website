@@ -79,7 +79,9 @@
 
 {#if selectedCategoryId}
   {#each breadcrumbs as breadcrumb (breadcrumb.Id)}
-    <button on:click={() => handleBreadcrumbClick(breadcrumb)}>
+    <button
+      data-testid="breadcrumb"
+      on:click={() => handleBreadcrumbClick(breadcrumb)}>
       <img
         src="https://enki.imgix.net/empty_hex_1.png?auto=format,compress"
         alt="breadcrumb icon"
