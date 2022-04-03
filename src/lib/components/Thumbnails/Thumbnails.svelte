@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Product } from "$lib/types/product";
+import ProductImage from "../ProductImage/ProductImage.svelte";
 
   export let product: Product;
   export let activeItem = 0; //readonly
@@ -26,18 +27,20 @@
 </script>
 
 <svelte:window on:keydown={handleArrowKeydown} bind:outerWidth />
-<div class="is-center">
-  {#each product.ProductImages as _, idx ("thumb" + idx)}
-    <img
-      class="img-fluid {activeItem === idx
-        ? 'rounded'
-        : 'img-thumbnail'} thumbnails"
-      on:click={() => changeSlide(idx)}
-      src={`https://enki.imgix.net/${product.Id}-${idx}?auto=format,compress&q=10`}
-      alt={`${product.Name} thumbnail ${idx + 1}`}
-    />
-  {/each}
-</div>
+{#if product.ProductImages.length > 1}
+  <div class="is-center">
+    {#each product.ProductImages as _, idx ("thumb" + idx)}
+      <img
+        class="img-fluid {activeItem === idx
+          ? 'rounded'
+          : 'img-thumbnail'} thumbnails"
+        on:click={() => changeSlide(idx)}
+        src={`https://enki.imgix.net/${product.Id}-${idx}?auto=format,compress&q=10`}
+        alt={`${product.Name} thumbnail ${idx + 1}`}
+      />
+    {/each}
+  </div>
+{/if}
 
 <style>
   .is-center {

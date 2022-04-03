@@ -27,8 +27,8 @@
       <ProductImage {product} bind:activeItem bind:SwipeComp />
       <Thumbnails {product} bind:activeItem bind:SwipeComp />
     {/if}
-    <h4>{`${product.Name}`}</h4>
     <div class="detailed-products-footer">
+    <h4>{`${product.Name}`}</h4>
       <h4>{`£${product.SalePrice}`}</h4>
       <h4>
         {`${
@@ -38,7 +38,7 @@
         }`}
       </h4>
     </div>
-    <h4>{`${productDescription}`}</h4>
+    <h4 class="description">{`${productDescription}`}</h4>
     <AddToBasket {product} detailed />
   </div>
 {:else}
@@ -62,19 +62,20 @@
             : product.CurrentStock + " in stock"
         }`}
       </h4>
-      <h4>{`${productDescription}`}</h4>
+      <h4 class="description">{`${productDescription}`}</h4>
       <AddToBasket {product} detailed />
     </div>
   </div>
 {/if}
 
 <style>
-  h2 {
-    font-family: "Welcomehome3 Regular";
+
+  h2, h4 {
+    font-family: "Caviar Dreams";
   }
 
-  h4 {
-    font-family: "Caviar Dreams";
+  .description {
+    font-weight: lighter;
   }
 
   .details-container {
@@ -82,8 +83,9 @@
     flex-direction: column;
     align-items: center;
     align-self: center;
+    justify-content: center;
     border-radius: 0.25em;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
@@ -139,18 +141,27 @@
     .details-container {
       flex-direction: row;
       width: 100%;
+      align-items: flex-start;
+      align-self: flex-start;
     }
 
     .desktop-img-container {
-      height: 100%;
-      flex-basis: 30vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
+      border-radius: 0.25em;
+      margin: 4%;
+      width: 30vw;
+      height: 30vw;
     }
 
     .detailed-products-footer {
       flex-direction: column;
       align-items: flex-start;
+      height: 100%;
       margin: 2em;
-      width: 100%;
+      margin-top: 4%;
     }
 
     h4 {

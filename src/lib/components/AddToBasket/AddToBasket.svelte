@@ -59,7 +59,7 @@
     border: none;
     border-radius: 4px;
     transition: filter 0.25s;
-    border: 2px solid #ff6600;
+    border: 1px solid #ff6600;
     color: #ff6600;
   }
 
@@ -69,7 +69,7 @@
 
   .add-to-basket:hover {
     color: #ff8c00;
-    border: 2px solid #ff8c00;
+    border: 1px solid #ff8c00;
     cursor: pointer;
   }
 

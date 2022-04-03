@@ -50,7 +50,7 @@
   }
 
   section {
-    height: 30vh;
+    height: 45vh;
   }
 
   .swipe-holder {
