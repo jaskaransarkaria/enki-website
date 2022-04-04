@@ -61,7 +61,7 @@
     display: flex;
     justify-content: space-between;
     bottom: 0;
-    width: 100vw;
+    max-width: 100vw;
     height: 50vh;
     background-color: white;
     box-shadow: 0 -2.5px 20px 0 #a3a8a5;

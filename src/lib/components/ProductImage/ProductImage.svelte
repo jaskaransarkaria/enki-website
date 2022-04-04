@@ -8,7 +8,6 @@
   export let activeItem = 0;
   export let SwipeComp: any;
 
-  let img;
   let swipeHolderHeight = 0;
 
   const swipeConfig = {
@@ -22,17 +21,16 @@
   function heightChanged({ detail }) {
     swipeHolderHeight = detail.height;
   }
-
-  $: outerWidth = 0;
-  $: outerHeight = 0;
 </script>
 
-<svelte:window bind:outerWidth bind:outerHeight />
-<div
-  style="height: {swipeHolderHeight < 100 ? '20vw' : swipeHolderHeight + 'px'}"
-  class="swipe-holder"
->
-  {#if product}
+{#if product?.ProductImages.length > 1}
+  <div
+    in:fade={{ duration: 600, delay: 200 }}
+    style="height: {swipeHolderHeight < 100
+      ? '100vw'
+      : swipeHolderHeight + 'px'}"
+    class="swipe-holder"
+  >
     <Swipe bind:active_item={activeItem} bind:this={SwipeComp} {...swipeConfig}>
       {#each product.ProductImages as _, idx ("main" + idx)}
         <SwipeItem
@@ -40,23 +38,31 @@
           active={activeItem == idx}
           on:swipe_item_height_change={heightChanged}
         >
-          <img
-            bind:this={img}
-            in:fade={{ duration: 600 }}
-            src={`https://enki.imgix.net/${product.Id}-${idx}?q=100`}
-            alt={`${product.Name} image ${idx + 1}`}
-          />
+          <section>
+            <img
+              src={`https://enki.imgix.net/${product.Id}-${idx}?q=100`}
+              alt={`${product.Name} image ${idx + 1}`}
+            />
+          </section>
         </SwipeItem>
       {/each}
     </Swipe>
-  {/if}
-</div>
+  </div>
+{:else}
+  <img
+    src={`https://enki.imgix.net/${product.Id}-0?q=100`}
+    alt={`${product.Name} image 1`}
+  />
+{/if}
 
 <style>
+  section {
+    height: max-content;
+  }
+
   img {
-    object-fit: scale-down; /* also try 'contain' and 'cover' */
     max-width: 100%;
-    max-height: 100%;
+    height: auto;
   }
 
   .swipe-holder {

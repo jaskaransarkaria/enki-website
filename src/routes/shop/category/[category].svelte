@@ -39,8 +39,6 @@
       result[0]
     );
 
-    console.log("cat", category);
-
     return {
       props: {
         categoryToShow: category,
