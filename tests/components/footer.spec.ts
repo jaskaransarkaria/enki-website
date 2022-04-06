@@ -9,7 +9,9 @@ test.describe("Footer", () => {
       "want to be the first to find out about new products and classes?"
     );
     await expect(page.locator("#mc_embed_signup")).toHaveCount(1);
-    await expect(page.locator("a")).toHaveAttribute(
+    await expect(
+      page.locator("[data-testid=supported-card-brands]")
+    ).toHaveAttribute(
       "href",
       "https://stripe.com/docs/payments/cards/supported-card-brands"
     );
@@ -27,7 +29,9 @@ test.describe("Footer", () => {
       "want to be the first to find out about new products and classes?"
     );
     await expect(page.locator("#mc_embed_signup")).toHaveCount(1);
-    await expect(page.locator("a")).toHaveAttribute(
+    await expect(
+      page.locator("[data-testid=supported-card-brands]")
+    ).toHaveAttribute(
       "href",
       "https://stripe.com/docs/payments/cards/supported-card-brands"
     );

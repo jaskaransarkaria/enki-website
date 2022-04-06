@@ -16,8 +16,8 @@ test("Contact Page", async ({ page }) => {
     "src",
     "https://enki.imgix.net/telephone.png?auto=format,compress"
   );
-  await expect(page.locator("a >> nth=0")).toHaveText("01214444453");
-  await expect(page.locator("a >> nth=1")).toHaveText("07712442736");
+  await expect(page.locator("p > a >> nth=0")).toHaveText("01214444453");
+  await expect(page.locator("p > a >> nth=1")).toHaveText("07712442736");
   await expect(page.locator(".contact-info > h1 >> nth=1")).toHaveText(
     "Submissions"
   );

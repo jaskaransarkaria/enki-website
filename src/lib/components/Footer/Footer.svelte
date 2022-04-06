@@ -25,6 +25,7 @@
     {#if isMobile}
       <div class="trust-container">
         <a
+          data-testid="supported-card-brands"
           href="https://stripe.com/docs/payments/cards/supported-card-brands"
           target="blank"
         >
@@ -41,6 +42,7 @@
     <div class="right-container">
       <div class="trust-container">
         <a
+          data-testid="supported-card-brands"
           href="https://stripe.com/docs/payments/cards/supported-card-brands"
           target="blank"
         >

@@ -101,44 +101,52 @@
         />
       </div>
     {:else}
-      <img
-        class="repairs-and-comms"
-        src={repairsAndCommissionsHover
-          ? DESKTOP_JEWELLERY_SERVICES_GIF
-          : DESKTOP_JEWELLERY_SERVICES_STATIC}
-        alt="repair and commissions button hover over me"
-        on:mouseenter={() => (repairsAndCommissionsHover = true)}
-        on:mouseleave={() => (repairsAndCommissionsHover = false)}
-        on:click={() => goto("/repairs")}
-      />
-      <img
-        class="classes"
-        src={classesHover
-          ? DESKTOP_JEWELLERY_CLASSES_GIF
-          : DESKTOP_JEWELLERY_CLASSES_STATIC}
-        alt="classes button hover over me"
-        on:mouseenter={() => (classesHover = true)}
-        on:mouseleave={() => (classesHover = false)}
-        on:click={() => goto("/classes")}
-      />
-      <img
-        class="online-shop"
-        src={onlineShopHover
-          ? DESKTOP_ONLINE_SHOP_GIF
-          : DESKTOP_ONLINE_SHOP_STATIC}
-        alt="online shop button hover over me"
-        on:mouseenter={() => (onlineShopHover = true)}
-        on:mouseleave={() => (onlineShopHover = false)}
-        on:click={() => goto("/shop")}
-      />
-      <img
-        class="about"
-        src={aboutHover ? DESKTOP_ABOUT_GIF : DESKTOP_ABOUT_STATIC}
-        alt="online shop button hover over me"
-        on:mouseenter={() => (aboutHover = true)}
-        on:mouseleave={() => (aboutHover = false)}
-        on:click={() => goto("/about")}
-      />
+      <a sveltekit:prefetch href="/repairs" class="repairs-and-comms">
+        <img
+          class="repairs-and-comms"
+          src={repairsAndCommissionsHover
+            ? DESKTOP_JEWELLERY_SERVICES_GIF
+            : DESKTOP_JEWELLERY_SERVICES_STATIC}
+          alt="repair and commissions button hover over me"
+          on:mouseenter={() => (repairsAndCommissionsHover = true)}
+          on:mouseleave={() => (repairsAndCommissionsHover = false)}
+          on:click={() => goto("/repairs")}
+        />
+      </a>
+      <a sveltekit:prefetch href="/classes" class="classes">
+        <img
+          class="classes"
+          src={classesHover
+            ? DESKTOP_JEWELLERY_CLASSES_GIF
+            : DESKTOP_JEWELLERY_CLASSES_STATIC}
+          alt="classes button hover over me"
+          on:mouseenter={() => (classesHover = true)}
+          on:mouseleave={() => (classesHover = false)}
+          on:click={() => goto("/classes")}
+        />
+      </a>
+      <a sveltekit:prefetch href="/shop" class="online-shop">
+        <img
+          class="online-shop"
+          src={onlineShopHover
+            ? DESKTOP_ONLINE_SHOP_GIF
+            : DESKTOP_ONLINE_SHOP_STATIC}
+          alt="online shop button hover over me"
+          on:mouseenter={() => (onlineShopHover = true)}
+          on:mouseleave={() => (onlineShopHover = false)}
+          on:click={() => goto("/shop")}
+        />
+      </a>
+      <a sveltekit:prefetch href="/about" class="about">
+        <img
+          class="about"
+          src={aboutHover ? DESKTOP_ABOUT_GIF : DESKTOP_ABOUT_STATIC}
+          alt="online shop button hover over me"
+          on:mouseenter={() => (aboutHover = true)}
+          on:mouseleave={() => (aboutHover = false)}
+          on:click={() => goto("/about")}
+        />
+      </a>
     {/if}
   </figure>
 {/if}

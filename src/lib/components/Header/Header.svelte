@@ -72,36 +72,41 @@
     <Hamburger />
   {:else}
     <div class="left-container">
-      <button
+      <a
+        sveltekit:prefetch
         class={selected.includes("shop") ? "selected" : ""}
-        on:click={() => goto("/shop")}
+        href="/shop"
       >
         shop
-      </button>
-      <button
+      </a>
+      <a
+        sveltekit:prefetch
         class={selected.includes("repairs") ? "selected" : ""}
-        on:click={() => goto("/repairs")}
+        href="/repairs"
       >
         repairs
-      </button>
-      <button
+      </a>
+      <a
+        sveltekit:prefetch
         class={selected.includes("classes") ? "selected" : ""}
-        on:click={() => goto("/classes")}
+        href="/classes"
       >
         classes
-      </button>
-      <button
+      </a>
+      <a
+        sveltekit:prefetch
         class={selected.includes("about") ? "selected" : ""}
-        on:click={() => goto("/about")}
+        href="/about"
       >
         about
-      </button>
-      <button
+      </a>
+      <a
+        sveltekit:prefetch
         class={selected.includes("contact") ? "selected" : ""}
-        on:click={() => goto("/contact")}
+        href="/contact"
       >
         contact
-      </button>
+      </a>
     </div>
   {/if}
   {#if outerWidth < 960}
@@ -206,6 +211,7 @@
   .left-container {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding: 15px;
     width: 18%;
   }
@@ -278,10 +284,11 @@
     transform: translateX(-50%);
   }
 
-  button {
+  a {
     all: unset;
     font-family: "WelcomeHome3 Regular";
     cursor: pointer;
+    height: 50%;
   }
 
   .selected {

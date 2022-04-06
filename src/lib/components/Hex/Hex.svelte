@@ -35,7 +35,7 @@
     </div>
   {:else}
     <a sveltekit:prefetch class="hex-link" href={categoryFn(category)}>
-      <picture in:fade={{ duration: 800 }}>
+      <picture in:fade={{ duration: 500 }}>
         <source
           srcset={`https://enki.imgix.net/${category.Id}?auto=format,compress`}
           type="image/png"
@@ -50,20 +50,22 @@
           on:error={() => handleError(idx)}
         />
       </picture>
-      <img
-        in:fade|local={{ duration: 800 }}
-        src={`https://enki.imgix.net/hex_${Math.floor(
-          Math.random() * (6 - 1 + 1) + 1
-        )}.svg`}
-        alt="hexagon shape for the category button"
-      />
-      <div class="category-name">
-        <h3 data-testid="hex-category-name">
-          {"TagTypeId" in category
-            ? category.Name.split("-").pop()
-            : category.Name}
-        </h3>
-      </div>
+      {#if sourceElemArr[idx] || imgElemArr[idx]}
+        <img
+          in:fade|local={{ duration: 800 }}
+          src={`https://enki.imgix.net/hex_${Math.floor(
+            Math.random() * (6 - 1 + 1) + 1
+          )}.svg`}
+          alt="hexagon shape for the category button"
+        />
+        <div class="category-name">
+          <h3 data-testid="hex-category-name">
+            {"TagTypeId" in category
+              ? category.Name.split("-").pop()
+              : category.Name}
+          </h3>
+        </div>
+      {/if}
     </a>
   {/if}
 </div>
@@ -152,35 +154,42 @@
   @media (min-width: 700px) {
     h3 {
       width: 225px;
-      font-size: 1.1em;
+      font-size: 0.8em;
     }
   }
 
   @media (min-width: 960px) {
     h3 {
       width: 250px;
-      font-size: 1.1em;
+      font-size: 0.9em;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    h3 {
+      width: 250px;
+      font-size: 1em;
     }
   }
 
   @media (min-width: 1600px) {
     h3 {
-      width: 195px;
-      font-size: 1.2em;
+      width: 250px;
+      font-size: 1.1em;
     }
   }
 
   @media (min-width: 1960px) {
     h3 {
-      width: 200px;
-      font-size: 1.2em;
+      width: 250px;
+      font-size: 1.125em;
     }
   }
 
   @media (min-width: 2400px) {
     h3 {
       width: 240px;
-      font-size: 1.2em;
+      font-size: 1.15em;
     }
   }
 </style>
