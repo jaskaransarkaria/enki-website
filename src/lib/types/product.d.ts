@@ -10,6 +10,8 @@ export interface Product extends Base {
   VariantGroupId: number;
   CurrentStock: number;
   ProductDetails: ProductDetails | null;
+  SellOnWeb: boolean;
+  IsArchived: boolean;
 }
 
 interface ProductDetails {

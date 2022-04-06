@@ -6,8 +6,8 @@ test.describe("/category/*", () => {
   test("shows products for that category", async ({ page }) => {
     await page.goto("/shop/category/1876030"); // books -> books for Grownups -> silly books
     await expect(page.locator(".products-container")).toHaveCount(1);
-    await expect(page.locator(".simple-container")).toHaveCount(8);
-    await expect(page.locator(".simple-prod-name")).toHaveCount(8);
+    await expect(page.locator(".simple-container")).toHaveCount(4);
+    await expect(page.locator(".simple-prod-name")).toHaveCount(4);
   });
 
   test("loads /shop/category/BOOKS_ID", async ({ page }) => {

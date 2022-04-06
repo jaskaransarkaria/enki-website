@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { refreshProductsFromServer } from "$lib/utils/requests";
 
-  export async function load({ fetch, params }) {
+  export async function load({ fetch }) {
     // pull the category data from api
     const result = await refreshProductsFromServer(
       `${import.meta.env.VITE_SERVER_URL}/get-all-products`,
@@ -14,6 +14,8 @@
       },
     };
   }
+
+  export const router = false;
 </script>
 
 <script lang="ts">

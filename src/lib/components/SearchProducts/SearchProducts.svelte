@@ -13,7 +13,10 @@
   bind:value={searchValue}
   on:keydown={async (e) => {
     if (e.key === "Enter") {
-      await goto(`/shop/search?search-term=${encodeURIComponent(searchValue)}`);
+      await goto(
+        `/shop/search?search-term=${encodeURIComponent(searchValue)}`,
+        { replaceState: true }
+      );
       searchValue = "";
     }
   }}

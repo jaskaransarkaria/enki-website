@@ -15,20 +15,20 @@ test("toggles the show products filter", async ({ page }) => {
 
   await expect(page.locator("img >> nth=5")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/30667811-0?auto=format,compress"
+    "https://enki.imgix.net/30667812-0?auto=format,compress"
   );
   await expect(page.locator(".simple-prod-name >> nth=1")).toHaveText(
-    "Cosmic Care"
+    "F*ck You Pocket Translator"
   );
   await expect(page.locator("[data-testid=sale-price] >> nth=1")).toHaveText(
-    "£10.99"
+    "£6.99"
   );
 
   await expect(page.locator(".simple-prod-name >> nth=2")).toHaveText(
-    "Drinking Games Book"
+    "Love Sucks, the Truth About Romance"
   );
   await expect(page.locator("[data-testid=sale-price] >> nth=2")).toHaveText(
-    "£5.99"
+    "£9.99"
   );
 
   await page.click(".switch > span", { force: true }); // filters by highest price default is alphabetically
@@ -46,20 +46,20 @@ test("toggles the show products filter", async ({ page }) => {
 
   await expect(page.locator("img >> nth=5")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/30667811-0?auto=format,compress"
+    "https://enki.imgix.net/30668257-0?auto=format,compress"
   );
   await expect(page.locator(".simple-prod-name >> nth=1")).toHaveText(
-    "Dumb Birds of the Whole World"
+    "Men to Avoid in Art and Life"
   );
   await expect(page.locator("[data-testid=sale-price] >> nth=1")).toHaveText(
-    "£11.99"
+    "£10.99"
   );
 
   await expect(page.locator(".simple-prod-name >> nth=2")).toHaveText(
-    "Cosmic Care"
+    "Love Sucks, the Truth About Romance"
   );
   await expect(page.locator("[data-testid=sale-price] >> nth=2")).toHaveText(
-    "£10.99"
+    "£9.99"
   );
 
   await page.click(".switch > span", { force: true }); // filters by highest price default is alphabetically
@@ -77,19 +77,19 @@ test("toggles the show products filter", async ({ page }) => {
 
   await expect(page.locator("img >> nth=5")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/30667811-0?auto=format,compress"
+    "https://enki.imgix.net/30667812-0?auto=format,compress"
   );
   await expect(page.locator(".simple-prod-name >> nth=1")).toHaveText(
-    "Cosmic Care"
+    "F*ck You Pocket Translator"
   );
   await expect(page.locator("[data-testid=sale-price] >> nth=1")).toHaveText(
-    "£10.99"
+    "£6.99"
   );
 
   await expect(page.locator(".simple-prod-name >> nth=2")).toHaveText(
-    "Drinking Games Book"
+    "Love Sucks, the Truth About Romance"
   );
   await expect(page.locator("[data-testid=sale-price] >> nth=2")).toHaveText(
-    "£5.99"
+    "£9.99"
   );
 });

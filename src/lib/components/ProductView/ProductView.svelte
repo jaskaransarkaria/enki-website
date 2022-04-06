@@ -50,9 +50,13 @@
   $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
 
   $: if (productArr.length) {
-    variantArr = productArr.filter(({ VariantGroupId }) => !!VariantGroupId);
+    variantArr = productArr
+      .filter(({ VariantGroupId }) => !!VariantGroupId)
+      .filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
 
-    nonVariantArr = productArr.filter(({ VariantGroupId }) => !VariantGroupId);
+    nonVariantArr = productArr
+      .filter(({ VariantGroupId }) => !VariantGroupId)
+      .filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
   }
 
   $: variantCategories.map(
