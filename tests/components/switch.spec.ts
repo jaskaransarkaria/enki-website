@@ -24,10 +24,6 @@ test("toggles the show products filter", async ({ page }) => {
     "£10.99"
   );
 
-  await expect(page.locator("img >> nth=6")).toHaveAttribute(
-    "src",
-    "https://enki.imgix.net/30667812-0?auto=format,compress"
-  );
   await expect(page.locator(".simple-prod-name >> nth=2")).toHaveText(
     "Drinking Games Book"
   );
@@ -59,10 +55,6 @@ test("toggles the show products filter", async ({ page }) => {
     "£11.99"
   );
 
-  await expect(page.locator("img >> nth=6")).toHaveAttribute(
-    "src",
-    "https://enki.imgix.net/30668257-0?auto=format,compress"
-  );
   await expect(page.locator(".simple-prod-name >> nth=2")).toHaveText(
     "Cosmic Care"
   );
@@ -94,10 +86,6 @@ test("toggles the show products filter", async ({ page }) => {
     "£10.99"
   );
 
-  await expect(page.locator("img >> nth=6")).toHaveAttribute(
-    "src",
-    "https://enki.imgix.net/30667812-0?auto=format,compress"
-  );
   await expect(page.locator(".simple-prod-name >> nth=2")).toHaveText(
     "Drinking Games Book"
   );

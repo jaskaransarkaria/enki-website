@@ -97,8 +97,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70%;
-    width: 70%;
+    height: 60%;
+    width: 80%;
   }
 
   .simple-prod-name {
