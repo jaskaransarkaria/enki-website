@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("/category/*", () => {
-  test.use({ viewport: { width: 1280, height: 2400 } });
+  test.use({ viewport: { width: 1961, height: 2400 } });
 
   test("shows products for that category", async ({ page }) => {
     await page.goto("/shop/category/1876030"); // books -> books for Grownups -> silly books
@@ -13,28 +13,28 @@ test.describe("/category/*", () => {
   test("loads /shop/category/BOOKS_ID", async ({ page }) => {
     // /shop/category/[ books ] -> tests category view
     await page.goto("/shop/category/1876023");
-    await expect(page.locator(".root-categories-container")).toHaveCount(1);
+    await expect(page.locator(".flexbox-container")).toHaveCount(1);
 
     await expect(page.locator("[data-testid=hex-image-fallback]")).toHaveCount(
       3
     );
 
-    await expect(page.locator("div > h3 >> nth=0")).toHaveText("Bookmarks");
+    await expect(page.locator("div > h3 >> nth=0")).toHaveText(
+      "Books For Grownups"
+    );
     await expect(
       page.locator("[data-testid=cdn-img] >> nth=0")
     ).toHaveAttribute(
       "srcset",
-      "https://enki.imgix.net/2743303?auto=format,compress"
+      "https://enki.imgix.net/2680192?auto=format,compress"
     );
 
-    await expect(page.locator("div > h3 >> nth=1")).toHaveText(
-      "Books For Grownups"
-    );
+    await expect(page.locator("div > h3 >> nth=1")).toHaveText("Bookmarks");
     await expect(
       page.locator("[data-testid=cdn-img] >> nth=1")
     ).toHaveAttribute(
       "srcset",
-      "https://enki.imgix.net/2680192?auto=format,compress"
+      "https://enki.imgix.net/2743303?auto=format,compress"
     );
 
     await expect(page.locator("div > h3 >> nth=2")).toHaveText(

@@ -3,12 +3,16 @@ const gridCols: { [key: string]: number } = {
   upTo600: 4,
   "600to900": 6,
   "900to1200": 8,
+  "1200to1960": 10,
   "1960plus": 14,
 };
 
 export const getGridCols = (width: number): number => {
   if (width >= 1960) {
     return gridCols["1960plus"];
+  }
+  if (width >= 1200 && width <= 1960) {
+    return gridCols["1200to1960"];
   }
   if (width >= 900 && width <= 1200) {
     return gridCols["900to1200"];
@@ -23,7 +27,11 @@ export const getGridCols = (width: number): number => {
 };
 
 export const calcShowGrid = (width: number, dataLength: number): boolean =>
-  getGridCols(width) - dataLength * 3 < 2 ? true : false;
+  dataLength <= 2
+    ? false
+    : getGridCols(width) / 2 - dataLength < 0
+    ? true
+    : false;
 
 export const calcRowNumber = (
   arrLength: number,
