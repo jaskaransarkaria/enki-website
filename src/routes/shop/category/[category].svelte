@@ -34,8 +34,6 @@
       fetch
     );
 
-    console.log("res", JSON.stringify(result));
-
     const category = traverseCategoryObj(
       parseInt(params.category, 10),
       result[0]

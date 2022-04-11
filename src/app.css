@@ -16,12 +16,12 @@
 
 @font-face {
   font-family: "Welcomehome3 Regular";
-  src: url("/static/fonts/enki-regular.ttf") format("truetype");
+  src: url("static/fonts/enki-regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Caviar Dreams";
-  src: url(/static/fonts/CaviarDreams.ttf) format("truetype");
+  src: url(static/fonts/CaviarDreams.ttf) format("truetype");
 }
 
 a {

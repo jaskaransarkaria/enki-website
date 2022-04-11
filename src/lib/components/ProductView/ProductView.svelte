@@ -117,16 +117,12 @@
       <div
         in:fade={{ delay: 500 }}
         class={showDetailedView ||
-        !calcShowGrid(
-          window.innerWidth,
-          variantCategories.length
-            ? variantCategories.length +
-                nonVariantArr.length +
-                variantArr.filter(
-                  (vars) => !variantCategoryIds.includes(vars.CategoryId)
-                ).length
-            : productArr.length
-        )
+        variantCategories.length +
+          nonVariantArr.length +
+          variantArr.filter(
+            (vars) => !variantCategoryIds.includes(vars.CategoryId)
+          ).length <=
+          2 // if there are only 2 products then center them
           ? "detailed-products-container"
           : "products-container"}
       >

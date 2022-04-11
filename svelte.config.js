@@ -5,7 +5,9 @@ import preprocess from "svelte-preprocess";
 const config = {
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
-  preprocess: preprocess(),
+  preprocess: preprocess({
+    devSourcemap: true
+  }),
   kit: {
     adapter: adapter({
       // default options are shown
@@ -15,7 +17,12 @@ const config = {
     browser: {
       hydrate: true,
     },
-  },
+    vite: {
+      css: {
+        devSourcemap: true
+      }
+    }
+  }
 };
 
 export default config;

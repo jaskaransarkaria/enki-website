@@ -15,3 +15,5 @@ secret.yaml
 .env
 
 coverage/**/*
+test-results/
+playwright-report/
