@@ -3,10 +3,13 @@ import preprocess from "svelte-preprocess";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+  compilerOptions: {
+    enableSourcemap: true
+  },
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
   preprocess: preprocess({
-    devSourcemap: true
+    sourceMap: true
   }),
   kit: {
     adapter: adapter({
@@ -17,12 +20,8 @@ const config = {
     browser: {
       hydrate: true,
     },
-    vite: {
-      css: {
-        devSourcemap: true
-      }
-    }
-  }
+  },
+  vite: { css: { devSourcemap: true } }
 };
 
 export default config;

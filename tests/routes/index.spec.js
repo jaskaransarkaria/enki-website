@@ -14,7 +14,7 @@ import {
   DESKTOP_ONLINE_SHOP_GIF,
   DESKTOP_ABOUT_STATIC,
   DESKTOP_ABOUT_GIF,
-} from "../../src/lib/utils/consts";
+} from "../../src/lib/utils/consts.js";
 import { expect, test } from "@playwright/test";
 
 test.describe("Mobile Home Page", () => {
