@@ -2,18 +2,15 @@
   import { browser } from "$app/env";
   import { groupBy } from "lodash-es";
   import { fade } from "svelte/transition";
-  import { calcShowGrid } from "$lib/utils/gridCalc";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
-  import Switch from "$lib/components/Switch/Switch.svelte";
   import type { Category } from "$lib/types/category";
   import type { Product } from "$lib/types/product";
 
   export let productArr: readonly Product[] = [];
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
-  export let showSwitch = true;
 
-  let sortBy = false;
+  let sortBy: string;
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
   let groupedVariantProducts: Array<readonly Product[]>;
@@ -46,6 +43,49 @@
     ...nonVarArr,
     ...showGroupedVariant(groupedVariantProducts),
   ];
+
+  const sortArray = (
+    sortBy: string,
+    collatedArray: readonly CollatedItem[]
+  ) => {
+    switch (sortBy) {
+      case "in-stock":
+        return collatedArray
+          .slice()
+          .sort((a, b) =>
+            "CurrentStock" in a
+              ? a.CurrentStock > ("CurrentStock" in b ? b.CurrentStock : -1)
+                ? -1
+                : 1
+              : -1
+          );
+      case "price-high-low":
+        console.log("1");
+        return collatedArray
+          .slice()
+          .sort((a, b) =>
+            "SalePrice" in a
+              ? a.SalePrice > ("SalePrice" in b ? b.SalePrice : -1)
+                ? -1
+                : 1
+              : -1
+          );
+      case "alphabetically":
+        return collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
+      case "price-low-high":
+        return collatedArray
+          .slice()
+          .sort((a, b) =>
+            "SalePrice" in a
+              ? a.SalePrice > ("SalePrice" in b ? b.SalePrice : -1)
+                ? 1
+                : -1
+              : -1
+          );
+      default:
+        return collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
+    }
+  };
 
   $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
 
@@ -90,28 +130,18 @@
     groupedVariantProducts
   );
 
-  $: sortedCollatedArray = sortBy
-    ? collatedArray
-        .slice()
-        .sort((a, b) =>
-          "SalePrice" in a
-            ? a.SalePrice > ("SalePrice" in b ? b.SalePrice : -1)
-              ? -1
-              : 1
-            : -1
-        )
-    : collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
+  $: sortedCollatedArray = sortArray(sortBy, collatedArray);
 </script>
 
 <div class="container">
-  {#if showSwitch}
-    <div class="switch-container">
-      <Switch
-        bind:active={sortBy}
-        msg={sortBy ? "price (highest to lowest)" : "alphabetically"}
-      />
-    </div>
-  {/if}
+  <div class="sort-container">
+    <select name="products" id="products" bind:value={sortBy}>
+      <option selected value="alphabetically">alphabetically</option>
+      <option value="price-high-low">price (high to low)</option>
+      <option value="price-low-high">price (low to high)</option>
+      <option value="in-stock">in stock</option>
+    </select>
+  </div>
   {#key sortBy}
     {#if productArr && browser}
       <div
@@ -141,9 +171,20 @@
 </div>
 
 <style>
-  .switch-container {
+  .sort-container {
     display: flex;
     justify-content: flex-end;
+    margin-right: 2.5%;
+  }
+
+  select,
+  option {
+    font-family: "Caviar Dreams";
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    color: none;
+    outline: none;
   }
 
   .products-container {
