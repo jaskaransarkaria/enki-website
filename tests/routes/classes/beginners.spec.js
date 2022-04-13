@@ -14,7 +14,7 @@ test("Classes Beginners Page", async ({ page }) => {
     "src",
     "https://enki.imgix.net/classes_example_3.jpg?auto=format,compress"
   );
-  await page.locator("a >> nth=0").click();
+  await page.locator(".container > p > a >> nth=0").click();
   await page.waitForURL("http://localhost:4000/contact");
   await page.goBack();
   await page.waitForURL("http://localhost:4000/classes/beginners");

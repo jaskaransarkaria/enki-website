@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from "$app/env";
   import { afterUpdate } from "svelte";
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
@@ -68,7 +69,7 @@
 
 <svelte:window bind:outerWidth />
 <div class="header">
-  {#if outerWidth < 960}
+  {#if outerWidth < 960 && browser}
     <Hamburger />
   {:else}
     <div class="left-container">

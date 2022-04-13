@@ -122,7 +122,7 @@
           variantArr.filter(
             (vars) => !variantCategoryIds.includes(vars.CategoryId)
           ).length <=
-          2 // if there are only 2 products then center them
+          3 // if there are only 2 products then center them
           ? "detailed-products-container"
           : "products-container"}
       >
