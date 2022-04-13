@@ -10,7 +10,7 @@
     );
     const filteredResult = result.filter((obj) =>
       obj.ProductTags.filter(
-        (tag) => tag.Name.toLowerCase() === `${params.type}-${params.tag}`
+        (tag) => tag.Name.toLowerCase() === `${params.typetag}`
       ).length
         ? true
         : false
@@ -55,7 +55,7 @@
   selectedCategoryId={parseInt($page.url.searchParams.get("catid"), 10)}
   extraCrumbs={[
     {
-      Name: $page.params.tag,
+      Name: $page.params.typetag.split("-")[1],
       Id: parseInt($page.url.searchParams.get("tagid"), 0),
       tagUrl: $page.url.toString(),
       params: `?catId=${$page.url.searchParams.get(
