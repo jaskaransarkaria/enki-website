@@ -26,9 +26,9 @@
     }
     // if tag selected display relevant products on tag page
     if (isTag(cat)) {
-      return `/shop/tag/${cat.Name.toLowerCase()}?catid=${categoryId}&tagid=${
-        cat.Id
-      }`;
+      return `/shop/tag/${cat.Name.toLowerCase().split("-")[0]}/${
+        cat.Name.toLowerCase().split("-")[1]
+      }?catid=${categoryId}&tagid=${cat.Id}`;
     }
   };
 
