@@ -9,11 +9,13 @@
       fetch
     );
 
-    const filteredResult = result.filter((obj) =>
-      obj.ProductTags.filter(
-        (tag) => tag.Name.toLowerCase() === `${params.typetag}`
-      ).length
-        ? true
+    const filteredResult = result?.filter((obj) =>
+      "ProductTags" in obj
+        ? obj.ProductTags.filter(
+            (tag) => tag.Name.toLowerCase() === `${params.typetag}`
+          ).length
+          ? true
+          : false
         : false
     );
 
@@ -23,47 +25,47 @@
       },
     };
   }
-
-  // <svelte:head>
-  //   <meta property="og:title" content="Enki" />
-  //   <meta property="og:url" content={$page.url.toString()} />
-  //   <meta
-  //     property="og:image"
-  //     content={`https://enki.imgix.net/${$page.url.searchParams.get(
-  //       "catid"
-  //     )}?auto=format,compress`}
-  //   />
-  //   <meta property="og:type" content="website" />
-  //   <meta
-  //     property="og:description"
-  //     content={`Shop at Enki for gifts in the ${$page.url.searchParams.get(
-  //       "tagid"
-  //     )} category`}
-  //   />
-  //   <meta property="og:locale" content="en_GB" />
-  // </svelte:head>
-  //
-  // <Breadcrumbs
-  //   selectedCategoryId={parseInt($page.url.searchParams.get("catid"), 10)}
-  //   extraCrumbs={[
-  //     {
-  //       Name: $page.params.typetag.split("-")[1],
-  //       Id: parseInt($page.url.searchParams.get("tagid"), 0),
-  //       tagUrl: $page.url.toString(),
-  //       params: `?catId=${$page.url.searchParams.get(
-  //         "catid"
-  //       )}&tagid=${$page.url.searchParams.get("tagid")}`,
-  //     },
-  //   ]}
-  // />
 </script>
 
 <script lang="ts">
-  // import { page } from "$app/stores";
+  import { page } from "$app/stores";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
-  // import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
+  import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
 
   export let data: readonly Product[] = [];
 </script>
+
+<svelte:head>
+  <meta property="og:title" content="Enki" />
+  <meta property="og:url" content={$page.url.toString()} />
+  <meta
+    property="og:image"
+    content={`https://enki.imgix.net/${$page.url.searchParams.get(
+      "catid"
+    )}?auto=format,compress`}
+  />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:description"
+    content={`Shop at Enki for gifts in the ${$page.url.searchParams.get(
+      "tagid"
+    )} category`}
+  />
+  <meta property="og:locale" content="en_GB" />
+</svelte:head>
+
+<Breadcrumbs
+  selectedCategoryId={parseInt($page.url.searchParams.get("catid"), 10)}
+  extraCrumbs={[
+    {
+      Name: $page.params.typetag.split("-")[1],
+      Id: parseInt($page.url.searchParams.get("tagid"), 0),
+      tagUrl: $page.url.toString(),
+      params: `?catId=${$page.url.searchParams.get(
+        "catid"
+      )}&tagid=${$page.url.searchParams.get("tagid")}`,
+    },
+  ]}
+/>
 
 <ProductView productArr={data} />
