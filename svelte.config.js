@@ -15,7 +15,7 @@ const config = {
     adapter: adapter({
       // default options are shown
       out: "build",
-      precompress: false,
+      precompress: true,
     }),
     browser: {
       hydrate: true,

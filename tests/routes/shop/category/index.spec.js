@@ -15,26 +15,22 @@ test.describe("/category/*", () => {
     await page.goto("/shop/category/1876023");
     await expect(page.locator(".flexbox-container")).toHaveCount(1);
 
-    await expect(page.locator("[data-testid=hex-image-fallback]")).toHaveCount(
-      3
-    );
-
     await expect(page.locator("div > h3 >> nth=0")).toHaveText(
       "Books For Grownups"
     );
     await expect(
       page.locator("[data-testid=cdn-img] >> nth=0")
     ).toHaveAttribute(
-      "srcset",
-      "https://enki.imgix.net/2680192?auto=format,compress"
+      "src",
+      "https://enki.imgix.net/2680192?auto=format,compress&q=60&lossless=1&w=0.3"
     );
 
     await expect(page.locator("div > h3 >> nth=1")).toHaveText("Bookmarks");
     await expect(
       page.locator("[data-testid=cdn-img] >> nth=1")
     ).toHaveAttribute(
-      "srcset",
-      "https://enki.imgix.net/2743303?auto=format,compress"
+      "src",
+      "https://enki.imgix.net/2743303?auto=format,compress&q=60&lossless=1&w=0.3"
     );
 
     await expect(page.locator("div > h3 >> nth=2")).toHaveText(
@@ -43,8 +39,8 @@ test.describe("/category/*", () => {
     await expect(
       page.locator("[data-testid=cdn-img] >> nth=2")
     ).toHaveAttribute(
-      "srcset",
-      "https://enki.imgix.net/2680193?auto=format,compress"
+      "src",
+      "https://enki.imgix.net/2680193?auto=format,compress&q=60&lossless=1&w=0.3"
     );
   });
 
@@ -67,10 +63,6 @@ test.describe("/category/*", () => {
     expect(await page.textContent("h1 >> nth=0")).toBe("Shop by type");
     await expect(page.locator(".root-categories-container")).toHaveCount(1);
 
-    await expect(page.locator("[data-testid=hex-image-fallback]")).toHaveCount(
-      14
-    );
-
     await expect(page.locator("div > h3 >> nth=0")).toHaveText(
       "Fine Jewellery"
     );
@@ -90,10 +82,6 @@ test.describe("/category/*", () => {
     // /shop/category/[ fine-jewellery ] -> tests tag view
     await page.goto("/shop/category/1875997");
     await expect(page.locator(".root-categories-container")).toHaveCount(1);
-
-    await expect(page.locator("[data-testid=hex-image-fallback]")).toHaveCount(
-      14
-    );
 
     await expect(page.locator("div > h3 >> nth=0")).toHaveText(
       "Fine Jewellery"

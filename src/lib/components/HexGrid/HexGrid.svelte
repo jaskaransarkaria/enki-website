@@ -28,6 +28,7 @@
   let itemsOnLastRow: number;
   let gridColumnNumber: number;
   let showGrid: boolean = false;
+  let loaded = new Map();
 
   $: if (browser) {
     gridColumnNumber = getGridCols(window.innerWidth) / 2;
@@ -79,7 +80,14 @@
         {/if}
       {/if}
       <li class={showGrid ? "hex" : "hex-flex"}>
-        <Hex {categoryFn} {idx} {category} bind:sourceElemArr bind:imgElemArr />
+        <Hex
+          {categoryFn}
+          {idx}
+          {category}
+          bind:sourceElemArr
+          bind:imgElemArr
+          bind:loaded
+        />
       </li>
       {#if idx === filteredData.length - 1}
         {#if filteredData.length > gridColumnNumber && emptyHexes.length}

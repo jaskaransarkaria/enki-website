@@ -4,54 +4,54 @@ test("loads /shop", async ({ page }) => {
   await page.goto("/shop");
   await expect(page.locator(".root-categories-container")).toHaveCount(1);
 
-  await expect(page.locator("[data-testid=hex-image-fallback]")).toHaveCount(8);
+  await page.waitForTimeout(2500);
 
   await expect(page.locator("div > h3 >> nth=0")).toHaveText("Books");
   await expect(page.locator("[data-testid=cdn-img] >> nth=0")).toHaveAttribute(
-    "srcset",
-    "https://enki.imgix.net/1876023?auto=format,compress"
+    "src",
+    "https://enki.imgix.net/1876023?auto=format,compress&q=60&lossless=1&w=0.3"
   );
 
   await expect(page.locator("div > h3 >> nth=1")).toHaveText("Cheetah");
   await expect(page.locator("[data-testid=cdn-img] >> nth=1")).toHaveAttribute(
-    "srcset",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress"
+    "src",
+    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
   );
 
   await expect(page.locator("div > h3 >> nth=2")).toHaveText("Crocodile");
   await expect(page.locator("[data-testid=cdn-img] >> nth=2")).toHaveAttribute(
-    "srcset",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress"
+    "src",
+    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
   );
 
   await expect(page.locator("div > h3 >> nth=3")).toHaveText("Giraffe");
   await expect(page.locator("[data-testid=cdn-img] >> nth=3")).toHaveAttribute(
-    "srcset",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress"
+    "src",
+    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
   );
 
   await expect(page.locator("div > h3 >> nth=4")).toHaveText("Hippopotamus");
   await expect(page.locator("[data-testid=cdn-img] >> nth=4")).toHaveAttribute(
-    "srcset",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress"
+    "src",
+    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
   );
 
   await expect(page.locator("div > h3 >> nth=5")).toHaveText("Lion");
   await expect(page.locator("[data-testid=cdn-img] >> nth=5")).toHaveAttribute(
-    "srcset",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress"
+    "src",
+    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
   );
 
   await expect(page.locator("div > h3 >> nth=6")).toHaveText("Water Buffalo");
   await expect(page.locator("[data-testid=cdn-img] >> nth=5")).toHaveAttribute(
-    "srcset",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress"
+    "src",
+    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
   );
 
   await expect(page.locator("div > h3 >> nth=7")).toHaveText("Zebra");
   await expect(page.locator("[data-testid=cdn-img] >> nth=7")).toHaveAttribute(
-    "srcset",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress"
+    "src",
+    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
   );
 
   await expect(page.locator("[data-testid=empty-hex]")).toHaveCount(1);

@@ -4,6 +4,8 @@
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
 
+  let imgLoaded = false;
+
   const handleError = (idx: number) => {
     imgElemArr[idx].onerror = null;
     sourceElemArr[idx].srcset = imgElemArr[idx].src;
@@ -21,6 +23,27 @@
   };
   export let sourceElemArr: HTMLSourceElement[] = [];
   export let imgElemArr: HTMLImageElement[] = [];
+  export let loaded: Map<string, HTMLImageElement>;
+
+  function lazy(node, data) {
+    if (loaded.has(data.src)) {
+      node.setAttribute("src", data.src);
+      imgLoaded = true;
+    } else {
+      // simulate slow loading network
+      const img = new Image();
+      img.src = data.src;
+      img.onload = () => {
+        loaded.set(data.src, img);
+        node.setAttribute("src", data.src);
+        imgLoaded = true;
+      };
+    }
+
+    return {
+      destroy() {}, // noop
+    };
+  }
 </script>
 
 <div class="hex-in">
@@ -28,44 +51,36 @@
     <div class="hex-link">
       <img
         in:fade={{ duration: 800 }}
-        src="https://enki.imgix.net/empty_hex_3.png?auto=format,compress"
+        src="https://enki.imgix.net/empty_hex_3.png?auto=format,compress&q=80"
         alt="hexagon shape for the category button"
         data-testid="empty-hex"
       />
     </div>
   {:else}
     <a sveltekit:prefetch class="hex-link" href={categoryFn(category)}>
-      <picture in:fade={{ duration: 500 }}>
-        <source
-          srcset={`https://enki.imgix.net/${category.Id}?auto=format,compress`}
-          type="image/png"
-          bind:this={sourceElemArr[idx]}
-          data-testid="cdn-img"
-        />
-        <img
-          src={`https://enki.imgix.net/faith.jpg?auto=format,compress`}
-          alt="placeholder"
-          data-testid="hex-image-fallback"
-          bind:this={imgElemArr[idx]}
-          on:error={() => handleError(idx)}
-        />
-      </picture>
-      {#if sourceElemArr[idx] || imgElemArr[idx]}
-        <img
-          in:fade|local={{ duration: 800 }}
-          src={`https://enki.imgix.net/hex_${Math.floor(
-            Math.random() * (6 - 1 + 1) + 1
-          )}.svg`}
-          alt="hexagon shape for the category button"
-        />
-        <div class="category-name">
-          <h3 data-testid="hex-category-name">
-            {"TagTypeId" in category
-              ? category.Name.split("-").pop()
-              : category.Name}
-          </h3>
-        </div>
-      {/if}
+      <img
+        in:fade|local={{ duration: 3000 }}
+        src="https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+        use:lazy={{
+          src: `https://enki.imgix.net/${category.Id}?auto=format,compress&q=60&lossless=1&w=0.3`,
+        }}
+        alt={`category ${category.Name}`}
+        data-testid="cdn-img"
+      />
+      <img
+        in:fade|local={{ duration: 800 }}
+        src={`https://enki.imgix.net/hex_${Math.floor(
+          Math.random() * (6 - 1 + 1) + 1
+        )}.svg`}
+        alt="hexagon shape for the category button"
+      />
+      <div class="category-name">
+        <h3 data-testid="hex-category-name">
+          {"TagTypeId" in category
+            ? category.Name.split("-").pop()
+            : category.Name}
+        </h3>
+      </div>
     </a>
   {/if}
 </div>
