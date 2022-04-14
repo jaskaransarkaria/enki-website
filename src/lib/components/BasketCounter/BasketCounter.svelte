@@ -20,18 +20,20 @@
 <div class="counter">
   <button
     on:click={() =>
-      basket.set(
-        updateBasket(
-          {
-            Id: parseInt(productObj.id, 10),
-            Name: productObj.name,
-            SalePrice: productObj.price,
-            CurrentStock: productObj.currentStock,
-          },
-          $basket,
-          "incrementQuantity"
-        )
-      )}
+      productObj.quantity < productObj.currentStock
+        ? basket.set(
+            updateBasket(
+              {
+                Id: parseInt(productObj.id, 10),
+                Name: productObj.name,
+                SalePrice: productObj.price,
+                CurrentStock: productObj.currentStock,
+              },
+              $basket,
+              "incrementQuantity"
+            )
+          )
+        : undefined}
     aria-label="Increase the counter by one"
   >
     +

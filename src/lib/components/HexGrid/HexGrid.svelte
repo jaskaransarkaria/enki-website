@@ -79,7 +79,7 @@
         {/if}
       {/if}
       <li class={showGrid ? "hex" : "hex-flex"}>
-        <Hex {categoryFn} {idx} {category} {sourceElemArr} {imgElemArr} />
+        <Hex {categoryFn} {idx} {category} bind:sourceElemArr bind:imgElemArr />
       </li>
       {#if idx === filteredData.length - 1}
         {#if filteredData.length > gridColumnNumber && emptyHexes.length}
