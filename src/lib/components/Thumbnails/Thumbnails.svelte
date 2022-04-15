@@ -39,11 +39,16 @@
 
 <style>
   .is-center {
-    scroll-snap-type: x mandatory;
+    border: 2px solid lightgray;
+    border-radius: 3px;
     display: flex;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    overflow: scroll;
-    overflow-x: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+    margin-top: 2em;
+    width: 100%;
   }
 
   .img-fluid {
@@ -87,11 +92,22 @@
     border: 2px solid lightgray;
   }
 
-  @media (min-width: 960px) {
+  @media (min-width: 600px) {
     .is-center {
-      width: inherit;
+      margin-top: none;
+      border: 2px solid lightgray;
+      border-radius: 3px;
+      display: flex;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-self: center;
+      width: 10%;
     }
+  }
 
+  @media (min-width: 600px) {
     .thumbnails {
       height: 45px;
       width: 45px;

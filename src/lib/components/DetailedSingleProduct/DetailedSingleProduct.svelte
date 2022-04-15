@@ -40,10 +40,10 @@
   </div>
 {:else}
   <div class="details-container">
+    <Thumbnails {product} bind:activeItem bind:SwipeComp />
     {#if product.ProductImages?.length}
       <div class="desktop-img-container">
         <ProductImage {product} bind:activeItem bind:SwipeComp />
-        <Thumbnails {product} bind:activeItem bind:SwipeComp />
       </div>
     {/if}
     <div class="detailed-products-footer">
