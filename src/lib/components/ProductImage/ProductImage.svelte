@@ -49,10 +49,12 @@
     </Swipe>
   </div>
 {:else}
-  <img
-    src={`https://enki.imgix.net/${product.Id}-0?q=100`}
-    alt={`${product.Name} image 1`}
-  />
+  <section>
+    <img
+      src={`https://enki.imgix.net/${product.Id}-0?q=100`}
+      alt={`${product.Name} image 1`}
+    />
+  </section>
 {/if}
 
 <style>
@@ -74,11 +76,23 @@
   }
 
   @media (min-width: 1280px) {
+    section > img {
+      max-width: 400px;
+      max-height: 300px;
+    }
   }
 
   @media (min-width: 1600px) {
+    section > img {
+      max-width: 450px;
+      max-height: 300px;
+    }
   }
 
   @media (min-width: 2000px) {
+    section > img {
+      max-width: 500px;
+      max-height: 350px;
+    }
   }
 </style>

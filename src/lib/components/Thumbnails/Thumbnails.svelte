@@ -39,16 +39,15 @@
 
 <style>
   .is-center {
-    margin-top: 0.5em;
+    scroll-snap-type: x mandatory;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 70%;
+    -webkit-overflow-scrolling: touch;
+    overflow: scroll;
+    overflow-x: hidden;
   }
 
   .img-fluid {
-    max-width: 100%;
+    scroll-snap-align: start;
     height: auto;
   }
 
