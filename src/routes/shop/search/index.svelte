@@ -1,16 +1,23 @@
 <script context="module" lang="ts">
   import { refreshProductsFromServer } from "$lib/utils/requests";
+  import { searchProducts } from "$lib/utils/search";
 
-  export async function load({ fetch }) {
+  export async function load({ fetch, url }) {
     // pull the category data from api
     const result = await refreshProductsFromServer(
       `${import.meta.env.VITE_SERVER_URL}/get-all-products`,
       fetch
     );
 
+    const reg = new RegExp(
+      `\\b${decodeURIComponent(url.searchParams.get("search-term"))}`,
+      "i"
+    );
+    const data = searchProducts(reg, result);
+
     return {
       props: {
-        data: result,
+        data,
       },
     };
   }
@@ -19,22 +26,12 @@
 </script>
 
 <script lang="ts">
-  import { page } from "$app/stores";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
-  import { searchProducts } from "$lib/utils/search";
+  import { page } from "$app/stores";
 
   import type { Product } from "$lib/types/product";
 
   export let data: readonly Product[];
-  let reg: RegExp;
-
-  $: reg = new RegExp(
-    `\\b${decodeURIComponent($page.url.searchParams.get("search-term"))}`,
-    "i"
-  );
-  $: if ($page.url.searchParams.get("search-term")) {
-    data = searchProducts(reg, data);
-  }
 </script>
 
 <svelte:head>
@@ -56,12 +53,12 @@
   {/if}
 </svelte:head>
 
+<h2>
+  we found {data.length} results for "{decodeURIComponent(
+    $page.url.searchParams.get("search-term")
+  )}"
+</h2>
 {#if data.length}
-  <h2>
-    we found {data.length} results for "{decodeURIComponent(
-      $page.url.searchParams.get("search-term")
-    )}"
-  </h2>
   <ProductView productArr={data} />
 {/if}
 

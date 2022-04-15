@@ -52,10 +52,5 @@
 </script>
 
 {#if categoryId && ((productArr.length && !productObj?.[categoryId]?.isEmpty) || variantCategories.length)}
-  <ProductView
-    {productArr}
-    {showDetailedView}
-    {variantCategories}
-    {showSwitch}
-  />
+  <ProductView {productArr} {showDetailedView} {variantCategories} />
 {/if}

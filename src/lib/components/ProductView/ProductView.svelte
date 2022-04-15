@@ -131,8 +131,12 @@
   );
 
   $: sortedCollatedArray = sortArray(sortBy, collatedArray);
+
+  $: outerWidth = 0;
+  $: isMobile = outerWidth < 960;
 </script>
 
+<svelte:window bind:outerWidth />
 <div class="container">
   <div class="sort-container">
     <select name="products" id="products" bind:value={sortBy}>
@@ -147,12 +151,13 @@
       <div
         in:fade={{ delay: 500 }}
         class={showDetailedView ||
-        variantCategories.length +
+        (variantCategories.length +
           nonVariantArr.length +
           variantArr.filter(
             (vars) => !variantCategoryIds.includes(vars.CategoryId)
           ).length <=
-          3 // if there are only 2 products then center them
+          3 &&
+          !isMobile) // if there are only 3 products then center them
           ? "detailed-products-container"
           : "products-container"}
       >

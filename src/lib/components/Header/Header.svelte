@@ -69,46 +69,48 @@
 
 <svelte:window bind:outerWidth />
 <div class="header">
-  {#if outerWidth < 960 && browser}
-    <Hamburger />
-  {:else}
-    <div class="left-container">
-      <a
-        sveltekit:prefetch
-        class={selected.includes("shop") ? "selected" : ""}
-        href="/shop"
-      >
-        shop
-      </a>
-      <a
-        sveltekit:prefetch
-        class={selected.includes("repairs") ? "selected" : ""}
-        href="/repairs"
-      >
-        repairs
-      </a>
-      <a
-        sveltekit:prefetch
-        class={selected.includes("classes") ? "selected" : ""}
-        href="/classes"
-      >
-        classes
-      </a>
-      <a
-        sveltekit:prefetch
-        class={selected.includes("about") ? "selected" : ""}
-        href="/about"
-      >
-        about
-      </a>
-      <a
-        sveltekit:prefetch
-        class={selected.includes("contact") ? "selected" : ""}
-        href="/contact"
-      >
-        contact
-      </a>
-    </div>
+  {#if browser}
+    {#if outerWidth < 960}
+      <Hamburger />
+    {:else}
+      <div class="left-container">
+        <a
+          sveltekit:prefetch
+          class={selected.includes("shop") ? "selected" : ""}
+          href="/shop"
+        >
+          shop
+        </a>
+        <a
+          sveltekit:prefetch
+          class={selected.includes("repairs") ? "selected" : ""}
+          href="/repairs"
+        >
+          repairs
+        </a>
+        <a
+          sveltekit:prefetch
+          class={selected.includes("classes") ? "selected" : ""}
+          href="/classes"
+        >
+          classes
+        </a>
+        <a
+          sveltekit:prefetch
+          class={selected.includes("about") ? "selected" : ""}
+          href="/about"
+        >
+          about
+        </a>
+        <a
+          sveltekit:prefetch
+          class={selected.includes("contact") ? "selected" : ""}
+          href="/contact"
+        >
+          contact
+        </a>
+      </div>
+    {/if}
   {/if}
   {#if outerWidth < 960}
     {#if !showSearch}
