@@ -27,7 +27,9 @@
       <h4 class="mobile-prod-name">{`${product.Name}`}</h4>
       <h4>{`£${product.SalePrice}`}</h4>
       <div class="mobile-details">
-        <AddToBasket {product} detailed />
+        {#if product.CurrentStock > 0}
+          <AddToBasket {product} detailed />
+        {/if}
         <h4>
           {`${
             product.CurrentStock <= 0
@@ -60,7 +62,9 @@
             : product.CurrentStock + " in stock"
         }`}
       </h5>
-      <AddToBasket {product} detailed />
+      {#if product.CurrentStock > 0}
+        <AddToBasket {product} detailed />
+      {/if}
     </div>
   </div>
 {/if}
