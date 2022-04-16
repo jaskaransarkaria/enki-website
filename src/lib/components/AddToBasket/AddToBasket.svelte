@@ -47,10 +47,11 @@
     width: 80%;
     border-radius: 4px;
     transition: filter 0.25s;
+    margin-bottom: 0em;
   }
 
   .narrow {
-    width: 35%;
+    width: 46%;
     font-size: 0.65em;
   }
 
@@ -64,7 +65,18 @@
   }
 
   .goto-basket {
-    background-color: #30a74b;
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    transition: filter 0.25s;
+    border: 1px solid #008080;
+    color: #008080;
+  }
+
+  .goto-basket:hover {
+    color: #00b2b2;
+    border: 1px solid #00b2b2;
+    cursor: pointer;
   }
 
   .add-to-basket:hover {

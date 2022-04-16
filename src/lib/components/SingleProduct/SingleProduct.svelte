@@ -46,6 +46,24 @@
       class="simple-container"
       href={`/shop/product/${product.Id}`}
     >
+      {#if product.CurrentStock === 1}
+        <div style="position: relative">
+          <img
+            class="low-in-stock-img"
+            src="/static/low_in_stock_teal_1.png"
+            alt="this product is low in stock"
+          />
+        </div>
+      {/if}
+      {#if product.CurrentStock <= 0}
+        <div style="position: relative">
+          <img
+            class="low-in-stock-img"
+            src="/static/out_of_stock_orange.png"
+            alt="this product is out of stock"
+          />
+        </div>
+      {/if}
       {#if product.ProductImages?.length}
         <div class="position-img">
           <ImageLoader
@@ -54,12 +72,14 @@
           />
         </div>
       {/if}
-      <h3 class="simple-prod-name">
-        {`${product.Name}`}
-      </h3>
-      <h3 data-testid="sale-price">
-        {`£${product.SalePrice}`}
-      </h3>
+      <div class="prod-details">
+        <h3 class="simple-prod-name">
+          {`${product.Name}`}
+        </h3>
+        <h3 data-testid="sale-price">
+          {`£${product.SalePrice}`}
+        </h3>
+      </div>
     </a>
   {/if}
 {/if}
@@ -82,10 +102,11 @@
     background: none;
     outline: none;
     border: none;
+    padding: 0.2em;
   }
 
   .simple-container {
-    justify-content: space-evenly;
+    justify-content: center;
   }
 
   .simple-container:hover {
@@ -97,12 +118,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60%;
+    height: 70%;
     width: 80%;
+    margin: 1.2em;
   }
 
   .simple-prod-name {
     margin-bottom: 0;
+  }
+
+  .prod-details {
+    margin-top: 1.2em;
+  }
+
+  .low-in-stock-img {
+    position: absolute;
+    right: 45px;
+    height: 33.8px;
+    width: 30px;
   }
 
   h3 {
@@ -129,6 +162,15 @@
     .simple-container {
       height: 150px;
       width: 150px;
+      padding: 0.5em;
+    }
+
+    .prod-details {
+      margin-top: 0.85em;
+    }
+
+    .position-img {
+      margin: 0em;
     }
 
     h3 {
@@ -138,8 +180,14 @@
 
   @media (min-width: 700px) {
     .simple-container {
-      height: 300px;
-      width: 300px;
+      height: 280px;
+      width: 280px;
+    }
+
+    .low-in-stock-img {
+      right: 100px;
+      height: 50.27px;
+      width: 45px;
     }
 
     h3 {
@@ -149,15 +197,27 @@
 
   @media (min-width: 960px) {
     .simple-container {
-      height: 450px;
-      width: 450px;
+      height: 400px;
+      width: 400px;
+    }
+
+    .low-in-stock-img {
+      right: 140px;
+      height: 61.44px;
+      width: 55px;
     }
   }
 
   @media (min-width: 1280px) {
     .simple-container {
-      height: 385px;
-      width: 385px;
+      height: 365px;
+      width: 365px;
+    }
+
+    .low-in-stock-img {
+      right: 120px;
+      height: 61.44px;
+      width: 55px;
     }
   }
 
@@ -172,6 +232,12 @@
     .simple-container {
       height: 450px;
       width: 450px;
+    }
+
+    .low-in-stock-img {
+      right: 150px;
+      height: 72.61px;
+      width: 65px;
     }
   }
 </style>

@@ -70,7 +70,7 @@
 <svelte:window bind:outerWidth />
 <div class="header">
   {#if browser}
-    {#if outerWidth < 960}
+    {#if outerWidth < 1280}
       <Hamburger />
     {:else}
       <div class="left-container">
@@ -112,7 +112,7 @@
       </div>
     {/if}
   {/if}
-  {#if outerWidth < 960}
+  {#if outerWidth < 1280}
     {#if !showSearch}
       <img
         transition:fade|local

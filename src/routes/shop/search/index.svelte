@@ -35,8 +35,18 @@
 </script>
 
 <svelte:head>
+  <title
+    >{`Enki - Search Results: ${$page.url.searchParams.get(
+      "search-term"
+    )}`}</title
+  >
   {#if data.length}
-    <meta property="og:title" content="Enki" />
+    <meta
+      property="og:title"
+      content={`Enki - Search Results: ${$page.url.searchParams.get(
+        "search-term"
+      )}`}
+    />
     <meta property="og:url" content={$page.url.toString()} />
     <meta
       property="og:image"
@@ -56,7 +66,7 @@
 <h2>
   we found {data.length} results for "{decodeURIComponent(
     $page.url.searchParams.get("search-term")
-  )}"
+  ).toLowerCase()}"
 </h2>
 {#if data.length}
   <ProductView productArr={data} />

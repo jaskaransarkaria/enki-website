@@ -26,7 +26,8 @@
 </script>
 
 <svelte:head>
-  <meta property="og:title" content="Enki" />
+  <title>{`Enki - ${productToShow[0].Name}`}</title>
+  <meta property="og:title" content={`Enki - ${productToShow[0].Name}`} />
   <meta property="og:url" content={$page.url.toString()} />
   <meta
     property="og:image"

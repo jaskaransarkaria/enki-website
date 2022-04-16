@@ -58,7 +58,8 @@
 </script>
 
 <svelte:head>
-  <meta property="og:title" content="Enki" />
+  <title>{`Enki - ${categoryToShow.Name}`}</title>
+  <meta property="og:title" content={`Enki - ${categoryToShow.Name}`} />
   <meta property="og:url" content={$page.url.toString()} />
   <meta
     property="og:image"

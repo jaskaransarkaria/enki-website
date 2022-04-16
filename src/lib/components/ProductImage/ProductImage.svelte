@@ -91,8 +91,8 @@
 
   @media (min-width: 2000px) {
     section > img {
-      max-width: 500px;
-      max-height: 350px;
+      max-width: 600px;
+      max-height: 550px;
     }
   }
 </style>

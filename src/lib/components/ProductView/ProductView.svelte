@@ -60,7 +60,6 @@
               : -1
           );
       case "price-high-low":
-        console.log("1");
         return collatedArray
           .slice()
           .sort((a, b) =>
@@ -140,7 +139,7 @@
 <div class="container">
   <div class="sort-container">
     <select name="products" id="products" bind:value={sortBy}>
-      <option selected value="alphabetically">alphabetically</option>
+      <option selected value="alphabetically">A - Z</option>
       <option value="price-high-low">price (high to low)</option>
       <option value="price-low-high">price (low to high)</option>
       <option value="in-stock">in stock</option>
@@ -208,9 +207,9 @@
 
   @media (min-width: 360px) {
     .products-container {
-      grid-auto-rows: 12em;
+      grid-auto-rows: 11.5em;
       grid-template-columns: 1fr 1fr;
-      margin: 10px;
+      margin: 5px;
     }
   }
 
@@ -223,24 +222,28 @@
 
   @media (min-width: 700px) {
     .products-container {
-      grid-auto-rows: 22em;
+      grid-auto-rows: 20em;
       grid-template-columns: 1fr 1fr;
       margin: 35px;
     }
   }
   @media (min-width: 960px) {
     .products-container {
-      grid-auto-rows: 32em;
+      grid-auto-rows: 28em;
     }
   }
   @media (min-width: 1280px) {
     .products-container {
-      grid-auto-rows: 28em;
+      grid-auto-rows: 25.5em;
       grid-template-columns: 1fr 1fr 1fr;
+      margin: 0;
+      grid-gap: 20px;
     }
   }
   @media (min-width: 1600px) {
     .products-container {
+      grid-auto-rows: 24em;
+      margin: 35px;
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
@@ -252,8 +255,9 @@
   }
   @media (min-width: 2400px) {
     .products-container {
-      grid-auto-rows: 32em;
+      grid-auto-rows: 30em;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-gap: 25px;
     }
   }
 </style>

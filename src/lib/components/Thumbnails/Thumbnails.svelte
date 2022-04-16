@@ -39,7 +39,6 @@
 
 <style>
   .is-center {
-    border: 2px solid lightgray;
     border-radius: 3px;
     display: flex;
     scroll-snap-type: x mandatory;
@@ -47,7 +46,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-self: center;
-    margin-top: 2em;
+    margin-top: 1em;
     width: 100%;
   }
 
@@ -94,8 +93,6 @@
 
   @media (min-width: 600px) {
     .is-center {
-      margin-top: none;
-      border: 2px solid lightgray;
       border-radius: 3px;
       display: flex;
       scroll-snap-type: x mandatory;
@@ -103,7 +100,6 @@
       flex-wrap: wrap;
       justify-content: center;
       align-self: center;
-      width: 10%;
     }
   }
 
@@ -111,6 +107,10 @@
     .thumbnails {
       height: 45px;
       width: 45px;
+    }
+
+    .is-center {
+      margin-top: 0em;
     }
   }
 
@@ -122,8 +122,8 @@
 
   @media (min-width: 2000px) {
     .thumbnails {
-      height: 50px;
-      width: 50px;
+      height: 90px;
+      width: 90px;
     }
   }
 </style>
