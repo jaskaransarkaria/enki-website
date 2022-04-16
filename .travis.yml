@@ -51,7 +51,7 @@ jobs:
         - npm ci
         - npm run lint
         - npx playwright install --with-deps
-        - npm run test:integration
+        - npm run test:integration:ci
     - stage: "Build and Push Docker Image"
       script:
         - npm ci
