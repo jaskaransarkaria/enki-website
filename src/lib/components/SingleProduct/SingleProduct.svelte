@@ -50,7 +50,7 @@
         <div style="position: relative">
           <img
             class="low-in-stock-img"
-            src="/static/low_in_stock_teal_1.png"
+            src="https://enki.imgix.net/low_in_stock_teal_1.png"
             alt="this product is low in stock"
           />
         </div>
@@ -59,7 +59,7 @@
         <div style="position: relative">
           <img
             class="low-in-stock-img"
-            src="/static/out_of_stock_orange.png"
+            src="https://enki.imgix.net/out_of_stock_orange.png"
             alt="this product is out of stock"
           />
         </div>
