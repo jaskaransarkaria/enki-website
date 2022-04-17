@@ -9,6 +9,10 @@
   export let productDescription: string;
   export let isMobile: boolean;
 
+  const treatedProductDescription = productDescription
+    .split(/\n|\r\n/g)
+    .map((v: string) => ({ text: v }));
+
   const handleWindowKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       showFullScreen = false;
@@ -54,7 +58,9 @@
         </h4>
       </div>
     </div>
-    <h4 class="description">{`${productDescription}`}</h4>
+    {#each treatedProductDescription as { text }}
+      <h4 class="description">{text}</h4>
+    {/each}
   </div>
 {:else}
   <div class="details-container">
@@ -72,7 +78,9 @@
     <div class="detailed-products-footer">
       <h2>{product.Name}</h2>
       <h4>{`£${product.SalePrice}`}</h4>
-      <h4 class="description">{`${productDescription}`}</h4>
+      {#each treatedProductDescription as { text }}
+        <h4 class="description">{text}</h4>
+      {/each}
       <h5>
         {`${
           product.CurrentStock <= 0
@@ -142,9 +150,9 @@
     border-radius: 0.25em;
     margin: 4%;
     align-items: center;
-    width: 40%;
-    height: 65%;
-    top: 25%;
+    width: 45vw;
+    height: 45vw;
+    top: 40%;
     transform: translateY(-50%);
   }
 
@@ -153,6 +161,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
     z-index: 101;
     height: 100vh;
     width: 100vw;
@@ -263,6 +272,14 @@
 
     h2 {
       margin-bottom: 0em;
+    }
+    .details-container {
+      align-items: center;
+      justify-content: center;
+    }
+
+    .detailed-products-footer {
+      width: 30%;
     }
   }
 </style>

@@ -62,6 +62,7 @@
     <img
       src={`https://enki.imgix.net/${product.Id}-0?q=100`}
       alt={`${product.Name} image 1`}
+      bind:this={detailedImgArr[0]}
     />
   </section>
 {/if}
