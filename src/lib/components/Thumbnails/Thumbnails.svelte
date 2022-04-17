@@ -18,6 +18,7 @@
       SwipeComp.goTo(activeItem);
     }
   };
+
   $: outerWidth = 0;
 </script>
 
@@ -53,29 +54,6 @@
   .img-fluid {
     scroll-snap-align: start;
     height: auto;
-  }
-
-  .img-view {
-    position: relative;
-    height: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .img-fluid-full-screen {
-    position: relative;
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  .full-screen {
-    position: absolute;
-    z-index: 101;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    backdrop-filter: blur(2.5px);
   }
 
   .thumbnails {

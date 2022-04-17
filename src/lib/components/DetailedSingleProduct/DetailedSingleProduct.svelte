@@ -9,6 +9,17 @@
   export let productDescription: string;
   export let isMobile: boolean;
 
+  const handleWindowKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      showFullScreen = false;
+    }
+  };
+
+  let detailedImgArr: HTMLImageElement[] = new Array(
+    product.ProductImages.length
+  ).fill(undefined) as HTMLImageElement[];
+  let showFullScreen = false;
+  let clientWidth: number = 0;
   let SwipeComp: any = undefined;
   let activeItem = 0;
 
@@ -16,7 +27,11 @@
   $: outerWidth = 0;
 </script>
 
-<svelte:window bind:outerHeight bind:outerWidth />
+<svelte:window
+  bind:outerHeight
+  bind:outerWidth
+  on:keydown={handleWindowKeyDown}
+/>
 {#if isMobile}
   <div class="details-container">
     {#if product.ProductImages}
@@ -45,7 +60,10 @@
   <div class="details-container">
     {#if product.ProductImages?.length}
       <div class="desktop-left-container">
-        <div class="desktop-img-container">
+        <div
+          class="desktop-img-container"
+          on:click={() => (showFullScreen = true)}
+        >
           <ProductImage {product} bind:activeItem bind:SwipeComp />
         </div>
         <Thumbnails {product} bind:activeItem bind:SwipeComp />
@@ -68,6 +86,21 @@
     </div>
   </div>
 {/if}
+{#if showFullScreen}
+  <div class="full-screen">
+    <div class="img-view">
+      <div style="width: {clientWidth ? clientWidth + 'px' : '600px'}">
+        <ProductImage
+          {product}
+          bind:activeItem
+          bind:SwipeComp
+          bind:detailedImgArr
+          bind:clientWidth
+        />
+      </div>
+    </div>
+  </div>
+{/if}
 
 <style>
   h2,
@@ -86,7 +119,6 @@
     flex-direction: column;
     align-items: center;
     align-self: center;
-    justify-content: center;
     border-radius: 0.25em;
     width: 100%;
     height: 100%;
@@ -99,6 +131,32 @@
     justify-self: auto;
     text-align: center;
     cursor: auto;
+  }
+
+  .img-view {
+    position: relative;
+    display: flex;
+    background: white;
+    justify-content: space-around;
+    box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
+    border-radius: 0.25em;
+    margin: 4%;
+    align-items: center;
+    width: 40%;
+    height: 65%;
+    top: 25%;
+    transform: translateY(-50%);
+  }
+
+  .full-screen {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(2.5px);
   }
 
   .detailed-products-footer {

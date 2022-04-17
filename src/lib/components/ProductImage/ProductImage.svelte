@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { afterUpdate } from "svelte";
+
   import { Swipe, SwipeItem } from "svelte-swipe";
   import { fade } from "svelte/transition";
 
@@ -7,6 +9,8 @@
   export let product: Product;
   export let activeItem = 0;
   export let SwipeComp: any;
+  export let detailedImgArr: HTMLImageElement[] = [];
+  export let clientWidth;
 
   let swipeHolderHeight = 0;
 
@@ -18,9 +22,13 @@
     defaultIndex: activeItem,
   };
 
-  function heightChanged({ detail }) {
+  const heightChanged = ({ detail }) => {
     swipeHolderHeight = detail.height;
-  }
+  };
+
+  afterUpdate(() => {
+    clientWidth = detailedImgArr[activeItem]?.clientWidth;
+  });
 </script>
 
 {#if product?.ProductImages.length > 1}
@@ -42,6 +50,7 @@
             <img
               src={`https://enki.imgix.net/${product.Id}-${idx}?q=100`}
               alt={`${product.Name} image ${idx + 1}`}
+              bind:this={detailedImgArr[idx]}
             />
           </section>
         </SwipeItem>
