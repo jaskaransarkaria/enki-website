@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { clickOutside } from "$lib/utils/clickOutside";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
   import ProductImage from "$lib/components/ProductImage/ProductImage.svelte";
   import Thumbnails from "$lib/components/Thumbnails/Thumbnails.svelte";
@@ -26,6 +27,7 @@
   let clientWidth: number = 0;
   let SwipeComp: any = undefined;
   let activeItem = 0;
+  let visible = 0;
 
   $: outerHeight = 0;
   $: outerWidth = 0;
@@ -35,6 +37,11 @@
   bind:outerHeight
   bind:outerWidth
   on:keydown={handleWindowKeyDown}
+  on:click={() => {
+    if (showFullScreen) {
+      visible += 1;
+    }
+  }}
 />
 {#if isMobile}
   <div class="details-container">
@@ -68,7 +75,11 @@
       <div class="desktop-left-container">
         <div
           class="desktop-img-container"
-          on:click={() => (showFullScreen = true)}
+          on:click={() => {
+            showFullScreen = true;
+            visible += 1;
+            window.scrollTo(0, 0);
+          }}
         >
           <ProductImage {product} bind:activeItem bind:SwipeComp />
         </div>
@@ -97,7 +108,16 @@
 {#if showFullScreen}
   <div class="full-screen">
     <div class="img-view">
-      <div style="width: {clientWidth ? clientWidth + 'px' : '600px'}">
+      <div
+        style="width: {clientWidth ? clientWidth + 'px' : '600px'}"
+        use:clickOutside={{
+          enabled: showFullScreen && visible > 1,
+          cb: () => {
+            showFullScreen = false;
+            visible = 0;
+          },
+        }}
+      >
         <ProductImage
           {product}
           bind:activeItem
