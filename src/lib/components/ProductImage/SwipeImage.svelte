@@ -33,12 +33,6 @@
       autoHeight={true}
       zoom={setImgWidth ? true : false}
       mousewheel={setImgWidth ? true : false}
-      on:slideChange={(e) => {
-        console.log("slide change", e.detail[0]);
-      }}
-      on:swiper={(e) => {
-        console.log(e.detail[0]);
-      }}
     >
       {#each product.ProductImages as _, idx ("main" + idx)}
         <SwiperSlide>
