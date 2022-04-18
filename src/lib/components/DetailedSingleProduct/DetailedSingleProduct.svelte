@@ -118,18 +118,18 @@
 {/if}
 {#if showFullScreen}
   <div class="full-screen">
-    <div class="img-view">
-      <div
-        style="width: {clientWidth ? clientWidth + 'px' : '600px'}"
-        use:clickOutside={{
-          enabled: showFullScreen && visible > 1,
-          cb: () => {
-            showFullScreen = false;
-            visible = 0;
-          },
-        }}
-      >
-        <SwipeImage {product} setImgWidth={`&w=${innerWidth * (35 / 100)}`} />
+    <div
+      class="img-view"
+      use:clickOutside={{
+        enabled: showFullScreen && visible > 1,
+        cb: () => {
+          showFullScreen = false;
+          visible = 0;
+        },
+      }}
+    >
+      <div class="full-sreen-img-view">
+        <SwipeImage {product} setImgWidth={innerWidth * (35 / 100)} />
       </div>
     </div>
   </div>
@@ -171,7 +171,8 @@
     position: relative;
     display: flex;
     background: white;
-    justify-content: space-around;
+    width: 80%;
+    justify-content: center;
     box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
     border-radius: 0.25em;
     margin: 4%;
@@ -192,6 +193,12 @@
     height: 100vh;
     width: 100vw;
     backdrop-filter: blur(2.5px);
+  }
+
+  .full-sreen-img-view {
+    display: flex;
+    width: 80%;
+    align-items: center;
   }
 
   .detailed-products-footer {
