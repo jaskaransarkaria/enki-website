@@ -30,8 +30,6 @@
   afterUpdate(() => {
     clientWidth = detailedImgArr[activeItem]?.clientWidth;
   });
-
-  console.log("h", setImgWidth);
 </script>
 
 {#if product?.ProductImages.length > 1}
