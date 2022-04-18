@@ -125,7 +125,6 @@
     >
       {#if isMobile}
         <MobileClose
-          class={showFullScreen ? "open" : ""}
           cb={() => {
             showFullScreen = false;
             visible = 0;
@@ -135,7 +134,7 @@
         />
         <SwipeImage {product} setImgWidth={innerWidth * (100 / 100)} />
       {:else}
-        <div class="full-sreen-img-view">
+        <div class="full-screen-img-view">
           <SwipeImage {product} setImgWidth={innerWidth * (35 / 100)} />
         </div>
       {/if}
@@ -333,9 +332,9 @@
     }
 
     .img-view {
-      width: 35vw;
-      height: 35vw;
-      top: 35%;
+      width: 65vw;
+      height: 40vw;
+      top: 40%;
     }
   }
 

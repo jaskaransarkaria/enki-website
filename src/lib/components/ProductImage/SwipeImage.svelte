@@ -26,7 +26,7 @@
       modules={[Pagination, A11y, Keyboard, Zoom, Mousewheel]}
       spaceBetween={50}
       slidesPerView={1}
-      pagination={{ clickable: true }}
+      pagination={{ clickable: true, el: ".custom-pagination-div" }}
       keyboard={{ enabled: true }}
       grabCursor={true}
       centeredSlides={true}
@@ -43,6 +43,7 @@
             alt={`${product.Name} image ${idx}`}
             bind:this={swipeImgArr[idx]}
           />
+          <div class="custom-pagination-div" />
         </SwiperSlide>
       {/each}
     </Swiper>
@@ -60,6 +61,11 @@
     max-width: 100%;
   }
 
+  .custom-pagination-div {
+    display: flex;
+    justify-content: center;
+  }
+
   :global(.swiper-pagination-bullet-active) {
     background-color: #ff6600;
     opacity: 1;
@@ -67,5 +73,11 @@
 
   img {
     max-width: 100%;
+  }
+
+  @media (min-width: 1280px) {
+    .swiper {
+      max-width: 80%;
+    }
   }
 </style>
