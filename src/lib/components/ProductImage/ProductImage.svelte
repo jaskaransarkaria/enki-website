@@ -11,6 +11,7 @@
   export let SwipeComp: any;
   export let detailedImgArr: HTMLImageElement[] = [];
   export let clientWidth;
+  export let setImgWidth = "";
 
   let swipeHolderHeight = 0;
 
@@ -29,6 +30,8 @@
   afterUpdate(() => {
     clientWidth = detailedImgArr[activeItem]?.clientWidth;
   });
+
+  console.log("h", setImgWidth);
 </script>
 
 {#if product?.ProductImages.length > 1}
@@ -48,7 +51,8 @@
         >
           <section>
             <img
-              src={`https://enki.imgix.net/${product.Id}-${idx}?q=100`}
+              class={setImgWidth ? "full-screen-view" : ""}
+              src={`https://enki.imgix.net/${product.Id}-${idx}?q=100${setImgWidth}`}
               alt={`${product.Name} image ${idx + 1}`}
               bind:this={detailedImgArr[idx]}
             />
@@ -80,6 +84,11 @@
   .swipe-holder {
     width: 100%;
     cursor: grab;
+  }
+
+  .full-screen-view {
+    max-width: 30vw;
+    max-height: 30vw;
   }
 
   @media (min-width: 960px) {

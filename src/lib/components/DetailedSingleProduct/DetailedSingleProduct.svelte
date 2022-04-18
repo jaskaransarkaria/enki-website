@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from "$app/env";
   import { clickOutside } from "$lib/utils/clickOutside";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
   import ProductImage from "$lib/components/ProductImage/ProductImage.svelte";
@@ -31,11 +32,13 @@
 
   $: outerHeight = 0;
   $: outerWidth = 0;
+  $: innerWidth = 0;
 </script>
 
 <svelte:window
   bind:outerHeight
   bind:outerWidth
+  bind:innerWidth
   on:keydown={handleWindowKeyDown}
   on:click={() => {
     if (showFullScreen) {
@@ -46,7 +49,17 @@
 {#if isMobile}
   <div class="details-container">
     {#if product.ProductImages}
-      <ProductImage {product} bind:activeItem bind:SwipeComp />
+      <div
+        class="mobile-img-container"
+        style="width: {clientWidth ? clientWidth + 'px' : '90vw'}"
+        on:click={() => {
+          showFullScreen = true;
+          visible += 1;
+          window.scrollTo(0, 0);
+        }}
+      >
+        <ProductImage {product} bind:activeItem bind:SwipeComp />
+      </div>
       <Thumbnails {product} bind:activeItem bind:SwipeComp />
     {/if}
     <div class="detailed-products-footer">
@@ -75,7 +88,7 @@
       <div class="desktop-left-container">
         <div
           class="desktop-img-container"
-          on:click={() => {
+          on:dblclick={() => {
             showFullScreen = true;
             visible += 1;
             window.scrollTo(0, 0);
@@ -124,6 +137,7 @@
           bind:SwipeComp
           bind:detailedImgArr
           bind:clientWidth
+          setImgWidth={`&w=${innerWidth * (35 / 100)}`}
         />
       </div>
     </div>
@@ -138,6 +152,7 @@
   }
 
   .description {
+    margin-bottom: 0;
     font-weight: lighter;
     margin-top: 0em;
   }
@@ -170,9 +185,9 @@
     border-radius: 0.25em;
     margin: 4%;
     align-items: center;
-    width: 45vw;
-    height: 45vw;
-    top: 40%;
+    width: 35vw;
+    height: 35vw;
+    top: 35%;
     transform: translateY(-50%);
   }
 
@@ -198,6 +213,11 @@
 
   .detailed-products-footer > * {
     display: inline;
+  }
+
+  .mobile-img-container {
+    display: flex;
+    justify-content: center;
   }
 
   .mobile-details {
@@ -293,6 +313,7 @@
     h2 {
       margin-bottom: 0em;
     }
+
     .details-container {
       align-items: center;
       justify-content: center;
@@ -300,6 +321,13 @@
 
     .detailed-products-footer {
       width: 30%;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .details-container {
+      align-items: flex-start;
+      justify-content: center;
     }
   }
 </style>
