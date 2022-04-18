@@ -222,7 +222,7 @@
 
   .mobile-details {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
   }
@@ -307,7 +307,6 @@
   @media (min-width: 1280px) {
     h5 {
       font-size: 1em;
-      margin-top: 0em;
     }
 
     h2 {
