@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { browser } from "$app/env";
   import { clickOutside } from "$lib/utils/clickOutside";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
-  import ProductImage from "$lib/components/ProductImage/ProductImage.svelte";
+  import SwipeImage from "$lib/components/ProductImage/SwipeImage.svelte";
   import Thumbnails from "$lib/components/Thumbnails/Thumbnails.svelte";
 
   import type { Product } from "$lib/types/product";
@@ -58,7 +57,7 @@
           window.scrollTo(0, 0);
         }}
       >
-        <ProductImage {product} bind:activeItem bind:SwipeComp />
+        <SwipeImage {product} />
       </div>
       <Thumbnails {product} bind:activeItem bind:SwipeComp />
     {/if}
@@ -88,15 +87,14 @@
       <div class="desktop-left-container">
         <div
           class="desktop-img-container"
-          on:dblclick={() => {
+          on:click={() => {
             showFullScreen = true;
             visible += 1;
             window.scrollTo(0, 0);
           }}
         >
-          <ProductImage {product} bind:activeItem bind:SwipeComp />
+          <SwipeImage {product} />
         </div>
-        <Thumbnails {product} bind:activeItem bind:SwipeComp />
       </div>
     {/if}
     <div class="detailed-products-footer">
@@ -131,14 +129,7 @@
           },
         }}
       >
-        <ProductImage
-          {product}
-          bind:activeItem
-          bind:SwipeComp
-          bind:detailedImgArr
-          bind:clientWidth
-          setImgWidth={`&w=${innerWidth * (35 / 100)}`}
-        />
+        <SwipeImage {product} setImgWidth={`&w=${innerWidth * (35 / 100)}`} />
       </div>
     </div>
   </div>
@@ -283,6 +274,7 @@
     .desktop-img-container {
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: space-around;
       box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
       border-radius: 0.25em;

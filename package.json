@@ -49,7 +49,7 @@
     "lodash-es": "^4.17.21",
     "lodash.groupby": "^4.6.0",
     "sirv-cli": "^1.0.0",
-    "svelte-swipe": "^1.8.2"
+    "swiper": "^8.1.1"
   },
   "husky": {
     "hooks": {
