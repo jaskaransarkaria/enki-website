@@ -1,4 +1,5 @@
 <script lang="ts">
+  import confetti from "canvas-confetti";
   import { browser } from "$app/env";
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
@@ -24,6 +25,18 @@
         if (browser) {
           basket.set(updateBasket(product, $basket, "incrementQuantity"));
           addedToBasket = true;
+          confetti({
+            angle: 250,
+            particleCount: 100,
+            startVelocity: 30,
+            shapes: ["circle", "circle", "square"],
+            spread: 180,
+            drift: 0,
+            origin: {
+              x: 1,
+              y: 0,
+            },
+          });
         }
       }}
     >
