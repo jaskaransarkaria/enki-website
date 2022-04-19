@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { beforeUpdate } from "svelte";
   import { browser } from "$app/env";
   import { groupBy } from "lodash-es";
   import { fade } from "svelte/transition";
@@ -73,9 +74,6 @@
                 : 1
               : -1
           );
-      case "alphabetically":
-        browser && window.sessionStorage.setItem("filter", "alphabetically");
-        return collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
       case "price-low-high":
         browser && window.sessionStorage.setItem("filter", "price-low-high");
         return collatedArray
@@ -88,6 +86,7 @@
               : -1
           );
       default:
+        browser && window.sessionStorage.setItem("filter", "alphabetically");
         return collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
     }
   };
@@ -135,6 +134,8 @@
     groupedVariantProducts
   );
 
+  beforeUpdate(() => (sortBy = window.sessionStorage.getItem("filter")));
+
   $: sortedCollatedArray = sortArray(sortBy, collatedArray);
 
   $: outerWidth = 0;
@@ -145,7 +146,7 @@
 <div class="container">
   <div class="sort-container">
     <select name="products" id="products" bind:value={sortBy}>
-      <option selected value="alphabetically">A - Z</option>
+      <option value="alphabetically">A - Z</option>
       <option value="price-high-low">price (high to low)</option>
       <option value="price-low-high">price (low to high)</option>
       <option value="in-stock">in stock</option>
