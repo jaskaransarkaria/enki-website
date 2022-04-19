@@ -10,7 +10,6 @@
 
   export let categoryFn: BaseFn;
   export let showBreadcrumbs = true;
-  export let showSwitch = true;
 
   export let categoryToShow: Category | undefined;
 
@@ -45,8 +44,4 @@
     />
   {/if}
 {/if}
-<ProductsInCategory
-  categoryId={categoryToShow?.Id}
-  {variantCategories}
-  {showSwitch}
-/>
+<ProductsInCategory categoryId={categoryToShow?.Id} {variantCategories} />

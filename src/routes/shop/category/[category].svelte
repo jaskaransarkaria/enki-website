@@ -52,7 +52,7 @@
   import CategoryView from "$lib/components/CategoryView/CategoryView.svelte";
   import type { Base } from "$lib/types/base";
 
-  export let categoryToShow: Category;
+  export let categoryToShow: Category = { Id: 0, Name: "" } as Category;
 
   const selectCategory = (category: Base) => `/shop/category/${category.Id}`;
 </script>

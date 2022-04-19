@@ -64,7 +64,7 @@
       Have a ring you've loved for such a long time that the shank has worn away
       to nothing? We hate to see jewellery thrown away, bring it in and we’ll
       get it back to its former glory. We can even create a new partner for a
-      lonely earring! Click here to get in touch.
+      lonely earring! Click <a href="/contact">here</a> to get in touch.
     </p>
     <h2>Testimonials</h2>
     <div class="testimonials-container">

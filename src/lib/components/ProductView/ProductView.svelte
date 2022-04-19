@@ -10,7 +10,9 @@
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
 
-  let sortBy: string;
+  let sortBy: string = browser
+    ? window.sessionStorage.getItem("filter")
+    : "alphabetically";
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
   let groupedVariantProducts: Array<readonly Product[]>;
@@ -50,6 +52,7 @@
   ) => {
     switch (sortBy) {
       case "in-stock":
+        browser && window.sessionStorage.setItem("filter", "in-stock");
         return collatedArray
           .slice()
           .sort((a, b) =>
@@ -60,6 +63,7 @@
               : -1
           );
       case "price-high-low":
+        browser && window.sessionStorage.setItem("filter", "price-high-low");
         return collatedArray
           .slice()
           .sort((a, b) =>
@@ -70,8 +74,10 @@
               : -1
           );
       case "alphabetically":
+        browser && window.sessionStorage.setItem("filter", "alphabetically");
         return collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
       case "price-low-high":
+        browser && window.sessionStorage.setItem("filter", "price-low-high");
         return collatedArray
           .slice()
           .sort((a, b) =>
@@ -210,6 +216,7 @@
       grid-auto-rows: 11.5em;
       grid-template-columns: 1fr 1fr;
       margin: 5px;
+      grid-gap: 10px;
     }
   }
 

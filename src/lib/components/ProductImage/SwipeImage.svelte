@@ -57,7 +57,6 @@
 
 <style>
   .swiper {
-    height: auto;
     max-width: 100%;
   }
 
@@ -72,6 +71,7 @@
   }
 
   img {
+    max-height: 99%;
     max-width: 100%;
   }
 

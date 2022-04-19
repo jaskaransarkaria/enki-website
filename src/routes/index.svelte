@@ -55,6 +55,12 @@
     property="og:image"
     content="https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress"
   />
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#008080" />
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#008080" />
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#4285f4" />
 </svelte:head>
 
 {#if browser}
