@@ -8,7 +8,7 @@ export const searchProducts = (
     "Name" in obj
       ? (obj?.Name.toLowerCase().match(prodToFind) ||
           obj?.Description.toLowerCase().match(prodToFind) ||
-          obj?.ProductDetails.DetailedDescription.toLowerCase().match(
+          obj?.ProductDetails?.DetailedDescription.toLowerCase().match(
             prodToFind
           )) &&
         obj.SellOnWeb
