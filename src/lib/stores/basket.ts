@@ -8,6 +8,8 @@ export interface BasketProduct {
   quantity: number;
   price: number;
   currentStock: number;
+  giftWrap: boolean;
+  giftDescription: string;
 }
 
 export const basket: Writable<BasketProduct[]> = writable(

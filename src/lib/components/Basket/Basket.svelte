@@ -8,10 +8,23 @@
   let basketTotalArr: { total: number }[];
   let total: string;
   let loading = false;
+  let giftWrap: HTMLInputElement[] = [];
+
+  const GIFT_WRAP_PRICE = 0.95;
+
+  const addGiftWrapping = (i: number) => {
+    $basket[i].price += GIFT_WRAP_PRICE;
+    $basket[i].giftWrap = true;
+  };
+
+  const removeGiftWrapping = (i: number) => {
+    $basket[i].price -= GIFT_WRAP_PRICE;
+    $basket[i].giftWrap = false;
+  };
 
   $: {
     basketTotalArr = $basket.map((basketItem) => ({
-      total: (basketItem.price * 100 * basketItem.quantity) / 100,
+      total: (basketItem?.price * 100 * basketItem?.quantity) / 100,
     }));
     total = basketTotalArr
       .reduce((acc: number, cur: { total: number }) => cur.total + acc, 0)
@@ -19,13 +32,13 @@
   }
 
   $: outerWidth = 0;
-  $: isMobile = outerWidth < 960 ? true : false;
+  $: isMobile = outerWidth < 1280 ? true : false;
 </script>
 
 <svelte:window bind:outerWidth />
 <div class="container" style={`cursor: ${loading ? "wait" : "default"}`}>
   {#if $basket.length}
-    {#each $basket as obj (obj.id)}
+    {#each $basket as obj, i (obj.id)}
       <div class={isMobile ? "mobile-product" : "product"} in:fade>
         <img
           src={`https://enki.imgix.net/${obj.id}-0?auto=format,compress`}
@@ -44,10 +57,36 @@
           >
             <div class={isMobile ? "mobile-quantity" : "quantity"}>
               <BasketCounter productObj={obj} />
+              <br />
             </div>
-            <h4 class={isMobile ? "mobile-product-total" : "product-total"}>
-              {`£${((obj.price * 100 * obj.quantity) / 100).toFixed(2)}`}
-            </h4>
+            {#if giftWrap[i] && giftWrap[i].checked}
+              <textarea
+                maxlength="500"
+                placeholder="Add a message for your gift here..."
+                bind:value={obj.giftDescription}
+              />
+            {/if}
+            <div class="price">
+              <h4 class={isMobile ? "mobile-product-total" : "product-total"}>
+                {`£${((obj.price * 100 * obj.quantity) / 100).toFixed(2)}`}
+              </h4>
+              <div class="gift-wrapping">
+                <label for="gift-wrap"
+                  >Gift Wrap for £{GIFT_WRAP_PRICE}
+                  <input
+                    type="checkbox"
+                    id="gift-wrap"
+                    name="gift-wrap"
+                    value="true"
+                    bind:this={giftWrap[i]}
+                    on:change={() =>
+                      giftWrap[i]?.checked
+                        ? addGiftWrapping(i)
+                        : removeGiftWrapping(i)}
+                  />
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -138,6 +177,17 @@
     text-align: left;
   }
 
+  .price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .gift-wrapping {
+    margin-top: 1em;
+    text-align: center;
+  }
+
   .total {
     width: 55%;
     display: flex;
@@ -166,12 +216,17 @@
     flex: 0 0 20%;
   }
 
+  textarea {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   h2,
   h4 {
     margin-top: 1em;
     margin-bottom: 0;
   }
-
   .checkout {
     display: flex;
     flex-direction: column;
@@ -188,7 +243,6 @@
   @media (min-width: 960px) {
     .product-img {
       width: 174px;
-      flex: 0 0 174px;
     }
 
     .product {

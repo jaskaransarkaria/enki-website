@@ -16,6 +16,8 @@ const removeItemFromBasket = (
           quantity: list[listIndx].quantity - 1,
           price: list[listIndx].price,
           currentStock: list[listIndx].currentStock,
+          giftWrap: false,
+          giftDescription: "",
         },
         ...list.slice(listIndx + 1),
       ];
@@ -31,6 +33,8 @@ const addItemToBasket = (
     quantity: list[listIndx].quantity + 1,
     price: list[listIndx].price,
     currentStock: list[listIndx].currentStock,
+    giftWrap: false,
+    giftDescription: "",
   },
   ...list.slice(listIndx + 1),
 ];
@@ -40,11 +44,13 @@ const addNewItemToBasket = (
   list: BasketProduct[]
 ): BasketProduct[] => [
   {
-    id: product.Id.toString(),
-    name: product.Name,
+    id: product?.Id.toString(),
+    name: product?.Name,
     quantity: 1,
-    price: product.SalePrice,
-    currentStock: product.CurrentStock,
+    price: product?.SalePrice,
+    currentStock: product?.CurrentStock,
+    giftWrap: false,
+    giftDescription: "",
   },
   ...list,
 ];
