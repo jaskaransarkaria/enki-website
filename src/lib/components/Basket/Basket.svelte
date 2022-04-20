@@ -77,7 +77,7 @@
                     type="checkbox"
                     id="gift-wrap"
                     name="gift-wrap"
-                    value="true"
+                    checked={obj.giftWrap}
                     bind:this={giftWrap[i]}
                     on:change={() =>
                       giftWrap[i]?.checked
