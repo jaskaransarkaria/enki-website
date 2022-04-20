@@ -144,7 +144,7 @@
     />
     {#if showSearch}
       <div class="search-bar" style={grow($growSearch, $searchLeft)}>
-        <SearchProducts width={growSearchWidth($width)} />
+        <SearchProducts width={growSearchWidth($width)} cb={handleClick} />
       </div>
     {/if}
     <div

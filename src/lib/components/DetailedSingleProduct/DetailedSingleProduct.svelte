@@ -259,21 +259,36 @@
     }
 
     .mobile-prod-name {
-      margin-top: 0em;
+      margin-top: 2em;
     }
   }
 
   @media (min-width: 960px) {
+    h4 {
+      font-size: 1.25em;
+    }
+  }
+
+  @media (min-width: 1280px) {
     h2,
     h4,
     h5 {
       text-align: start;
     }
 
+    h5 {
+      font-size: 1em;
+    }
+
+    h2 {
+      margin-bottom: 0em;
+    }
+
     .details-container {
       flex-direction: row;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      align-items: flex-start;
       align-self: flex-start;
     }
 
@@ -297,34 +312,11 @@
     }
 
     .detailed-products-footer {
+      width: 30%;
       flex-direction: column;
-      align-items: flex-start;
       height: 100%;
       margin: 2em;
       margin-top: 4%;
-    }
-
-    h4 {
-      font-size: 1.25em;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    h5 {
-      font-size: 1em;
-    }
-
-    h2 {
-      margin-bottom: 0em;
-    }
-
-    .details-container {
-      align-items: center;
-      justify-content: center;
-    }
-
-    .detailed-products-footer {
-      width: 30%;
     }
 
     .full-screen {

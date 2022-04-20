@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   export let width: string;
+  export let cb: () => void;
 
   let searchValue = "";
 </script>
@@ -13,6 +14,7 @@
   bind:value={searchValue}
   on:keydown={async (e) => {
     if (e.key === "Enter") {
+      cb();
       await goto(
         `/shop/search?search-term=${encodeURIComponent(searchValue)}`,
         { replaceState: true }

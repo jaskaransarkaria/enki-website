@@ -16,7 +16,7 @@
       product?.ProductDetails?.DetailedDescription || product.Description;
   }
   $: outerWidth = 0;
-  $: isMobile = outerWidth < 960;
+  $: isMobile = outerWidth < 1280;
 </script>
 
 <svelte:window bind:outerWidth />
