@@ -17,7 +17,7 @@ export const DESKTOP_JEWELLERY_SERVICES_GIF =
 export const DESKTOP_JEWELLERY_SERVICES_STATIC =
   "https://enki.imgix.net/jewellery_services_2.png?auto=compress";
 export const DESKTOP_JEWELLERY_CLASSES_GIF =
-  "https://enki.imgix.net/classes_2.gif";
+  "https://enki.imgix.net/classes_3.gif";
 export const DESKTOP_JEWELLERY_CLASSES_STATIC =
   "https://enki.imgix.net/classes_2.png?auto=compress";
 export const DESKTOP_ONLINE_SHOP_GIF =
