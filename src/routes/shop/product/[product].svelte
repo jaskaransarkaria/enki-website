@@ -19,6 +19,7 @@
 
 <script lang="ts">
   import { page } from "$app/stores";
+  import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
 
@@ -42,6 +43,7 @@
 </svelte:head>
 
 {#if productToShow.length}
+  <Banner hasProducts />
   <Breadcrumbs selectedCategoryId={productToShow[0].CategoryId} />
   <div>
     <SingleProduct product={productToShow[0]} showDetailedView />

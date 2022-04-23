@@ -4,7 +4,7 @@ test("Classes Index Page", async ({ page }) => {
   await page.goto("/classes");
   await expect(page.locator(".class-button > img >> nth=0")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/group_portrait.png?auto=compress"
+    "/group_classes.png"
   );
   await page.locator(".class-button > img >> nth=0").click();
   await page.waitForURL("http://localhost:4000/classes/beginners");
@@ -12,7 +12,7 @@ test("Classes Index Page", async ({ page }) => {
   await page.waitForURL("http://localhost:4000/classes");
   await expect(page.locator(".class-button > img >> nth=1")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/wedding_portrait.png?auto=compress"
+    "/wedding_ring_classes.png"
   );
   await page.locator(".class-button > img >> nth=1").click();
   await page.waitForURL("http://localhost:4000/classes/wedding-rings");

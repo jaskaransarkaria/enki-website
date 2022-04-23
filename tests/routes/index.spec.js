@@ -39,27 +39,26 @@ test.describe("Mobile Home Page", () => {
       "scroll"
     );
 
-    await expect(page.locator("img.mobile-online-shop")).toHaveAttribute(
+    await expect(page.locator("img.mobile-online-shop-img")).toHaveAttribute(
       "src",
       MOBILE_ONLINE_SHOP
     );
 
-    await expect(page.locator("img.mobile-repairs-and-comms")).toHaveAttribute(
-      "src",
-      MOBILE_JEWELLERY_SERVICES
-    );
+    await expect(
+      page.locator("img.mobile-repairs-and-comms-img")
+    ).toHaveAttribute("src", MOBILE_JEWELLERY_SERVICES);
 
-    await expect(page.locator("img.mobile-classes")).toHaveAttribute(
+    await expect(page.locator("img.mobile-classes-img")).toHaveAttribute(
       "src",
       MOBILE_JEWELLERY_CLASSES
     );
 
-    await expect(page.locator("img.mobile-contact-us")).toHaveAttribute(
+    await expect(page.locator("img.mobile-contact-us-img")).toHaveAttribute(
       "src",
       MOBILE_CONTACT_US
     );
 
-    await expect(page.locator("img.mobile-about-us")).toHaveAttribute(
+    await expect(page.locator("img.mobile-about-us-img")).toHaveAttribute(
       "src",
       MOBILE_ABOUT_US
     );

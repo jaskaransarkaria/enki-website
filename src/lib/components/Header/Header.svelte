@@ -118,7 +118,7 @@
     {#if !showSearch}
       <img
         transition:fade|local
-        src="https://enki.imgix.net/header_1.png?auto=format,compress"
+        src="https://enki.imgix.net/header_1.png?auto=compress"
         alt="Enki"
         loading="eager"
         class="enki-logo"
@@ -128,7 +128,7 @@
   {:else}
     <img
       transition:fade|local
-      src="https://enki.imgix.net/header_1.png?auto=format,compress"
+      src="https://enki.imgix.net/header_1.png?auto=compress"
       alt="Enki"
       loading="eager"
       class="enki-logo"
@@ -351,7 +351,7 @@
 
   @media (min-width: 1280px) {
     .header {
-      height: 65px;
+      height: 75px;
     }
 
     .basket-icon,
@@ -372,10 +372,6 @@
   }
 
   @media (min-width: 1960px) {
-    .header {
-      height: 75px;
-    }
-
     .basket-icon,
     .search-icon {
       width: 45px;

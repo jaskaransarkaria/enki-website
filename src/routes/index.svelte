@@ -16,7 +16,6 @@
 </script>
 
 <script lang="ts">
-  import { goto } from "$app/navigation";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import {
     DESKTOP_ABOUT_STATIC,
@@ -81,36 +80,41 @@
     {#if isMobile}
       <ScrollDown />
       <div class="mobile-button-container">
-        <img
-          class="mobile-online-shop"
-          src={MOBILE_ONLINE_SHOP}
-          alt="online shop button"
-          on:click={() => goto("/shop")}
-        />
-        <img
-          class="mobile-repairs-and-comms"
-          src={MOBILE_JEWELLERY_SERVICES}
-          alt="jewellery services button"
-          on:click={() => goto("/repairs")}
-        />
-        <img
-          class="mobile-classes"
-          src={MOBILE_JEWELLERY_CLASSES}
-          alt="classes button"
-          on:click={() => goto("/classes")}
-        />
-        <img
-          class="mobile-contact-us"
-          src={MOBILE_CONTACT_US}
-          alt="contact us button"
-          on:click={() => goto("/contact")}
-        />
-        <img
-          class="mobile-about-us"
-          src={MOBILE_ABOUT_US}
-          alt="about us button"
-          on:click={() => goto("/about")}
-        />
+        <a sveltekit:prefetch href="/shop">
+          <img
+            class="mobile-online-shop-img"
+            src={MOBILE_ONLINE_SHOP}
+            alt="online shop button"
+          />
+        </a>
+        <a sveltekit:prefetch href="/repairs">
+          <img
+            class="mobile-repairs-and-comms-img"
+            src={MOBILE_JEWELLERY_SERVICES}
+            alt="jewellery services button"
+          />
+        </a>
+        <a sveltekit:prefetch href="/classes">
+          <img
+            class="mobile-classes-img"
+            src={MOBILE_JEWELLERY_CLASSES}
+            alt="classes button"
+          />
+        </a>
+        <a sveltekit:prefetch href="/contact">
+          <img
+            class="mobile-contact-us-img"
+            src={MOBILE_CONTACT_US}
+            alt="contact us button"
+          />
+        </a>
+        <a sveltekit:prefetch href="/about">
+          <img
+            class="mobile-about-us-img"
+            src={MOBILE_ABOUT_US}
+            alt="about us button"
+          />
+        </a>
       </div>
     {:else}
       <a sveltekit:prefetch href="/repairs" class="repairs-and-comms">
@@ -122,7 +126,6 @@
           alt="repair and commissions button hover over me"
           on:mouseenter={() => (repairsAndCommissionsHover = true)}
           on:mouseleave={() => (repairsAndCommissionsHover = false)}
-          on:click={() => goto("/repairs")}
         />
       </a>
       <a sveltekit:prefetch href="/classes" class="classes">
@@ -134,7 +137,6 @@
           alt="classes button hover over me"
           on:mouseenter={() => (classesHover = true)}
           on:mouseleave={() => (classesHover = false)}
-          on:click={() => goto("/classes")}
         />
       </a>
       <a sveltekit:prefetch href="/shop" class="online-shop">
@@ -146,7 +148,6 @@
           alt="online shop button hover over me"
           on:mouseenter={() => (onlineShopHover = true)}
           on:mouseleave={() => (onlineShopHover = false)}
-          on:click={() => goto("/shop")}
         />
       </a>
       <a sveltekit:prefetch href="/about" class="about">
@@ -156,7 +157,6 @@
           alt="online shop button hover over me"
           on:mouseenter={() => (aboutHover = true)}
           on:mouseleave={() => (aboutHover = false)}
-          on:click={() => goto("/about")}
         />
       </a>
     {/if}
@@ -214,6 +214,15 @@
   .repairs-and-comms,
   .online-shop:hover {
     cursor: pointer;
+  }
+
+  .mobile-classes-img,
+  .mobile-repairs-and-comms-img,
+  .mobile-online-shop-img,
+  .mobile-contact-us-img,
+  .mobile-about-us-img {
+    height: auto;
+    max-width: 100%;
   }
 
   @media (min-width: 450px) {

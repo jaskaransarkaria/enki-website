@@ -8,7 +8,7 @@ test.describe("Header", () => {
     await expect(page.locator("#nav-icon")).toHaveClass(/(?!open)/);
     await expect(page.locator("img.enki-logo")).toHaveAttribute(
       "src",
-      "https://enki.imgix.net/header_1.png?auto=format,compress"
+      "https://enki.imgix.net/header_1.png?auto=compress"
     );
 
     await page.locator("#nav-icon").click();
@@ -130,7 +130,7 @@ test.describe("Header", () => {
 
     await expect(page.locator("img.enki-logo")).toHaveAttribute(
       "src",
-      "https://enki.imgix.net/header_1.png?auto=format,compress"
+      "https://enki.imgix.net/header_1.png?auto=compress"
     );
 
     await expect(page.locator("img.search-icon")).toHaveAttribute(
