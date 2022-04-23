@@ -17,6 +17,7 @@
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
   export let showFullPage = true;
+  export let whitelistedUserAgent = false;
 
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
@@ -61,7 +62,7 @@
   }
 </script>
 
-{#if browser}
+{#if browser || whitelistedUserAgent}
   <ul
     class={showGrid
       ? "root-categories-container"

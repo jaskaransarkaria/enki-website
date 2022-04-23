@@ -1,8 +1,18 @@
 <script context="module">
   import { browser } from "$app/env";
+  import { isWhitelistedUserAgent } from "$lib/utils/consts";
+
   // since there's no dynamic data here, we can prerender
   // it so that it gets served as a static asset in prod
   export const prerender = true;
+
+  export async function load({ session }) {
+    return {
+      props: {
+        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
+      },
+    };
+  }
 </script>
 
 <script lang="ts">
@@ -25,6 +35,8 @@
     MOBILE_LANDING_PAGE,
     MOBILE_JEWELLERY_CLASSES,
   } from "$lib/utils/consts";
+
+  export let whitelistedUserAgent: boolean;
 
   $: outerWidth = 0;
   $: outerHeight = 0;
@@ -57,7 +69,7 @@
   />
 </svelte:head>
 
-{#if browser}
+{#if browser || whitelistedUserAgent}
   <figure class={isMobile ? "mobile-container" : "container"}>
     <img
       class={isMobile ? "parallax-inside-shop" : "inside-shop"}

@@ -10,6 +10,8 @@
   import Hamburger from "$lib/components/Hamburger/Hamburger.svelte";
   import { clickOutside } from "$lib/utils/clickOutside";
 
+  export let whitelistedUserAgent: boolean;
+
   const lessThan960 = 150;
   const moreThan960 = 300;
 
@@ -69,7 +71,7 @@
 
 <svelte:window bind:outerWidth />
 <div class="header">
-  {#if browser}
+  {#if browser || whitelistedUserAgent}
     {#if outerWidth < 1280}
       <Hamburger />
     {:else}

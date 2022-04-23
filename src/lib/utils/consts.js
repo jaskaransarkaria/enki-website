@@ -27,3 +27,10 @@ export const DESKTOP_ONLINE_SHOP_STATIC =
 export const DESKTOP_ABOUT_GIF = "https://enki.imgix.net/about_us_1.gif";
 export const DESKTOP_ABOUT_STATIC =
   "https://enki.imgix.net/about_us_1.png?auto=compress";
+
+const whitelistedUserAgent = ["GoogleBot"];
+
+export const isWhitelistedUserAgent = (userAgent) => {
+  console.log("use", userAgent, whitelistedUserAgent);
+  return whitelistedUserAgent.includes(userAgent);
+};

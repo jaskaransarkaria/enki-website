@@ -1,12 +1,13 @@
 <script context="module" lang="ts">
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
   import { refreshCategoriesFromServer } from "$lib/utils/requests";
+  import { isWhitelistedUserAgent } from "$lib/utils/consts";
   import type { Base, BaseFn } from "$lib/types/base";
 
   const orderCategories = (resp: Base[]) =>
     resp.sort((a: Base, b: Base) => (a.Name < b.Name ? -1 : 1));
 
-  export async function load({ fetch }) {
+  export async function load({ fetch, session }) {
     // pull the category data from api
     const result = await refreshCategoriesFromServer(
       `${import.meta.env.VITE_SERVER_URL}/categories`,
@@ -15,6 +16,7 @@
     return {
       props: {
         data: orderCategories([...result]),
+        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
       },
     };
   }
@@ -23,9 +25,11 @@
 <script lang="ts">
   import { page } from "$app/stores";
 
+  export let whitelistedUserAgent: boolean;
   export let data: Base[];
+
   const categoryFn: BaseFn = (category: Base) =>
     `${$page.url}/category/${category.Id}`;
 </script>
 
-<HexGrid {data} {categoryFn} />
+<HexGrid {data} {categoryFn} {whitelistedUserAgent} />

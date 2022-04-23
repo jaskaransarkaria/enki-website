@@ -1,8 +1,26 @@
+<script context="module">
+  import { isWhitelistedUserAgent } from "$lib/utils/consts";
+
+  // since there's no dynamic data here, we can prerender
+  // it so that it gets served as a static asset in prod
+  export const prerender = true;
+
+  export async function load({ session }) {
+    return {
+      props: {
+        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
+      },
+    };
+  }
+</script>
+
 <script lang="ts">
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
   import "../app.css";
+
+  export let whitelistedUserAgent: boolean;
 </script>
 
 <svelte:head>
@@ -27,7 +45,7 @@
 </svelte:head>
 
 <div class="container">
-  <Header />
+  <Header {whitelistedUserAgent} />
   <div class="header-block" />
   <slot />
   <BackToTop />

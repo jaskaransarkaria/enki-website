@@ -22,3 +22,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   return response;
 };
+
+export const getSession = async ({ request }) => {
+  return {
+    userAgent: request.headers.get("user-agent"),
+  };
+};
