@@ -7,6 +7,8 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
+
+  $: groupHover = false;
 </script>
 
 <div class="container">
@@ -14,15 +16,19 @@
     <button class="class-button">
       <img
         in:fade={{ duration: 600 }}
-        src="https://enki.imgix.net/group_portrait.png?auto=format,compress"
+        src={groupHover
+          ? "/static/group_portrait.gif"
+          : "https://enki.imgix.net/group_portrait.png?auto=compress"}
         alt="cartoon button with a hammer"
+        on:mouseenter={() => (groupHover = true)}
+        on:mouseleave={() => (groupHover = false)}
         on:click={() => goto("classes/beginners")}
       />
     </button>
     <button class="class-button">
       <img
         in:fade={{ duration: 600 }}
-        src="https://enki.imgix.net/wedding_portrait.png?auto=format,compress"
+        src="https://enki.imgix.net/wedding_portrait.png?auto=compress"
         alt="cartoon button with a boquet of flowers"
         on:click={() => goto("classes/wedding-rings")}
       />

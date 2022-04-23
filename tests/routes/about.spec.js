@@ -17,15 +17,15 @@ test("About Page", async ({ page }) => {
   expect(await page.textContent("h2")).toBe("Meet the team");
   await expect(page.locator(".card > img >> nth=0")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/faith.png?auto=format,compress"
+    "https://enki.imgix.net/faith_1.png?auto=format,compress"
   );
   await expect(page.locator(".card > img >> nth=1")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/dora.png?auto=format,compress"
+    "https://enki.imgix.net/dora_1.png?auto=format,compress"
   );
   await expect(page.locator(".card > img >> nth=2")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/ash.png?auto=format,compress"
+    "https://enki.imgix.net/ash_1.png?auto=format,compress"
   );
   await expect(page.locator(".card > p >> nth=0")).toHaveText(
     "Faith started Enki in 2017 in a small shop round the corner from the current location. She is a jeweller with over ten years of experience who specialises in repairing antique jewellery. She also loves to read and cook. She has a dog called Dodi who sometimes joins her at work! You can find her at Enki from Tuesday to Friday."

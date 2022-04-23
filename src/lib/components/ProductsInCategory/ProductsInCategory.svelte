@@ -8,6 +8,7 @@
   export let categoryId: number;
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
+  export let hasProducts = false;
 
   let productArr: readonly Product[] = [];
   const productObj: { [key: string]: { isEmpty: boolean } } = {};
@@ -48,8 +49,13 @@
   };
 
   $: refreshProductView(productArr, categoryId);
+  $: hasProducts = Boolean(
+    categoryId &&
+      ((productArr.length && !productObj?.[categoryId]?.isEmpty) ||
+        variantCategories.length)
+  );
 </script>
 
-{#if categoryId && ((productArr.length && !productObj?.[categoryId]?.isEmpty) || variantCategories.length)}
+{#if hasProducts}
   <ProductView {productArr} {showDetailedView} {variantCategories} />
 {/if}

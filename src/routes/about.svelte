@@ -45,7 +45,7 @@
     <div class="card">
       <img
         in:fade={{ duration: 600 }}
-        src="https://enki.imgix.net/faith.png?auto=format,compress"
+        src="https://enki.imgix.net/faith_1.png?auto=format,compress"
         alt="shop owner faith"
       />
       <p>
@@ -59,7 +59,7 @@
     <div class="card">
       <img
         in:fade={{ duration: 600 }}
-        src="https://enki.imgix.net/dora.png?auto=format,compress"
+        src="https://enki.imgix.net/dora_1.png?auto=format,compress"
         alt="shop owner faith"
       />
       <p>
@@ -72,7 +72,7 @@
     <div class="card">
       <img
         in:fade={{ duration: 600 }}
-        src="https://enki.imgix.net/ash.png?auto=format,compress"
+        src="https://enki.imgix.net/ash_1.png?auto=format,compress"
         alt="shop owner faith"
       />
       <p>
