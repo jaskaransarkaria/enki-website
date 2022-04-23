@@ -10,7 +10,7 @@
     );
 
     const filteredResult = result?.filter((obj) =>
-      "ProductTags" in obj
+      "ProductTags" in obj && obj?.ProductTags.length
         ? obj.ProductTags.filter(
             (tag) => tag.Name.toLowerCase() === `${params.typetag}`
           ).length
