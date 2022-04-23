@@ -1,10 +1,13 @@
 # https://www.robotstxt.org/robotstxt.html
+Sitemap: https://enki.jobspeed.uk/sitemap.xml
 User-agent: *
 Disallow: /
 
 # Certain social media sites are whitelisted to allow crawlers to access page markup when links to /images are shared. 
 User-agent: Twitterbot
 Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
 
 User-agent: facebookexternalhit
 Disallow: /payment

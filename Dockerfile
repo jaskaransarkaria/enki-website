@@ -18,7 +18,7 @@ FROM node:14.19-alpine
 WORKDIR /usr/src/app
 
 RUN mkdir build
-COPY --from=builder /usr/src/app/build/ .
+COPY --from=builder /usr/src/app/build/ build/
 COPY --from=builder /usr/src/app/package.json .
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 
@@ -34,4 +34,4 @@ ENV PORT=5000
 
 RUN  npx sitemap-generator-cli https://enki.jobspeed.uk --last-mod --change-freq monthly --priority-map "1.0"
 
-CMD ["node", "index.js" ]
+CMD ["node", "./build/index.js" ]
