@@ -21,6 +21,7 @@ RUN mkdir build
 COPY --from=builder /usr/src/app/build/ build/
 COPY --from=builder /usr/src/app/package.json build/
 COPY --from=builder /usr/src/app/node_modules build/node_modules
+COPY --from=builder /usr/src/app/run.sh build/run.sh
 
 EXPOSE 5000
 
@@ -32,6 +33,4 @@ USER node
 
 ENV PORT=5000
 
-RUN npx sitemap-generator-cli https://enki.jobspeed.uk --last-mod --change-freq monthly --priority-map "1.0" --user-agent GoogleBot
-
-CMD ["node", "./build/index.js" ]
+CMD ["./run" ]
