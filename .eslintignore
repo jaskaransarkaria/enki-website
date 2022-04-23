@@ -7,3 +7,4 @@ node_modules/
 .husky/
 build/
 tests/
+sitemap.xml.js

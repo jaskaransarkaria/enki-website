@@ -32,5 +32,6 @@ USER node
 
 ENV PORT=5000
 
+RUN  npx sitemap-generator-cli https://enki.jobspeed.uk --last-mod --change-freq monthly --priority-map "1.0"
 
 CMD ["node", "index.js" ]

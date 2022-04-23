@@ -1,3 +1,57 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /
+
+# Certain social media sites are whitelisted to allow crawlers to access page markup when links to /images are shared. 
+User-agent: Twitterbot
+Disallow: /payment
+
+User-agent: facebookexternalhit
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: baiduspider
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: baiduspider-mobile
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: bingbot
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: msnbot
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: DuckDuckGoBot
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: Googlebot
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: Googlebot-Mobile
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: slurp
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+
+User-agent: yandex
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
