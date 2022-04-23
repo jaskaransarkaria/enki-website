@@ -33,4 +33,4 @@ USER node
 
 ENV PORT=5000
 
-CMD ["./run" ]
+CMD ["./build/run" ]
