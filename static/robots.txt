@@ -2,59 +2,81 @@
 Sitemap: https://enki.jobspeed.uk/sitemap.xml
 User-agent: *
 Disallow: /
+Disallow: /*? # This will prevent crawlers from accessing any pages with query params
 
-# Certain social media sites are whitelisted to allow crawlers to access page markup when links to /images are shared. 
+# Certain social media sites are whitelisted to allow crawlers to index the
+# site 
 User-agent: Twitterbot
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
 
 User-agent: facebookexternalhit
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: baiduspider
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: baiduspider-mobile
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: bingbot
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: msnbot
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: DuckDuckGoBot
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: Googlebot
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: Googlebot-Mobile
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: slurp
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?
+
 
 User-agent: yandex
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
+Disallow: /*?

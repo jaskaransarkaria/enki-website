@@ -19,8 +19,8 @@ WORKDIR /usr/src/app
 
 RUN mkdir build
 COPY --from=builder /usr/src/app/build/ build/
-COPY --from=builder /usr/src/app/package.json .
-COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app/package.json build/
+COPY --from=builder /usr/src/app/node_modules build/node_modules
 
 EXPOSE 5000
 
