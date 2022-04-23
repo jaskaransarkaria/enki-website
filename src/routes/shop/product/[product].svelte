@@ -1,8 +1,9 @@
 <script context="module" lang="ts">
   import { refreshProductsFromServer } from "$lib/utils/requests";
+  import { isWhitelistedUserAgent } from "$lib/utils/consts";
   import type { Product } from "$lib/types/product";
 
-  export async function load({ fetch, params }) {
+  export async function load({ fetch, params, session }) {
     // pull the category data from api
     const result = await refreshProductsFromServer(
       `${import.meta.env.VITE_SERVER_URL}/product?id=${params.product}`,
@@ -12,6 +13,7 @@
     return {
       props: {
         productToShow: result,
+        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
       },
     };
   }
@@ -24,6 +26,7 @@
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
 
   export let productToShow: readonly Product[] = [];
+  export let whitelistedUserAgent: boolean;
 </script>
 
 <svelte:head>
@@ -42,7 +45,7 @@
   <meta property="og:locale" content="en_GB" />
 </svelte:head>
 
-{#if productToShow.length}
+{#if productToShow.length || whitelistedUserAgent}
   <Banner hasProducts />
   <Breadcrumbs selectedCategoryId={productToShow[0].CategoryId} />
   <div>

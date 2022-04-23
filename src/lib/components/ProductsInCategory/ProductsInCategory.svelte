@@ -9,6 +9,7 @@
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
   export let hasProducts = false;
+  export let whitelistedUserAgent = false;
 
   let productArr: readonly Product[] = [];
   const productObj: { [key: string]: { isEmpty: boolean } } = {};
@@ -57,5 +58,10 @@
 </script>
 
 {#if hasProducts}
-  <ProductView {productArr} {showDetailedView} {variantCategories} />
+  <ProductView
+    {productArr}
+    {showDetailedView}
+    {variantCategories}
+    {whitelistedUserAgent}
+  />
 {/if}

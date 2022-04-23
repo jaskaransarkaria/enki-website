@@ -10,6 +10,7 @@
   export let productArr: readonly Product[] = [];
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
+  export let whitelistedUserAgent = false;
 
   let sortBy: string = browser
     ? window.sessionStorage.getItem("filter")
@@ -153,7 +154,7 @@
     </select>
   </div>
   {#key sortBy}
-    {#if productArr && browser}
+    {#if (productArr && browser) || whitelistedUserAgent}
       <div
         in:fade={{ delay: 500 }}
         class={showDetailedView ||

@@ -52,4 +52,5 @@
   categoryId={categoryToShow?.Id}
   {variantCategories}
   bind:hasProducts
+  {whitelistedUserAgent}
 />
