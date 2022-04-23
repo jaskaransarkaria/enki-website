@@ -30,7 +30,5 @@ export const DESKTOP_ABOUT_STATIC =
 
 const whitelistedUserAgent = ["GoogleBot"];
 
-export const isWhitelistedUserAgent = (userAgent) => {
-  console.log("use", userAgent, whitelistedUserAgent);
-  return whitelistedUserAgent.includes(userAgent);
-};
+export const isWhitelistedUserAgent = (userAgent) =>
+  Boolean(whitelistedUserAgent.filter((agent) => userAgent?.includes(agent)));
