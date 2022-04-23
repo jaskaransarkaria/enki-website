@@ -11,10 +11,9 @@
 
   export let categoryFn: BaseFn;
   export let showBreadcrumbs = true;
-
   export let categoryToShow: Category | undefined;
-
   export let hasProducts = false;
+  export let whitelistedUserAgent: boolean;
 
   const removeVariantCategories = (categories: Category[]) =>
     categories?.filter((cat) => cat.NominalCode === "CATEGORY");
@@ -45,6 +44,7 @@
     <HexGrid
       data={removeVariantCategories(categoryToShow.Children)}
       {categoryFn}
+      {whitelistedUserAgent}
     />
   {/if}
 {/if}

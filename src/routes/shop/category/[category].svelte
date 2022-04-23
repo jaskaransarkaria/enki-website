@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
   import { refreshCategoryFromServer } from "$lib/utils/requests";
+  import { isWhitelistedUserAgent } from "$lib/utils/consts";
   import type { Category } from "$lib/types/category";
 
   const traverseCategoryObj = (
@@ -26,7 +27,7 @@
     }
   };
 
-  export async function load({ fetch, params }) {
+  export async function load({ fetch, params, session }) {
     // pull the category data from api
 
     const result = await refreshCategoryFromServer(
@@ -42,6 +43,7 @@
     return {
       props: {
         categoryToShow: category,
+        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
       },
     };
   }
@@ -53,6 +55,7 @@
   import type { Base } from "$lib/types/base";
 
   export let categoryToShow: Category = { Id: 0, Name: "" } as Category;
+  export let whitelistedUserAgent: boolean;
 
   const selectCategory = (category: Base) => `/shop/category/${category.Id}`;
 </script>
@@ -73,4 +76,8 @@
   <meta property="og:locale" content="en_GB" />
 </svelte:head>
 
-<CategoryView categoryFn={selectCategory} {categoryToShow} />
+<CategoryView
+  categoryFn={selectCategory}
+  {categoryToShow}
+  {whitelistedUserAgent}
+/>
