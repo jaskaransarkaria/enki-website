@@ -2,7 +2,7 @@ import fs from "fs";
 
 export async function get() {
   try {
-    const data = fs.readFileSync("sitemap.xml", "utf8");
+    const data = fs.readFileSync("src/sitemap.xml", "utf8");
 
     return {
       headers: {
