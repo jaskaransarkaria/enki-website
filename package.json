@@ -16,7 +16,7 @@
     "lint": "npm run format && eslint --fix",
     "format": "prettier --write --plugin-search-dir=. .",
     "mock-server": "mockserver -p 8080 -m tests/mocks &",
-    "sitemap-generator": "npx sitemap-generator-cli https://enki.jobspeed.uk --last-mod --change-freq daily --priority-map \"1.0\" --user-agent GoogleBot --filepath build/sitemap.xml --verbose"
+    "sitemap-generator": "npx sitemap-generator-cli https://enki.jobspeed.uk --last-mod --change-freq daily --priority-map \"1.0\" --user-agent GoogleBot --filepath src/sitemap.xml --verbose"
   },
   "devDependencies": {
     "@playwright/test": "^1.20.2",
