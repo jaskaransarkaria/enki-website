@@ -3,8 +3,12 @@
 set -eux
 
 # run website
-node ./build/index.js &
+NODE_PID=$(node ./build/index.js & echo $!)
 
 # generate the sitemap
 npx sitemap-generator-cli https://enki.jobspeed.uk --last-mod --change-freq daily --priority-map "1.0" --user-agent GoogleBot
+
+kill -9 $NODE_PID
+
+node ./build/index.js
 
