@@ -1,18 +1,20 @@
 <script lang="ts">
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
   import JewelleryView from "$lib/components/JewelleryView/JewelleryView.svelte";
-  import ProductsInCategory from "$lib/components/ProductsInCategory/ProductsInCategory.svelte";
+  import ProductView from "$lib/components/ProductView/ProductView.svelte";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
   import TagView from "$lib/components/TagView/TagView.svelte";
 
   import type { Category } from "$lib/types/category";
+  import type { Product } from "$lib/types/product";
   import type { BaseFn } from "$lib/types/base";
 
   export let categoryFn: BaseFn;
   export let showBreadcrumbs = true;
   export let categoryToShow: Category | undefined;
   export let hasProducts = false;
+  export let productArr: readonly Product[];
   export let whitelistedUserAgent: boolean;
 
   const removeVariantCategories = (categories: Category[]) =>
@@ -48,9 +50,4 @@
     />
   {/if}
 {/if}
-<ProductsInCategory
-  categoryId={categoryToShow?.Id}
-  {variantCategories}
-  bind:hasProducts
-  {whitelistedUserAgent}
-/>
+<ProductView {productArr} {variantCategories} {whitelistedUserAgent} />

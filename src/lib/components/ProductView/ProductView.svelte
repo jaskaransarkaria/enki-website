@@ -144,43 +144,45 @@
 </script>
 
 <svelte:window bind:outerWidth />
-<div class="container">
-  <div class="sort-container">
-    <select name="products" id="products" bind:value={sortBy}>
-      <option value="alphabetically">A - Z</option>
-      <option value="price-high-low">price (high to low)</option>
-      <option value="price-low-high">price (low to high)</option>
-      <option value="in-stock">in stock</option>
-    </select>
+{#if sortedCollatedArray.length}
+  <div class="container">
+    <div class="sort-container">
+      <select name="products" id="products" bind:value={sortBy}>
+        <option value="alphabetically">A - Z</option>
+        <option value="price-high-low">price (high to low)</option>
+        <option value="price-low-high">price (low to high)</option>
+        <option value="in-stock">in stock</option>
+      </select>
+    </div>
+    {#key sortBy}
+      {#if (productArr && browser) || whitelistedUserAgent}
+        <div
+          in:fade={{ delay: 500 }}
+          class={showDetailedView ||
+          (variantCategories.length +
+            nonVariantArr.length +
+            variantArr.filter(
+              (vars) => !variantCategoryIds.includes(vars.CategoryId)
+            ).length <=
+            3 &&
+            !isMobile) // if there are only 3 products then center them
+            ? "detailed-products-container"
+            : "products-container"}
+        >
+          {#each sortedCollatedArray as item (item.Id)}
+            <SingleProduct
+              variantCategory={item.Type === ItemType.VARIANT_CATEGORY
+                ? item
+                : null}
+              product={item.Type === ItemType.VARIANT_CATEGORY ? null : item}
+              {showDetailedView}
+            />
+          {/each}
+        </div>
+      {/if}
+    {/key}
   </div>
-  {#key sortBy}
-    {#if (productArr && browser) || whitelistedUserAgent}
-      <div
-        in:fade={{ delay: 500 }}
-        class={showDetailedView ||
-        (variantCategories.length +
-          nonVariantArr.length +
-          variantArr.filter(
-            (vars) => !variantCategoryIds.includes(vars.CategoryId)
-          ).length <=
-          3 &&
-          !isMobile) // if there are only 3 products then center them
-          ? "detailed-products-container"
-          : "products-container"}
-      >
-        {#each sortedCollatedArray as item (item.Id)}
-          <SingleProduct
-            variantCategory={item.Type === ItemType.VARIANT_CATEGORY
-              ? item
-              : null}
-            product={item.Type === ItemType.VARIANT_CATEGORY ? null : item}
-            {showDetailedView}
-          />
-        {/each}
-      </div>
-    {/if}
-  {/key}
-</div>
+{/if}
 
 <style>
   .sort-container {

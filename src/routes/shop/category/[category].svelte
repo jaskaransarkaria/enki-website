@@ -1,5 +1,8 @@
 <script context="module" lang="ts">
-  import { refreshCategoryFromServer } from "$lib/utils/requests";
+  import {
+    refreshCategoryFromServer,
+    refreshProductsFromServer,
+  } from "$lib/utils/requests";
   import { isWhitelistedUserAgent } from "$lib/utils/consts";
   import type { Category } from "$lib/types/category";
 
@@ -30,19 +33,27 @@
   export async function load({ fetch, params, session }) {
     // pull the category data from api
 
-    const result = await refreshCategoryFromServer(
+    const categoryResults = await refreshCategoryFromServer(
       `${import.meta.env.VITE_SERVER_URL}/category?id=${params.category}`,
+      fetch
+    );
+
+    const productResults = await refreshProductsFromServer(
+      `${import.meta.env.VITE_SERVER_URL}/products-by-category?id=${
+        params.category
+      }`,
       fetch
     );
 
     const category = traverseCategoryObj(
       parseInt(params.category, 10),
-      result[0]
+      categoryResults[0]
     );
 
     return {
       props: {
         categoryToShow: category,
+        productArr: productResults,
         whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
       },
     };
@@ -52,9 +63,12 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import CategoryView from "$lib/components/CategoryView/CategoryView.svelte";
+
+  import type { Product } from "$lib/types/product";
   import type { Base } from "$lib/types/base";
 
   export let categoryToShow: Category = { Id: 0, Name: "" } as Category;
+  export let productArr: readonly Product[];
   export let whitelistedUserAgent: boolean;
 
   const selectCategory = (category: Base) => `/shop/category/${category.Id}`;
@@ -80,4 +94,5 @@
   categoryFn={selectCategory}
   {categoryToShow}
   {whitelistedUserAgent}
+  {productArr}
 />
