@@ -53,11 +53,6 @@
     "sirv-cli": "^1.0.0",
     "swiper": "^8.1.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run sitemap-generator && npm run test:integration && git add -A ."
-    }
-  },
   "overrides": {
     "@sveltejs/vite-plugin-svelte": "1.0.0-next.40",
     "vite": "2.7.1"
