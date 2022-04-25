@@ -29,6 +29,8 @@ spec:
                 command: 
                   - "/bin/sh"
                   - "-c"
-                  - npm run sitemap-generator
+                  - |
+                    cd build
+                    npm run sitemap-generator
       imagePullSecrets:
         - name: regcred
