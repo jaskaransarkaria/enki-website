@@ -6,8 +6,8 @@
 
 <script lang="ts">
   import { fade } from "svelte/transition";
+  import GroupClass from "$lib/components/Svg/GroupClass.svelte";
 
-  $: groupHover = false;
   $: weddingHover = false;
 </script>
 
@@ -15,13 +15,7 @@
   <div class="class-pics">
     <a sveltekit:prefetch href="/classes/beginners">
       <button class="class-button">
-        <img
-          in:fade={{ duration: 600 }}
-          src={groupHover ? "/group_portrait.gif" : "/group_classes.png"}
-          alt="cartoon button with a hammer"
-          on:mouseenter={() => (groupHover = true)}
-          on:mouseleave={() => (groupHover = false)}
-        />
+        <GroupClass />
       </button>
     </a>
     <a sveltekit:prefetch href="/classes/wedding-rings">
@@ -68,6 +62,7 @@
   .class-button > img {
     width: 80%;
     padding: 5px;
+    font-family: "Welcomehome3 Regular";
   }
 
   @media (min-width: 960px) {

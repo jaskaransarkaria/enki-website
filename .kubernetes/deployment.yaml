@@ -32,7 +32,5 @@ spec:
                   - |
                     cd build
                     npm run sitemap-generator
-                    mkdir ../src
-                    cp sitemap.xml ../src/sitemap.xml
       imagePullSecrets:
         - name: regcred

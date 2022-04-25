@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("Classes Index Page", async ({ page }) => {
+test.skip("Classes Index Page", async ({ page }) => {
   await page.goto("/classes");
   await expect(page.locator(".class-button > img >> nth=0")).toHaveAttribute(
     "src",
