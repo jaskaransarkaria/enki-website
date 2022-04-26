@@ -19,6 +19,7 @@ WORKDIR /usr/src/app
 
 RUN mkdir build
 RUN mkdir src
+COPY --from=builder /usr/src/app/src/sitemap.xml src/sitemap.xml
 COPY --from=builder /usr/src/app/build/ build/
 COPY --from=builder /usr/src/app/package.json build/
 COPY --from=builder /usr/src/app/node_modules build/node_modules

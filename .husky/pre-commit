@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run lint && npm run test:integration && git add -A .
+npm run lint && npm run test:integration && npm run sitemap-generator && git add -A .
