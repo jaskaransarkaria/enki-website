@@ -14,9 +14,7 @@
 <div class="container">
   <div class="class-pics">
     <a sveltekit:prefetch href="/classes/beginners">
-      <button class="class-button">
-        <GroupClass />
-      </button>
+      <GroupClass />
     </a>
     <a sveltekit:prefetch href="/classes/wedding-rings">
       <button class="class-button">
