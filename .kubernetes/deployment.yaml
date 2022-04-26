@@ -23,5 +23,15 @@ spec:
               value: "pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp"
           ports:
             - containerPort: 5000
+          lifecycle:
+            postStart:
+              exec:
+                command: 
+                  - "/bin/sh"
+                  - "-c"
+                  - |
+                    cd build
+                    npm run sitemap-generator
+                    cp sitemap.xml ../src/sitemap.xml
       imagePullSecrets:
         - name: regcred
