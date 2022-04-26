@@ -18,13 +18,11 @@ Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
 
-
 User-agent: baiduspider
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
-
 
 User-agent: baiduspider-mobile
 Disallow: /payment
@@ -32,13 +30,11 @@ Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
 
-
 User-agent: bingbot
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
-
 
 User-agent: msnbot
 Disallow: /payment
@@ -46,13 +42,11 @@ Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
 
-
 User-agent: DuckDuckGoBot
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
-
 
 User-agent: Googlebot
 Disallow: /payment
@@ -60,13 +54,11 @@ Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
 
-
 User-agent: Googlebot-Mobile
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
-
 
 User-agent: slurp
 Disallow: /payment
@@ -74,8 +66,13 @@ Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
 
-
 User-agent: yandex
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
+Disallow: /*?
+
+User-agent: sitemap-generator-cli
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket

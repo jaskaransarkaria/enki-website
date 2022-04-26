@@ -28,7 +28,20 @@ export const DESKTOP_ABOUT_GIF = "https://enki.imgix.net/about_us_1.gif";
 export const DESKTOP_ABOUT_STATIC =
   "https://enki.imgix.net/about_us_1.png?auto=compress";
 
-const whitelistedUserAgent = ["GoogleBot"];
+const whitelistedUserAgent = [
+  "GoogleBot",
+  "Twitterbot",
+  "facebookexternalhit",
+  "baiduspider",
+  "baiduspider-mobile",
+  "bingbot",
+  "msnbot",
+  "DuckDuckGoBot",
+  "Googlebot-Mobile",
+  "slurp",
+  "yandex",
+  "sitemap-generator-cli",
+];
 
 export const isWhitelistedUserAgent = (userAgent) =>
   Boolean(whitelistedUserAgent.filter((agent) => userAgent?.includes(agent)));
