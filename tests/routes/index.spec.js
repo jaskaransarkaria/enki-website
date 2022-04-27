@@ -69,7 +69,7 @@ test.describe("Desktop Home Page", () => {
   // Run tests in this describe block with portrait-like viewport.
   test.use({ viewport: { width: 1280, height: 2400 } });
 
-  test("loads desktop with correct assets", async ({ page }) => {
+  test.skip("loads desktop with correct assets", async ({ page }) => {
     await page.goto("/");
 
     await expect(page.locator("figure")).toHaveClass(/^container/);

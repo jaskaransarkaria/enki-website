@@ -34,15 +34,15 @@
     MOBILE_LANDING_PAGE,
     MOBILE_JEWELLERY_CLASSES,
   } from "$lib/utils/consts";
+  import OnlineShop from "$lib/components/Svg/OnlineShop.svelte";
+  import JewelleryServices from "$lib/components/Svg/JewelleryServices.svelte";
+  import AboutUs from "$lib/components/Svg/AboutUs.svelte";
+  import Classes from "$lib/components/Svg/Classes.svelte";
 
   export let whitelistedUserAgent: boolean;
 
   $: outerWidth = 0;
   $: outerHeight = 0;
-  $: onlineShopHover = false;
-  $: repairsAndCommissionsHover = false;
-  $: classesHover = false;
-  $: aboutHover = false;
   $: isMobile = outerWidth <= 450 ? true : false;
 </script>
 
@@ -118,46 +118,16 @@
       </div>
     {:else}
       <a sveltekit:prefetch href="/repairs" class="repairs-and-comms">
-        <img
-          class="repairs-and-comms"
-          src={repairsAndCommissionsHover
-            ? DESKTOP_JEWELLERY_SERVICES_GIF
-            : DESKTOP_JEWELLERY_SERVICES_STATIC}
-          alt="repair and commissions button hover over me"
-          on:mouseenter={() => (repairsAndCommissionsHover = true)}
-          on:mouseleave={() => (repairsAndCommissionsHover = false)}
-        />
+        <JewelleryServices />
       </a>
       <a sveltekit:prefetch href="/classes" class="classes">
-        <img
-          class="classes"
-          src={classesHover
-            ? DESKTOP_JEWELLERY_CLASSES_GIF
-            : DESKTOP_JEWELLERY_CLASSES_STATIC}
-          alt="classes button hover over me"
-          on:mouseenter={() => (classesHover = true)}
-          on:mouseleave={() => (classesHover = false)}
-        />
+        <Classes />
       </a>
       <a sveltekit:prefetch href="/shop" class="online-shop">
-        <img
-          class="online-shop"
-          src={onlineShopHover
-            ? DESKTOP_ONLINE_SHOP_GIF
-            : DESKTOP_ONLINE_SHOP_STATIC}
-          alt="online shop button hover over me"
-          on:mouseenter={() => (onlineShopHover = true)}
-          on:mouseleave={() => (onlineShopHover = false)}
-        />
+        <OnlineShop />
       </a>
       <a sveltekit:prefetch href="/about" class="about">
-        <img
-          class="about"
-          src={aboutHover ? DESKTOP_ABOUT_GIF : DESKTOP_ABOUT_STATIC}
-          alt="online shop button hover over me"
-          on:mouseenter={() => (aboutHover = true)}
-          on:mouseleave={() => (aboutHover = false)}
-        />
+        <AboutUs />
       </a>
     {/if}
   </figure>

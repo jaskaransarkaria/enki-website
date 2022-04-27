@@ -7,25 +7,18 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
   import GroupClass from "$lib/components/Svg/GroupClass.svelte";
+  import WeddingRings from "$lib/components/Svg/WeddingRings.svelte";
 
   $: weddingHover = false;
 </script>
 
 <div class="container">
   <div class="class-pics">
-    <a sveltekit:prefetch href="/classes/beginners">
+    <a class="class-button" sveltekit:prefetch href="/classes/beginners">
       <GroupClass />
     </a>
-    <a sveltekit:prefetch href="/classes/wedding-rings">
-      <button class="class-button">
-        <img
-          in:fade={{ duration: 600 }}
-          src={weddingHover ? "/wedding.gif" : "/wedding_ring_classes.png"}
-          alt="cartoon button with a boquet of flowers"
-          on:mouseenter={() => (weddingHover = true)}
-          on:mouseleave={() => (weddingHover = false)}
-        />
-      </button>
+    <a class="class-button" sveltekit:prefetch href="/classes/wedding-rings">
+      <WeddingRings />
     </a>
     <div />
   </div>
@@ -51,6 +44,7 @@
   .class-button {
     border: none;
     background: none;
+    width: 45%;
   }
 
   .class-button:hover {
