@@ -12,21 +12,6 @@ export const MOBILE_ABOUT_US =
   "https://enki.imgix.net/mobile_about_us.png?auto=format,compress";
 export const DESKTOP_LANDING_PAGE =
   "https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress";
-export const DESKTOP_JEWELLERY_SERVICES_GIF =
-  "https://enki.imgix.net/jewellery_services_2.gif";
-export const DESKTOP_JEWELLERY_SERVICES_STATIC =
-  "https://enki.imgix.net/jewellery_services_2.png?auto=compress";
-export const DESKTOP_JEWELLERY_CLASSES_GIF =
-  "https://enki.imgix.net/classes_3.gif";
-export const DESKTOP_JEWELLERY_CLASSES_STATIC =
-  "https://enki.imgix.net/classes_2.png?auto=compress";
-export const DESKTOP_ONLINE_SHOP_GIF =
-  "https://enki.imgix.net/online_shop_3.gif";
-export const DESKTOP_ONLINE_SHOP_STATIC =
-  "https://enki.imgix.net/online_shop_3.png?auto=compress";
-export const DESKTOP_ABOUT_GIF = "https://enki.imgix.net/about_us_1.gif";
-export const DESKTOP_ABOUT_STATIC =
-  "https://enki.imgix.net/about_us_1.png?auto=compress";
 
 const whitelistedUserAgent = [
   "GoogleBot",

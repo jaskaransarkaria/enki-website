@@ -18,14 +18,6 @@
 <script lang="ts">
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import {
-    DESKTOP_ABOUT_STATIC,
-    DESKTOP_ABOUT_GIF,
-    DESKTOP_ONLINE_SHOP_STATIC,
-    DESKTOP_ONLINE_SHOP_GIF,
-    DESKTOP_JEWELLERY_CLASSES_STATIC,
-    DESKTOP_JEWELLERY_SERVICES_STATIC,
-    DESKTOP_JEWELLERY_CLASSES_GIF,
-    DESKTOP_JEWELLERY_SERVICES_GIF,
     DESKTOP_LANDING_PAGE,
     MOBILE_ABOUT_US,
     MOBILE_CONTACT_US,
@@ -53,14 +45,7 @@
   <link rel="preload" as="image" href={MOBILE_JEWELLERY_CLASSES} />
   <link rel="preload" as="image" href={MOBILE_CONTACT_US} />
   <link rel="preload" as="image" href={MOBILE_ABOUT_US} />
-  <link rel="preload" as="image" href={DESKTOP_JEWELLERY_SERVICES_GIF} />
-  <link rel="preload" as="image" href={DESKTOP_JEWELLERY_SERVICES_STATIC} />
-  <link rel="preload" as="image" href={DESKTOP_JEWELLERY_CLASSES_GIF} />
-  <link rel="preload" as="image" href={DESKTOP_JEWELLERY_CLASSES_STATIC} />
-  <link rel="preload" as="image" href={DESKTOP_ONLINE_SHOP_GIF} />
-  <link rel="preload" as="image" href={DESKTOP_ONLINE_SHOP_STATIC} />
-  <link rel="preload" as="image" href={DESKTOP_ABOUT_GIF} />
-  <link rel="preload" as="image" href={DESKTOP_ABOUT_STATIC} />
+  <link rel="preload" as="image" href={MOBILE_ONLINE_SHOP} />
   <meta property="og:url" content="https://enkionline.com/" />
   <meta
     property="og:image"
