@@ -12,19 +12,19 @@
   {#if !isMobile}
     <div class="left-container">
       <img
-        class="footer-icons"
+        class="telephone"
         src="https://enki.imgix.net/telephone.png?auto=format,compress"
         alt="contact us"
         on:click={() => goto("/contact")}
       />
       <img
-        class="footer-icons"
+          class="telephone"
         src="/insta_logo.svg"
         alt="link to instagram"
         on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
       />
       <img
-        class="footer-icons"
+          class="telephone"
         src="/fb_logo.svg"
         alt="link to facebook"
         on:click={() => goto("https://www.facebook.com/Enki-1665334930147391")}
@@ -36,26 +36,25 @@
     <MailChimpSubscribe />
     {#if isMobile}
       <div class="mobile-footer">
-        <a href="/terms-and-conditions">terms and conditions</a>
+        <a href='/terms-and-conditions'>terms and conditions</a>
         <div class="mobile-icons">
           <img
-            class="footer-icons"
+            class="telephone"
             src="https://enki.imgix.net/telephone.png?auto=format,compress"
             alt="contact us"
             on:click={() => goto("/contact")}
           />
           <img
-            class="footer-icons"
+              class="telephone"
             src="/insta_logo.svg"
             alt="link to instagram"
             on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
           />
           <img
-            class="footer-icons"
+              class="telephone"
             src="/fb_logo.svg"
             alt="link to facebook"
-            on:click={() =>
-              goto("https://www.facebook.com/Enki-1665334930147391")}
+            on:click={() => goto("https://www.facebook.com/Enki-1665334930147391")}
           />
         </div>
       </div>
@@ -75,7 +74,7 @@
             alt="stripe trust badge"
           />
         </a>
-        <a href="/terms-and-conditions">terms and conditions</a>
+      <a href='/terms-and-conditions'>terms and conditions</a>
       </div>
     </div>
   {/if}
@@ -85,10 +84,10 @@
   .footer {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     bottom: 0;
     max-width: 100vw;
-    height: 45vh;
+    height: 50vh;
     background-color: white;
     box-shadow: 0 -2.5px 20px 0 #a3a8a5;
     margin-left: 0;
@@ -118,18 +117,16 @@
   .mobile-footer {
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 
   .mobile-icons {
     margin: 1em;
     display: flex;
     justify-content: space-evenly;
-    width: 100%;
+    width: 80%;
   }
 
-  h3,
-  a {
+  h3, a {
     text-align: center;
     font-family: "Caviar Dreams";
     font-size: 16px;
@@ -143,13 +140,13 @@
     margin-right: 5%;
   }
 
-  .footer-icons {
+  .telephone {
     width: 35px;
     height: 35px;
     align-self: center;
   }
 
-  .footer-icons:hover {
+  .telephone:hover {
     /* Start the shake animation and make the animation last for 0.5 seconds */
     animation: shake 0.5s;
     cursor: pointer;
@@ -208,34 +205,25 @@
 
   @media (min-width: 600px) {
     .footer {
-      justify-content: space-between;
-      height: 40vh;
-    }
-    .footer-icons {
-      width: 45px;
-      height: 45px;
+      height: 60vh;
     }
   }
 
   @media (min-width: 960px) {
     .footer {
-      height: 30vh;
+      height: 40vh;
       bottom: 0;
-    }
-
-    .left-container {
-      width: 25%;
     }
 
     .centre-container {
       width: inherit;
     }
 
-    .footer-icons {
-      width: 55px;
-      height: 55px;
-      align-self: center;
-    }
+  .telephone {
+    width: 75px;
+    height: 75px;
+    align-self: center;
+  }
 
     .right-container {
       margin-right: 1%;
@@ -251,17 +239,6 @@
   @media (min-width: 1260px) {
     .footer {
       height: 22.5vh;
-    }
-  }
-
-  @media (min-width: 1600px) {
-    .left-container {
-      width: 20%;
-    }
-
-    .footer-icons {
-      width: 65px;
-      height: 65px;
     }
   }
 
