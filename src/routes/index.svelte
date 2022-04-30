@@ -36,7 +36,7 @@
   $: outerWidth = 0;
   $: innerWidth = 0;
   $: outerHeight = 0;
-  $: isMobile = outerWidth <= 450 ? true : false;
+  $: isMobile = outerWidth > 0 && outerWidth <= 450 ? true : false;
 </script>
 
 <svelte:window bind:outerWidth bind:outerHeight bind:innerWidth />
