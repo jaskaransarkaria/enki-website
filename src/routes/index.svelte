@@ -34,11 +34,12 @@
   export let whitelistedUserAgent: boolean;
 
   $: outerWidth = 0;
+  $: innerWidth = 0;
   $: outerHeight = 0;
   $: isMobile = outerWidth <= 450 ? true : false;
 </script>
 
-<svelte:window bind:outerWidth bind:outerHeight />
+<svelte:window bind:outerWidth bind:outerHeight bind:innerWidth />
 <svelte:head>
   <link rel="preload" as="image" href={MOBILE_LANDING_PAGE} />
   <link rel="preload" as="image" href={DESKTOP_LANDING_PAGE} />
@@ -58,16 +59,12 @@
     class={isMobile ? "mobile-container" : "container"}
     style={isMobile
       ? ""
-      : `background-image: url('${
-          outerWidth <= 450 ? MOBILE_LANDING_PAGE : DESKTOP_LANDING_PAGE
-        }&h=${outerHeight}&w=${outerWidth}')`}
+      : `background-image: url('${DESKTOP_LANDING_PAGE}&h=${outerHeight}&max-w=${innerWidth}&fit=crop')`}
   >
     {#if isMobile}
       <img
         class="parallax-inside-shop"
-        src={`${
-          outerWidth <= 450 ? MOBILE_LANDING_PAGE : DESKTOP_LANDING_PAGE
-        }&h=${outerHeight}&w=${outerWidth}`}
+        src={`${MOBILE_LANDING_PAGE}&h=${outerHeight}&w=${outerWidth}`}
         alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
       />
       <ScrollDown />
@@ -109,27 +106,16 @@
         </a>
       </div>
     {:else}
-      <a sveltekit:prefetch href="/repairs" class="repairs-and-comms">
-        <JewelleryServices />
-      </a>
-      <a sveltekit:prefetch href="/classes" class="classes">
-        <Classes />
-      </a>
-      <a sveltekit:prefetch href="/shop" class="online-shop">
-        <OnlineShop />
-      </a>
-      <a sveltekit:prefetch href="/about" class="about">
-        <AboutUs />
-      </a>
+      <JewelleryServices />
+      <Classes />
+      <OnlineShop />
+      <AboutUs />
     {/if}
   </figure>
 {/if}
 
 <style>
   .container {
-    display: grid;
-    grid-template-columns: repeat(100, 1fr);
-    grid-template-rows: repeat(100, 1fr);
     width: 100%;
     height: 90vh;
     margin-left: 0;
@@ -161,25 +147,10 @@
     padding: 10px;
   }
 
-  .inside-shop {
-    z-index: -1;
-    grid-column-start: 1;
-    grid-column-end: span end;
-    grid-row-start: 1;
-    grid-row-end: span end;
-  }
-
   .parallax-inside-shop {
     position: fixed;
     z-index: -1;
     width: 100vw;
-  }
-
-  .about,
-  .classes,
-  .repairs-and-comms,
-  .online-shop:hover {
-    cursor: pointer;
   }
 
   .mobile-classes-img,
@@ -189,319 +160,5 @@
   .mobile-about-us-img {
     height: auto;
     max-width: 100%;
-  }
-
-  @media (min-width: 450px) {
-    .online-shop {
-      width: 80px;
-      grid-column-start: 68;
-      grid-column-end: span end;
-      grid-row-start: 62;
-      grid-row-end: span end;
-    }
-
-    .about {
-      width: 80px;
-      grid-column-start: 36;
-      grid-column-end: span end;
-      grid-row-start: 58;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 90px;
-      grid-column-start: 10;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 90px;
-      grid-column-start: 80;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 600px) {
-    .online-shop {
-      width: 100px;
-      grid-column-start: 68;
-      grid-column-end: span end;
-      grid-row-start: 64;
-      grid-row-end: span end;
-    }
-
-    .about {
-      width: 80px;
-      grid-column-start: 38;
-      grid-column-end: span end;
-      grid-row-start: 62;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 100px;
-      grid-column-start: 12;
-      grid-column-end: span end;
-      grid-row-start: 1;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 100px;
-      grid-column-start: 77;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 800px) {
-    .online-shop {
-      width: 130px;
-      grid-column-start: 68;
-      grid-column-end: span end;
-      grid-row-start: 64;
-      grid-row-end: span end;
-    }
-
-    .about {
-      width: 120px;
-      grid-column-start: 39;
-      grid-column-end: span end;
-      grid-row-start: 62;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 120px;
-      grid-column-start: 10;
-      grid-column-end: span end;
-      grid-row-start: 3;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 120px;
-      grid-column-start: 70;
-      grid-column-end: span end;
-      grid-row-start: 4;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .online-shop {
-      width: 150px;
-      grid-column-start: 70;
-      grid-column-end: span end;
-      grid-row-start: 64;
-      grid-row-end: span end;
-    }
-
-    .about {
-      width: 140px;
-      grid-column-start: 39;
-      grid-column-end: span end;
-      grid-row-start: 62;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 140px;
-      grid-column-start: 12;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 140px;
-      grid-column-start: 66;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .online-shop {
-      width: 180px;
-      grid-column-start: 70;
-      grid-column-end: span end;
-      grid-row-start: 64;
-      grid-row-end: span end;
-    }
-
-    .about {
-      width: 180px;
-      grid-column-start: 38;
-      grid-column-end: span end;
-      grid-row-start: 62;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 180px;
-      grid-column-start: 12;
-      grid-column-end: span end;
-      grid-row-start: 2;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 180px;
-      grid-column-start: 69;
-      grid-column-end: span end;
-      grid-row-start: 1;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .online-shop {
-      width: 200px;
-      grid-column-start: 70;
-      grid-column-end: span end;
-      grid-row-start: 64;
-      grid-row-end: span end;
-    }
-
-    .about {
-      width: 190px;
-      grid-column-start: 39;
-      grid-column-end: span end;
-      grid-row-start: 63;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 190px;
-      grid-column-start: 12;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 180px;
-      grid-column-start: 66;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 1650px) {
-    .online-shop {
-      width: 230px;
-      grid-column-start: 70;
-      grid-column-end: span end;
-      grid-row-start: 64;
-      grid-row-end: span end;
-    }
-
-    .about {
-      width: 230px;
-      grid-column-start: 39;
-      grid-column-end: span end;
-      grid-row-start: 62;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 225px;
-      grid-column-start: 14;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 225px;
-      grid-column-start: 68;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 1960px) {
-    .online-shop {
-      width: 270px;
-      grid-column-start: 70;
-      grid-column-end: span end;
-      grid-row-start: 64;
-      grid-row-end: span end;
-    }
-
-    .about {
-      width: 290px;
-      grid-column-start: 38;
-      grid-column-end: span end;
-      grid-row-start: 62;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 260px;
-      grid-column-start: 14;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 260px;
-      grid-column-start: 68;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 2200px) {
-    .online-shop {
-      width: 300px;
-      grid-column-start: 64;
-      grid-column-end: span end;
-      grid-row-start: 64;
-      grid-row-end: span end;
-    }
-
-    .about {
-      grid-column-start: 40;
-      grid-column-end: span end;
-      grid-row-start: 63;
-      grid-row-end: span end;
-    }
-
-    .repairs-and-comms {
-      width: 280px;
-      grid-column-start: 14;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-
-    .classes {
-      width: 280px;
-      grid-column-start: 75;
-      grid-column-end: span end;
-      grid-row-start: 5;
-      grid-row-end: span end;
-    }
-  }
-
-  @media (min-width: 2400px) {
-    .online-shop {
-      width: 325px;
-      grid-column-start: 70;
-      grid-column-end: span end;
-      grid-row-start: 64;
-    }
   }
 </style>
