@@ -54,15 +54,22 @@
 </svelte:head>
 
 {#if browser || whitelistedUserAgent}
-  <figure class={isMobile ? "mobile-container" : "container"}>
-    <img
-      class={isMobile ? "parallax-inside-shop" : "inside-shop"}
-      src={`${
-        outerWidth <= 450 ? MOBILE_LANDING_PAGE : DESKTOP_LANDING_PAGE
-      }&h=${outerHeight}&w=${outerWidth}`}
-      alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
-    />
+  <figure
+    class={isMobile ? "mobile-container" : "container"}
+    style={isMobile
+      ? ""
+      : `background-image: url('${
+          outerWidth <= 450 ? MOBILE_LANDING_PAGE : DESKTOP_LANDING_PAGE
+        }&h=${outerHeight}&w=${outerWidth}')`}
+  >
     {#if isMobile}
+      <img
+        class="parallax-inside-shop"
+        src={`${
+          outerWidth <= 450 ? MOBILE_LANDING_PAGE : DESKTOP_LANDING_PAGE
+        }&h=${outerHeight}&w=${outerWidth}`}
+        alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
+      />
       <ScrollDown />
       <div class="mobile-button-container">
         <a sveltekit:prefetch href="/shop">
@@ -124,8 +131,12 @@
     grid-template-columns: repeat(100, 1fr);
     grid-template-rows: repeat(100, 1fr);
     width: 100%;
+    height: 90vh;
     margin-left: 0;
     margin-right: 0;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
   }
 
   .mobile-container {
