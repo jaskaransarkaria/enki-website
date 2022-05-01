@@ -36,7 +36,7 @@
   $: outerWidth = 0;
   $: innerWidth = 0;
   $: outerHeight = 0;
-  $: isMobile = outerWidth > 0 && outerWidth <= 450 ? true : false;
+  $: isMobile = outerWidth <= 450 ? true : false;
 </script>
 
 <svelte:window bind:outerWidth bind:outerHeight bind:innerWidth />
@@ -54,7 +54,7 @@
   />
 </svelte:head>
 
-{#if browser || whitelistedUserAgent}
+{#if (browser && outerWidth > 0) || whitelistedUserAgent}
   <figure
     class={isMobile ? "mobile-container" : "container"}
     style={isMobile
