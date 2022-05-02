@@ -242,4 +242,11 @@
       height: 250px;
     }
   }
+
+  @media (min-width: 2200px) {
+    svg {
+      width: 350px;
+      height: 350px;
+    }
+  }
 </style>

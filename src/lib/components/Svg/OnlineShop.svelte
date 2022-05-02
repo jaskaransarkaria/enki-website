@@ -242,10 +242,10 @@
     }
   }
 
-  @media (min-width: 1960px) {
+  @media (min-width: 2200px) {
     svg {
-      width: 250px;
-      height: 250px;
+      width: 350px;
+      height: 350px;
     }
   }
 </style>
