@@ -63,15 +63,15 @@
       </div>
       <div class="gift-wrap-img-container">
         <img
-          src="/gift-wrap-1.jpeg"
+          src="https://enki.imgix.net/gift-wrap-1.jpeg?format=auto,compress"
           alt="the inside of a card with happy birthday written out"
         />
         <img
-          src="/gift-wrap-2.jpeg"
+          src="https://enki.imgix.net/gift-wrap-2.jpeg?format=auto,compress"
           alt="some gifts wrapped with colourful wrapping paper and pink and green ribbon"
         />
         <img
-          src="/gift-wrap-3.jpeg"
+          src="https://enki.imgix.net/gift-wrap-3.jpeg?format=auto,compress"
           alt="some gifts wrapped with brown paper wrapping paper and yellow and green ribbon"
         />
       </div>
