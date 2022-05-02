@@ -59,20 +59,20 @@
   {:else}
     <a sveltekit:prefetch class="hex-link" href={categoryFn(category)}>
       <img
-        in:fade|local={{ duration: 3000 }}
         src="/grey_square.png"
         use:lazy={{
           src: `https://enki.imgix.net/${category.Id}?auto=format,compress&q=60&lossless=1&w=0.3`,
         }}
         alt={`category ${category.Name}`}
         data-testid="cdn-img"
+        in:fade={{ duration: 800 }}
       />
       <img
-        in:fade|local={{ duration: 800 }}
         src={`https://enki.imgix.net/hex_${Math.floor(
           Math.random() * (6 - 1 + 1) + 1
         )}.svg`}
         alt="hexagon shape for the category button"
+        in:fade={{ duration: 800 }}
       />
       <div class="category-name">
         <h3 data-testid="hex-category-name">

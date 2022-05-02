@@ -25,23 +25,20 @@
 
 <svelte:window on:scroll={handleOnScroll} />
 
-<button class="back-to-top" on:click={goTop} class:hidden>^</button>
+<button class="back-to-top" on:click={goTop} class:hidden
+  ><img src="/back_to_top.png" alt="back to the top button" /></button
+>
 
 <style>
   .back-to-top {
+    all: unset;
+    opacity: 1;
+    transition: opacity 0.5s, visibility 0.5s;
     position: sticky;
     bottom: 5vh;
-    left: 95vw;
-    opacity: 1;
-    border-radius: 100%;
-    transition: opacity 0.5s, visibility 0.5s;
+    left: 100%;
     z-index: 99;
-    color: grey;
-    width: 30px;
-    height: 30px;
     cursor: pointer;
-    text-align: center;
-    margin: 5px auto 20px auto;
   }
 
   .back-to-top.hidden {
