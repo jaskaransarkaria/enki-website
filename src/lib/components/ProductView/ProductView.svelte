@@ -3,6 +3,7 @@
   import { browser } from "$app/env";
   import { groupBy } from "lodash-es";
   import { fade } from "svelte/transition";
+  import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
   import type { Category } from "$lib/types/category";
   import type { Product } from "$lib/types/product";
@@ -146,6 +147,7 @@
 <svelte:window bind:outerWidth />
 {#if sortedCollatedArray.length}
   <div class="container">
+    <Banner hasProducts />
     <div class="sort-container">
       <select name="products" id="products" bind:value={sortBy}>
         <option value="alphabetically">A - Z</option>
@@ -156,6 +158,46 @@
     </div>
     {#key sortBy}
       {#if (productArr && browser) || whitelistedUserAgent}
+        {#if browser && window.location.pathname.includes("1876089")}
+          <div class="gift-wrap-container">
+            <div class="gift-wrap-img-container">
+              <div class="img-container">
+                <img
+                  src="https://enki.imgix.net/gift-wrap-1.jpeg?format=auto,compress"
+                  alt="the inside of a card with happy birthday written out"
+                />
+                <p>
+                  Select which gifts you'd like wrapped on the basket page and
+                  we'll wrap them for you in recycled kraft paper and colourful
+                  raffia ribbon, for 95p per gift.
+                </p>
+              </div>
+              <div class="img-container">
+                <img
+                  src="https://enki.imgix.net/gift-wrap-2.jpeg?format=auto,compress"
+                  alt="some gifts wrapped with colourful wrapping paper and pink and green ribbon"
+                />
+                <p>
+                  To make your gift extra special just add one of our printed
+                  wraps below and we'll us it to wrap whichever gifts are
+                  selected in the basket. A sheet should do one large, two small
+                  or lots of little gifts.
+                </p>
+              </div>
+              <div class="img-container">
+                <img
+                  src="https://enki.imgix.net/gift-wrap-3.jpeg?format=auto,compress"
+                  alt="some gifts wrapped with brown paper wrapping paper and yellow and green ribbon"
+                />
+                <p>
+                  There's also a space for you to write a message for the
+                  recipient, if you have a card in your basket we'll write in
+                  that, if not we'll write on one of our enki gift tags.
+                </p>
+              </div>
+            </div>
+          </div>
+        {/if}
         <div
           in:fade={{ delay: 500 }}
           class={showDetailedView ||
@@ -185,6 +227,40 @@
 {/if}
 
 <style>
+  .gift-wrap-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .gift-wrap-img-container {
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
+
+  .img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+  }
+
+  .img-container > img {
+    max-width: 80%;
+    margin: 1em;
+  }
+
+  p {
+    font-family: "Caviar Dreams";
+    text-align: center;
+    width: 100%;
+    height: 5em;
+  }
+
   .sort-container {
     display: flex;
     justify-content: flex-end;
@@ -241,6 +317,14 @@
   @media (min-width: 960px) {
     .products-container {
       grid-auto-rows: 28em;
+    }
+
+    .gift-wrap-img-container {
+      flex-direction: row;
+    }
+
+    .img-container > img {
+      max-width: 20vw;
     }
   }
   @media (min-width: 1280px) {
