@@ -60,8 +60,6 @@
       (rowNumber % 2 === 0 ? gridColumnNumber - 1 : gridColumnNumber) -
       emptyHexes.length;
   }
-
-  $: console.log("white", whitelistedUserAgent);
 </script>
 
 {#if browser || whitelistedUserAgent}

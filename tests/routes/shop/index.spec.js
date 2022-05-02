@@ -15,43 +15,43 @@ test("loads /shop", async ({ page }) => {
   await expect(page.locator("div > h3 >> nth=1")).toHaveText("Cheetah");
   await expect(page.locator("[data-testid=cdn-img] >> nth=1")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+    "/grey_square.png"
   );
 
   await expect(page.locator("div > h3 >> nth=2")).toHaveText("Crocodile");
   await expect(page.locator("[data-testid=cdn-img] >> nth=2")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+    "/grey_square.png"
   );
 
   await expect(page.locator("div > h3 >> nth=3")).toHaveText("Giraffe");
   await expect(page.locator("[data-testid=cdn-img] >> nth=3")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+    "/grey_square.png"
   );
 
   await expect(page.locator("div > h3 >> nth=4")).toHaveText("Hippopotamus");
   await expect(page.locator("[data-testid=cdn-img] >> nth=4")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+    "/grey_square.png"
   );
 
   await expect(page.locator("div > h3 >> nth=5")).toHaveText("Lion");
   await expect(page.locator("[data-testid=cdn-img] >> nth=5")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+    "/grey_square.png"
   );
 
   await expect(page.locator("div > h3 >> nth=6")).toHaveText("Water Buffalo");
   await expect(page.locator("[data-testid=cdn-img] >> nth=5")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+    "/grey_square.png"
   );
 
   await expect(page.locator("div > h3 >> nth=7")).toHaveText("Zebra");
   await expect(page.locator("[data-testid=cdn-img] >> nth=7")).toHaveAttribute(
     "src",
-    "https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+    "/grey_square.png"
   );
 
   await expect(page.locator("[data-testid=empty-hex]")).toHaveCount(1);

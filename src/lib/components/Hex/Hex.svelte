@@ -60,7 +60,7 @@
     <a sveltekit:prefetch class="hex-link" href={categoryFn(category)}>
       <img
         in:fade|local={{ duration: 3000 }}
-        src="https://enki.imgix.net/faith.jpg?auto=format,compress&q=1&lossless=1&w=0.3&blur=100"
+        src="/grey_square.png"
         use:lazy={{
           src: `https://enki.imgix.net/${category.Id}?auto=format,compress&q=60&lossless=1&w=0.3`,
         }}

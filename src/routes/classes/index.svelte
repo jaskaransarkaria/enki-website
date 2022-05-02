@@ -5,21 +5,14 @@
 </script>
 
 <script lang="ts">
-  import { fade } from "svelte/transition";
   import GroupClass from "$lib/components/Svg/GroupClass.svelte";
   import WeddingRings from "$lib/components/Svg/WeddingRings.svelte";
-
-  $: weddingHover = false;
 </script>
 
+<GroupClass />
+<WeddingRings />
 <div class="container">
   <div class="class-pics">
-    <a class="class-button" sveltekit:prefetch href="/classes/beginners">
-      <GroupClass />
-    </a>
-    <a class="class-button" sveltekit:prefetch href="/classes/wedding-rings">
-      <WeddingRings />
-    </a>
     <div />
   </div>
 </div>
