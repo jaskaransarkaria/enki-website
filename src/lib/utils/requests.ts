@@ -33,14 +33,6 @@ export const refreshCategoryFromServer = async <T>(
 ): Promise<ReadonlyArray<Category>> =>
   retrieveStateFn(url, getCategoryFromServer(fetchWrapper), [])();
 
-export const refreshCategory = async (
-  url: string
-): Promise<ReadonlyArray<Category>> => retrieveStateFn(url, getCategory, [])();
-
-export const refreshProducts = async (
-  url: string
-): Promise<readonly Product[]> => retrieveStateFn(url, getProductArray, [])();
-
 export const refreshProductsFromServer = async <T>(
   url: string,
   fetchWrapper: () => Promise<T>
@@ -61,14 +53,6 @@ const getCategoryFromServer: (
   (fetchWrapper: (a: string) => Promise<any>) =>
   (url: string): Promise<ReadonlyArray<Category>> =>
     fetchWrapper(url).then((res) => res.json());
-
-const getCategory: GetFn<ReadonlyArray<Category>> = (
-  url: string
-): Promise<ReadonlyArray<Category>> => fetch(url).then((res) => res.json());
-
-const getProductArray: GetFn<ReadonlyArray<Product>> = (
-  url: string
-): Promise<ReadonlyArray<Product>> => fetch(url).then((res) => res.json());
 
 const getProductArrayFromServer: (
   fW: (a: string) => Promise<any>
