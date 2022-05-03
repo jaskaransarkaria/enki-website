@@ -2,10 +2,6 @@
   import { browser } from "$app/env";
   import { isWhitelistedUserAgent } from "$lib/utils/consts";
 
-  // since there's no dynamic data here, we can prerender
-  // it so that it gets served as a static asset in prod
-  export const prerender = true;
-
   export async function load({ session }) {
     return {
       props: {
