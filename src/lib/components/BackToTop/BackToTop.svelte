@@ -26,10 +26,7 @@
 <svelte:window on:scroll={handleOnScroll} />
 
 <button class="back-to-top" on:click={goTop} class:hidden
-  ><img
-    src="https://enki.imgix.net/back_to_top_3.png"
-    alt="back to the top button"
-  /></button
+  ><img src="/back_to_top.png" alt="back to the top button" /></button
 >
 
 <style>
@@ -42,22 +39,12 @@
     left: 100%;
     z-index: 99;
     cursor: pointer;
+    padding-right: 0.5em;
     padding-bottom: 0.75em;
-    width: 10%;
-  }
-
-  img {
-    width: 80%;
   }
 
   .back-to-top.hidden {
     opacity: 0;
     visibility: hidden;
-  }
-
-  @media (min-width: 960px) {
-    .back-to-top {
-      width: 5%;
-    }
   }
 </style>

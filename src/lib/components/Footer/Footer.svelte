@@ -13,19 +13,19 @@
     <div class="left-container">
       <img
         class="footer-icons"
-        src="https://enki.imgix.net/telephone_3.png?q=100"
+        src="https://enki.imgix.net/telephone.png?auto=format,compress"
         alt="contact us"
         on:click={() => goto("/contact")}
       />
       <img
         class="footer-icons"
-        src="https://enki.imgix.net/insta_logo_3.png?q=100"
+        src="/insta_logo.svg"
         alt="link to instagram"
         on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
       />
       <img
         class="footer-icons"
-        src="https://enki.imgix.net/fb_logo_3.png?q=100"
+        src="/fb_logo.svg"
         alt="link to facebook"
         on:click={() => goto("https://www.facebook.com/Enki-1665334930147391")}
       />
@@ -40,19 +40,19 @@
         <div class="mobile-icons">
           <img
             class="footer-icons"
-            src="https://enki.imgix.net/telephone_3.png?auto=format,compress&q=100"
+            src="https://enki.imgix.net/telephone.png?auto=format,compress"
             alt="contact us"
             on:click={() => goto("/contact")}
           />
           <img
             class="footer-icons"
-            src="https://enki.imgix.net/insta_logo_3.png?auto=format,compress&q=100"
+            src="/insta_logo.svg"
             alt="link to instagram"
             on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
           />
           <img
             class="footer-icons"
-            src="https://enki.imgix.net/fb_logo_3.png?auto=format,compress&q=100"
+            src="/fb_logo.svg"
             alt="link to facebook"
             on:click={() =>
               goto("https://www.facebook.com/Enki-1665334930147391")}
@@ -88,32 +88,30 @@
     justify-content: center;
     bottom: 0;
     max-width: 100vw;
+    height: 45vh;
     background-color: white;
-    box-shadow: 0 -10.5px 16px 0 #a3a8a5;
+    box-shadow: 0 -2.5px 20px 0 #a3a8a5;
     margin-left: 0;
     margin-right: 0;
     padding: 5px;
   }
 
   .left-container {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 50%;
+    height: 100%;
     width: 15%;
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-start;
   }
 
   .centre-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 8px;
+    row-gap: 10px;
     position: absolute;
     width: 80%;
     left: 50%;
+    height: 90%;
     transform: translateX(-50%);
   }
 
@@ -127,13 +125,7 @@
     margin: 1em;
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-start;
     width: 100%;
-  }
-
-  .footer-icons {
-    width: 20%;
-    object-fit: contain;
   }
 
   h3,
@@ -149,6 +141,12 @@
     width: 15%;
     height: 100%;
     margin-right: 5%;
+  }
+
+  .footer-icons {
+    width: 35px;
+    height: 35px;
+    align-self: center;
   }
 
   .footer-icons:hover {
@@ -208,35 +206,21 @@
     width: 100%;
   }
 
-  @media (min-width: 360px) {
-    .footer {
-      height: auto;
-    }
-
-    .footer-icons {
-      width: 15%;
-    }
-  }
-
   @media (min-width: 600px) {
     .footer {
-      height: 35%;
-    }
-
-    .footer {
       justify-content: space-between;
-      align-items: center;
+      height: 40vh;
     }
-
     .footer-icons {
-      width: 10%;
+      width: 45px;
+      height: 45px;
     }
   }
 
   @media (min-width: 960px) {
     .footer {
-      min-height: 35%;
-      max-height: 35%;
+      height: 30vh;
+      bottom: 0;
     }
 
     .left-container {
@@ -245,6 +229,12 @@
 
     .centre-container {
       width: inherit;
+    }
+
+    .footer-icons {
+      width: 55px;
+      height: 55px;
+      align-self: center;
     }
 
     .right-container {
@@ -256,32 +246,28 @@
     .trust-container {
       width: 100%;
     }
-
-    .footer-icons {
-      width: 20%;
-    }
   }
 
   @media (min-width: 1260px) {
-    .footer-icons {
-      width: 20%;
+    .footer {
+      height: 22.5vh;
     }
   }
 
   @media (min-width: 1600px) {
-    .footer {
-      max-height: 25%;
-      min-height: 25%;
-    }
-
     .left-container {
       width: 20%;
     }
+
+    .footer-icons {
+      width: 65px;
+      height: 65px;
+    }
   }
 
-  @media (min-width: 1960px) {
-    .footer-icons {
-      width: 15%;
+  @media (min-width: 2400px) {
+    .footer {
+      height: 15vh;
     }
 
     .right-container {
@@ -291,13 +277,6 @@
 
     .trust-container {
       width: 80%;
-    }
-  }
-
-  @media (min-width: 2200px) {
-    .footer {
-      max-height: 20%;
-      min-height: 20%;
     }
   }
 </style>
