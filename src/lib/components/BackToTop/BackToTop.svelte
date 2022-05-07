@@ -39,6 +39,8 @@
     left: 100%;
     z-index: 99;
     cursor: pointer;
+    padding-right: 0.5em;
+    padding-bottom: 0.75em;
   }
 
   .back-to-top.hidden {

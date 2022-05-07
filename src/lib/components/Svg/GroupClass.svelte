@@ -185,7 +185,7 @@
     }
   }
 
-  @media (min-width: 1960px) {
+  @media (min-width: 600px) {
     svg {
       width: 25vw;
       height: 25vw;

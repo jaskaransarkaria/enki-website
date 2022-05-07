@@ -6,7 +6,7 @@ test.describe("Footer", () => {
     await page.goto("/");
     await expect(page.locator(".footer-icons")).toHaveCount(3);
     await expect(page.locator("h3")).toHaveText(
-      "want to be the first to find out about new products and classes?"
+      "Want to be the first to find out about new products and classes?"
     );
     await expect(page.locator("#mc_embed_signup")).toHaveCount(1);
   });
@@ -16,7 +16,7 @@ test.describe("Footer", () => {
     await page.goto("/");
     await expect(page.locator(".footer-icons")).toHaveCount(3);
     await expect(page.locator("h3")).toHaveText(
-      "want to be the first to find out about new products and classes?"
+      "Want to be the first to find out about new products and classes?"
     );
     await expect(page.locator("#mc_embed_signup")).toHaveCount(1);
     await expect(

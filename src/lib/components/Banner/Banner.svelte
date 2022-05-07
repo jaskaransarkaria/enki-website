@@ -21,7 +21,7 @@
     justify-content: space-between;
     width: 100%;
     height: 30px;
-    background-color: darkgray;
+    background-color: var(--accent-color);
     margin-bottom: 1.5em;
     box-shadow: 1px 1.5px 4px #888888;
   }

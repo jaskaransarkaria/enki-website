@@ -63,6 +63,7 @@
   .custom-pagination-div {
     display: flex;
     justify-content: center;
+    height: 100%;
   }
 
   :global(.swiper-pagination-bullet-active) {
@@ -71,8 +72,8 @@
   }
 
   img {
-    max-height: 99%;
-    max-width: 100%;
+    max-width: 90%;
+    height: auto;
   }
 
   @media (min-width: 1280px) {

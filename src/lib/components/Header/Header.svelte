@@ -307,7 +307,7 @@
     }
 
     .enki-logo {
-      top: 10%;
+      top: 15%;
       width: 100px;
     }
   }
@@ -320,7 +320,7 @@
 
     .enki-logo {
       top: 10%;
-      width: 75px;
+      width: 110px;
     }
   }
 
@@ -360,14 +360,19 @@
     }
 
     .enki-logo {
-      top: 10%;
-      width: 100px;
+      top: 15%;
+      width: 120px;
     }
   }
 
   @media (min-width: 1400px) {
     .left-container {
       width: 25%;
+    }
+
+    .enki-logo {
+      top: 15%;
+      width: 130px;
     }
   }
 
@@ -378,8 +383,8 @@
     }
 
     .enki-logo {
-      top: 10%;
-      width: 125px;
+      top: 15%;
+      width: 140px;
     }
 
     button {

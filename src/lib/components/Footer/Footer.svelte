@@ -32,11 +32,11 @@
     </div>
   {/if}
   <div class="centre-container">
-    <h3>want to be the first to find out about new products and classes?</h3>
+    <h3>Want to be the first to find out about new products and classes?</h3>
     <MailChimpSubscribe />
     {#if isMobile}
       <div class="mobile-footer">
-        <a href="/terms-and-conditions">terms and conditions</a>
+        <a href="/terms-and-conditions">Terms and conditions</a>
         <div class="mobile-icons">
           <img
             class="footer-icons"
@@ -75,7 +75,7 @@
             alt="stripe trust badge"
           />
         </a>
-        <a href="/terms-and-conditions">terms and conditions</a>
+        <a href="/terms-and-conditions">Terms and conditions</a>
       </div>
     </div>
   {/if}
