@@ -99,7 +99,11 @@
       </div>
     </div>
   {:else}
-    <h1>You have nothing in your basket, continue shopping</h1>
+    <img
+      class="empty-basket"
+      src="/basket_empty.png"
+      alt="cartoon of an empty basket"
+    />
   {/if}
 </div>
 
@@ -113,6 +117,14 @@
     flex-direction: column;
     align-items: center;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .empty-basket {
+    width: 55%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .mobile-product,
@@ -235,6 +247,10 @@
   }
 
   @media (min-width: 600px) {
+    .empty-basket {
+      width: 30%;
+    }
+
     .product-img {
       width: 150px;
     }
@@ -250,6 +266,12 @@
     }
   }
 
+  @media (min-width: 1280px) {
+    .empty-basket {
+      width: 25%;
+    }
+  }
+
   @media (min-width: 1750px) {
     .product-img {
       width: 200px;
@@ -258,6 +280,16 @@
 
     .product-total {
       font-size: 1.5em;
+    }
+
+    .empty-basket {
+      width: 20%;
+    }
+  }
+
+  @media (min-width: 1960px) {
+    .empty-basket {
+      width: 15%;
     }
   }
 </style>
