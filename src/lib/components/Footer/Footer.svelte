@@ -235,7 +235,7 @@
     }
 
     .left-container {
-      align-self: flex-start;
+      align-self: center;
       width: 25%;
     }
 
