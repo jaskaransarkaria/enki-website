@@ -198,6 +198,9 @@
 
   @media (min-width: 1960px) {
     .root-categories-container {
+      position: relative;
+      top: 50vh;
+      transform: translateY(-60%);
       grid-template-columns: repeat(14, 1fr);
       grid-gap: 10px;
     }

@@ -13,19 +13,19 @@
     <div class="left-container">
       <img
         class="footer-icons"
-        src="https://enki.imgix.net/telephone.png?auto=format,compress"
+        src="https://enki.imgix.net/telephone_3.png?q=100"
         alt="contact us"
         on:click={() => goto("/contact")}
       />
       <img
         class="footer-icons"
-        src="/insta_logo.svg"
+        src="https://enki.imgix.net/insta_logo_3.png?q=100"
         alt="link to instagram"
         on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
       />
       <img
         class="footer-icons"
-        src="/fb_logo.svg"
+        src="https://enki.imgix.net/fb_logo_3.png?q=100"
         alt="link to facebook"
         on:click={() => goto("https://www.facebook.com/Enki-1665334930147391")}
       />
@@ -46,13 +46,13 @@
           />
           <img
             class="footer-icons"
-            src="/insta_logo.svg"
+            src="https://enki.imgix.net/insta_logo_3.png?q=100"
             alt="link to instagram"
             on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
           />
           <img
             class="footer-icons"
-            src="/fb_logo.svg"
+            src="https://enki.imgix.net/fb_logo_3.png?q=100"
             alt="link to facebook"
             on:click={() =>
               goto("https://www.facebook.com/Enki-1665334930147391")}
@@ -88,12 +88,13 @@
     justify-content: center;
     bottom: 0;
     max-width: 100vw;
-    height: 45vh;
+    height: 50vh;
     background-color: white;
     box-shadow: 0 -2.5px 20px 0 #a3a8a5;
     margin-left: 0;
     margin-right: 0;
     padding: 5px;
+    align-items: center;
   }
 
   .left-container {
@@ -101,6 +102,11 @@
     width: 15%;
     display: flex;
     justify-content: space-evenly;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    align-items: flex-start;
+    height: 50%;
   }
 
   .centre-container {
@@ -108,10 +114,10 @@
     flex-direction: column;
     justify-content: center;
     row-gap: 10px;
+    row-gap: 8px;
     position: absolute;
     width: 80%;
     left: 50%;
-    height: 90%;
     transform: translateX(-50%);
   }
 
@@ -122,6 +128,7 @@
   }
 
   .mobile-icons {
+    align-items: flex-start;
     margin: 1em;
     display: flex;
     justify-content: space-evenly;
@@ -144,9 +151,8 @@
   }
 
   .footer-icons {
-    width: 35px;
-    height: 35px;
-    align-self: center;
+    width: 20%;
+    object-fit: contain;
   }
 
   .footer-icons:hover {
@@ -206,14 +212,19 @@
     width: 100%;
   }
 
+  @media (min-width: 360px) {
+    .footer-icons {
+      width: 15%;
+    }
+  }
   @media (min-width: 600px) {
     .footer {
       justify-content: space-between;
+      align-items: center;
       height: 40vh;
     }
     .footer-icons {
-      width: 45px;
-      height: 45px;
+      width: 10%;
     }
   }
 
@@ -224,6 +235,7 @@
     }
 
     .left-container {
+      align-self: flex-start;
       width: 25%;
     }
 
@@ -232,9 +244,8 @@
     }
 
     .footer-icons {
-      width: 55px;
-      height: 55px;
-      align-self: center;
+      align-self: flex-start;
+      width: 20%;
     }
 
     .right-container {
@@ -252,16 +263,20 @@
     .footer {
       height: 22.5vh;
     }
+    .footer-icons {
+      width: 20%;
+    }
   }
 
   @media (min-width: 1600px) {
     .left-container {
       width: 20%;
     }
+  }
 
+  @media (min-width: 1960px) {
     .footer-icons {
-      width: 65px;
-      height: 65px;
+      width: 15%;
     }
   }
 
