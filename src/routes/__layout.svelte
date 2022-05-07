@@ -49,12 +49,13 @@
   <div class="header-block" />
   <slot />
   <BackToTop />
+  <Footer />
 </div>
-<Footer />
 
 <style>
   .container {
-    min-height: 100vh;
+    min-height: 100%;
+    width: 100vw;
   }
 
   .header-block {

@@ -116,7 +116,7 @@
     padding: 4.5%;
     padding-bottom: 15%;
     padding-top: 2%;
-    min-height: 45vh;
+    height: 100%;
     align-items: center;
   }
 
