@@ -43,10 +43,8 @@
     "vite": "2.7.1"
   },
   "dependencies": {
-    "@lukeed/uuid": "^2.0.0",
     "@stripe/stripe-js": "^1.13.2",
     "canvas-confetti": "^1.5.1",
-    "cookie": "^0.4.1",
     "fp-ts": "^2.9.3",
     "lodash-es": "^4.17.21",
     "lodash.groupby": "^4.6.0",
