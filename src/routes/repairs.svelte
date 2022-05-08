@@ -1,9 +1,6 @@
 <script context="module">
   import { browser } from "$app/env";
   import { isWhitelistedUserAgent } from "$lib/utils/consts";
-  // since there's no dynamic data here, we can prerender
-  // it so that it gets served as a static asset in prod
-  export const prerender = true;
 
   export async function load({ session }) {
     return {
@@ -15,6 +12,7 @@
 </script>
 
 <script lang="ts">
+  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   export let whitelistedUserAgent: boolean;
 
@@ -35,33 +33,45 @@
   <div class="container">
     <br />
     <div class="shop-pics">
-      <img
-        in:fade={{ duration: 600 }}
-        class="extra-width"
-        src="https://enki.imgix.net/services_1.jpg?auto=format,compress"
-        alt="a ring being polished on a polishing machine"
-      />
-      {#if !isMobile}
+      {#if isMobile}
+        <SwipeImage
+          imgArr={[
+            {
+              src: "https://enki.imgix.net/services_1.jpg?auto=format,compress",
+              alt: "a ring being polished on a polishing machine",
+            },
+            {
+              src: "https://enki.imgix.net/services_2.jpg?auto=format,compress",
+              alt: "a jewellery machine for pressing metal",
+            },
+            {
+              src: "https://enki.imgix.net/services_4.jpg?auto=format,compress",
+              alt: "a medallion being heated with a blow touch",
+            },
+            {
+              src: "https://enki.imgix.net/services_3.jpg?auto=format,compress",
+              alt: "some jewellery pliers and some jewellery being inspected",
+            },
+          ]}
+        />
+      {:else}
+        <img
+          in:fade={{ duration: 600 }}
+          class="extra-width"
+          src="https://enki.imgix.net/services_1.jpg?auto=format,compress"
+          alt="a ring being polished on a polishing machine"
+        />
         <img
           in:fade={{ duration: 600 }}
           src="https://enki.imgix.net/services_2.jpg?auto=format,compress"
           alt="a jewellery machine for pressing metal"
         />
-      {/if}
-      {#if isMobile}
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/services_4.jpg?auto=format,compress"
-          alt="a medallion being heated with a blow touch"
+          class="extra-width"
+          src="https://enki.imgix.net/services_3.jpg?auto=format,compress"
+          alt="some jewellery pliers and some jewellery being inspected"
         />
-      {/if}
-      <img
-        in:fade={{ duration: 600 }}
-        class="extra-width"
-        src="https://enki.imgix.net/services_3.jpg?auto=format,compress"
-        alt="some jewellery pliers and some jewellery being inspected"
-      />
-      {#if !isMobile}
         <img
           in:fade={{ duration: 600 }}
           src="https://enki.imgix.net/services_4.jpg?auto=format,compress"

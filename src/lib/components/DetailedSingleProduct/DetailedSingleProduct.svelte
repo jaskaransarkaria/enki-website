@@ -2,7 +2,7 @@
   import { clickOutside } from "$lib/utils/clickOutside";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
   import MobileClose from "$lib/components/MobileClose/MobileClose.svelte";
-  import SwipeImage from "$lib/components/ProductImage/SwipeImage.svelte";
+  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
 
   import type { Product } from "$lib/types/product";
 
@@ -20,6 +20,17 @@
       visible = 0;
     }
   };
+
+  const createImgArr = (
+    product: Product,
+    imgWidth?: number
+  ): { src: string; alt: string }[] =>
+    product.ProductImages.map((_, idx) => ({
+      src: `https://enki.imgix.net/${product.Id}-${idx}?q=100${
+        imgWidth ? `&w=${imgWidth}` : ""
+      }`,
+      alt: `${product.Name} image ${idx + 1}`,
+    }));
 
   let showFullScreen = false;
   let clientWidth: number = 0;
@@ -53,7 +64,7 @@
           window.scrollTo(0, 0);
         }}
       >
-        <SwipeImage {product} />
+        <SwipeImage imgArr={createImgArr(product)} />
       </div>
     {/if}
     <div class="detailed-products-footer">
@@ -88,7 +99,7 @@
             window.scrollTo(0, 0);
           }}
         >
-          <SwipeImage {product} />
+          <SwipeImage imgArr={createImgArr(product)} />
         </div>
       </div>
     {/if}
@@ -132,10 +143,16 @@
           bind:bool={showFullScreen}
           positionOverride="top: 1%; left: 2%"
         />
-        <SwipeImage {product} setImgWidth={innerWidth * (100 / 100)} />
+        <SwipeImage
+          imgArr={createImgArr(product, innerWidth * (100 / 100))}
+          setImgWidth
+        />
       {:else}
         <div class="full-screen-img-view">
-          <SwipeImage {product} setImgWidth={innerWidth * (35 / 100)} />
+          <SwipeImage
+            imgArr={createImgArr(product, innerWidth * (35 / 100))}
+            setImgWidth
+          />
         </div>
       {/if}
     </div>
@@ -201,9 +218,9 @@
     backdrop-filter: blur(2.5px);
   }
 
-  .full-sreen-img-view {
+  .full-screen-img-view {
     display: flex;
-    width: 80%;
+    width: 65%;
     align-items: center;
   }
 

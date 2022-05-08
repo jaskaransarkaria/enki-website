@@ -1,65 +1,104 @@
 <script context="module">
-  // since there's no dynamic data here, we can prerender
-  // it so that it gets served as a static asset in prod
-  export const prerender = true;
+  import { browser } from "$app/env";
+  import { isWhitelistedUserAgent } from "$lib/utils/consts";
+
+  export async function load({ session }) {
+    return {
+      props: {
+        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
+      },
+    };
+  }
 </script>
 
 <script lang="ts">
+  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
+
+  export let whitelistedUserAgent: boolean;
+
+  $: outerWidth = 0;
+  $: isMobile = outerWidth < 960;
 </script>
 
-<div class="container">
-  <div class="class-pics">
-    <img
-      in:fade={{ duration: 600 }}
-      src="https://enki.imgix.net/wedding_bands_1.jpg?auto=compress"
-      alt="A man and a woman, the man is holding the rings in the palm of his hands"
-    />
-    <img
-      in:fade={{ duration: 600 }}
-      src="https://enki.imgix.net/wedding_bands_2.jpg?auto=compress"
-      alt="two women looking longingly into each other's eyes wearing their rings"
-    />
-    <img
-      in:fade={{ duration: 600 }}
-      src="https://enki.imgix.net/wedding_bands_3.jpg?auto=compress"
-      alt="enki jewellery ring boxes"
-    />
-    <img
-      in:fade={{ duration: 600 }}
-      src="https://enki.imgix.net/wedding_bands_4.jpg?auto=compress"
-      alt="a couple embracing sporting the rings they made"
-    />
+<svelte:window bind:outerWidth />
+{#if browser || whitelistedUserAgent}
+  <div class="container">
+    <div class="class-pics">
+      {#if isMobile}
+        <SwipeImage
+          imgArr={[
+            {
+              src: "https://enki.imgix.net/wedding_bands_1.jpg?auto=compress",
+              alt: "A man and a woman, the man is holding the rings in the palm of his hands",
+            },
+            {
+              src: "https://enki.imgix.net/wedding_bands_2.jpg?auto=compress",
+              alt: "two women looking longingly into each other's eyes wearing their rings",
+            },
+            {
+              src: "https://enki.imgix.net/wedding_bands_3.jpg?auto=compress",
+              alt: "enki jewellery ring boxes",
+            },
+            {
+              src: "https://enki.imgix.net/wedding_bands_4.jpg?auto=compress",
+              alt: "a couple embracing whilst sporting the rings they made",
+            },
+          ]}
+        />
+      {:else}
+        <img
+          in:fade={{ duration: 600 }}
+          src="https://enki.imgix.net/wedding_bands_1.jpg?auto=compress"
+          alt="A man and a woman, the man is holding the rings in the palm of his hands"
+        />
+        <img
+          in:fade={{ duration: 600 }}
+          src="https://enki.imgix.net/wedding_bands_2.jpg?auto=compress"
+          alt="two women looking longingly into each other's eyes wearing their rings"
+        />
+        <img
+          in:fade={{ duration: 600 }}
+          src="https://enki.imgix.net/wedding_bands_3.jpg?auto=compress"
+          alt="enki jewellery ring boxes"
+        />
+        <img
+          in:fade={{ duration: 600 }}
+          src="https://enki.imgix.net/wedding_bands_4.jpg?auto=compress"
+          alt="a couple embracing whilst sporting the rings they made"
+        />
+      {/if}
+    </div>
+    <h1>
+      Make your partner the most important piece of jewellery they’ll ever own
+    </h1>
+    <p>
+      In this private class for you and your partner, you will make each other a
+      wedding ring, guided by our resident jeweller, Faith.
+      <br />
+      <br />
+      You will start with an initial silver practice ring which you will be able
+      to take home after the class. You will then make the real thing in gold or
+      the metal of your choice. After the class Faith will take them away to be hallmarked
+      and will return them to you within two weeks.
+      <br />
+      <br />
+      To make the experience extra special we provide cake from the wonderful Early
+      Bird Bakery next door. If you aren't local we can give you lots of tips on
+      where to stay and what to do in the area if you want to make a mini-break of
+      it. If you have any queries please contact us here
+    </p>
+    <br />
+    <p>
+      If you have any queries please contact me <a
+        href="mailto: faith@enkionline.com">here</a
+      >
+    </p>
+    <br />
+    <br />
+    <br />
   </div>
-  <h1>
-    Make your partner the most important piece of jewellery they’ll ever own
-  </h1>
-  <p>
-    In this private class for you and your partner, you will make each other a
-    wedding ring, guided by our resident jeweller, Faith.
-    <br />
-    <br />
-    You will start with an initial silver practice ring which you will be able to
-    take home after the class. You will then make the real thing in gold or the metal
-    of your choice. After the class Faith will take them away to be hallmarked and
-    will return them to you within two weeks.
-    <br />
-    <br />
-    To make the experience extra special we provide cake from the wonderful Early
-    Bird Bakery next door. If you aren't local we can give you lots of tips on where
-    to stay and what to do in the area if you want to make a mini-break of it. If
-    you have any queries please contact us here
-  </p>
-  <br />
-  <p>
-    If you have any queries please contact me <a
-      href="mailto: faith@enkionline.com">here</a
-    >
-  </p>
-  <br />
-  <br />
-  <br />
-</div>
+{/if}
 
 <style>
   h1,

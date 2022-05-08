@@ -257,7 +257,7 @@
   p {
     font-family: "Caviar Dreams";
     text-align: center;
-    width: 100%;
+    width: 80%;
     height: 5em;
   }
 

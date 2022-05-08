@@ -100,6 +100,7 @@
     </div>
   {:else}
     <img
+      in:fade={{ delay: 600 }}
       class="empty-basket"
       src="/basket_empty.png"
       alt="cartoon of an empty basket"

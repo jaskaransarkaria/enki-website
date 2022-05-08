@@ -9,15 +9,11 @@
   import "swiper/css/navigation";
   import "swiper/css/pagination";
 
-  import type { Product } from "$lib/types/product";
-
-  let swipeImgArr: HTMLImageElement[] = [];
-
-  export let product: Product;
-  export let setImgWidth: number;
+  export let imgArr: { src: string; alt: string }[];
+  export let setImgWidth = false;
 </script>
 
-{#if product?.ProductImages.length > 1}
+{#if imgArr.length > 1}
   <div
     class="swiper"
     style="width: {setImgWidth ? setImgWidth + 'px' : '100%'}"
@@ -34,30 +30,27 @@
       zoom={setImgWidth ? true : false}
       mousewheel={setImgWidth ? true : false}
     >
-      {#each product.ProductImages as _, idx ("main" + idx)}
+      {#each imgArr as img, idx ("main" + idx)}
         <SwiperSlide>
-          <img
-            src={`https://enki.imgix.net/${product.Id}-${idx}?q=100${
-              setImgWidth ? `&w=${setImgWidth}` : ""
-            }`}
-            alt={`${product.Name} image ${idx}`}
-            bind:this={swipeImgArr[idx]}
-          />
+          <img src={img.src} alt={img.alt} data-testid="swipe-img" />
           <div class="custom-pagination-div" />
         </SwiperSlide>
       {/each}
     </Swiper>
   </div>
 {:else}
-  <img
-    src={`https://enki.imgix.net/${product.Id}-0?q=100`}
-    alt={`${product.Name} image 1`}
-  />
+  <img src={imgArr[0].src} alt={imgArr[0].alt} />
 {/if}
 
 <style>
   .swiper {
     max-width: 100%;
+    text-align: center;
+  }
+
+  img {
+    max-width: 90%;
+    height: auto;
   }
 
   .custom-pagination-div {
@@ -69,11 +62,6 @@
   :global(.swiper-pagination-bullet-active) {
     background-color: #ff6600;
     opacity: 1;
-  }
-
-  img {
-    max-width: 90%;
-    height: auto;
   }
 
   @media (min-width: 1280px) {

@@ -5,15 +5,27 @@ test.describe("Mobile Repairs Page", () => {
   test("Repairs page", async ({ page }) => {
     await page.goto("/repairs");
 
-    await expect(page.locator(".shop-pics > img >> nth=0")).toHaveAttribute(
+    await expect(
+      page.locator("[data-testid=swipe-img] >> nth=0")
+    ).toHaveAttribute(
       "src",
       "https://enki.imgix.net/services_1.jpg?auto=format,compress"
     );
-    await expect(page.locator(".shop-pics > img >> nth=1")).toHaveAttribute(
+    await expect(
+      page.locator("[data-testid=swipe-img]  >> nth=1")
+    ).toHaveAttribute(
+      "src",
+      "https://enki.imgix.net/services_2.jpg?auto=format,compress"
+    );
+    await expect(
+      page.locator("[data-testid=swipe-img]  >> nth=2")
+    ).toHaveAttribute(
       "src",
       "https://enki.imgix.net/services_4.jpg?auto=format,compress"
     );
-    await expect(page.locator(".shop-pics > img >> nth=2")).toHaveAttribute(
+    await expect(
+      page.locator("[data-testid=swipe-img] >> nth=3")
+    ).toHaveAttribute(
       "src",
       "https://enki.imgix.net/services_3.jpg?auto=format,compress"
     );

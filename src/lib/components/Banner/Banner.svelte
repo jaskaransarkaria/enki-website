@@ -4,10 +4,11 @@
 </script>
 
 {#if hasProducts}
-  <div transition:fade={{ duration: 600 }}>
+  <div in:fade={{ duration: 600 }}>
     <p class="pulse">
       Gift wrapping service click <a
         sveltekit:prefetch
+        rel="external"
         href="/shop/category/1876089">here!</a
       >
     </p>
