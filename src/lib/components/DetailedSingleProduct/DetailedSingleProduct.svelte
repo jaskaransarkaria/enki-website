@@ -25,12 +25,21 @@
     product: Product,
     imgWidth?: number
   ): { src: string; alt: string }[] =>
-    product.ProductImages.map((_, idx) => ({
-      src: `https://enki.imgix.net/${product.Id}-${idx}?q=100${
-        imgWidth ? `&w=${imgWidth}` : ""
-      }`,
-      alt: `${product.Name} image ${idx + 1}`,
-    }));
+    product.ProductImages.length
+      ? product.ProductImages.map((_, idx) => ({
+          src: `https://enki.imgix.net/${product.Id}-${idx}?q=100${
+            imgWidth ? `&w=${imgWidth}` : ""
+          }`,
+          alt: `${product.Name} image ${idx + 1}`,
+        }))
+      : [
+          {
+            src: `https://enki.imgix.net/${product.Id}-0?q=100${
+              imgWidth ? `&w=${imgWidth}` : ""
+            }`,
+            alt: `${product.Name} image 1`,
+          },
+        ];
 
   let showFullScreen = false;
   let clientWidth: number = 0;
