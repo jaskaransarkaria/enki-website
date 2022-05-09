@@ -16,5 +16,6 @@
 
   img {
     position: absolute;
+    max-width: 100%;
   }
 </style>
