@@ -9,7 +9,7 @@ RUN npm ci
 COPY . ./
 
 ENV VITE_SERVER_URL=https://server.enki.jobspeed.uk
-ENV VITE_PUBLIC_STRIPE_KEY="pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp"
+ENV VITE_PUBLIC_STRIPE_KEY="pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau"
 
 RUN npm run build
 
