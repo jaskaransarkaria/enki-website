@@ -1,5 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
-Sitemap: https://enki.jobspeed.uk/sitemap.xml
+Sitemap: https://enkionline.com/sitemap.xml
 User-agent: *
 Disallow: /
 Disallow: /*? # This will prevent crawlers from accessing any pages with query params
