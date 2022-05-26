@@ -51,6 +51,7 @@
   img {
     max-width: 90%;
     height: auto;
+    cursor: pointer;
   }
 
   .custom-pagination-div {
