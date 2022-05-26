@@ -83,11 +83,11 @@
           alt="shop owner faith"
         />
         <p>
-          Faith started Enki in 2017 in a small shop round the corner from the
-          current location. She is a jeweller with over ten years of experience
-          who specialises in repairing antique jewellery. She also loves to read
-          and cook. She has a dog called Dodi who sometimes joins her at work!
-          You can find her at Enki from Tuesday to Friday.
+          Faith started Enki in 2017 in a small shop not far from the current
+          location. She is a jeweller with over ten years of experience who
+          specialises in repairing antique jewellery. She has a dog called Dodi
+          who sometimes joins her at work! You can find her at Enki from Monday
+          to Friday.
         </p>
       </div>
       <div class="card">
@@ -99,20 +99,8 @@
         <p>
           Dora joined Enki in 2018 and has been learning jewellery making ever
           since, she’s always been a crafter and can do amazing things with
-          beads! She comes from Germany but has been in Brum for the last six
-          years. You can find her at Enki Wednesday to Saturday and every other
-          Sunday.
-        </p>
-      </div>
-      <div class="card">
-        <img
-          in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/ash_1.png?auto=format,compress"
-          alt="shop owner faith"
-        />
-        <p>
-          Ash Joined Enki in 2021, he’s a web developer who dabbles in
-          photography among other things!
+          beads! She comes from Germany but has been in Brum since 2016. You can
+          find her at Enki Thursday to Sunday.
         </p>
       </div>
     </div>
