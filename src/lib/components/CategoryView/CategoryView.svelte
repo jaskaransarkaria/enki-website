@@ -46,5 +46,6 @@
       {whitelistedUserAgent}
     />
   {/if}
+{:else}
+  <ProductView {productArr} {variantCategories} {whitelistedUserAgent} />
 {/if}
-<ProductView {productArr} {variantCategories} {whitelistedUserAgent} />

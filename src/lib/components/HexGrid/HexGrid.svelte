@@ -35,7 +35,7 @@
     gridColumnNumber = getGridCols(window.innerWidth) / 2;
     showGrid = calcShowGrid(window.innerWidth, filteredData.length);
   }
-  $: filteredData = data.filter(
+  $: filteredData = data?.filter(
     (base: Base): base is Category | Tag =>
       isTag(base) ||
       (isCategory(base) &&

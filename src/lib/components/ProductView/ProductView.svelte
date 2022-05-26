@@ -31,7 +31,7 @@
   const showGroupedVariant = (group: Array<readonly Product[]>) =>
     group
       .flat(1)
-      .filter((variant) => !variantCategoryIds.includes(variant.CategoryId))
+      ?.filter((variant) => !variantCategoryIds.includes(variant.CategoryId))
       .map(
         (variant: Product): CollatedItem => ({
           ...variant,
@@ -97,12 +97,12 @@
 
   $: if (productArr.length) {
     variantArr = productArr
-      .filter(({ VariantGroupId }) => !!VariantGroupId)
-      .filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
+      ?.filter(({ VariantGroupId }) => !!VariantGroupId)
+      ?.filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
 
     nonVariantArr = productArr
-      .filter(({ VariantGroupId }) => !VariantGroupId)
-      .filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
+      ?.filter(({ VariantGroupId }) => !VariantGroupId)
+      ?.filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
   }
 
   $: variantCategories.map(
@@ -203,7 +203,7 @@
           class={showDetailedView ||
           (variantCategories.length +
             nonVariantArr.length +
-            variantArr.filter(
+            variantArr?.filter(
               (vars) => !variantCategoryIds.includes(vars.CategoryId)
             ).length <=
             3 &&

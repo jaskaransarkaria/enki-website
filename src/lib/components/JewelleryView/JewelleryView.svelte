@@ -7,12 +7,12 @@
   export let data: Category[] = [];
   export let categoryFn: BaseFn;
 
-  $: shopByType = data.filter(
+  $: shopByType = data?.filter(
     (cat: Category) =>
       cat.Name.toLowerCase() === "fine jewellery" ||
       cat.Name.toLowerCase() === "costume jewellery"
   );
-  $: shopByArtist = data.filter(
+  $: shopByArtist = data?.filter(
     (cat: Category) =>
       cat.Name.toLowerCase() !== "fine jewellery" &&
       cat.Name.toLowerCase() !== "costume jewellery"

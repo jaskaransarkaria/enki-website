@@ -35,8 +35,8 @@
   const isTag = (group: unknown): group is Tag => "TagTypeId" in (group as Tag);
 
   $: treatedTags = tags
-    .filter((tag: Tag) => !tag.Name.includes("SOR "))
-    .filter((tag: Tag) => tag.Name.includes(prefix));
+    ?.filter((tag: Tag) => !tag.Name.includes("SOR "))
+    ?.filter((tag: Tag) => tag.Name.includes(prefix));
 </script>
 
 <HexGrid data={[...data, ...treatedTags]} categoryFn={selectFn} />
