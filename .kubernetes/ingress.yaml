@@ -13,11 +13,19 @@ metadata:
       more_set_headers "Cache-Control: public, max-age=7889400";
 spec:
   tls:
-    - secretName: enki-website
-      hosts:
-        - enki.jobspeed.uk
+   - secretName: enki-website-prod
+     hosts:
+       - enkionline.com
+       - www.enkionline.com
   rules:
-    - host: enki.jobspeed.uk
+    - host: enkionline.com
+      http:
+        paths:
+          - path: /*
+            backend:
+              servicePort: 5000
+              serviceName: enki-website
+    - host: www.enkionline.com
       http:
         paths:
           - path: /*
