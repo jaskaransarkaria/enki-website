@@ -9,10 +9,8 @@
       fetch
     );
 
-    const reg = new RegExp(
-      `${decodeURIComponent(url.searchParams.get("search-term"))}`,
-      "i"
-    );
+    const searchTerm = decodeURIComponent(url.searchParams.get("search-term"));
+    const reg = new RegExp(`\\b${searchTerm}|${searchTerm}\\b`, "i");
     const data = searchProducts(reg, result);
 
     return {
