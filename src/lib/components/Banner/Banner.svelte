@@ -52,9 +52,10 @@
   @media (min-width: 360px) {
     div p {
       line-height: 0;
-      font-size: 0.725em;
+      font-size: 0.7em;
     }
   }
+
   @media (min-width: 960px) {
     div p {
       font-size: 1em;
