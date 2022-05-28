@@ -24,6 +24,11 @@
   src: url(/static/fonts/CaviarDreams.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Caviar Dreams Italic";
+  src: url(/static/fonts/CaviarDreams_Italic.ttf) format("truetype");
+}
+
 a {
   color: var(--accent-color);
   text-decoration: none;

@@ -10,7 +10,7 @@
     );
 
     const reg = new RegExp(
-      `\\b${decodeURIComponent(url.searchParams.get("search-term"))}`,
+      `${decodeURIComponent(url.searchParams.get("search-term"))}`,
       "i"
     );
     const data = searchProducts(reg, result);

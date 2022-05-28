@@ -90,8 +90,8 @@
     </p>
     <br />
     <p>
-      If you have any queries please contact me <a
-        href="mailto: faith@enkionline.com">here</a
+      If you have any queries please <a href="mailto: faith@enkionline.com"
+        >contact us</a
       >
     </p>
     <br />

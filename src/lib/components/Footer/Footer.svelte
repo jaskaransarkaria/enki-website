@@ -39,19 +39,19 @@
         <a href="/terms-and-conditions">Terms and conditions</a>
         <div class="mobile-icons">
           <img
-            class="footer-icons"
+            class="mobile-footer-icons"
             src="https://enki.imgix.net/telephone.png?auto=format,compress"
             alt="contact us"
             on:click={() => goto("/contact")}
           />
           <img
-            class="footer-icons"
+            class="mobile-footer-icons"
             src="https://enki.imgix.net/insta_logo_3.png?q=100"
             alt="link to instagram"
             on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
           />
           <img
-            class="footer-icons"
+            class="mobile-footer-icons"
             src="https://enki.imgix.net/fb_logo_3.png?q=100"
             alt="link to facebook"
             on:click={() =>
@@ -150,7 +150,8 @@
     margin-right: 5%;
   }
 
-  .footer-icons {
+  .footer-icons,
+  .mobile-footer-icons {
     width: 20%;
     object-fit: contain;
   }
@@ -213,7 +214,8 @@
   }
 
   @media (min-width: 360px) {
-    .footer-icons {
+    .footer-icons,
+    .mobile-footer-icons {
       width: 15%;
     }
   }
@@ -223,7 +225,8 @@
       align-items: center;
       height: 40vh;
     }
-    .footer-icons {
+    .footer-icons,
+    .mobile-footer-icons {
       width: 10%;
     }
   }
@@ -243,7 +246,8 @@
       width: inherit;
     }
 
-    .footer-icons {
+    .footer-icons,
+    .mobile-footer-icons {
       align-self: flex-start;
       width: 20%;
     }
@@ -274,7 +278,11 @@
     }
   }
 
-  @media (min-width: 1960px) {
+  @media (min-width: 1920px) {
+    .footer {
+      height: 28vh;
+    }
+
     .footer-icons {
       width: 15%;
     }

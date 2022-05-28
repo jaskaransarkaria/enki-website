@@ -16,6 +16,13 @@ spec:
       containers:
         - name: enki-website
           image: jaskaransarkaria/enki-website:replace_with_git_tag
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           env:
             - name: VITE_SERVER_URL
               value: "https://server.enki.jobspeed.uk"

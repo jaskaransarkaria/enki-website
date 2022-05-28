@@ -71,6 +71,7 @@
   }
 
   address {
+    font-family: "Caviar Dreams Italic";
     text-align: center;
     align-self: center;
   }
