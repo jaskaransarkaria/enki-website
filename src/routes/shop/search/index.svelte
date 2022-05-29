@@ -48,7 +48,7 @@
     <meta property="og:url" content={$page.url.toString()} />
     <meta
       property="og:image"
-      content={`https://enki.imgix.net/${data[0].Id}-0?auto=format,compress`}
+      content={`https://enki.imgix.net/${data[0].Id}-0?auto=format,compress&w=250`}
     />
     <meta property="og:type" content="website" />
     <meta

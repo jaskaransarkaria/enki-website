@@ -25,14 +25,15 @@
     background-color: var(--accent-color);
     margin-bottom: 1.5em;
     box-shadow: 1px 1.5px 4px #888888;
+    text-align: center;
   }
 
   div p {
     font-family: "Caviar Dreams";
     font-weight: bold;
-    line-height: -0.75;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     font-size: 0.6em;
-    margin: 1em;
     color: white;
   }
 

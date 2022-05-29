@@ -80,7 +80,7 @@
   <meta property="og:url" content={$page.url.toString()} />
   <meta
     property="og:image"
-    content={`https://enki.imgix.net/${categoryToShow.Id}?auto=format,compress`}
+    content={`https://enki.imgix.net/${categoryToShow.Id}?auto=format,compress&w250`}
   />
   <meta property="og:type" content="website" />
   <meta
