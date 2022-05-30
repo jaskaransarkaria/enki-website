@@ -183,7 +183,7 @@
   @media (min-width: 1200px) {
     h3 {
       width: 250px;
-      font-size: 1em;
+      font-size: 0.95em;
     }
   }
 

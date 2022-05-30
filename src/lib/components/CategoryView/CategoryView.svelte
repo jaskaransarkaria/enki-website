@@ -19,7 +19,7 @@
     categories?.filter((cat) => cat.NominalCode === "CATEGORY");
 
   $: variantCategories = categoryToShow?.Children.filter(
-    (cat) => cat.NominalCode === null
+    (cat) => !Boolean(cat.NominalCode)
   );
 </script>
 
