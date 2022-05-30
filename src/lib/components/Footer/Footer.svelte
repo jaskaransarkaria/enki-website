@@ -265,7 +265,7 @@
 
   @media (min-width: 1260px) {
     .footer {
-      height: 22.5vh;
+      height: 28vh;
     }
     .footer-icons {
       width: 20%;
@@ -290,7 +290,7 @@
 
   @media (min-width: 2400px) {
     .footer {
-      height: 15vh;
+      height: 20vh;
     }
 
     .right-container {

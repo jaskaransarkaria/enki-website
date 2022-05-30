@@ -124,8 +124,7 @@
 
   img,
   picture,
-  button,
-  h3 {
+  button {
     left: -100%;
     right: -100%;
     width: 100%;
@@ -137,10 +136,13 @@
   }
 
   h3 {
-    width: 95px;
+    position: absolute;
+    width: 95%;
+    height: 50%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: "Welcomehome3 Regular";
     font-size: 0.55em;
-    vertical-align: middle;
-    height: auto;
   }
 
   button::after {
@@ -161,50 +163,31 @@
 
   @media (min-width: 360px) {
     h3 {
-      width: 170px;
       font-size: 0.7em;
     }
   }
 
   @media (min-width: 700px) {
     h3 {
-      width: 225px;
       font-size: 0.8em;
-    }
-  }
-
-  @media (min-width: 960px) {
-    h3 {
-      width: 250px;
-      font-size: 0.9em;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    h3 {
-      width: 250px;
-      font-size: 0.95em;
     }
   }
 
   @media (min-width: 1600px) {
     h3 {
-      width: 250px;
       font-size: 1.1em;
     }
   }
 
   @media (min-width: 1960px) {
     h3 {
-      width: 250px;
-      font-size: 1.125em;
+      font-size: 0.9em;
     }
   }
 
   @media (min-width: 2400px) {
     h3 {
-      width: 240px;
-      font-size: 1.15em;
+      font-size: 1em;
     }
   }
 </style>
