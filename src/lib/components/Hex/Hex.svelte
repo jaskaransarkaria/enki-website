@@ -93,7 +93,7 @@
     flex-direction: column;
     top: 40%;
     width: 100%;
-    height: 15%;
+    height: 18%;
   }
 
   .hex-in {
@@ -138,7 +138,7 @@
   h3 {
     position: absolute;
     width: 95%;
-    height: 50%;
+    height: auto;
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: "Welcomehome3 Regular";

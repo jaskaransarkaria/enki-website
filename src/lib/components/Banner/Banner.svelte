@@ -1,19 +1,22 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
+  import { page } from "$app/stores";
   export let hasProducts = false;
 </script>
 
-{#if hasProducts}
-  <div in:fade={{ duration: 600 }}>
-    <p class="pulse">
-      Gift wrapping service click <a
-        sveltekit:prefetch
-        rel="external"
-        href="/shop/category/1876089">here!</a
-      >
-    </p>
-    <p>Free UK shipping over £40</p>
-  </div>
+{#if hasProducts && !$page.url.toString().match("1876089")}
+  <a rel="external" href="/shop/category/1876089">
+    <div in:fade={{ duration: 600 }}>
+      <p class="pulse">
+        Gift wrapping service click <a
+          sveltekit:prefetch
+          rel="external"
+          href="/shop/category/1876089">here!</a
+        >
+      </p>
+      <p>Free UK shipping over £40</p>
+    </div>
+  </a>
 {/if}
 
 <style>

@@ -233,8 +233,7 @@
 
   @media (min-width: 960px) {
     .footer {
-      height: 30vh;
-      bottom: 0;
+      height: 31vh;
     }
 
     .left-container {
@@ -265,8 +264,9 @@
 
   @media (min-width: 1260px) {
     .footer {
-      height: 28vh;
+      height: 30vh;
     }
+
     .footer-icons {
       width: 20%;
     }
