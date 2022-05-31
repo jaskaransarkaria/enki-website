@@ -11,6 +11,9 @@
 
   export let imgArr: { src: string; alt: string }[];
   export let setImgWidth = false;
+  export let fullScreen = false;
+
+  $: console.log("ful", fullScreen);
 </script>
 
 {#if imgArr.length > 1}
@@ -32,14 +35,23 @@
     >
       {#each imgArr as img, idx ("main" + idx)}
         <SwiperSlide>
-          <img src={img.src} alt={img.alt} data-testid="swipe-img" />
+          <img
+            src={img.src}
+            alt={img.alt}
+            data-testid="swipe-img"
+            style={fullScreen ? "" : "cursor: pointer"}
+          />
           <div class="custom-pagination-div" />
         </SwiperSlide>
       {/each}
     </Swiper>
   </div>
 {:else}
-  <img src={imgArr[0].src} alt={imgArr[0].alt} />
+  <img
+    src={imgArr[0].src}
+    alt={imgArr[0].alt}
+    style={fullScreen ? "" : "cursor: pointer"}
+  />
 {/if}
 
 <style>
@@ -50,8 +62,7 @@
 
   img {
     max-width: 90%;
-    height: auto;
-    cursor: pointer;
+    height: 90%;
   }
 
   .custom-pagination-div {

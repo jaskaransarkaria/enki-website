@@ -161,6 +161,7 @@
           <SwipeImage
             imgArr={createImgArr(product, innerWidth * (35 / 100))}
             setImgWidth
+            fullScreen
           />
         </div>
       {/if}
@@ -230,7 +231,9 @@
   .full-screen-img-view {
     display: flex;
     width: 65%;
+    height: 100%;
     align-items: center;
+    justify-content: center;
   }
 
   .detailed-products-footer {
