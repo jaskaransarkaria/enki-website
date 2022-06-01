@@ -77,7 +77,7 @@
           {`${product.Name}`}
         </h3>
         <h3 data-testid="sale-price">
-          {`£${product.SalePrice}`}
+          {`£${product.SalePrice.toFixed(2)}`}
         </h3>
       </div>
     </a>

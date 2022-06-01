@@ -78,7 +78,7 @@
     {/if}
     <div class="detailed-products-footer">
       <h4 class="mobile-prod-name">{`${product.Name}`}</h4>
-      <h4>{`£${product.SalePrice}`}</h4>
+      <h4>{`£${product.SalePrice.toFixed(2)}`}</h4>
       <div class="mobile-details">
         {#if product.CurrentStock > 0}
           <AddToBasket {product} detailed />
@@ -114,7 +114,7 @@
     {/if}
     <div class="detailed-products-footer">
       <h2>{product.Name}</h2>
-      <h4>{`£${product.SalePrice}`}</h4>
+      <h4>{`£${product.SalePrice.toFixed(2)}`}</h4>
       {#each treatedProductDescription as { text }}
         <h4 class="description">{text}</h4>
       {/each}
