@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { beforeUpdate } from "svelte";
+  import { beforeUpdate, onMount } from "svelte";
   import { browser } from "$app/env";
   import { groupBy } from "lodash-es";
   import { fade } from "svelte/transition";
@@ -105,6 +105,11 @@
       ?.filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
   }
 
+  $: if (!productArr.length) {
+    variantArr = [];
+    nonVariantArr = [];
+  }
+
   $: variantCategories.map(
     (category: Category): CollatedItem => ({
       ...category,
@@ -199,7 +204,7 @@
           </div>
         {/if}
         <div
-          in:fade={{ delay: 500 }}
+          in:fade|local={{ delay: 500 }}
           class={showDetailedView ||
           (variantCategories.length +
             nonVariantArr.length +

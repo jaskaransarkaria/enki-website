@@ -11,7 +11,7 @@ export const MOBILE_CONTACT_US =
 export const MOBILE_ABOUT_US =
   "https://enki.imgix.net/mobile_about_us_3.png?auto=format,compress";
 export const DESKTOP_LANDING_PAGE =
-  "https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress";
+  "https://enki.imgix.net/inside_enki_desktop_4.png?auto=format,compress";
 
 const whitelistedUserAgent = [
   "GoogleBot",

@@ -18,7 +18,7 @@
   const removeVariantCategories = (categories: Category[]) =>
     categories?.filter((cat) => cat.NominalCode === "CATEGORY");
 
-  $: variantCategories = categoryToShow?.Children.filter(
+  $: variantCategories = categoryToShow?.Children?.filter(
     (cat) => !Boolean(cat.NominalCode)
   );
 </script>

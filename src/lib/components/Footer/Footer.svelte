@@ -290,7 +290,7 @@
 
   @media (min-width: 2400px) {
     .footer {
-      height: 20vh;
+      height: 22.5vh;
     }
 
     .right-container {
