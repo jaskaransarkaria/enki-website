@@ -15,7 +15,7 @@
 
   let sortBy: string = browser
     ? window.sessionStorage.getItem("filter")
-    : "alphabetically";
+    : "in-stock";
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
   let groupedVariantProducts: Array<readonly Product[]>;
@@ -49,22 +49,27 @@
     ...showGroupedVariant(groupedVariantProducts),
   ];
 
+  const sortByStock = (collatedArray: readonly CollatedItem[]) => {
+    return collatedArray.slice().sort((a, b) => {
+      if (
+        a.Type === ItemType.VARIANT_CATEGORY ||
+        b.Type === ItemType.VARIANT_CATEGORY
+      ) {
+        return 1;
+      }
+      return "CurrentStock" in a
+        ? a.CurrentStock > ("CurrentStock" in b ? b.CurrentStock : -1)
+          ? -1
+          : 1
+        : -1;
+    });
+  };
+
   const sortArray = (
     sortBy: string,
     collatedArray: readonly CollatedItem[]
   ) => {
     switch (sortBy) {
-      case "in-stock":
-        browser && window.sessionStorage.setItem("filter", "in-stock");
-        return collatedArray
-          .slice()
-          .sort((a, b) =>
-            "CurrentStock" in a
-              ? a.CurrentStock > ("CurrentStock" in b ? b.CurrentStock : -1)
-                ? -1
-                : 1
-              : -1
-          );
       case "price-high-low":
         browser && window.sessionStorage.setItem("filter", "price-high-low");
         return collatedArray
@@ -87,9 +92,12 @@
                 : -1
               : -1
           );
-      default:
+      case "alphabetically":
         browser && window.sessionStorage.setItem("filter", "alphabetically");
         return collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
+      default:
+        browser && window.sessionStorage.setItem("filter", "in-stock");
+        return sortByStock(collatedArray);
     }
   };
 
@@ -103,9 +111,7 @@
     nonVariantArr = productArr
       ?.filter(({ VariantGroupId }) => !VariantGroupId)
       ?.filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
-  }
-
-  $: if (!productArr.length) {
+  } else {
     variantArr = [];
     nonVariantArr = [];
   }
