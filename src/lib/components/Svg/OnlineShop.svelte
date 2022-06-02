@@ -167,7 +167,7 @@
 
   text,
   tspan {
-    font-family: "Welcomehome3 Regular";
+    font-family: "Welcomehome5 Regular";
     font-weight: 0;
     text-align: center;
     text-anchor: middle;

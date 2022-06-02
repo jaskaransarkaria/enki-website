@@ -74,7 +74,7 @@
       {#if idx === filteredData.length - itemsOnLastRow}
         {#if filteredData.length > gridColumnNumber && emptyHexes.length}
           {#each emptyHexes.slice(0, Math.floor(emptyHexes.length / 2)) as _}
-            <li class={showGrid ? "hex" : "hex-flex"}>
+            <li class={showGrid ? "hex-empty" : "hex-flex-empty"}>
               <Hex isEmpty />
             </li>
           {/each}
@@ -93,7 +93,7 @@
       {#if idx === filteredData.length - 1}
         {#if filteredData.length > gridColumnNumber && emptyHexes.length}
           {#each emptyHexes.slice(0, Math.ceil(emptyHexes.length / 2)) as _}
-            <li class={showGrid ? "hex" : "hex-flex"}>
+            <li class={showGrid ? "hex-empty" : "hex-flex-empty"}>
               <Hex isEmpty />
             </li>
           {/each}
@@ -135,11 +135,14 @@
     height: auto;
   }
 
+  .hex-flex-empty,
   .hex-flex {
     width: 40%;
     margin: 1%;
   }
 
+  .hex-flex-empty,
+  .hex-empty,
   .hex-flex,
   .hex {
     grid-column-end: span 2;
@@ -148,6 +151,8 @@
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition -- color should be transparent*/
   }
 
+  .hex-flex-empty::after,
+  .hex-empty::after,
   .hex-flex::after,
   .hex::after {
     content: "";
@@ -172,6 +177,7 @@
       height: auto;
     }
 
+    .hex-flex-empty,
     .hex-flex {
       width: 25%;
       margin: 1%;
@@ -183,6 +189,7 @@
       padding-bottom: 5%;
     }
 
+    .hex-flex-empty,
     .hex-flex {
       width: 18%;
       margin: 1%;
@@ -190,6 +197,7 @@
   }
 
   @media (min-width: 1600px) {
+    .hex-flex-empty,
     .hex-flex {
       width: 15%;
       margin: 1%;
@@ -211,6 +219,7 @@
       grid-column-start: 2;
     }
 
+    .hex-flex-empty,
     .hex-flex {
       width: 10%;
       margin: 1%;
@@ -223,6 +232,7 @@
       grid-gap: 3px;
     }
 
+    .hex-flex-empty,
     .hex-flex {
       width: 10%;
       margin: 1%;

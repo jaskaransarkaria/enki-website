@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: "Welcomehome3 Regular";
+  font-family: "Welcomehome5 Regular";
   src: url("/static/fonts/enki-regular.ttf") format("truetype");
 }
 
@@ -94,7 +94,7 @@ body {
   height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  font-family: "Welcomehome3 Regular", "Caviar Dreams" -apple-system,
+  font-family: "Welcomehome5 Regular", "Caviar Dreams" -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
     "Helvetica Neue", sans-serif;
 }

@@ -51,10 +51,10 @@
 
   const sortByStock = (collatedArray: readonly CollatedItem[]) => {
     return collatedArray.slice().sort((a, b) => {
-      if (
-        a.Type === ItemType.VARIANT_CATEGORY ||
-        b.Type === ItemType.VARIANT_CATEGORY
-      ) {
+      if (a.Type === ItemType.VARIANT_CATEGORY) {
+        return -1;
+      }
+      if (b.Type === ItemType.VARIANT_CATEGORY) {
         return 1;
       }
       return "CurrentStock" in a

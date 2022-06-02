@@ -291,7 +291,7 @@
 
   a {
     all: unset;
-    font-family: "WelcomeHome3 Regular";
+    font-family: "WelcomeHome5 Regular";
     cursor: pointer;
     height: 50%;
   }

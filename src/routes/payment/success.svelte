@@ -36,7 +36,7 @@
   }
 
   h1 {
-    font-family: "Welcomehome3 Regular";
+    font-family: "Welcomehome5 Regular";
     text-align: center;
   }
 

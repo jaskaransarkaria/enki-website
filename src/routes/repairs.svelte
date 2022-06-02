@@ -137,7 +137,7 @@
 <style>
   h2 {
     text-align: center;
-    font-family: "WelcomeHome3 Regular";
+    font-family: "WelcomeHome5 Regular";
   }
 
   .container {

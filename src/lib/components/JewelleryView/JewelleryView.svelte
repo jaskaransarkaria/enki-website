@@ -32,6 +32,6 @@
     grid-row: 1;
     grid-column: 2;
     text-align: center;
-    font-family: "Welcomehome3 Regular";
+    font-family: "Welcomehome5 Regular";
   }
 </style>

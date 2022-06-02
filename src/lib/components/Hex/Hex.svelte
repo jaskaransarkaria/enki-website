@@ -51,7 +51,7 @@
     <div class="hex-link">
       <img
         in:fade={{ duration: 800 }}
-        src="https://enki.imgix.net/empty_hex_3.png?auto=format,compress&q=80"
+        src="https://enki.imgix.net/empty_hex_4.png?auto=format,compress&q=80"
         alt="hexagon shape for the category button"
         data-testid="empty-hex"
       />
@@ -132,7 +132,7 @@
     margin: 0 auto;
     transform: rotate3d(0, 0, 0, 0deg);
     font-size: 0.6em;
-    font-family: "Welcomehome3 Regular";
+    font-family: "Welcomehome5 Regular";
   }
 
   h3 {
@@ -141,7 +141,7 @@
     height: auto;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-family: "Welcomehome3 Regular";
+    font-family: "Welcomehome5 Regular";
     font-size: 0.55em;
   }
 
