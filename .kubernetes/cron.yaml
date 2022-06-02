@@ -45,7 +45,7 @@ metadata:
 spec:
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 0
-  schedule: '00 00 * * *' # cron spec of time, here, 08.30
+  schedule: '00 04 * * *' # cron spec of time, here, 08.30
   jobTemplate:
     spec:
       backoffLimit: 2 # this has very low chance of failing, as all this does
