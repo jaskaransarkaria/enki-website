@@ -12,8 +12,6 @@
   export let imgArr: { src: string; alt: string }[];
   export let setImgWidth = false;
   export let fullScreen = false;
-
-  $: console.log("ful", fullScreen);
 </script>
 
 {#if imgArr.length > 1}
