@@ -74,7 +74,7 @@
       {#if idx === filteredData.length - itemsOnLastRow}
         {#if filteredData.length > gridColumnNumber && emptyHexes.length}
           {#each emptyHexes.slice(0, Math.floor(emptyHexes.length / 2)) as _}
-            <li class={showGrid ? "hex-empty" : "hex-flex-empty"}>
+            <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
               <Hex isEmpty />
             </li>
           {/each}
@@ -93,7 +93,7 @@
       {#if idx === filteredData.length - 1}
         {#if filteredData.length > gridColumnNumber && emptyHexes.length}
           {#each emptyHexes.slice(0, Math.ceil(emptyHexes.length / 2)) as _}
-            <li class={showGrid ? "hex-empty" : "hex-flex-empty"}>
+            <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
               <Hex isEmpty />
             </li>
           {/each}
@@ -163,6 +163,10 @@
   .hex:hover,
   .hex-flex:hover {
     transform: scale(1.015);
+  }
+
+  .hex-empty:hover {
+    transform: none;
   }
 
   @media (min-width: 700px) {
