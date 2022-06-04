@@ -37,6 +37,7 @@
     {#if isMobile}
       <div class="mobile-footer">
         <a href="/terms-and-conditions">Terms and conditions</a>
+        <a href="/privacy-policy">Privacy policy</a>
         <div class="mobile-icons">
           <img
             class="mobile-footer-icons"
@@ -76,6 +77,7 @@
           />
         </a>
         <a href="/terms-and-conditions">Terms and conditions</a>
+        <a href="/privacy-policy">Privacy policy</a>
       </div>
     </div>
   {/if}

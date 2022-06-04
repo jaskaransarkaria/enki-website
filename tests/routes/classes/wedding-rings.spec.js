@@ -31,6 +31,5 @@ test("Classes Wedding Ring Page", async ({ page }) => {
 
     To make the experience extra special we provide cake from the wonderful Early
     Bird Bakery next door. If you aren't local we can give you lots of tips on where
-    to stay and what to do in the area if you want to make a mini-break of it. If
-    you have any queries please contact us here`);
+    to stay and what to do in the area if you want to make a mini-break of it.`);
 });

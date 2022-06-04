@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { beforeUpdate, onMount } from "svelte";
+  import { beforeUpdate } from "svelte";
   import { browser } from "$app/env";
   import { groupBy } from "lodash-es";
   import { fade } from "svelte/transition";
@@ -269,7 +269,7 @@
     font-family: "Caviar Dreams";
     text-align: center;
     width: 80%;
-    height: 5em;
+    height: auto;
   }
 
   .sort-container {
