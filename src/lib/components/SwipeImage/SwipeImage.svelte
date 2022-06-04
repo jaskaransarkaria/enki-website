@@ -68,8 +68,6 @@
   img {
     max-width: 90%;
     max-height: 90%;
-    height: intrinsic;
-    align-self: center;
   }
 
   .custom-pagination-div {
