@@ -14,7 +14,17 @@
   });
 </script>
 
-<img {src} {alt} class:loaded bind:this={thisImage} />
+<img
+  {src}
+  {alt}
+  class:loaded
+  bind:this={thisImage}
+  on:error={() => {
+    if (src != "/coming-soon.png") {
+      src = "/coming-soon.png";
+    }
+  }}
+/>
 
 <style>
   img {

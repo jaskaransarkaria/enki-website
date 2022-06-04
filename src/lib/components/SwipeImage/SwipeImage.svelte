@@ -49,6 +49,11 @@
     src={imgArr[0].src}
     alt={imgArr[0].alt}
     style={fullScreen ? "" : "cursor: pointer"}
+    on:error={() => {
+      if (imgArr[0].src != "/coming-soon.png") {
+        imgArr[0].src = "/coming-soon.png";
+      }
+    }}
   />
 {/if}
 
@@ -60,7 +65,7 @@
 
   img {
     max-width: 90%;
-    height: 90%;
+    max-height: 90%;
   }
 
   .custom-pagination-div {

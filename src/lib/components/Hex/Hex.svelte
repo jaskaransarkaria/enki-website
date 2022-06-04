@@ -1,10 +1,10 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
+  import { lazy } from "$lib/utils/lazyAction";
+
   import type { BaseFn } from "$lib/types/base";
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
-
-  let imgLoaded = false;
 
   const handleError = (idx: number) => {
     imgElemArr[idx].onerror = null;
@@ -24,26 +24,6 @@
   export let sourceElemArr: HTMLSourceElement[] = [];
   export let imgElemArr: HTMLImageElement[] = [];
   export let loaded: Map<string, HTMLImageElement>;
-
-  function lazy(node, data) {
-    if (loaded.has(data.src)) {
-      node.setAttribute("src", data.src);
-      imgLoaded = true;
-    } else {
-      // simulate slow loading network
-      const img = new Image();
-      img.src = data.src;
-      img.onload = () => {
-        loaded.set(data.src, img);
-        node.setAttribute("src", data.src);
-        imgLoaded = true;
-      };
-    }
-
-    return {
-      destroy() {}, // noop
-    };
-  }
 </script>
 
 <div class="hex-in">
@@ -62,6 +42,7 @@
         src="/grey_square.png"
         use:lazy={{
           src: `https://enki.imgix.net/${category.Id}?auto=format,compress&q=60&lossless=1&w=0.3`,
+          loaded,
         }}
         alt={`category ${category.Name}`}
         data-testid="cdn-img"
