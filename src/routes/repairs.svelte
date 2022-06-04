@@ -79,57 +79,129 @@
         />
       {/if}
     </div>
-    <p>
-      Got a necklace you're afraid to wear because the clasp sometimes fails?
-      Have a ring you've loved for such a long time that the shank has worn away
-      to nothing? We hate to see jewellery thrown away, bring it in and we’ll
-      get it back to its former glory. We can even create a new partner for a
-      lonely earring! Click <a href="/contact">here</a> to get in touch.
-    </p>
-    <h2>Testimonials</h2>
-    <div class="testimonials-container">
+    <div class="repair-content">
       {#if isMobile}
         <p>
-          "Beautiful little shop. I needed a bracelet repaired and a ring
-          setting. Faith gave me some great advice and the repairs were done
-          quickly." - Alexandra B
+          Got a necklace you're afraid to wear because the clasp sometimes
+          fails? Have a ring you've loved for such a long time that the shank
+          has worn away to nothing? We hate to see jewellery thrown away, bring
+          it in and we’ll get it back to its former glory. We can even create a
+          new partner for a lonely earring! <a href="/contact">Get in touch.</a>
         </p>
-        <hr style="width: 100%" />
-        <p>
-          "Had my wedding ring cut off due to swollen finger, it was repaired
-          with an additional piece added, not the slightest sign anything had
-          happened . Would recommend her to anyone. Thank you." - Will M
-        </p>
+        <div class="repairs-price-list">
+          <a sveltekit:prefetch href="/silver-jewellery-price-list.pdf"
+            ><img alt="sliver repairs price list" src="/silver.png" /></a
+          >
+          <a sveltekit:prefetch href="/9ct-jewellery-price-list.pdf"
+            ><img alt="9ct gold repairs list" src="/9_carat.png" /></a
+          >
+          <a sveltekit:prefetch href="/18ct-jewellery-price-list.pdf"
+            ><img alt="18ct gold repairs list" src="/18_carat.png" /></a
+          >
+          <a sveltekit:prefetch href="/platinum-jewellery-price-list.pdf"
+            ><img alt="platinum repairs list" src="/platinum.png" /></a
+          >
+        </div>
       {:else}
-        <p>
-          "Beautiful little shop. I needed a bracelet repaired and a ring
-          setting. Faith gave me some great advice and the repairs were done
-          quickly." - Alexandra B
-          <br />
-          <br />
-          "Had my wedding ring cut off due to swollen finger, it was repaired with
-          an additional piece added, not the slightest sign anything had happened
-          . Would recommend her to anyone. Thank you." - Will M
-        </p>
+        <div class="left-repair-content">
+          <p>
+            Got a necklace you're afraid to wear because the clasp sometimes
+            fails? Have a ring you've loved for such a long time that the shank
+            has worn away to nothing? We hate to see jewellery thrown away,
+            bring it in and we’ll get it back to its former glory. We can even
+            create a new partner for a lonely earring! <a href="/contact"
+              >Get in touch.</a
+            >
+          </p>
+          <div class="repairs-price-list">
+            <a sveltekit:prefetch href="/silver-jewellery-price-list.pdf"
+              ><img alt="sliver repairs price list" src="/silver.png" /></a
+            >
+            <a sveltekit:prefetch href="/9ct-jewellery-price-list.pdf"
+              ><img alt="9ct gold repairs list" src="/9_carat.png" /></a
+            >
+            <a sveltekit:prefetch href="/18ct-jewellery-price-list.pdf"
+              ><img alt="18ct gold repairs list" src="/18_carat.png" /></a
+            >
+            <a sveltekit:prefetch href="/platinum-jewellery-price-list.pdf"
+              ><img alt="platinum repairs list" src="/platinum.png" /></a
+            >
+          </div>
+        </div>
       {/if}
-      <hr style="width: 100%" />
-      <p>
-        "I ran into trouble restoring an old Gretsch snare drum of huge
-        sentimental value to me - the modern part I'd sourced in the USA arrived
-        but some delicate filing was needed in order to fit the part to the
-        existing mechanism… The staff were friendly and took a real interest in
-        the project and carefully carried out the delicate job there and then. I
-        could not be happier and would highly recommend the store, its staff and
-        their considerable - and adaptable - expertise." - Dave T
-      </p>
-      <hr style="width: 100%" />
-      <p>
-        "I took a diamond ring to Enki to be repaired. The lady listened to my
-        description of what was wrong. She used several tools to look at the
-        ring and complete the repair. I was in and out in ten minutes with my
-        ring repaired and very shiny. Fantastic service and very knowledgeable.
-        Highly recommended." - Claire B
-      </p>
+      <div class="testimonials-container">
+        {#if isMobile}
+          <h2>Testimonials</h2>
+          <p>
+            "Beautiful little shop. I needed a bracelet repaired and a ring
+            setting. Faith gave me some great advice and the repairs were done
+            quickly." - Alexandra B
+          </p>
+          <hr style="width: 90%" />
+          <p>
+            "Had my wedding ring cut off due to swollen finger, it was repaired
+            with an additional piece added, not the slightest sign anything had
+            happened . Would recommend her to anyone. Thank you." - Will M
+          </p>
+          <hr style="width: 90%" />
+          <p>
+            "I ran into trouble restoring an old Gretsch snare drum of huge
+            sentimental value to me - the modern part I'd sourced in the USA
+            arrived but some delicate filing was needed in order to fit the part
+            to the existing mechanism… The staff were friendly and took a real
+            interest in the project and carefully carried out the delicate job
+            there and then. I could not be happier and would highly recommend
+            the store, its staff and their considerable - and adaptable -
+            expertise." - Dave T
+          </p>
+          <hr style="width: 90%" />
+          <p>
+            "I took a diamond ring to Enki to be repaired. The lady listened to
+            my description of what was wrong. She used several tools to look at
+            the ring and complete the repair. I was in and out in ten minutes
+            with my ring repaired and very shiny. Fantastic service and very
+            knowledgeable. Highly recommended." - Claire B
+          </p>
+        {:else}
+          <blockquote>
+            Beautiful little shop. I needed a bracelet repaired and a ring
+            setting. Faith gave me some great advice and the repairs were done
+            quickly.
+            <footer>
+              <cite>Alexandra B</cite>
+            </footer>
+          </blockquote>
+          <blockquote>
+            I'd been restoring a snare drum of huge sentimental value to me but
+            the part I'd sourced needed some delicate filing to fit the existing
+            mechanism… The staff took a real interest in the project and carried
+            out the job there and then. I could not be happier and would highly
+            recommend the store, its staff and their considerable and adaptable
+            expertise.
+            <footer>
+              <cite>Dave T</cite>
+            </footer>
+          </blockquote>
+          <blockquote>
+            Had my wedding ring cut off due to swollen finger, it was repaired
+            with an additional piece added, not the slightest sign anything had
+            happened. Would recommend her to anyone. Thank you.
+            <footer>
+              <cite>Will M</cite>
+            </footer>
+          </blockquote>
+          <blockquote>
+            I took a diamond ring to Enki to be repaired. The lady listened to
+            my description of what was wrong. She used several tools to look at
+            the ring and complete the repair. I was in and out in ten minutes
+            with my ring repaired and very shiny. Fantastic service and very
+            knowledgeable. Highly recommended.
+            <footer>
+              <cite>Claire B</cite>
+            </footer>
+          </blockquote>
+        {/if}
+      </div>
     </div>
   </div>
 {/if}
@@ -148,10 +220,95 @@
     align-items: center;
   }
 
+  .repair-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .repairs-price-list {
+    width: 100%;
+    text-align: center;
+  }
+
+  .repairs-price-list > a {
+    margin: 1em;
+  }
+
+  .repairs-price-list > a > img {
+    margin-top: 1em;
+    width: 80%;
+  }
+
+  .left-repair-content {
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .left-repair-content > p {
+    width: 70%;
+    font-size: 2em;
+    padding: 1em;
+    border: 0.2em solid var(--accent-color);
+    text-align: center;
+  }
+
   .testimonials-container {
     display: flex;
     flex-direction: column;
-    width: 90%;
+  }
+
+  blockquote {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Caviar Dreams";
+    position: relative;
+    margin: 1em;
+    width: 15vw;
+    height: 15vw;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    transform: translate(-50%, -50%);
+    border: 0.2em solid var(--accent-color);
+    text-align: center;
+  }
+
+  cite {
+    font-family: "Caviar Dreams Italic";
+  }
+
+  blockquote:before {
+    font-family: "Caviar Dreams";
+    color: var(--accent-color);
+    position: absolute;
+    font-size: 6em;
+    line-height: 1;
+    top: 0;
+    left: 0;
+    content: "\201C";
+  }
+  blockquote:after {
+    font-family: "Caviar Dreams";
+    color: var(--accent-color);
+    position: absolute;
+    /* display: block; don't use this, it raised the quote too high from the bottom - defeated line-height? */
+    float: right;
+    font-size: 6em;
+    line-height: 1;
+    right: 0;
+    bottom: -0.5em;
+    content: "\201D";
+  }
+  blockquote footer {
+    padding: 0 2em 0 0;
+    text-align: right;
+  }
+  blockquote cite:before {
+    content: "\2013";
   }
 
   .testimonials-container > p {
@@ -183,10 +340,45 @@
     font-family: "Caviar Dreams";
   }
 
+  @media (min-width: 600px) {
+    .repairs-price-list {
+      display: grid;
+      align-self: center;
+      width: 80%;
+      height: 15vw;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .repairs-price-list > a > img {
+      margin-top: 1em;
+      width: 100%;
+    }
+  }
+
   @media (min-width: 960px) {
+    .left-repair-content > p {
+      width: 50%;
+      font-size: 1em;
+    }
+
+    blockquote {
+      font-size: 0.6em;
+      padding: 0.3em;
+    }
+
     .testimonials-container {
       flex-direction: row;
       align-items: flex-start;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      width: 90%;
+    }
+
+    .repair-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
 
     .testimonials-container > p {
@@ -195,6 +387,55 @@
 
     hr {
       display: none;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .left-repair-content > p {
+      font-size: 100%;
+    }
+
+    blockquote {
+      font-size: 0.7em;
+    }
+
+    .repairs-price-list {
+      width: 60%;
+    }
+
+    .repairs-price-list > a {
+      margin: 0.5em;
+    }
+
+    .repairs-price-list > a > img {
+      margin-top: 1em;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    blockquote {
+      font-size: 0.8em;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    blockquote {
+      font-size: 1em;
+    }
+
+    .left-repair-content > p {
+      font-size: 1.5em;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    blockquote {
+      font-size: 1.2em;
+    }
+
+    .left-repair-content > p {
+      font-size: 1.6em;
     }
   }
 </style>
