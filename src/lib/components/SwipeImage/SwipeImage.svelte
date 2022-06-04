@@ -47,16 +47,18 @@
     </Swiper>
   </div>
 {:else}
-  <img
-    src={imgArr[0].src}
-    alt={imgArr[0].alt}
-    style={fullScreen ? "" : "cursor: pointer"}
-    on:error={() => {
-      if (imgArr[0].src != "/coming-soon.png") {
-        imgArr[0].src = "/coming-soon.png";
-      }
-    }}
-  />
+  <div class="single-img-container">
+    <img
+      src={imgArr[0].src}
+      alt={imgArr[0].alt}
+      style={fullScreen ? "" : "cursor: pointer"}
+      on:error={() => {
+        if (imgArr[0].src != "/coming-soon.png") {
+          imgArr[0].src = "/coming-soon.png";
+        }
+      }}
+    />
+  </div>
 {/if}
 
 <style>
@@ -68,6 +70,13 @@
   img {
     max-width: 90%;
     max-height: 90%;
+  }
+
+  .single-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 
   .custom-pagination-div {
