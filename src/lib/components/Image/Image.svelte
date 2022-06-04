@@ -5,7 +5,7 @@
   export let alt: string;
 
   let loaded = false;
-  let thisImage: HTMLElement;
+  let thisImage: HTMLImageElement;
 
   onMount(() => {
     thisImage.onload = () => {
@@ -20,8 +20,8 @@
   class:loaded
   bind:this={thisImage}
   on:error={() => {
-    if (src != "/coming-soon.png") {
-      src = "/coming-soon.png";
+    if (thisImage.src != "/coming-soon.png") {
+      thisImage.src = "/coming-soon.png";
     }
   }}
 />

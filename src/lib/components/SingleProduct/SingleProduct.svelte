@@ -64,14 +64,12 @@
           />
         </div>
       {/if}
-      {#if product.ProductImages?.length}
-        <div class="position-img">
-          <ImageLoader
-            src={`https://enki.imgix.net/${product.Id}-0?auto=format,compress`}
-            alt={`${product.Name}`}
-          />
-        </div>
-      {/if}
+      <div class="position-img">
+        <ImageLoader
+          src={`https://enki.imgix.net/${product.Id}-0?auto=format,compress`}
+          alt={`${product.Name}`}
+        />
+      </div>
       <div class="prod-details">
         <h3 class="simple-prod-name">
           {`${product.Name}`}

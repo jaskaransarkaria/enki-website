@@ -98,20 +98,18 @@
   </div>
 {:else}
   <div class="details-container">
-    {#if product.ProductImages?.length}
-      <div class="desktop-left-container">
-        <div
-          class="desktop-img-container"
-          on:click={() => {
-            showFullScreen = true;
-            visible += 1;
-            window.scrollTo(0, 0);
-          }}
-        >
-          <SwipeImage imgArr={createImgArr(product)} />
-        </div>
+    <div class="desktop-left-container">
+      <div
+        class="desktop-img-container"
+        on:click={() => {
+          showFullScreen = true;
+          visible += 1;
+          window.scrollTo(0, 0);
+        }}
+      >
+        <SwipeImage imgArr={createImgArr(product)} />
       </div>
-    {/if}
+    </div>
     <div class="detailed-products-footer">
       <h2>{product.Name}</h2>
       <h4>{`£${product.SalePrice.toFixed(2)}`}</h4>

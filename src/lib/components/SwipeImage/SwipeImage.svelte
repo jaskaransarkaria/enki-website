@@ -33,13 +33,15 @@
     >
       {#each imgArr as img, idx ("main" + idx)}
         <SwiperSlide>
-          <img
-            src={img.src}
-            alt={img.alt}
-            data-testid="swipe-img"
-            style={fullScreen ? "" : "cursor: pointer"}
-          />
-          <div class="custom-pagination-div" />
+          <div>
+            <img
+              src={img.src}
+              alt={img.alt}
+              data-testid="swipe-img"
+              style={fullScreen ? "" : "cursor: pointer"}
+            />
+            <div class="custom-pagination-div" />
+          </div>
         </SwiperSlide>
       {/each}
     </Swiper>
@@ -66,6 +68,8 @@
   img {
     max-width: 90%;
     max-height: 90%;
+    height: intrinsic;
+    align-self: center;
   }
 
   .custom-pagination-div {
