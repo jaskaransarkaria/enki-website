@@ -89,16 +89,18 @@
           new partner for a lonely earring! <a href="/contact">Get in touch.</a>
         </p>
         <div class="repairs-price-list">
-          <a sveltekit:prefetch href="/silver-jewellery-price-list.pdf"
+          <a sveltekit:prefetch href="/repairs/silver-jewellery-price-list.pdf"
             ><img alt="sliver repairs price list" src="/silver.png" /></a
           >
-          <a sveltekit:prefetch href="/9ct-jewellery-price-list.pdf"
+          <a sveltekit:prefetch href="/repairs/9ct-jewellery-price-list.pdf"
             ><img alt="9ct gold repairs list" src="/9_carat.png" /></a
           >
-          <a sveltekit:prefetch href="/18ct-jewellery-price-list.pdf"
+          <a sveltekit:prefetch href="/repairs/18ct-jewellery-price-list.pdf"
             ><img alt="18ct gold repairs list" src="/18_carat.png" /></a
           >
-          <a sveltekit:prefetch href="/platinum-jewellery-price-list.pdf"
+          <a
+            sveltekit:prefetch
+            href="/repairs/platinum-jewellery-price-list.pdf"
             ><img alt="platinum repairs list" src="/platinum.png" /></a
           >
         </div>
@@ -114,16 +116,20 @@
             >
           </p>
           <div class="repairs-price-list">
-            <a sveltekit:prefetch href="/silver-jewellery-price-list.pdf"
+            <a
+              sveltekit:prefetch
+              href="/repairs/silver-jewellery-price-list.pdf"
               ><img alt="sliver repairs price list" src="/silver.png" /></a
             >
-            <a sveltekit:prefetch href="/9ct-jewellery-price-list.pdf"
+            <a sveltekit:prefetch href="/repairs/9ct-jewellery-price-list.pdf"
               ><img alt="9ct gold repairs list" src="/9_carat.png" /></a
             >
-            <a sveltekit:prefetch href="/18ct-jewellery-price-list.pdf"
+            <a sveltekit:prefetch href="/repairs/18ct-jewellery-price-list.pdf"
               ><img alt="18ct gold repairs list" src="/18_carat.png" /></a
             >
-            <a sveltekit:prefetch href="/platinum-jewellery-price-list.pdf"
+            <a
+              sveltekit:prefetch
+              href="/repairs/platinum-jewellery-price-list.pdf"
               ><img alt="platinum repairs list" src="/platinum.png" /></a
             >
           </div>
@@ -223,6 +229,8 @@
   .repair-content {
     display: flex;
     flex-direction: column;
+    width: 80%;
+    align-self: center;
   }
 
   .repairs-price-list {
@@ -232,6 +240,8 @@
 
   .repairs-price-list > a {
     margin: 1em;
+    width: 80%;
+    justify-self: center;
   }
 
   .repairs-price-list > a > img {
@@ -318,7 +328,7 @@
   .shop-pics {
     display: flex;
     flex-direction: row;
-    width: 70%;
+    width: 80%;
     height: 10%;
     align-self: center;
     justify-content: center;
@@ -344,21 +354,18 @@
     .repairs-price-list {
       display: grid;
       align-self: center;
-      width: 80%;
-      height: 15vw;
+      height: auto;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
     }
 
     .repairs-price-list > a > img {
-      margin-top: 1em;
       width: 100%;
     }
   }
 
   @media (min-width: 960px) {
     .left-repair-content > p {
-      width: 50%;
       font-size: 1em;
     }
 
@@ -373,7 +380,6 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      width: 90%;
     }
 
     .repair-content {
@@ -399,17 +405,8 @@
       font-size: 0.7em;
     }
 
-    .repairs-price-list {
-      width: 60%;
-    }
-
     .repairs-price-list > a {
       margin: 0.5em;
-    }
-
-    .repairs-price-list > a > img {
-      margin-top: 1em;
-      width: 100%;
     }
   }
 
