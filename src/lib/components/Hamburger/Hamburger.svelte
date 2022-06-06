@@ -40,7 +40,7 @@
 
   button {
     all: unset;
-    font-family: "WelcomeHome5 Regular";
+    font-family: "Welcomehome5 Regular";
     font-size: 3.2em;
     cursor: pointer;
     margin: 30px;

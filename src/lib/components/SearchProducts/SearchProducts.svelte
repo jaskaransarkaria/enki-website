@@ -26,7 +26,7 @@
 
 <style>
   input {
-    font-family: "WelcomeHome5 Regular";
+    font-family: "Welcomehome5 Regular";
     border: 0;
     outline: 0;
     background: transparent;
