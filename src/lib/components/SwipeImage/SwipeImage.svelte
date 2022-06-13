@@ -26,8 +26,8 @@
       pagination={{ clickable: true, el: ".custom-pagination-div" }}
       keyboard={{ enabled: true }}
       grabCursor={true}
-      centeredSlides={true}
       autoHeight={true}
+      centeredSlides={true}
       zoom={setImgWidth ? true : false}
       mousewheel={setImgWidth ? true : false}
     >
@@ -76,7 +76,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    max-height: 100%;
   }
 
   .custom-pagination-div {
