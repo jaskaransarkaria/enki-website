@@ -324,19 +324,16 @@
   .shop-pics {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 75%;
     height: 10%;
     align-self: center;
     justify-content: center;
   }
 
   .shop-pics > * {
-    width: 20%;
+    height: 100%;
+    max-width: 30%;
     padding: 5px;
-  }
-
-  .extra-width {
-    width: 30%;
   }
 
   p {
@@ -394,6 +391,10 @@
     hr {
       display: none;
     }
+
+    .shop-pics {
+      height: 250px;
+    }
   }
 
   @media (min-width: 1280px) {
@@ -408,11 +409,19 @@
     .repairs-price-list > a {
       margin: 0.5em;
     }
+
+    .shop-pics {
+      height: 300px;
+    }
   }
 
   @media (min-width: 1400px) {
     blockquote {
       font-size: 0.8em;
+    }
+
+    .shop-pics {
+      height: 350px;
     }
   }
 
@@ -424,15 +433,23 @@
     .left-repair-content > p {
       font-size: 1.5em;
     }
+
+    .shop-pics {
+      height: 400px;
+    }
   }
 
   @media (min-width: 1920px) {
     blockquote {
-      font-size: 1.1em;
+      font-size: 1em;
     }
 
     .left-repair-content > p {
       font-size: 1.6em;
+    }
+
+    .shop-pics {
+      height: 450px;
     }
   }
 

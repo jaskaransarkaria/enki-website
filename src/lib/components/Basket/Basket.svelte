@@ -70,22 +70,32 @@
               <h4 class={isMobile ? "mobile-product-total" : "product-total"}>
                 {`£${((obj.price * 100 * obj.quantity) / 100).toFixed(2)}`}
               </h4>
-              <div class="gift-wrapping">
-                <label for="gift-wrap"
-                  >Gift Wrap for £{GIFT_WRAP_PRICE}
-                  <input
-                    type="checkbox"
-                    id="gift-wrap"
-                    name="gift-wrap"
-                    checked={obj.giftWrap}
-                    bind:this={giftWrap[i]}
-                    on:change={() =>
-                      giftWrap[i]?.checked
-                        ? addGiftWrapping(i)
-                        : removeGiftWrapping(i)}
-                  />
-                </label>
-              </div>
+              {#if obj?.categoryId !== 1876089}
+                <div class="gift-wrapping">
+                  <label for="gift-wrap"
+                    >Gift Wrap for £{GIFT_WRAP_PRICE}
+                    <input
+                      type="checkbox"
+                      id="gift-wrap"
+                      name="gift-wrap"
+                      checked={obj.giftWrap}
+                      bind:this={giftWrap[i]}
+                      on:change={() =>
+                        giftWrap[i]?.checked
+                          ? addGiftWrapping(i)
+                          : removeGiftWrapping(i)}
+                    />
+                    {#if giftWrap[i]?.checked}
+                      <p>
+                        Choose from a variety of gift wrap <a
+                          sveltekit:prefetch
+                          href="/shop/category/1876089">here</a
+                        >
+                      </p>
+                    {/if}
+                  </label>
+                </div>
+              {/if}
             </div>
           </div>
         </div>
@@ -196,9 +206,13 @@
     justify-content: space-between;
   }
 
+  .price > * {
+    text-align: right;
+  }
+
   .gift-wrapping {
     margin-top: 1em;
-    text-align: center;
+    text-align: right;
   }
 
   .total {
@@ -233,6 +247,10 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  p {
+    text-align: right;
   }
 
   h2,

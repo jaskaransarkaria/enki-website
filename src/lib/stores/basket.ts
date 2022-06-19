@@ -5,6 +5,7 @@ import type { Writable } from "svelte/store";
 export interface BasketProduct {
   name: string;
   id: string;
+  categoryId: number;
   quantity: number;
   price: number;
   currentStock: number;

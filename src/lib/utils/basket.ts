@@ -12,6 +12,7 @@ const removeItemFromBasket = (
         ...list.slice(0, listIndx),
         {
           id: list[listIndx].id,
+          categoryId: list[listIndx].categoryId,
           name: list[listIndx].name,
           quantity: list[listIndx].quantity - 1,
           price: list[listIndx].price,
@@ -29,6 +30,7 @@ const addItemToBasket = (
   ...list.slice(0, listIndx),
   {
     id: list[listIndx].id,
+    categoryId: list[listIndx].categoryId,
     name: list[listIndx].name,
     quantity: list[listIndx].quantity + 1,
     price: list[listIndx].price,
@@ -40,11 +42,15 @@ const addItemToBasket = (
 ];
 
 const addNewItemToBasket = (
-  product: Pick<Product, "Id" | "Name" | "SalePrice" | "CurrentStock">,
+  product: Pick<
+    Product,
+    "Id" | "Name" | "SalePrice" | "CurrentStock" | "CategoryId"
+  >,
   list: BasketProduct[]
 ): BasketProduct[] => [
   {
     id: product?.Id.toString(),
+    categoryId: product?.CategoryId,
     name: product?.Name,
     quantity: 1,
     price: product?.SalePrice,
@@ -56,7 +62,10 @@ const addNewItemToBasket = (
 ];
 
 export const updateBasket = (
-  product: Pick<Product, "Id" | "Name" | "SalePrice" | "CurrentStock">,
+  product: Pick<
+    Product,
+    "Id" | "Name" | "SalePrice" | "CurrentStock" | "CategoryId"
+  >,
   list: BasketProduct[],
   updateType: string
 ): BasketProduct[] => {
