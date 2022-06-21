@@ -12,6 +12,7 @@
   export let variantCategories: readonly Category[] = [];
   export let showDetailedView = false;
   export let whitelistedUserAgent = false;
+  export let sorted = false;
 
   let sortBy: string = browser
     ? window.sessionStorage.getItem("filter")
@@ -141,15 +142,21 @@
     })
   );
 
-  $: collatedArray = collateArray(
-    typedVariantCategories,
-    typedNonVariantProductArr,
-    groupedVariantProducts
+  $: collatedArray = sorted
+    ? productArr
+    : collateArray(
+        typedVariantCategories,
+        typedNonVariantProductArr,
+        groupedVariantProducts
+      );
+
+  beforeUpdate(
+    () => (sortBy = sorted ? "sorted" : window.sessionStorage.getItem("filter"))
   );
 
-  beforeUpdate(() => (sortBy = window.sessionStorage.getItem("filter")));
-
-  $: sortedCollatedArray = sortArray(sortBy, collatedArray);
+  $: sortedCollatedArray = sorted
+    ? productArr
+    : sortArray(sortBy, collatedArray as readonly CollatedItem[]);
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;

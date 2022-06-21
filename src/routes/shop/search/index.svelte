@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
   import { refreshProductsFromServer } from "$lib/utils/requests";
   import { searchProducts } from "$lib/utils/search";
+  import type { Product } from "$lib/types/product";
 
   export async function load({ fetch, url }) {
     // pull the category data from api
@@ -11,11 +12,26 @@
 
     const searchTerm = decodeURIComponent(url.searchParams.get("search-term"));
     const reg = new RegExp(`\\b${searchTerm}|${searchTerm}\\b`, "i");
+    const wordInTitleReg = new RegExp(`\\b${searchTerm}\\b`, "i");
+
     const data = searchProducts(reg, result);
+
+    const sortedData = [
+      ...data
+        .slice()
+        .filter((prod: Product) =>
+          prod.Name.toLowerCase().match(wordInTitleReg)
+        ),
+      ...data
+        .slice()
+        .filter(
+          (prod: Product) => !prod.Name.toLowerCase().match(wordInTitleReg)
+        ),
+    ];
 
     return {
       props: {
-        data,
+        data: sortedData,
       },
     };
   }
@@ -26,8 +42,6 @@
 <script lang="ts">
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
   import { page } from "$app/stores";
-
-  import type { Product } from "$lib/types/product";
 
   export let data: readonly Product[];
 </script>
@@ -67,7 +81,7 @@
   ).toLowerCase()}"
 </h2>
 {#if data.length}
-  <ProductView productArr={data} />
+  <ProductView productArr={data} sorted />
 {/if}
 
 <style>
