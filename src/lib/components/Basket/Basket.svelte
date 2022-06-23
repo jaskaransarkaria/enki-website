@@ -33,6 +33,7 @@
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 1280 ? true : false;
+  $: selectedGiftWrap = $basket.filter((item) => item.categoryId === 1876089);
 </script>
 
 <svelte:window bind:outerWidth />
@@ -56,15 +57,47 @@
               : "quantity-and-price"}
           >
             <div class={isMobile ? "mobile-quantity" : "quantity"}>
-              <BasketCounter productObj={obj} />
+              {#if obj?.categoryId !== 1876089}
+                <BasketCounter productObj={obj} />
+              {/if}
               <br />
             </div>
             {#if giftWrap[i] && giftWrap[i].checked}
-              <textarea
-                maxlength="500"
-                placeholder="Add a message for your gift here..."
-                bind:value={obj.giftDescription}
-              />
+              <div class="gift-wrap-details">
+                <label class="select-wrap" for="wrap">
+                  Fancy gift wrap <a
+                    sveltekit:prefetch
+                    href="/shop/category/1876089">here</a
+                  >
+                  <hr />
+                  <select
+                    name="wrap"
+                    id="wrap"
+                    class="select-wrap"
+                    bind:value={obj.giftWrapToUse}
+                  >
+                    {#if selectedGiftWrap.length === 0}
+                      <option value="Standard brown paper" selected
+                        >Standard brown paper</option
+                      >
+                    {:else}
+                      <option value="Standard brown paper" selected
+                        >Standard brown paper</option
+                      >
+                      {#each selectedGiftWrap as basketWrap, i (basketWrap.id)}
+                        <option value={basketWrap.name}
+                          >{basketWrap.name}</option
+                        >
+                      {/each}
+                    {/if}
+                  </select>
+                </label>
+                <textarea
+                  maxlength="95"
+                  placeholder="Add a message for your gift here..."
+                  bind:value={obj.giftDescription}
+                />
+              </div>
             {/if}
             <div class="price">
               <h4 class={isMobile ? "mobile-product-total" : "product-total"}>
@@ -85,14 +118,6 @@
                           ? addGiftWrapping(i)
                           : removeGiftWrapping(i)}
                     />
-                    {#if giftWrap[i]?.checked}
-                      <p>
-                        Choose from a variety of gift wrap <a
-                          sveltekit:prefetch
-                          href="/shop/category/1876089">here</a
-                        >
-                      </p>
-                    {/if}
                   </label>
                 </div>
               {/if}
@@ -245,12 +270,17 @@
 
   textarea {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  p {
-    text-align: right;
+  .select-wrap {
+    display: block;
+  }
+
+  .gift-wrap-details {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
   }
 
   h2,

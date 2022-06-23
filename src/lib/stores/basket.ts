@@ -11,6 +11,7 @@ export interface BasketProduct {
   currentStock: number;
   giftWrap: boolean;
   giftDescription: string;
+  giftWrapToUse: string;
 }
 
 export const basket: Writable<BasketProduct[]> = writable(
