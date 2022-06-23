@@ -278,9 +278,15 @@
 
   .gift-wrap-details {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+  }
+
+  option,
+  select {
+    font-size: 0.8em;
   }
 
   h2,
@@ -311,13 +317,18 @@
     }
 
     .product {
-      width: 55%;
+      width: 75%;
     }
   }
 
   @media (min-width: 1280px) {
     .empty-basket {
       width: 25%;
+    }
+
+    .gift-wrap-details {
+      flex-direction: row;
+      justify-content: space-evenly;
     }
   }
 
