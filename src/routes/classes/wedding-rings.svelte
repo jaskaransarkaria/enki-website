@@ -92,7 +92,7 @@
     <p>
       If you have any queries please <a href="mailto: faith@enkionline.com"
         >contact us</a
-      >
+      >.
     </p>
     <br />
     <br />

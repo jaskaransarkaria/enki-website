@@ -5,16 +5,16 @@ test("Contact Page", async ({ page }) => {
   await expect(page.locator(".contact-info > h1 >> nth=0")).toHaveText(
     "Contact us"
   );
-  await expect(page.locator(".contact-info > img >> nth=0")).toHaveAttribute(
+  await expect(page.locator(".map")).toHaveAttribute(
     "src",
     "https://enki.imgix.net/maps.png?auto=format,compress"
   );
-  await expect(page.locator("address")).toHaveText(
-    "30 High Street Kings Heath, B14 7JT Open every day 10am-5pm"
-  );
-  await expect(page.locator(".contact-info > img >> nth=1")).toHaveAttribute(
+  await expect(page.locator(".telephone")).toHaveAttribute(
     "src",
     "https://enki.imgix.net/telephone.png?auto=format,compress"
+  );
+  await expect(page.locator("address")).toHaveText(
+    "30 High Street Kings Heath, B14 7JT Open every day 10am-5pm"
   );
   await expect(page.locator("p > a >> nth=0")).toHaveText("01214444453");
   await expect(page.locator("p > a >> nth=1")).toHaveText("07712442736");

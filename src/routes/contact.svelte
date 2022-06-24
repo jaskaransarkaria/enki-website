@@ -15,11 +15,14 @@
 <div class="contact-us-container">
   <div class="contact-info">
     <h1>Contact us</h1>
-    <img
-      in:fade={{ duration: 600 }}
-      src="https://enki.imgix.net/maps.png?auto=format,compress"
-      alt="hand drawn street map symbol with location pin"
-    />
+    <a target="_blank" href="https://goo.gl/maps/vEXPs22hUBs2CgdH8">
+      <img
+        in:fade={{ duration: 600 }}
+        src="https://enki.imgix.net/maps.png?auto=format,compress"
+        alt="hand drawn street map symbol with location pin"
+        class="map"
+      />
+    </a>
     <address>
       30 High Street Kings Heath, B14 7JT <br /> Open every day 10am-5pm
     </address>
@@ -65,11 +68,6 @@
     margin: 0.5em;
   }
 
-  .contact-info > img {
-    height: 50px;
-    width: 50px;
-  }
-
   address {
     font-family: "Caviar Dreams Italic";
     text-align: center;
@@ -84,6 +82,12 @@
   p {
     font-family: "Caviar Dreams";
     text-align: center;
+  }
+
+  .telephone,
+  .map {
+    height: auto;
+    width: 50px;
   }
 
   .telephone:hover {
@@ -138,6 +142,12 @@
 
     .submissions-text {
       width: 60%;
+    }
+
+    .telephone,
+    .map {
+      height: auto;
+      width: 100px;
     }
   }
 </style>

@@ -40,7 +40,7 @@
     position: sticky;
     bottom: 5vh;
     left: 100%;
-    z-index: 99;
+    z-index: 98;
     cursor: pointer;
     padding-bottom: 0.75em;
     width: 10%;

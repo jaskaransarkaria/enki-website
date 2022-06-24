@@ -121,6 +121,11 @@
     margin: 1.2em;
   }
 
+  .basic-header {
+    margin-top: 1em;
+    margin-bottom: 0.8em;
+  }
+
   .simple-prod-name {
     margin-bottom: 0;
   }
@@ -140,9 +145,6 @@
     display: block;
     font-size: 0.7em;
     margin-top: 0;
-  }
-
-  h3 {
     text-align: center;
   }
 

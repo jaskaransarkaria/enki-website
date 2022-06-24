@@ -27,6 +27,7 @@
 <svelte:window bind:outerWidth />
 {#if browser || whitelistedUserAgent}
   <div class="container">
+    <h1>About</h1>
     <div class="shop-pics">
       {#if isMobile}
         <SwipeImage
@@ -97,10 +98,10 @@
           alt="shop owner faith"
         />
         <p>
-          Dora joined Enki in 2018 and has been learning jewellery making ever
-          since, she’s always been a crafter and can do amazing things with
-          beads! She comes from Germany but has been in Brum since 2016. You can
-          find her at Enki Thursday to Sunday.
+          Dora joined Enki in 2018 and has been making jewellery ever since,
+          she’s always been a crafter and can do amazing things with beads! She
+          comes from Germany but has been in Brum since 2016. You can find her
+          at Enki Thursday to Sunday.
         </p>
       </div>
     </div>
@@ -108,6 +109,7 @@
 {/if}
 
 <style>
+  h1,
   h2 {
     text-align: center;
     font-family: "Welcomehome5 Regular";
@@ -170,6 +172,7 @@
   .card > p {
     justify-content: flex-start;
     vertical-align: top;
+    width: 75%;
   }
 
   .card > img {
