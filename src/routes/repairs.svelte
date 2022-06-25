@@ -432,10 +432,6 @@
       font-size: 1em;
     }
 
-    .repair-content > p {
-      font-size: 2em;
-    }
-
     .shop-pics {
       height: 450px;
     }
@@ -444,6 +440,10 @@
   @media (min-width: 2200px) {
     blockquote {
       font-size: 1.2em;
+    }
+
+    .repair-content > p {
+      font-size: 2em;
     }
   }
 </style>

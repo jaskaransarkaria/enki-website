@@ -39,6 +39,7 @@
               alt={img.alt}
               data-testid="swipe-img"
               style={fullScreen ? "" : "cursor: pointer"}
+              class={fullScreen ? "full-screen" : ""}
             />
             <div class="custom-pagination-div" />
           </div>
@@ -57,6 +58,7 @@
           imgArr[0].src = "/coming-soon.png";
         }
       }}
+      class={fullScreen ? "full-screen" : ""}
     />
   </div>
 {/if}
@@ -67,9 +69,13 @@
     text-align: center;
   }
 
+  .full-screen {
+    max-height: 33vw;
+  }
+
   img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95%;
+    max-height: 95%;
   }
 
   .single-img-container {

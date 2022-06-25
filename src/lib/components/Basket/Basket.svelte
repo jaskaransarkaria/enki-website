@@ -330,6 +330,11 @@
       flex-direction: row;
       justify-content: space-evenly;
     }
+
+    option,
+    select {
+      font-size: 1em;
+    }
   }
 
   @media (min-width: 1750px) {
