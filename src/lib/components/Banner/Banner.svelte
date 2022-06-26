@@ -14,7 +14,7 @@
           href="/shop/category/1876089">here!</a
         >
       </p>
-      <p>Free UK shipping over £40</p>
+      <p class="free-shipping">Free UK shipping over £40</p>
     </div>
   </a>
 {/if}
