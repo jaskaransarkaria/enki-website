@@ -28,6 +28,7 @@
                 Name: productObj.name,
                 SalePrice: productObj.price,
                 CurrentStock: productObj.currentStock,
+                CategoryId: productObj.categoryId,
               },
               $basket,
               "incrementQuantity"
@@ -60,6 +61,7 @@
             Name: productObj.name,
             SalePrice: productObj.price,
             CurrentStock: productObj.currentStock,
+            CategoryId: productObj.categoryId,
           },
           $basket,
           "decrementQuantity"

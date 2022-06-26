@@ -27,7 +27,6 @@
 <svelte:window bind:outerWidth />
 {#if browser || whitelistedUserAgent}
   <div class="container">
-    <h1>About</h1>
     <div class="shop-pics">
       {#if isMobile}
         <SwipeImage
@@ -65,6 +64,7 @@
         />
       {/if}
     </div>
+    <h1>About</h1>
     <p class="about-shop">
       Enki is a unique gift shop and fully functioning jewellers workshop. We
       repair all types of jewellery onsite and also teach group and private

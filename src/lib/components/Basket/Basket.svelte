@@ -57,9 +57,7 @@
               : "quantity-and-price"}
           >
             <div class={isMobile ? "mobile-quantity" : "quantity"}>
-              {#if obj?.categoryId !== 1876089}
-                <BasketCounter productObj={obj} />
-              {/if}
+              <BasketCounter productObj={obj} />
               <br />
             </div>
             {#if giftWrap[i] && giftWrap[i].checked}
