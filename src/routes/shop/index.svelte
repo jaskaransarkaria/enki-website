@@ -28,8 +28,12 @@
   export let whitelistedUserAgent: boolean;
   export let data: Base[];
 
+  const queryParams = $page.url.toString().split("?")[1];
+
   const categoryFn: BaseFn = (category: Base) =>
-    `${$page.url}/category/${category.Id}`;
+    `${$page.url.toString().split("?")[0]}/category/${category.Id}${
+      queryParams ? "?" + queryParams : ""
+    }`;
 </script>
 
 <HexGrid {data} {categoryFn} {whitelistedUserAgent} />
