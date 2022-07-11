@@ -35,6 +35,7 @@ Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
+Crawl-delay: 10
 
 User-agent: msnbot
 Disallow: /payment
@@ -71,6 +72,7 @@ Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
+Crawl-delay: 5
 
 User-agent: sitemap-generator-cli
 Disallow: /payment

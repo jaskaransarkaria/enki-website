@@ -14,9 +14,8 @@
   export let whitelistedUserAgent = false;
   export let sorted = false;
 
-  let sortBy: string = browser
-    ? window.sessionStorage.getItem("filter")
-    : "in-stock";
+  let sortBy: string =
+    browser && !sorted ? window.sessionStorage.getItem("filter") : "relevant";
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
   let groupedVariantProducts: Array<readonly Product[]>;
@@ -151,12 +150,17 @@
       );
 
   beforeUpdate(
-    () => (sortBy = sorted ? "sorted" : window.sessionStorage.getItem("filter"))
+    () =>
+      (sortBy =
+        sorted && (sortBy === null || sortBy === "relevant")
+          ? "relevant"
+          : window.sessionStorage.getItem("filter"))
   );
 
-  $: sortedCollatedArray = sorted
-    ? productArr
-    : sortArray(sortBy, collatedArray as readonly CollatedItem[]);
+  $: sortedCollatedArray =
+    sorted && (sortBy === null || sortBy === "relevant")
+      ? productArr
+      : sortArray(sortBy, collatedArray as readonly CollatedItem[]);
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;
@@ -168,6 +172,9 @@
     <Banner hasProducts />
     <div class="sort-container">
       <select name="products" id="products" bind:value={sortBy}>
+        {#if sorted}
+          <option value="relevant">relevant</option>
+        {/if}
         <option value="alphabetically">A - Z</option>
         <option value="price-high-low">price (high to low)</option>
         <option value="price-low-high">price (low to high)</option>
