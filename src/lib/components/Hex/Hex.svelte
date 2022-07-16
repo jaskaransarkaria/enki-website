@@ -6,11 +6,6 @@
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
 
-  const handleError = (idx: number) => {
-    imgElemArr[idx].onerror = null;
-    sourceElemArr[idx].srcset = imgElemArr[idx].src;
-  };
-
   export let categoryFn: BaseFn;
   export let isEmpty = false;
   export let idx = 0;
@@ -24,6 +19,11 @@
   export let sourceElemArr: HTMLSourceElement[] = [];
   export let imgElemArr: HTMLImageElement[] = [];
   export let loaded: Map<string, HTMLImageElement>;
+
+  const handleError = (idx: number) => {
+    imgElemArr[idx].onerror = null;
+    sourceElemArr[idx].srcset = imgElemArr[idx].src;
+  };
 </script>
 
 <div class="hex-in">
