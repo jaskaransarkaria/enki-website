@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "svelte-kit dev --port 5000",
+    "dev": "vite dev --port 5000",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview --port 4000",
@@ -19,10 +19,10 @@
     "sitemap-generator": "npx sitemap-generator-cli https://enkionline.com --last-mod --change-freq weekly --priority-map \"1.0\" --user-agent sitemap-generator-cli --filepath src/sitemap.xml --max-concurrency 1 --verbose"
   },
   "devDependencies": {
-    "@playwright/test": "1.22.2",
-    "@sveltejs/adapter-node": "1.0.0-next.73",
-    "@sveltejs/kit": "1.0.0-next.304",
-    "@sveltejs/vite-plugin-svelte": "1.0.0-next.40",
+    "@playwright/test": "^1.20.2",
+    "@sveltejs/adapter-node": "^1.0.0-next.81",
+    "@sveltejs/kit": "^1.0.0-next.377",
+    "@sveltejs/vite-plugin-svelte": "^1.0.1",
     "@types/cookie": "^0.4.1",
     "@types/lodash": "^4.14.168",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
@@ -40,7 +40,7 @@
     "ts-jest": "^27.1.3",
     "tslib": "^2.3.1",
     "typescript": "~4.6.2",
-    "vite": "2.7.1"
+    "vite": "^3.0.0"
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.13.2",
@@ -49,10 +49,6 @@
     "lodash-es": "^4.17.21",
     "lodash.groupby": "^4.6.0",
     "sirv-cli": "^1.0.0",
-    "swiper": "^8.1.1"
-  },
-  "overrides": {
-    "@sveltejs/vite-plugin-svelte": "1.0.0-next.40",
-    "vite": "2.7.1"
+    "swiper": "^8.3.1"
   }
 }
