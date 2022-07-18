@@ -30,17 +30,17 @@
 </script>
 
 <svelte:head>
-  <title>{`Enki - ${productToShow[0].Name}`}</title>
-  <meta property="og:title" content={`Enki - ${productToShow[0].Name}`} />
+  <title>{`Enki - ${productToShow[0]?.Name}`}</title>
+  <meta property="og:title" content={`Enki - ${productToShow[0]?.Name}`} />
   <meta property="og:url" content={$page.url.toString()} />
   <meta
     property="og:image"
-    content={`https://enki.imgix.net/${productToShow[0].Id}-0?auto=format,compress&w=250`}
+    content={`https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress&w=250`}
   />
   <meta property="og:type" content="website" />
   <meta
     property="og:description"
-    content={`Shop at Enki for ${productToShow[0].Name}`}
+    content={`Shop at Enki for ${productToShow[0]?.Name}`}
   />
   <meta property="og:locale" content="en_GB" />
 </svelte:head>

@@ -11,24 +11,27 @@
 <div class="footer" transition:fade={{ delay: 600, duration: 800 }}>
   {#if !isMobile}
     <div class="left-container">
-      <img
-        class="footer-icons"
-        src="https://enki.imgix.net/telephone_3.png?q=100"
-        alt="contact us"
-        on:click={() => goto("/contact")}
-      />
-      <img
-        class="footer-icons"
-        src="https://enki.imgix.net/insta_logo_3.png?q=100"
-        alt="link to instagram"
-        on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
-      />
-      <img
-        class="footer-icons"
-        src="https://enki.imgix.net/fb_logo_3.png?q=100"
-        alt="link to facebook"
-        on:click={() => goto("https://www.facebook.com/Enki-1665334930147391")}
-      />
+      <a href="/contact">
+        <img
+          class="footer-icons"
+          src="https://enki.imgix.net/telephone_3.png?q=100"
+          alt="contact us"
+        />
+      </a>
+      <a href="https://www.instagram.com/enkionline/?hl=en" target="_blank">
+        <img
+          class="footer-icons"
+          src="https://enki.imgix.net/insta_logo_3.png?q=100"
+          alt="link to instagram"
+        />
+      </a>
+      <a href="https://www.facebook.com/Enki-1665334930147391" target="_blank">
+        <img
+          class="footer-icons"
+          src="https://enki.imgix.net/fb_logo_3.png?q=100"
+          alt="link to facebook"
+        />
+      </a>
     </div>
   {/if}
   <div class="centre-container">
@@ -152,9 +155,12 @@
     margin-right: 5%;
   }
 
-  .footer-icons,
   .mobile-footer-icons {
     width: 20%;
+    object-fit: contain;
+  }
+
+  .footer-icons {
     object-fit: contain;
   }
 
@@ -216,7 +222,6 @@
   }
 
   @media (min-width: 360px) {
-    .footer-icons,
     .mobile-footer-icons {
       width: 15%;
     }
@@ -227,7 +232,7 @@
       align-items: center;
       height: 40vh;
     }
-    .footer-icons,
+
     .mobile-footer-icons {
       width: 10%;
     }
@@ -247,7 +252,10 @@
       width: inherit;
     }
 
-    .footer-icons,
+    .footer-icons {
+      align-self: flex-start;
+    }
+
     .mobile-footer-icons {
       align-self: flex-start;
       width: 20%;
@@ -268,10 +276,6 @@
     .footer {
       height: 30vh;
     }
-
-    .footer-icons {
-      width: 20%;
-    }
   }
 
   @media (min-width: 1600px) {
@@ -283,10 +287,6 @@
   @media (min-width: 1920px) {
     .footer {
       height: 28vh;
-    }
-
-    .footer-icons {
-      width: 15%;
     }
   }
 

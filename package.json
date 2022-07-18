@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 5000",
-    "build": "svelte-kit build",
+    "build": "vite build",
     "package": "svelte-kit package",
-    "preview": "svelte-kit preview --port 4000",
+    "preview": "vite preview --port 4000",
     "prepare": "svelte-kit sync && husky install",
     "test:unit": "jest",
     "test:integration": "kill $(lsof -i:8080) || true && npm run mock-server && playwright test && kill $(lsof -i:8080)",
@@ -19,7 +19,7 @@
     "sitemap-generator": "npx sitemap-generator-cli https://enkionline.com --last-mod --change-freq weekly --priority-map \"1.0\" --user-agent sitemap-generator-cli --filepath src/sitemap.xml --max-concurrency 1 --verbose"
   },
   "devDependencies": {
-    "@playwright/test": "^1.20.2",
+    "@playwright/test": "1.22.2",
     "@sveltejs/adapter-node": "^1.0.0-next.81",
     "@sveltejs/kit": "^1.0.0-next.377",
     "@sveltejs/vite-plugin-svelte": "^1.0.1",

@@ -1,4 +1,4 @@
-FROM node:14.19-alpine as builder
+FROM node:16.16-alpine as builder
 
 WORKDIR /usr/src/app
 
@@ -13,7 +13,7 @@ ENV VITE_PUBLIC_STRIPE_KEY="pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9
 
 RUN npm run build
 
-FROM node:14.19-alpine
+FROM node:16.16-alpine
 
 WORKDIR /usr/src/app
 

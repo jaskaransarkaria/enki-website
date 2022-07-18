@@ -38,7 +38,7 @@ before_install:
   - "export DISPLAY=:99.0"
 
 node_js:
-  - 14
+  - 16
 
 services:
   - docker

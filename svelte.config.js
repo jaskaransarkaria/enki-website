@@ -21,9 +21,7 @@ const config = {
       hydrate: true,
     },
   },
-  vite: { css: { devSourcemap: true }, ssr: {
-    noExternal: ["swiper"]
-  } }
+  vite: { css: { devSourcemap: true } }
 };
 
 export default config;
