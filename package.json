@@ -19,7 +19,7 @@
     "sitemap-generator": "npx sitemap-generator-cli https://enkionline.com --last-mod --change-freq weekly --priority-map \"1.0\" --user-agent sitemap-generator-cli --filepath src/sitemap.xml --max-concurrency 1 --verbose"
   },
   "devDependencies": {
-    "@playwright/test": "^1.20.2",
+    "@playwright/test": "1.22.2",
     "@sveltejs/adapter-node": "1.0.0-next.73",
     "@sveltejs/kit": "1.0.0-next.304",
     "@sveltejs/vite-plugin-svelte": "1.0.0-next.40",
