@@ -38,6 +38,7 @@ spec:
                   - "-c"
                   - |
                     cd build
+                    pwd
                     npm run sitemap-generator
       imagePullSecrets:
         - name: regcred
