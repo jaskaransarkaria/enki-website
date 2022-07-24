@@ -15,8 +15,6 @@
     Children: [],
     NominalCode: null,
   };
-  export let sourceElemArr: HTMLSourceElement[] = [];
-  export let imgElemArr: HTMLImageElement[] = [];
   export let loaded: Map<string, HTMLImageElement>;
 </script>
 
