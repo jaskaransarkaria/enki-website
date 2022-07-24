@@ -1,6 +1,6 @@
 import fs from "fs";
 
-export async function get() {
+export async function GET() {
   try {
     const data = fs.readFileSync("src/sitemap.xml", "utf8");
 
