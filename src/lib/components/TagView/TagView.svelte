@@ -3,6 +3,7 @@
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
   import { refreshTags } from "$lib/utils/requests";
   import isCategory from "$lib/types/isCategory";
+  import { PUBLIC_SERVER_URL } from "$env/static/public";
 
   import type { Tag } from "$lib/types/tag";
   import type { Category } from "$lib/types/category";
@@ -16,7 +17,7 @@
   let tags: readonly Tag[] = [];
 
   onMount(async () => {
-    tags = await refreshTags(`${import.meta.env.VITE_SERVER_URL}/tags`);
+    tags = await refreshTags(`${PUBLIC_SERVER_URL}/tags`);
   });
 
   const selectFn: BaseFn = <T extends Base>(cat: T) => {

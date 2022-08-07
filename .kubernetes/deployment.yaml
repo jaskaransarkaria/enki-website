@@ -24,9 +24,9 @@ spec:
               memory: "256Mi"
               cpu: "500m"
           env:
-            - name: VITE_SERVER_URL
+            - name: PUBLIC_SERVER_URL
               value: "https://server.enki.jobspeed.uk"
-            - name: VITE_PUBLIC_STRIPE_KEY
+            - name: PUBLIC_STRIPE_KEY
               value: "pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau"
           ports:
             - containerPort: 5000

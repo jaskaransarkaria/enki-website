@@ -31,12 +31,12 @@
       zoom={setImgWidth ? true : false}
       mousewheel={setImgWidth ? true : false}
     >
-      {#each imgArr as img, idx ("main" + idx)}
+      {#each imgArr as { src, alt }, idx ("main" + idx)}
         <SwiperSlide>
           <div>
             <img
-              src={img.src}
-              alt={img.alt}
+              {src}
+              {alt}
               data-testid="swipe-img"
               style={fullScreen ? "" : "cursor: pointer"}
               class={fullScreen ? "full-screen" : ""}
