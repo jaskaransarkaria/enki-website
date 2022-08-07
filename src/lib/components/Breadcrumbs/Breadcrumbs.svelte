@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import { refreshCategories } from "$lib/utils/requests";
   import { readonlyAllCategories } from "$lib/stores/categories";
+  import { PUBLIC_SERVER_URL } from "$env/static/public";
 
   import type { Category } from "$lib/types/category";
   import type { Base } from "$lib/types/base";
@@ -28,9 +29,7 @@
   onMount(async () => {
     if (!$readonlyAllCategories?.length) {
       // pull the category data from api
-      const result = await refreshCategories(
-        `${import.meta.env.VITE_SERVER_URL}/categories`
-      );
+      const result = await refreshCategories(`${PUBLIC_SERVER_URL}/categories`);
       readonlyAllCategories.set([...result]);
     }
   });

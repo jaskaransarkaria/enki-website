@@ -2,6 +2,7 @@
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
   import { refreshCategoriesFromServer } from "$lib/utils/requests";
   import { isWhitelistedUserAgent } from "$lib/utils/consts";
+  import { PUBLIC_SERVER_URL } from "$env/static/public";
   import type { Base, BaseFn } from "$lib/types/base";
 
   const orderCategories = (resp: Base[]) =>
@@ -10,7 +11,7 @@
   export async function load({ fetch, session }) {
     // pull the category data from api
     const result = await refreshCategoriesFromServer(
-      `${import.meta.env.VITE_SERVER_URL}/categories`,
+      `${PUBLIC_SERVER_URL}/categories`,
       fetch
     );
     return {

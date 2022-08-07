@@ -1,17 +1,15 @@
 export const createCheckoutSession = async (
   stripePromise: any,
-  basket: any
+  basket: any,
+  baseServerUrl: string
 ): Promise<void> => {
   const stripe = await stripePromise;
   // Create a new Checkout Session using the server-side endpoint you
   // created in step 3.
-  const response = await fetch(
-    `${import.meta.env.VITE_SERVER_URL}/create-checkout-session`,
-    {
-      method: "POST",
-      body: JSON.stringify(basket),
-    }
-  );
+  const response = await fetch(`${baseServerUrl}/create-checkout-session`, {
+    method: "POST",
+    body: JSON.stringify(basket),
+  });
 
   const session = await response.json();
 

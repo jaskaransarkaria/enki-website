@@ -1,12 +1,13 @@
 <script context="module" lang="ts">
   import { refreshProductsFromServer } from "$lib/utils/requests";
   import { searchProducts } from "$lib/utils/search";
+  import { PUBLIC_SERVER_URL } from "$env/static/public";
   import type { Product } from "$lib/types/product";
 
   export async function load({ fetch, url }) {
     // pull the category data from api
     const result = await refreshProductsFromServer(
-      `${import.meta.env.VITE_SERVER_URL}/get-all-products`,
+      `${PUBLIC_SERVER_URL}/get-all-products`,
       fetch
     );
 

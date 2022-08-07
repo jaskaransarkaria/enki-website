@@ -4,6 +4,7 @@
     refreshProductsFromServer,
   } from "$lib/utils/requests";
   import { isWhitelistedUserAgent } from "$lib/utils/consts";
+  import { PUBLIC_SERVER_URL } from "$env/static/public";
   import type { Category } from "$lib/types/category";
 
   const traverseCategoryObj = (
@@ -34,14 +35,12 @@
     // pull the category data from api
 
     const categoryResults = await refreshCategoryFromServer(
-      `${import.meta.env.VITE_SERVER_URL}/category?id=${params.category}`,
+      `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
       fetch
     );
 
     const productResults = await refreshProductsFromServer(
-      `${import.meta.env.VITE_SERVER_URL}/products-by-category?id=${
-        params.category
-      }`,
+      `${PUBLIC_SERVER_URL}/products-by-category?id=${params.category}`,
       fetch
     );
 

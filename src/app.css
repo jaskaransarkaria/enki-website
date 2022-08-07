@@ -16,17 +16,17 @@
 
 @font-face {
   font-family: "Welcomehome5 Regular";
-  src: url("/static/fonts/enki-regular.ttf") format("truetype");
+  src: url("/fonts/enki-regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Caviar Dreams";
-  src: url(/static/fonts/CaviarDreams.ttf) format("truetype");
+  src: url(/fonts/CaviarDreams.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Caviar Dreams Italic";
-  src: url(/static/fonts/CaviarDreams_Italic.ttf) format("truetype");
+  src: url(/fonts/CaviarDreams_Italic.ttf) format("truetype");
 }
 
 a {
