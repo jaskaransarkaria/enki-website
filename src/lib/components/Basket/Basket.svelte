@@ -82,10 +82,8 @@
                       <option value="Standard brown paper" selected
                         >Standard brown paper</option
                       >
-                      {#each selectedGiftWrap as basketWrap, i (basketWrap.id)}
-                        <option value={basketWrap.name}
-                          >{basketWrap.name}</option
-                        >
+                      {#each selectedGiftWrap as { name, id }, i (id)}
+                        <option value={name}>{name}</option>
                       {/each}
                     {/if}
                   </select>

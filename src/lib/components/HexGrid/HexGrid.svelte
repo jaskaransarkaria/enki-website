@@ -71,9 +71,16 @@
       : "flexbox-container flexbox-container-no-height"}
   >
     {#each filteredData as category, idx (category.Id)}
-      {#if idx === filteredData.length - itemsOnLastRow}
-        {#if filteredData.length > gridColumnNumber && emptyHexes.length}
-          {#each emptyHexes.slice(0, Math.floor(emptyHexes.length / 2)) as _}
+      {@const useEmptyHexes =
+        filteredData.length > gridColumnNumber && emptyHexes.length}
+      {@const lastItem = idx === filteredData.length - itemsOnLastRow}
+      {#if lastItem}
+        {#if useEmptyHexes}
+          {@const emptyHexesRoundedDown = emptyHexes.slice(
+            0,
+            Math.floor(emptyHexes.length / 2)
+          )}
+          {#each emptyHexesRoundedDown as _}
             <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
               <Hex isEmpty />
             </li>
@@ -91,8 +98,12 @@
         />
       </li>
       {#if idx === filteredData.length - 1}
-        {#if filteredData.length > gridColumnNumber && emptyHexes.length}
-          {#each emptyHexes.slice(0, Math.ceil(emptyHexes.length / 2)) as _}
+        {#if useEmptyHexes}
+          {@const emptyHexesRoundedUp = emptyHexes.slice(
+            0,
+            Math.ceil(emptyHexes.length / 2)
+          )}
+          {#each emptyHexesRoundedUp as _}
             <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
               <Hex isEmpty />
             </li>
