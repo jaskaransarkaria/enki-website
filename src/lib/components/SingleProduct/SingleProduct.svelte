@@ -47,7 +47,7 @@
       href={`/shop/product/${product.Id}`}
     >
       {#if product.CurrentStock === 1}
-        <div style="position: relative">
+        <div style:position="relative">
           <img
             class="low-in-stock-img"
             src="https://enki.imgix.net/low_in_stock_teal_1.png"
@@ -56,7 +56,7 @@
         </div>
       {/if}
       {#if product.CurrentStock <= 0}
-        <div style="position: relative">
+        <div style:position="relative">
           <img
             class="low-in-stock-img"
             src="https://enki.imgix.net/out_of_stock_orange.png"

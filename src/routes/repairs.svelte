@@ -136,13 +136,13 @@
           setting. Faith gave me some great advice and the repairs were done
           quickly." - Alexandra B
         </p>
-        <hr style="width: 90%" />
+        <hr style:width="90%" />
         <p>
           "Had my wedding ring cut off due to swollen finger, it was repaired
           with an additional piece added, not the slightest sign anything had
           happened . Would recommend her to anyone. Thank you." - Will M
         </p>
-        <hr style="width: 90%" />
+        <hr style:width="90%" />
         <p>
           "I ran into trouble restoring an old Gretsch snare drum of huge
           sentimental value to me - the modern part I'd sourced in the USA
@@ -153,7 +153,7 @@
           store, its staff and their considerable - and adaptable - expertise."
           - Dave T
         </p>
-        <hr style="width: 90%" />
+        <hr style:width="90%" />
         <p>
           "I took a diamond ring to Enki to be repaired. The lady listened to my
           description of what was wrong. She used several tools to look at the

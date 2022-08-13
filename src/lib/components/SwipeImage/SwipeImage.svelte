@@ -15,10 +15,7 @@
 </script>
 
 {#if imgArr.length > 1}
-  <div
-    class="swiper"
-    style="width: {setImgWidth ? setImgWidth + 'px' : '100%'}"
-  >
+  <div class="swiper" style:width={setImgWidth ? setImgWidth + "px" : "100%"}>
     <Swiper
       modules={[Pagination, A11y, Keyboard, Zoom, Mousewheel]}
       spaceBetween={50}
@@ -38,7 +35,7 @@
               {src}
               {alt}
               data-testid="swipe-img"
-              style={fullScreen ? "" : "cursor: pointer"}
+              style:cursor={fullScreen ? null : "pointer"}
               class={fullScreen ? "full-screen" : ""}
             />
             <div class="custom-pagination-div" />
@@ -52,7 +49,7 @@
     <img
       src={imgArr[0].src}
       alt={imgArr[0].alt}
-      style={fullScreen ? "" : "cursor: pointer"}
+      style:cursor={fullScreen ? null : "pointer"}
       on:error={() => {
         if (imgArr[0].src != "/coming-soon.png") {
           imgArr[0].src = "/coming-soon.png";

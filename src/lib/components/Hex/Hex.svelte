@@ -96,7 +96,6 @@
   }
 
   img,
-  picture,
   button {
     left: -100%;
     right: -100%;

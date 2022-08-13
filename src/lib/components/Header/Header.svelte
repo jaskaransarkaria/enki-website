@@ -336,10 +336,6 @@
       align-self: center;
     }
 
-    button {
-      font-size: 0.75em;
-    }
-
     .left-container {
       width: 30%;
     }
@@ -385,10 +381,6 @@
     .enki-logo {
       top: 15%;
       width: 140px;
-    }
-
-    button {
-      font-size: 1em;
     }
 
     .left-container {

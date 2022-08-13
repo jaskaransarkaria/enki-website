@@ -53,9 +53,9 @@
 {#if (browser && outerWidth > 0) || whitelistedUserAgent}
   <figure
     class={isMobile ? "mobile-container" : "container"}
-    style={isMobile
-      ? ""
-      : `background-image: url('${DESKTOP_LANDING_PAGE}&h=${outerHeight}&max-w=${innerWidth}&fit=crop')`}
+    style:background-image={isMobile
+      ? null
+      : `url('${DESKTOP_LANDING_PAGE}&h=${outerHeight}&max-w=${innerWidth}&fit=crop')`}
   >
     {#if isMobile}
       <img

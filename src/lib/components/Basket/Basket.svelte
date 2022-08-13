@@ -37,7 +37,7 @@
 </script>
 
 <svelte:window bind:outerWidth />
-<div class="container" style={`cursor: ${loading ? "wait" : "default"}`}>
+<div class="container" style:cursor={`${loading ? "wait" : "default"}`}>
   {#if $basket.length}
     {#each $basket as obj, i (obj.id)}
       <div class={isMobile ? "mobile-product" : "product"} in:fade>

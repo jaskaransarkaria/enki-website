@@ -66,7 +66,7 @@
     {#if product.ProductImages}
       <div
         class="mobile-img-container"
-        style="width: {clientWidth ? clientWidth + 'px' : '90vw'}"
+        style:width={clientWidth ? clientWidth + "px" : "90vw"}
         on:click={() => {
           showFullScreen = true;
           visible += 1;
