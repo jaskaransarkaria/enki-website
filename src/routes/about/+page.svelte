@@ -1,20 +1,8 @@
-<script context="module">
-  import { browser } from "$app/env";
-  import { isWhitelistedUserAgent } from "$lib/utils/consts";
-
-  export async function load({ session }) {
-    return {
-      props: {
-        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
-      },
-    };
-  }
-</script>
-
 <script lang="ts">
+  import { page } from "$app/stores";
+  import { browser } from "$app/env";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
-  export let whitelistedUserAgent: boolean;
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;
@@ -25,7 +13,7 @@
 </svelte:head>
 
 <svelte:window bind:outerWidth />
-{#if browser || whitelistedUserAgent}
+{#if browser || $page.data.whitelistedUserAgent}
   <div class="container">
     <div class="shop-pics">
       {#if isMobile}

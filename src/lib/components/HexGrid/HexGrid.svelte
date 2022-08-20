@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import { browser } from "$app/env";
   import {
     getGridCols,
@@ -16,8 +17,8 @@
 
   export let data: Base[] = [];
   export let categoryFn: BaseFn;
-  export let showFullPage = true;
   export let whitelistedUserAgent = false;
+  export let showFullPage = true;
 
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
@@ -88,14 +89,7 @@
         {/if}
       {/if}
       <li class={showGrid ? "hex" : "hex-flex"}>
-        <Hex
-          {categoryFn}
-          {idx}
-          {category}
-          bind:sourceElemArr
-          bind:imgElemArr
-          bind:loaded
-        />
+        <Hex {categoryFn} {category} bind:loaded />
       </li>
       {#if idx === filteredData.length - 1}
         {#if useEmptyHexes}

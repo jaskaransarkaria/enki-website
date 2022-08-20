@@ -1,22 +1,9 @@
-<script context="module">
-  import { isWhitelistedUserAgent } from "$lib/utils/consts";
-
-  export async function load({ session }) {
-    return {
-      props: {
-        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
-      },
-    };
-  }
-</script>
-
 <script lang="ts">
+  import { page } from "$app/stores";
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
   import "../app.css";
-
-  export let whitelistedUserAgent: boolean;
 </script>
 
 <svelte:head>
@@ -41,7 +28,7 @@
 </svelte:head>
 
 <div class="container">
-  <Header {whitelistedUserAgent} />
+  <Header whitelistedUserAgent={$page.data.whitelistedUserAgent} />
   <div class="header-block" />
   <slot />
 </div>
