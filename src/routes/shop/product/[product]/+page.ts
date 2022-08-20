@@ -8,10 +8,7 @@ export async function load({ fetch, params, parent }) {
     fetch
   );
 
-  const { whitelistedUserAgent } = await parent();
-
   return {
     productToShow: result,
-    whitelistedUserAgent,
   };
 }

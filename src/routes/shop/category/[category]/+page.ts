@@ -46,11 +46,8 @@ export async function load({ fetch, params, parent }) {
     categoryResults[0]
   );
 
-  const { whitelistedUserAgent } = await parent();
-
   return {
     categoryToShow: category,
     productArr: productResults,
-    whitelistedUserAgent,
   };
 }

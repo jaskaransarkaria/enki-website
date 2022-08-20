@@ -1,5 +1,4 @@
 import fs from "fs";
-//import sitemap from './src/sitemap.xml'
 
 export async function GET() {
   try {

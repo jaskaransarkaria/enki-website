@@ -12,8 +12,6 @@ export async function load({ fetch, parent }) {
     fetch
   );
 
-  const { whitelistedUserAgent } = await parent();
-
   return {
     data: orderCategories([...result]),
   };
