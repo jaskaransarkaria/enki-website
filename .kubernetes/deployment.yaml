@@ -38,7 +38,8 @@ spec:
                   - "-c"
                   - |
                     cd build
+                    npm i sitemap-generator-cli
                     npm run sitemap-generator
-                    cp src/sitemap.xml ../src/sitemap.xml
+                    cp sitemap.xml ../src/sitemap.xml
       imagePullSecrets:
         - name: regcred
