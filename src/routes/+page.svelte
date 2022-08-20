@@ -1,17 +1,6 @@
-<script context="module">
-  import { browser } from "$app/env";
-  import { isWhitelistedUserAgent } from "$lib/utils/consts";
-
-  export async function load({ session }) {
-    return {
-      props: {
-        whitelistedUserAgent: isWhitelistedUserAgent(session.userAgent),
-      },
-    };
-  }
-</script>
-
 <script lang="ts">
+  import { page } from "$app/stores";
+  import { browser } from "$app/env";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import {
     DESKTOP_LANDING_PAGE,
@@ -26,8 +15,6 @@
   import JewelleryServices from "$lib/components/Svg/JewelleryServices.svelte";
   import AboutUs from "$lib/components/Svg/AboutUs.svelte";
   import Classes from "$lib/components/Svg/Classes.svelte";
-
-  export let whitelistedUserAgent: boolean;
 
   $: outerWidth = 0;
   $: innerWidth = 0;
@@ -50,7 +37,7 @@
   />
 </svelte:head>
 
-{#if (browser && outerWidth > 0) || whitelistedUserAgent}
+{#if (browser && outerWidth > 0) || $page.data.whitelistedUserAgent}
   <figure
     class={isMobile ? "mobile-container" : "container"}
     style:background-image={isMobile

@@ -1,39 +1,7 @@
-<script context="module" lang="ts">
-  import { refreshProductsFromServer } from "$lib/utils/requests";
-  import { PUBLIC_SERVER_URL } from "$env/static/public";
-  import type { Product } from "$lib/types/product";
-
-  export async function load({ fetch, params }) {
-    // pull the category data from api
-    const result = await refreshProductsFromServer(
-      `${PUBLIC_SERVER_URL}/get-all-products`,
-      fetch
-    );
-
-    const filteredResult = result?.filter((obj) =>
-      "ProductTags" in obj && obj?.ProductTags.length
-        ? obj.ProductTags.filter(
-            (tag) => tag.Name.toLowerCase() === `${params.typetag}`
-          ).length
-          ? true
-          : false
-        : false
-    );
-
-    return {
-      props: {
-        data: filteredResult,
-      },
-    };
-  }
-</script>
-
 <script lang="ts">
   import { page } from "$app/stores";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
-
-  export let data: readonly Product[] = [];
 </script>
 
 <svelte:head>
@@ -69,4 +37,4 @@
   ]}
 />
 
-<ProductView productArr={data} />
+<ProductView productArr={$page.data.data} />

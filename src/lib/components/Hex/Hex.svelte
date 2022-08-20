@@ -6,7 +6,7 @@
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
 
-  export let categoryFn: BaseFn;
+  export let categoryFn: BaseFn = () => "";
   export let isEmpty = false;
   export let category: Category | Tag = {
     Name: "",
@@ -15,7 +15,7 @@
     Children: [],
     NominalCode: null,
   };
-  export let loaded: Map<string, HTMLImageElement>;
+  export let loaded: Map<string, HTMLImageElement> = new Map();
 </script>
 
 <div class="hex-in">

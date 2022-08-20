@@ -58,13 +58,15 @@
     return results;
   };
 
-  const handleBreadcrumbClick = (breadcrumb: Base | TagCrumb) => {
+  const handleBreadcrumbClick = async (breadcrumb: Base | TagCrumb) => {
     const breadcrumbUrl =
       "tagUrl" in breadcrumb
         ? `${breadcrumb.tagUrl}${breadcrumb.params}`
         : `/shop/category/${breadcrumb.Id}`;
 
-    breadcrumb.Name === "Shop" ? goto("/shop") : goto(breadcrumbUrl);
+    breadcrumb.Name === "Shop"
+      ? await goto("/shop")
+      : await goto(breadcrumbUrl);
   };
 
   $: breadcrumbs = [
@@ -80,7 +82,7 @@
   {#each breadcrumbs as breadcrumb (breadcrumb.Id)}
     <button
       data-testid="breadcrumb"
-      on:click={() => handleBreadcrumbClick(breadcrumb)}
+      on:click={async () => await handleBreadcrumbClick(breadcrumb)}
     >
       <img
         src="https://enki.imgix.net/empty_hex_1.png?auto=format,compress"
