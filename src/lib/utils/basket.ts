@@ -17,8 +17,9 @@ const removeItemFromBasket = (
           quantity: list[listIndx].quantity - 1,
           price: list[listIndx].price,
           currentStock: list[listIndx].currentStock,
-          giftWrap: false,
-          giftDescription: "",
+          giftWrap: list[listIndx].giftWrap ?? false,
+          giftDescription: list[listIndx].giftDescription ?? "",
+          giftWrapToUse: list[listIndx].giftDescription ?? "",
         },
         ...list.slice(listIndx + 1),
       ];
@@ -35,8 +36,9 @@ const addItemToBasket = (
     quantity: list[listIndx].quantity + 1,
     price: list[listIndx].price,
     currentStock: list[listIndx].currentStock,
-    giftWrap: false,
-    giftDescription: "",
+    giftWrap: list[listIndx].giftWrap ?? false,
+    giftDescription: list[listIndx].giftDescription ?? "",
+    giftWrapToUse: list[listIndx].giftWrapToUse ?? "",
   },
   ...list.slice(listIndx + 1),
 ];
@@ -57,6 +59,7 @@ const addNewItemToBasket = (
     currentStock: product?.CurrentStock,
     giftWrap: false,
     giftDescription: "",
+    giftWrapToUse: "",
   },
   ...list,
 ];

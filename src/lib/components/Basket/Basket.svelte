@@ -40,7 +40,11 @@
 <div class="container" style:cursor={`${loading ? "wait" : "default"}`}>
   {#if $basket.length}
     {#each $basket as obj, i (obj.id)}
-      <div class={isMobile ? "mobile-product" : "product"} in:fade>
+      <div
+        data-testid={`basket-${i}`}
+        class={isMobile ? "mobile-product" : "product"}
+        in:fade
+      >
         <img
           src={`https://enki.imgix.net/${obj.id}-0?auto=format,compress`}
           alt={`${obj.name}`}
