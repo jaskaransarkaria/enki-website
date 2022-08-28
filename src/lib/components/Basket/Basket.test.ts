@@ -267,7 +267,7 @@ describe("GIVEN AddToBasket", () => {
       // remove gift wrapping
       await userEvent.click(allCheckboxes[0]);
 
-      // subtotal removes giftwrapping charge
+      // subtotal removes gift wrapping charge
       expect(screen.getByText("Subtotal: £355.55")).toBeInTheDocument();
       expect(
         screen.queryByRole("option", {
@@ -281,6 +281,62 @@ describe("GIVEN AddToBasket", () => {
       ).not.toBeInTheDocument();
     });
 
-    it.skip("THEN add gift wrapping description", () => {});
+    it("THEN add gift wrapping description", async () => {
+      basket.set(updateBasket(dummyProduct, [], "newItem"));
+      render(Basket);
+      const giftWrapCheckbox = screen.getByRole("checkbox", { checked: false });
+      // gift wrap products don't have a gift wrap check box
+      await userEvent.click(giftWrapCheckbox);
+
+      // updated subtotal with giftwrapping
+      expect(screen.getByText("Subtotal: £300.95")).toBeInTheDocument();
+      expect(get(basket)).toMatchObject([
+        {
+          id: "123",
+          categoryId: 999,
+          currentStock: 2,
+          giftDescription: "",
+          giftWrapToUse: "",
+          name: "dummy",
+          quantity: 1,
+          giftWrap: true,
+          price: 300.95,
+        },
+      ]);
+
+      await userEvent.selectOptions(screen.getByRole("combobox"), [
+        "Standard brown paper",
+      ]);
+
+      // expect gift wrap options to be available
+      expect(
+        (
+          screen.getByRole("option", {
+            name: "Standard brown paper",
+          }) as HTMLOptionElement
+        ).selected
+      ).toBeTruthy();
+
+      // add gift wrap description 92 characters (max is 95)
+      await userEvent.type(
+        screen.getByRole("textbox"),
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis lacus, egestas non"
+      );
+
+      expect(get(basket)).toMatchObject([
+        {
+          id: "123",
+          categoryId: 999,
+          currentStock: 2,
+          giftDescription:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis lacus, egestas non",
+          giftWrapToUse: "Standard brown paper",
+          name: "dummy",
+          quantity: 1,
+          giftWrap: true,
+          price: 300.95,
+        },
+      ]);
+    });
   });
 });
