@@ -1,6 +1,6 @@
 <script lang="ts">
   import { beforeUpdate } from "svelte";
-  import { browser } from "$app/env";
+  import { browser } from "$app/environment";
   import { groupBy } from "lodash-es";
   import { fade } from "svelte/transition";
   import Banner from "$lib/components/Banner/Banner.svelte";

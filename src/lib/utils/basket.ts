@@ -1,4 +1,4 @@
-import type { BasketProduct } from "$lib/stores/basket";
+import type { BasketProduct } from "$lib/types/basketProduct";
 import type { Product } from "$lib/types/product";
 
 const removeItemFromBasket = (
@@ -17,8 +17,9 @@ const removeItemFromBasket = (
           quantity: list[listIndx].quantity - 1,
           price: list[listIndx].price,
           currentStock: list[listIndx].currentStock,
-          giftWrap: false,
-          giftDescription: "",
+          giftWrap: list[listIndx].giftWrap ?? false,
+          giftDescription: list[listIndx].giftDescription ?? "",
+          giftWrapToUse: list[listIndx].giftWrapToUse ?? "Standard brown paper",
         },
         ...list.slice(listIndx + 1),
       ];
@@ -35,8 +36,9 @@ const addItemToBasket = (
     quantity: list[listIndx].quantity + 1,
     price: list[listIndx].price,
     currentStock: list[listIndx].currentStock,
-    giftWrap: false,
-    giftDescription: "",
+    giftWrap: list[listIndx].giftWrap ?? false,
+    giftDescription: list[listIndx].giftDescription ?? "",
+    giftWrapToUse: list[listIndx].giftWrapToUse ?? "Standard brown paper",
   },
   ...list.slice(listIndx + 1),
 ];
@@ -44,19 +46,20 @@ const addItemToBasket = (
 const addNewItemToBasket = (
   product: Pick<
     Product,
-    "Id" | "Name" | "SalePrice" | "CurrentStock" | "CategoryId"
+    "Id" & "Name" & "SalePrice" & "CurrentStock" & "CategoryId"
   >,
   list: BasketProduct[]
 ): BasketProduct[] => [
   {
-    id: product?.Id.toString(),
-    categoryId: product?.CategoryId,
-    name: product?.Name,
+    id: product.Id,
+    categoryId: product.CategoryId,
+    name: product.Name,
     quantity: 1,
-    price: product?.SalePrice,
-    currentStock: product?.CurrentStock,
+    price: product.SalePrice,
+    currentStock: product.CurrentStock,
     giftWrap: false,
     giftDescription: "",
+    giftWrapToUse: "Standard brown paper",
   },
   ...list,
 ];
@@ -64,14 +67,12 @@ const addNewItemToBasket = (
 export const updateBasket = (
   product: Pick<
     Product,
-    "Id" | "Name" | "SalePrice" | "CurrentStock" | "CategoryId"
+    "Id" & "Name" & "SalePrice" & "CurrentStock" & "CategoryId"
   >,
   list: BasketProduct[],
   updateType: string
 ): BasketProduct[] => {
-  const indx = list.findIndex(
-    (obj: BasketProduct) => obj.id === product.Id.toString()
-  );
+  const indx = list.findIndex((obj: BasketProduct) => obj.id === product.Id);
   updateType = indx >= 0 ? updateType : "newItem";
   switch (updateType) {
     case "incrementQuantity":

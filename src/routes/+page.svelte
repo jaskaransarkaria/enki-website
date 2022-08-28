@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import { browser } from "$app/env";
+  import { browser } from "$app/environment";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import {
     DESKTOP_LANDING_PAGE,

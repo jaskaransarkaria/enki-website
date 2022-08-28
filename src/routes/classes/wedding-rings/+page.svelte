@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import { browser } from "$app/env";
+  import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
 

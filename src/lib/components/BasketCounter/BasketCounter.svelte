@@ -3,7 +3,7 @@
   import { basket } from "$lib/stores/basket";
   import { updateBasket } from "$lib/utils/basket";
 
-  import type { BasketProduct } from "$lib/stores/basket";
+  import type { BasketProduct } from "$lib/types/basketProduct";
 
   export let productObj: BasketProduct;
 
@@ -24,7 +24,7 @@
         ? basket.set(
             updateBasket(
               {
-                Id: parseInt(productObj.id, 10),
+                Id: productObj.id,
                 Name: productObj.name,
                 SalePrice: productObj.price,
                 CurrentStock: productObj.currentStock,
@@ -54,7 +54,7 @@
       basket.set(
         updateBasket(
           {
-            Id: parseInt(productObj.id, 10),
+            Id: productObj.id,
             Name: productObj.name,
             SalePrice: productObj.price,
             CurrentStock: productObj.currentStock,
