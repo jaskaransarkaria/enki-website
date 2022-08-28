@@ -5,6 +5,10 @@ import { defineConfig } from "vite";
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
   plugins: [sveltekit({ configFile: "svelte.config.js" })],
+  alias: {
+    $app: "/node_modules/@sveltejs/kit/assets/app",
+    $lib: "/src/lib",
+  },
   server: {
     fs: {
       allow: [".."],

@@ -5,7 +5,7 @@ vi.mock("$app/navigation", () => ({
   goto: vi.fn(),
 }));
 
-vi.mock("$app/env", () => ({
+vi.mock("$app/environment", () => ({
   amp: false,
   browser: true,
   dev: true,
