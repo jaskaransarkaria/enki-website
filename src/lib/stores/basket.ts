@@ -1,18 +1,7 @@
 import { browser } from "$app/env";
 import { writable } from "svelte/store";
 import type { Writable } from "svelte/store";
-
-export interface BasketProduct {
-  name: string;
-  id: string;
-  categoryId: number;
-  quantity: number;
-  price: number;
-  currentStock: number;
-  giftWrap: boolean;
-  giftDescription: string;
-  giftWrapToUse: string;
-}
+import type { BasketProduct } from "$lib/types/basketProduct";
 
 export const basket: Writable<BasketProduct[]> = writable(
   browser ? JSON.parse(window.localStorage.getItem("basket") ?? "[]") : []

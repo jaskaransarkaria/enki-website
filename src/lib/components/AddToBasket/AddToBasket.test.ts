@@ -45,7 +45,7 @@ describe("GIVEN AddToBasket", () => {
         screen.getByRole("button", { name: /add to basket/i })
       );
       expect(get(basket)).toMatchObject([
-        { id: "123", quantity: 1, name: "Red jacket" },
+        { id: 123, quantity: 1, name: "Red jacket" },
       ]);
       // wait for the animation to finish
       setTimeout(() => {

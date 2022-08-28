@@ -97,11 +97,11 @@ describe("GIVEN AddToBasket", () => {
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
         {
-          id: "123",
+          id: 123,
           categoryId: 999,
           currentStock: 2,
           giftDescription: "",
-          giftWrapToUse: "",
+          giftWrapToUse: "Standard brown paper",
           name: "dummy",
           quantity: 1,
           giftWrap: false,
@@ -119,11 +119,11 @@ describe("GIVEN AddToBasket", () => {
       // check the values on the basket are updated
       expect(get(basket)).toMatchObject([
         {
-          id: "123",
+          id: 123,
           categoryId: 999,
           currentStock: 2,
           giftDescription: "",
-          giftWrapToUse: "",
+          giftWrapToUse: "Standard brown paper",
           name: "dummy",
           quantity: 1,
           giftWrap: true,
@@ -151,22 +151,22 @@ describe("GIVEN AddToBasket", () => {
       // check the values on the basket are updated
       expect(get(basket)).toMatchObject([
         {
-          id: "456",
+          id: 456,
           categoryId: 1876089,
           currentStock: 2,
           giftDescription: "",
-          giftWrapToUse: "",
+          giftWrapToUse: "Standard brown paper",
           name: "dummyGiftWrap",
           quantity: 1,
           giftWrap: false,
           price: 600,
         },
         {
-          id: "123",
+          id: 123,
           categoryId: 999,
           currentStock: 2,
           giftDescription: "",
-          giftWrapToUse: "",
+          giftWrapToUse: "Standard brown paper",
           name: "dummy",
           quantity: 1,
           giftWrap: true,
@@ -221,22 +221,22 @@ describe("GIVEN AddToBasket", () => {
       expect(screen.getByText("Subtotal: £356.50")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
         {
-          id: "456",
+          id: 456,
           categoryId: 1876089,
           currentStock: 2,
           giftDescription: "",
-          giftWrapToUse: "",
+          giftWrapToUse: "Standard brown paper",
           name: "dummyGiftWrap",
           quantity: 1,
           giftWrap: false,
           price: 55.55,
         },
         {
-          id: "123",
+          id: 123,
           categoryId: 999,
           currentStock: 2,
           giftDescription: "",
-          giftWrapToUse: "",
+          giftWrapToUse: "Standard brown paper",
           name: "dummy",
           quantity: 1,
           giftWrap: true,
@@ -292,11 +292,11 @@ describe("GIVEN AddToBasket", () => {
       expect(screen.getByText("Subtotal: £300.95")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
         {
-          id: "123",
+          id: 123,
           categoryId: 999,
           currentStock: 2,
           giftDescription: "",
-          giftWrapToUse: "",
+          giftWrapToUse: "Standard brown paper",
           name: "dummy",
           quantity: 1,
           giftWrap: true,
@@ -325,7 +325,7 @@ describe("GIVEN AddToBasket", () => {
 
       expect(get(basket)).toMatchObject([
         {
-          id: "123",
+          id: 123,
           categoryId: 999,
           currentStock: 2,
           giftDescription:
