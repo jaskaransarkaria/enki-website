@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/svelte";
+import { render, screen, waitFor } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import AddToBasket from "./AddToBasket.svelte";
 import { get } from "svelte/store";
@@ -48,15 +48,14 @@ describe("GIVEN AddToBasket", () => {
         { id: 123, quantity: 1, name: "Red jacket" },
       ]);
       // wait for the animation to finish
-      setTimeout(() => {
+      waitFor(() => {
         expect(
           screen.queryByRole("button", { name: /add to basket/i })
         ).not.toBeInTheDocument();
         expect(
           screen.queryByRole("button", { name: /goto basket/i })
         ).toBeInTheDocument();
-        done();
-      }, 1000);
+      });
     });
   });
 });

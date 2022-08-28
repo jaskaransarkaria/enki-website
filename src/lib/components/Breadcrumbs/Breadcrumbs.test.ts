@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 import { tick } from "svelte";
 import { render, screen } from "@testing-library/svelte";
 import Breadcrumbs from "./Breadcrumbs.svelte";
@@ -8,7 +9,7 @@ import {
   resetReadonlyAllCategoriesStore,
 } from "$lib/stores/categories";
 
-jest.mock("$lib/utils/requests");
+vi.mock("$lib/utils/requests");
 
 describe("GIVEN Breadcrumbs", () => {
   beforeEach(() => {

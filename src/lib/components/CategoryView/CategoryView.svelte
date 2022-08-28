@@ -21,30 +21,26 @@
   $: variantCategories = categoryToShow?.Children?.filter(
     (cat) => !Boolean(cat.NominalCode)
   );
+
+  $: nonVariantCategories =
+    removeVariantCategories(categoryToShow?.Children) || [];
 </script>
 
 {#if showBreadcrumbs}
   <Breadcrumbs selectedCategoryId={categoryToShow?.Id} />
 {/if}
-{#if removeVariantCategories(categoryToShow?.Children)?.length || categoryToShow?.Id === 1875997 || categoryToShow?.Id === 1875998}
+{#if nonVariantCategories.length || categoryToShow?.Id === 1875997 || categoryToShow?.Id === 1875998}
   {#if categoryToShow.Id === 1875996}
-    <JewelleryView
-      data={removeVariantCategories(categoryToShow?.Children)}
-      {categoryFn}
-    />
+    <JewelleryView data={nonVariantCategories} {categoryFn} />
   {:else if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
     <TagView
-      data={removeVariantCategories(categoryToShow.Children)}
+      data={nonVariantCategories}
       {categoryFn}
       categoryId={categoryToShow?.Id}
       prefix={categoryToShow.Name.split(" ")[0].toUpperCase()}
     />
   {:else}
-    <HexGrid
-      data={removeVariantCategories(categoryToShow.Children)}
-      {categoryFn}
-      {whitelistedUserAgent}
-    />
+    <HexGrid data={nonVariantCategories} {categoryFn} {whitelistedUserAgent} />
   {/if}
 {:else}
   <ProductView {productArr} {variantCategories} {whitelistedUserAgent} />

@@ -1,13 +1,10 @@
 import "@testing-library/jest-dom";
-import { tick } from "svelte";
-import { get } from "svelte/store";
+import { vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/svelte";
 import CategoryView from "./CategoryView.svelte";
-import {
-  categories,
-  reset as resetCategoriesStore,
-} from "$lib/stores/categories";
+
 import type { Category } from "$lib/types/category";
+import type { Product } from "$lib/types/product";
 
 const nestedCategories = {
   Id: -1,
@@ -42,100 +39,138 @@ const nestedCategories = {
   ],
 };
 
+const nestedTagCategories = {
+  Id: 1875997,
+  ParentId: null,
+  Name: "ParentTag",
+  TagTypeId: "tag",
+  NominalCode: "CATEGORY",
+  Children: [
+    {
+      Id: 123,
+      ParentId: null,
+      Name: "TagClothes",
+      NominalCode: "CATEGORY",
+      Children: [],
+    },
+  ],
+};
+
+const jewelleryNestedCategories = {
+  Id: 1875996,
+  ParentId: null,
+  Name: "",
+  NominalCode: "CATEGORY",
+  Children: [
+    {
+      Id: 111,
+      ParentId: null,
+      Name: "fine jewellery",
+      NominalCode: "CATEGORY",
+      Children: [],
+    },
+    {
+      Id: 222,
+      ParentId: null,
+      Name: "costume jewellery",
+      NominalCode: "CATEGORY",
+      Children: [],
+    },
+    {
+      Id: 333,
+      ParentId: null,
+      Name: "jaskaran sarkaria",
+      NominalCode: "CATEGORY",
+      Children: [],
+    },
+  ],
+};
+
+const variantNestedCategories = {
+  Id: -1,
+  ParentId: null,
+  Name: "",
+  NominalCode: "CATEGORY",
+  Children: [
+    {
+      Id: 123,
+      ParentId: null,
+      Name: "VariantClothes",
+      NominalCode: null,
+      Children: [],
+    },
+  ],
+};
+
+const dummyProductArr = [
+  {
+    Name: "Dummy",
+    CategoryId: 123,
+    Description: "",
+    SalePrice: 10,
+    ProductImages: [],
+    ProductTags: [],
+    VariantGroupId: 111,
+    CurrentStock: 5,
+    ProductDetails: null,
+    SellOnWeb: true,
+    IsArchived: false,
+  },
+] as Product[];
+
 describe("GIVEN CategoryView", () => {
-  beforeEach(() => {
-    resetCategoriesStore();
-  });
-
   afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  describe("WHEN rendered with no props", () => {
-    it("THEN display no categories message", () => {
-      render(CategoryView);
-      expect(get(categories)).toMatchObject({
-        Id: 0,
-        ParentId: null,
-        Name: "",
-        Children: [],
-        NominalCode: "",
-      });
-    });
+    vi.clearAllMocks();
   });
 
   describe("WHEN rendered with props", () => {
-    it("THEN display the correct category from the store", () => {
-      categories.set({ ...nestedCategories });
-
+    it("THEN display the correct category", () => {
       render(CategoryView, {
-        categoryId: -1,
-        categoryFn: (cat: Category) => categories.set(cat),
+        categoryFn: (cat: Category) => `${cat} fn fired`,
+        categoryToShow: nestedCategories,
+        productArr: [],
+        whitelistedUserAgent: true,
       });
 
-      expect(get(categories)).toMatchObject({ ...nestedCategories });
-
-      expect(screen.getByText("Clothes")).toBeInTheDocument();
-      cleanup(); // it doesn't unmount unless called here, needed to prevent props from interfering accross tests
+      //breadcrumbs should be mounted
+      expect(screen.getByText("Shop")).toBeInTheDocument();
+      //
+      // the category to display
+      expect(screen.getByText("Clothes", { exact: true })).toBeInTheDocument();
+      expect(screen.queryByText("Shoes")).not.toBeInTheDocument();
+      expect(screen.queryByText("Hats")).not.toBeInTheDocument();
+      expect(screen.queryByText("Dummy")).not.toBeInTheDocument();
     });
 
-    it("THEN display the correct the category from the server, when not found in the store", async () => {
+    it("THEN display a TAG Category", () => {
       render(CategoryView, {
-        categoryId: 456,
-        categoryFn: (cat: Category) => categories.set(cat),
+        categoryFn: (cat: Category) => `${cat} fn fired`,
+        categoryToShow: nestedTagCategories,
+        productArr: [],
+        whitelistedUserAgent: true,
       });
 
-      expect(get(categories)).toMatchObject({
-        Id: 0,
-        ParentId: null,
-        Name: "",
-        Children: [],
-        NominalCode: "",
-      });
-      await tick(); // using tick helps to flush any state changes in the component
-      await tick();
-      await tick();
-      expect(get(categories)).toMatchObject({
-        Id: 456,
-        Name: "Shoes",
-        ParentId: null,
-        Children: [
-          {
-            Id: 999,
-            ParentId: 123,
-            Name: "Child Shoes",
-            Children: [],
-            NominalCode: "CATEGORY",
-          },
-        ],
-        NominalCode: "CATEGORY",
-      });
-      expect(screen.getByRole("heading")).toHaveTextContent("Child Shoes");
-      cleanup();
+      expect(screen.getByText("TagClothes")).toBeInTheDocument();
     });
 
-    it("THEN display the correct category even when it is a child in the store tree", () => {
-      categories.set({ ...nestedCategories });
-
+    it("THEN display a JEWELLERY Category", () => {
       render(CategoryView, {
-        categoryFn: (cat: Category) => categories.set(cat),
-        categoryId: 456,
+        categoryFn: (cat: Category) => `${cat} fn fired`,
+        categoryToShow: jewelleryNestedCategories,
+        productArr: [],
+        whitelistedUserAgent: true,
       });
-      expect(screen.getByRole("heading")).toHaveTextContent("Hats");
-      cleanup();
-    });
 
-    it("THEN displays any children categories", async () => {
-      categories.set({ ...nestedCategories });
+      expect(
+        screen.getByRole("heading", { level: 1, name: "Shop by type" })
+      ).toBeInTheDocument();
+      expect(screen.getByText("fine jewellery")).toBeInTheDocument();
+      expect(screen.getByText("costume jewellery")).toBeInTheDocument();
 
-      render(CategoryView, {
-        categoryFn: (cat: Category) => categories.set(cat),
-        categoryId: 456,
-      });
-      expect(screen.getByRole("heading", { name: "Hats" })).toHaveTextContent(
-        "Hats"
-      );
-      cleanup();
+      expect(
+        screen.getByRole("heading", { level: 1, name: "Shop by artist" })
+      ).toBeInTheDocument();
+      expect(screen.getByText("jaskaran sarkaria")).toBeInTheDocument();
     });
 
     it("AND showBreadcrumbs is false THEN don't show breadcrumbs", () => {
@@ -143,28 +178,30 @@ describe("GIVEN CategoryView", () => {
         showBreadcrumbs: false,
       });
       expect(screen.queryByText("Shop")).not.toBeInTheDocument();
-      cleanup();
     });
 
-    it("AND it is a variant category THEN don't show the category", async () => {
-      categories.set({
-        Id: 890,
-        Name: "Variant",
-        ParentId: null,
-        Children: [],
-        NominalCode: "",
-      });
-
+    it("AND it is a VARIANT category THEN don't show the category", () => {
       render(CategoryView, {
-        categoryFn: (cat: Category) => categories.set(cat),
-        categoryId: 890,
+        categoryFn: (cat: Category) => `${cat} fn fired`,
+        categoryToShow: variantNestedCategories,
+        productArr: [],
+        whitelistedUserAgent: true,
       });
-      expect(
-        screen.queryByRole("heading", { name: "890", level: 3 })
-      ).not.toBeInTheDocument();
 
-      expect(screen.queryByText("Variant")).not.toBeInTheDocument();
-      cleanup();
+      expect(screen.getByText("VariantClothes")).toBeInTheDocument();
+    });
+  });
+
+  describe("WHEN there are no categories", () => {
+    it("THEN display products", () => {
+      render(CategoryView, {
+        categoryFn: (cat: Category) => `${cat} fn fired`,
+        categoryToShow: {} as Category,
+        productArr: dummyProductArr,
+        whitelistedUserAgent: true,
+      });
+
+      expect(screen.getByText("Dummy")).toBeInTheDocument();
     });
   });
 });
