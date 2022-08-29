@@ -10,7 +10,7 @@
   export let productDescription: string;
   export let isMobile: boolean;
 
-  const treatedProductDescription = productDescription
+  const formattedProductDescription = productDescription
     .split(/\n|\r\n/g)
     .map((v: string) => ({ text: v }));
 
@@ -92,7 +92,7 @@
         </h4>
       </div>
     </div>
-    {#each treatedProductDescription as { text }}
+    {#each formattedProductDescription as { text }}
       <h4 class="description">{text}</h4>
     {/each}
   </div>
@@ -113,7 +113,7 @@
     <div class="detailed-products-footer">
       <h2>{product.Name}</h2>
       <h4>{`£${product.SalePrice.toFixed(2)}`}</h4>
-      {#each treatedProductDescription as { text }}
+      {#each formattedProductDescription as { text }}
         <h4 class="description">{text}</h4>
       {/each}
       <h5>
