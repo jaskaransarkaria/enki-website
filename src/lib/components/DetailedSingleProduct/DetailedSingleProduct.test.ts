@@ -1,3 +1,4 @@
+import { tick } from "svelte";
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
@@ -20,6 +21,8 @@ const dummyProduct = {
   IsArchived: false,
   Id: 111,
 };
+
+window.scrollTo = jest.fn();
 
 describe("GIVEN DetailedSingleProduct", () => {
   afterEach(() => vi.clearAllMocks());
@@ -52,8 +55,21 @@ describe("GIVEN DetailedSingleProduct", () => {
       ).toBeVisible();
     });
 
-    it.skip("THEN display the multiple images product");
-    it.skip("THEN display full screen");
+    it("THEN display full screen", async () => {
+      render(DetailedSingleProduct, {
+        product: dummyProduct,
+        isMobile: false,
+        productDescription: "some dummy description",
+      });
+
+      expect(screen.queryByTestId("full-screen")).not.toBeInTheDocument();
+      await userEvent.click(screen.getByTestId("desktop-img-container"));
+
+      expect(screen.getByTestId("full-screen")).toBeInTheDocument();
+      expect(screen.getByTestId("full-screen")).toBeVisible();
+      expect(screen.getByTestId("full-screen")).toHaveClass("full-screen");
+    });
+
     it.skip("THEN close full screen");
     it.skip("THEN display formatted product description");
   });
@@ -86,8 +102,22 @@ describe("GIVEN DetailedSingleProduct", () => {
       ).toBeVisible();
     });
 
-    it.skip("THEN display the MOBILE multiple images product");
-    it.skip("THEN display MOBILE full screen");
+    it("THEN display MOBILE full screen", async () => {
+      render(DetailedSingleProduct, {
+        product: dummyProduct,
+        isMobile: true,
+        productDescription: "some dummy description",
+      });
+
+      expect(screen.queryByTestId("full-screen")).not.toBeInTheDocument();
+      await userEvent.click(screen.getByTestId("mobile-img-container"));
+
+      expect(screen.getByTestId("full-screen")).toBeInTheDocument();
+      expect(screen.getByTestId("full-screen")).toBeVisible();
+      expect(screen.getByTestId("full-screen")).toHaveClass("full-screen");
+    });
+
     it.skip("THEN close MOBILE full screen");
+    it.skip("THEN display formatted product description");
   });
 });

@@ -66,6 +66,7 @@
     {#if product.ProductImages}
       <div
         class="mobile-img-container"
+        data-testid="mobile-img-container"
         style:width={clientWidth ? clientWidth + "px" : "90vw"}
         on:click={() => {
           showFullScreen = true;
@@ -101,6 +102,7 @@
     <div class="desktop-left-container">
       <div
         class="desktop-img-container"
+        data-testid="desktop-img-container"
         on:click={() => {
           showFullScreen = true;
           visible += 1;
@@ -130,7 +132,7 @@
   </div>
 {/if}
 {#if showFullScreen}
-  <div class="full-screen">
+  <div class="full-screen" data-testid="full-screen">
     <div
       class="img-view"
       use:clickOutside={{
