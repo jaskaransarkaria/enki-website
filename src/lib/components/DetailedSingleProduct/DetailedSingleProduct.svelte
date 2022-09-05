@@ -10,7 +10,7 @@
   export let productDescription: string;
   export let isMobile: boolean;
 
-  const treatedProductDescription = productDescription
+  const formattedProductDescription = productDescription
     .split(/\n|\r\n/g)
     .map((v: string) => ({ text: v }));
 
@@ -25,7 +25,7 @@
     product: Product,
     imgWidth?: number
   ): { src: string; alt: string }[] =>
-    product.ProductImages.length
+    product?.ProductImages?.length
       ? product.ProductImages.map((_, idx) => ({
           src: `https://enki.imgix.net/${product.Id}-${idx}?q=100${
             imgWidth ? `&w=${imgWidth}` : ""
@@ -66,6 +66,7 @@
     {#if product.ProductImages}
       <div
         class="mobile-img-container"
+        data-testid="mobile-img-container"
         style:width={clientWidth ? clientWidth + "px" : "90vw"}
         on:click={() => {
           showFullScreen = true;
@@ -92,7 +93,7 @@
         </h4>
       </div>
     </div>
-    {#each treatedProductDescription as { text }}
+    {#each formattedProductDescription as { text }}
       <h4 class="description">{text}</h4>
     {/each}
   </div>
@@ -101,6 +102,7 @@
     <div class="desktop-left-container">
       <div
         class="desktop-img-container"
+        data-testid="desktop-img-container"
         on:click={() => {
           showFullScreen = true;
           visible += 1;
@@ -113,7 +115,7 @@
     <div class="detailed-products-footer">
       <h2>{product.Name}</h2>
       <h4>{`£${product.SalePrice.toFixed(2)}`}</h4>
-      {#each treatedProductDescription as { text }}
+      {#each formattedProductDescription as { text }}
         <h4 class="description">{text}</h4>
       {/each}
       <h5>
@@ -130,7 +132,7 @@
   </div>
 {/if}
 {#if showFullScreen}
-  <div class="full-screen">
+  <div class="full-screen" data-testid="full-screen">
     <div
       class="img-view"
       use:clickOutside={{

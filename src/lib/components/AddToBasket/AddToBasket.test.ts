@@ -30,9 +30,12 @@ describe("GIVEN AddToBasket", () => {
       expect(
         screen.getByRole("button", { name: /add to basket/i })
       ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /add to basket/i })
+      ).not.toHaveClass("narrow");
     });
 
-    it("THEN add a new item to the basket", async (done) => {
+    it("THEN add a new item to the basket", async () => {
       render(AddToBasket, {
         product: {
           Id: 123,
@@ -56,6 +59,20 @@ describe("GIVEN AddToBasket", () => {
           screen.queryByRole("button", { name: /goto basket/i })
         ).toBeInTheDocument();
       });
+    });
+
+    it("AND the detailed prop THEN display the narrow styled AddToBasket", () => {
+      render(AddToBasket, {
+        product: {
+          Id: 123,
+          Name: "Red jacket",
+        } as Product,
+        detailed: true,
+      });
+
+      expect(
+        screen.getByRole("button", { name: /add to basket/i })
+      ).toHaveClass("narrow");
     });
   });
 });

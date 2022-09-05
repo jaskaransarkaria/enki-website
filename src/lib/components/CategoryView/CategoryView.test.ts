@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/svelte";
 import CategoryView from "./CategoryView.svelte";
+import { reset as resetCategoriesStore } from "$lib/stores/basket";
 
 import type { Category } from "$lib/types/category";
 import type { Product } from "$lib/types/product";
@@ -121,6 +122,7 @@ const dummyProductArr = [
 describe("GIVEN CategoryView", () => {
   afterEach(() => {
     vi.clearAllMocks();
+    resetCategoriesStore();
   });
 
   describe("WHEN rendered with props", () => {
@@ -134,7 +136,7 @@ describe("GIVEN CategoryView", () => {
 
       //breadcrumbs should be mounted
       expect(screen.getByText("Shop")).toBeInTheDocument();
-      //
+
       // the category to display
       expect(screen.getByText("Clothes", { exact: true })).toBeInTheDocument();
       expect(screen.queryByText("Shoes")).not.toBeInTheDocument();
