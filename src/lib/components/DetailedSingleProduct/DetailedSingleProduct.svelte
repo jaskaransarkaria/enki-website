@@ -25,7 +25,7 @@
     product: Product,
     imgWidth?: number
   ): { src: string; alt: string }[] =>
-    product.ProductImages.length
+    product?.ProductImages?.length
       ? product.ProductImages.map((_, idx) => ({
           src: `https://enki.imgix.net/${product.Id}-${idx}?q=100${
             imgWidth ? `&w=${imgWidth}` : ""
