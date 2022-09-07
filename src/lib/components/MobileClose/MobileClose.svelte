@@ -7,6 +7,7 @@
 <div
   class={bool ? "open" : ""}
   id="nav-icon"
+  data-testid="mobile-close"
   on:click={cb}
   style={positionOverride}
 >

@@ -70,8 +70,44 @@ describe("GIVEN DetailedSingleProduct", () => {
       expect(screen.getByTestId("full-screen")).toHaveClass("full-screen");
     });
 
-    it.skip("THEN close full screen");
-    it.skip("THEN display formatted product description");
+    it("THEN close full screen", async () => {
+      render(DetailedSingleProduct, {
+        product: dummyProduct,
+        isMobile: false,
+        productDescription: "some dummy description",
+      });
+
+      expect(screen.queryByTestId("full-screen")).not.toBeInTheDocument();
+      await userEvent.click(screen.getByTestId("desktop-img-container"));
+
+      expect(screen.getByTestId("full-screen")).toBeInTheDocument();
+      expect(screen.getByTestId("full-screen")).toBeVisible();
+      expect(screen.getByTestId("full-screen")).toHaveClass("full-screen");
+
+      await userEvent.click(screen.getByTestId("desktop-img-container"));
+      expect(screen.queryByTestId("full-screen")).not.toBeInTheDocument();
+    });
+
+    it("THEN display formatted product description", () => {
+      render(DetailedSingleProduct, {
+        product: dummyProduct,
+        isMobile: false,
+        productDescription: "some dummy description\nyup\r\ndoubleyes",
+      });
+
+      expect(
+        screen.getByRole("heading", {
+          level: 4,
+          name: "some dummy description",
+        })
+      ).toHaveClass("description");
+      expect(
+        screen.getByRole("heading", { level: 4, name: "yup" })
+      ).toHaveClass("description");
+      expect(
+        screen.getByRole("heading", { level: 4, name: "doubleyes" })
+      ).toHaveClass("description");
+    });
   });
 
   describe("WHEN MOBILE is rendered", () => {
@@ -117,7 +153,43 @@ describe("GIVEN DetailedSingleProduct", () => {
       expect(screen.getByTestId("full-screen")).toHaveClass("full-screen");
     });
 
-    it.skip("THEN close MOBILE full screen");
-    it.skip("THEN display formatted product description");
+    it("THEN close MOBILE full screen", async () => {
+      render(DetailedSingleProduct, {
+        product: dummyProduct,
+        isMobile: true,
+        productDescription: "some dummy description",
+      });
+
+      expect(screen.queryByTestId("full-screen")).not.toBeInTheDocument();
+      await userEvent.click(screen.getByTestId("mobile-img-container"));
+
+      expect(screen.getByTestId("full-screen")).toBeInTheDocument();
+      expect(screen.getByTestId("full-screen")).toBeVisible();
+      expect(screen.getByTestId("full-screen")).toHaveClass("full-screen");
+
+      await userEvent.click(screen.getByTestId("mobile-close"));
+      expect(screen.queryByTestId("full-screen")).not.toBeInTheDocument();
+    });
+
+    it("THEN display formatted product description", () => {
+      render(DetailedSingleProduct, {
+        product: dummyProduct,
+        isMobile: true,
+        productDescription: "some dummy description\nyup\r\ndoubleyes",
+      });
+
+      expect(
+        screen.getByRole("heading", {
+          level: 4,
+          name: "some dummy description",
+        })
+      ).toHaveClass("description");
+      expect(
+        screen.getByRole("heading", { level: 4, name: "yup" })
+      ).toHaveClass("description");
+      expect(
+        screen.getByRole("heading", { level: 4, name: "doubleyes" })
+      ).toHaveClass("description");
+    });
   });
 });
