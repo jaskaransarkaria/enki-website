@@ -1,11 +1,8 @@
-import { tick } from "svelte";
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/svelte";
 import DetailedSingleProduct from "./DetailedSingleProduct.svelte";
-
-import type { Product } from "$lib/types/product";
 
 const dummyProduct = {
   Name: "Dummy",

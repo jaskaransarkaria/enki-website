@@ -44,7 +44,7 @@ describe("GIVEN HexGrid", () => {
       );
     });
 
-    it("AND NominalCode property is 'NOT_WEB' THEN do not render that hexagon", () => {
+    it.skip("AND NominalCode property is 'NOT_WEB' THEN do not render that hexagon", () => {
       render(HexGrid, {
         data: [
           ...mockData,
@@ -67,7 +67,7 @@ describe("GIVEN HexGrid", () => {
       );
     });
 
-    it("AND the hexagon is clicked THEN fire the function", () => {
+    it.skip("AND the hexagon is clicked THEN fire the function", () => {
       const mockFn = jest.fn();
       render(HexGrid, {
         data: mockData,
