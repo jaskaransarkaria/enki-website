@@ -18,6 +18,20 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./setupTests.ts",
+    watchExclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/cypress/**",
+      "**/.{idea,git,cache,output,temp}/**",
+      "tests/**/*",
+    ],
+    exclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/cypress/**",
+      "**/.{idea,git,cache,output,temp}/**",
+      "tests/**/*",
+    ],
   },
   legacy: { buildSsrCjsExternalHeuristics: true },
 });

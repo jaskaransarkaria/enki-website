@@ -11,7 +11,7 @@ vi.mock("$app/environment", () => ({
   dev: true,
   mode: "test",
 }));
-//
+
 // @ts-ignore
 global.jest = vi;
 
