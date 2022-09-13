@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import {
     getGridCols,
@@ -23,10 +22,6 @@
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
 
-  let imgElemArr: HTMLImageElement[] =
-    data.length > 0 ? [...createEmptyArray(data.length)] : [];
-  let sourceElemArr: HTMLSourceElement[] =
-    data.length > 0 ? [...createEmptyArray(data.length)] : [];
   let itemsOnLastRow: number;
   let gridColumnNumber: number;
   let showGrid: boolean = false;

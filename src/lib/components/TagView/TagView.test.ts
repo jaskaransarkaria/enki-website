@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 import { tick } from "svelte";
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
@@ -7,7 +8,7 @@ import { refreshTags } from "$lib/utils/requests";
 
 import type { Category } from "$lib/types/category";
 
-jest.mock("$lib/utils/requests");
+vi.mock("$lib/utils/requests");
 
 const mockData: Category[] = [
   {
@@ -25,7 +26,7 @@ describe("Given TagView", () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("WHEN rendered without props and no tags", () => {

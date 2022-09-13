@@ -3,12 +3,18 @@ import { render, screen } from "@testing-library/svelte";
 import HexGrid from "./HexGrid.svelte";
 
 import type { Category } from "$lib/types/category";
-import userEvent from "@testing-library/user-event";
 
 const mockData: Category[] = [
   {
     Id: 123,
     Name: "Elephant",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+  {
+    Id: 456,
+    Name: "Dog",
     ParentId: null,
     Children: [],
     NominalCode: "",
@@ -26,59 +32,48 @@ describe("GIVEN HexGrid", () => {
 
   describe("WHEN rendered WITH props", () => {
     it("THEN render hexagons", () => {
+      const mockCategoryFn = jest.fn((cat) => `/${cat.Name}`);
       render(HexGrid, {
         data: mockData,
+        categoryFn: mockCategoryFn,
       });
+
+      const allHexes = screen.getAllByTestId("hex-category-name");
       expect(screen.queryByTestId("loading-spinner")).not.toBeInTheDocument();
-      expect(screen.getByTestId("hex-category-name")).toHaveTextContent(
-        "Elephant"
-      );
-      expect(screen.getByTestId("hex-image")).toBeInTheDocument();
-      expect(screen.getByTestId("hex-image-fallback")).toHaveAttribute(
-        "src",
-        "https://enki.imgix.net/faith.jpg?auto=format,compress"
-      );
-      expect(screen.getByTestId("hex-image")).toHaveAttribute(
-        "srcset",
-        "https://enki.imgix.net/123?auto=format,compress"
-      );
+      expect(allHexes[0]).toHaveTextContent("Elephant");
+      expect(allHexes[1]).toHaveTextContent("Dog");
     });
 
-    it.skip("AND NominalCode property is 'NOT_WEB' THEN do not render that hexagon", () => {
+    it("AND NominalCode property is 'NOT_WEB' THEN do not render that hexagon", () => {
+      const mockCategoryFn = jest.fn((cat) => `/${cat.Name}`);
       render(HexGrid, {
         data: [
           ...mockData,
-          { ...mockData[0], Id: 456, NominalCode: "NOT_WEB", Name: "Dog" },
+          { ...mockData[0], Id: 456, NominalCode: "NOT_WEB", Name: "Hamster" },
         ],
+        categoryFn: mockCategoryFn,
       });
+
+      const allHexes = screen.getAllByTestId("hex-category-name");
       expect(screen.queryByTestId("loading-spinner")).not.toBeInTheDocument();
-      expect(screen.getByTestId("hex-category-name")).toHaveTextContent(
-        "Elephant"
-      );
-      expect(screen.queryByText("Dog")).not.toBeInTheDocument();
-      expect(screen.getByTestId("hex-image")).toBeInTheDocument();
-      expect(screen.getByTestId("hex-image-fallback")).toHaveAttribute(
-        "src",
-        "https://enki.imgix.net/faith.jpg?auto=format,compress"
-      );
-      expect(screen.getByTestId("hex-image")).toHaveAttribute(
-        "srcset",
-        "https://enki.imgix.net/123?auto=format,compress"
-      );
+      expect(allHexes[0]).toHaveTextContent("Elephant");
+      expect(allHexes[1]).toHaveTextContent("Dog");
+      expect(screen.queryByText("Hamster")).not.toBeInTheDocument();
     });
 
-    it.skip("AND the hexagon is clicked THEN fire the function", () => {
-      const mockFn = jest.fn();
+    it("AND the hexagon links to have the correct paths", async () => {
+      const mockCategoryFn = jest.fn((cat) => `/${cat.Name}`);
       render(HexGrid, {
         data: mockData,
-        categoryFn: mockFn,
+        categoryFn: mockCategoryFn,
       });
 
-      expect(mockFn).toHaveBeenCalledTimes(0);
+      expect(mockCategoryFn).toHaveBeenCalledTimes(2); // once for each hex to set up the href
 
-      userEvent.click(screen.getByTestId("hex-button"));
+      const hexButtons = screen.getAllByRole("link");
 
-      expect(mockFn).toHaveBeenCalledTimes(1);
+      expect(hexButtons[0]).toHaveAttribute("href", "/Elephant");
+      expect(hexButtons[1]).toHaveAttribute("href", "/Dog");
     });
   });
 });

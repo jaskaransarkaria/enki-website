@@ -1,7 +1,5 @@
 import "@testing-library/jest-dom";
-import { vi } from "vitest";
-import userEvent from "@testing-library/user-event";
-import { render, screen, waitFor } from "@testing-library/svelte";
+import { render, screen } from "@testing-library/svelte";
 import Hex from "./Hex.svelte";
 
 describe("GIVEN Hex", () => {
@@ -47,7 +45,7 @@ describe("GIVEN Hex", () => {
           ParentId: 222,
           Children: [],
           NominalCode: null,
-          TagTypeId: 123,
+          TagTypeId: "123",
         },
       });
       expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent(
