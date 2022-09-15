@@ -11,6 +11,7 @@ export const searchProducts = (
           obj?.ProductDetails?.DetailedDescription.toLowerCase().match(
             prodToFind
           )) &&
-        obj.SellOnWeb
+        obj.SellOnWeb &&
+        !obj.IsArchived
       : false
   );
