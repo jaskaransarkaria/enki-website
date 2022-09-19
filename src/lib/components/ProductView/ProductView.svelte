@@ -5,6 +5,7 @@
   import { fade } from "svelte/transition";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
+
   import type { Category } from "$lib/types/category";
   import type { Product } from "$lib/types/product";
 
@@ -121,7 +122,7 @@
       ...category,
       Type: ItemType.VARIANT_CATEGORY,
     })
-  );
+  ); // TODO: I think I can delete this and replace the mentions of variantCategories with typedVariantCategories
 
   $: groupedVariantProducts = Object.values(
     groupBy(variantArr, "VariantGroupId")
@@ -168,7 +169,7 @@
 
 <svelte:window bind:outerWidth />
 {#if sortedCollatedArray.length}
-  <div class="container">
+  <div class="container" data-testid="product-view-container">
     <Banner hasProducts />
     <div class="sort-container">
       <select name="products" id="products" bind:value={sortBy}>
