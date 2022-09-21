@@ -60,9 +60,8 @@
       Ever wanted to make your own jewellery? Looking for a unique present for a
       friend? <br /><br />At Enki workshops you can meet new people and learn a
       new craft. The one off classes include all the tools and materials needed
-      to make your jewellery, soft and hot drinks, and cake from the wonderful
-      Early Bird Bakery next door. <br /><br />We also take group bookings where
-      you can choose the date and topic. <br /><br />
+      to make your jewellery, and light refreshments. <br /><br />We also take
+      group bookings where you can choose the date and topic. <br /><br />
       Get in touch <a href="/contact">here</a>.
     </p>
   </div>
