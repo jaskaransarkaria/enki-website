@@ -5,7 +5,7 @@
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
   import "../app.css";
 
-  export const hydrate = true;
+  export const csr = true;
 </script>
 
 <svelte:head>
