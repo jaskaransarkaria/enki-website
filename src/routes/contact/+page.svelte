@@ -9,7 +9,11 @@
 <div class="contact-us-container">
   <div class="contact-info">
     <h1>Contact us</h1>
-    <a target="_blank" href="https://goo.gl/maps/vEXPs22hUBs2CgdH8">
+    <a
+      target="_blank"
+      href="https://goo.gl/maps/vEXPs22hUBs2CgdH8"
+      rel="noreferrer"
+    >
       <img
         in:fade={{ duration: 600 }}
         src="https://enki.imgix.net/maps.png?auto=format,compress"

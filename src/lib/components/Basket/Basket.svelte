@@ -68,7 +68,7 @@
               <div class="gift-wrap-details">
                 <label class="select-wrap" for="wrap">
                   Fancy gift wrap <a
-                    sveltekit:prefetch
+                    data-sveltekit-prefetch
                     href="/shop/category/1876089">here</a
                   >
                   <hr />

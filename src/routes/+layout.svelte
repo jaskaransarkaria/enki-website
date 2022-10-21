@@ -4,6 +4,8 @@
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
   import "../app.css";
+
+  export const hydrate = true;
 </script>
 
 <svelte:head>
