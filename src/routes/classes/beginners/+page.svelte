@@ -89,8 +89,7 @@
         data-inline-show-logo="true"
         data-inline-bg-fill="false"
         data-inline-inherit-ref-from-url-param=""
-        data-inline-ref="website_widget"
-      ></script>
+        data-inline-ref="website_widget"></script>
     {/if}
   </div>
 {/if}

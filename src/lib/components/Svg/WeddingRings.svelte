@@ -2,7 +2,7 @@
   $: weddingHover = false;
 </script>
 
-<a data-sveltekit-prefetch href="/classes/wedding-rings">
+<a sveltekit:prefetch href="/classes/wedding-rings">
   <svg
     on:mouseenter={() => (weddingHover = true)}
     on:mouseleave={() => (weddingHover = false)}

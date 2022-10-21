@@ -2,7 +2,7 @@
   $: jewelleryServicesHover = false;
 </script>
 
-<a data-sveltekit-prefetch href="/repairs">
+<a sveltekit:prefetch href="/repairs">
   <svg
     on:mouseenter={() => (jewelleryServicesHover = true)}
     on:mouseleave={() => (jewelleryServicesHover = false)}

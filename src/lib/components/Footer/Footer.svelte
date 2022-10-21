@@ -18,22 +18,14 @@
           alt="contact us"
         />
       </a>
-      <a
-        href="https://www.instagram.com/enkionline/?hl=en"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a href="https://www.instagram.com/enkionline/?hl=en" target="_blank">
         <img
           class="footer-icons"
           src="https://enki.imgix.net/insta_logo_3.png?q=100"
           alt="link to instagram"
         />
       </a>
-      <a
-        href="https://www.facebook.com/Enki-1665334930147391"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a href="https://www.facebook.com/Enki-1665334930147391" target="_blank">
         <img
           class="footer-icons"
           src="https://enki.imgix.net/fb_logo_3.png?q=100"
@@ -79,8 +71,7 @@
         <a
           data-testid="supported-card-brands"
           href="https://stripe.com/docs/payments/cards/supported-card-brands"
-          target="_blank"
-          rel="noreferrer"
+          target="blank"
         >
           <img
             class="trust-badge"

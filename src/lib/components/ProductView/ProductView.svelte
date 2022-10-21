@@ -1,21 +1,13 @@
 <script lang="ts">
   import { beforeUpdate } from "svelte";
-  import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
   import { groupBy } from "lodash-es";
+  import { fade } from "svelte/transition";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
 
   import type { Category } from "$lib/types/category";
   import type { Product } from "$lib/types/product";
-
-  enum ItemType {
-    VARIANT_PRODUCT = "VARIANT_PRODUCT",
-    NONVARIANT_PRODUCT = "NONVARIANT_PRODUCT",
-    VARIANT_CATEGORY = "VARIANT_CATEGORY",
-  }
-
-  type CollatedItem = (Product | Category) & { Type: ItemType };
 
   export let productArr: readonly Product[] = [];
   export let variantCategories: readonly Category[] = [];
@@ -28,6 +20,14 @@
   let variantArr: readonly Product[] = [];
   let nonVariantArr: readonly Product[] = [];
   let groupedVariantProducts: Array<readonly Product[]>;
+
+  enum ItemType {
+    VARIANT_PRODUCT = "VARIANT_PRODUCT",
+    NONVARIANT_PRODUCT = "NONVARIANT_PRODUCT",
+    VARIANT_CATEGORY = "VARIANT_CATEGORY",
+  }
+
+  type CollatedItem = (Product | Category) & { Type: ItemType };
 
   const showGroupedVariant = (group: Array<readonly Product[]>) =>
     group
@@ -102,9 +102,6 @@
     }
   };
 
-  const isVariantCategory = (item: unknown): item is Category =>
-    (item as CollatedItem).Type === ItemType.VARIANT_CATEGORY;
-
   $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
 
   $: if (productArr.length) {
@@ -119,6 +116,13 @@
     variantArr = [];
     nonVariantArr = [];
   }
+
+  $: variantCategories.map(
+    (category: Category): CollatedItem => ({
+      ...category,
+      Type: ItemType.VARIANT_CATEGORY,
+    })
+  ); // TODO: I think I can delete this and replace the mentions of variantCategories with typedVariantCategories
 
   $: groupedVariantProducts = Object.values(
     groupBy(variantArr, "VariantGroupId")
@@ -223,7 +227,7 @@
         <div
           in:fade|local={{ delay: 500 }}
           class={showDetailedView ||
-          (typedVariantCategories.length +
+          (variantCategories.length +
             nonVariantArr.length +
             variantArr?.filter(
               (vars) => !variantCategoryIds.includes(vars.CategoryId)
@@ -232,12 +236,13 @@
             !isMobile) // if there are only 3 products then center them
             ? "detailed-products-container"
             : "products-container"}
-          data-testid="products-container"
         >
           {#each sortedCollatedArray as item (item.Id)}
             <SingleProduct
-              variantCategory={isVariantCategory(item) ? item : null}
-              product={isVariantCategory(item) ? null : item}
+              variantCategory={item.Type === ItemType.VARIANT_CATEGORY
+                ? item
+                : null}
+              product={item.Type === ItemType.VARIANT_CATEGORY ? null : item}
               {showDetailedView}
             />
           {/each}

@@ -9,7 +9,7 @@
     <div in:fade={{ duration: 600 }}>
       <p class="pulse">
         Gift wrapping service click <a
-          data-sveltekit-prefetch
+          sveltekit:prefetch
           rel="external"
           href="/shop/category/1876089">here!</a
         >
