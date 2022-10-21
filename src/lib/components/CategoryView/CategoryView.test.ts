@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
-import { render, screen, cleanup } from "@testing-library/svelte";
+import { render, screen } from "@testing-library/svelte";
 import CategoryView from "./CategoryView.svelte";
 import { reset as resetCategoriesStore } from "$lib/stores/basket";
 

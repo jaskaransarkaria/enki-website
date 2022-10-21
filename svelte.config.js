@@ -17,9 +17,6 @@ const config = {
       out: "build",
       precompress: true,
     }),
-    browser: {
-      hydrate: true,
-    },
   },
 };
 

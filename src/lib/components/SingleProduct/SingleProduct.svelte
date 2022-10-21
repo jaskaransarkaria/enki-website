@@ -22,7 +22,7 @@
 <svelte:window bind:outerWidth />
 {#if variantCategory}
   <a
-    sveltekit:prefetch
+    data-sveltekit-prefetch
     class="simple-container"
     href={`./${variantCategory.Id}`}
   >
@@ -42,7 +42,7 @@
     <DetailedSingleProduct {product} {productDescription} {isMobile} />
   {:else}
     <a
-      sveltekit:prefetch
+      data-sveltekit-prefetch
       class="simple-container"
       href={`/shop/product/${product.Id}`}
     >
