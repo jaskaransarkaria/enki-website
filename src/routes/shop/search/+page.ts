@@ -32,4 +32,4 @@ export async function load({ fetch, url }) {
   };
 }
 
-export const router = false;
+export const csr = true;
