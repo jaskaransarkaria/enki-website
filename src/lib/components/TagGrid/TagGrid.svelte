@@ -1,0 +1,111 @@
+<script lang="ts">
+  import { fade } from "svelte/transition";
+
+  import type { BaseFn } from "$lib/types/base";
+  import type { Tag } from "$lib/types/tag";
+
+  export let categoryFn: BaseFn = () => "";
+  export let data: Tag[] = [];
+</script>
+
+<div class="tag-grid">
+  {#each data as tag, _ (tag.Id)}
+    <a sveltekit:prefetch class="hex-link" href={categoryFn(tag)}>
+      <img
+        src="/featured_1.png"
+        alt="shape for the tag button"
+        in:fade={{ duration: 800 }}
+      />
+      <h3>
+        {tag.Name.split("-").slice(1).join(" ")}
+      </h3>
+    </a>
+  {/each}
+</div>
+
+<style>
+  .tag-grid {
+    margin: 0 auto;
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hex-link {
+    position: relative;
+    text-align: center;
+    color: black;
+    overflow: hidden;
+    margin: 8px;
+  }
+
+  img {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  h3 {
+    font-family: "Welcomehome5 Regular";
+    font-size: 1em;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+  }
+
+  .hex-link:hover,
+  .hex-link:focus {
+    cursor: pointer;
+    transform: scale(1.015);
+  }
+
+  @media (min-width: 360px) {
+    h3 {
+      font-size: 1.2em;
+    }
+  }
+
+  @media (min-width: 450px) {
+    .hex-link {
+      margin: 10px;
+    }
+
+    h3 {
+      font-size: 1.4em;
+    }
+  }
+
+  @media (min-width: 700px) {
+    h3 {
+      font-size: 1.5em;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .hex-link {
+      margin: 20px;
+    }
+
+    h3 {
+      font-size: 1.6em;
+    }
+  }
+
+  @media (min-width: 1960px) {
+    h3 {
+      font-size: 1.8em;
+    }
+  }
+
+  @media (min-width: 2400px) {
+    .hex-link {
+      width: 20%;
+    }
+
+    h3 {
+      font-size: 1.8em;
+    }
+  }
+</style>

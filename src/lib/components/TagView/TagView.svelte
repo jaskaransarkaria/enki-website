@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
+  import TagGrid from "$lib/components/TagGrid/TagGrid.svelte";
   import { refreshTags } from "$lib/utils/requests";
   import isCategory from "$lib/types/isCategory";
   import { PUBLIC_SERVER_URL } from "$env/static/public";
@@ -10,9 +11,10 @@
   import type { BaseFn, Base } from "$lib/types/base";
 
   export let data: Category[] = [];
-  export let categoryId: number;
-  export let categoryFn: BaseFn;
+  export let categoryId: number = 0;
+  export let categoryFn: BaseFn = () => undefined;
   export let prefix = "";
+  export let showHex = true;
 
   let tags: readonly Tag[] = [];
 
@@ -40,4 +42,8 @@
     ?.filter((tag: Tag) => tag.Name.includes(prefix));
 </script>
 
-<HexGrid data={[...data, ...treatedTags]} categoryFn={selectFn} />
+{#if showHex}
+  <HexGrid data={[...data, ...treatedTags]} categoryFn={selectFn} />
+{:else}
+  <TagGrid data={[...treatedTags]} categoryFn={selectFn} />
+{/if}

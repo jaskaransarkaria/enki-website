@@ -50,7 +50,7 @@
       <div class="category-name">
         <h3 data-testid="hex-category-name">
           {"TagTypeId" in category
-            ? category.Name.split("-").pop()
+            ? category.Name.split("-").slice(1).join(" ") // remove the first element and join the others by " "
             : category.Name}
         </h3>
       </div>

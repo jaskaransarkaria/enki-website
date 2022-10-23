@@ -2,6 +2,8 @@
   import { page } from "$app/stores";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
+
+  const categoryId = parseInt($page.url.searchParams.get("catid"), 10);
 </script>
 
 <svelte:head>
@@ -23,18 +25,20 @@
   <meta property="og:locale" content="en_GB" />
 </svelte:head>
 
-<Breadcrumbs
-  selectedCategoryId={parseInt($page.url.searchParams.get("catid"), 10)}
-  extraCrumbs={[
-    {
-      Name: $page.params.typetag.split("-")[1],
-      Id: parseInt($page.url.searchParams.get("tagid"), 0),
-      tagUrl: $page.url.toString(),
-      params: `?catId=${$page.url.searchParams.get(
-        "catid"
-      )}&tagid=${$page.url.searchParams.get("tagid")}`,
-    },
-  ]}
-/>
+{#if Boolean(categoryId)}
+  <Breadcrumbs
+    selectedCategoryId={categoryId}
+    extraCrumbs={[
+      {
+        Name: $page.params.typetag.split("-")[1],
+        Id: parseInt($page.url.searchParams.get("tagid"), 0),
+        tagUrl: $page.url.toString(),
+        params: `?catId=${$page.url.searchParams.get(
+          "catid"
+        )}&tagid=${$page.url.searchParams.get("tagid")}`,
+      },
+    ]}
+  />
+{/if}
 
 <ProductView productArr={$page.data.data} />

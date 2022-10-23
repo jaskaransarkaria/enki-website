@@ -15,6 +15,7 @@
   import JewelleryServices from "$lib/components/Svg/JewelleryServices.svelte";
   import AboutUs from "$lib/components/Svg/AboutUs.svelte";
   import Classes from "$lib/components/Svg/Classes.svelte";
+  import TagView from "$lib/components/TagView/TagView.svelte";
 
   $: outerWidth = 0;
   $: innerWidth = 0;
@@ -95,6 +96,9 @@
       <AboutUs />
     {/if}
   </figure>
+
+  <h1 class="featured">Christmas gift guide</h1>
+  <TagView prefix="FEATURED" showHex={false} />
 {/if}
 
 <style>
@@ -143,5 +147,25 @@
   .mobile-about-us-img {
     height: auto;
     max-width: 100%;
+  }
+
+  .featured {
+    background-color: white;
+    text-align: center;
+    font-family: "Welcomehome5 Regular";
+  }
+
+  @media (min-width: 1200px) {
+    .featured {
+      margin: 4%;
+      font-size: 2.5em;
+    }
+  }
+
+  @media (min-width: 2400px) {
+    .featured {
+      margin: 4%;
+      font-size: 3em;
+    }
   }
 </style>
