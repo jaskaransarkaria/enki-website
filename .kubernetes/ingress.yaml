@@ -17,6 +17,7 @@ spec:
      hosts:
        - enkionline.com
        - www.enkionline.com
+       - e2e-test.enkionline.com
   rules:
     - host: enkionline.com
       http:
@@ -32,3 +33,10 @@ spec:
             backend:
               servicePort: 5000
               serviceName: enki-website
+    - host: e2e-test.enkionline.com
+      http:
+        paths:
+          - path: /*
+            backend:
+              servicePort: 5000
+              serviceName: enki-e2e-test-website
