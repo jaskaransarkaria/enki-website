@@ -10,3 +10,19 @@ spec:
       targetPort: 5000
       protocol: TCP
       name: http
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: enki-e2e-test-website
+spec:
+  selector:
+    app: enki-e2e-test-website
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: http
+
