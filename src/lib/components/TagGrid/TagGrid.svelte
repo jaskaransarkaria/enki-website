@@ -10,7 +10,7 @@
 
 <div class="tag-grid">
   {#each data as tag, _ (tag.Id)}
-    <a sveltekit:prefetch class="hex-link" href={categoryFn(tag)}>
+    <a data-sveltekit-prefetch class="hex-link" href={categoryFn(tag)}>
       <img
         src="/featured_1.png"
         alt="shape for the tag button"

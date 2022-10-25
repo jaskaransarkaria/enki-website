@@ -1,14 +1,11 @@
-import { refreshProductsFromServer } from "$lib/utils/requests";
 import { searchProducts } from "$lib/utils/search";
 import { PUBLIC_SERVER_URL } from "$env/static/public";
 import type { Product } from "$lib/types/product";
 
 export async function load({ fetch, url }) {
   // pull the category data from api
-  const result = await refreshProductsFromServer(
-    `${PUBLIC_SERVER_URL}/get-all-products`,
-    fetch
-  );
+  const fetchedResult = await fetch(`${PUBLIC_SERVER_URL}/get-all-products`);
+  const result = await fetchedResult.json();
 
   const searchTerm = decodeURIComponent(url.searchParams.get("search-term"));
   const reg = new RegExp(`\\b${searchTerm}|${searchTerm}\\b`, "i");
