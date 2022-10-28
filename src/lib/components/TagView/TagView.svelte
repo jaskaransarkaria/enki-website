@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
-  import TagGrid from "$lib/components/TagGrid/TagGrid.svelte";
+  import TagFlex from "$lib/components/TagFlex/TagFlex.svelte";
   import { refreshTags } from "$lib/utils/requests";
   import isCategory from "$lib/types/isCategory";
   import { PUBLIC_SERVER_URL } from "$env/static/public";
@@ -45,5 +45,5 @@
 {#if showHex}
   <HexGrid data={[...data, ...treatedTags]} categoryFn={selectFn} />
 {:else}
-  <TagGrid data={[...treatedTags]} categoryFn={selectFn} />
+  <TagFlex data={[...treatedTags]} categoryFn={selectFn} />
 {/if}
