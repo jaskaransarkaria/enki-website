@@ -1,31 +1,34 @@
 # Enki - Website
 
-The website is built in svelte and deployed to a kubernetes cluster. The repo is based on the Svelte template [svelte-typescript-jest-routify-prettier](https://github.com/jaskaransarkaria/svelte-typescript-jest-routify-prettier).
+This repo contains the code for the frontend website for `Enki Jewellery & Craft Gallery`, a shop in Kings Heath, Birmingham, UK.
+
+The website is built with the sveltekit framework.
 
 The server code can be found [here](https://github.com/jaskaransarkaria/enki-server)
-
-This repo contains the code for the frontend website for `Enki Jewellery & Craft Gallery`, a shop in Kings Heath, Birmingham, UK.
 
 The server which handles pulling product data from the epos system can be found [here](https://github.com/jaskaransarkaria/enki-server). If you run the frontend with out the server you will not have any products populating the online-shop.
 
 ## App Libraries
 
-- Svelte, Sveltekit & Typescript
+- Svelte, [Sveltekit](https://kit.svelte.dev/) & Typescript
 - Docker
 - Kubernetes
 - Svelte Testing Library
-- Playwright
-- Stripe
-- Jest
-- Travis CI
+- [Playwright](https://playwright.dev/)
+- [Stripe](https://stripe.com/en-gb) (to handle payments)
+- [Vitest](https://vitest.dev/)
+- [Travis CI](https://www.travis-ci.com/)
 - Husky
 - [Plausible](https://plausible.io/) (for analytics)
 
 ## Source Structure
 
-The project is a SSR app, built through sveltekit.
+The project is a SSR app.
 
 ```
+src/app.d.ts
+src/app.html
+src/hooks.server.ts
 src/lib
 ├── components
 │   ├── AddToBasket
@@ -36,9 +39,11 @@ src/lib
 │   ├── Banner
 │   │   └── Banner.svelte
 │   ├── Basket
-│   │   └── Basket.svelte
+│   │   ├── Basket.svelte
+│   │   └── Basket.test.ts
 │   ├── BasketCounter
-│   │   └── BasketCounter.svelte
+│   │   ├── BasketCounter.svelte
+│   │   └── BasketCounter.test.ts
 │   ├── Breadcrumbs
 │   │   ├── Breadcrumbs.svelte
 │   │   └── Breadcrumbs.test.ts
@@ -50,7 +55,8 @@ src/lib
 │   │   ├── Checkout.test.ts
 │   │   └── createCheckoutSession.ts
 │   ├── DetailedSingleProduct
-│   │   └── DetailedSingleProduct.svelte
+│   │   ├── DetailedSingleProduct.svelte
+│   │   └── DetailedSingleProduct.test.ts
 │   ├── Footer
 │   │   └── Footer.svelte
 │   ├── Hamburger
@@ -58,7 +64,8 @@ src/lib
 │   ├── Header
 │   │   └── Header.svelte
 │   ├── Hex
-│   │   └── Hex.svelte
+│   │   ├── Hex.svelte
+│   │   └── Hex.test.ts
 │   ├── HexGrid
 │   │   ├── HexGrid.svelte
 │   │   └── HexGrid.test.ts
@@ -67,7 +74,8 @@ src/lib
 │   │   ├── Image.svelte
 │   │   └── IntersectionObserver.svelte
 │   ├── JewelleryView
-│   │   └── JewelleryView.svelte
+│   │   ├── JewelleryView.svelte
+│   │   └── JewelleryView.test.ts
 │   ├── LoadingSpinner
 │   │   └── LoadingSpinner.svelte
 │   ├── MailChimpSubscribe
@@ -75,7 +83,8 @@ src/lib
 │   ├── MobileClose
 │   │   └── MobileClose.svelte
 │   ├── ProductView
-│   │   └── ProductView.svelte
+│   │   ├── ProductView.svelte
+│   │   └── ProductView.test.ts
 │   ├── ScrollDown
 │   │   └── ScrollDown.svelte
 │   ├── SearchProducts
@@ -92,6 +101,8 @@ src/lib
 │   │   └── WeddingRings.svelte
 │   ├── SwipeImage
 │   │   └── SwipeImage.svelte
+│   ├── TagFlex
+│   │   └── TagFlex.svelte
 │   └── TagView
 │       ├── TagView.svelte
 │       └── TagView.test.ts
@@ -100,12 +111,13 @@ src/lib
 │   ├── categories.ts
 │   └── products.ts
 ├── types
-│   ├── base.d.ts
-│   ├── category.d.ts
+│   ├── base.ts
+│   ├── basketProduct.ts
+│   ├── category.ts
 │   ├── isCategory.ts
 │   ├── isTag.ts
-│   ├── product.d.ts
-│   └── tag.d.ts
+│   ├── product.ts
+│   └── tag.ts
 └── utils
     ├── basket.ts
     ├── clickOutside.ts
@@ -115,42 +127,65 @@ src/lib
     ├── requests.ts
     └── search.ts
 src/routes
-├── about.svelte
+├── about
+│   └── +page.svelte
 ├── classes
-│   ├── beginners.svelte
-│   ├── index.svelte
-│   └── wedding-rings.svelte
-├── contact.svelte
-├── __error.svelte
-├── index.svelte
-├── __layout.svelte
+│   ├── beginners
+│   │   └── +page.svelte
+│   ├── +page.svelte
+│   ├── +page.ts
+│   └── wedding-rings
+│       └── +page.svelte
+├── contact
+│   ├── +page.svelte
+│   └── +page.ts
+├── +error.svelte
+├── +layout.server.ts
+├── +layout.svelte
+├── +page.svelte
 ├── payment
-│   └── success.svelte
-├── privacy-policy.svelte
-├── repairs.svelte
+│   └── success
+│       ├── +page.svelte
+│       └── +page.ts
+├── privacy-policy
+│   ├── +page.svelte
+│   └── +page.ts
+├── repairs
+│   └── +page.svelte
 ├── shop
 │   ├── basket
-│   │   └── index.svelte
+│   │   ├── +page.svelte
+│   │   └── +page.ts
 │   ├── category
-│   │   └── [category].svelte
-│   ├── index.svelte
-│   ├── __layout.svelte
+│   │   └── [category]
+│   │       ├── +page.svelte
+│   │       └── +page.ts
+│   ├── +layout.svelte
+│   ├── +page.svelte
+│   ├── +page.ts
 │   ├── product
-│   │   └── [product].svelte
+│   │   └── [product]
+│   │       ├── +page.svelte
+│   │       └── +page.ts
 │   ├── search
-│   │   └── index.svelte
+│   │   ├── +page.svelte
+│   │   └── +page.ts
 │   └── tag
-│       └── [typetag].svelte
-├── sitemap.xml.js
-└── terms-and-conditions.svelte
+│       └── [typetag]
+│           ├── +page.svelte
+│           └── +page.ts
+├── sitemap.xml
+│   └── +server.ts
+└── terms-and-conditions
+    └── +page.svelte
 src/sitemap.xml
 
-38 directories, 77 files
+51 directories, 96 files
 ```
 
 We lean on functional programming at the boundaries which is why you find the requests `libs/` written with the `fp-ts` library.
 
-We pull all the products, categories and tags as early as possible (when `/shop` loads), we then store using a svelte store and query it as the user navigates through the site (reducing api calls to the server to a minimum). If a user navigates directly to a specific page and the context hasn't initialised we hae checks in the relevant components so we pull the data when there is none in our svelte store.
+We pull all the products, categories and tags as early as possible (when `/shop` loads), we then store using a svelte store and query it as the user navigates through the site (reducing api calls to the server to a minimum). If a user navigates directly to a specific page and the context hasn't initialised we have checks in the relevant components so we pull the data when there is none in our svelte store.
 
 ### Component Structure
 
@@ -180,13 +215,13 @@ To run the front end locally use `npm run dev` and find the app running on `loca
 
 ## Testing
 
-- `npm run test` - runs all the unit tests
+- `npm run test:unit` - runs all the unit tests
 
 - `npm run test:integration` - runs all the integration tests
 
 ### Testing Notes
 
-The repo utilises Svelte testing library and jest to test unit test the components and uses Playwright for end-to-end testing, Playwright is coupled with a [mock-server](https://mock-server.com/).
+The repo utilises Svelte testing library and vitest to unit test the components and uses Playwright for end-to-end testing, Playwright is coupled with a [mock-server](https://mock-server.com/).
 
 You may notice svelte ticks present across some of the tests, as reactive statements happen asynchronously we need to use tick to wait for the DOM to completely finish updating.
 
