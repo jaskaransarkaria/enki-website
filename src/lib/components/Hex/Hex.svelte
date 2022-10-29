@@ -29,7 +29,12 @@
       />
     </div>
   {:else}
-    <a data-sveltekit-prefetch class="hex-link" href={categoryFn(category)}>
+    <a
+      data-testid="hex-link"
+      data-sveltekit-prefetch
+      class="hex-link"
+      href={categoryFn(category)}
+    >
       <img
         src="/grey_square.png"
         use:lazy={{
