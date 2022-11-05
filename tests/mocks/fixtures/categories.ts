@@ -1,0 +1,58 @@
+export const mockCategories = [
+  {
+    Id: 1876023,
+    Name: "Books",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+  {
+    Id: 2,
+    Name: "Lion",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+  {
+    Id: 3,
+    Name: "Zebra",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+  {
+    Id: 4,
+    Name: "Hippopotamus",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+  {
+    Id: 5,
+    Name: "Water Buffalo",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+  {
+    Id: 6,
+    Name: "Giraffe",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+  {
+    Id: 7,
+    Name: "Cheetah",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+  {
+    Id: 8,
+    Name: "Crocodile",
+    ParentId: null,
+    Children: [],
+    NominalCode: "",
+  },
+];
