@@ -1,8 +1,8 @@
 # Enki - Website
 
-This repo contains the code for the frontend website for `Enki Jewellery & Craft Gallery`, a shop in Kings Heath, Birmingham, UK.
+This repo contains the code for the frontend website for `Enki Jewellery & Craft Gallery`, a shop in Kings Heath, Birmingham, UK, B14 7JT.
 
-The website is built with the sveltekit framework.
+The website is built with the sveltekit framework and can be found on this domain (https://www.enkionline.com)[https://www.enkionline.com].
 
 The server code can be found [here](https://github.com/jaskaransarkaria/enki-server)
 
@@ -119,12 +119,15 @@ src/lib
 │   ├── product.ts
 │   └── tag.ts
 └── utils
+    ├── basket.test.ts
     ├── basket.ts
     ├── clickOutside.ts
     ├── consts.js
     ├── gridCalc.ts
     ├── lazyAction.ts
+    ├── requests.test.ts
     ├── requests.ts
+    ├── search.test.ts
     └── search.ts
 src/routes
 ├── about
@@ -180,7 +183,7 @@ src/routes
     └── +page.svelte
 src/sitemap.xml
 
-51 directories, 96 files
+51 directories, 99 files
 ```
 
 We lean on functional programming at the boundaries which is why you find the requests `libs/` written with the `fp-ts` library.
@@ -223,7 +226,7 @@ To run the front end locally use `npm run dev` and find the app running on `loca
 
 The repo utilises Svelte testing library and vitest to unit test the components and uses Playwright for end-to-end testing, Playwright is coupled with a [mock-server](https://mock-server.com/).
 
-You may notice svelte ticks present across some of the tests, as reactive statements happen asynchronously we need to use tick to wait for the DOM to completely finish updating.
+You may notice svelte ticks present across some of the tests, as reactive statements happen asynchronously we need to use the svelte lifecycle (tick)[https://svelte.dev/tutorial/tick] to wait for the DOM to completely finish updating.
 
 ## Site Images
 
@@ -238,9 +241,3 @@ Travis CI handles the deployment pipeline deploying when a commit on master is t
 Once the deployment is initialised the container runs a pre-deployment hook to generate an upto date sitemap using `npm run sitemap-generator`. This also runs on a cron once a week early Wednesday morning.
 
 The app is deployed to a slim apline node container and with a node adapter to serve svelte-kit. It's hosted in our kubernetes cluster and has 3 replicas.
-
-### Todos:
-
-- [ ] add security headers too (webpagetest.org)
-- [ ] follow lighthouse tips to increase accessibility/ performance
-- [ ] tweak max-age of cached resources
