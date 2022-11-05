@@ -12,9 +12,7 @@
   export let detailed = false;
 
   let addedToBasket =
-    $basket.findIndex((item) => item.id === product.Id.toString()) === -1
-      ? false
-      : true;
+    $basket.findIndex((item) => item.id === product.Id) === -1 ? false : true;
 </script>
 
 {#if product}

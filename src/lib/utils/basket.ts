@@ -44,10 +44,7 @@ const addItemToBasket = (
 ];
 
 const addNewItemToBasket = (
-  product: Pick<
-    Product,
-    "Id" & "Name" & "SalePrice" & "CurrentStock" & "CategoryId"
-  >,
+  product: Product,
   list: BasketProduct[]
 ): BasketProduct[] => [
   {
@@ -65,10 +62,7 @@ const addNewItemToBasket = (
 ];
 
 export const updateBasket = (
-  product: Pick<
-    Product,
-    "Id" & "Name" & "SalePrice" & "CurrentStock" & "CategoryId"
-  >,
+  product: Product,
   list: BasketProduct[],
   updateType: string
 ): BasketProduct[] => {
