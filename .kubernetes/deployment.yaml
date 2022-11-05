@@ -21,8 +21,8 @@ spec:
               memory: "64Mi"
               cpu: "32m"
             limits:
-              memory: "512Mi"
-              cpu: "125m"
+              memory: "1024Mi"
+              cpu: "256m"
           env:
             - name: PUBLIC_SERVER_URL
               value: "https://server.enki.jobspeed.uk"
