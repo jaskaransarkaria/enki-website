@@ -8,6 +8,7 @@
     "package": "svelte-kit package",
     "preview": "vite preview --port 4000",
     "test:unit": "vitest",
+    "test:unit:ci": "vitest run",
     "test:integration": "kill $(lsof -i:8080) || true && npm run mock-server && playwright test && kill $(lsof -i:8080)",
     "test:integration:ci": "npm run mock-server && playwright test",
     "check": "svelte-check --tsconfig ./tsconfig.json",
