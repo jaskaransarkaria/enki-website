@@ -2,7 +2,7 @@
 
 This repo contains the code for the frontend website for `Enki Jewellery & Craft Gallery`, a shop in Kings Heath, Birmingham, UK, B14 7JT.
 
-The website is built with the sveltekit framework and can be found on this domain (https://www.enkionline.com)[https://www.enkionline.com].
+The website is built with the sveltekit framework and can be found on this domain [https://www.enkionline.com](https://www.enkionline.com).
 
 The server code can be found [here](https://github.com/jaskaransarkaria/enki-server)
 
@@ -198,7 +198,7 @@ Products -> via the `ProductView` and then individually in `SingleProduct` and `
 
 Basket -> held in local storage via svelte store
 
-Image -> The images only load when they come into view (we use `IntersectionObserver`) for that. This allows us to load all of our products onto one page (no need for pagination)
+Image -> The images only load when they come into view (we use `IntersectionObserver` for that). This allows us to load all of our products onto one page (no need for pagination)
 
 ### Categories and NominalCode
 
@@ -226,7 +226,7 @@ To run the front end locally use `npm run dev` and find the app running on `loca
 
 The repo utilises Svelte testing library and vitest to unit test the components and uses Playwright for end-to-end testing, Playwright is coupled with a [mock-server](https://mock-server.com/).
 
-You may notice svelte ticks present across some of the tests, as reactive statements happen asynchronously we need to use the svelte lifecycle (tick)[https://svelte.dev/tutorial/tick] to wait for the DOM to completely finish updating.
+You may notice svelte ticks present across some of the tests, as reactive statements happen asynchronously we need to use the svelte lifecycle [tick](https://svelte.dev/tutorial/tick) to wait for the DOM to completely finish updating.
 
 ## Site Images
 
