@@ -15,4 +15,8 @@
     }`;
 </script>
 
+<svelte:head>
+  <title>{"Enki - Shop"}</title>
+</svelte:head>
+
 <HexGrid data={data.data} {categoryFn} {whitelistedUserAgent} />

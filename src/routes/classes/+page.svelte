@@ -3,6 +3,10 @@
   import WeddingRings from "$lib/components/Svg/WeddingRings.svelte";
 </script>
 
+<svelte:head>
+  <title>{"Enki - Classes"}</title>
+</svelte:head>
+
 <div class="container">
   <GroupClass />
   <WeddingRings />

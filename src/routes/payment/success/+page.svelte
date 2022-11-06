@@ -7,6 +7,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>{"Enki - Payment"}</title>
+</svelte:head>
+
 <h1>Thank you for your purchase</h1>
 <div class="container">
   <img

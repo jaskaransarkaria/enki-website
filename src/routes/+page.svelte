@@ -24,13 +24,9 @@
 </script>
 
 <svelte:window bind:outerWidth bind:outerHeight bind:innerWidth />
+
 <svelte:head>
-  <link rel="preload" as="image" href={MOBILE_LANDING_PAGE} />
-  <link rel="preload" as="image" href={DESKTOP_LANDING_PAGE} />
-  <link rel="preload" as="image" href={MOBILE_JEWELLERY_CLASSES} />
-  <link rel="preload" as="image" href={MOBILE_CONTACT_US} />
-  <link rel="preload" as="image" href={MOBILE_ABOUT_US} />
-  <link rel="preload" as="image" href={MOBILE_ONLINE_SHOP} />
+  <title>{"Enki - Welcome!"}</title>
   <meta property="og:url" content="https://enkionline.com/" />
   <meta
     property="og:image"

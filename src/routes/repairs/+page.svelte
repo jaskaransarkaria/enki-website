@@ -9,6 +9,7 @@
 </script>
 
 <svelte:head>
+  <title>{"Enki - Repairs"}</title>
   <meta
     property="og:image"
     content="https://enki.imgix.net/services_4.jpg?auto=format,compress"

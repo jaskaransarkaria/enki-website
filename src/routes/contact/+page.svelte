@@ -3,6 +3,7 @@
 </script>
 
 <svelte:head>
+  <title>{"Enki - Contact"}</title>
   <meta property="og:url" content="https://enkionline.com/contact" />
 </svelte:head>
 

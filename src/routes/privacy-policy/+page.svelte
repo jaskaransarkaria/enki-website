@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>{"Enki - Privacy policy"}</title>
+</svelte:head>
+
 <div>
   <h1>PRIVACY POLICY</h1>
 

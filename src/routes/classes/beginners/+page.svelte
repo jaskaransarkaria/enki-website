@@ -17,6 +17,10 @@
   $: isMobile = outerWidth < 960;
 </script>
 
+<svelte:head>
+  <title>{"Enki - Group Classes"}</title>
+</svelte:head>
+
 <svelte:window bind:outerWidth />
 {#if browser || $page.data.whitelistedUserAgent}
   <div class="container">

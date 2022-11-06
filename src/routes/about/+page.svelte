@@ -9,6 +9,7 @@
 </script>
 
 <svelte:head>
+  <title>{"Enki - About"}</title>
   <meta property="og:url" content="https://enkionline.com/about" />
 </svelte:head>
 
