@@ -2,7 +2,12 @@
   $: shopHover = false;
 </script>
 
-<a data-sveltekit-prefetch href="/shop" class="online-shop">
+<a
+  data-sveltekit-prefetch
+  data-test-id="online-shop"
+  href="/shop"
+  class="online-shop"
+>
   <svg
     on:mouseenter={() => (shopHover = true)}
     on:mouseleave={() => (shopHover = false)}

@@ -2,7 +2,7 @@
   $: classesHover = false;
 </script>
 
-<a data-sveltekit-prefetch href="/classes">
+<a data-sveltekit-prefetch href="/classes" data-test-id="classes">
   <svg
     on:mouseenter={() => (classesHover = true)}
     on:mouseleave={() => (classesHover = false)}
