@@ -20,7 +20,7 @@ test.describe("/category/*", () => {
 
   test("clicks through to the detailed product view", async ({ page }) => {
     await page.goto("/shop/category/1876030");
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
     // click through to products/
     await page.click(".simple-container >> nth=0");
 
