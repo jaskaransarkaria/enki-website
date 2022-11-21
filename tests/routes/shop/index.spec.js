@@ -6,7 +6,7 @@ test("loads /shop", async ({ page }) => {
 
   await page.waitForTimeout(2500);
 
-  await expect(page).toHaveScreenshot({ maxDiffPixels: 30000 });
+  await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
   await expect(page.locator("[data-testid=empty-hex]")).toHaveCount(1);
 
   const books = await page.$("a.hex-link >> nth=0");

@@ -5,7 +5,7 @@ test.describe("Mobile Repairs Page", () => {
   test("Repairs page", async ({ page }) => {
     await page.goto("/repairs");
 
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
   });
 });
 
@@ -14,6 +14,6 @@ test.describe("Desktop Repairs Page", () => {
   test("Repairs page", async ({ page }) => {
     await page.goto("/repairs");
 
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
   });
 });

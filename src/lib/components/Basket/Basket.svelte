@@ -108,6 +108,7 @@
                   <label for="gift-wrap"
                     >Gift Wrap for £{GIFT_WRAP_PRICE}
                     <input
+                      data-testid={`add-gift-wrap-${i}`}
                       type="checkbox"
                       id="gift-wrap"
                       name="gift-wrap"
