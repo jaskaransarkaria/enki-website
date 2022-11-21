@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.only("adds a product to the basket and navigates through to the checkout", async ({
+test("adds a product to the basket and navigates through to the checkout", async ({
   page,
 }) => {
   await page.goto("/shop/category/1876030");

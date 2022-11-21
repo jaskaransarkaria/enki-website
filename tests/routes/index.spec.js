@@ -11,6 +11,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Mobile Home Page", () => {
   // Run tests in this describe block with portrait-like viewport.
+  test.use({ viewport: { width: 350, height: 900 } });
 
   test("loads mobile with correct assets", async ({ page }) => {
     await page.goto("/");
