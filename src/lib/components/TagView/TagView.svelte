@@ -39,7 +39,18 @@
 
   $: treatedTags = tags
     ?.filter((tag: Tag) => !tag.Name.includes("SOR "))
-    ?.filter((tag: Tag) => tag.Name.includes(prefix));
+    ?.filter((tag: Tag) => tag.Name.includes(prefix))
+    // order alphabetically z to a
+    ?.sort((tagA: Tag, tagB: Tag) => {
+      if (tagA.Name < tagB.Name) {
+        return 1;
+      }
+      if (tagA.Name > tagB.Name) {
+        return -1;
+      }
+
+      return 0;
+    });
 </script>
 
 {#if showHex}

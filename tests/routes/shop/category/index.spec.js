@@ -8,7 +8,7 @@ test.describe("/category/*", () => {
     await expect(page.locator(".products-container")).toHaveCount(1);
     await expect(page.locator(".simple-container")).toHaveCount(4);
     await expect(page.locator(".simple-prod-name")).toHaveCount(4);
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
   });
 
   test("loads /shop/category/BOOKS_ID", async ({ page }) => {
@@ -26,7 +26,7 @@ test.describe("/category/*", () => {
 
     await page.waitForURL("http://localhost:4000/shop/product/30667807");
     expect(page.url()).toBe("http://localhost:4000/shop/product/30667807");
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
     await page.goBack();
     expect(page.url()).toBe("http://localhost:4000/shop/category/1876030");
   });

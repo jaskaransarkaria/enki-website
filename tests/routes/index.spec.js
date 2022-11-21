@@ -19,7 +19,7 @@ test.describe("Mobile Home Page", () => {
     await expect(page.locator("img.parallax-inside-shop")).toHaveClass(
       /parallax-inside-shop/
     );
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
   });
 });
 
@@ -31,7 +31,7 @@ test.describe("Desktop Home Page", () => {
     page,
   }) => {
     await page.goto("/");
-    await expect(page).toHaveScreenshot();
+    await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
     await page.locator("data-test-id=repairs").click();
     await page.waitForURL("http://localhost:4000/repairs");
     expect(page.url()).toBe("http://localhost:4000/repairs");
