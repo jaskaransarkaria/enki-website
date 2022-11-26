@@ -16,8 +16,8 @@
     stripePromise = await loadStripe(PUBLIC_STRIPE_KEY as string);
   });
 
-  const handleClick = (stripePromise: any, basket: any) => {
-    createCheckoutSession(stripePromise, basket, PUBLIC_SERVER_URL);
+  const handleClick = async (stripePromise: any, basket: any) => {
+    await createCheckoutSession(stripePromise, basket, PUBLIC_SERVER_URL);
     loading = true;
   };
 </script>
@@ -25,7 +25,8 @@
 <button
   id="checkout-button"
   class="goto-checkout"
-  on:click={() => handleClick(stripePromise, $basket)}>Checkout</button
+  on:click={async () => await handleClick(stripePromise, $basket)}
+  >Checkout</button
 >
 
 <style>
