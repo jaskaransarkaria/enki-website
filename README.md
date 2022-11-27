@@ -4,9 +4,7 @@ This repo contains the code for the frontend website for `Enki Jewellery & Craft
 
 The website is built with the sveltekit framework and can be found on this domain [https://www.enkionline.com](https://www.enkionline.com).
 
-The server code can be found [here](https://github.com/jaskaransarkaria/enki-server)
-
-The server which handles pulling product data from the epos system can be found [here](https://github.com/jaskaransarkaria/enki-server). If you run the frontend with out the server you will not have any products populating the online-shop.
+The server which handles syncing data between the epos system and the website can be found [here](https://github.com/jaskaransarkaria/enki-server). If you run the frontend with out the server you will not have any products populating the online-shop.
 
 ## App Libraries
 
@@ -186,9 +184,7 @@ src/sitemap.xml
 51 directories, 99 files
 ```
 
-We lean on functional programming at the boundaries which is why you find the requests `libs/` written with the `fp-ts` library.
-
-We pull all the products, categories and tags as early as possible (when `/shop` loads), we then store using a svelte store and query it as the user navigates through the site (reducing api calls to the server to a minimum). If a user navigates directly to a specific page and the context hasn't initialised we have checks in the relevant components so we pull the data when there is none in our svelte store.
+We lean on functional programming at the boundaries which is why you find the `requests.ts` written with the `fp-ts` library.
 
 ### Component Structure
 
@@ -214,7 +210,7 @@ Image -> The images only load when they come into view (we use `IntersectionObse
 
 ## Local Development
 
-To run the front end locally use `npm run dev` and find the app running on `localhost:5000`. This will provide "hot reloading". The front-end populates product data from the server so run the server to have a full local stack.
+To run the front end locally use `npm run dev` and find the app running on `localhost:5000`. The front-end populates product data from the server so run the server to have a full local stack.
 
 ## Testing
 
@@ -226,7 +222,7 @@ To run the front end locally use `npm run dev` and find the app running on `loca
 
 The repo utilises Svelte testing library and vitest to unit test the components and uses Playwright for end-to-end testing, Playwright is coupled with a [mock-server](https://mock-server.com/).
 
-You may notice svelte ticks present across some of the tests, as reactive statements happen asynchronously we need to use the svelte lifecycle [tick](https://svelte.dev/tutorial/tick) to wait for the DOM to completely finish updating.
+You may notice a few svelte ticks present across some of the tests, as reactive statements happen asynchronously we need to use the svelte lifecycle [tick](https://svelte.dev/tutorial/tick) to wait for the DOM to completely finish updating.
 
 ## Site Images
 
