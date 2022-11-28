@@ -77,35 +77,35 @@
     {:else}
       <div class="left-container">
         <a
-          data-sveltekit-prefetch
+          data-sveltekit-preload-data
           class={selected.includes("shop") ? "selected" : ""}
           href="/shop"
         >
           shop
         </a>
         <a
-          data-sveltekit-prefetch
+          data-sveltekit-preload-data
           class={selected.includes("repairs") ? "selected" : ""}
           href="/repairs"
         >
           repairs
         </a>
         <a
-          data-sveltekit-prefetch
+          data-sveltekit-preload-data
           class={selected.includes("classes") ? "selected" : ""}
           href="/classes"
         >
           classes
         </a>
         <a
-          data-sveltekit-prefetch
+          data-sveltekit-preload-data
           class={selected.includes("about") ? "selected" : ""}
           href="/about"
         >
           about
         </a>
         <a
-          data-sveltekit-prefetch
+          data-sveltekit-preload-data
           class={selected.includes("contact") ? "selected" : ""}
           href="/contact"
         >

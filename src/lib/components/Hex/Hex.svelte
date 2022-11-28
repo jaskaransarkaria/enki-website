@@ -31,7 +31,7 @@
   {:else}
     <a
       data-testid="hex-link"
-      data-sveltekit-prefetch
+      data-sveltekit-preload-data
       class="hex-link"
       href={categoryFn(category)}
     >
