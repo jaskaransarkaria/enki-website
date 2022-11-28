@@ -10,7 +10,7 @@
 
 <div class="tag-flex">
   {#each data as tag, _ (tag.Id)}
-    <a data-sveltekit-prefetch class="hex-link" href={categoryFn(tag)}>
+    <a data-sveltekit-preload-data class="hex-link" href={categoryFn(tag)}>
       <img
         src="/featured_1.png"
         alt="shape for the tag button"

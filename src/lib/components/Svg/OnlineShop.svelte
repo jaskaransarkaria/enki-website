@@ -3,7 +3,7 @@
 </script>
 
 <a
-  data-sveltekit-prefetch
+  data-sveltekit-preload-data
   data-test-id="online-shop"
   href="/shop"
   class="online-shop"

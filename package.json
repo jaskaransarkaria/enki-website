@@ -54,7 +54,6 @@
     "fp-ts": "^2.9.3",
     "lodash-es": "^4.17.21",
     "lodash.groupby": "^4.6.0",
-    "sirv-cli": "^1.0.0",
     "swiper": "^8.3.1"
   }
 }

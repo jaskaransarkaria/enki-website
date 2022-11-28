@@ -49,35 +49,35 @@
       />
       <ScrollDown />
       <div class="mobile-button-container">
-        <a data-sveltekit-prefetch href="/shop">
+        <a data-sveltekit-preload-data href="/shop">
           <img
             class="mobile-online-shop-img"
             src={MOBILE_ONLINE_SHOP}
             alt="online shop button"
           />
         </a>
-        <a data-sveltekit-prefetch href="/repairs">
+        <a data-sveltekit-preload-data href="/repairs">
           <img
             class="mobile-repairs-and-comms-img"
             src={MOBILE_JEWELLERY_SERVICES}
             alt="jewellery services button"
           />
         </a>
-        <a data-sveltekit-prefetch href="/classes">
+        <a data-sveltekit-preload-data href="/classes">
           <img
             class="mobile-classes-img"
             src={MOBILE_JEWELLERY_CLASSES}
             alt="classes button"
           />
         </a>
-        <a data-sveltekit-prefetch href="/contact">
+        <a data-sveltekit-preload-data href="/contact">
           <img
             class="mobile-contact-us-img"
             src={MOBILE_CONTACT_US}
             alt="contact us button"
           />
         </a>
-        <a data-sveltekit-prefetch href="/about">
+        <a data-sveltekit-preload-data href="/about">
           <img
             class="mobile-about-us-img"
             src={MOBILE_ABOUT_US}

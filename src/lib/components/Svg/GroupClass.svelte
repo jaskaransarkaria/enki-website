@@ -2,7 +2,11 @@
   $: groupHover = false;
 </script>
 
-<a data-sveltekit-prefetch href="/classes/beginners" data-test-id="group-class">
+<a
+  data-sveltekit-preload-data
+  href="/classes/beginners"
+  data-test-id="group-class"
+>
   <svg
     on:mouseenter={() => (groupHover = true)}
     on:mouseleave={() => (groupHover = false)}
