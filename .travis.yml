@@ -43,6 +43,10 @@ node_js:
 services:
   - docker
   - xvfb
+env:
+  global:
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 jobs:
   include:
@@ -64,7 +68,13 @@ jobs:
       before_install:
         - openssl aes-256-cbc -K $encrypted_2fd045226a67_key -iv $encrypted_2fd045226a67_iv -in client-secret.json.enc -out client-secret.json -d
         - curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
-        - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+        - if [ ! -d $HOME/google-cloud-sdk/bin ]; then
+          rm -rf $HOME/google-cloud-sdk;
+          curl https://sdk.cloud.google.com | bash > /dev/null;
+          fi
+        - source $HOME/google-cloud-sdk/path.bash.inc
+        - gcloud components update kubectl
+        - gcloud version
       script:
         - kubectl version --client
         - gcloud components install gke-gcloud-auth-plugin
