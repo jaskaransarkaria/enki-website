@@ -18,7 +18,7 @@
   <meta property="og:type" content="website" />
   <meta
     property="og:description"
-    content="Independent jewellers and craft gallery -- Kings Heath Bimringham"
+    content="Independent jewellers and craft gallery -- Kings Heath Birmingham"
   />
   <meta property="og:locale" content="en_GB" />
   <!-- Chrome, Firefox OS and Opera -->
