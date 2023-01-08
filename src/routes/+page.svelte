@@ -93,7 +93,7 @@
     {/if}
   </figure>
 
-  <h1 class="featured">Christmas gift guide</h1>
+  <h1 class="featured">Gift guide</h1>
   <TagView prefix="FEATURED" showHex={false} />
 {/if}
 
