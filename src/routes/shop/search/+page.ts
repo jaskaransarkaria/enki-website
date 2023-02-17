@@ -31,5 +31,3 @@ export async function load({ fetch, url }) {
     data: sortedData,
   };
 }
-
-export const csr = true;
