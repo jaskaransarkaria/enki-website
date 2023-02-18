@@ -34,4 +34,7 @@ export default defineConfig({
     ],
   },
   legacy: { buildSsrCjsExternalHeuristics: true },
+  build: {
+    minify: true,
+  },
 });

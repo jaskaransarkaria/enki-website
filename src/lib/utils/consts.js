@@ -1,5 +1,5 @@
 export const MOBILE_LANDING_PAGE =
-  "https://enki.imgix.net/mobile_landing_page_2.png?fit=crop";
+  "https://enki.imgix.net/mobile_landing_page_2.png?auto=format&fit=crop";
 export const MOBILE_ONLINE_SHOP =
   "https://enki.imgix.net/mobile_online_shop_3.png?auto=format,compress";
 export const MOBILE_JEWELLERY_CLASSES =

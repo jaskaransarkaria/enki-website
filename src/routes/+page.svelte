@@ -32,6 +32,7 @@
     property="og:image"
     content="https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress"
   />
+  <link rel="preload" as="image" href={MOBILE_LANDING_PAGE} />
 </svelte:head>
 
 {#if (browser && outerWidth > 0) || $page.data.whitelistedUserAgent}
@@ -44,8 +45,10 @@
     {#if isMobile}
       <img
         class="parallax-inside-shop"
-        src={`${MOBILE_LANDING_PAGE}&h=${outerHeight}&w=${outerWidth}`}
+        src={MOBILE_LANDING_PAGE}
         alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
+        width={outerWidth}
+        height={outerHeight}
       />
       <ScrollDown />
       <div class="mobile-button-container">
@@ -134,6 +137,7 @@
     position: fixed;
     z-index: -1;
     width: 100vw;
+    object-fit: none;
   }
 
   .mobile-classes-img,
