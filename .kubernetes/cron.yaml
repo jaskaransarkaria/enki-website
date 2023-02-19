@@ -15,10 +15,9 @@ metadata:
   name: deployment-restart-website
   namespace: enki
 rules:
-  - apiGroups: ["apps", "extensions"]
+  - apiGroups: [""]
     resources: ["configmaps"]
-    resourceNames: ["sitemap"]
-    verbs: ["update", "get", "create", "list"] 
+    verbs: ["*"] 
 
 ---
 # bind the role to the service account
@@ -45,8 +44,7 @@ metadata:
 spec:
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 0
-  schedule: '22 22 * * *' # cron spec of time, here, 04.30am every Wednesday
-  # schedule: '30 04 * * 3' # cron spec of time, here, 04.30am every Wednesday
+  schedule: '30 04 * * *' # cron spec of time, here, 04.30am every day
   jobTemplate:
     spec:
       backoffLimit: 2 # this has very low chance of failing, as all this does
@@ -59,5 +57,4 @@ spec:
           containers:
             - name: kubectl
               image: jaskaransarkaria/nodejs-kubectl
-
 
