@@ -136,6 +136,7 @@
   .parallax-inside-shop {
     position: fixed;
     z-index: -1;
+    width: 100vw;
     object-fit: contain;
   }
 
