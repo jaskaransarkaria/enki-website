@@ -47,7 +47,7 @@
         class="parallax-inside-shop"
         src={MOBILE_LANDING_PAGE}
         alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
-        width={outerWidth}
+        width="100vw"
         height={outerHeight}
       />
       <ScrollDown />
@@ -114,7 +114,7 @@
   .mobile-container {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
   }
@@ -124,7 +124,7 @@
     flex-direction: column;
     justify-content: flex-end;
     height: 200vh;
-    width: 100vw;
+    width: 100%;
   }
 
   .mobile-button-container > * {
@@ -137,7 +137,6 @@
     position: fixed;
     z-index: -1;
     width: 100vw;
-    object-fit: contain;
   }
 
   .mobile-classes-img,

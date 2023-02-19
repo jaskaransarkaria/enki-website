@@ -31,8 +31,8 @@
   <Header whitelistedUserAgent={$page.data.whitelistedUserAgent} />
   <div class="header-block" />
   <slot />
+  <BackToTop />
 </div>
-<BackToTop />
 <Footer />
 
 <style>
