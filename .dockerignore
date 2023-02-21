@@ -24,8 +24,6 @@ jest.config.js
 
 README.md
 
-scripts/
-
 tests/
 
 coverage/

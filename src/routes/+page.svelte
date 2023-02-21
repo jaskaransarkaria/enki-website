@@ -47,8 +47,6 @@
         class="parallax-inside-shop"
         src={MOBILE_LANDING_PAGE}
         alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
-        width="100vw"
-        height={outerHeight}
       />
       <ScrollDown />
       <div class="mobile-button-container">
@@ -108,7 +106,6 @@
     margin-right: 0;
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
   }
 
   .mobile-container {
@@ -128,15 +125,16 @@
   }
 
   .mobile-button-container > * {
-    width: 80%;
+    width: 75%;
     align-self: center;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .parallax-inside-shop {
     position: fixed;
     z-index: -1;
-    width: 100vw;
+    width: 100%;
   }
 
   .mobile-classes-img,
@@ -152,6 +150,7 @@
     background-color: white;
     text-align: center;
     font-family: "Welcomehome5 Regular";
+    width: 100%;
   }
 
   @media (min-width: 1200px) {
