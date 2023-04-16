@@ -158,11 +158,7 @@
         />
       {:else}
         <div class="full-screen-img-view">
-          <SwipeImage
-            imgArr={createImgArr(product, innerWidth * (35 / 100))}
-            setImgWidth
-            fullScreen
-          />
+          <SwipeImage imgArr={createImgArr(product)} setImgWidth fullScreen />
         </div>
       {/if}
     </div>
