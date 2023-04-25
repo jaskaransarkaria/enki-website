@@ -382,6 +382,72 @@ describe("GIVEN ProductView", () => {
       expect(sortedProducts[5]).toHaveTextContent("10");
     });
 
+    it("THEN sort the products by newest to oldest", async () => {
+      render(ProductView, {
+        productArr: [
+          ...mockData,
+          {
+            Id: 789,
+            Name: "Cat",
+            CategoryId: 999,
+            Description: "small animal",
+            SalePrice: 66,
+            ProductImages: [],
+            ProductTags: [],
+            VariantGroupId: null,
+            CurrentStock: 999,
+            ProductDetails: {
+              DetailedDescription: "agile",
+            },
+            SellOnWeb: true,
+            IsArchived: false,
+          },
+        ],
+        variantCategories: [],
+      });
+
+      const productsContainer = screen.getByTestId("products-container");
+
+      const products = within(productsContainer).getAllByRole("heading", {
+        level: 3,
+      });
+
+      expect(products[0]).toHaveTextContent("Cat");
+      expect(products[1]).toHaveTextContent("66");
+      expect(products[2]).toHaveTextContent("Elephant");
+      expect(products[3]).toHaveTextContent("90");
+      expect(products[4]).toHaveTextContent("Dog");
+      expect(products[5]).toHaveTextContent("10");
+
+      expect(
+        (screen.getByRole("option", { name: "in stock" }) as HTMLOptionElement)
+          .selected
+      ).toBe(true); // this is the default
+
+      await userEvent.selectOptions(screen.getByRole("combobox"), "new");
+
+      expect(
+        (screen.getByRole("option", { name: "in stock" }) as HTMLOptionElement)
+          .selected
+      ).toBe(false);
+
+      await userEvent.selectOptions(screen.getByRole("combobox"), "new");
+
+      expect(
+        (screen.getByRole("option", { name: "new" }) as HTMLOptionElement)
+          .selected
+      ).toBe(true);
+
+      const sortedProducts = screen.getAllByRole("heading", { level: 3 });
+
+      expect(sortedProducts[0]).toHaveTextContent("Cat");
+      expect(sortedProducts[1]).toHaveTextContent("66");
+      expect(sortedProducts[2]).toHaveTextContent("Dog");
+      expect(sortedProducts[3]).toHaveTextContent("10");
+      expect(sortedProducts[4]).toHaveTextContent("Elephant");
+      expect(sortedProducts[5]).toHaveTextContent("90");
+    });
+
     it("AND the products are already sorted THEN don't sort the products again", async () => {
       render(ProductView, {
         sorted: true,

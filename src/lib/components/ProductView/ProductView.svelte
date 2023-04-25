@@ -96,6 +96,9 @@
       case "alphabetically":
         browser && window.sessionStorage.setItem("filter", "alphabetically");
         return collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
+      case "newest-to-oldest":
+        browser && window.sessionStorage.setItem("filter", "newest-to-oldest");
+        return collatedArray.slice().sort((a, b) => (a.Id < b.Id ? 1 : -1));
       default:
         browser && window.sessionStorage.setItem("filter", "in-stock");
         return sortByStock(collatedArray);
@@ -176,6 +179,7 @@
         <option value="price-high-low">price (high to low)</option>
         <option value="price-low-high">price (low to high)</option>
         <option value="in-stock">in stock</option>
+        <option value="newest-to-oldest">new</option>
       </select>
     </div>
     {#key sortBy}
