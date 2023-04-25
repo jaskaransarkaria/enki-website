@@ -79,8 +79,17 @@
       group bookings where you can choose the date and topic. <br /><br />
       Get in touch <a href="/contact">here</a>.
     </p>
-    <div class="hex-container">
-      <Hex {categoryFn} category={jewelleryVoucherCategory} bind:loaded />
+    <div class="voucher-container">
+      <div class="hex-container">
+        <Hex {categoryFn} category={jewelleryVoucherCategory} bind:loaded />
+      </div>
+      <p>
+        If class dates aren’t yet announced or you're not sure about a date you
+        can always buy one of our vouchers.<br /><br />Then contact us to
+        arrange a spot in one of our classes.<br /><br />We have three terms of
+        classes, January-March, May-July and September-November, and we release
+        dates at least a month in advance.
+      </p>
     </div>
   </div>
 
@@ -125,9 +134,18 @@
     align-items: center;
   }
 
+  .voucher-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .hex-container {
-    margin-bottom: 40%;
+    height: 150px;
     position: relative;
+    display: flex;
+    align-items: center;
     width: 40%;
   }
 
@@ -157,12 +175,14 @@
 
   @media (min-width: 360px) {
     .hex-container {
+      height: 200px;
       width: 35%;
     }
   }
 
   @media (min-width: 600px) {
     .hex-container {
+      height: 300px;
       width: 30%;
     }
 
@@ -200,14 +220,6 @@
   @media (min-width: 1200px) {
     .hex-container {
       width: 20%;
-      margin-bottom: 25%;
-    }
-  }
-
-  @media (min-width: 1600px) {
-    .hex-container {
-      width: 15%;
-      margin-bottom: 20%;
     }
   }
 </style>
