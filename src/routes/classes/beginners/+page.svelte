@@ -3,10 +3,21 @@
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
+  import Hex from "$lib/components/Hex/Hex.svelte";
   import { fade } from "svelte/transition";
 
   let ttWidget: HTMLElement;
   let widgetLoaded = false;
+  let loaded = new Map();
+
+  const categoryFn = () => "/shop/category/2854484"; // jewellery voucher category id
+  const jewelleryVoucherCategory = {
+    Name: "Jewellery Class Vouchers",
+    Id: 2854484,
+    ParentId: 0,
+    Children: [],
+    NominalCode: null,
+  };
 
   onMount(() => {
     ttWidget.className = "tt-widget";
@@ -68,6 +79,9 @@
       group bookings where you can choose the date and topic. <br /><br />
       Get in touch <a href="/contact">here</a>.
     </p>
+    <div class="hex-container">
+      <Hex {categoryFn} category={jewelleryVoucherCategory} bind:loaded />
+    </div>
   </div>
 
   <div bind:this={ttWidget} class="tt-widget">
@@ -111,6 +125,16 @@
     align-items: center;
   }
 
+  .hex-container {
+    margin-bottom: 40%;
+    position: relative;
+    width: 40%;
+  }
+
+  .hex-container:hover {
+    transform: scale(1.015);
+  }
+
   p {
     width: 90%;
     align-self: center;
@@ -131,7 +155,17 @@
     padding: 5px;
   }
 
+  @media (min-width: 360px) {
+    .hex-container {
+      width: 35%;
+    }
+  }
+
   @media (min-width: 600px) {
+    .hex-container {
+      width: 30%;
+    }
+
     .class-pics {
       flex-direction: row;
       width: 40%;
@@ -144,6 +178,10 @@
   }
 
   @media (min-width: 960px) {
+    .hex-container {
+      width: 25%;
+    }
+
     .class-pics {
       flex-direction: row;
       width: 40%;
@@ -156,6 +194,20 @@
 
     p {
       width: 50%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hex-container {
+      width: 20%;
+      margin-bottom: 25%;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .hex-container {
+      width: 15%;
+      margin-bottom: 20%;
     }
   }
 </style>

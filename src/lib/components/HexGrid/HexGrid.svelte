@@ -36,7 +36,8 @@
       isTag(base) ||
       (isCategory(base) &&
         base.NominalCode !== "NOT_WEB" &&
-        base.NominalCode !== "CLASSES")
+        base.NominalCode !== "CLASSES" &&
+        base.Id !== 2854484) // id of category for jewellery vouchers
   );
 
   $: rowNumber =
