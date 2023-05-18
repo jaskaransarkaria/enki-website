@@ -7,9 +7,9 @@
 
   export let productObj: BasketProduct;
 
-  const displayed_count = spring();
-  $: displayed_count.set(productObj.quantity);
-  $: offset = modulo($displayed_count, 1);
+  const displayedCount = spring();
+  $: displayedCount.set(productObj.quantity);
+  $: offset = modulo($displayedCount, 1);
 
   function modulo(n: number, m: number) {
     // handle negative numbers
@@ -43,9 +43,9 @@
   <div class="counter-viewport">
     <div class="counter-digits" style:transform="translate(0, {100 * offset}%)">
       <strong style:top="-100%" aria-hidden="true"
-        >{Math.floor($displayed_count + 1)}</strong
+        >{Math.floor($displayedCount + 1)}</strong
       >
-      <strong>{Math.floor($displayed_count)}</strong>
+      <strong>{Math.floor($displayedCount)}</strong>
     </div>
   </div>
 

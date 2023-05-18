@@ -9,7 +9,7 @@
 </script>
 
 <div class="tag-flex">
-  {#each data as tag, _ (tag.Id)}
+  {#each data as tag (tag.Id)}
     <a data-sveltekit-preload-data class="hex-link" href={categoryFn(tag)}>
       <img
         src="/featured_1.png"
