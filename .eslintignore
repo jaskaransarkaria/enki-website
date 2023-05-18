@@ -8,3 +8,4 @@ node_modules/
 build/
 tests/
 sitemap.xml.js
+.unlighthouse/

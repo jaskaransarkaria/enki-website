@@ -16,7 +16,8 @@
     "lint": "npm run format && eslint --fix",
     "format": "prettier --write --plugin-search-dir=. .",
     "mock-server": "mockserver -p 8080 -m tests/mocks &",
-    "sitemap-generator": "npx sitemap-generator-cli https://enkionline.com --last-mod --change-freq weekly --priority-map \"1.0\" --user-agent sitemap-generator-cli --filepath sitemap.xml --max-concurrency 1 --verbose"
+    "sitemap-generator": "npx sitemap-generator-cli https://enkionline.com --last-mod --change-freq weekly --priority-map \"1.0\" --user-agent sitemap-generator-cli --filepath sitemap.xml --max-concurrency 1 --verbose",
+    "unlighthouse": "CHROME_PATH=/usr/bin/chromium-bin npx unlighthouse --site enkionline.com --no-cache"
   },
   "devDependencies": {
     "@playwright/test": "1.22.2",

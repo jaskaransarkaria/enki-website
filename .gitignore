@@ -17,3 +17,4 @@ secret.yaml
 coverage/**/*
 test-results/
 playwright-report/
+.unlighthouse/
