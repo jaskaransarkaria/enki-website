@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: enki-website
-          image: jaskaransarkaria/enki-website:replace_with_git_tag
+          image: jaskaransarkaria/enki-website:v2.2.6
           resources:
             requests:
               memory: "64Mi"
@@ -25,7 +25,7 @@ spec:
               cpu: "256m"
           env:
             - name: PUBLIC_SERVER_URL
-              value: "https://server.enki.jobspeed.uk"
+              value: "https://server.enkionline.com"
             - name: PUBLIC_STRIPE_KEY
               value: "pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau"
           ports:

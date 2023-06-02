@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: enki
@@ -8,12 +8,12 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "7200"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "7200"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "7200"
-    cert-manager.io/issuer: "letsencrypt-prod"
+    cert-manager.io/issuer: "letsencrypt-production"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "Cache-Control: public, max-age=7889400";
 spec:
   tls:
-   - secretName: enki-website-prod
+   - secretName: enki-website-production
      hosts:
        - enkionline.com
        - www.enkionline.com
@@ -23,20 +23,29 @@ spec:
       http:
         paths:
           - path: /*
+            pathType: "Prefix"
             backend:
-              servicePort: 5000
-              serviceName: enki-website
+              service:
+                name: enki-website
+                port:
+                  number: 5000
     - host: www.enkionline.com
       http:
         paths:
           - path: /*
+            pathType: "Prefix"
             backend:
-              servicePort: 5000
-              serviceName: enki-website
+              service:
+                name: enki-website
+                port:
+                  number: 5000
     - host: e2e-test.enkionline.com
       http:
         paths:
           - path: /*
+            pathType: "Prefix"
             backend:
-              servicePort: 5000
-              serviceName: enki-e2e-test-website
+              service:
+                name: enki-e2e-test-website
+                port:
+                  number: 5000

@@ -43,6 +43,13 @@ node_js:
 services:
   - docker
   - xvfb
+
+install:
+  - ./scripts/prepare_pipeline.sh
+
+script:
+  - ./scripts/deploy_pipeline.sh
+
 env:
   global:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
