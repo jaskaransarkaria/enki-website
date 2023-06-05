@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -30,7 +33,8 @@ jobs:
           sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" .kubernetes/e2e-test-deployment.yaml
           git add .kubernetes/deployment.yaml
           git add .kubernetes/e2e-test-deployment.yaml
-          git commit -m "deploying: bumping image version for release ${{ github.ref_name }}"
-          git push https://${{ env.GITHUB_ACCESS_TOKEN }}@github.com/jaskaransarkaria/enki-website.git
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+      - name: Commit & Push changes
+        uses: actions-js/push@v1.4
+        with:
+          github_token: ${{ secrets.GH_ACCESS_TOKEN }}
+          message: "deploying: bumping image version for release ${{ github.ref_name }}"
