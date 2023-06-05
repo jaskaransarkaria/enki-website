@@ -20,7 +20,7 @@
     "unlighthouse": "CHROME_PATH=/usr/bin/chromium-bin npx unlighthouse --site enkionline.com --no-cache"
   },
   "devDependencies": {
-    "@playwright/test": "1.22.2",
+    "@playwright/test": "1.34.3",
     "@sveltejs/adapter-node": "^1.0.0",
     "@sveltejs/kit": "^1.0.0",
     "@sveltejs/vite-plugin-svelte": "^2.0.0",

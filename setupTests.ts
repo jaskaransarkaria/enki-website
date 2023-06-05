@@ -15,24 +15,10 @@ vi.mock("$app/environment", () => ({
 // @ts-ignore
 global.jest = vi;
 
-import getCanvasWindow from "jest-canvas-mock/lib/window";
+import { setupJestCanvasMock } from "jest-canvas-mock";
 
-const canvasWindow = getCanvasWindow({ document: window.document });
-const apis = [
-  "Path2D",
-  "CanvasGradient",
-  "CanvasPattern",
-  "CanvasRenderingContext2D",
-  "DOMMatrix",
-  "ImageData",
-  "TextMetrics",
-  "ImageBitmap",
-  "createImageBitmap",
-] as const;
-
-apis.forEach((api) => {
-  global[api] = canvasWindow[api];
-  global.window[api] = canvasWindow[api];
+beforeAll(() => {
+  setupJestCanvasMock();
 });
 
 afterAll(() => {
