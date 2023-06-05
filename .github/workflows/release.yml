@@ -1,0 +1,25 @@
+name: Build and Update Image Tag
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  tests:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm ci
+      - name: Build and Push
+        run: |
+          npm run build
+          echo ${{ secrets.$DOCKER_PASSWORD }} | docker login --username ${{ vars.DOCKER_USERNAME }} --password-stdin
+          docker build -t jaskaransarkaria/enki-website:${{ github.ref_name }} .
+          docker push jaskaransarkaria/enki-website:${{ github.ref_name }}
+      # - name: use kustomize to update image version in manifest
+      # - name: write this update to main (this will trigger argo cd to pick up the changes and run the deploy)
