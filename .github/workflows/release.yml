@@ -37,4 +37,4 @@ jobs:
         uses: actions-js/push@v1.4
         with:
           github_token: ${{ secrets.GH_ACCESS_TOKEN }}
-          message: "deploying: bumping image version for release ${{ github.ref_name }}"
+          message: "🦾 deploying: bumping image version for release ${{ github.ref_name }}"
