@@ -29,7 +29,7 @@ jobs:
           sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" .kubernetes/deployment.yaml
           sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" .kubernetes/e2e-test-deployment.yaml
           git add .kubernetes/deployment.yaml
-          git add. .kubernetes/e2e-test-deployment.yaml
+          git add .kubernetes/e2e-test-deployment.yaml
           git commit -m "deploying: bumping image version for release ${{ github.ref_name }}"
           git push https://${{ env.GITHUB_ACCESS_TOKEN }}@github.com/jaskaransarkaria/enki-website.git
         env:
