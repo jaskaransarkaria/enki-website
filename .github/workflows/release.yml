@@ -26,10 +26,10 @@ jobs:
           PUBLIC_STRIPE_KEY: pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau
       - name: Upadate Image Tag
         run: |
-          ls
+          ls -a
           pwd
-          sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" .kubernetes/deployment.yaml
-          sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" .kubernetes/e2e-test-deployment.yaml
+          sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" '.kubernetes/deployment.yaml'
+          sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" '.kubernetes/e2e-test-deployment.yaml'
           git add .kubernetes/deployment
           git add. .kubernetes/e2e-test-deployment
           git commit -m "deploying: bumping image version for release ${{ github.ref_name }}"
