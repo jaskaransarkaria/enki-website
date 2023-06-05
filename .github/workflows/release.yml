@@ -18,8 +18,16 @@ jobs:
       - name: Build and Push
         run: |
           npm run build
-          echo ${{ secrets.$DOCKER_PASSWORD }} | docker login --username ${{ vars.DOCKER_USERNAME }} --password-stdin
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ vars.DOCKER_USERNAME }} --password-stdin
           docker build -t jaskaransarkaria/enki-website:${{ github.ref_name }} .
           docker push jaskaransarkaria/enki-website:${{ github.ref_name }}
-      # - name: use kustomize to update image version in manifest
-      # - name: write this update to main (this will trigger argo cd to pick up the changes and run the deploy)
+      - name: Upadate Image Tag
+        run: |
+          sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" .kubernetes/deployment.yaml
+          sed -ie "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${{ github.ref_name }}/" .kubernetes/e2e-test-deployment.yaml
+          git add .kubernetes/deployment
+          git add. .kubernetes/e2e-test-deployment
+          git commit -m "deploying: bumping image version for release ${{ github.ref_name }}"
+          git push https://${{ env.GITHUB_ACCESS_TOKEN }}@github.com/jaskaransarkaria/enki-website.git
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
