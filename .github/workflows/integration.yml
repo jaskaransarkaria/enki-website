@@ -19,6 +19,9 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
+        env:
+          PUBLIC_SERVER_URL: http://localhost:8080
+          PUBLIC_STRIPE_KEY: pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp
         run: npm run test:integration:ci
       - uses: actions/upload-artifact@v3
         if: always()
