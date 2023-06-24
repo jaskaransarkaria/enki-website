@@ -13,11 +13,11 @@ vi.mock("$lib/utils/requests");
 
 describe("GIVEN Breadcrumbs", () => {
   beforeEach(() => {
-    (refreshCategories as jest.Mock).mockResolvedValue([]);
+    vi.mocked(refreshCategories).mockResolvedValue([]);
     resetReadonlyAllCategoriesStore();
   });
 
-  afterEach(() => jest.clearAllMocks());
+  afterEach(() => vi.clearAllMocks());
 
   describe("WHEN rendered no props", () => {
     it("THEN display no breadcrumbs", () => {
@@ -28,7 +28,7 @@ describe("GIVEN Breadcrumbs", () => {
 
   describe("WHEN rendered with props", () => {
     it("AND the category store is NOT set THEN render breadcrumbs by calling the api", async () => {
-      (refreshCategories as jest.Mock).mockResolvedValueOnce([
+      vi.mocked(refreshCategories).mockResolvedValueOnce([
         {
           Id: 123,
           ParentId: null,
@@ -39,7 +39,7 @@ describe("GIVEN Breadcrumbs", () => {
               Id: 456,
               ParentId: 123,
               Name: "Adult Clothes",
-              Chlidren: [],
+              Children: [],
               NominalCode: "",
             },
           ],

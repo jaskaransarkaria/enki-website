@@ -17,12 +17,12 @@ describe("GIVEN Checkout", () => {
       render(Checkout);
       expect(screen.getByText("Checkout")).toBeInTheDocument();
 
-      // expect(loadStripe).toHaveBeenCalledTimes(1);
+      expect(loadStripe).toHaveBeenCalledTimes(1);
     });
 
     it("THEN successfully creates a checkout and redirects to checkout", async () => {
-      (createCheckoutSession as jest.Mock).mockImplementationOnce(() =>
-        console.log("success")
+      vi.mocked(createCheckoutSession).mockImplementationOnce(() =>
+        Promise.resolve(console.log("success"))
       );
       render(Checkout);
 

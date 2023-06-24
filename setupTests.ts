@@ -1,5 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
-import { vi, afterAll } from "vitest";
+import { vi } from "vitest";
+
+// @ts-ignore
+global.jest = vi;
 
 vi.mock("$app/navigation", () => ({
   goto: vi.fn(),
@@ -11,20 +14,6 @@ vi.mock("$app/environment", () => ({
   dev: true,
   mode: "test",
 }));
-
-// @ts-ignore
-global.jest = vi;
-
-import { setupJestCanvasMock } from "jest-canvas-mock";
-
-beforeAll(() => {
-  setupJestCanvasMock();
-});
-
-afterAll(() => {
-  delete global.jest;
-  delete global.window.jest;
-});
 
 vi.mock("$app/stores", async () => {
   const { readable, writable } = await import("svelte/store");

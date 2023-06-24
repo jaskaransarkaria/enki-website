@@ -20,7 +20,7 @@
     "unlighthouse": "CHROME_PATH=/usr/bin/chromium-bin npx unlighthouse --site enkionline.com --no-cache"
   },
   "devDependencies": {
-    "@playwright/test": "1.34.3",
+    "@playwright/test": "^1.35.1",
     "@sveltejs/adapter-node": "^1.2.4",
     "@sveltejs/kit": "^1.20.5",
     "@sveltejs/vite-plugin-svelte": "^2.4.2",
@@ -47,7 +47,7 @@
     "tslib": "^2.3.1",
     "typescript": "^5.1.3",
     "vite": "^4.3.9",
-    "vitest": "^0.22.1"
+    "vitest": "^0.32.2"
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.54.1",

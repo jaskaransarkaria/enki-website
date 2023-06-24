@@ -17,10 +17,8 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    sequence: {
-      setupFiles: "List",
-    },
-    setupFiles: ["./setupTests.ts"],
+    alias: [{ find: /^svelte$/, replacement: "svelte/internal" }],
+    setupFiles: ["./setupTests.ts", "jest-canvas-mock"],
     watchExclude: [
       "**/node_modules/**",
       "**/dist/**",
