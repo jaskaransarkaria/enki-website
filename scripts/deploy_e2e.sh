@@ -2,7 +2,7 @@
 
 set -eux
 
-docker build -t jaskaransarkaria/enki-website:e2e-test-${E2E_VERSION_NUM} . 
+docker buildx -t jaskaransarkaria/enki-website:e2e-test-${E2E_VERSION_NUM} . 
 
 docker push jaskaransarkaria/enki-website:e2e-test-${E2E_VERSION_NUM}
 

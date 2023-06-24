@@ -171,7 +171,7 @@
   <div class="container" data-testid="product-view-container">
     <Banner hasProducts />
     <div class="sort-container">
-      <select name="products" id="products" bind:value={sortBy}>
+      <select role="combobox" name="products" id="products" bind:value={sortBy}>
         {#if sorted}
           <option value="relevant">relevant</option>
         {/if}
@@ -189,6 +189,7 @@
             <div class="gift-wrap-img-container">
               <div class="img-container">
                 <img
+                  role="img"
                   src="https://enki.imgix.net/gift-wrap-1.jpeg?format=auto,compress"
                   alt="the inside of a card with happy birthday written out"
                 />
@@ -200,6 +201,7 @@
               </div>
               <div class="img-container">
                 <img
+                  role="img"
                   src="https://enki.imgix.net/gift-wrap-2.jpeg?format=auto,compress"
                   alt="some gifts wrapped with colourful wrapping paper and pink and green ribbon"
                 />
@@ -212,6 +214,7 @@
               </div>
               <div class="img-container">
                 <img
+                  role="img"
                   src="https://enki.imgix.net/gift-wrap-3.jpeg?format=auto,compress"
                   alt="some gifts wrapped with brown paper wrapping paper and yellow and green ribbon"
                 />

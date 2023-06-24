@@ -1,23 +1,6 @@
-import type { Product } from "$lib/types/product";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/svelte";
 import SingleProduct from "./SingleProduct.svelte";
-const mockProduct: Product = {
-  Id: 123,
-  Name: "Elephant",
-  CategoryId: 999,
-  Description: "big animal",
-  SalePrice: 90,
-  ProductImages: [],
-  ProductTags: [],
-  VariantGroupId: null,
-  CurrentStock: 9,
-  ProductDetails: {
-    DetailedDescription: "heavy",
-  },
-  SellOnWeb: true,
-  IsArchived: false,
-};
 
 describe("Given SingleProduct", () => {
   describe("WHEN rendered without props", () => {

@@ -73,6 +73,7 @@
                   >
                   <hr />
                   <select
+                    role="combobox"
                     name="wrap"
                     id="wrap"
                     class="select-wrap"
