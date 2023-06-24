@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: enki-e2e-test-website
-          image: jaskaransarkaria/enki-website:v2.3.0
+          image: jaskaransarkaria/enki-website:v2.1.15
           resources:
             requests:
               memory: "64Mi"
