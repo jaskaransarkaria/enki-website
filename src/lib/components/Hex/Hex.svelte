@@ -22,7 +22,6 @@
   {#if isEmpty}
     <div class="hex-link">
       <img
-        in:fade={{ duration: 800 }}
         src="https://enki.imgix.net/empty_hex_4.png?auto=format,compress&q=80"
         alt="hexagon shape for the category button"
         data-testid="empty-hex"
@@ -35,30 +34,32 @@
       class="hex-link"
       href={categoryFn(category)}
     >
-      <img
-        src="/grey_square.png"
-        use:lazy={{
-          src: `https://enki.imgix.net/${category.Id}?auto=format,compress&q=60&lossless=1&w=0.3`,
-          loaded,
-        }}
-        alt={`category ${category.Name}`}
-        data-testid="cdn-img"
-        in:fade={{ duration: 800 }}
-      />
-      <img
-        src={`https://enki.imgix.net/hex_${Math.floor(
-          Math.random() * (6 - 1 + 1) + 1
-        )}.svg`}
-        alt="hexagon shape for the category button"
-        in:fade={{ duration: 800 }}
-      />
-      <div class="category-name">
-        <h3 data-testid="hex-category-name">
-          {"TagTypeId" in category
-            ? category.Name.split("-").slice(1).join(" ") // remove the first element and join the others by " "
-            : category.Name}
-        </h3>
-      </div>
+      {#key loaded}
+        <img
+          in:fade={{ duration: 500 }}
+          src="/grey_square.png"
+          use:lazy={{
+            src: `https://enki.imgix.net/${category.Id}?auto=format,compress&q=60&lossless=1&w=0.3`,
+            loaded,
+          }}
+          alt={`category ${category.Name}`}
+          data-testid="cdn-img"
+        />
+        <img
+          in:fade={{ duration: 500 }}
+          src={`https://enki.imgix.net/hex_${Math.floor(
+            Math.random() * (6 - 1 + 1) + 1
+          )}.svg`}
+          alt="hexagon shape for the category button"
+        />
+        <div class="category-name">
+          <h3 data-testid="hex-category-name" in:fade={{ duration: 500 }}>
+            {"TagTypeId" in category
+              ? category.Name.split("-").slice(1).join(" ") // remove the first element and join the others by " "
+              : category.Name}
+          </h3>
+        </div>
+      {/key}
     </a>
   {/if}
 </div>
