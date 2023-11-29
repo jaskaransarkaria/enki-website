@@ -1,12 +1,3 @@
-import {
-  MOBILE_CONTACT_US,
-  MOBILE_JEWELLERY_CLASSES,
-  MOBILE_JEWELLERY_SERVICES,
-  MOBILE_LANDING_PAGE,
-  MOBILE_ONLINE_SHOP,
-  MOBILE_ABOUT_US,
-  DESKTOP_LANDING_PAGE,
-} from "../../src/lib/utils/consts.js";
 import { expect, test } from "@playwright/test";
 
 test.describe("Mobile Home Page", () => {
@@ -47,9 +38,9 @@ test.describe("Desktop Home Page", () => {
     expect(page.url()).toBe("http://localhost:4000/shop");
     await page.goBack();
     expect(page.url()).toBe("http://localhost:4000/");
-    await page.locator("data-test-id=about").click();
-    await page.waitForURL("http://localhost:4000/about");
-    expect(page.url()).toBe("http://localhost:4000/about");
+    await page.locator("data-test-id=guide").click();
+    await page.waitForURL("http://localhost:4000/gift-guide");
+    expect(page.url()).toBe("http://localhost:4000/gift-guide");
     await page.goBack();
     expect(page.url()).toBe("http://localhost:4000/");
   });
