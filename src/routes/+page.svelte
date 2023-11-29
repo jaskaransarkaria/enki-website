@@ -8,14 +8,14 @@
     MOBILE_CONTACT_US,
     MOBILE_JEWELLERY_SERVICES,
     MOBILE_ONLINE_SHOP,
+    MOBILE_GIFT_GUIDE,
     MOBILE_LANDING_PAGE,
     MOBILE_JEWELLERY_CLASSES,
   } from "$lib/utils/consts";
   import OnlineShop from "$lib/components/Svg/OnlineShop.svelte";
   import JewelleryServices from "$lib/components/Svg/JewelleryServices.svelte";
-  import AboutUs from "$lib/components/Svg/AboutUs.svelte";
   import Classes from "$lib/components/Svg/Classes.svelte";
-  import TagView from "$lib/components/TagView/TagView.svelte";
+  import GiftGuide from "$lib/components/Svg/GiftGuide.svelte";
 
   $: outerWidth = 0;
   $: innerWidth = 0;
@@ -57,6 +57,13 @@
             alt="online shop button"
           />
         </a>
+        <a data-sveltekit-preload-data href="/gift-guide">
+          <img
+            class="mobile-gift-guide-img"
+            src={MOBILE_GIFT_GUIDE}
+            alt="gift guide button"
+          />
+        </a>
         <a data-sveltekit-preload-data href="/repairs">
           <img
             class="mobile-repairs-and-comms-img"
@@ -90,12 +97,9 @@
       <JewelleryServices />
       <Classes />
       <OnlineShop />
-      <AboutUs />
+      <GiftGuide />
     {/if}
   </figure>
-
-  <h1 class="featured">Gift guide</h1>
-  <TagView prefix="FEATURED" showHex={false} />
 {/if}
 
 <style>
@@ -120,7 +124,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 200vh;
+    height: 150vh;
     width: 100%;
   }
 
@@ -141,29 +145,9 @@
   .mobile-repairs-and-comms-img,
   .mobile-online-shop-img,
   .mobile-contact-us-img,
+  .mobile-gift-guide-img,
   .mobile-about-us-img {
     height: auto;
     max-width: 100%;
-  }
-
-  .featured {
-    background-color: white;
-    text-align: center;
-    font-family: "Welcomehome5 Regular";
-    width: 100%;
-  }
-
-  @media (min-width: 1200px) {
-    .featured {
-      margin: 4%;
-      font-size: 2.5em;
-    }
-  }
-
-  @media (min-width: 2400px) {
-    .featured {
-      margin: 4%;
-      font-size: 3em;
-    }
   }
 </style>

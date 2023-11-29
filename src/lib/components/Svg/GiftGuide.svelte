@@ -1,14 +1,19 @@
 <script>
-  $: aboutHover = false;
+  $: guideHover = false;
 </script>
 
-<a data-sveltekit-preload-data href="/about" class="about" data-test-id="about">
+<a
+  data-sveltekit-preload-data
+  href="/gift-guide"
+  class="guide"
+  data-test-id="guide"
+>
   <svg
-    on:mouseenter={() => (aboutHover = true)}
-    on:mouseleave={() => (aboutHover = false)}
+    on:mouseenter={() => (guideHover = true)}
+    on:mouseleave={() => (guideHover = false)}
     viewBox="0 0 243.646 163.987"
   >
-    <g class={aboutHover ? "layer1" : ""} transform="translate(76.396 -14.274)">
+    <g class={guideHover ? "layer1" : ""} transform="translate(76.396 -14.274)">
       <rect
         style="fill:#fff;stroke:#fff;stroke-width:.265832"
         width="230.89"
@@ -40,8 +45,8 @@
         style="fill:#000;fill-opacity:1;stroke:none;stroke-width:.697463"
         x="44.113"
         y="85.513"
-        ><tspan style="stroke-width:.697463" x="44.113" y="85.513">about</tspan
-        ><tspan style="stroke-width:.697463" x="44.113" y="121.508">us</tspan
+        ><tspan style="stroke-width:.697463" x="44.113" y="85.513">gift</tspan
+        ><tspan style="stroke-width:.697463" x="44.113" y="121.508">guide</tspan
         ></text
       >
       <path
@@ -71,7 +76,7 @@
       />
     </g>
     <g
-      class={aboutHover ? "layer2" : "hidden"}
+      class={guideHover ? "layer2" : "hidden"}
       transform="translate(76.396 -14.274)"
     >
       <rect
@@ -105,8 +110,8 @@
         style="fill:#000;fill-opacity:1;stroke:none;stroke-width:.697463"
         x="44.113"
         y="85.513"
-        ><tspan style="stroke-width:.697463" x="44.113" y="85.513">about</tspan
-        ><tspan style="stroke-width:.697463" x="44.113" y="121.508">us</tspan
+        ><tspan style="stroke-width:.697463" x="44.113" y="85.513">gift</tspan
+        ><tspan style="stroke-width:.697463" x="44.113" y="121.508">guide</tspan
         ></text
       >
       <path

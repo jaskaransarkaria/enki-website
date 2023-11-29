@@ -2,7 +2,7 @@
   import { fade } from "svelte/transition";
 </script>
 
-<section in:fade={{ delay: 500, duration: 1000 }} class="mobile-scroll-prompt">
+<section in:fade={{ delay: 300, duration: 1000 }} class="mobile-scroll-prompt">
   <button
     on:click={() =>
       window.scroll({
@@ -47,8 +47,8 @@
     height: 24px;
     border-left: 1px solid grey;
     border-bottom: 1px solid grey;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
     box-sizing: border-box;
   }
 

@@ -85,6 +85,13 @@
         </a>
         <a
           data-sveltekit-preload-data
+          class={selected.includes("gift") ? "selected" : ""}
+          href="/gift-guide"
+        >
+          gift guide
+        </a>
+        <a
+          data-sveltekit-preload-data
           class={selected.includes("repairs") ? "selected" : ""}
           href="/repairs"
         >
