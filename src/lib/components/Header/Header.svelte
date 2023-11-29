@@ -357,6 +357,10 @@
       height: 75px;
     }
 
+    .left-container {
+      width: 35%;
+    }
+
     .basket-icon,
     .search-icon {
       width: 40px;
@@ -370,12 +374,18 @@
 
   @media (min-width: 1400px) {
     .left-container {
-      width: 25%;
+      width: 35%;
     }
 
     .enki-logo {
       top: 15%;
       width: 130px;
+    }
+  }
+
+  @media (min-width: 1500px) {
+    .left-container {
+      width: 35%;
     }
   }
 
@@ -391,7 +401,7 @@
     }
 
     .left-container {
-      width: 22.5%;
+      width: 25%;
     }
   }
 </style>
