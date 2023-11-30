@@ -23,8 +23,17 @@ test.describe("Header", () => {
     expect(page.url()).toBe("http://localhost:4000/");
     await page.locator("#nav-icon").click();
 
-    await expect(page.locator("button>> nth=1")).toHaveText("repairs");
+    await expect(page.locator("button>> nth=1")).toHaveText("gift guide");
     await page.locator("button>> nth=1").click();
+    await page.waitForURL("http://localhost:4000/gift-guide");
+    expect(page.url()).toBe("http://localhost:4000/gift-guide");
+    await page.locator("img.enki-logo").click();
+    await page.waitForURL("http://localhost:4000/");
+    expect(page.url()).toBe("http://localhost:4000/");
+    await page.locator("#nav-icon").click();
+
+    await expect(page.locator("button>> nth=2")).toHaveText("repairs");
+    await page.locator("button>> nth=2").click();
     await page.waitForURL("http://localhost:4000/repairs");
     expect(page.url()).toBe("http://localhost:4000/repairs");
     await page.locator("img.enki-logo").click();
@@ -32,8 +41,8 @@ test.describe("Header", () => {
     expect(page.url()).toBe("http://localhost:4000/");
     await page.locator("#nav-icon").click();
 
-    await expect(page.locator("button>> nth=2")).toHaveText("classes");
-    await page.locator("button>> nth=2").click();
+    await expect(page.locator("button>> nth=3")).toHaveText("classes");
+    await page.locator("button>> nth=3").click();
     await page.waitForURL("http://localhost:4000/classes");
     expect(page.url()).toBe("http://localhost:4000/classes");
     await page.locator("img.enki-logo").click();
@@ -41,8 +50,8 @@ test.describe("Header", () => {
     expect(page.url()).toBe("http://localhost:4000/");
     await page.locator("#nav-icon").click();
 
-    await expect(page.locator("button>> nth=3")).toHaveText("about");
-    await page.locator("button>> nth=3").click();
+    await expect(page.locator("button>> nth=4")).toHaveText("about");
+    await page.locator("button>> nth=4").click();
     await page.waitForURL("http://localhost:4000/about");
     expect(page.url()).toBe("http://localhost:4000/about");
     await page.locator("img.enki-logo").click();
@@ -50,8 +59,8 @@ test.describe("Header", () => {
     expect(page.url()).toBe("http://localhost:4000/");
     await page.locator("#nav-icon").click();
 
-    await expect(page.locator("button>> nth=4")).toHaveText("contact");
-    await page.locator("button>> nth=4").click();
+    await expect(page.locator("button>> nth=5")).toHaveText("contact");
+    await page.locator("button>> nth=5").click();
     await page.waitForURL("http://localhost:4000/contact");
     expect(page.url()).toBe("http://localhost:4000/contact");
     await page.locator("img.enki-logo").click();
