@@ -15,6 +15,7 @@
 {#if toggleOpen}
   <div class="menu">
     <button on:click={() => toggleAndGo("/shop")}> shop </button>
+    <button on:click={() => toggleAndGo("/gift-guide")}> gift guide </button>
     <button on:click={() => toggleAndGo("/repairs")}> repairs </button>
     <button on:click={() => toggleAndGo("/classes")}> classes </button>
     <button on:click={() => toggleAndGo("/about")}> about </button>
@@ -41,7 +42,7 @@
   button {
     all: unset;
     font-family: "Welcomehome5 Regular";
-    font-size: 3.2em;
+    font-size: 3em;
     cursor: pointer;
     margin: 30px;
   }
