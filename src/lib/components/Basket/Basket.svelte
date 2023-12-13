@@ -33,7 +33,9 @@
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 1280 ? true : false;
-  $: selectedGiftWrap = $basket.filter((item) => item.categoryId === 1876089);
+  $: selectedGiftWrap = $basket.filter(
+    (item) => item.categoryId === 1876089 || item.categoryId === 1892399
+  );
 </script>
 
 <svelte:window bind:outerWidth />
@@ -70,6 +72,10 @@
                   Fancy gift wrap <a
                     data-sveltekit-preload-data
                     href="/shop/category/1876089">here</a
+                  >
+                  & christmas wrap
+                  <a data-sveltekit-preload-data href="/shop/category/1892399"
+                    >here</a
                   >
                   <hr />
                   <select
