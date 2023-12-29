@@ -8,7 +8,7 @@ test.describe("Header", () => {
     await expect(page.locator("#nav-icon")).toHaveClass(/(?!open)/);
     await expect(page.locator("img.enki-logo")).toHaveAttribute(
       "src",
-      "https://enki.imgix.net/header_1.png?auto=compress"
+      "https://storage.googleapis.com/enki-website/header_1.png"
     );
 
     await page.locator("#nav-icon").click();
@@ -150,17 +150,17 @@ test.describe("Header", () => {
 
     await expect(page.locator("img.enki-logo")).toHaveAttribute(
       "src",
-      "https://enki.imgix.net/header_1.png?auto=compress"
+      "https://storage.googleapis.com/enki-website/header_1.png"
     );
 
     await expect(page.locator("img.search-icon")).toHaveAttribute(
       "src",
-      "https://enki.imgix.net/search-icon.png?auto=format,compress"
+      "https://storage.googleapis.com/enki-website/search-icon.png"
     );
 
     await expect(page.locator("img.basket-icon")).toHaveAttribute(
       "src",
-      "https://enki.imgix.net/basket-icon.png?auto=format,compress"
+      "https://storage.googleapis.com/enki-website/basket-icon.png"
     );
   });
 });

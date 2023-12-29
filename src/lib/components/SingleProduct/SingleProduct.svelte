@@ -1,9 +1,11 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import ImageLoader from "$lib/components/Image/ImageLoader.svelte";
   import DetailedSingleProduct from "$lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
 
   import type { Product } from "$lib/types/product";
   import type { Category } from "$lib/types/category";
+  import { getImageFilename } from "$lib/utils/getImageFilename";
 
   export let variantCategory: Category | null = null;
   export let product: Product | null;
@@ -28,7 +30,7 @@
   >
     <div class="position-img">
       <ImageLoader
-        src={`https://enki.imgix.net/${variantCategory.Id}?auto=format,compress`}
+        src={`${PUBLIC_BUCKET_URL}/${variantCategory.Description}`}
         alt={`${variantCategory.Name}`}
       />
     </div>
@@ -49,9 +51,8 @@
       {#if product.CurrentStock === 1}
         <div style:position="relative">
           <img
-            role="img"
             class="low-in-stock-img"
-            src="https://enki.imgix.net/low_in_stock_teal_1.png"
+            src={`${PUBLIC_BUCKET_URL}/low_in_stock_teal_1.png`}
             alt="this product is low in stock"
           />
         </div>
@@ -59,16 +60,19 @@
       {#if product.CurrentStock <= 0}
         <div style:position="relative">
           <img
-            role="img"
             class="low-in-stock-img"
-            src="https://enki.imgix.net/out_of_stock_orange.png"
+            src={`${PUBLIC_BUCKET_URL}/out_of_stock_orange.png`}
             alt="this product is out of stock"
           />
         </div>
       {/if}
       <div class="position-img">
         <ImageLoader
-          src={`https://enki.imgix.net/${product.Id}-0?auto=format,compress`}
+          src={product?.ProductImages[0]?.ImageUrl
+            ? `${PUBLIC_BUCKET_URL}/${getImageFilename(
+                product.ProductImages[0].ImageUrl
+              )}`
+            : "/coming-soon.png"}
           alt={`${product.Name}`}
         />
       </div>

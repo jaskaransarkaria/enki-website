@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { fade } from "svelte/transition";
   import { lazy } from "$lib/utils/lazyAction";
 
@@ -14,6 +15,7 @@
     ParentId: 0,
     Children: [],
     NominalCode: null,
+    Description: "",
   };
   export let loaded: Map<string, HTMLImageElement> = new Map();
 </script>
@@ -22,7 +24,7 @@
   {#if isEmpty}
     <div class="hex-link">
       <img
-        src="https://enki.imgix.net/empty_hex_4.png?auto=format,compress&q=80"
+        src={`${PUBLIC_BUCKET_URL}/empty_hex_4.png`}
         alt="hexagon shape for the category button"
         data-testid="empty-hex"
       />
@@ -39,7 +41,7 @@
           in:fade={{ duration: 500 }}
           src="/grey_square.png"
           use:lazy={{
-            src: `https://enki.imgix.net/${category.Id}?auto=format,compress&q=60&lossless=1&w=0.3`,
+            src: `${PUBLIC_BUCKET_URL}/${category.Description}`,
             loaded,
           }}
           alt={`category ${category.Name}`}
@@ -47,7 +49,7 @@
         />
         <img
           in:fade={{ duration: 500 }}
-          src={`https://enki.imgix.net/hex_${Math.floor(
+          src={`${PUBLIC_BUCKET_URL}/hex_${Math.floor(
             Math.random() * (6 - 1 + 1) + 1
           )}.svg`}
           alt="hexagon shape for the category button"

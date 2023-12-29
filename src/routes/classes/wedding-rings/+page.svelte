@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
@@ -20,19 +21,19 @@
         <SwipeImage
           imgArr={[
             {
-              src: "https://enki.imgix.net/wedding_bands_1.jpg?auto=compress",
+              src: `${PUBLIC_BUCKET_URL}/wedding_bands_1.jpg`,
               alt: "A man and a woman, the man is holding the rings in the palm of his hands",
             },
             {
-              src: "https://enki.imgix.net/wedding_bands_2.jpg?auto=compress",
+              src: `${PUBLIC_BUCKET_URL}/wedding_bands_2.jpg`,
               alt: "two women looking longingly into each other's eyes wearing their rings",
             },
             {
-              src: "https://enki.imgix.net/wedding_bands_3.jpg?auto=compress",
+              src: `${PUBLIC_BUCKET_URL}/wedding_bands_3.jpg`,
               alt: "enki jewellery ring boxes",
             },
             {
-              src: "https://enki.imgix.net/wedding_bands_4.jpg?auto=compress",
+              src: `${PUBLIC_BUCKET_URL}/wedding_bands_4.jpg`,
               alt: "a couple embracing whilst sporting the rings they made",
             },
           ]}
@@ -40,22 +41,22 @@
       {:else}
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/wedding_bands_1.jpg?auto=compress"
+          src={`${PUBLIC_BUCKET_URL}/wedding_bands_1.jpg`}
           alt="A man and a woman, the man is holding the rings in the palm of his hands"
         />
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/wedding_bands_2.jpg?auto=compress"
+          src={`${PUBLIC_BUCKET_URL}/wedding_bands_2.jpg`}
           alt="two women looking longingly into each other's eyes wearing their rings"
         />
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/wedding_bands_3.jpg?auto=compress"
+          src={`${PUBLIC_BUCKET_URL}/wedding_bands_3.jpg`}
           alt="enki jewellery ring boxes"
         />
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/wedding_bands_4.jpg?auto=compress"
+          src={`${PUBLIC_BUCKET_URL}/wedding_bands_4.jpg`}
           alt="a couple embracing whilst sporting the rings they made"
         />
       {/if}

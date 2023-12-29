@@ -1,5 +1,5 @@
-import { refreshCategoriesFromServer } from "$lib/utils/requests";
 import { PUBLIC_SERVER_URL } from "$env/static/public";
+import { refreshCategoriesFromServer } from "$lib/utils/requests";
 import type { Base } from "$lib/types/base";
 
 const orderCategories = (resp: Base[]) =>

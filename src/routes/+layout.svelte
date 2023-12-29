@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
@@ -9,10 +10,7 @@
 <svelte:head>
   <meta property="og:title" content="Enki" />
   <meta property="og:url" content="https://enkionline.com" />
-  <meta
-    property="og:image"
-    content="https://enki.imgix.net/about_shop_1.jpg?auto=format,compress"
-  />
+  <meta property="og:image" content={`${PUBLIC_BUCKET_URL}/about_shop_1.jpg`} />
   <meta property="og:type" content="website" />
   <meta
     property="og:description"

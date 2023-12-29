@@ -9,7 +9,11 @@ const dummyProduct = {
   CategoryId: 123,
   Description: "",
   SalePrice: 10,
-  ProductImages: [],
+  ProductImages: [
+    {
+      ImageUrl: "/foobar-0.jpg",
+    },
+  ],
   ProductTags: [],
   VariantGroupId: 111,
   CurrentStock: 5,

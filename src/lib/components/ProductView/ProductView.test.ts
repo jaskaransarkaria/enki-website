@@ -162,25 +162,25 @@ describe("GIVEN ProductView", () => {
         variantCategories: [],
       });
 
-      const giftImages = screen.getAllByRole("img");
+      const giftImages = screen.getAllByTestId("gift-imgs");
 
       expect(giftImages[0]).toHaveAttribute(
         "src",
-        "https://enki.imgix.net/gift-wrap-1.jpeg?format=auto,compress"
+        "https://storage.googleapis.com/enki-website/gift-wrap-1.jpeg"
       );
       expect(
         screen.getByText("Select which gifts", { exact: false })
       ).toBeInTheDocument();
       expect(giftImages[1]).toHaveAttribute(
         "src",
-        "https://enki.imgix.net/gift-wrap-2.jpeg?format=auto,compress"
+        "https://storage.googleapis.com/enki-website/gift-wrap-2.jpeg"
       );
       expect(
         screen.getByText("To make your gift extra special", { exact: false })
       ).toBeInTheDocument();
       expect(giftImages[2]).toHaveAttribute(
         "src",
-        "https://enki.imgix.net/gift-wrap-3.jpeg?format=auto,compress"
+        "https://storage.googleapis.com/enki-website/gift-wrap-3.jpeg"
       );
       expect(
         screen.getByText("There's also a space", { exact: false })

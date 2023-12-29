@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import MailChimpSubscribe from "$lib/components/MailChimpSubscribe/MailChimpSubscribe.svelte";
 
   $: outerWidth = 0;
@@ -14,7 +15,7 @@
       <a href="/contact">
         <img
           class="footer-icons"
-          src="https://enki.imgix.net/telephone_3.png?q=100"
+          src={`${PUBLIC_BUCKET_URL}/telephone_3.png`}
           alt="contact us"
         />
       </a>
@@ -25,7 +26,7 @@
       >
         <img
           class="footer-icons"
-          src="https://enki.imgix.net/insta_logo_3.png?q=100"
+          src={`${PUBLIC_BUCKET_URL}/insta_logo_3.png`}
           alt="link to instagram"
         />
       </a>
@@ -36,7 +37,7 @@
       >
         <img
           class="footer-icons"
-          src="https://enki.imgix.net/fb_logo_3.png?q=100"
+          src={`${PUBLIC_BUCKET_URL}/fb_logo_3.png`}
           alt="link to facebook"
         />
       </a>
@@ -52,19 +53,19 @@
         <div class="mobile-icons">
           <img
             class="mobile-footer-icons"
-            src="https://enki.imgix.net/telephone.png?auto=format,compress"
+            src={`${PUBLIC_BUCKET_URL}/telephone.png`}
             alt="contact us"
             on:click={() => goto("/contact")}
           />
           <img
             class="mobile-footer-icons"
-            src="https://enki.imgix.net/insta_logo_3.png?q=100"
+            src={`${PUBLIC_BUCKET_URL}/insta_logo_3.png`}
             alt="link to instagram"
             on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
           />
           <img
             class="mobile-footer-icons"
-            src="https://enki.imgix.net/fb_logo_3.png?q=100"
+            src={`${PUBLIC_BUCKET_URL}/fb_logo_3.png`}
             alt="link to facebook"
             on:click={() =>
               goto("https://www.facebook.com/Enki-1665334930147391")}

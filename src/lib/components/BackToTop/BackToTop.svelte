@@ -1,4 +1,6 @@
 <script>
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+
   export let showOnPx = 150;
   let hidden = true;
 
@@ -27,7 +29,7 @@
 
 <button class="back-to-top" on:click={goTop} class:hidden
   ><img
-    src="https://enki.imgix.net/back_to_top_3.png"
+    src={`${PUBLIC_BUCKET_URL}/back_to_top_3.png`}
     alt="back to the top button"
   /></button
 >

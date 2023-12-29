@@ -226,13 +226,13 @@ You may notice a few svelte ticks present across some of the tests, as reactive 
 
 ## Site Images
 
-The site pulls optimized images from Imgix service. To add a file to Imgix you must add the properly named file to the connected Imgix "source" in google cloud storage.
+The site pulls optimized images from a public gcloud bucket. Everything in the bucket is cached for a year. we "bust" the cache using hashes generated on the server and stored in different places dependant on whether we are dealing with a category, product or tag.
 
 To upload images to products and categories, via a ui see this [service](https://github.com/jaskaransarkaria/enki-upload-photos)
 
 ## CI/ CD
 
-Travis CI handles the deployment pipeline deploying when a commit on master is tagged with the an incremented semver eg. v01.02.03
+Argo CD handles the deployment pipeline deploying when a commit on main is tagged with the an incremented semver eg. v01.02.03
 
 Once the deployment is initialised the container runs a pre-deployment hook to generate an upto date sitemap using `npm run sitemap-generator`. This also runs on a cron once a week early Wednesday morning.
 

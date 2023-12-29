@@ -1,8 +1,10 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { clickOutside } from "$lib/utils/clickOutside";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
   import MobileClose from "$lib/components/MobileClose/MobileClose.svelte";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
+  import { getImageFilename } from "$lib/utils/getImageFilename";
 
   import type { Product } from "$lib/types/product";
 
@@ -21,22 +23,19 @@
     }
   };
 
-  const createImgArr = (
-    product: Product,
-    imgWidth?: number
-  ): { src: string; alt: string }[] =>
+  const createImgArr = (product: Product): { src: string; alt: string }[] =>
     product?.ProductImages?.length
-      ? product.ProductImages.map((_, idx) => ({
-          src: `https://enki.imgix.net/${product.Id}-${idx}?q=100${
-            imgWidth ? `&w=${imgWidth}` : ""
-          }`,
+      ? product.ProductImages.map((img, idx) => ({
+          src: `${PUBLIC_BUCKET_URL}/${getImageFilename(img.ImageUrl)}`,
           alt: `${product.Name} image ${idx + 1}`,
         }))
       : [
           {
-            src: `https://enki.imgix.net/${product.Id}-0?q=100${
-              imgWidth ? `&w=${imgWidth}` : ""
-            }`,
+            src: product?.ProductImages[0]?.ImageUrl
+              ? `${PUBLIC_BUCKET_URL}/${getImageFilename(
+                  product.ProductImages[0].ImageUrl
+                )}`
+              : "/coming-soon.png",
             alt: `${product.Name} image 1`,
           },
         ];
@@ -152,10 +151,7 @@
           bind:bool={showFullScreen}
           positionOverride="top: 1%; left: 2%"
         />
-        <SwipeImage
-          imgArr={createImgArr(product, innerWidth * (100 / 100))}
-          setImgWidth
-        />
+        <SwipeImage imgArr={createImgArr(product)} setImgWidth />
       {:else}
         <div class="full-screen-img-view">
           <SwipeImage imgArr={createImgArr(product)} setImgWidth fullScreen />

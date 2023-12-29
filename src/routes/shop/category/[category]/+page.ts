@@ -1,8 +1,8 @@
+import { PUBLIC_SERVER_URL } from "$env/static/public";
 import {
   refreshCategoryFromServer,
   refreshProductsFromServer,
 } from "$lib/utils/requests";
-import { PUBLIC_SERVER_URL } from "$env/static/public";
 import type { Category } from "$lib/types/category";
 
 const traverseCategoryObj = (

@@ -1,6 +1,8 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
+  import { getImageFilename } from "$lib/utils/getImageFilename";
 </script>
 
 <svelte:head>
@@ -19,7 +21,11 @@
     <meta property="og:url" content={$page.url.toString()} />
     <meta
       property="og:image"
-      content={`https://enki.imgix.net/${$page.data.data[0].Id}-0?auto=format,compress&w=250`}
+      content={`${PUBLIC_BUCKET_URL}/${
+        $page.data.data[0]?.ProductImages[0]?.ImageUrl
+          ? getImageFilename($page.data.data[0]?.ProductImages[0]?.ImageUrl)
+          : "/coming-soon.png"
+      }`}
     />
     <meta property="og:type" content="website" />
     <meta

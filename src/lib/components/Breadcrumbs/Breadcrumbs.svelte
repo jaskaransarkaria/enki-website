@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL, PUBLIC_SERVER_URL } from "$env/static/public";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import { refreshCategories } from "$lib/utils/requests";
   import { readonlyAllCategories } from "$lib/stores/categories";
-  import { PUBLIC_SERVER_URL } from "$env/static/public";
 
   import type { Category } from "$lib/types/category";
   import type { Base } from "$lib/types/base";
@@ -24,6 +24,7 @@
     ParentId: 0,
     Children: [],
     NominalCode: "",
+    Description: "",
   };
 
   onMount(async () => {
@@ -84,10 +85,7 @@
       data-testid="breadcrumb"
       on:click={async () => await handleBreadcrumbClick(breadcrumb)}
     >
-      <img
-        src="https://enki.imgix.net/empty_hex_1.png?auto=format,compress"
-        alt="breadcrumb icon"
-      />
+      <img src={`${PUBLIC_BUCKET_URL}/empty_hex_1.png`} alt="breadcrumb icon" />
       {breadcrumb.Name}
     </button>
   {/each}

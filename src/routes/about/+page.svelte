@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
@@ -21,15 +22,15 @@
         <SwipeImage
           imgArr={[
             {
-              src: "https://enki.imgix.net/left_enki.jpg?auto=format,compress&q=1",
+              src: `${PUBLIC_BUCKET_URL}/left_enki.jpg`,
               alt: "a rectangular wooden display inside the shop",
             },
             {
-              src: "https://enki.imgix.net/about_shop_1.jpg?auto=format,compress&q=1",
+              src: `${PUBLIC_BUCKET_URL}/about_shop_1.jpg`,
               alt: "the shop front and it's window display",
             },
             {
-              src: "https://enki.imgix.net/right_enki.png?auto=format,compress&q=1",
+              src: `${PUBLIC_BUCKET_URL}/right_enki.png`,
               alt: "a wooden jeweller's work bench inside the shop",
             },
           ]}
@@ -37,18 +38,18 @@
       {:else}
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/left_enki.jpg?auto=format,compress&q=1"
+          src={`${PUBLIC_BUCKET_URL}/left_enki.jpg`}
           alt="a rectangular wooden display inside the shop"
         />
         <img
           in:fade={{ duration: 600 }}
           class="center-image"
-          src="https://enki.imgix.net/about_shop_1.jpg?auto=format,compress&q=1"
+          src={`${PUBLIC_BUCKET_URL}/about_shop_1.jpg`}
           alt="the shop front and it's window display"
         />
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/right_enki.png?auto=format,compress&q=1"
+          src={`${PUBLIC_BUCKET_URL}/right_enki.png`}
           alt="a wooden jeweller's work bench inside the shop"
         />
       {/if}
@@ -69,7 +70,7 @@
       <div class="card">
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/faith_1.png?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/faith_1.png`}
           alt="shop owner faith"
         />
         <p>
@@ -83,7 +84,7 @@
       <div class="card">
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/dora_1.png?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/dora_1.png`}
           alt="shop owner faith"
         />
         <p>
