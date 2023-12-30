@@ -5,6 +5,7 @@ export const mockCategories = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "1876023",
   },
   {
     Id: 2,
@@ -12,6 +13,7 @@ export const mockCategories = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "2",
   },
   {
     Id: 3,
@@ -19,6 +21,7 @@ export const mockCategories = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "3",
   },
   {
     Id: 4,
@@ -26,6 +29,7 @@ export const mockCategories = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "4",
   },
   {
     Id: 5,
@@ -33,6 +37,7 @@ export const mockCategories = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "5",
   },
   {
     Id: 6,
@@ -40,6 +45,7 @@ export const mockCategories = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "6",
   },
   {
     Id: 7,
@@ -47,6 +53,7 @@ export const mockCategories = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "7",
   },
   {
     Id: 8,
@@ -54,5 +61,6 @@ export const mockCategories = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "8",
   },
 ];

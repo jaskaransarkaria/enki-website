@@ -49,7 +49,7 @@
         in:fade
       >
         <img
-          src={`${PUBLIC_BUCKET_URL}/${obj.id}-0`}
+          src={`${PUBLIC_BUCKET_URL}/${obj.imgHash}`}
           alt={`${obj.name}`}
           on:click={() => goto(`/shop/product/${obj.id}`)}
           class={isMobile ? "mobile-product-img" : "product-img"}
