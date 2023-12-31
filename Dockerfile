@@ -14,7 +14,6 @@ ENV PUBLIC_STRIPE_KEY="pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1
 
 RUN npm run build
 
-
 FROM node:16.16-alpine
 
 WORKDIR /usr/src/app
