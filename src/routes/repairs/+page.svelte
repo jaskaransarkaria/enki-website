@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
@@ -10,10 +11,7 @@
 
 <svelte:head>
   <title>{"Enki - Repairs"}</title>
-  <meta
-    property="og:image"
-    content="https://enki.imgix.net/services_4.jpg?auto=format,compress"
-  />
+  <meta property="og:image" content={`${PUBLIC_BUCKET_URL}/services_4.jpg`} />
   <meta property="og:url" content="https://enkionline.com/repairs" />
 </svelte:head>
 
@@ -26,19 +24,19 @@
         <SwipeImage
           imgArr={[
             {
-              src: "https://enki.imgix.net/services_1.jpg?auto=format,compress",
+              src: `${PUBLIC_BUCKET_URL}/services_1.jpg`,
               alt: "a ring being polished on a polishing machine",
             },
             {
-              src: "https://enki.imgix.net/services_2.jpg?auto=format,compress",
+              src: `${PUBLIC_BUCKET_URL}/services_2.jpg`,
               alt: "a jewellery machine for pressing metal",
             },
             {
-              src: "https://enki.imgix.net/services_4.jpg?auto=format,compress",
+              src: `${PUBLIC_BUCKET_URL}/services_4.jpg`,
               alt: "a medallion being heated with a blow touch",
             },
             {
-              src: "https://enki.imgix.net/services_3.jpg?auto=format,compress",
+              src: `${PUBLIC_BUCKET_URL}/services_3.jpg`,
               alt: "some jewellery pliers and some jewellery being inspected",
             },
           ]}
@@ -47,23 +45,23 @@
         <img
           in:fade={{ duration: 600 }}
           class="extra-width"
-          src="https://enki.imgix.net/services_1.jpg?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/services_1.jpg`}
           alt="a ring being polished on a polishing machine"
         />
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/services_2.jpg?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/services_2.jpg`}
           alt="a jewellery machine for pressing metal"
         />
         <img
           in:fade={{ duration: 600 }}
           class="extra-width"
-          src="https://enki.imgix.net/services_3.jpg?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/services_3.jpg`}
           alt="some jewellery pliers and some jewellery being inspected"
         />
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/services_4.jpg?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/services_4.jpg`}
           alt="a medallion being heated with a blow touch"
         />
       {/if}

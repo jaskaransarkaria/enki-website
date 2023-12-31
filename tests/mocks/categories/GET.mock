@@ -8,55 +8,64 @@ Access-Control-Allow-Origin: *
     "Name": "Books",
     "ParentId": null,
     "Children": [],
-    "NominalCode": ""
+    "NominalCode": "",
+    "Description": "1876023"
+
   },
   {
     "Id": 2,
     "Name": "Lion",
     "ParentId": null,
     "Children": [],
-    "NominalCode": ""
+    "NominalCode": "",
+    "Description": "2"
   },
   {
     "Id": 3,
     "Name": "Zebra",
     "ParentId": null,
     "Children": [],
-    "NominalCode": ""
+    "NominalCode": "",
+    "Description": "3"
   },
   {
     "Id": 4,
     "Name": "Hippopotamus",
     "ParentId": null,
     "Children": [],
-    "NominalCode": ""
+    "NominalCode": "",
+    "Description": "4"
   },
   {
     "Id": 5,
     "Name": "Water Buffalo",
     "ParentId": null,
     "Children": [],
-    "NominalCode": ""
+    "NominalCode": "",
+    "Description": "5"
   },
   {
     "Id": 6,
     "Name": "Giraffe",
     "ParentId": null,
     "Children": [],
-    "NominalCode": ""
+    "NominalCode": "",
+    "Description": "6"
   },
   {
     "Id": 7,
     "Name": "Cheetah",
     "ParentId": null,
     "Children": [],
-    "NominalCode": ""
+    "NominalCode": "",
+    "Description": "7"
   },
   {
     "Id": 8,
     "Name": "Crocodile",
     "ParentId": null,
     "Children": [],
-    "NominalCode": ""
+    "NominalCode": "",
+    "Description": "8"
   }
 ]

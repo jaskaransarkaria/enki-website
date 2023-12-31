@@ -1,8 +1,10 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
+  import { getImageFilename } from "$lib/utils/getImageFilename";
 
   import type { Product } from "$lib/types/product";
 
@@ -15,7 +17,11 @@
   <meta property="og:url" content={$page.url.toString()} />
   <meta
     property="og:image"
-    content={`https://enki.imgix.net/${productToShow[0]?.Id}-0?auto=format,compress&w=250`}
+    content={`${PUBLIC_BUCKET_URL}/${
+      productToShow[0]?.ProductImages[0]?.ImageUrl
+        ? getImageFilename(productToShow[0].ProductImages[0].ImageUrl)
+        : "/coming-soon.png"
+    }`}
   />
   <meta property="og:type" content="website" />
   <meta

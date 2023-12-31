@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { beforeUpdate } from "svelte";
   import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
   import { groupBy } from "lodash-es";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
+  import { getImageFilename } from "$lib/utils/getImageFilename";
 
   import type { Category } from "$lib/types/category";
   import type { Product } from "$lib/types/product";
@@ -189,8 +191,8 @@
             <div class="gift-wrap-img-container">
               <div class="img-container">
                 <img
-                  role="img"
-                  src="https://enki.imgix.net/gift-wrap-1.jpeg?format=auto,compress"
+                  data-testid="gift-imgs"
+                  src={`${PUBLIC_BUCKET_URL}/gift-wrap-1.jpeg`}
                   alt="the inside of a card with happy birthday written out"
                 />
                 <p>
@@ -201,8 +203,8 @@
               </div>
               <div class="img-container">
                 <img
-                  role="img"
-                  src="https://enki.imgix.net/gift-wrap-2.jpeg?format=auto,compress"
+                  data-testid="gift-imgs"
+                  src={`${PUBLIC_BUCKET_URL}/gift-wrap-2.jpeg`}
                   alt="some gifts wrapped with colourful wrapping paper and pink and green ribbon"
                 />
                 <p>
@@ -214,8 +216,8 @@
               </div>
               <div class="img-container">
                 <img
-                  role="img"
-                  src="https://enki.imgix.net/gift-wrap-3.jpeg?format=auto,compress"
+                  data-testid="gift-imgs"
+                  src={`${PUBLIC_BUCKET_URL}/gift-wrap-3.jpeg`}
                   alt="some gifts wrapped with brown paper wrapping paper and yellow and green ribbon"
                 />
                 <p>

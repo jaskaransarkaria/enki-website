@@ -5,7 +5,7 @@ export interface Product extends Base {
   CategoryId: number;
   Description: string;
   SalePrice: number;
-  ProductImages: string[];
+  ProductImages: ProductImages[];
   ProductTags: Tag[];
   VariantGroupId: number;
   CurrentStock: number;
@@ -16,4 +16,8 @@ export interface Product extends Base {
 
 interface ProductDetails {
   DetailedDescription: string;
+}
+
+interface ProductImages {
+  ImageUrl: string;
 }

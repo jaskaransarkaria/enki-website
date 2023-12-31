@@ -28,19 +28,15 @@
 <svelte:head>
   <title>{"Enki - Welcome!"}</title>
   <meta property="og:url" content="https://enkionline.com/" />
-  <meta
-    property="og:image"
-    content="https://enki.imgix.net/inside_enki_desktop_3.png?auto=format,compress"
-  />
+  <meta property="og:image" content={DESKTOP_LANDING_PAGE} />
   <link rel="preload" as="image" href={MOBILE_LANDING_PAGE} />
 </svelte:head>
 
 {#if (browser && outerWidth > 0) || $page.data.whitelistedUserAgent}
   <figure
     class={isMobile ? "mobile-container" : "container"}
-    style:background-image={isMobile
-      ? null
-      : `url('${DESKTOP_LANDING_PAGE}&h=${outerHeight}&max-w=${innerWidth}&fit=crop')`}
+    style:background-image={isMobile ? null : `url('${DESKTOP_LANDING_PAGE}')`}
+    style:background-size={isMobile ? null : `cover`}
   >
     {#if isMobile}
       <img
@@ -139,6 +135,7 @@
     position: fixed;
     z-index: -1;
     width: 100%;
+    height: auto;
   }
 
   .mobile-classes-img,

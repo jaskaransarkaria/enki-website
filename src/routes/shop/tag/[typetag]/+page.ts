@@ -1,5 +1,5 @@
-import { refreshProductsFromServer } from "$lib/utils/requests";
 import { PUBLIC_SERVER_URL } from "$env/static/public";
+import { refreshProductsFromServer } from "$lib/utils/requests";
 
 export async function load({ fetch, params }) {
   // pull the category data from api

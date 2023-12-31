@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
   import { basket } from "$lib/stores/basket";
@@ -48,7 +49,7 @@
         in:fade
       >
         <img
-          src={`https://enki.imgix.net/${obj.id}-0?auto=format,compress`}
+          src={`${PUBLIC_BUCKET_URL}/${obj.imgHash}`}
           alt={`${obj.name}`}
           on:click={() => goto(`/shop/product/${obj.id}`)}
           class={isMobile ? "mobile-product-img" : "product-img"}

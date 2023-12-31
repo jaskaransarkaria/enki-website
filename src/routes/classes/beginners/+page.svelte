@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
@@ -17,6 +18,7 @@
     ParentId: 0,
     Children: [],
     NominalCode: null,
+    Description: "2854484",
   };
 
   onMount(() => {
@@ -40,15 +42,15 @@
         <SwipeImage
           imgArr={[
             {
-              src: "https://enki.imgix.net/classes_example_1.jpg?auto=format,compress",
+              src: `${PUBLIC_BUCKET_URL}/classes_example_1.jpg`,
               alt: "A group photo with everyone showing their jewellery",
             },
             {
-              src: "https://enki.imgix.net/classes_example_2.jpg?auto=format,compress",
+              src: `${PUBLIC_BUCKET_URL}/classes_example_2.jpg`,
               alt: "Everyone in the class are wearing their rings and arranged their hands into a circle for the picture",
             },
             {
-              src: "https://enki.imgix.net/classes_example_3.jpg?auto=format,compress",
+              src: `${PUBLIC_BUCKET_URL}/classes_example_3.jpg`,
               alt: "the jeweller's table",
             },
           ]}
@@ -56,17 +58,17 @@
       {:else}
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/classes_example_1.jpg?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/classes_example_1.jpg`}
           alt="A man and a woman, the man is holding the rings in the palm of his hands"
         />
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/classes_example_2.jpg?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/classes_example_2.jpg`}
           alt="two women looking longingly into each other's eyes wearing their rings"
         />
         <img
           in:fade={{ duration: 600 }}
-          src="https://enki.imgix.net/classes_example_3.jpg?auto=format,compress"
+          src={`${PUBLIC_BUCKET_URL}/classes_example_3.jpg`}
           alt="enki jewellery ring boxes"
         />
       {/if}

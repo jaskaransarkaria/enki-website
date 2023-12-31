@@ -1,5 +1,6 @@
 import type { BasketProduct } from "$lib/types/basketProduct";
 import type { Product } from "$lib/types/product";
+import { getImageFilename } from "$lib/utils/getImageFilename";
 
 const removeItemFromBasket = (
   currentQuantity: number,
@@ -15,6 +16,7 @@ const removeItemFromBasket = (
           categoryId: list[listIndx].categoryId,
           name: list[listIndx].name,
           quantity: list[listIndx].quantity - 1,
+          imgHash: list[listIndx].imgHash,
           price: list[listIndx].price,
           currentStock: list[listIndx].currentStock,
           giftWrap: list[listIndx].giftWrap ?? false,
@@ -34,6 +36,7 @@ const addItemToBasket = (
     categoryId: list[listIndx].categoryId,
     name: list[listIndx].name,
     quantity: list[listIndx].quantity + 1,
+    imgHash: list[listIndx].imgHash,
     price: list[listIndx].price,
     currentStock: list[listIndx].currentStock,
     giftWrap: list[listIndx].giftWrap ?? false,
@@ -46,7 +49,12 @@ const addItemToBasket = (
 const addNewItemToBasket = (
   product: Pick<
     Product,
-    "Id" | "Name" | "SalePrice" | "CurrentStock" | "CategoryId"
+    | "Id"
+    | "Name"
+    | "SalePrice"
+    | "CurrentStock"
+    | "CategoryId"
+    | "ProductImages"
   >,
   list: BasketProduct[]
 ): BasketProduct[] => [
@@ -55,6 +63,10 @@ const addNewItemToBasket = (
     categoryId: product.CategoryId,
     name: product.Name,
     quantity: 1,
+    imgHash:
+      product?.ProductImages?.length > 0
+        ? getImageFilename(product.ProductImages[0].ImageUrl)
+        : "/coming-soon.png",
     price: product.SalePrice,
     currentStock: product.CurrentStock,
     giftWrap: false,
@@ -67,7 +79,12 @@ const addNewItemToBasket = (
 export const updateBasket = (
   product: Pick<
     Product,
-    "Id" | "Name" | "SalePrice" | "CurrentStock" | "CategoryId"
+    | "Id"
+    | "Name"
+    | "SalePrice"
+    | "CurrentStock"
+    | "CategoryId"
+    | "ProductImages"
   >,
   list: BasketProduct[],
   updateType: string

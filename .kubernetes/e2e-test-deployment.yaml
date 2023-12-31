@@ -24,6 +24,8 @@ spec:
               memory: "512Mi"
               cpu: "125m"
           env:
+            - name: PUBLIC_BUCKET_URL
+              value: https://storage.googleapis.com/enki-website 
             - name: PUBLIC_SERVER_URL
               value: "https://server.enkionline.com"
             - name: PUBLIC_STRIPE_KEY

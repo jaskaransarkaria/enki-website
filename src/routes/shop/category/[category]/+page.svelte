@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
   import CategoryView from "$lib/components/CategoryView/CategoryView.svelte";
 
@@ -15,7 +16,7 @@
   <meta property="og:url" content={$page.url.toString()} />
   <meta
     property="og:image"
-    content={`https://enki.imgix.net/${categoryToShow.Id}?auto=format,compress&w=250`}
+    content={`${PUBLIC_BUCKET_URL}/${categoryToShow.Description}`}
   />
   <meta property="og:type" content="website" />
   <meta

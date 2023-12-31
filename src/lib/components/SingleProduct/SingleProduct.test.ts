@@ -19,7 +19,11 @@ describe("Given SingleProduct", () => {
           CurrentStock: 1,
           CategoryId: 999,
           Description: "big animal",
-          ProductImages: [],
+          ProductImages: [
+            {
+              ImageUrl: "/foobar-0.jpg",
+            },
+          ],
           ProductTags: [],
           VariantGroupId: null,
           ProductDetails: {
@@ -44,7 +48,14 @@ describe("Given SingleProduct", () => {
           Description: "A very blue jacket",
           SalePrice: 2000,
           CurrentStock: 2,
-          ProductImages: ["1", "2"],
+          ProductImages: [
+            {
+              ImageUrl: "/foobar-0.jpg",
+            },
+            {
+              ImageUrl: "/foobar-1.jpg",
+            },
+          ],
           ProductTags: [],
           ProductDetails: null,
           VariantGroupId: null,
@@ -67,11 +78,11 @@ describe("Given SingleProduct", () => {
       expect(multiImages).toHaveLength(2);
       expect(multiImages[0]).toHaveAttribute(
         "src",
-        "https://enki.imgix.net/456-0?q=100"
+        "https://storage.googleapis.com/enki-website/foobar-0"
       );
       expect(multiImages[1]).toHaveAttribute(
         "src",
-        "https://enki.imgix.net/456-1?q=100"
+        "https://storage.googleapis.com/enki-website/foobar-1"
       );
       expect(
         screen.getByRole("button", { name: "Add to Basket" })
@@ -105,7 +116,7 @@ describe("Given SingleProduct", () => {
       expect(
         screen.getByRole("heading", { level: 4, name: /3000/i })
       ).toHaveTextContent("£3000");
-      expect(screen.queryAllByRole("img", { name: /789/i })).toHaveLength(0);
+      expect(screen.queryAllByAltText(/789/i)).toHaveLength(0);
       expect(
         screen.getByRole("button", { name: "Add to Basket" })
       ).toBeInTheDocument();
@@ -151,10 +162,8 @@ describe("Given SingleProduct", () => {
         },
       });
 
-      expect(screen.getByRole("img", { name: /low/i })).toBeInTheDocument();
-      expect(
-        screen.queryByRole("img", { name: /out/i })
-      ).not.toBeInTheDocument();
+      expect(screen.queryByAltText(/low in stock/)).toBeInTheDocument();
+      expect(screen.queryByAltText(/out/i)).not.toBeInTheDocument();
     });
 
     it("AND the product is out of stock THEN show the out in stock badge", () => {
@@ -177,10 +186,8 @@ describe("Given SingleProduct", () => {
         },
       });
 
-      expect(screen.getByRole("img", { name: /out/i })).toBeInTheDocument();
-      expect(
-        screen.queryByRole("img", { name: /low/i })
-      ).not.toBeInTheDocument();
+      expect(screen.getByAltText(/out of stock/)).toBeInTheDocument();
+      expect(screen.queryByAltText(/low in stock/)).not.toBeInTheDocument();
     });
   });
 });
