@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 test("Classes Beginners Page", async ({ page }) => {
   await page.goto("/classes/beginners");
 
+  await page.waitForTimeout(1000);
   await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.3 });
 
   await page.locator(".container > p > a >> nth=0").click();
