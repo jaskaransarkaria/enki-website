@@ -18,7 +18,7 @@
     ParentId: 0,
     Children: [],
     NominalCode: null,
-    Description: "",
+    Description: "2854484",
   };
 
   onMount(() => {
