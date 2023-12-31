@@ -29,6 +29,7 @@
   <title>{"Enki - Welcome!"}</title>
   <meta property="og:url" content="https://enkionline.com/" />
   <meta property="og:image" content={DESKTOP_LANDING_PAGE} />
+  <link rel="preload" as="image" href={DESKTOP_LANDING_PAGE} />
   <link rel="preload" as="image" href={MOBILE_LANDING_PAGE} />
 </svelte:head>
 
