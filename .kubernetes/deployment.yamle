@@ -15,11 +15,13 @@ spec:
     spec:
       containers:
       - env:
+        - name: PUBLIC_BUCKET_URL
+          value: https://storage.googleapis.com/enki-website 
         - name: PUBLIC_SERVER_URL
           value: https://server.enkionline.com
         - name: PUBLIC_STRIPE_KEY
           value: pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau
-        image: jaskaransarkaria/enki-website:v2.4.3
+        image: jaskaransarkaria/enki-website:v2.4.4
         name: enki-website
         ports:
         - containerPort: 5000
