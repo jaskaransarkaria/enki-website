@@ -25,6 +25,7 @@ jobs:
           docker build -t jaskaransarkaria/enki-website:${{ github.ref_name }} .
           docker push jaskaransarkaria/enki-website:${{ github.ref_name }}
         env:
+          PUBLIC_BUCKET_URL: https://storage.googleapis.com/enki-website
           PUBLIC_SERVER_URL: https://server.enkionline.com
           PUBLIC_STRIPE_KEY: pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau
       - name: Upadate Image Tag
