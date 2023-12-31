@@ -31,8 +31,8 @@ test.describe("Footer", () => {
     );
 
     await page.locator(".footer-icons >> nth=0").click();
-    await page.waitForURL("http://localhost:4000/contact/");
-    expect(page.url()).toBe("http://localhost:4000/contact/");
+    await page.waitForURL("http://localhost:4000/contact");
+    expect(page.url()).toBe("http://localhost:4000/contact");
     await page.locator("img.enki-logo").click();
     await page.waitForURL("http://localhost:4000/");
     expect(page.url()).toBe("http://localhost:4000/");
