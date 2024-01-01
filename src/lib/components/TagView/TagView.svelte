@@ -1,10 +1,7 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
   import TagFlex from "$lib/components/TagFlex/TagFlex.svelte";
-  import { refreshTags } from "$lib/utils/requests";
   import isCategory from "$lib/types/isCategory";
-  import { PUBLIC_SERVER_URL } from "$env/static/public";
 
   import type { Tag } from "$lib/types/tag";
   import type { Category } from "$lib/types/category";
@@ -15,12 +12,7 @@
   export let categoryFn: BaseFn = () => undefined;
   export let prefix = "";
   export let showHex = true;
-
-  let tags: readonly Tag[] = [];
-
-  onMount(async () => {
-    tags = await refreshTags(`${PUBLIC_SERVER_URL}/tags`);
-  });
+  export let tags: readonly Tag[] = [];
 
   const selectFn: BaseFn = <T extends Base>(cat: T) => {
     // if category selected goto category page as usual

@@ -7,6 +7,7 @@
 
   import type { Category } from "$lib/types/category";
   import type { Product } from "$lib/types/product";
+  import type { Tag } from "$lib/types/tag";
   import type { BaseFn } from "$lib/types/base";
 
   export let categoryFn: BaseFn;
@@ -14,6 +15,7 @@
   export let categoryToShow: Category | undefined;
   export let productArr: readonly Product[];
   export let whitelistedUserAgent: boolean;
+  export let tags: readonly Tag[];
 
   const removeVariantCategories = (categories: Category[]) =>
     categories?.filter((cat) => cat.NominalCode === "CATEGORY");
@@ -38,6 +40,7 @@
       {categoryFn}
       categoryId={categoryToShow?.Id}
       prefix={categoryToShow.Name.split(" ")[0].toUpperCase()}
+      {tags}
     />
   {:else}
     <HexGrid data={nonVariantCategories} {categoryFn} {whitelistedUserAgent} />

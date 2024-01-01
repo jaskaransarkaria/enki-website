@@ -4,8 +4,11 @@ import { PUBLIC_SERVER_URL } from "$env/static/public";
 import {
   refreshCategoryFromServer,
   refreshProductsFromServer,
+  refreshTagsFromServer,
 } from "$lib/utils/requests";
+
 import type { Category } from "$lib/types/category";
+import type { Tag } from "$lib/types/tag";
 
 const traverseCategoryObj = (
   id: number,
@@ -33,6 +36,9 @@ const traverseCategoryObj = (
 
 export async function load({ fetch, params }) {
   // pull the category data from api
+  let tags: readonly Tag[] = [];
+  const id = parseInt(params.category, 10);
+
   const categoryResults = await refreshCategoryFromServer(
     `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
     fetch
@@ -43,13 +49,18 @@ export async function load({ fetch, params }) {
     fetch
   );
 
-  const category = traverseCategoryObj(
-    parseInt(params.category, 10),
-    categoryResults[0]
-  );
+  if ([1875997, 1875998].includes(id)) {
+    tags = await refreshTagsFromServer(
+      `${setServerUrl(browser, dev)}/tags`,
+      fetch
+    );
+  }
+
+  const category = traverseCategoryObj(id, categoryResults[0]);
 
   return {
     categoryToShow: category,
     productArr: productResults,
+    tags,
   };
 }

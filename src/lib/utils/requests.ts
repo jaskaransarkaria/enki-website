@@ -39,6 +39,12 @@ export const refreshProductsFromServer = async <T>(
 ): Promise<ReadonlyArray<Product>> =>
   retrieveStateFn(url, getProductArrayFromServer(fetchWrapper), [])();
 
+export const refreshTagsFromServer = async <T>(
+  url: string,
+  fetchWrapper: () => Promise<T>
+): Promise<readonly Tag[]> =>
+  retrieveStateFn(url, getTagsArrayFromServer(fetchWrapper), [])();
+
 export const refreshCategories = async (
   url: string
 ): Promise<readonly Category[]> =>
@@ -75,3 +81,8 @@ const getCategoriesArrayServer: (
 const getTagsArray: GetFn<ReadonlyArray<Tag>> = (
   url: string
 ): Promise<ReadonlyArray<Tag>> => fetch(url).then((res) => res.json());
+
+const getTagsArrayFromServer =
+  (fetchWrapper: (a: string) => Promise<any>) =>
+  (url: string): Promise<ReadonlyArray<Tag>> =>
+    fetchWrapper(url).then((res) => res.json());

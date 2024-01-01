@@ -1,9 +1,14 @@
 <script lang="ts">
   import TagView from "$lib/components/TagView/TagView.svelte";
+  import { page } from "$app/stores";
+
+  import type { Tag } from "$lib/types/tag";
+
+  const tags: readonly Tag[] = $page.data.tags;
 </script>
 
 <h1 class="featured">Gift guide</h1>
-<TagView prefix="FEATURED" showHex={false} />
+<TagView prefix="FEATURED" showHex={false} {tags} />
 
 <style>
   .featured {
