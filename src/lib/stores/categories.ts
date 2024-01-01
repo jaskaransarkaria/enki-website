@@ -7,6 +7,7 @@ const initialValue = {
   Name: "",
   Children: [],
   NominalCode: "",
+  Description: "",
 };
 
 export const categories = writable<Category>(initialValue);

@@ -20,6 +20,7 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         env:
+          PUBLIC_INTERNAL_K8S_URL: http://enki-server.enki.svc.cluster.local:8080
           PUBLIC_BUCKET_URL: https://storage.googleapis.com/enki-website
           PUBLIC_SERVER_URL: http://localhost:8080
           PUBLIC_STRIPE_KEY: pk_test_51HpvnTAk37gvJ51oYwywMtrDcDlL6FXuVY0aQ1EYEJUiw9MG70UElEMhhazqhhafUOslK1IugHRApQ7GWNUcnqT400dJ4HWjbp

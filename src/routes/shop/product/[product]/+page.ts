@@ -1,10 +1,11 @@
+import { browser, dev } from "$app/environment";
+import { setServerUrl } from "$lib/utils/setServerUrl";
 import { refreshProductsFromServer } from "$lib/utils/requests";
-import { PUBLIC_SERVER_URL } from "$env/static/public";
 
-export async function load({ fetch, params, parent }) {
+export async function load({ fetch, params }) {
   // pull the category data from api
   const result = await refreshProductsFromServer(
-    `${PUBLIC_SERVER_URL}/product?id=${params.product}`,
+    `${setServerUrl(browser, dev)}/product?id=${params.product}`,
     fetch
   );
 

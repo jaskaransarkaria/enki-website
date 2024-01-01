@@ -1,14 +1,15 @@
-import { PUBLIC_SERVER_URL } from "$env/static/public";
+import { browser, dev } from "$app/environment";
+import { setServerUrl } from "$lib/utils/setServerUrl";
 import { refreshCategoriesFromServer } from "$lib/utils/requests";
 import type { Base } from "$lib/types/base";
 
 const orderCategories = (resp: Base[]) =>
   resp.sort((a: Base, b: Base) => (a.Name < b.Name ? -1 : 1));
 
-export async function load({ fetch, parent }) {
+export async function load({ fetch }) {
   // pull the category data from api
   const result = await refreshCategoriesFromServer(
-    `${PUBLIC_SERVER_URL}/categories`,
+    `${setServerUrl(browser, dev)}/categories`,
     fetch
   );
 

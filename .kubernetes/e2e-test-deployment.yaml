@@ -24,6 +24,8 @@ spec:
               memory: "512Mi"
               cpu: "125m"
           env:
+            - name: PUBLIC_INTERNAL_K8S_URL
+              value: http://enki-server.enki.svc.cluster.local:8080
             - name: PUBLIC_BUCKET_URL
               value: https://storage.googleapis.com/enki-website 
             - name: PUBLIC_SERVER_URL
@@ -42,5 +44,4 @@ spec:
 
       imagePullSecrets:
         - name: regcred
-
 
