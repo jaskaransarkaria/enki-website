@@ -1,3 +1,5 @@
+import { browser, dev } from "$app/environment";
+import { setServerUrl } from "$lib/utils/setServerUrl";
 import { PUBLIC_SERVER_URL } from "$env/static/public";
 import {
   refreshCategoryFromServer,
@@ -29,7 +31,7 @@ const traverseCategoryObj = (
   }
 };
 
-export async function load({ fetch, params, parent }) {
+export async function load({ fetch, params }) {
   // pull the category data from api
   const categoryResults = await refreshCategoryFromServer(
     `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
@@ -37,7 +39,7 @@ export async function load({ fetch, params, parent }) {
   );
 
   const productResults = await refreshProductsFromServer(
-    `${PUBLIC_SERVER_URL}/products-by-category?id=${params.category}`,
+    `${setServerUrl(browser, dev)}/products-by-category?id=${params.category}`,
     fetch
   );
 

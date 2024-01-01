@@ -11,6 +11,7 @@ COPY . ./
 ENV PUBLIC_BUCKET_URL="https://storage.googleapis.com/enki-website"
 ENV PUBLIC_SERVER_URL=https://server.enkionline.com
 ENV PUBLIC_STRIPE_KEY="pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau"
+ENV PUBLIC_INTERNAL_K8S_URL="http://enki-server.enki.svc.cluster.local:8080"
 
 RUN npm run build
 
