@@ -38,7 +38,7 @@
     >
       {#key loaded}
         <img
-          in:fade={{ duration: 500 }}
+          in:fade={{ duration: 700, delay: 200 }}
           src="/grey_square.png"
           use:lazy={{
             src: `${PUBLIC_BUCKET_URL}/${category.Description}`,

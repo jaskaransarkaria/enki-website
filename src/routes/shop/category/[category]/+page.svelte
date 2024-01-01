@@ -5,6 +5,8 @@
 
   import type { Base } from "$lib/types/base";
 
+  const tags = $page.data.tags;
+
   $: categoryToShow = $page.data.categoryToShow;
   $: productArr = $page.data.productArr;
   $: selectCategory = (category: Base) => `/shop/category/${category.Id}`;
@@ -31,4 +33,5 @@
   {categoryToShow}
   whitelistedUserAgent={$page.data.whitelistedUserAgent}
   {productArr}
+  {tags}
 />
