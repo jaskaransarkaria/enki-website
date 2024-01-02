@@ -10,12 +10,11 @@
   import isCategory from "$lib/types/isCategory";
   import isTag from "$lib/types/isTag";
 
-  import type { Base, BaseFn } from "$lib/types/base";
+  import type { Base } from "$lib/types/base";
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
 
   export let data: Base[] = [];
-  export let categoryFn: BaseFn;
   export let whitelistedUserAgent = false;
   export let showFullPage = true;
 
@@ -85,7 +84,17 @@
         {/if}
       {/if}
       <li class={showGrid ? "hex" : "hex-flex"}>
-        <Hex {categoryFn} {category} bind:loaded />
+        <Hex
+          {category}
+          hexHref={isTag(category)
+            ? `/shop/tag/${category.Name.toLowerCase()}?catid=0&tagid=${
+                category.Id
+              }`
+            : `/shop/category/${category.Id}?name=${encodeURIComponent(
+                category.Name
+              )}&imgHash=${category.Description}`}
+          bind:loaded
+        />
       </li>
       {#if idx === filteredData.length - 1}
         {#if useEmptyHexes}

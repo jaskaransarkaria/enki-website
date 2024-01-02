@@ -4,13 +4,16 @@
   import type { BaseFn } from "$lib/types/base";
   import type { Tag } from "$lib/types/tag";
 
-  export let categoryFn: BaseFn = () => "";
   export let data: Tag[] = [];
 </script>
 
 <div class="tag-flex">
   {#each data as tag (tag.Id)}
-    <a data-sveltekit-preload-data class="hex-link" href={categoryFn(tag)}>
+    <a
+      data-sveltekit-preload-data
+      class="hex-link"
+      href={`/shop/tag/${tag.Name.toLowerCase()}?catid=0&tagid=${tag.Id}`}
+    >
       <img
         src="/featured_1.png"
         alt="shape for the tag button"

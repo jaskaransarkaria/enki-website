@@ -10,7 +10,6 @@
   import type { Tag } from "$lib/types/tag";
   import type { BaseFn } from "$lib/types/base";
 
-  export let categoryFn: BaseFn;
   export let showBreadcrumbs = true;
   export let categoryToShow: Category | undefined;
   export let productArr: readonly Product[];
@@ -33,17 +32,15 @@
 {/if}
 {#if nonVariantCategories.length || categoryToShow?.Id === 1875997 || categoryToShow?.Id === 1875998}
   {#if categoryToShow.Id === 1875996}
-    <JewelleryView data={nonVariantCategories} {categoryFn} />
+    <JewelleryView data={nonVariantCategories} />
   {:else if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
     <TagView
       data={nonVariantCategories}
-      {categoryFn}
-      categoryId={categoryToShow?.Id}
       prefix={categoryToShow.Name.split(" ")[0].toUpperCase()}
       {tags}
     />
   {:else}
-    <HexGrid data={nonVariantCategories} {categoryFn} {whitelistedUserAgent} />
+    <HexGrid data={nonVariantCategories} {whitelistedUserAgent} />
   {/if}
 {:else}
   <ProductView {productArr} {variantCategories} {whitelistedUserAgent} />

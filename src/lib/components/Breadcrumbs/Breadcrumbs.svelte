@@ -13,10 +13,12 @@
     params: string;
   }
 
+  type Crumb = Category | TagCrumb;
+
   export let extraCrumbs: TagCrumb[] = [];
   export let selectedCategoryId: number;
 
-  let breadcrumbs: Base[];
+  let breadcrumbs: Crumb[];
 
   const rootShop: Category = {
     Id: 0,
@@ -59,11 +61,13 @@
     return results;
   };
 
-  const handleBreadcrumbClick = async (breadcrumb: Base | TagCrumb) => {
+  const handleBreadcrumbClick = async (breadcrumb: Category | TagCrumb) => {
     const breadcrumbUrl =
       "tagUrl" in breadcrumb
         ? `${breadcrumb.tagUrl}${breadcrumb.params}`
-        : `/shop/category/${breadcrumb.Id}`;
+        : `/shop/category/${breadcrumb.Id}?name=${encodeURIComponent(
+            breadcrumb.Name
+          )}&imgHash=${breadcrumb.Description}`;
 
     breadcrumb.Name === "Shop"
       ? await goto("/shop")
