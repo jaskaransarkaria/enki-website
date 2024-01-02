@@ -53,24 +53,5 @@ describe("GIVEN Hex", () => {
       );
       expect(screen.queryByTestId("empty-hex")).not.toBeInTheDocument();
     });
-
-    it("THEN fire the categoryFn when the category Hex is clicked", () => {
-      const mockCategoryFn = jest.fn((cat) => `/${cat.Name}`);
-      render(Hex, {
-        category: {
-          Name: "example",
-          Id: 111,
-          ParentId: 222,
-          Children: [],
-          NominalCode: null,
-        },
-        categoryFn: mockCategoryFn,
-      });
-
-      expect(mockCategoryFn).toHaveBeenCalledTimes(1);
-      expect(mockCategoryFn).toHaveReturnedWith("/example");
-      expect(screen.getByRole("link")).toHaveAttribute("href", "/example");
-      expect(screen.queryByTestId("empty-hex")).not.toBeInTheDocument();
-    });
   });
 });

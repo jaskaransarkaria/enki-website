@@ -5,7 +5,6 @@
   import type { BaseFn } from "$lib/types/base";
 
   export let data: Category[] = [];
-  export let categoryFn: BaseFn;
 
   $: shopByType = data?.filter(
     (cat: Category) =>
@@ -20,9 +19,9 @@
 </script>
 
 <h1>Shop by type</h1>
-<HexGrid data={shopByType} {categoryFn} showFullPage={false} />
+<HexGrid data={shopByType} showFullPage={false} />
 <h1>Shop by artist</h1>
-<HexGrid data={shopByArtist} {categoryFn} />
+<HexGrid data={shopByArtist} />
 
 <style>
   h1 {

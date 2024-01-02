@@ -11,6 +11,7 @@ const mockData: Category[] = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "foobar",
   },
   {
     Id: 456,
@@ -18,6 +19,7 @@ const mockData: Category[] = [
     ParentId: null,
     Children: [],
     NominalCode: "",
+    Description: "blahblah",
   },
 ];
 
@@ -32,10 +34,8 @@ describe("GIVEN HexGrid", () => {
 
   describe("WHEN rendered WITH props", () => {
     it("THEN render hexagons", () => {
-      const mockCategoryFn = jest.fn((cat) => `/${cat.Name}`);
       render(HexGrid, {
         data: mockData,
-        categoryFn: mockCategoryFn,
       });
 
       const allHexes = screen.getAllByTestId("hex-category-name");
@@ -45,13 +45,11 @@ describe("GIVEN HexGrid", () => {
     });
 
     it("AND NominalCode property is 'NOT_WEB' THEN do not render that hexagon", () => {
-      const mockCategoryFn = jest.fn((cat) => `/${cat.Name}`);
       render(HexGrid, {
         data: [
           ...mockData,
           { ...mockData[0], Id: 456, NominalCode: "NOT_WEB", Name: "Hamster" },
         ],
-        categoryFn: mockCategoryFn,
       });
 
       const allHexes = screen.getAllByTestId("hex-category-name");
@@ -62,18 +60,20 @@ describe("GIVEN HexGrid", () => {
     });
 
     it("AND the hexagon links to have the correct paths", async () => {
-      const mockCategoryFn = jest.fn((cat) => `/${cat.Name}`);
       render(HexGrid, {
         data: mockData,
-        categoryFn: mockCategoryFn,
       });
-
-      expect(mockCategoryFn).toHaveBeenCalledTimes(2); // once for each hex to set up the href
 
       const hexButtons = screen.getAllByRole("link");
 
-      expect(hexButtons[0]).toHaveAttribute("href", "/Elephant");
-      expect(hexButtons[1]).toHaveAttribute("href", "/Dog");
+      expect(hexButtons[0]).toHaveAttribute(
+        "href",
+        "/shop/category/123?name=Elephant&imgHash=foobar"
+      );
+      expect(hexButtons[1]).toHaveAttribute(
+        "href",
+        "/shop/category/456?name=Dog&imgHash=blahblah"
+      );
     });
   });
 });

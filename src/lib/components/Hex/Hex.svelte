@@ -3,11 +3,10 @@
   import { fade } from "svelte/transition";
   import { lazy } from "$lib/utils/lazyAction";
 
-  import type { BaseFn } from "$lib/types/base";
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
 
-  export let categoryFn: BaseFn = () => "";
+  export let hexHref = "";
   export let isEmpty = false;
   export let category: Category | Tag = {
     Name: "",
@@ -34,7 +33,7 @@
       data-testid="hex-link"
       data-sveltekit-preload-data
       class="hex-link"
-      href={categoryFn(category)}
+      href={hexHref}
     >
       {#key loaded}
         <img
