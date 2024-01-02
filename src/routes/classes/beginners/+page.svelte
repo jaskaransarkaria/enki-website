@@ -11,7 +11,6 @@
   let widgetLoaded = false;
   let loaded = new Map();
 
-  const categoryFn = () => "/shop/category/2854484"; // jewellery voucher category id
   const jewelleryVoucherCategory = {
     Name: "Jewellery Class Vouchers",
     Id: 2854484,
@@ -83,7 +82,17 @@
     </p>
     <div class="voucher-container">
       <div class="hex-container">
-        <Hex {categoryFn} category={jewelleryVoucherCategory} bind:loaded />
+        <Hex
+          hexHref={`/shop/category/${
+            jewelleryVoucherCategory.Id
+          }?name=${encodeURIComponent(
+            jewelleryVoucherCategory.Name
+          )}&imgHash=${encodeURIComponent(
+            jewelleryVoucherCategory.Description
+          )}`}
+          category={jewelleryVoucherCategory}
+          bind:loaded
+        />
       </div>
       <p>
         If class dates aren’t yet announced or you're not sure about a date you
