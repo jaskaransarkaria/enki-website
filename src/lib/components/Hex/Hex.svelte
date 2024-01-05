@@ -39,21 +39,20 @@
       {#key loaded}
         {#if imgError}
           <img
-            in:fade={{ duration: 700, delay: 200 }}
-            src="grey_square.png"
-            on:error={() => (imgError = true)}
+            src="/grey_square.png"
             alt={`category ${category.Name}`}
             data-testid="cdn-img"
+            class="hex-img"
           />
         {:else}
           <img
-            in:fade={{ duration: 700, delay: 200 }}
             src={`${PUBLIC_BUCKET_URL}/${category.Description}${
               isAvifSupported ? "-avif" : ""
             }`}
             on:error={() => (imgError = true)}
             alt={`category ${category.Name}`}
             data-testid="cdn-img"
+            class="hex-img"
           />
         {/if}
         <img
@@ -122,6 +121,10 @@
     transform: rotate3d(0, 0, 0, 0deg);
     font-size: 0.6em;
     font-family: "Welcomehome5 Regular";
+  }
+
+  .hex-img {
+    animation: fadeIn 1.25s;
   }
 
   h3 {
