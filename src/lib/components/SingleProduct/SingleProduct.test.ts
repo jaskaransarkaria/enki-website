@@ -78,11 +78,11 @@ describe("Given SingleProduct", () => {
       expect(multiImages).toHaveLength(2);
       expect(multiImages[0]).toHaveAttribute(
         "src",
-        "https://storage.googleapis.com/enki-website/foobar-0"
+        "https://storage.googleapis.com/enki-website/foobar-0-avif"
       );
       expect(multiImages[1]).toHaveAttribute(
         "src",
-        "https://storage.googleapis.com/enki-website/foobar-1"
+        "https://storage.googleapis.com/enki-website/foobar-1-avif"
       );
       expect(
         screen.getByRole("button", { name: "Add to Basket" })

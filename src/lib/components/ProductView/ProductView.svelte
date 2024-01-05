@@ -6,7 +6,6 @@
   import { groupBy } from "lodash-es";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
-  import { getImageFilename } from "$lib/utils/getImageFilename";
 
   import type { Category } from "$lib/types/category";
   import type { Product } from "$lib/types/product";
@@ -112,7 +111,7 @@
 
   $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
 
-  $: if (productArr.length) {
+  $: if (productArr?.length) {
     variantArr = productArr
       ?.filter(({ VariantGroupId }) => !!VariantGroupId)
       ?.filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
@@ -169,7 +168,7 @@
 </script>
 
 <svelte:window bind:outerWidth />
-{#if sortedCollatedArray.length}
+{#if sortedCollatedArray?.length}
   <div class="container" data-testid="product-view-container">
     <Banner hasProducts />
     <div class="sort-container">

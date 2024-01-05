@@ -7,6 +7,7 @@
   import { getImageFilename } from "$lib/utils/getImageFilename";
 
   import type { Product } from "$lib/types/product";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   export let product: Product;
   export let productDescription: string;
@@ -26,7 +27,9 @@
   const createImgArr = (product: Product): { src: string; alt: string }[] =>
     product?.ProductImages?.length
       ? product.ProductImages.map((img, idx) => ({
-          src: `${PUBLIC_BUCKET_URL}/${getImageFilename(img.ImageUrl)}`,
+          src: `${PUBLIC_BUCKET_URL}/${getImageFilename(img.ImageUrl)}${
+            isAvifSupported ? "-avif" : ""
+          }`,
           alt: `${product.Name} image ${idx + 1}`,
         }))
       : [
@@ -34,7 +37,7 @@
             src: product?.ProductImages[0]?.ImageUrl
               ? `${PUBLIC_BUCKET_URL}/${getImageFilename(
                   product.ProductImages[0].ImageUrl
-                )}`
+                )}${isAvifSupported ? "-avif" : ""}`
               : "/coming-soon.png",
             alt: `${product.Name} image 1`,
           },

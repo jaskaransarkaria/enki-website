@@ -2,6 +2,7 @@
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import ImageLoader from "$lib/components/Image/ImageLoader.svelte";
   import DetailedSingleProduct from "$lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   import type { Product } from "$lib/types/product";
   import type { Category } from "$lib/types/category";
@@ -30,7 +31,9 @@
   >
     <div class="position-img">
       <ImageLoader
-        src={`${PUBLIC_BUCKET_URL}/${variantCategory.Description}`}
+        src={`${PUBLIC_BUCKET_URL}/${variantCategory.Description}${
+          isAvifSupported ? "-avif" : ""
+        }`}
         alt={`${variantCategory.Name}`}
       />
     </div>
@@ -71,7 +74,7 @@
           src={product?.ProductImages[0]?.ImageUrl
             ? `${PUBLIC_BUCKET_URL}/${getImageFilename(
                 product.ProductImages[0].ImageUrl
-              )}`
+              )}${isAvifSupported ? "-avif" : ""}`
             : "/coming-soon.png"}
           alt={`${product.Name}`}
         />
