@@ -4,7 +4,17 @@
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
   import "../app.css";
+  import { onMount } from "svelte";
+
+  let checkAvif = false;
+
+  onMount(() => {
+    if ($isAvifSupported === null) {
+      checkAvif = true;
+    }
+  });
 </script>
 
 <svelte:head>
@@ -32,8 +42,25 @@
   <BackToTop />
 </div>
 <Footer />
+{#if checkAvif}
+  <img
+    class="avif-supported-check"
+    alt="not visible and is used to check if your browser supports the avif format"
+    src="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A="
+    on:load={() => {
+      isAvifSupported.set(true);
+    }}
+    on:error={() => {
+      isAvifSupported.set(false);
+    }}
+  />
+{/if}
 
 <style>
+  .avif-supported-check {
+    display: none;
+  }
+
   .container {
     min-height: 100vh;
   }

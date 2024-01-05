@@ -1,10 +1,10 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { fade } from "svelte/transition";
-  import { lazy } from "$lib/utils/lazyAction";
 
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   export let hexHref = "";
   export let isEmpty = false;
@@ -17,6 +17,7 @@
     Description: "",
   };
   export let loaded: Map<string, HTMLImageElement> = new Map();
+  let imgError = false;
 </script>
 
 <div class="hex-in">
@@ -36,16 +37,25 @@
       href={hexHref}
     >
       {#key loaded}
-        <img
-          in:fade={{ duration: 700, delay: 200 }}
-          src="/grey_square.png"
-          use:lazy={{
-            src: `${PUBLIC_BUCKET_URL}/${category.Description}`,
-            loaded,
-          }}
-          alt={`category ${category.Name}`}
-          data-testid="cdn-img"
-        />
+        {#if imgError}
+          <img
+            in:fade={{ duration: 700, delay: 200 }}
+            src="grey_square.png"
+            on:error={() => (imgError = true)}
+            alt={`category ${category.Name}`}
+            data-testid="cdn-img"
+          />
+        {:else}
+          <img
+            in:fade={{ duration: 700, delay: 200 }}
+            src={`${PUBLIC_BUCKET_URL}/${category.Description}${
+              isAvifSupported ? "-avif" : ""
+            }`}
+            on:error={() => (imgError = true)}
+            alt={`category ${category.Name}`}
+            data-testid="cdn-img"
+          />
+        {/if}
         <img
           in:fade={{ duration: 500 }}
           src={`${PUBLIC_BUCKET_URL}/hex_${Math.floor(
