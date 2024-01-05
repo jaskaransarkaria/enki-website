@@ -107,6 +107,7 @@
     margin-right: 0;
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
+    animation: fadeIn 0.8s;
   }
 
   .mobile-container {
@@ -137,6 +138,7 @@
     z-index: -1;
     width: 100%;
     height: auto;
+    animation: fadeIn 0.8s;
   }
 
   .mobile-classes-img,

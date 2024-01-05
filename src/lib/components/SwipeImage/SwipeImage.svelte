@@ -73,6 +73,7 @@
   img {
     max-width: 95%;
     max-height: 95%;
+    animation: fadeIn 0.6s;
   }
 
   .single-img-container {
