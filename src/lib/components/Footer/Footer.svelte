@@ -14,6 +14,7 @@
     <div class="left-container">
       <a href="/contact">
         <img
+          loading="lazy"
           class="footer-icons"
           src={`${PUBLIC_BUCKET_URL}/telephone_3.png`}
           alt="contact us"
@@ -25,6 +26,7 @@
         rel="noreferrer"
       >
         <img
+          loading="lazy"
           class="footer-icons"
           src={`${PUBLIC_BUCKET_URL}/insta_logo_3.png`}
           alt="link to instagram"
@@ -36,6 +38,7 @@
         rel="noreferrer"
       >
         <img
+          loading="lazy"
           class="footer-icons"
           src={`${PUBLIC_BUCKET_URL}/fb_logo_3.png`}
           alt="link to facebook"
@@ -84,6 +87,7 @@
           rel="noreferrer"
         >
           <img
+            loading="lazy"
             class="trust-badge"
             src="/stripe-badge-white.png"
             alt="stripe trust badge"
