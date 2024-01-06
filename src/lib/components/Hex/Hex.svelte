@@ -18,6 +18,12 @@
   };
   export let loaded: Map<string, HTMLImageElement> = new Map();
   let imgError = false;
+  let imgUrl = `${PUBLIC_BUCKET_URL}/${category.Description}${
+    isAvifSupported ? "-avif" : ""
+  }`;
+  let hexLoaded = false;
+  let catImg = new Image();
+  let hexImg = new Image();
 </script>
 
 <div class="hex-in">
@@ -42,25 +48,38 @@
             src="/grey_square.png"
             alt={`category ${category.Name}`}
             data-testid="cdn-img"
-            class="hex-img"
+            bind:this={catImg}
+            on:load={() => {
+              loaded.set(imgUrl, catImg);
+              catImg.classList.remove("preload-hex-img");
+              catImg.classList.add("hex-img");
+            }}
+            class="preload-hex-img"
           />
-        {:else}
+        {:else if hexLoaded}
           <img
-            src={`${PUBLIC_BUCKET_URL}/${category.Description}${
-              isAvifSupported ? "-avif" : ""
-            }`}
+            src={imgUrl}
+            bind:this={catImg}
+            on:load={() => {
+              loaded.set(imgUrl, catImg);
+              catImg.classList.add("hex-img");
+            }}
             on:error={() => (imgError = true)}
             alt={`category ${category.Name}`}
             data-testid="cdn-img"
-            class="hex-img"
+            class="preload-hex-img"
           />
         {/if}
         <img
-          in:fade={{ duration: 500 }}
           src={`${PUBLIC_BUCKET_URL}/hex_${Math.floor(
             Math.random() * (6 - 1 + 1) + 1
           )}.svg`}
           alt="hexagon shape for the category button"
+          bind:this={hexImg}
+          on:load={() => {
+            hexLoaded = true;
+          }}
+          class="hex-img"
         />
         <div class="category-name">
           <h3 data-testid="hex-category-name" in:fade={{ duration: 500 }}>
@@ -93,6 +112,7 @@
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+    animation: fadeIn 1s;
   }
 
   .hex-in * {
@@ -123,8 +143,13 @@
     font-family: "Welcomehome5 Regular";
   }
 
+  .preload-hex-img {
+    opacity: 0;
+  }
+
   .hex-img {
-    animation: fadeIn 1.25s;
+    animation: fadeIn 1s;
+    opacity: 1;
   }
 
   h3 {
