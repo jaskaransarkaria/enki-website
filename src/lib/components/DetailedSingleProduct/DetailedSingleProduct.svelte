@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import comingSoon from "$lib/assets/coming_soon.png";
   import { clickOutside } from "$lib/utils/clickOutside";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
   import MobileClose from "$lib/components/MobileClose/MobileClose.svelte";
@@ -38,7 +39,7 @@
               ? `${PUBLIC_BUCKET_URL}/${getImageFilename(
                   product.ProductImages[0].ImageUrl
                 )}${isAvifSupported ? "-avif" : ""}`
-              : "/coming-soon.png",
+              : comingSoon,
             alt: `${product.Name} image 1`,
           },
         ];

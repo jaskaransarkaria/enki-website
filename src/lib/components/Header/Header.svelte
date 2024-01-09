@@ -9,7 +9,10 @@
   import SearchProducts from "$lib/components/SearchProducts/SearchProducts.svelte";
   import Hamburger from "$lib/components/Hamburger/Hamburger.svelte";
   import { clickOutside } from "$lib/utils/clickOutside";
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+
+  import header from "$lib/assets/header_1.png";
+  import basketIcon from "$lib/assets/basket_icon.png";
+  import searchIcon from "$lib/assets/search_1.png";
 
   export let whitelistedUserAgent: boolean;
 
@@ -126,7 +129,7 @@
     {#if !showSearch}
       <img
         transition:fade|local
-        src={`${PUBLIC_BUCKET_URL}/header_1.png`}
+        src={header}
         alt="Enki"
         loading="eager"
         class="enki-logo"
@@ -136,7 +139,7 @@
   {:else}
     <img
       transition:fade|local
-      src={`${PUBLIC_BUCKET_URL}/header_1.png`}
+      src={header}
       alt="Enki"
       loading="eager"
       class="enki-logo"
@@ -146,7 +149,7 @@
   <div class="right-container">
     <img
       class="search-icon"
-      src={`${PUBLIC_BUCKET_URL}/search-icon.png`}
+      src={searchIcon}
       alt="search"
       style={move($left)}
       on:click={handleClick}
@@ -164,7 +167,7 @@
     >
       <img
         class="basket-icon"
-        src={`${PUBLIC_BUCKET_URL}/basket-icon.png`}
+        src={basketIcon}
         alt="basket"
         on:click={() => goto("/shop/basket")}
       />

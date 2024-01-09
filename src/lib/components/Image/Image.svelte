@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import comingSoon from "$lib/assets/coming_soon.png";
 
   export let src: string;
   export let alt: string;
@@ -20,8 +21,8 @@
   class:loaded
   bind:this={thisImage}
   on:error={() => {
-    if (thisImage.src != "/coming-soon.png") {
-      thisImage.src = "/coming-soon.png";
+    if (thisImage.src != comingSoon) {
+      thisImage.src = comingSoon;
     }
   }}
 />

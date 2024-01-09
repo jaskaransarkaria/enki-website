@@ -1,6 +1,7 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
+  import comingSoon from "$lib/assets/coming_soon.png";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
@@ -20,7 +21,7 @@
     content={`${PUBLIC_BUCKET_URL}/${
       productToShow[0]?.ProductImages[0]?.ImageUrl
         ? getImageFilename(productToShow[0].ProductImages[0].ImageUrl)
-        : "/coming-soon.png"
+        : comingSoon
     }`}
   />
   <meta property="og:type" content="website" />

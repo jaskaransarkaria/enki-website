@@ -9,6 +9,8 @@
   import "swiper/css/navigation";
   import "swiper/css/pagination";
 
+  import comingSoon from "$lib/assets/coming_soon.png";
+
   export let imgArr: { src: string; alt: string }[];
   export let setImgWidth = false;
   export let fullScreen = false;
@@ -51,8 +53,8 @@
       alt={imgArr[0].alt}
       style:cursor={fullScreen ? null : "pointer"}
       on:error={() => {
-        if (imgArr[0].src != "/coming-soon.png") {
-          imgArr[0].src = "/coming-soon.png";
+        if (imgArr[0].src != comingSoon) {
+          imgArr[0].src = comingSoon;
         }
       }}
       class={fullScreen ? "full-screen" : ""}

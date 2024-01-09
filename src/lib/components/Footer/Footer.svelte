@@ -2,6 +2,7 @@
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import github from "$lib/assets/github.png";
   import MailChimpSubscribe from "$lib/components/MailChimpSubscribe/MailChimpSubscribe.svelte";
 
   $: outerWidth = 0;
@@ -44,6 +45,19 @@
           alt="link to facebook"
         />
       </a>
+      <a
+        href="https://www.github.com/jaskaransarkaria/enki-website"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img
+          loading="lazy"
+          class="footer-icons"
+          src={github}
+          alt="link to website source code"
+          width="60px"
+        />
+      </a>
     </div>
   {/if}
   <div class="centre-container">
@@ -64,14 +78,26 @@
             class="mobile-footer-icons"
             src={`${PUBLIC_BUCKET_URL}/insta_logo_3.png`}
             alt="link to instagram"
-            on:click={() => goto("https://www.instagram.com/enkionline/?hl=en")}
+            on:click={() =>
+              (window.location.href =
+                "https://www.instagram.com/enkionline/?hl=en")}
           />
           <img
             class="mobile-footer-icons"
             src={`${PUBLIC_BUCKET_URL}/fb_logo_3.png`}
             alt="link to facebook"
             on:click={() =>
-              goto("https://www.facebook.com/Enki-1665334930147391")}
+              (window.location.href =
+                "https://www.facebook.com/Enki-1665334930147391")}
+          />
+          <img
+            loading="lazy"
+            class="mobile-footer-icons"
+            src={github}
+            alt="link to website source code"
+            on:click={() =>
+              (window.location.href =
+                "https://www.github.com/jaskaransarkaria/enki-website")}
           />
         </div>
       </div>

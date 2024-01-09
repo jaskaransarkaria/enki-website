@@ -6,10 +6,6 @@ test.describe("Header", () => {
     await page.goto("/");
 
     await expect(page.locator("#nav-icon")).toHaveClass(/(?!open)/);
-    await expect(page.locator("img.enki-logo")).toHaveAttribute(
-      "src",
-      "https://storage.googleapis.com/enki-website/header_1.png"
-    );
 
     await page.locator("#nav-icon").click();
 
@@ -147,20 +143,5 @@ test.describe("Header", () => {
     await page.locator("img.enki-logo").click();
     await page.waitForURL("http://localhost:4000/");
     expect(page.url()).toBe("http://localhost:4000/");
-
-    await expect(page.locator("img.enki-logo")).toHaveAttribute(
-      "src",
-      "https://storage.googleapis.com/enki-website/header_1.png"
-    );
-
-    await expect(page.locator("img.search-icon")).toHaveAttribute(
-      "src",
-      "https://storage.googleapis.com/enki-website/search-icon.png"
-    );
-
-    await expect(page.locator("img.basket-icon")).toHaveAttribute(
-      "src",
-      "https://storage.googleapis.com/enki-website/basket-icon.png"
-    );
   });
 });
