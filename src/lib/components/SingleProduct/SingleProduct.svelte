@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import comingSoon from "$lib/assets/coming_soon.png";
   import ImageLoader from "$lib/components/Image/ImageLoader.svelte";
   import DetailedSingleProduct from "$lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
@@ -75,7 +76,7 @@
             ? `${PUBLIC_BUCKET_URL}/${getImageFilename(
                 product.ProductImages[0].ImageUrl
               )}${isAvifSupported ? "-avif" : ""}`
-            : "/coming-soon.png"}
+            : comingSoon}
           alt={`${product.Name}`}
         />
       </div>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { fade } from "svelte/transition";
+  import greySquare from "$lib/assets/grey_square.png";
 
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
@@ -45,7 +46,7 @@
       {#key loaded}
         {#if imgError}
           <img
-            src="/grey_square.png"
+            src={greySquare}
             alt={`category ${category.Name}`}
             data-testid="cdn-img"
             bind:this={catImg}

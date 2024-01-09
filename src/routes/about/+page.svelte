@@ -1,5 +1,9 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import dora from "$lib/assets/dora_1.png";
+  import faith from "$lib/assets/faith_1.png";
+  import layla from "$lib/assets/layla.png";
+  import ellis from "$lib/assets/ellis.png";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
@@ -70,28 +74,61 @@
       <div class="card">
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/faith_1.png`}
-          alt="shop owner faith"
+          src={faith}
+          alt="shop owner faith cartoon"
         />
         <p>
           Faith started Enki in 2017 in a small shop not far from the current
           location. She is a jeweller with over ten years of experience who
-          specialises in repairing antique jewellery. She has a dog called Dodi
-          who sometimes joins her at work! You can find her at Enki from Monday
-          to Friday.
+          specialises in repairing antique jewellery. She is currently on
+          maternity leave looking after her daughter Ishaani but will be back in
+          April.
         </p>
       </div>
       <div class="card">
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/dora_1.png`}
-          alt="shop owner faith"
+          src={dora}
+          alt="shop manager cartoon"
         />
         <p>
           Dora joined Enki in 2018 and has been making jewellery ever since,
           she’s always been a crafter and can do amazing things with beads! She
           comes from Germany but has been in Brum since 2016. You can find her
-          at Enki Thursday to Sunday.
+          at Enki Wednesday to Saturday and every other Sunday.
+        </p>
+      </div>
+      <div class="card">
+        <img
+          in:fade={{ duration: 600 }}
+          src={ellis}
+          alt="Sunday/ Monday shop keeper cartoon"
+        />
+        <p>
+          Ellis joined us in 2022 on a part time basis, and works as a graphic
+          artist and designer in the city too. You can find their work at
+          <a href="https://www.instagram.com/ellismilesdesigner/" rel="_blank"
+            >@ellismilesdesigner</a
+          > on Instagram, and you can find them at Enki Sundays and Mondays!
+        </p>
+      </div>
+      <div class="card">
+        <img
+          in:fade={{ duration: 600 }}
+          src={layla}
+          alt="Tuesday / Wednesday shop keeper cartoon"
+        />
+        <p>
+          Layla joined Enki in 2023 and enjoys taking photos of our gifts and
+          getting them out online! She is an artist specialising in batik and a
+          musician playing rock n’ roll! You can find her at Enki on Tuesdays
+          and Wednesdays. <a
+            href="https://www.instagram.com/laylatutt/"
+            rel="_blank"
+            >@laylatutt
+          </a><a href="https://www.instagram.com/laylatutt_art/" rel="_blank">
+            @laylatutt_art</a
+          >
         </p>
       </div>
     </div>

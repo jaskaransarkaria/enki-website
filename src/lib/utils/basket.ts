@@ -1,3 +1,4 @@
+import comingSoon from "$lib/assets/coming_soon.png";
 import type { BasketProduct } from "$lib/types/basketProduct";
 import type { Product } from "$lib/types/product";
 import { getImageFilename } from "$lib/utils/getImageFilename";
@@ -66,7 +67,7 @@ const addNewItemToBasket = (
     imgHash:
       product?.ProductImages?.length > 0
         ? getImageFilename(product.ProductImages[0].ImageUrl)
-        : "/coming-soon.png",
+        : comingSoon,
     price: product.SalePrice,
     currentStock: product.CurrentStock,
     giftWrap: false,
