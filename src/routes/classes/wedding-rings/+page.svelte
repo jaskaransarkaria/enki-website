@@ -1,9 +1,17 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import weddingBandsOneJpg from "$lib/assets/wedding_bands_1.jpg";
+  import weddingBandsTwoJpg from "$lib/assets/wedding_bands_2.jpg";
+  import weddingBandsThreeJpg from "$lib/assets/wedding_bands_3.jpg";
+  import weddingBandsFourJpg from "$lib/assets/wedding_bands_4.jpg";
+  import weddingBandsOneAvif from "$lib/assets/wedding_bands_1.avif";
+  import weddingBandsTwoAvif from "$lib/assets/wedding_bands_2.avif";
+  import weddingBandsThreeAvif from "$lib/assets/wedding_bands_3.avif";
+  import weddingBandsFourAvif from "$lib/assets/wedding_bands_4.avif";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;
@@ -21,19 +29,21 @@
         <SwipeImage
           imgArr={[
             {
-              src: `${PUBLIC_BUCKET_URL}/wedding_bands_1.jpg`,
+              src: isAvifSupported ? weddingBandsOneAvif : weddingBandsOneJpg,
               alt: "A man and a woman, the man is holding the rings in the palm of his hands",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/wedding_bands_2.jpg`,
+              src: isAvifSupported ? weddingBandsTwoAvif : weddingBandsTwoJpg,
               alt: "two women looking longingly into each other's eyes wearing their rings",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/wedding_bands_3.jpg`,
+              src: isAvifSupported
+                ? weddingBandsThreeAvif
+                : weddingBandsThreeJpg,
               alt: "enki jewellery ring boxes",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/wedding_bands_4.jpg`,
+              src: isAvifSupported ? weddingBandsFourAvif : weddingBandsFourJpg,
               alt: "a couple embracing whilst sporting the rings they made",
             },
           ]}
@@ -41,22 +51,22 @@
       {:else}
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/wedding_bands_1.jpg`}
+          src={isAvifSupported ? weddingBandsOneAvif : weddingBandsOneJpg}
           alt="A man and a woman, the man is holding the rings in the palm of his hands"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/wedding_bands_2.jpg`}
+          src={isAvifSupported ? weddingBandsTwoAvif : weddingBandsTwoJpg}
           alt="two women looking longingly into each other's eyes wearing their rings"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/wedding_bands_3.jpg`}
+          src={isAvifSupported ? weddingBandsThreeAvif : weddingBandsThreeJpg}
           alt="enki jewellery ring boxes"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/wedding_bands_4.jpg`}
+          src={isAvifSupported ? weddingBandsFourAvif : weddingBandsFourJpg}
           alt="a couple embracing whilst sporting the rings they made"
         />
       {/if}

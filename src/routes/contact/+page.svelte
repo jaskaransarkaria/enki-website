@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import maps from "$lib/assets/maps.png";
+  import telephone from "$lib/assets/telephone.png";
   import { fade } from "svelte/transition";
 </script>
 
@@ -18,7 +19,7 @@
     >
       <img
         in:fade={{ duration: 600 }}
-        src={`${PUBLIC_BUCKET_URL}/maps.png`}
+        src={maps}
         alt="hand drawn street map symbol with location pin"
         class="map"
       />
@@ -28,7 +29,7 @@
     </address>
     <img
       in:fade={{ duration: 600 }}
-      src={`${PUBLIC_BUCKET_URL}/telephone.png`}
+      src={telephone}
       alt="hand drawn old style home telephone with handset on top and dial around keys"
       class="telephone"
     />

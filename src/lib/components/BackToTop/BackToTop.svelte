@@ -1,5 +1,5 @@
 <script>
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import backToTopImg from "$lib/assets/back_to_top_3.png";
 
   export let showOnPx = 150;
   let hidden = true;
@@ -28,10 +28,7 @@
 <svelte:window on:scroll={handleOnScroll} />
 
 <button class="back-to-top" on:click={goTop} class:hidden
-  ><img
-    src={`${PUBLIC_BUCKET_URL}/back_to_top_3.png`}
-    alt="back to the top button"
-  /></button
+  ><img src={backToTopImg} alt="back to the top button" /></button
 >
 
 <style>

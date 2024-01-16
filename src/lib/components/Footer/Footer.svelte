@@ -1,7 +1,11 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import telephoneMobile from "$lib/assets/telephone.png";
+  import telephone from "$lib/assets/telephone_3.png";
+  import stripeBadgeWhite from "$lib/assets/stripe-badge-white.png";
+  import instaLogo from "$lib/assets/insta_logo_3.png";
+  import fbLogo from "$lib/assets/fb_logo_3.png";
   import github from "$lib/assets/github.png";
   import MailChimpSubscribe from "$lib/components/MailChimpSubscribe/MailChimpSubscribe.svelte";
 
@@ -17,7 +21,7 @@
         <img
           loading="lazy"
           class="footer-icons"
-          src={`${PUBLIC_BUCKET_URL}/telephone_3.png`}
+          src={telephone}
           alt="contact us"
         />
       </a>
@@ -29,7 +33,7 @@
         <img
           loading="lazy"
           class="footer-icons"
-          src={`${PUBLIC_BUCKET_URL}/insta_logo_3.png`}
+          src={instaLogo}
           alt="link to instagram"
         />
       </a>
@@ -41,7 +45,7 @@
         <img
           loading="lazy"
           class="footer-icons"
-          src={`${PUBLIC_BUCKET_URL}/fb_logo_3.png`}
+          src={fbLogo}
           alt="link to facebook"
         />
       </a>
@@ -70,13 +74,13 @@
         <div class="mobile-icons">
           <img
             class="mobile-footer-icons"
-            src={`${PUBLIC_BUCKET_URL}/telephone.png`}
+            src={telephoneMobile}
             alt="contact us"
             on:click={() => goto("/contact")}
           />
           <img
             class="mobile-footer-icons"
-            src={`${PUBLIC_BUCKET_URL}/insta_logo_3.png`}
+            src={instaLogo}
             alt="link to instagram"
             on:click={() =>
               (window.location.href =
@@ -84,7 +88,7 @@
           />
           <img
             class="mobile-footer-icons"
-            src={`${PUBLIC_BUCKET_URL}/fb_logo_3.png`}
+            src={fbLogo}
             alt="link to facebook"
             on:click={() =>
               (window.location.href =
@@ -115,7 +119,7 @@
           <img
             loading="lazy"
             class="trust-badge"
-            src="/stripe-badge-white.png"
+            src={stripeBadgeWhite}
             alt="stripe trust badge"
           />
         </a>

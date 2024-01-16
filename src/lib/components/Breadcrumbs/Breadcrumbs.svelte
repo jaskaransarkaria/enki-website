@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL, PUBLIC_SERVER_URL } from "$env/static/public";
+  import { PUBLIC_SERVER_URL } from "$env/static/public";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
+  import emptyHex from "$lib/assets/empty_hex_1.png";
   import { refreshCategories } from "$lib/utils/requests";
   import { readonlyAllCategories } from "$lib/stores/categories";
 
@@ -89,7 +90,7 @@
       data-testid="breadcrumb"
       on:click={async () => await handleBreadcrumbClick(breadcrumb)}
     >
-      <img src={`${PUBLIC_BUCKET_URL}/empty_hex_1.png`} alt="breadcrumb icon" />
+      <img src={emptyHex} alt="breadcrumb icon" />
       {breadcrumb.Name}
     </button>
   {/each}

@@ -1,5 +1,7 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import lowInStockTeal from "$lib/assets/low_in_stock_teal_1.png";
+  import outOfStockOrange from "$lib/assets/out_of_stock_orange.png";
   import comingSoon from "$lib/assets/coming_soon.png";
   import ImageLoader from "$lib/components/Image/ImageLoader.svelte";
   import DetailedSingleProduct from "$lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
@@ -56,7 +58,7 @@
         <div style:position="relative">
           <img
             class="low-in-stock-img"
-            src={`${PUBLIC_BUCKET_URL}/low_in_stock_teal_1.png`}
+            src={lowInStockTeal}
             alt="this product is low in stock"
           />
         </div>
@@ -65,7 +67,7 @@
         <div style:position="relative">
           <img
             class="low-in-stock-img"
-            src={`${PUBLIC_BUCKET_URL}/out_of_stock_orange.png`}
+            src={outOfStockOrange}
             alt="this product is out of stock"
           />
         </div>

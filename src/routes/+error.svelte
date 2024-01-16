@@ -1,6 +1,10 @@
+<script lang="ts">
+  import notFoundImg from "$lib/assets/404.png";
+</script>
+
 <div>
   <img
-    src="404.png"
+    src={notFoundImg}
     alt="scissors cutting string representing a 404 page not found"
   />
 </div>

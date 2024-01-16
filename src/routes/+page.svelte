@@ -3,7 +3,8 @@
   import { browser } from "$app/environment";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import {
-    DESKTOP_LANDING_PAGE,
+    DESKTOP_LANDING_PAGE_PNG,
+    DESKTOP_LANDING_PAGE_AVIF,
     MOBILE_ABOUT_US,
     MOBILE_CONTACT_US,
     MOBILE_JEWELLERY_SERVICES,
@@ -16,6 +17,7 @@
   import JewelleryServices from "$lib/components/Svg/JewelleryServices.svelte";
   import Classes from "$lib/components/Svg/Classes.svelte";
   import GiftGuide from "$lib/components/Svg/GiftGuide.svelte";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   $: outerWidth = 0;
   $: innerWidth = 0;
@@ -28,15 +30,19 @@
 <svelte:head>
   <title>{"Enki - Welcome!"}</title>
   <meta property="og:url" content="https://enkionline.com/" />
-  <meta property="og:image" content={DESKTOP_LANDING_PAGE} />
-  <link rel="preload" as="image" href={DESKTOP_LANDING_PAGE} />
+  <meta property="og:image" content={DESKTOP_LANDING_PAGE_PNG} />
+  <link rel="preload" as="image" href={DESKTOP_LANDING_PAGE_PNG} />
   <link rel="preload" as="image" href={MOBILE_LANDING_PAGE} />
 </svelte:head>
 
 {#if (browser && outerWidth > 0) || $page.data.whitelistedUserAgent}
   <figure
     class={isMobile ? "mobile-container" : "container"}
-    style:background-image={isMobile ? null : `url('${DESKTOP_LANDING_PAGE}')`}
+    style:background-image={isMobile
+      ? null
+      : `url('${
+          isAvifSupported ? DESKTOP_LANDING_PAGE_AVIF : DESKTOP_LANDING_PAGE_PNG
+        }')`}
     style:background-size={isMobile ? null : `cover`}
   >
     {#if isMobile}

@@ -25,10 +25,6 @@ test.describe("Footer", () => {
       "href",
       "https://stripe.com/docs/payments/cards/supported-card-brands"
     );
-    await expect(page.locator(".trust-badge")).toHaveAttribute(
-      "src",
-      "/stripe-badge-white.png"
-    );
 
     await page.locator(".footer-icons >> nth=0").click();
     await page.waitForURL("http://localhost:4000/contact");

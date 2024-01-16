@@ -1,13 +1,19 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import dora from "$lib/assets/dora_1.png";
   import faith from "$lib/assets/faith_1.png";
   import layla from "$lib/assets/layla.png";
   import ellis from "$lib/assets/ellis.png";
+  import leftEnkiJpg from "$lib/assets/left_enki.jpg";
+  import leftEnkiAvif from "$lib/assets/left_enki.avif";
+  import aboutShopJpg from "$lib/assets/about_shop_1.jpg";
+  import aboutShopAvif from "$lib/assets/about_shop_1.avif";
+  import rightEnkiJpg from "$lib/assets/right_enki.jpg";
+  import rightEnkiAvif from "$lib/assets/right_enki.avif";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;
@@ -26,15 +32,15 @@
         <SwipeImage
           imgArr={[
             {
-              src: `${PUBLIC_BUCKET_URL}/left_enki.jpg`,
+              src: isAvifSupported ? leftEnkiAvif : leftEnkiJpg,
               alt: "a rectangular wooden display inside the shop",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/about_shop_1.jpg`,
+              src: isAvifSupported ? aboutShopAvif : aboutShopJpg,
               alt: "the shop front and it's window display",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/right_enki.png`,
+              src: isAvifSupported ? rightEnkiAvif : rightEnkiJpg,
               alt: "a wooden jeweller's work bench inside the shop",
             },
           ]}
@@ -42,18 +48,18 @@
       {:else}
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/left_enki.jpg`}
+          src={isAvifSupported ? leftEnkiAvif : leftEnkiJpg}
           alt="a rectangular wooden display inside the shop"
         />
         <img
           in:fade={{ duration: 600 }}
           class="center-image"
-          src={`${PUBLIC_BUCKET_URL}/about_shop_1.jpg`}
+          src={isAvifSupported ? aboutShopAvif : aboutShopJpg}
           alt="the shop front and it's window display"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/right_enki.png`}
+          src={isAvifSupported ? rightEnkiAvif : rightEnkiJpg}
           alt="a wooden jeweller's work bench inside the shop"
         />
       {/if}

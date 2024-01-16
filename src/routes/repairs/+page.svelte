@@ -1,9 +1,21 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import servicesOneJpg from "$lib/assets/services_1.jpg";
+  import servicesTwoJpg from "$lib/assets/services_2.jpg";
+  import servicesThreeJpg from "$lib/assets/services_3.jpg";
+  import servicesFourJpg from "$lib/assets/services_4.jpg";
+  import servicesOneAvif from "$lib/assets/services_1.avif";
+  import servicesTwoAvif from "$lib/assets/services_2.avif";
+  import servicesThreeAvif from "$lib/assets/services_3.avif";
+  import servicesFourAvif from "$lib/assets/services_4.avif";
+  import nineCaret from "$lib/assets/9_carat.png";
+  import eighteenCaret from "$lib/assets/18_carat.png";
+  import platinum from "$lib/assets/platinum.png";
+  import silver from "$lib/assets/silver.png";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;
@@ -11,7 +23,7 @@
 
 <svelte:head>
   <title>{"Enki - Repairs"}</title>
-  <meta property="og:image" content={`${PUBLIC_BUCKET_URL}/services_4.jpg`} />
+  <meta property="og:image" content={servicesFourJpg} />
   <meta property="og:url" content="https://enkionline.com/repairs" />
 </svelte:head>
 
@@ -24,19 +36,19 @@
         <SwipeImage
           imgArr={[
             {
-              src: `${PUBLIC_BUCKET_URL}/services_1.jpg`,
+              src: isAvifSupported ? servicesOneAvif : servicesOneJpg,
               alt: "a ring being polished on a polishing machine",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/services_2.jpg`,
+              src: isAvifSupported ? servicesTwoAvif : servicesTwoJpg,
               alt: "a jewellery machine for pressing metal",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/services_4.jpg`,
+              src: isAvifSupported ? servicesFourAvif : servicesFourJpg,
               alt: "a medallion being heated with a blow touch",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/services_3.jpg`,
+              src: isAvifSupported ? servicesThreeAvif : servicesThreeJpg,
               alt: "some jewellery pliers and some jewellery being inspected",
             },
           ]}
@@ -45,23 +57,23 @@
         <img
           in:fade={{ duration: 600 }}
           class="extra-width"
-          src={`${PUBLIC_BUCKET_URL}/services_1.jpg`}
+          src={isAvifSupported ? servicesOneAvif : servicesOneJpg}
           alt="a ring being polished on a polishing machine"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/services_2.jpg`}
+          src={isAvifSupported ? servicesTwoAvif : servicesTwoJpg}
           alt="a jewellery machine for pressing metal"
         />
         <img
           in:fade={{ duration: 600 }}
           class="extra-width"
-          src={`${PUBLIC_BUCKET_URL}/services_3.jpg`}
+          src={isAvifSupported ? servicesThreeAvif : servicesThreeJpg}
           alt="some jewellery pliers and some jewellery being inspected"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/services_4.jpg`}
+          src={isAvifSupported ? servicesFourAvif : servicesFourJpg}
           alt="a medallion being heated with a blow touch"
         />
       {/if}
@@ -77,32 +89,32 @@
         </p>
         <div class="repairs-price-list">
           <a href="/repairs/silver-jewellery-price-list.pdf"
-            ><img alt="sliver repairs price list" src="/silver.png" /></a
+            ><img alt="sliver repairs price list" src={silver} /></a
           >
           <a href="/repairs/9ct-jewellery-price-list.pdf"
-            ><img alt="9ct gold repairs list" src="/9_carat.png" /></a
+            ><img alt="9ct gold repairs list" src={nineCaret} /></a
           >
           <a href="/repairs/18ct-jewellery-price-list.pdf"
-            ><img alt="18ct gold repairs list" src="/18_carat.png" /></a
+            ><img alt="18ct gold repairs list" src={eighteenCaret} /></a
           >
           <a href="/repairs/platinum-jewellery-price-list.pdf"
-            ><img alt="platinum repairs list" src="/platinum.png" /></a
+            ><img alt="platinum repairs list" src={platinum} /></a
           >
         </div>
       {:else}
         <div class="left-repair-content">
           <div class="repairs-price-list">
             <a href="/repairs/silver-jewellery-price-list.pdf"
-              ><img alt="sliver repairs price list" src="/silver.png" /></a
+              ><img alt="sliver repairs price list" src={silver} /></a
             >
             <a href="/repairs/9ct-jewellery-price-list.pdf"
-              ><img alt="9ct gold repairs list" src="/9_carat.png" /></a
+              ><img alt="9ct gold repairs list" src={nineCaret} /></a
             >
             <a href="/repairs/18ct-jewellery-price-list.pdf"
-              ><img alt="18ct gold repairs list" src="/18_carat.png" /></a
+              ><img alt="18ct gold repairs list" src={eighteenCaret} /></a
             >
             <a href="/repairs/platinum-jewellery-price-list.pdf"
-              ><img alt="platinum repairs list" src="/platinum.png" /></a
+              ><img alt="platinum repairs list" src={platinum} /></a
             >
           </div>
         </div>
