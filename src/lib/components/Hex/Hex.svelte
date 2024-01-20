@@ -2,6 +2,13 @@
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { fade } from "svelte/transition";
   import greySquare from "$lib/assets/grey_square.png";
+  import emptyHexFour from "$lib/assets/empty_hex_4.png";
+  import hexOne from "$lib/assets/hex_1.svg";
+  import hexTwo from "$lib/assets/hex_2.svg";
+  import hexThree from "$lib/assets/hex_3.svg";
+  import hexFour from "$lib/assets/hex_4.svg";
+  import hexFive from "$lib/assets/hex_5.svg";
+  import hexSix from "$lib/assets/hex_6.svg";
 
   import type { Category } from "$lib/types/category";
   import type { Tag } from "$lib/types/tag";
@@ -25,13 +32,15 @@
   let hexLoaded = false;
   let catImg = new Image();
   let hexImg = new Image();
+
+  const hexArr = [hexOne, hexTwo, hexThree, hexFour, hexFive, hexSix];
 </script>
 
 <div class="hex-in">
   {#if isEmpty}
     <div class="hex-link">
       <img
-        src={`${PUBLIC_BUCKET_URL}/empty_hex_4.png`}
+        src={emptyHexFour}
         alt="hexagon shape for the category button"
         data-testid="empty-hex"
       />
@@ -72,9 +81,7 @@
           />
         {/if}
         <img
-          src={`${PUBLIC_BUCKET_URL}/hex_${Math.floor(
-            Math.random() * (6 - 1 + 1) + 1
-          )}.svg`}
+          src={hexArr[Math.floor(Math.random() * 6)]}
           alt="hexagon shape for the category button"
           bind:this={hexImg}
           on:load={() => {

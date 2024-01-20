@@ -2,12 +2,16 @@
   // since there's no dynamic data here, we can prerender
   // it so that it gets served as a static asset in prod
   export const prerender = true;
+
+  import loyalty from "$lib/assets/useful_link_loyalty.png";
+  import insta from "$lib/assets/useful_link_insta.png";
+  import fb from "$lib/assets/useful_link_fb.png";
 </script>
 
 <div>
   <a href="https://app.loyalty.dog/l/ywUwKafuu" target="_blank" rel="noreferrer"
     ><img
-      src="useful_link_loyalty.png"
+      src={loyalty}
       alt="join our loyalty scheme, colourful blue and orange circle"
     /></a
   >
@@ -17,23 +21,17 @@
     rel="noreferrer"
   >
     <img
-      src="useful_link_insta.png"
+      src={insta}
       alt="find our instagram profile here, colourful blue and orange circle"
     />
   </a>
-  <!-- <a href="https://random.com" target="_blank" rel="noreferrer"> -->
-  <!--   <img -->
-  <!--     src="useful_link_newsletter.png" -->
-  <!--     alt="signup to our newsletter here, colourful blue and orange circle" -->
-  <!--   /> -->
-  <!-- </a> -->
   <a
     href="https://www.facebook.com/Enki-1665334930147391"
     target="_blank"
     rel="noreferrer"
   >
     <img
-      src="useful_link_fb.png"
+      src={fb}
       alt="find our facebook page here, colourful blue and orange circle"
     />
   </a>

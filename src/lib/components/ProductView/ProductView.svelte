@@ -1,14 +1,20 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { beforeUpdate } from "svelte";
   import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
   import { groupBy } from "lodash-es";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
+  import giftWrapOneJpg from "$lib/assets/gift-wrap-1.jpeg";
+  import giftWrapTwoJpg from "$lib/assets/gift-wrap-2.jpeg";
+  import giftWrapThreeJpg from "$lib/assets/gift-wrap-3.jpeg";
+  import giftWrapOneAvif from "$lib/assets/gift-wrap-1.avif";
+  import giftWrapTwoAvif from "$lib/assets/gift-wrap-2.avif";
+  import giftWrapThreeAvif from "$lib/assets/gift-wrap-3.avif";
 
   import type { Category } from "$lib/types/category";
   import type { Product } from "$lib/types/product";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   enum ItemType {
     VARIANT_PRODUCT = "VARIANT_PRODUCT",
@@ -191,7 +197,7 @@
               <div class="img-container">
                 <img
                   data-testid="gift-imgs"
-                  src={`${PUBLIC_BUCKET_URL}/gift-wrap-1.jpeg`}
+                  src={isAvifSupported ? giftWrapOneAvif : giftWrapOneJpg}
                   alt="the inside of a card with happy birthday written out"
                 />
                 <p>
@@ -203,7 +209,7 @@
               <div class="img-container">
                 <img
                   data-testid="gift-imgs"
-                  src={`${PUBLIC_BUCKET_URL}/gift-wrap-2.jpeg`}
+                  src={isAvifSupported ? giftWrapTwoAvif : giftWrapTwoJpg}
                   alt="some gifts wrapped with colourful wrapping paper and pink and green ribbon"
                 />
                 <p>
@@ -216,7 +222,7 @@
               <div class="img-container">
                 <img
                   data-testid="gift-imgs"
-                  src={`${PUBLIC_BUCKET_URL}/gift-wrap-3.jpeg`}
+                  src={isAvifSupported ? giftWrapThreeAvif : giftWrapThreeJpg}
                   alt="some gifts wrapped with brown paper wrapping paper and yellow and green ribbon"
                 />
                 <p>

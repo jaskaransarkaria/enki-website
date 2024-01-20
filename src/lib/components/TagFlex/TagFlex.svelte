@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
 
-  import type { BaseFn } from "$lib/types/base";
+  import featuredOne from "$lib/assets/featured_1.png";
   import type { Tag } from "$lib/types/tag";
 
   export let data: Tag[] = [];
@@ -15,7 +15,7 @@
       href={`/shop/tag/${tag.Name.toLowerCase()}?catid=0&tagid=${tag.Id}`}
     >
       <img
-        src="/featured_1.png"
+        src={featuredOne}
         alt="shape for the tag button"
         in:fade={{ duration: 800 }}
       />

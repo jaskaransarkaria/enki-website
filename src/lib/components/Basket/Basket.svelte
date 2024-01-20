@@ -3,6 +3,7 @@
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
   import { basket } from "$lib/stores/basket";
+  import basketEmpty from "$lib/assets/basket_empty.png";
   import BasketCounter from "$lib/components/BasketCounter/BasketCounter.svelte";
   import Checkout from "$lib/components/Checkout/Checkout.svelte";
 
@@ -146,7 +147,7 @@
     <img
       in:fade={{ delay: 600 }}
       class="empty-basket"
-      src="/basket_empty.png"
+      src={basketEmpty}
       alt="cartoon of an empty basket"
     />
   {/if}

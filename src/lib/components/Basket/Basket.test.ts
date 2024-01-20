@@ -39,7 +39,7 @@ describe("GIVEN AddToBasket", () => {
       render(Basket);
       expect(
         screen.queryByAltText("cartoon of an empty basket")
-      ).toHaveAttribute("src", "/basket_empty.png");
+      ).toHaveAttribute("src", "/src/lib/assets/basket_empty.png");
     });
 
     it("THEN display the correct total when there are multiple items in the basket", () => {
@@ -85,7 +85,7 @@ describe("GIVEN AddToBasket", () => {
       await userEvent.click(screen.getByText("-"));
       expect(
         screen.queryByAltText("cartoon of an empty basket")
-      ).toHaveAttribute("src", "/basket_empty.png");
+      ).toHaveAttribute("src", "/src/lib/assets/basket_empty.png");
     });
 
     it("THEN add gift wrapping to a product in the basket", async () => {

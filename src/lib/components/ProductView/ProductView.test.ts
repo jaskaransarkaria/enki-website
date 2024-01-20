@@ -166,21 +166,21 @@ describe("GIVEN ProductView", () => {
 
       expect(giftImages[0]).toHaveAttribute(
         "src",
-        "https://storage.googleapis.com/enki-website/gift-wrap-1.jpeg"
+        "/src/lib/assets/gift-wrap-1.avif"
       );
       expect(
         screen.getByText("Select which gifts", { exact: false })
       ).toBeInTheDocument();
       expect(giftImages[1]).toHaveAttribute(
         "src",
-        "https://storage.googleapis.com/enki-website/gift-wrap-2.jpeg"
+        "/src/lib/assets/gift-wrap-2.avif"
       );
       expect(
         screen.getByText("To make your gift extra special", { exact: false })
       ).toBeInTheDocument();
       expect(giftImages[2]).toHaveAttribute(
         "src",
-        "https://storage.googleapis.com/enki-website/gift-wrap-3.jpeg"
+        "/src/lib/assets/gift-wrap-3.avif"
       );
       expect(
         screen.getByText("There's also a space", { exact: false })

@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { onMount } from "svelte";
   import { reset as resetBasketStore } from "$lib/stores/basket";
+  import thankYouPng from "$lib/assets/thank_you_page.png";
+  import thankYouAvif from "$lib/assets/thank_you_page.avif";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   onMount(() => {
     resetBasketStore();
@@ -15,7 +17,7 @@
 <h1>Thank you for your purchase</h1>
 <div class="container">
   <img
-    src={`${PUBLIC_BUCKET_URL}/thank_you_page`}
+    src={isAvifSupported ? thankYouAvif : thankYouPng}
     alt="thank you for you purchase, a lady carrying lots of colourful gifts"
   />
 </div>

@@ -6,6 +6,13 @@
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import Hex from "$lib/components/Hex/Hex.svelte";
   import { fade } from "svelte/transition";
+  import classesExampleOneJpg from "$lib/assets/classes_example_1.jpg";
+  import classesExampleTwoJpg from "$lib/assets/classes_example_2.jpg";
+  import classesExampleThreeJpg from "$lib/assets/classes_example_3.jpg";
+  import classesExampleOneAvif from "$lib/assets/classes_example_1.avif";
+  import classesExampleTwoAvif from "$lib/assets/classes_example_2.avif";
+  import classesExampleThreeAvif from "$lib/assets/classes_example_3.avif";
+  import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   let ttWidget: HTMLElement;
   let widgetLoaded = false;
@@ -41,15 +48,21 @@
         <SwipeImage
           imgArr={[
             {
-              src: `${PUBLIC_BUCKET_URL}/classes_example_1.jpg`,
+              src: isAvifSupported
+                ? classesExampleOneAvif
+                : classesExampleOneJpg,
               alt: "A group photo with everyone showing their jewellery",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/classes_example_2.jpg`,
+              src: isAvifSupported
+                ? classesExampleTwoAvif
+                : classesExampleTwoJpg,
               alt: "Everyone in the class are wearing their rings and arranged their hands into a circle for the picture",
             },
             {
-              src: `${PUBLIC_BUCKET_URL}/classes_example_3.jpg`,
+              src: isAvifSupported
+                ? classesExampleThreeAvif
+                : classesExampleThreeJpg,
               alt: "the jeweller's table",
             },
           ]}
@@ -57,17 +70,19 @@
       {:else}
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/classes_example_1.jpg`}
+          src={isAvifSupported ? classesExampleOneAvif : classesExampleOneJpg}
           alt="A man and a woman, the man is holding the rings in the palm of his hands"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/classes_example_2.jpg`}
+          src={isAvifSupported ? classesExampleTwoAvif : classesExampleTwoJpg}
           alt="two women looking longingly into each other's eyes wearing their rings"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={`${PUBLIC_BUCKET_URL}/classes_example_3.jpg`}
+          src={isAvifSupported
+            ? classesExampleThreeAvif
+            : classesExampleThreeJpg}
           alt="enki jewellery ring boxes"
         />
       {/if}
