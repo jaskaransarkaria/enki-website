@@ -2,17 +2,22 @@
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
-  import {
-    DESKTOP_LANDING_PAGE_PNG,
-    DESKTOP_LANDING_PAGE_AVIF,
-    MOBILE_ABOUT_US,
-    MOBILE_CONTACT_US,
-    MOBILE_JEWELLERY_SERVICES,
-    MOBILE_ONLINE_SHOP,
-    MOBILE_GIFT_GUIDE,
-    MOBILE_LANDING_PAGE,
-    MOBILE_JEWELLERY_CLASSES,
-  } from "$lib/utils/consts";
+  import mobileGiftGuideAvif from "$lib/assets/mobile_gift_guide_1.avif";
+  import mobileAboutUsAvif from "$lib/assets/mobile_about_us_3.avif";
+  import mobileContactUsAvif from "$lib/assets/mobile_contact_us_3.avif";
+  import mobileJewelleryRepairsAvif from "$lib/assets/mobile_jewellery_repairs_3.avif";
+  import mobileJewelleryClassesAvif from "$lib/assets/mobile_jewellery_classes_3.avif";
+  import mobileOnlineShopAvif from "$lib/assets/mobile_online_shop_3.avif";
+  import mobileLandingPageAvif from "$lib/assets/mobile_landing_page_2.avif";
+  import mobileGiftGuidePng from "$lib/assets/mobile_gift_guide_1.png";
+  import mobileAboutUsPng from "$lib/assets/mobile_about_us_3.png";
+  import mobileContactUsPng from "$lib/assets/mobile_contact_us_3.png";
+  import mobileJewelleryRepairsPng from "$lib/assets/mobile_jewellery_repairs_3.png";
+  import mobileJewelleryClassesPng from "$lib/assets/mobile_jewellery_classes_3.png";
+  import mobileOnlineShopPng from "$lib/assets/mobile_online_shop_3.png";
+  import mobileLandingPagePng from "$lib/assets/mobile_landing_page_2.png";
+  import desktopLandingPagePng from "$lib/assets/inside_enki_desktop_4.png";
+  import desktopLandingPageAvif from "$lib/assets/inside_enki_desktop_4.avif";
   import OnlineShop from "$lib/components/Svg/OnlineShop.svelte";
   import JewelleryServices from "$lib/components/Svg/JewelleryServices.svelte";
   import Classes from "$lib/components/Svg/Classes.svelte";
@@ -30,9 +35,9 @@
 <svelte:head>
   <title>{"Enki - Welcome!"}</title>
   <meta property="og:url" content="https://enkionline.com/" />
-  <meta property="og:image" content={DESKTOP_LANDING_PAGE_PNG} />
-  <link rel="preload" as="image" href={DESKTOP_LANDING_PAGE_PNG} />
-  <link rel="preload" as="image" href={MOBILE_LANDING_PAGE} />
+  <meta property="og:image" content={desktopLandingPagePng} />
+  <link rel="preload" as="image" href={desktopLandingPagePng} />
+  <link rel="preload" as="image" href={mobileLandingPagePng} />
 </svelte:head>
 
 {#if (browser && outerWidth > 0) || $page.data.whitelistedUserAgent}
@@ -41,14 +46,14 @@
     style:background-image={isMobile
       ? null
       : `url('${
-          isAvifSupported ? DESKTOP_LANDING_PAGE_AVIF : DESKTOP_LANDING_PAGE_PNG
+          isAvifSupported ? desktopLandingPageAvif : desktopLandingPagePng
         }')`}
     style:background-size={isMobile ? null : `cover`}
   >
     {#if isMobile}
       <img
         class="parallax-inside-shop"
-        src={MOBILE_LANDING_PAGE}
+        src={isAvifSupported ? mobileLandingPageAvif : mobileLandingPagePng}
         alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
       />
       <ScrollDown />
@@ -56,42 +61,46 @@
         <a data-sveltekit-preload-data href="/shop">
           <img
             class="mobile-online-shop-img"
-            src={MOBILE_ONLINE_SHOP}
+            src={isAvifSupported ? mobileOnlineShopAvif : mobileOnlineShopPng}
             alt="online shop button"
           />
         </a>
         <a data-sveltekit-preload-data href="/gift-guide">
           <img
             class="mobile-gift-guide-img"
-            src={MOBILE_GIFT_GUIDE}
+            src={isAvifSupported ? mobileGiftGuideAvif : mobileGiftGuidePng}
             alt="gift guide button"
           />
         </a>
         <a data-sveltekit-preload-data href="/repairs">
           <img
             class="mobile-repairs-and-comms-img"
-            src={MOBILE_JEWELLERY_SERVICES}
+            src={isAvifSupported
+              ? mobileJewelleryRepairsAvif
+              : mobileJewelleryRepairsPng}
             alt="jewellery services button"
           />
         </a>
         <a data-sveltekit-preload-data href="/classes">
           <img
             class="mobile-classes-img"
-            src={MOBILE_JEWELLERY_CLASSES}
+            src={isAvifSupported
+              ? mobileJewelleryClassesAvif
+              : mobileJewelleryClassesPng}
             alt="classes button"
           />
         </a>
         <a data-sveltekit-preload-data href="/contact">
           <img
             class="mobile-contact-us-img"
-            src={MOBILE_CONTACT_US}
+            src={isAvifSupported ? mobileContactUsAvif : mobileContactUsPng}
             alt="contact us button"
           />
         </a>
         <a data-sveltekit-preload-data href="/about">
           <img
             class="mobile-about-us-img"
-            src={MOBILE_ABOUT_US}
+            src={isAvifSupported ? mobileAboutUsAvif : mobileAboutUsPng}
             alt="about us button"
           />
         </a>
