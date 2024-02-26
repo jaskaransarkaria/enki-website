@@ -1,7 +1,6 @@
 <script lang="ts">
   import dora from "$lib/assets/dora_1.png";
   import faith from "$lib/assets/faith_1.png";
-  import layla from "$lib/assets/layla.png";
   import ellis from "$lib/assets/ellis.png";
   import leftEnkiJpg from "$lib/assets/left_enki.jpg";
   import leftEnkiAvif from "$lib/assets/left_enki.avif";
@@ -86,9 +85,8 @@
         <p>
           Faith started Enki in 2017 in a small shop not far from the current
           location. She is a jeweller with over ten years of experience who
-          specialises in repairing antique jewellery. She is currently on
-          maternity leave looking after her daughter Ishaani but will be back in
-          April.
+          specialises in repairing antique jewellery. She's at the shop on
+          Mondays and Fridays.
         </p>
       </div>
       <div class="card">
@@ -115,26 +113,7 @@
           artist and designer in the city too. You can find their work at
           <a href="https://www.instagram.com/ellismilesdesigner/" rel="_blank"
             >@ellismilesdesigner</a
-          > on Instagram, and you can find them at Enki Sundays and Mondays!
-        </p>
-      </div>
-      <div class="card">
-        <img
-          in:fade={{ duration: 600 }}
-          src={layla}
-          alt="Tuesday / Wednesday shop keeper cartoon"
-        />
-        <p>
-          Layla joined Enki in 2023 and enjoys taking photos of our gifts and
-          getting them out online! She is an artist specialising in batik and a
-          musician playing rock n’ roll! You can find her at Enki on Tuesdays
-          and Wednesdays. <a
-            href="https://www.instagram.com/laylatutt/"
-            rel="_blank"
-            >@laylatutt
-          </a><a href="https://www.instagram.com/laylatutt_art/" rel="_blank">
-            @laylatutt_art</a
-          >
+          > on Instagram, and they work at Enki on Sundays, Mondays and Tuesdays!
         </p>
       </div>
     </div>
