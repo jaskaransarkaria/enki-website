@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { page } from "$app/stores";
-  import { browser } from "$app/environment";
+  import { browser, dev } from "$app/environment";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import mobileGiftGuideAvif from "$lib/assets/mobile_gift_guide_1.avif";
   import mobileAboutUsAvif from "$lib/assets/mobile_about_us_3.avif";
@@ -23,6 +24,29 @@
   import Classes from "$lib/components/Svg/Classes.svelte";
   import GiftGuide from "$lib/components/Svg/GiftGuide.svelte";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import Modal from "$lib/components/Modal/Modal.svelte";
+  import NewsletterSignup from "$lib/components/NewsletterSignup/NewsletterSignup.svelte";
+  import {
+    isSignedUp,
+    modalDismissedCount,
+    NEWSLETTER_DISMISS_LIMIT,
+  } from "$lib/stores/newsletterModal";
+
+  let showModal: boolean;
+  let visible: number = 0;
+  let timeout = 1000;
+
+  onMount(() => {
+    setTimeout(() => {
+      if (
+        ($modalDismissedCount < NEWSLETTER_DISMISS_LIMIT && !$isSignedUp) ||
+        dev
+      ) {
+        visible = 2;
+        showModal = true;
+      }
+    }, timeout);
+  });
 
   $: outerWidth = 0;
   $: innerWidth = 0;
@@ -50,6 +74,19 @@
         }')`}
     style:background-size={isMobile ? null : `cover`}
   >
+    <Modal
+      {isMobile}
+      cssClass="home-modal"
+      containerClass="home-mobile-show-modal"
+      showCross
+      bind:showModal
+      bind:visible
+      onCloseFn={() => {
+        modalDismissedCount.set(($modalDismissedCount += 1));
+      }}
+    >
+      <NewsletterSignup />
+    </Modal>
     {#if isMobile}
       <img
         class="parallax-inside-shop"

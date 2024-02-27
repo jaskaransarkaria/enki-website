@@ -10,7 +10,7 @@ export const clickOutside: (
   }: {
     target: HTMLElement;
   }) => {
-    if (!node.contains(target)) {
+    if (!node.contains(target) && target.id !== "mc-embedded-subscribe") {
       cb();
     }
   };

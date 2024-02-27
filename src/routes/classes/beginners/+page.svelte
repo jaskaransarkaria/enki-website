@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
