@@ -9,22 +9,20 @@
 
 <div id="mc_embed_signup">
   <form
-    action="https://enkionline.us7.list-manage.com/subscribe/post?u=e1b4cd47e0fcd668196954f5e&amp;id=8e91d212c7"
-    method="post"
     id="mc-embedded-subscribe-form"
     name="mc-embedded-subscribe-form"
     class="validate"
     novalidate
     bind:this={mcForm}
-    on:submit={async () => {
+    on:submit={async (e) => {
+      e.preventDefault();
       onSignupFn(mcEmailInput);
-      mcForm.submit();
-      setTimeout(() => {
-        window.open(
-          "https://enkionline.us7.list-manage.com/subscribe/post?u=e1b4cd47e0fcd668196954f5e&amp;id=8e91d212c7",
-          "_blank"
-        );
-      }, 800);
+      let formData = new FormData();
+      formData.append("EMAIL", mcEmailInput);
+      await fetch(
+        "https://enkionline.us7.list-manage.com/subscribe/post?u=e1b4cd47e0fcd668196954f5e&amp;id=8e91d212c7",
+        { method: "post", body: formData, mode: "no-cors" }
+      );
     }}
   >
     <div id="mc_embed_signup_scroll">
