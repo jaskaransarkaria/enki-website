@@ -1,11 +1,10 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import comingSoon from "$lib/assets/coming_soon.png";
-  import { clickOutside } from "$lib/utils/clickOutside";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
-  import MobileClose from "$lib/components/MobileClose/MobileClose.svelte";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { getImageFilename } from "$lib/utils/getImageFilename";
+  import Modal from "$lib/components/Modal/Modal.svelte";
 
   import type { Product } from "$lib/types/product";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
@@ -17,13 +16,6 @@
   const formattedProductDescription = productDescription
     .split(/\n|\r\n/g)
     .map((v: string) => ({ text: v }));
-
-  const handleWindowKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      showFullScreen = false;
-      visible = 0;
-    }
-  };
 
   const createImgArr = (product: Product): { src: string; alt: string }[] =>
     product?.ProductImages?.length
@@ -44,26 +36,10 @@
           },
         ];
 
-  let showFullScreen = false;
+  let showModal = false;
   let clientWidth: number = 0;
-  let visible = 0;
-
-  $: outerHeight = 0;
-  $: outerWidth = 0;
-  $: innerWidth = 0;
 </script>
 
-<svelte:window
-  bind:outerHeight
-  bind:outerWidth
-  bind:innerWidth
-  on:keydown={handleWindowKeyDown}
-  on:click={() => {
-    if (showFullScreen) {
-      visible += 1;
-    }
-  }}
-/>
 {#if isMobile}
   <div class="details-container">
     {#if product.ProductImages}
@@ -72,8 +48,7 @@
         data-testid="mobile-img-container"
         style:width={clientWidth ? clientWidth + "px" : "90vw"}
         on:click={() => {
-          showFullScreen = true;
-          visible += 1;
+          showModal = true;
           window.scrollTo(0, 0);
         }}
       >
@@ -107,8 +82,7 @@
         class="desktop-img-container"
         data-testid="desktop-img-container"
         on:click={() => {
-          showFullScreen = true;
-          visible += 1;
+          showModal = true;
           window.scrollTo(0, 0);
         }}
       >
@@ -134,35 +108,10 @@
     </div>
   </div>
 {/if}
-{#if showFullScreen}
-  <div class="full-screen" data-testid="full-screen">
-    <div
-      class="img-view"
-      use:clickOutside={{
-        enabled: showFullScreen && visible > 1,
-        cb: () => {
-          showFullScreen = false;
-          visible = 0;
-        },
-      }}
-    >
-      {#if isMobile}
-        <MobileClose
-          cb={() => {
-            showFullScreen = false;
-            visible = 0;
-          }}
-          bind:bool={showFullScreen}
-          positionOverride="top: 1%; left: 2%"
-        />
-        <SwipeImage imgArr={createImgArr(product)} setImgWidth />
-      {:else}
-        <div class="full-screen-img-view">
-          <SwipeImage imgArr={createImgArr(product)} setImgWidth fullScreen />
-        </div>
-      {/if}
-    </div>
-  </div>
+{#if showModal}
+  <Modal {isMobile} showFullScreen={true} bind:showModal>
+    <SwipeImage imgArr={createImgArr(product)} />
+  </Modal>
 {/if}
 
 <style>
@@ -195,41 +144,6 @@
     justify-self: auto;
     text-align: center;
     cursor: auto;
-  }
-
-  .img-view {
-    position: relative;
-    display: flex;
-    background: white;
-    justify-content: center;
-    box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
-    border-radius: 0.25em;
-    margin: 4%;
-    height: 100%;
-    width: 100%;
-    top: 50%;
-    align-items: center;
-    transform: translateY(-50%);
-  }
-
-  .full-screen {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    z-index: 101;
-    height: 100vh;
-    width: 100vw;
-    backdrop-filter: blur(2.5px);
-  }
-
-  .full-screen-img-view {
-    display: flex;
-    width: 65%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
   }
 
   .detailed-products-footer {
@@ -342,16 +256,6 @@
       height: 100%;
       margin: 2em;
       margin-top: 4%;
-    }
-
-    .full-screen {
-      position: absolute;
-    }
-
-    .img-view {
-      width: 65vw;
-      height: 40vw;
-      top: 40%;
     }
   }
 

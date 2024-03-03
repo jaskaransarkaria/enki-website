@@ -3,6 +3,8 @@ import { expect, test } from "@playwright/test";
 test.describe("Back to the top button", () => {
   test("shows back to top", async ({ page }) => {
     await page.goto("/");
+    await page.keyboard.press("Escape");
+
     await expect(
       page.isHidden("button >> img[alt='back to the top button']")
     ).toBeTruthy();

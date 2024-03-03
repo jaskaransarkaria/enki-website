@@ -3,7 +3,9 @@ import { expect, test } from "@playwright/test";
 test.describe("Footer", () => {
   test("shows mobile footer", async ({ page }) => {
     await page.setViewportSize({ width: 350, height: 900 });
+
     await page.goto("/");
+    await page.keyboard.press("Escape");
     await expect(page.locator(".mobile-footer-icons")).toHaveCount(4);
     await expect(page.locator("h3")).toHaveText(
       "Want to be the first to find out about new products and classes?"
@@ -14,6 +16,7 @@ test.describe("Footer", () => {
   test("shows desktop footer", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 2400 });
     await page.goto("/");
+    await page.keyboard.press("Escape");
     await expect(page.locator(".footer-icons")).toHaveCount(4);
     await expect(page.locator("h3")).toHaveText(
       "Want to be the first to find out about new products and classes?"
