@@ -1,4 +1,5 @@
 <script lang="ts">
+  import confetti from "canvas-confetti";
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
   import telephoneMobile from "$lib/assets/telephone.png";
@@ -7,7 +8,23 @@
   import instaLogo from "$lib/assets/insta_logo_3.png";
   import fbLogo from "$lib/assets/fb_logo_3.png";
   import github from "$lib/assets/github.png";
+  import { isSignedUp } from "$lib/stores/newsletterModal";
   import MailChimpSubscribe from "$lib/components/MailChimpSubscribe/MailChimpSubscribe.svelte";
+
+  const signupFn = (input: string) => {
+    if (input.includes("@")) {
+      confetti({
+        angle: 0,
+        particleCount: 100,
+        startVelocity: 30,
+        shapes: ["circle", "circle", "square", "star"],
+        spread: 360,
+        drift: 0,
+        zIndex: 999,
+      });
+      isSignedUp.set(true);
+    }
+  };
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;
@@ -65,8 +82,14 @@
     </div>
   {/if}
   <div class="centre-container">
-    <h3>Want to be the first to find out about new products and classes?</h3>
-    <MailChimpSubscribe />
+    {#if !$isSignedUp}
+      <div out:fade={{ duration: 1000 }}>
+        <h3>
+          Want to be the first to find out about new products and classes?
+        </h3>
+        <MailChimpSubscribe onSignupFn={signupFn} />
+      </div>
+    {/if}
     {#if isMobile}
       <div class="mobile-footer">
         <a href="/terms-and-conditions">Terms and conditions</a>
