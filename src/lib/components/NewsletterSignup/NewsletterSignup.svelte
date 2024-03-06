@@ -6,8 +6,10 @@
   import MailChimpSubscribe from "../MailChimpSubscribe/MailChimpSubscribe.svelte";
   import { isSignedUp } from "$lib/stores/newsletterModal";
   import { PUBLIC_SERVER_URL } from "$env/static/public";
+  import { stringify } from "fp-ts/lib/Json";
 
   let promoCopied = false;
+  let mcEmailInput = "";
 
   const signupFn = (input: string) => {
     if (input.includes("@")) {
@@ -24,8 +26,15 @@
     }
   };
 
-  const getPromoCode = async () => {
-    const res = await fetch(`${PUBLIC_SERVER_URL}/get-promo-code`);
+  const getPromoCode = async (email) => {
+    const res = await fetch(
+      `${PUBLIC_SERVER_URL}/get-promo-code?email=${encodeURIComponent(email)}`
+    );
+
+    if (res.status === 403) {
+      throw new Error(email + " has already redeemed a newsletter coupon");
+    }
+
     return res.text();
   };
 
@@ -44,7 +53,7 @@
     <h2>Sign up and save 10% off your first online purchase!</h2>
   {/if}
   {#if $isSignedUp}
-    {#await getPromoCode()}
+    {#await getPromoCode(mcEmailInput)}
       <h1>...waiting</h1>
     {:then promoCode}
       <h1 in:fade={{ duration: 500 }}>
@@ -57,10 +66,10 @@
         <h3>code copied to clipboard</h3>
       {/if}
     {:catch error}
-      <p style="color: red">{error.message}</p>
+      <h4>{error.message}</h4>
     {/await}
   {:else}
-    <MailChimpSubscribe onSignupFn={signupFn} />
+    <MailChimpSubscribe onSignupFn={signupFn} bind:mcEmailInput />
   {/if}
 </div>
 
@@ -79,7 +88,8 @@
   }
 
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: "Caviar Dreams";
     color: black;
   }

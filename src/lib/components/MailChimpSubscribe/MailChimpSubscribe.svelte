@@ -1,7 +1,7 @@
 <script lang="ts">
   export let onSignupFn = (email) => {};
 
-  let mcEmailInput = "";
+  export let mcEmailInput = "";
   let mcForm: HTMLFormElement;
 </script>
 
