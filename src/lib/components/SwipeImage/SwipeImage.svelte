@@ -73,7 +73,7 @@
   }
 
   img {
-    max-width: 95%;
+    max-width: 80%;
     max-height: 95%;
     animation: fadeIn 0.6s;
   }

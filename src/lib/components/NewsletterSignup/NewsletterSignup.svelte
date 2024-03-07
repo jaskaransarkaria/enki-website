@@ -104,6 +104,8 @@
 
   .promo {
     position: relative;
+    font-family: "Welcomehome5 Regular";
+    font-size: 0.6em;
     padding-bottom: 3%;
     border-bottom: 8px solid #ff6600;
   }
@@ -119,6 +121,10 @@
   }
 
   @media (min-width: 700px) {
+    .promo {
+      font-size: 0.8em;
+    }
+
     h1 {
       font-size: 2.8em;
     }
@@ -138,6 +144,10 @@
   }
 
   @media (min-width: 1280px) {
+    .promo {
+      font-size: 1em;
+    }
+
     h1 {
       font-size: 2.8em;
     }

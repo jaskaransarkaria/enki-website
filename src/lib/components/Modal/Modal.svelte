@@ -81,7 +81,7 @@
     border-radius: 0.25em;
     margin: 4%;
     height: 100%;
-    width: 100%;
+    width: 85%;
     top: 50%;
     align-items: center;
     transform: translateY(-50%);
