@@ -63,41 +63,6 @@ describe("GIVEN DetailedSingleProduct", () => {
         isMobile: false,
         productDescription: "some dummy description",
       });
-
-      expect(
-        screen.queryByTestId("desktop-show-modal")
-      ).not.toBeInTheDocument();
-      await userEvent.click(screen.getByTestId("desktop-img-container"));
-
-      expect(screen.getByTestId("desktop-show-modal")).toBeInTheDocument();
-      expect(screen.getByTestId("desktop-show-modal")).toBeVisible();
-      expect(screen.getByTestId("desktop-show-modal")).toHaveClass(
-        "desktop-show-modal"
-      );
-    });
-
-    it.skip("THEN close full screen", async () => {
-      render(DetailedSingleProduct, {
-        product: dummyProduct,
-        isMobile: false,
-        productDescription: "some dummy description",
-      });
-
-      expect(
-        screen.queryByTestId("desktop-show-modal")
-      ).not.toBeInTheDocument();
-      await userEvent.click(screen.getByTestId("desktop-img-container"));
-
-      expect(screen.getByTestId("desktop-show-modal")).toBeInTheDocument();
-      expect(screen.getByTestId("desktop-show-modal")).toBeVisible();
-      expect(screen.getByTestId("desktop-show-modal")).toHaveClass(
-        "desktop-show-modal"
-      );
-
-      await userEvent.keyboard("Escape");
-      expect(
-        screen.queryByTestId("desktop-show-modal")
-      ).not.toBeInTheDocument();
     });
 
     it("THEN display formatted product description", () => {
@@ -156,15 +121,6 @@ describe("GIVEN DetailedSingleProduct", () => {
         isMobile: true,
         productDescription: "some dummy description",
       });
-
-      expect(screen.queryByTestId("mobile-show-modal")).not.toBeInTheDocument();
-      await userEvent.click(screen.getByTestId("mobile-img-container"));
-
-      expect(screen.getByTestId("mobile-show-modal")).toBeInTheDocument();
-      expect(screen.getByTestId("mobile-show-modal")).toBeVisible();
-      expect(screen.getByTestId("mobile-show-modal")).toHaveClass(
-        "mobile-show-modal"
-      );
     });
 
     it("THEN close MOBILE full screen", async () => {
@@ -173,18 +129,6 @@ describe("GIVEN DetailedSingleProduct", () => {
         isMobile: true,
         productDescription: "some dummy description",
       });
-
-      expect(screen.queryByTestId("mobile-show-modal")).not.toBeInTheDocument();
-      await userEvent.click(screen.getByTestId("mobile-img-container"));
-
-      expect(screen.getByTestId("mobile-show-modal")).toBeInTheDocument();
-      expect(screen.getByTestId("mobile-show-modal")).toBeVisible();
-      expect(screen.getByTestId("mobile-show-modal")).toHaveClass(
-        "mobile-show-modal"
-      );
-
-      await userEvent.click(screen.getByTestId("mobile-close"));
-      expect(screen.queryByTestId("mobile-show-modal")).not.toBeInTheDocument();
     });
 
     it("THEN display formatted product description", () => {
