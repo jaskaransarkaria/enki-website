@@ -4,7 +4,6 @@
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { getImageFilename } from "$lib/utils/getImageFilename";
-  import Modal from "$lib/components/Modal/Modal.svelte";
 
   import type { Product } from "$lib/types/product";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
@@ -36,7 +35,6 @@
           },
         ];
 
-  let showModal = false;
   let clientWidth: number = 0;
 </script>
 
@@ -47,10 +45,6 @@
         class="mobile-img-container"
         data-testid="mobile-img-container"
         style:width={clientWidth ? clientWidth + "px" : "90vw"}
-        on:click={() => {
-          showModal = true;
-          window.scrollTo(0, 0);
-        }}
       >
         <SwipeImage imgArr={createImgArr(product)} />
       </div>
@@ -78,14 +72,7 @@
 {:else}
   <div class="details-container">
     <div class="desktop-left-container">
-      <div
-        class="desktop-img-container"
-        data-testid="desktop-img-container"
-        on:click={() => {
-          showModal = true;
-          window.scrollTo(0, 0);
-        }}
-      >
+      <div class="desktop-img-container" data-testid="desktop-img-container">
         <SwipeImage imgArr={createImgArr(product)} />
       </div>
     </div>
@@ -107,11 +94,6 @@
       {/if}
     </div>
   </div>
-{/if}
-{#if showModal}
-  <Modal {isMobile} showFullScreen={true} bind:showModal>
-    <SwipeImage imgArr={createImgArr(product)} />
-  </Modal>
 {/if}
 
 <style>

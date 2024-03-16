@@ -37,7 +37,6 @@
               {src}
               {alt}
               data-testid="swipe-img"
-              style:cursor={fullScreen ? null : "pointer"}
               class={fullScreen ? "full-screen" : ""}
             />
             <div class="custom-pagination-div" />
@@ -51,7 +50,6 @@
     <img
       src={imgArr[0].src}
       alt={imgArr[0].alt}
-      style:cursor={fullScreen ? null : "pointer"}
       on:error={() => {
         if (imgArr[0].src != comingSoon) {
           imgArr[0].src = comingSoon;
