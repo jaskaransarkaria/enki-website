@@ -1,10 +1,12 @@
 import { browser, dev } from "$app/environment";
 import { setServerUrl } from "$lib/utils/setServerUrl";
 import { refreshCategoriesFromServer } from "$lib/utils/requests";
-import type { Base } from "$lib/types/base";
+import type { SquareCategory } from "$lib/types/category";
 
-const orderCategories = (resp: Base[]) =>
-  resp.sort((a: Base, b: Base) => (a.Name < b.Name ? -1 : 1));
+const orderCategories = (resp: SquareCategory[]) =>
+  resp.sort((a: SquareCategory, b: SquareCategory) =>
+    a.category_data.name < b.category_data.name ? -1 : 1
+  );
 
 export async function load({ fetch }) {
   // pull the category data from api

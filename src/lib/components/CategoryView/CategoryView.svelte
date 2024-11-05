@@ -1,47 +1,34 @@
 <script lang="ts">
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
-  import JewelleryView from "$lib/components/JewelleryView/JewelleryView.svelte";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
-  import TagView from "$lib/components/TagView/TagView.svelte";
 
-  import type { Category } from "$lib/types/category";
-  import type { Product } from "$lib/types/product";
-  import type { Tag } from "$lib/types/tag";
-  import type { BaseFn } from "$lib/types/base";
+  import type { SquareCategory } from "$lib/types/category";
+  import type { SquareProduct } from "$lib/types/product";
 
   export let showBreadcrumbs = true;
-  export let categoryToShow: Category | undefined;
-  export let productArr: readonly Product[];
+  export let categoryToShow: SquareCategory | undefined;
+  export let productArr: readonly SquareProduct[];
   export let whitelistedUserAgent: boolean;
-  export let tags: readonly Tag[];
 
-  const removeVariantCategories = (categories: Category[]) =>
-    categories?.filter((cat) => cat.NominalCode === "CATEGORY");
-
-  $: variantCategories = categoryToShow?.Children?.filter(
-    (cat) => !Boolean(cat.NominalCode)
-  );
+  const removeVariantCategories = (categories: SquareCategory[]) =>
+    categories?.filter(
+      (cat) =>
+        cat.custom_attribute_values.epos_now_nominal_code.string_value ===
+          "CATEGORY" ||
+        (!cat.custom_attribute_values.epos_now_nominal_code.string_value &&
+          !cat.custom_attribute_values.epos_now_id.string_value)
+    );
 
   $: nonVariantCategories =
-    removeVariantCategories(categoryToShow?.Children) || [];
+    removeVariantCategories(categoryToShow?.children) || [];
 </script>
 
 {#if showBreadcrumbs}
-  <Breadcrumbs selectedCategoryId={categoryToShow?.Id} />
+  <Breadcrumbs selectedCategoryId={categoryToShow?.id} />
 {/if}
-{#if nonVariantCategories.length || categoryToShow?.Id === 1875997 || categoryToShow?.Id === 1875998}
-  {#if categoryToShow.Id === 1875996}
-    <JewelleryView data={nonVariantCategories} />
-  {:else if categoryToShow.Id === 1875997 || categoryToShow.Id === 1875998}
-    <TagView
-      data={nonVariantCategories}
-      prefix={categoryToShow.Name.split(" ")[0].toUpperCase()}
-      {tags}
-    />
-  {:else}
-    <HexGrid data={nonVariantCategories} {whitelistedUserAgent} />
-  {/if}
+{#if nonVariantCategories.length}
+  <HexGrid data={nonVariantCategories} {whitelistedUserAgent} />
 {:else}
-  <ProductView {productArr} {variantCategories} {whitelistedUserAgent} />
+  <ProductView {productArr} {whitelistedUserAgent} />
 {/if}

@@ -2,7 +2,6 @@
   import { beforeUpdate } from "svelte";
   import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
-  import { groupBy } from "lodash-es";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
   import giftWrapOneJpg from "$lib/assets/gift-wrap-1.jpeg";
@@ -12,70 +11,31 @@
   import giftWrapTwoAvif from "$lib/assets/gift-wrap-2.avif";
   import giftWrapThreeAvif from "$lib/assets/gift-wrap-3.avif";
 
-  import type { Category } from "$lib/types/category";
-  import type { Product } from "$lib/types/product";
+  import type { SquareProduct } from "$lib/types/product";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  enum ItemType {
-    VARIANT_PRODUCT = "VARIANT_PRODUCT",
-    NONVARIANT_PRODUCT = "NONVARIANT_PRODUCT",
-    VARIANT_CATEGORY = "VARIANT_CATEGORY",
-  }
-
-  type CollatedItem = (Product | Category) & { Type: ItemType };
-
-  export let productArr: readonly Product[] = [];
-  export let variantCategories: readonly Category[] = [];
+  export let productArr: readonly SquareProduct[] = [];
   export let showDetailedView = false;
   export let whitelistedUserAgent = false;
   export let sorted = false;
 
   let sortBy: string =
     browser && !sorted ? window.sessionStorage.getItem("filter") : "relevant";
-  let variantArr: readonly Product[] = [];
-  let nonVariantArr: readonly Product[] = [];
-  let groupedVariantProducts: Array<readonly Product[]>;
 
-  const showGroupedVariant = (group: Array<readonly Product[]>) =>
-    group
-      .flat(1)
-      ?.filter((variant) => !variantCategoryIds.includes(variant.CategoryId))
-      .map(
-        (variant: Product): CollatedItem => ({
-          ...variant,
-          Type: ItemType.VARIANT_PRODUCT,
-        })
-      );
-
-  const collateArray = (
-    varCatsArr: readonly CollatedItem[],
-    nonVarArr: readonly CollatedItem[],
-    groupedVariantProducts: Array<readonly Product[]>
-  ): readonly CollatedItem[] => [
-    ...varCatsArr,
-    ...nonVarArr,
-    ...showGroupedVariant(groupedVariantProducts),
-  ];
-
-  const sortByStock = (collatedArray: readonly CollatedItem[]) => {
+  const sortByStock = (collatedArray: readonly SquareProduct[]) => {
     return collatedArray.slice().sort((a, b) => {
-      if (a.Type === ItemType.VARIANT_CATEGORY) {
-        return -1;
-      }
-      if (b.Type === ItemType.VARIANT_CATEGORY) {
-        return 1;
-      }
-      return "CurrentStock" in a
-        ? a.CurrentStock > ("CurrentStock" in b ? b.CurrentStock : -1)
-          ? -1
-          : 1
-        : -1;
+      return parseInt(
+        a.item_data.variations[0].item_variation_data.quantity,
+        10
+      ) > parseInt(b.item_data.variations[0].item_variation_data.quantity, 10)
+        ? -1
+        : 1;
     });
   };
 
   const sortArray = (
     sortBy: string,
-    collatedArray: readonly CollatedItem[]
+    collatedArray: readonly SquareProduct[]
   ) => {
     switch (sortBy) {
       case "price-high-low":
@@ -83,78 +43,38 @@
         return collatedArray
           .slice()
           .sort((a, b) =>
-            "SalePrice" in a
-              ? a.SalePrice > ("SalePrice" in b ? b.SalePrice : -1)
-                ? -1
-                : 1
-              : -1
+            a.item_data.variations[0].item_variation_data.price_money.amount >
+            b.item_data.variations[0].item_variation_data.price_money.amount
+              ? -1
+              : 1
           );
       case "price-low-high":
         browser && window.sessionStorage.setItem("filter", "price-low-high");
         return collatedArray
           .slice()
           .sort((a, b) =>
-            "SalePrice" in a
-              ? a.SalePrice > ("SalePrice" in b ? b.SalePrice : -1)
-                ? 1
-                : -1
+            a.item_data.variations[0].item_variation_data.price_money.amount >
+            b.item_data.variations[0].item_variation_data.price_money.amount
+              ? 1
               : -1
           );
       case "alphabetically":
         browser && window.sessionStorage.setItem("filter", "alphabetically");
-        return collatedArray.slice().sort((a, b) => (a.Name < b.Name ? -1 : 1));
+        return collatedArray
+          .slice()
+          .sort((a, b) => (a.item_data.name < b.item_data.name ? -1 : 1));
       case "newest-to-oldest":
         browser && window.sessionStorage.setItem("filter", "newest-to-oldest");
-        return collatedArray.slice().sort((a, b) => (a.Id < b.Id ? 1 : -1));
+        return collatedArray
+          .slice()
+          .sort((a, b) =>
+            new Date(a.updated_at) < new Date(b.updated_at) ? 1 : -1
+          );
       default:
         browser && window.sessionStorage.setItem("filter", "in-stock");
         return sortByStock(collatedArray);
     }
   };
-
-  const isVariantCategory = (item: unknown): item is Category =>
-    (item as CollatedItem).Type === ItemType.VARIANT_CATEGORY;
-
-  $: variantCategoryIds = variantCategories.map((cat) => cat.Id);
-
-  $: if (productArr?.length) {
-    variantArr = productArr
-      ?.filter(({ VariantGroupId }) => !!VariantGroupId)
-      ?.filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
-
-    nonVariantArr = productArr
-      ?.filter(({ VariantGroupId }) => !VariantGroupId)
-      ?.filter((prod: Product) => prod.SellOnWeb && !prod.IsArchived);
-  } else {
-    variantArr = [];
-    nonVariantArr = [];
-  }
-
-  $: groupedVariantProducts = Object.values(
-    groupBy(variantArr, "VariantGroupId")
-  );
-
-  $: typedVariantCategories = variantCategories.map(
-    (variant: Category): CollatedItem => ({
-      ...variant,
-      Type: ItemType.VARIANT_CATEGORY,
-    })
-  );
-
-  $: typedNonVariantProductArr = nonVariantArr.map(
-    (nonVariant: Product): CollatedItem => ({
-      ...nonVariant,
-      Type: ItemType.NONVARIANT_PRODUCT,
-    })
-  );
-
-  $: collatedArray = sorted
-    ? productArr
-    : collateArray(
-        typedVariantCategories,
-        typedNonVariantProductArr,
-        groupedVariantProducts
-      );
 
   beforeUpdate(
     () =>
@@ -167,7 +87,7 @@
   $: sortedCollatedArray =
     sorted && (sortBy === null || sortBy === "relevant")
       ? productArr
-      : sortArray(sortBy, collatedArray as readonly CollatedItem[]);
+      : sortArray(sortBy, productArr);
 
   $: outerWidth = 0;
   $: isMobile = outerWidth < 960;
@@ -191,7 +111,7 @@
     </div>
     {#key sortBy}
       {#if (productArr && browser) || whitelistedUserAgent}
-        {#if browser && window.location.pathname.includes("1876089")}
+        {#if browser && window.location.pathname.includes("32TE2EITCQ6KE4HQ34ORK6V5")}
           <div class="gift-wrap-container">
             <div class="gift-wrap-img-container">
               <div class="img-container">
@@ -236,24 +156,13 @@
         {/if}
         <div
           in:fade|local={{ delay: 500 }}
-          class={showDetailedView ||
-          (typedVariantCategories.length +
-            nonVariantArr.length +
-            variantArr?.filter(
-              (vars) => !variantCategoryIds.includes(vars.CategoryId)
-            ).length <=
-            3 &&
-            !isMobile) // if there are only 3 products then center them
+          class={showDetailedView || (productArr.length <= 3 && !isMobile) // if there are only 3 products then center them
             ? "detailed-products-container"
             : "products-container"}
           data-testid="products-container"
         >
-          {#each sortedCollatedArray as item (item.Id)}
-            <SingleProduct
-              variantCategory={isVariantCategory(item) ? item : null}
-              product={isVariantCategory(item) ? null : item}
-              {showDetailedView}
-            />
+          {#each sortedCollatedArray as item (item.id)}
+            <SingleProduct product={item} {showDetailedView} />
           {/each}
         </div>
       {/if}

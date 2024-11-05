@@ -1,9 +1,8 @@
 import { flow } from "fp-ts/lib/function.js";
 import * as TE from "fp-ts/lib/TaskEither.js";
 import * as T from "fp-ts/lib/Task.js";
-import type { Category } from "$lib/types/category";
-import type { Product } from "$lib/types/product";
-import type { Tag } from "$lib/types/tag";
+import type { SquareCategory } from "$lib/types/category";
+import type { SquareProduct } from "$lib/types/product";
 
 interface GetFn<T> {
   (url: string): Promise<T>;
@@ -24,65 +23,48 @@ const retrieveStateFn = <T>(url: string, getState: GetFn<T>, defaultValue: T) =>
 export const refreshCategoriesFromServer = async <T>(
   url: string,
   fetchWrapper: () => Promise<T>
-): Promise<ReadonlyArray<Category>> =>
+): Promise<ReadonlyArray<SquareCategory>> =>
   retrieveStateFn(url, getCategoriesArrayServer(fetchWrapper), [])();
 
 export const refreshCategoryFromServer = async <T>(
   url: string,
   fetchWrapper: () => Promise<T>
-): Promise<ReadonlyArray<Category>> =>
+): Promise<ReadonlyArray<SquareCategory>> =>
   retrieveStateFn(url, getCategoryFromServer(fetchWrapper), [])();
 
 export const refreshProductsFromServer = async <T>(
   url: string,
   fetchWrapper: () => Promise<T>
-): Promise<ReadonlyArray<Product>> =>
+): Promise<ReadonlyArray<SquareProduct>> =>
   retrieveStateFn(url, getProductArrayFromServer(fetchWrapper), [])();
-
-export const refreshTagsFromServer = async <T>(
-  url: string,
-  fetchWrapper: () => Promise<T>
-): Promise<readonly Tag[]> =>
-  retrieveStateFn(url, getTagsArrayFromServer(fetchWrapper), [])();
 
 export const refreshCategories = async (
   url: string
-): Promise<readonly Category[]> =>
+): Promise<readonly SquareCategory[]> =>
   retrieveStateFn(url, getCategoriesArray, [])();
-
-export const refreshTags = async (url: string): Promise<readonly Tag[]> =>
-  retrieveStateFn(url, getTagsArray, [])();
 
 const getCategoryFromServer: (
   fW: (a: string) => Promise<any>
-) => GetFn<ReadonlyArray<Category>> =
+) => GetFn<ReadonlyArray<SquareCategory>> =
   (fetchWrapper: (a: string) => Promise<any>) =>
-  (url: string): Promise<ReadonlyArray<Category>> =>
-    fetchWrapper(url).then((res) => res.json());
+    (url: string): Promise<ReadonlyArray<SquareCategory>> =>
+      fetchWrapper(url).then((res) => res.json());
 
 const getProductArrayFromServer: (
   fW: (a: string) => Promise<any>
-) => GetFn<ReadonlyArray<Product>> =
+) => GetFn<ReadonlyArray<SquareProduct>> =
   (fetchWrapper: (a: string) => Promise<any>) =>
-  (url: string): Promise<ReadonlyArray<Product>> =>
-    fetchWrapper(url).then((res) => res.json());
+    (url: string): Promise<ReadonlyArray<SquareProduct>> =>
+      fetchWrapper(url).then((res) => res.json());
 
-const getCategoriesArray: GetFn<ReadonlyArray<Category>> = (
+const getCategoriesArray: GetFn<ReadonlyArray<SquareCategory>> = (
   url: string
-): Promise<ReadonlyArray<Category>> => fetch(url).then((res) => res.json());
+): Promise<ReadonlyArray<SquareCategory>> =>
+  fetch(url).then((res) => res.json());
 
 const getCategoriesArrayServer: (
   fW: (a: string) => Promise<any>
-) => GetFn<ReadonlyArray<Category>> =
+) => GetFn<ReadonlyArray<SquareCategory>> =
   (fetchWrapper: (a: string) => Promise<any>) =>
-  (url: string): Promise<ReadonlyArray<Category>> =>
-    fetchWrapper(url).then((res) => res.json());
-
-const getTagsArray: GetFn<ReadonlyArray<Tag>> = (
-  url: string
-): Promise<ReadonlyArray<Tag>> => fetch(url).then((res) => res.json());
-
-const getTagsArrayFromServer =
-  (fetchWrapper: (a: string) => Promise<any>) =>
-  (url: string): Promise<ReadonlyArray<Tag>> =>
-    fetchWrapper(url).then((res) => res.json());
+    (url: string): Promise<ReadonlyArray<SquareCategory>> =>
+      fetchWrapper(url).then((res) => res.json());

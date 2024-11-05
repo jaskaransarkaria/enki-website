@@ -4,94 +4,76 @@
   import { onMount } from "svelte";
   import emptyHex from "$lib/assets/empty_hex_1.png";
   import { refreshCategories } from "$lib/utils/requests";
-  import { readonlyAllCategories } from "$lib/stores/categories";
+  import { readonlyAllCategories, InitialValue } from "$lib/stores/categories";
 
-  import type { Category } from "$lib/types/category";
-  import type { Base } from "$lib/types/base";
+  import { type SquareCategory } from "$lib/types/category";
 
-  interface TagCrumb extends Base {
-    tagUrl: string;
-    params: string;
-  }
+  type Crumb = SquareCategory;
 
-  type Crumb = Category | TagCrumb;
-
-  export let extraCrumbs: TagCrumb[] = [];
-  export let selectedCategoryId: number;
+  export let selectedCategoryId: string;
 
   let breadcrumbs: Crumb[];
 
-  const rootShop: Category = {
-    Id: 0,
-    Name: "Shop",
-    ParentId: 0,
-    Children: [],
-    NominalCode: "",
-    Description: "",
-  };
-
   onMount(async () => {
     if (!$readonlyAllCategories?.length) {
-      // pull the category data from api
       const result = await refreshCategories(`${PUBLIC_SERVER_URL}/categories`);
       readonlyAllCategories.set([...result]);
     }
   });
 
   const recursiveCatSearch = (
-    id: number,
-    categories: readonly Category[],
-    results: readonly Category[]
-  ): readonly Category[] => {
+    id: string,
+    categories: readonly SquareCategory[],
+    results: readonly SquareCategory[]
+  ): readonly SquareCategory[] => {
     // dive deep and find the category then work upwards to the root
     for (const cat of categories) {
-      if (cat.Id === id) {
-        if (cat.ParentId === null) {
+      if (cat.id === id) {
+        if (cat.category_data.parent_category.id === null) {
           return [...results, cat];
         }
         // search for the ParentId
-        return recursiveCatSearch(cat.ParentId, $readonlyAllCategories, [
-          ...results,
-          cat,
-        ]);
-      } else if (cat?.Children?.length) {
-        results = recursiveCatSearch(id, cat.Children, results);
+        return recursiveCatSearch(
+          cat.category_data.parent_category.id,
+          $readonlyAllCategories,
+          [...results, cat]
+        );
+      } else if (cat?.children?.length) {
+        results = recursiveCatSearch(id, cat.children, results);
       }
     }
 
     return results;
   };
 
-  const handleBreadcrumbClick = async (breadcrumb: Category | TagCrumb) => {
-    const breadcrumbUrl =
-      "tagUrl" in breadcrumb
-        ? `${breadcrumb.tagUrl}${breadcrumb.params}`
-        : `/shop/category/${breadcrumb.Id}?name=${encodeURIComponent(
-            breadcrumb.Name
-          )}&imgHash=${breadcrumb.Description}`;
+  const handleBreadcrumbClick = async (breadcrumb: SquareCategory) => {
+    const breadcrumbUrl = `/shop/category/${
+      breadcrumb.id
+    }?name=${encodeURIComponent(breadcrumb.category_data.name)}&imgHash=${
+      breadcrumb.custom_attribute_values.image_arr.string_value.split(",")[0]
+    }`;
 
-    breadcrumb.Name === "Shop"
+    breadcrumb.category_data.name === "Shop"
       ? await goto("/shop")
       : await goto(breadcrumbUrl);
   };
 
   $: breadcrumbs = [
-    rootShop,
+    InitialValue,
     ...recursiveCatSearch(selectedCategoryId, $readonlyAllCategories, [])
       .slice()
       .reverse(),
-    ...extraCrumbs,
   ];
 </script>
 
 {#if selectedCategoryId}
-  {#each breadcrumbs as breadcrumb (breadcrumb.Id)}
+  {#each breadcrumbs as breadcrumb (breadcrumb.id)}
     <button
       data-testid="breadcrumb"
       on:click={async () => await handleBreadcrumbClick(breadcrumb)}
     >
       <img src={emptyHex} alt="breadcrumb icon" />
-      {breadcrumb.Name}
+      {breadcrumb.category_data.name}
     </button>
   {/each}
 {/if}

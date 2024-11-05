@@ -3,94 +3,155 @@
   import comingSoon from "$lib/assets/coming_soon.png";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
-  import { getImageFilename } from "$lib/utils/getImageFilename";
 
-  import type { Product } from "$lib/types/product";
+  import type { SquareProduct, VariationData } from "$lib/types/product";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  export let product: Product;
-  export let productDescription: string;
+  export let product: SquareProduct;
   export let isMobile: boolean;
 
-  const formattedProductDescription = productDescription
-    .split(/\n|\r\n/g)
-    .map((v: string) => ({ text: v }));
-
-  const createImgArr = (product: Product): { src: string; alt: string }[] =>
-    product?.ProductImages?.length
-      ? product.ProductImages.map((img, idx) => ({
-          src: `${PUBLIC_BUCKET_URL}/${getImageFilename(img.ImageUrl)}${
-            isAvifSupported ? "-avif" : ""
-          }`,
-          alt: `${product.Name} image ${idx + 1}`,
-        }))
+  const createImgArr = (
+    parentProduct: SquareProduct,
+    product: VariationData
+  ): { src: string; alt: string }[] =>
+    product?.custom_attribute_values?.image_arr.string_value.length > 0 &&
+    product?.custom_attribute_values?.image_arr.string_value.includes(",") &&
+    product?.custom_attribute_values?.image_arr.string_value.split(",").length >
+      0
+      ? product.custom_attribute_values.image_arr.string_value
+          .split(",")
+          .map((img, idx) => ({
+            src: `${PUBLIC_BUCKET_URL}/${img}${isAvifSupported ? "-avif" : ""}`,
+            alt: `${parentProduct.item_data.name} image ${idx + 1}`,
+          }))
       : [
           {
-            src: product?.ProductImages[0]?.ImageUrl
-              ? `${PUBLIC_BUCKET_URL}/${getImageFilename(
-                  product.ProductImages[0].ImageUrl
-                )}${isAvifSupported ? "-avif" : ""}`
-              : comingSoon,
-            alt: `${product.Name} image 1`,
+            src:
+              product?.custom_attribute_values.image_arr.string_value.length > 0
+                ? `${PUBLIC_BUCKET_URL}/${
+                    product?.custom_attribute_values.image_arr.string_value
+                  }${isAvifSupported ? "-avif" : ""}`
+                : comingSoon,
+            alt: `${parentProduct.item_data.name} image 1`,
           },
         ];
 
   let clientWidth: number = 0;
+
+  let selectedProductVariation = product.item_data.variations[0];
 </script>
 
 {#if isMobile}
   <div class="details-container">
-    {#if product.ProductImages}
+    {#if selectedProductVariation.custom_attribute_values.image_arr.string_value.length > 0 && selectedProductVariation.custom_attribute_values.image_arr.string_value.split(",").length > 0}
       <div
         class="mobile-img-container"
         data-testid="mobile-img-container"
         style:width={clientWidth ? clientWidth + "px" : "90vw"}
       >
-        <SwipeImage imgArr={createImgArr(product)} />
+        <SwipeImage imgArr={createImgArr(product, selectedProductVariation)} />
       </div>
     {/if}
     <div class="detailed-products-footer">
-      <h4 class="mobile-prod-name">{`${product.Name}`}</h4>
-      <h4>{`£${product.SalePrice.toFixed(2)}`}</h4>
+      {#if product.item_data.variations.length > 1}
+        <select
+          role="combobox"
+          name="variations"
+          id="variations"
+          bind:value={selectedProductVariation}
+        >
+          {#each product.item_data.variations as v}
+            <option value={v}
+              >{product.item_data.name} -- {v.item_variation_data.name}</option
+            >
+          {/each}
+        </select>
+      {/if}
+      <h2>
+        {`${product.item_data.name}`}
+      </h2>
+      <h4>
+        {`£${(
+          selectedProductVariation.item_variation_data.price_money.amount / 100
+        ).toFixed(2)}`}
+      </h4>
       <div class="mobile-details">
-        {#if product.CurrentStock > 0}
-          <AddToBasket {product} detailed />
+        {#if parseInt(selectedProductVariation.item_variation_data.quantity, 10) > 0}
+          <AddToBasket
+            {product}
+            variation={selectedProductVariation}
+            detailed
+          />
         {/if}
         <h4>
           {`${
-            product.CurrentStock <= 0
+            ("quantity" in selectedProductVariation.item_variation_data
+              ? parseInt(
+                  selectedProductVariation.item_variation_data.quantity,
+                  10
+                )
+              : 0) <= 0
               ? "sold out"
-              : product.CurrentStock + " in stock"
+              : selectedProductVariation.item_variation_data?.quantity +
+                " in stock"
           }`}
         </h4>
       </div>
     </div>
-    {#each formattedProductDescription as { text }}
-      <h4 class="description">{text}</h4>
-    {/each}
+    <div class="description-html">
+      {@html product.item_data.description_html}
+    </div>
   </div>
 {:else}
   <div class="details-container">
     <div class="desktop-left-container">
       <div class="desktop-img-container" data-testid="desktop-img-container">
-        <SwipeImage imgArr={createImgArr(product)} />
+        <SwipeImage imgArr={createImgArr(product, selectedProductVariation)} />
       </div>
     </div>
     <div class="detailed-products-footer">
-      <h2>{product.Name}</h2>
-      <h4>{`£${product.SalePrice.toFixed(2)}`}</h4>
-      {#each formattedProductDescription as { text }}
-        <h4 class="description">{text}</h4>
-      {/each}
+      <h2>
+        {`${product.item_data.name}`}
+      </h2>
+
+      <h4>
+        {`£${(
+          selectedProductVariation.item_variation_data.price_money.amount / 100
+        ).toFixed(2)}`}
+      </h4>
+      <div class="description-html">
+        {@html product.item_data.description_html}
+      </div>
       <h5>
         {`${
-          product.CurrentStock <= 0
+          ("quantity" in selectedProductVariation.item_variation_data
+            ? parseInt(
+                selectedProductVariation.item_variation_data.quantity,
+                10
+              )
+            : 0) <= 0
             ? "sold out"
-            : product.CurrentStock + " in stock"
+            : selectedProductVariation.item_variation_data?.quantity +
+              " in stock"
         }`}
       </h5>
-      {#if product.CurrentStock > 0}
-        <AddToBasket {product} detailed />
+      {#if product.item_data.variations.length > 1}
+        <select
+          role="combobox"
+          name="variations"
+          id="variations"
+          bind:value={selectedProductVariation}
+        >
+          {#each product.item_data.variations as v}
+            <option value={v}
+              >{product.item_data.name} -- {v.item_variation_data.name}</option
+            >
+          {/each}
+        </select>
+        <br />
+      {/if}
+      {#if parseInt(selectedProductVariation.item_variation_data.quantity, 10) > 0}
+        <AddToBasket {product} variation={selectedProductVariation} detailed />
       {/if}
     </div>
   </div>
@@ -100,6 +161,10 @@
   h2,
   h4,
   h5 {
+    font-family: "Caviar Dreams";
+  }
+
+  .description-html :global {
     font-family: "Caviar Dreams";
   }
 

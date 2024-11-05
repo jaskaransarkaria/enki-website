@@ -26,7 +26,7 @@
 
   $: {
     basketTotalArr = $basket.map((basketItem) => ({
-      total: (basketItem?.price * 100 * basketItem?.quantity) / 100,
+      total: basketItem?.price * basketItem?.quantity,
     }));
     total = basketTotalArr
       .reduce((acc: number, cur: { total: number }) => cur.total + acc, 0)
@@ -36,7 +36,9 @@
   $: outerWidth = 0;
   $: isMobile = outerWidth < 1280 ? true : false;
   $: selectedGiftWrap = $basket.filter(
-    (item) => item.categoryId === 1876089 || item.categoryId === 1892399
+    (item) =>
+      item.categoryId === "32TE2EITCQ6KE4HQ34ORK6V5" ||
+      item.categoryId === "KYUFP3I2BUEWSTMDUPSHQQJF"
   );
 </script>
 
@@ -73,11 +75,12 @@
                 <label class="select-wrap" for="wrap">
                   Fancy gift wrap <a
                     data-sveltekit-preload-data
-                    href="/shop/category/1876089">here</a
+                    href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">here</a
                   >
                   & christmas wrap
-                  <a data-sveltekit-preload-data href="/shop/category/1892399"
-                    >here</a
+                  <a
+                    data-sveltekit-preload-data
+                    href="/shop/category/KYUFP3I2BUEWSTMDUPSHQQJF">here</a
                   >
                   <hr />
                   <select
@@ -110,9 +113,9 @@
             {/if}
             <div class="price">
               <h4 class={isMobile ? "mobile-product-total" : "product-total"}>
-                {`£${((obj.price * 100 * obj.quantity) / 100).toFixed(2)}`}
+                {`£${(obj.price * obj.quantity).toFixed(2)}`}
               </h4>
-              {#if obj?.categoryId !== 1876089}
+              {#if obj?.categoryId !== "32TE2EITCQ6KE4HQ34ORK6V5"}
                 <div class="gift-wrapping">
                   <label for="gift-wrap"
                     >Gift Wrap for £{GIFT_WRAP_PRICE}

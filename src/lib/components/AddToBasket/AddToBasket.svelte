@@ -6,13 +6,14 @@
   import { basket } from "$lib/stores/basket";
   import { updateBasket } from "$lib/utils/basket";
 
-  import type { Product } from "$lib/types/product";
+  import type { SquareProduct, VariationData } from "$lib/types/product";
 
-  export let product: Product;
+  export let product: SquareProduct;
   export let detailed = false;
+  export let variation: VariationData;
 
   let addedToBasket =
-    $basket.findIndex((item) => item.id === product.Id) === -1 ? false : true;
+    $basket.findIndex((item) => item.id === product.id) === -1 ? false : true;
 </script>
 
 {#if product}
@@ -21,7 +22,9 @@
       class={`add-to-basket ${detailed ? "narrow" : ""}`}
       on:click={() => {
         if (browser) {
-          basket.set(updateBasket(product, $basket, "incrementQuantity"));
+          basket.set(
+            updateBasket(product, $basket, "incrementQuantity", variation)
+          );
           addedToBasket = true;
           confetti({
             angle: 250,

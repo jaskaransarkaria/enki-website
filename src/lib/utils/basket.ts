@@ -1,7 +1,6 @@
 import comingSoon from "$lib/assets/coming_soon.png";
 import type { BasketProduct } from "$lib/types/basketProduct";
-import type { Product } from "$lib/types/product";
-import { getImageFilename } from "$lib/utils/getImageFilename";
+import type { SquareProduct, VariationData } from "$lib/types/product";
 
 const removeItemFromBasket = (
   currentQuantity: number,
@@ -14,6 +13,7 @@ const removeItemFromBasket = (
         ...list.slice(0, listIndx),
         {
           id: list[listIndx].id,
+          variationId: list[listIndx].variationId,
           categoryId: list[listIndx].categoryId,
           name: list[listIndx].name,
           quantity: list[listIndx].quantity - 1,
@@ -35,6 +35,7 @@ const addItemToBasket = (
   {
     id: list[listIndx].id,
     categoryId: list[listIndx].categoryId,
+    variationId: list[listIndx].variationId,
     name: list[listIndx].name,
     quantity: list[listIndx].quantity + 1,
     imgHash: list[listIndx].imgHash,
@@ -48,28 +49,22 @@ const addItemToBasket = (
 ];
 
 const addNewItemToBasket = (
-  product: Pick<
-    Product,
-    | "Id"
-    | "Name"
-    | "SalePrice"
-    | "CurrentStock"
-    | "CategoryId"
-    | "ProductImages"
-  >,
+  product: SquareProduct,
+  variation: VariationData,
   list: BasketProduct[]
 ): BasketProduct[] => [
   {
-    id: product.Id,
-    categoryId: product.CategoryId,
-    name: product.Name,
+    id: product.id,
+    categoryId: product.item_data.categories[0].id,
+    name: product.item_data.name,
+    variationId: variation.id,
     quantity: 1,
     imgHash:
-      product?.ProductImages?.length > 0
-        ? getImageFilename(product.ProductImages[0].ImageUrl)
+      variation.custom_attribute_values.image_arr.string_value.length > 0
+        ? variation.custom_attribute_values.image_arr.string_value.split(",")[0]
         : comingSoon,
-    price: product.SalePrice,
-    currentStock: product.CurrentStock,
+    price: variation.item_variation_data.price_money.amount / 100,
+    currentStock: parseInt(variation.item_variation_data.quantity, 10),
     giftWrap: false,
     giftDescription: "",
     giftWrapToUse: "Standard brown paper",
@@ -78,27 +73,22 @@ const addNewItemToBasket = (
 ];
 
 export const updateBasket = (
-  product: Pick<
-    Product,
-    | "Id"
-    | "Name"
-    | "SalePrice"
-    | "CurrentStock"
-    | "CategoryId"
-    | "ProductImages"
-  >,
+  product: SquareProduct,
   list: BasketProduct[],
-  updateType: string
+  updateType: string,
+  variation: VariationData
 ): BasketProduct[] => {
-  const indx = list.findIndex((obj: BasketProduct) => obj.id === product.Id);
+  const indx = list.findIndex((obj: BasketProduct) => obj.id === product.id);
+
   updateType = indx >= 0 ? updateType : "newItem";
+
   switch (updateType) {
     case "incrementQuantity":
       return addItemToBasket(list, indx);
     case "decrementQuantity":
       return removeItemFromBasket(list[indx].quantity, list, indx);
     case "newItem":
-      return addNewItemToBasket(product, list);
+      return addNewItemToBasket(product, variation, list);
     default:
       return [];
   }

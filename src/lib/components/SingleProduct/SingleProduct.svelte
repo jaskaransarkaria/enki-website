@@ -7,54 +7,26 @@
   import DetailedSingleProduct from "$lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  import type { Product } from "$lib/types/product";
-  import type { Category } from "$lib/types/category";
-  import { getImageFilename } from "$lib/utils/getImageFilename";
+  import type { SquareProduct } from "$lib/types/product";
 
-  export let variantCategory: Category | null = null;
-  export let product: Product | null;
+  export let product: SquareProduct | null;
   export let showDetailedView = false;
 
-  let productDescription: string;
-
-  $: if (product) {
-    productDescription =
-      product?.ProductDetails?.DetailedDescription || product.Description;
-  }
   $: outerWidth = 0;
   $: isMobile = outerWidth < 1280;
 </script>
 
 <svelte:window bind:outerWidth />
-{#if variantCategory}
-  <a
-    data-sveltekit-preload-data
-    class="simple-container"
-    href={`./${variantCategory.Id}`}
-  >
-    <div class="position-img">
-      <ImageLoader
-        src={`${PUBLIC_BUCKET_URL}/${variantCategory.Description}${
-          isAvifSupported ? "-avif" : ""
-        }`}
-        alt={`${variantCategory.Name}`}
-      />
-    </div>
-    <h3 class="basic-header">{`${variantCategory.Name}`}</h3>
-    <h3>Individually priced</h3>
-  </a>
-{/if}
-
 {#if product}
   {#if showDetailedView}
-    <DetailedSingleProduct {product} {productDescription} {isMobile} />
+    <DetailedSingleProduct {product} {isMobile} />
   {:else}
     <a
       data-sveltekit-preload-data
       class="simple-container"
-      href={`/shop/product/${product.Id}`}
+      href={`/shop/product/${product.id}`}
     >
-      {#if product.CurrentStock === 1}
+      {#if ("quantity" in product.item_data.variations[0].item_variation_data ? parseInt(product.item_data.variations[0].item_variation_data.quantity, 10) : 0) === 1}
         <div style:position="relative">
           <img
             class="low-in-stock-img"
@@ -63,7 +35,7 @@
           />
         </div>
       {/if}
-      {#if product.CurrentStock <= 0}
+      {#if ("quantity" in product.item_data.variations[0].item_variation_data ? parseInt(product.item_data.variations[0].item_variation_data.quantity, 10) : 0) <= 0}
         <div style:position="relative">
           <img
             class="low-in-stock-img"
@@ -74,21 +46,32 @@
       {/if}
       <div class="position-img">
         <ImageLoader
-          src={product?.ProductImages[0]?.ImageUrl
-            ? `${PUBLIC_BUCKET_URL}/${getImageFilename(
-                product.ProductImages[0].ImageUrl
-              )}${isAvifSupported ? "-avif" : ""}`
+          src={product.item_data.variations[0].custom_attribute_values.image_arr.string_value.split(
+            ","
+          )[0]
+            ? `${PUBLIC_BUCKET_URL}/${
+                product.item_data.variations[0].custom_attribute_values.image_arr.string_value.split(
+                  ","
+                )[0]
+              }${isAvifSupported ? "-avif" : ""}`
             : comingSoon}
-          alt={`${product.Name}`}
+          alt={`${product.item_data.name}`}
         />
       </div>
       <div class="prod-details">
         <h3 class="simple-prod-name">
-          {`${product.Name}`}
+          {`${product.item_data.name}`}
         </h3>
-        <h3 data-testid="sale-price">
-          {`£${product.SalePrice.toFixed(2)}`}
-        </h3>
+        {#if product.item_data.variations.length > 1}
+          <h3>Individually priced</h3>
+        {:else}
+          <h3 data-testid="sale-price">
+            {`£${(
+              product.item_data.variations[0].item_variation_data.price_money
+                .amount / 100
+            ).toFixed(2)}`}
+          </h3>
+        {/if}
       </div>
     </a>
   {/if}

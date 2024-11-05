@@ -3,14 +3,15 @@
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
 
   import type { Base, BaseFn } from "$lib/types/base";
+  import type { SquareCategory } from "$lib/types/category";
 
-  export let data: { data: Base[] } = { data: [] };
+  export let data: { data: SquareCategory[] } = { data: [] };
 
   const whitelistedUserAgent = $page.data.whitelistedUserAgent;
   const queryParams = $page.url.toString().split("?")[1];
 
-  const categoryFn: BaseFn = (category: Base) =>
-    `${$page.url.toString().split("?")[0]}/category/${category.Id}${
+  const categoryFn: BaseFn = (category: SquareCategory) =>
+    `${$page.url.toString().split("?")[0]}/category/${category.id}${
       queryParams ? "?" + queryParams : ""
     }`;
 </script>

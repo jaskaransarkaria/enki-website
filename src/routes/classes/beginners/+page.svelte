@@ -18,13 +18,44 @@
   let loaded = new Map();
 
   const jewelleryVoucherCategory = {
-    Name: "Jewellery Class Vouchers",
-    Id: 2854484,
-    ParentId: 0,
-    Children: [],
-    NominalCode: null,
-    Description: "2854484",
+    id: "5G6HXSP2KNVZBFNNHRQ4YK7D",
+    children: [],
+    custom_attribute_values: {
+      epos_now_id: {
+        string_value: "2854484",
+      },
+      image_arr: {
+        string_value: "2854484",
+      },
+      epos_now_nominal_code: {
+        string_value: "CATEGORY",
+      },
+      epos_now_root_parent_id: {
+        string_value: "0",
+      },
+      epos_now_parent_id: {
+        string_value: "0",
+      },
+    },
+    category_data: {
+      name: "Jewellery Class Vouchers",
+      parent_category: {
+        id: "",
+      },
+      is_top_level: true,
+      root_category: "",
+      path_to_root: null,
+    },
   };
+
+  //const jewelleryVoucherCategory = {
+  //  Name: "Jewellery Class Vouchers",
+  //  Id: 2854484,
+  //  ParentId: 0,
+  //  Children: [],
+  //  NominalCode: null,
+  //  Description: "2854484",
+  //};
 
   onMount(() => {
     ttWidget.className = "tt-widget";
@@ -98,11 +129,13 @@
       <div class="hex-container">
         <Hex
           hexHref={`/shop/category/${
-            jewelleryVoucherCategory.Id
+            jewelleryVoucherCategory.id
           }?name=${encodeURIComponent(
-            jewelleryVoucherCategory.Name
+            jewelleryVoucherCategory.category_data.name
           )}&imgHash=${encodeURIComponent(
-            jewelleryVoucherCategory.Description
+            jewelleryVoucherCategory.custom_attribute_values.image_arr.string_value.split(
+              ","
+            )[0]
           )}`}
           category={jewelleryVoucherCategory}
           bind:loaded

@@ -11,7 +11,6 @@ import {
   refreshCategoryFromServer,
   refreshCategoriesFromServer,
   refreshProductsFromServer,
-  refreshTags,
 } from "./requests";
 
 describe("GIVEN requests.ts", () => {
@@ -88,17 +87,6 @@ describe("GIVEN requests.ts", () => {
         fetch as unknown as () => Promise<Response>
       );
       expect(products).toStrictEqual([]);
-    });
-  });
-
-  describe("GIVEN refreshTags()", () => {
-    it("WHEN fetching tags THEN return the tags", async () => {
-      const tags = await refreshTags("http://localhost:8888/tags");
-      expect(tags).toStrictEqual(mockTags);
-    });
-    it("WHEN there is an error THEN return the default value", async () => {
-      const tags = await refreshTags("http://localhost:8888/error");
-      expect(tags).toStrictEqual([]);
     });
   });
 });

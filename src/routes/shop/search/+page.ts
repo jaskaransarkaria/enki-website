@@ -2,7 +2,7 @@ import { browser, dev } from "$app/environment";
 import { setServerUrl } from "$lib/utils/setServerUrl";
 import { searchProducts } from "$lib/utils/search";
 import { refreshProductsFromServer } from "$lib/utils/requests";
-import type { Product } from "$lib/types/product";
+import type { SquareProduct } from "$lib/types/product";
 
 export async function load({ fetch, url }) {
   // pull the category data from api
@@ -20,11 +20,14 @@ export async function load({ fetch, url }) {
   const sortedData = [
     ...data
       .slice()
-      .filter((prod: Product) => prod.Name.toLowerCase().match(wordInTitleReg)),
+      .filter((prod: SquareProduct) =>
+        prod.item_data.name.toLowerCase().match(wordInTitleReg)
+      ),
     ...data
       .slice()
       .filter(
-        (prod: Product) => !prod.Name.toLowerCase().match(wordInTitleReg)
+        (prod: SquareProduct) =>
+          !prod.item_data.name.toLowerCase().match(wordInTitleReg)
       ),
   ];
 

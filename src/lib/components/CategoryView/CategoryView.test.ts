@@ -4,120 +4,84 @@ import { render, screen } from "@testing-library/svelte";
 import CategoryView from "./CategoryView.svelte";
 import { reset as resetCategoriesStore } from "$lib/stores/basket";
 
-import type { Category } from "$lib/types/category";
-import type { Product } from "$lib/types/product";
+import type { SquareCategory } from "$lib/types/category";
+import type { SquareProduct } from "$lib/types/product";
 
 const nestedCategories = {
-  Id: -1,
-  ParentId: null,
-  Name: "",
-  NominalCode: "CATEGORY",
-  Children: [
+  id: "000",
+  category_data: {
+    name: "Root",
+    parent_category: { id: null },
+  },
+  custom_attribute_values: {
+    epos_now_id: { string_value: null },
+    epos_now_nominal_code: { string_value: null },
+    image_arr: { string_value: "foobar" },
+  },
+  children: [
     {
-      Id: 123,
-      ParentId: null,
-      Name: "Clothes",
-      NominalCode: "CATEGORY",
-      Children: [
+      id: "111",
+      category_data: {
+        name: "Clothes",
+        parent_category: { id: null },
+      },
+      custom_attribute_values: {
+        epos_now_id: { string_value: null },
+        epos_now_nominal_code: { string_value: null },
+        image_arr: { string_value: "foobar" },
+      },
+      children: [
         {
-          Id: 456,
-          ParentId: null,
-          Name: "Shoes",
-          NominalCode: "CATEGORY",
-          Children: [
-            {
-              Id: 789,
-              ParentId: null,
-              Name: "Hats",
-              NominalCode: "CATEGORY",
-
-              Children: [],
-            },
-          ],
+          id: "456",
+          category_data: {
+            name: "Adult Clothes",
+            parent_category: { id: "111" },
+          },
+          custom_attribute_values: {
+            epos_now_id: { string_value: "" },
+            epos_now_nominal_code: { string_value: "" },
+            image_arr: { string_value: "blahblah" },
+          },
+          children: [],
         },
       ],
     },
   ],
 };
 
-const nestedTagCategories = {
-  Id: 1875997,
-  ParentId: null,
-  Name: "ParentTag",
-  TagTypeId: "tag",
-  NominalCode: "CATEGORY",
-  Children: [
-    {
-      Id: 123,
-      ParentId: null,
-      Name: "TagClothes",
-      NominalCode: "CATEGORY",
-      Children: [],
-    },
-  ],
-};
-
-const jewelleryNestedCategories = {
-  Id: 1875996,
-  ParentId: null,
-  Name: "",
-  NominalCode: "CATEGORY",
-  Children: [
-    {
-      Id: 111,
-      ParentId: null,
-      Name: "fine jewellery",
-      NominalCode: "CATEGORY",
-      Children: [],
-    },
-    {
-      Id: 222,
-      ParentId: null,
-      Name: "costume jewellery",
-      NominalCode: "CATEGORY",
-      Children: [],
-    },
-    {
-      Id: 333,
-      ParentId: null,
-      Name: "jaskaran sarkaria",
-      NominalCode: "CATEGORY",
-      Children: [],
-    },
-  ],
-};
-
-const variantNestedCategories = {
-  Id: -1,
-  ParentId: null,
-  Name: "",
-  NominalCode: "CATEGORY",
-  Children: [
-    {
-      Id: 123,
-      ParentId: null,
-      Name: "VariantClothes",
-      NominalCode: null,
-      Children: [],
-    },
-  ],
-};
-
 const dummyProductArr = [
   {
-    Name: "Dummy",
-    CategoryId: 123,
-    Description: "",
-    SalePrice: 10,
-    ProductImages: [],
-    ProductTags: [],
-    VariantGroupId: 111,
-    CurrentStock: 5,
-    ProductDetails: null,
-    SellOnWeb: true,
-    IsArchived: false,
+    id: "123",
+    updated_at: "",
+    custom_attribute_values: {},
+    item_data: {
+      name: "Elephant",
+      product_type: "",
+      categories: [{ id: "999" }],
+      is_archived: false,
+      ecom_visibility: "VISIBLE",
+      description_html: "big animal",
+      variations: [
+        {
+          id: "456",
+          custom_attribute_values: {
+            image_arr: {
+              string_value: "foobar-0-9sjs9s",
+            },
+          },
+          item_variation_data: {
+            item_id: "123",
+            name: "",
+            price_money: {
+              amount: 90,
+            },
+            quantity: "9",
+          },
+        },
+      ],
+    },
   },
-] as Product[];
+] as SquareProduct[];
 
 describe("GIVEN CategoryView", () => {
   afterEach(() => {
@@ -128,7 +92,7 @@ describe("GIVEN CategoryView", () => {
   describe("WHEN rendered with props", () => {
     it("THEN display the correct category", () => {
       render(CategoryView, {
-        categoryFn: (cat: Category) => `${cat} fn fired`,
+        categoryFn: (cat: SquareCategory) => `${cat} fn fired`,
         categoryToShow: nestedCategories,
         productArr: [],
         whitelistedUserAgent: true,
@@ -144,66 +108,24 @@ describe("GIVEN CategoryView", () => {
       expect(screen.queryByText("Dummy")).not.toBeInTheDocument();
     });
 
-    it("THEN display a TAG Category", () => {
-      render(CategoryView, {
-        categoryFn: (cat: Category) => `${cat} fn fired`,
-        categoryToShow: nestedTagCategories,
-        productArr: [],
-        whitelistedUserAgent: true,
-      });
-
-      expect(screen.getByText("TagClothes")).toBeInTheDocument();
-    });
-
-    it("THEN display a JEWELLERY Category", () => {
-      render(CategoryView, {
-        categoryFn: (cat: Category) => `${cat} fn fired`,
-        categoryToShow: jewelleryNestedCategories,
-        productArr: [],
-        whitelistedUserAgent: true,
-      });
-
-      expect(
-        screen.getByRole("heading", { level: 1, name: "Shop by type" })
-      ).toBeInTheDocument();
-      expect(screen.getByText("fine jewellery")).toBeInTheDocument();
-      expect(screen.getByText("costume jewellery")).toBeInTheDocument();
-
-      expect(
-        screen.getByRole("heading", { level: 1, name: "Shop by artist" })
-      ).toBeInTheDocument();
-      expect(screen.getByText("jaskaran sarkaria")).toBeInTheDocument();
-    });
-
     it("AND showBreadcrumbs is false THEN don't show breadcrumbs", () => {
       render(CategoryView, {
         showBreadcrumbs: false,
       });
       expect(screen.queryByText("Shop")).not.toBeInTheDocument();
     });
-
-    it("AND it is a VARIANT category THEN don't show the category", () => {
-      render(CategoryView, {
-        categoryFn: (cat: Category) => `${cat} fn fired`,
-        categoryToShow: variantNestedCategories,
-        productArr: [],
-        whitelistedUserAgent: true,
-      });
-
-      expect(screen.getByText("VariantClothes")).toBeInTheDocument();
-    });
   });
 
   describe("WHEN there are no categories", () => {
     it("THEN display products", () => {
       render(CategoryView, {
-        categoryFn: (cat: Category) => `${cat} fn fired`,
-        categoryToShow: {} as Category,
+        categoryFn: (cat: SquareCategory) => `${cat} fn fired`,
+        categoryToShow: {} as SquareCategory,
         productArr: dummyProductArr,
         whitelistedUserAgent: true,
       });
 
-      expect(screen.getByText("Dummy")).toBeInTheDocument();
+      expect(screen.getByText("Elephant")).toBeInTheDocument();
     });
   });
 });
