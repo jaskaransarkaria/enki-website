@@ -7,11 +7,16 @@ describe("GIVEN Hex", () => {
     it("THEN display an Empty Hex", () => {
       render(Hex, {
         category: {
-          Name: "example",
-          Id: 111,
-          ParentId: 222,
-          Children: [],
-          NominalCode: null,
+          id: "111",
+          category_data: {
+            name: "example",
+          },
+          custom_attribute_values: {
+            epos_now_nominal_code: { string_value: null },
+            image_arr: { string_value: "" },
+          },
+          children: [],
+          parent_category: { id: "222" },
         },
         isEmpty: true,
       });
@@ -24,33 +29,21 @@ describe("GIVEN Hex", () => {
     it("THEN display the Hex", () => {
       render(Hex, {
         category: {
-          Name: "example",
-          Id: 111,
-          ParentId: 222,
-          Children: [],
-          NominalCode: null,
+          id: "111",
+          category_data: {
+            name: "example",
+          },
+          custom_attribute_values: {
+            epos_now_nominal_code: { string_value: null },
+            image_arr: { string_value: "" },
+          },
+          children: [],
+          parent_category: { id: "222" },
         },
       });
       expect(
         screen.getByRole("heading", { level: 3, name: "example", exact: true })
       ).toBeInTheDocument();
-      expect(screen.queryByTestId("empty-hex")).not.toBeInTheDocument();
-    });
-
-    it("AND the prop is a Tag THEN render the tag", () => {
-      render(Hex, {
-        category: {
-          Name: "costume-example",
-          Id: 111,
-          ParentId: 222,
-          Children: [],
-          NominalCode: null,
-          TagTypeId: "123",
-        },
-      });
-      expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent(
-        "example"
-      );
       expect(screen.queryByTestId("empty-hex")).not.toBeInTheDocument();
     });
   });

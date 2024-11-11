@@ -6,15 +6,39 @@ import { get } from "svelte/store";
 import { basket, reset as resetBasketStore } from "$lib/stores/basket";
 import { updateBasket } from "$lib/utils/basket";
 
-import type { Product } from "$lib/types/product";
+import type { SquareProduct } from "$lib/types/product";
 
 const dummyProduct = {
-  Id: 123,
-  Name: "dummy",
-  SalePrice: 300,
-  CurrentStock: 2,
-  CategoryId: 999,
-} as Product;
+  id: "123",
+  updated_at: "",
+  custom_attribute_values: {},
+  item_data: {
+    name: "Elephant",
+    product_type: "",
+    categories: [{ id: "999" }],
+    is_archived: false,
+    ecom_visibility: "VISIBLE",
+    description_html: "big animal",
+    variations: [
+      {
+        id: "456",
+        custom_attribute_values: {
+          image_arr: {
+            string_value: "foobar-0-9sjs9s",
+          },
+        },
+        item_variation_data: {
+          item_id: "123",
+          name: "",
+          price_money: {
+            amount: 30000,
+          },
+          quantity: "9",
+        },
+      },
+    ],
+  },
+} as SquareProduct;
 
 describe("GIVEN AddToBasket", () => {
   beforeEach(() => resetBasketStore());
@@ -28,37 +52,72 @@ describe("GIVEN AddToBasket", () => {
 
   describe("WHEN rendered with props", () => {
     it("THEN display the component", () => {
-      // add items to basket
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
       render(Basket);
-      expect(screen.queryByTestId("basket-0")).toBeInTheDocument();
-      expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
+      expect(screen.queryAllByTestId("basket-0")[0]).toBeInTheDocument();
+      expect(screen.getAllByText("Subtotal: £300.00")[0]).toBeInTheDocument();
     });
 
     it("THEN display the empty basket image when there are no products in the basket", () => {
       render(Basket);
       expect(
-        screen.queryByAltText("cartoon of an empty basket")
+        screen.queryAllByAltText("cartoon of an empty basket")[0]
       ).toHaveAttribute("src", "/src/lib/assets/basket_empty.png");
     });
 
     it("THEN display the correct total when there are multiple items in the basket", () => {
       const dummyProduct2 = {
         ...dummyProduct,
-        SalePrice: 600,
-        Id: 456,
-        Name: "dummy2",
-      };
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
-      basket.set(updateBasket(dummyProduct2, get(basket), "newItem"));
+        item_data: {
+          ...dummyProduct.item_data,
+          name: "dummy2",
+          variations: [
+            {
+              item_variation_data: { price_money: { amount: 60000 } },
+              custom_attribute_values: { image_arr: { string_value: "" } },
+            },
+          ],
+        },
+        id: "456",
+      } as SquareProduct;
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
+      basket.set(
+        updateBasket(
+          dummyProduct2,
+          get(basket),
+          "newItem",
+          dummyProduct2.item_data.variations[0]
+        )
+      );
       render(Basket);
       expect(screen.queryByTestId("basket-0")).toBeInTheDocument();
       expect(screen.queryByTestId("basket-1")).toBeInTheDocument();
-      expect(screen.getByText("Subtotal: £900.00")).toBeInTheDocument();
+      expect(screen.getAllByText("Subtotal: £900.00")[0]).toBeInTheDocument();
     });
 
     it("THEN increment an item already in the basket", async () => {
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
       render(Basket);
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       await userEvent.click(screen.getByText("+"));
@@ -66,7 +125,14 @@ describe("GIVEN AddToBasket", () => {
     });
 
     it("THEN decrement an item already in the basket", async () => {
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
       render(Basket);
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       await userEvent.click(screen.getByText("+"));
@@ -76,7 +142,14 @@ describe("GIVEN AddToBasket", () => {
     });
 
     it("THEN remove an item already in the basket", async () => {
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
       render(Basket);
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       expect(
@@ -89,7 +162,14 @@ describe("GIVEN AddToBasket", () => {
     });
 
     it("THEN add gift wrapping to a product in the basket", async () => {
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
       render(Basket);
       expect(
         screen.getByRole("checkbox", { checked: false })
@@ -97,12 +177,14 @@ describe("GIVEN AddToBasket", () => {
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
         {
-          id: 123,
-          categoryId: 999,
-          currentStock: 2,
+          id: "123",
+          categoryId: "999",
+          currentStock: 9,
+          variationId: "456",
           giftDescription: "",
           giftWrapToUse: "Standard brown paper",
-          name: "dummy",
+          imgHash: "foobar-0-9sjs9s",
+          name: "Elephant",
           quantity: 1,
           giftWrap: false,
           price: 300,
@@ -119,12 +201,14 @@ describe("GIVEN AddToBasket", () => {
       // check the values on the basket are updated
       expect(get(basket)).toMatchObject([
         {
-          id: 123,
-          categoryId: 999,
-          currentStock: 2,
+          id: "123",
+          categoryId: "999",
+          currentStock: 9,
+          variationId: "456",
           giftDescription: "",
           giftWrapToUse: "Standard brown paper",
-          name: "dummy",
+          imgHash: "foobar-0-9sjs9s",
+          name: "Elephant",
           quantity: 1,
           giftWrap: true,
           price: 300.95,
@@ -135,25 +219,54 @@ describe("GIVEN AddToBasket", () => {
     it("THEN add a custom gift wrapping product AND use it to wrap another product", async () => {
       const dummyGiftWrapProduct = {
         ...dummyProduct,
-        SalePrice: 600,
-        Id: 456,
-        Name: "dummyGiftWrap",
-        CategoryId: 1876089,
-      };
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
-      basket.set(updateBasket(dummyGiftWrapProduct, get(basket), "newItem"));
+        id: "888",
+        item_data: {
+          ...dummyProduct.item_data,
+          name: "dummyGiftWrap",
+          categories: [{ id: "32TE2EITCQ6KE4HQ34ORK6V5" }],
+          variations: [
+            {
+              id: "22222",
+              item_variation_data: {
+                price_money: { amount: 60000 },
+                quantity: "2",
+              },
+              custom_attribute_values: { image_arr: { string_value: "" } },
+            },
+          ],
+        },
+      } as SquareProduct;
+
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
+      basket.set(
+        updateBasket(
+          dummyGiftWrapProduct,
+          get(basket),
+          "newItem",
+          dummyGiftWrapProduct.item_data.variations[0]
+        )
+      );
       render(Basket);
       // gift wrap products don't have a gift wrap check box
       const allCheckboxes = screen.getAllByRole("checkbox", { checked: false });
       await userEvent.click(allCheckboxes[0]);
       // get the updated total (+ the gift wrap price)
-      expect(screen.getByText("Subtotal: £900.95")).toBeInTheDocument();
+      expect(screen.getAllByText("Subtotal: £900.95")[0]).toBeInTheDocument();
       // check the values on the basket are updated
       expect(get(basket)).toMatchObject([
         {
-          id: 456,
-          categoryId: 1876089,
+          id: "888",
+          categoryId: "32TE2EITCQ6KE4HQ34ORK6V5",
           currentStock: 2,
+          variationId: "22222",
+          imgHash: "/src/lib/assets/coming_soon.png",
           giftDescription: "",
           giftWrapToUse: "Standard brown paper",
           name: "dummyGiftWrap",
@@ -162,12 +275,13 @@ describe("GIVEN AddToBasket", () => {
           price: 600,
         },
         {
-          id: 123,
-          categoryId: 999,
-          currentStock: 2,
+          id: "123",
+          categoryId: "999",
+          currentStock: 9,
           giftDescription: "",
           giftWrapToUse: "Standard brown paper",
-          name: "dummy",
+          imgHash: "foobar-0-9sjs9s",
+          name: "Elephant",
           quantity: 1,
           giftWrap: true,
           price: 300.95,
@@ -205,13 +319,40 @@ describe("GIVEN AddToBasket", () => {
     it("THEN remove gift wrapping", async () => {
       const dummyGiftWrapProduct = {
         ...dummyProduct,
-        SalePrice: 55.55,
-        Id: 456,
-        Name: "dummyGiftWrap",
-        CategoryId: 1876089,
-      };
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
-      basket.set(updateBasket(dummyGiftWrapProduct, get(basket), "newItem"));
+        id: "888",
+        item_data: {
+          ...dummyProduct.item_data,
+          name: "dummyGiftWrap",
+          categories: [{ id: "32TE2EITCQ6KE4HQ34ORK6V5" }],
+          variations: [
+            {
+              id: "22222",
+              item_variation_data: {
+                price_money: { amount: 5555 },
+                quantity: "2",
+              },
+              custom_attribute_values: { image_arr: { string_value: "" } },
+            },
+          ],
+        },
+      } as SquareProduct;
+
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
+      basket.set(
+        updateBasket(
+          dummyGiftWrapProduct,
+          get(basket),
+          "newItem",
+          dummyGiftWrapProduct.item_data.variations[0]
+        )
+      );
       render(Basket);
       // gift wrap products don't have a gift wrap check box
       const allCheckboxes = screen.getAllByRole("checkbox", { checked: false });
@@ -221,23 +362,27 @@ describe("GIVEN AddToBasket", () => {
       expect(screen.getByText("Subtotal: £356.50")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
         {
-          id: 456,
-          categoryId: 1876089,
+          id: "888",
+          categoryId: "32TE2EITCQ6KE4HQ34ORK6V5",
           currentStock: 2,
           giftDescription: "",
           giftWrapToUse: "Standard brown paper",
           name: "dummyGiftWrap",
+          imgHash: "/src/lib/assets/coming_soon.png",
+          variationId: "22222",
           quantity: 1,
           giftWrap: false,
           price: 55.55,
         },
         {
-          id: 123,
-          categoryId: 999,
-          currentStock: 2,
+          id: "123",
+          categoryId: "999",
+          currentStock: 9,
           giftDescription: "",
+          imgHash: "foobar-0-9sjs9s",
+          variationId: "456",
           giftWrapToUse: "Standard brown paper",
-          name: "dummy",
+          name: "Elephant",
           quantity: 1,
           giftWrap: true,
           price: 300.95,
@@ -282,7 +427,14 @@ describe("GIVEN AddToBasket", () => {
     });
 
     it("THEN add gift wrapping description", async () => {
-      basket.set(updateBasket(dummyProduct, [], "newItem"));
+      basket.set(
+        updateBasket(
+          dummyProduct,
+          [],
+          "newItem",
+          dummyProduct.item_data.variations[0]
+        )
+      );
       render(Basket);
       const giftWrapCheckbox = screen.getByRole("checkbox", { checked: false });
       // gift wrap products don't have a gift wrap check box
@@ -292,15 +444,17 @@ describe("GIVEN AddToBasket", () => {
       expect(screen.getByText("Subtotal: £300.95")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
         {
-          id: 123,
-          categoryId: 999,
-          currentStock: 2,
+          id: "123",
+          categoryId: "999",
+          currentStock: 9,
           giftDescription: "",
           giftWrapToUse: "Standard brown paper",
-          name: "dummy",
+          name: "Elephant",
           quantity: 1,
           giftWrap: true,
           price: 300.95,
+          imgHash: "foobar-0-9sjs9s",
+          variationId: "456",
         },
       ]);
 
@@ -325,13 +479,15 @@ describe("GIVEN AddToBasket", () => {
 
       expect(get(basket)).toMatchObject([
         {
-          id: 123,
-          categoryId: 999,
-          currentStock: 2,
+          id: "123",
+          categoryId: "999",
+          imgHash: "foobar-0-9sjs9s",
+          variationId: "456",
+          currentStock: 9,
           giftDescription:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis lacus, egestas non",
           giftWrapToUse: "Standard brown paper",
-          name: "dummy",
+          name: "Elephant",
           quantity: 1,
           giftWrap: true,
           price: 300.95,

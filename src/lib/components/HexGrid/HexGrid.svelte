@@ -7,14 +7,10 @@
   } from "$lib/utils/gridCalc";
   import LoadingSpinner from "$lib/components/LoadingSpinner/LoadingSpinner.svelte";
   import Hex from "$lib/components/Hex/Hex.svelte";
-  import isCategory from "$lib/types/isCategory";
-  import isTag from "$lib/types/isTag";
 
-  import type { Base } from "$lib/types/base";
-  import type { Category } from "$lib/types/category";
-  import type { Tag } from "$lib/types/tag";
+  import type { SquareCategory } from "$lib/types/category";
 
-  export let data: Base[] = [];
+  export let data: SquareCategory[] = [];
   export let whitelistedUserAgent = false;
   export let showFullPage = true;
 
@@ -31,12 +27,12 @@
     showGrid = calcShowGrid(window.innerWidth, filteredData.length);
   }
   $: filteredData = data?.filter(
-    (base: Base): base is Category | Tag =>
-      isTag(base) ||
-      (isCategory(base) &&
-        base.NominalCode !== "NOT_WEB" &&
-        base.NominalCode !== "CLASSES" &&
-        base.Id !== 2854484) // id of category for jewellery vouchers
+    (base: SquareCategory): base is SquareCategory =>
+      (base.custom_attribute_values.epos_now_nominal_code.string_value ===
+        "CATEGORY" &&
+        base.id !== "5G6HXSP2KNVZBFNNHRQ4YK7D") ||
+      (!base.custom_attribute_values.epos_now_id.string_value &&
+        !base.custom_attribute_values.epos_now_nominal_code.string_value)
   );
 
   $: rowNumber =
@@ -66,7 +62,7 @@
       ? "flexbox-container"
       : "flexbox-container flexbox-container-no-height"}
   >
-    {#each filteredData as category, idx (category.Id)}
+    {#each filteredData as category, idx (category.id)}
       {@const useEmptyHexes =
         filteredData.length > gridColumnNumber && emptyHexes.length}
       {@const lastItem = idx === filteredData.length - itemsOnLastRow}
@@ -86,13 +82,11 @@
       <li class={showGrid ? "hex" : "hex-flex"}>
         <Hex
           {category}
-          hexHref={isTag(category)
-            ? `/shop/tag/${category.Name.toLowerCase()}?catid=0&tagid=${
-                category.Id
-              }`
-            : `/shop/category/${category.Id}?name=${encodeURIComponent(
-                category.Name
-              )}&imgHash=${category.Description}`}
+          hexHref={`/shop/category/${category.id}?name=${encodeURIComponent(
+            category.category_data.name
+          )}&imgHash=${
+            category.custom_attribute_values.image_arr.string_value
+          }`}
           bind:loaded
         />
       </li>
@@ -253,7 +247,7 @@
     }
   }
 
-  /*The media queries below are for ordering the hexagons, awkard */
+  /*The media queries below are for ordering the hexagons, awkward */
   @media (min-width: 1201px) and (max-width: 1959px) {
     .root-categories-container {
       grid-gap: 10px;

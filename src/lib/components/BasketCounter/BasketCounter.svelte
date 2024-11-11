@@ -24,14 +24,15 @@
         ? basket.set(
             updateBasket(
               {
-                Id: productObj.id,
-                Name: productObj.name,
-                SalePrice: productObj.price,
-                CurrentStock: productObj.currentStock,
-                CategoryId: productObj.categoryId,
+                id: productObj.id,
+                name: productObj.name,
+                price: productObj.price,
+                currentStock: productObj.currentStock,
+                categoryId: productObj.categoryId,
               },
               $basket,
-              "incrementQuantity"
+              "incrementQuantity",
+              undefined
             )
           )
         : undefined}
@@ -54,14 +55,15 @@
       basket.set(
         updateBasket(
           {
-            Id: productObj.id,
-            Name: productObj.name,
-            SalePrice: productObj.price,
-            CurrentStock: productObj.currentStock,
-            CategoryId: productObj.categoryId,
+            id: productObj.id,
+            name: productObj.name,
+            price: productObj.price,
+            currentStock: productObj.currentStock,
+            categoryId: productObj.categoryId,
           },
           $basket,
-          "decrementQuantity"
+          "decrementQuantity",
+          undefined
         )
       )}
     aria-label="Decrease the counter by one"

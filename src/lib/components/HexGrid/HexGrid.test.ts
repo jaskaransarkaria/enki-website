@@ -2,26 +2,36 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/svelte";
 import HexGrid from "./HexGrid.svelte";
 
-import type { Category } from "$lib/types/category";
+import type { SquareCategory } from "$lib/types/category";
 
-const mockData: Category[] = [
+const mockData: SquareCategory[] = [
   {
-    Id: 123,
-    Name: "Elephant",
-    ParentId: null,
-    Children: [],
-    NominalCode: "",
-    Description: "foobar",
+    id: "111",
+    category_data: {
+      name: "Elephant",
+    },
+    custom_attribute_values: {
+      epos_now_id: { string_value: null },
+      epos_now_nominal_code: { string_value: null },
+      image_arr: { string_value: "foobar" },
+    },
+    children: [],
+    parent_category: { id: "222" },
   },
   {
-    Id: 456,
-    Name: "Dog",
-    ParentId: null,
-    Children: [],
-    NominalCode: "",
-    Description: "blahblah",
+    id: "456",
+    category_data: {
+      name: "Dog",
+    },
+    custom_attribute_values: {
+      epos_now_id: { string_value: "" },
+      epos_now_nominal_code: { string_value: "" },
+      image_arr: { string_value: "blahblah" },
+    },
+    children: [],
+    parent_category: { id: null },
   },
-];
+] as unknown as SquareCategory[];
 
 describe("GIVEN HexGrid", () => {
   describe("WHEN rendered with NO props", () => {
@@ -48,7 +58,14 @@ describe("GIVEN HexGrid", () => {
       render(HexGrid, {
         data: [
           ...mockData,
-          { ...mockData[0], Id: 456, NominalCode: "NOT_WEB", Name: "Hamster" },
+          {
+            ...mockData[0],
+            id: "456",
+            custom_attribute_values: {
+              ...mockData[0].custom_attribute_values,
+              epos_now_nominal_code: { string_value: "NOT_WEB" },
+            },
+          },
         ],
       });
 
@@ -68,7 +85,7 @@ describe("GIVEN HexGrid", () => {
 
       expect(hexButtons[0]).toHaveAttribute(
         "href",
-        "/shop/category/123?name=Elephant&imgHash=foobar"
+        "/shop/category/111?name=Elephant&imgHash=foobar"
       );
       expect(hexButtons[1]).toHaveAttribute(
         "href",

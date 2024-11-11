@@ -1,8 +1,9 @@
 export interface BasketProduct {
   name: string;
-  id: number;
+  variationId: string;
+  id: string;
   imgHash: string;
-  categoryId: number;
+  categoryId: string;
   quantity: number;
   price: number;
   currentStock: number;

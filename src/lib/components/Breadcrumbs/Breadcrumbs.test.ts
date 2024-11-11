@@ -30,24 +30,37 @@ describe("GIVEN Breadcrumbs", () => {
     it("AND the category store is NOT set THEN render breadcrumbs by calling the api", async () => {
       vi.mocked(refreshCategories).mockResolvedValueOnce([
         {
-          Id: 123,
-          ParentId: null,
-          Name: "Clothes",
-          NominalCode: "",
-          Children: [
+          id: "111",
+          category_data: {
+            name: "Clothes",
+
+            parent_category: { id: null },
+          },
+          custom_attribute_values: {
+            epos_now_id: { string_value: null },
+            epos_now_nominal_code: { string_value: null },
+            image_arr: { string_value: "foobar" },
+          },
+          children: [
             {
-              Id: 456,
-              ParentId: 123,
-              Name: "Adult Clothes",
-              Children: [],
-              NominalCode: "",
+              id: "456",
+              category_data: {
+                name: "Adult Clothes",
+                parent_category: { id: "111" },
+              },
+              custom_attribute_values: {
+                epos_now_id: { string_value: "" },
+                epos_now_nominal_code: { string_value: "" },
+                image_arr: { string_value: "blahblah" },
+              },
+              children: [],
             },
           ],
         },
       ]);
 
       render(Breadcrumbs, {
-        selectedCategoryId: 456,
+        selectedCategoryId: "456",
       });
 
       await tick();
@@ -65,23 +78,35 @@ describe("GIVEN Breadcrumbs", () => {
     it("AND the category store IS set THEN render breadcrumbs without calling the api", async () => {
       readonlyAllCategories.set([
         {
-          Id: 123,
-          ParentId: null,
-          Name: "Clothes",
-          NominalCode: "",
-          Children: [
+          id: "111",
+          category_data: {
+            name: "Clothes",
+            parent_category: { id: null },
+          },
+          custom_attribute_values: {
+            epos_now_id: { string_value: null },
+            epos_now_nominal_code: { string_value: null },
+            image_arr: { string_value: "foobar" },
+          },
+          children: [
             {
-              Id: 456,
-              ParentId: 123,
-              Name: "Adult Clothes",
-              NominalCode: "",
-              Children: [],
+              id: "456",
+              category_data: {
+                name: "Adult Clothes",
+                parent_category: { id: "111" },
+              },
+              custom_attribute_values: {
+                epos_now_id: { string_value: "" },
+                epos_now_nominal_code: { string_value: "" },
+                image_arr: { string_value: "blahblah" },
+              },
+              children: [],
             },
           ],
         },
       ]);
       render(Breadcrumbs, {
-        selectedCategoryId: 456,
+        selectedCategoryId: "456",
       });
 
       await tick();

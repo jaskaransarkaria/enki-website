@@ -3,7 +3,6 @@
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import comingSoon from "$lib/assets/coming_soon.png";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
-  import { getImageFilename } from "$lib/utils/getImageFilename";
 </script>
 
 <svelte:head>
@@ -23,8 +22,11 @@
     <meta
       property="og:image"
       content={`${PUBLIC_BUCKET_URL}/${
-        $page.data.data[0]?.ProductImages[0]?.ImageUrl
-          ? getImageFilename($page.data.data[0]?.ProductImages[0]?.ImageUrl)
+        $page.data.data[0]?.custom_attribute_values.image_arr.string_value
+          .length > 0
+          ? $page.data.data[0]?.custom_attribute_values.image_arr.string_value.split(
+              ","
+            )[0]
           : comingSoon
       }`}
     />
@@ -42,7 +44,7 @@
 <h2>
   We found {$page.data.data.length} results for "{decodeURIComponent(
     $page.url.searchParams.get("search-term")
-  ).toLowerCase()}"
+  )?.toLowerCase()}"
 </h2>
 {#if $page.data.data.length}
   <ProductView productArr={$page.data.data} sorted />

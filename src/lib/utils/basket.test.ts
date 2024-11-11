@@ -1,37 +1,61 @@
 import { updateBasket } from "./basket";
+import type { SquareProduct, VariationData } from "$lib/types/product";
 
 const mockProduct = {
-  Id: 123,
-  Name: "Red jacket",
-  SalePrice: 1000,
-  CurrentStock: 1,
-  CategoryId: 999,
-  Description: "big animal",
-  ProductImages: [
-    {
-      ImageUrl: "/foobar-0-9sjs9s.jpg",
-    },
-  ],
-  ProductTags: [],
-  VariantGroupId: null,
-  ProductDetails: {
-    DetailedDescription: "heavy",
+  id: "123",
+  updated_at: "",
+  custom_attribute_values: {},
+  item_data: {
+    name: "Red Jacket",
+    product_type: "",
+    categories: [{ id: "999" }],
+    is_archived: false,
+    ecom_visibility: "VISIBLE",
+    description_html: "big animal",
+    variations: [
+      {
+        id: "123",
+        custom_attribute_values: {
+          image_arr: {
+            string_value: "foobar-0-9sjs9s",
+          },
+        },
+        item_variation_data: {
+          name: "",
+          price_money: {
+            amount: 2000,
+          },
+          quantity: "1",
+        },
+      },
+    ],
   },
-  SellOnWeb: true,
-  IsArchived: false,
-};
+} as SquareProduct;
 
 describe("GIVEN updateBasket()", () => {
   it("WHEN adding a new item THEN add it to the basket", () => {
-    expect(updateBasket(mockProduct, [], "newItem")).toStrictEqual([
+    expect(
+      updateBasket(
+        mockProduct,
+        [],
+        "newItem",
+        mockProduct.item_data.variations[0]
+      )
+    ).toStrictEqual([
       {
-        id: mockProduct.Id,
-        categoryId: mockProduct.CategoryId,
-        name: mockProduct.Name,
+        id: mockProduct.id,
+        categoryId: mockProduct.item_data.categories[0].id,
+        name: mockProduct.item_data.name,
+        variationId: mockProduct.item_data.variations[0].id,
         quantity: 1,
         imgHash: "foobar-0-9sjs9s",
-        price: mockProduct.SalePrice,
-        currentStock: mockProduct.CurrentStock,
+        price:
+          mockProduct.item_data.variations[0].item_variation_data.price_money
+            .amount / 100,
+        currentStock: parseInt(
+          mockProduct.item_data.variations[0].item_variation_data.quantity,
+          10
+        ),
         giftWrap: false,
         giftDescription: "",
         giftWrapToUse: "Standard brown paper",
@@ -45,29 +69,42 @@ describe("GIVEN updateBasket()", () => {
         mockProduct,
         [
           {
-            id: mockProduct.Id,
-            categoryId: mockProduct.CategoryId,
-            name: mockProduct.Name,
+            id: mockProduct.id,
+            categoryId: mockProduct.item_data.categories[0].id,
+            name: mockProduct.item_data.name,
+            variationId: mockProduct.item_data.variations[0].id,
             quantity: 1,
             imgHash: "foobar-0-9sjs9s",
-            price: mockProduct.SalePrice,
-            currentStock: mockProduct.CurrentStock,
+            price:
+              mockProduct.item_data.variations[0].item_variation_data
+                .price_money.amount / 100,
+            currentStock: parseInt(
+              mockProduct.item_data.variations[0].item_variation_data.quantity,
+              10
+            ),
             giftWrap: false,
             giftDescription: "",
             giftWrapToUse: "Standard brown paper",
           },
         ],
-        "incrementQuantity"
+        "incrementQuantity",
+        mockProduct.item_data.variations[0]
       )
     ).toStrictEqual([
       {
-        id: mockProduct.Id,
-        categoryId: mockProduct.CategoryId,
-        name: mockProduct.Name,
+        id: mockProduct.id,
+        categoryId: mockProduct.item_data.categories[0].id,
+        name: mockProduct.item_data.name,
+        variationId: mockProduct.item_data.variations[0].id,
         quantity: 2,
         imgHash: "foobar-0-9sjs9s",
-        price: mockProduct.SalePrice,
-        currentStock: mockProduct.CurrentStock,
+        price:
+          mockProduct.item_data.variations[0].item_variation_data.price_money
+            .amount / 100,
+        currentStock: parseInt(
+          mockProduct.item_data.variations[0].item_variation_data.quantity,
+          10
+        ),
         giftWrap: false,
         giftDescription: "",
         giftWrapToUse: "Standard brown paper",
@@ -81,29 +118,42 @@ describe("GIVEN updateBasket()", () => {
         mockProduct,
         [
           {
-            id: mockProduct.Id,
-            categoryId: mockProduct.CategoryId,
-            name: mockProduct.Name,
+            id: mockProduct.id,
+            categoryId: mockProduct.item_data.categories[0].id,
+            name: mockProduct.item_data.name,
+            variationId: mockProduct.item_data.variations[0].id,
             quantity: 2,
             imgHash: "foobar-0-9sjs9s",
-            price: mockProduct.SalePrice,
-            currentStock: mockProduct.CurrentStock,
+            price:
+              mockProduct.item_data.variations[0].item_variation_data
+                .price_money.amount,
+            currentStock: parseInt(
+              mockProduct.item_data.variations[0].item_variation_data.quantity,
+              10
+            ),
             giftWrap: false,
             giftDescription: "",
             giftWrapToUse: "Standard brown paper",
           },
         ],
-        "decrementQuantity"
+        "decrementQuantity",
+        mockProduct.item_data.variations[0]
       )
     ).toStrictEqual([
       {
-        id: mockProduct.Id,
-        categoryId: mockProduct.CategoryId,
-        name: mockProduct.Name,
+        id: mockProduct.id,
+        categoryId: mockProduct.item_data.categories[0].id,
+        name: mockProduct.item_data.name,
+        variationId: mockProduct.item_data.variations[0].id,
         quantity: 1,
         imgHash: "foobar-0-9sjs9s",
-        price: mockProduct.SalePrice,
-        currentStock: mockProduct.CurrentStock,
+        price:
+          mockProduct.item_data.variations[0].item_variation_data.price_money
+            .amount,
+        currentStock: parseInt(
+          mockProduct.item_data.variations[0].item_variation_data.quantity,
+          10
+        ),
         giftWrap: false,
         giftDescription: "",
         giftWrapToUse: "Standard brown paper",
@@ -117,19 +167,26 @@ describe("GIVEN updateBasket()", () => {
         mockProduct,
         [
           {
-            id: mockProduct.Id,
-            categoryId: mockProduct.CategoryId,
-            name: mockProduct.Name,
+            id: mockProduct.id,
+            categoryId: mockProduct.item_data.categories[0].id,
+            name: mockProduct.item_data.name,
+            variationId: mockProduct.item_data.variations[0].id,
             quantity: 1,
             imgHash: "foobar-0-9sjs9s",
-            price: mockProduct.SalePrice,
-            currentStock: mockProduct.CurrentStock,
+            price:
+              mockProduct.item_data.variations[0].item_variation_data
+                .price_money.amount,
+            currentStock: parseInt(
+              mockProduct.item_data.variations[0].item_variation_data.quantity,
+              10
+            ),
             giftWrap: false,
             giftDescription: "",
             giftWrapToUse: "Standard brown paper",
           },
         ],
-        "decrementQuantity"
+        "decrementQuantity",
+        mockProduct.item_data.variations[0]
       )
     ).toStrictEqual([]);
   });

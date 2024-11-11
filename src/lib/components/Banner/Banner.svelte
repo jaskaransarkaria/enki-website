@@ -4,14 +4,14 @@
   export let hasProducts = false;
 </script>
 
-{#if hasProducts && !$page.url.toString().match("1876089")}
-  <a rel="external" href="/shop/category/1876089">
+{#if hasProducts && !$page.url.toString().match("32TE2EITCQ6KE4HQ34ORK6V5")}
+  <a rel="external" href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">
     <div in:fade={{ duration: 600 }}>
       <p class="pulse">
         Gift wrapping service click <a
           data-sveltekit-preload-data
           rel="external"
-          href="/shop/category/1876089">here!</a
+          href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">here!</a
         >
       </p>
       <p class="free-shipping">Free UK shipping over £40</p>

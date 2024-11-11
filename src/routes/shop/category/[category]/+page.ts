@@ -4,24 +4,22 @@ import { PUBLIC_SERVER_URL } from "$env/static/public";
 import {
   refreshCategoryFromServer,
   refreshProductsFromServer,
-  refreshTagsFromServer,
 } from "$lib/utils/requests";
 
-import type { Category } from "$lib/types/category";
-import type { Tag } from "$lib/types/tag";
+import type { SquareCategory } from "$lib/types/category";
 
 const traverseCategoryObj = (
-  id: number,
-  returnedCategoryObj: Category
-): Category => {
-  if (returnedCategoryObj?.Id === id) {
+  id: string,
+  returnedCategoryObj: SquareCategory
+): SquareCategory => {
+  if (returnedCategoryObj?.id === id) {
     return returnedCategoryObj;
-  } else if (returnedCategoryObj?.Children) {
+  } else if (returnedCategoryObj?.children) {
     // search each category/children branch recursively
-    for (const cat of returnedCategoryObj.Children) {
-      if (cat.Id === id) {
+    for (const cat of returnedCategoryObj.children) {
+      if (cat.id === id) {
         return cat;
-      } else if (cat.Children) {
+      } else if (cat.children) {
         const result = traverseCategoryObj(id, cat);
         if (result) {
           return result;
@@ -35,10 +33,6 @@ const traverseCategoryObj = (
 };
 
 export async function load({ fetch, params }) {
-  // pull the category data from api
-  let tags: readonly Tag[] = [];
-  const id = parseInt(params.category, 10);
-
   const categoryResults = await refreshCategoryFromServer(
     `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
     fetch
@@ -49,18 +43,10 @@ export async function load({ fetch, params }) {
     fetch
   );
 
-  if ([1875997, 1875998].includes(id)) {
-    tags = await refreshTagsFromServer(
-      `${setServerUrl(browser, dev)}/tags`,
-      fetch
-    );
-  }
-
-  const category = traverseCategoryObj(id, categoryResults[0]);
+  const category = traverseCategoryObj(params.category, categoryResults[0]);
 
   return {
     categoryToShow: category,
     productArr: productResults,
-    tags,
   };
 }

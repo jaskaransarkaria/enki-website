@@ -10,25 +10,26 @@
   import hexFive from "$lib/assets/hex_5.svg";
   import hexSix from "$lib/assets/hex_6.svg";
 
-  import type { Category } from "$lib/types/category";
-  import type { Tag } from "$lib/types/tag";
+  import type { SquareCategory } from "$lib/types/category";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   export let hexHref = "";
   export let isEmpty = false;
-  export let category: Category | Tag = {
-    Name: "",
-    Id: 0,
-    ParentId: 0,
-    Children: [],
-    NominalCode: null,
-    Description: "",
+  export let category: SquareCategory = {
+    id: "",
+    children: [],
+    custom_attribute_values: {
+      image_arr: {
+        string_value: "",
+      },
+    },
   };
+
   export let loaded: Map<string, HTMLImageElement> = new Map();
   let imgError = false;
-  let imgUrl = `${PUBLIC_BUCKET_URL}/${category.Description}${
-    isAvifSupported ? "-avif" : ""
-  }`;
+  let imgUrl = `${PUBLIC_BUCKET_URL}/${
+    category.custom_attribute_values.image_arr.string_value
+  }${isAvifSupported ? "-avif" : ""}`;
   let hexLoaded = false;
   let catImg = new Image();
   let hexImg = new Image();
@@ -56,7 +57,7 @@
         {#if imgError}
           <img
             src={greySquare}
-            alt={`category ${category.Name}`}
+            alt={`category ${category.category_data.name}`}
             data-testid="cdn-img"
             bind:this={catImg}
             on:load={() => {
@@ -75,7 +76,7 @@
               catImg.classList.add("hex-img");
             }}
             on:error={() => (imgError = true)}
-            alt={`category ${category.Name}`}
+            alt={`category ${category.category_data.name}`}
             data-testid="cdn-img"
             class="preload-hex-img"
           />
@@ -91,9 +92,7 @@
         />
         <div class="category-name">
           <h3 data-testid="hex-category-name" in:fade={{ duration: 500 }}>
-            {"TagTypeId" in category
-              ? category.Name.split("-").slice(1).join(" ") // remove the first element and join the others by " "
-              : category.Name}
+            {category.category_data.name}
           </h3>
         </div>
       {/key}
