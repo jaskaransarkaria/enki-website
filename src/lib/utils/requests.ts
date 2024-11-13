@@ -47,15 +47,15 @@ const getCategoryFromServer: (
   fW: (a: string) => Promise<any>
 ) => GetFn<ReadonlyArray<SquareCategory>> =
   (fetchWrapper: (a: string) => Promise<any>) =>
-    (url: string): Promise<ReadonlyArray<SquareCategory>> =>
-      fetchWrapper(url).then((res) => res.json());
+  (url: string): Promise<ReadonlyArray<SquareCategory>> =>
+    fetchWrapper(url).then((res) => res.json());
 
 const getProductArrayFromServer: (
   fW: (a: string) => Promise<any>
 ) => GetFn<ReadonlyArray<SquareProduct>> =
   (fetchWrapper: (a: string) => Promise<any>) =>
-    (url: string): Promise<ReadonlyArray<SquareProduct>> =>
-      fetchWrapper(url).then((res) => res.json());
+  (url: string): Promise<ReadonlyArray<SquareProduct>> =>
+    fetchWrapper(url).then((res) => res.json());
 
 const getCategoriesArray: GetFn<ReadonlyArray<SquareCategory>> = (
   url: string
@@ -66,5 +66,5 @@ const getCategoriesArrayServer: (
   fW: (a: string) => Promise<any>
 ) => GetFn<ReadonlyArray<SquareCategory>> =
   (fetchWrapper: (a: string) => Promise<any>) =>
-    (url: string): Promise<ReadonlyArray<SquareCategory>> =>
-      fetchWrapper(url).then((res) => res.json());
+  (url: string): Promise<ReadonlyArray<SquareCategory>> =>
+    fetchWrapper(url).then((res) => res.json());

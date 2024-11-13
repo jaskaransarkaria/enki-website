@@ -68,7 +68,7 @@
         return collatedArray
           .slice()
           .sort((a, b) =>
-            new Date(a.updated_at) < new Date(b.updated_at) ? 1 : -1
+            new Date(a.created_at) < new Date(b.created_at) ? 1 : -1
           );
       default:
         browser && window.sessionStorage.setItem("filter", "in-stock");

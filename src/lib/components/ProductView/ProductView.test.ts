@@ -9,6 +9,7 @@ const mockData: readonly SquareProduct[] = [
   {
     id: "123",
     updated_at: "",
+    created_at: "2024-11-12T10:49:06.237Z",
     custom_attribute_values: {},
     item_data: {
       name: "Elephant",
@@ -40,6 +41,7 @@ const mockData: readonly SquareProduct[] = [
   {
     id: "789",
     updated_at: "",
+    created_at: "2024-11-13T10:49:06.237Z",
     custom_attribute_values: {},
     item_data: {
       name: "Dog",
@@ -313,25 +315,41 @@ describe("GIVEN ProductView", () => {
       expect(sortedProducts[3]).toHaveTextContent("90");
     });
 
-    it.skip("THEN sort the products by stock", async () => {
+    it("THEN sort the products by stock", async () => {
       render(ProductView, {
         productArr: [
           ...mockData,
           {
-            Id: 789,
-            Name: "Cat",
-            CategoryId: 999,
-            Description: "small animal",
-            SalePrice: 66,
-            ProductImages: [],
-            ProductTags: [],
-            VariantGroupId: null,
-            CurrentStock: 999,
-            ProductDetails: {
-              DetailedDescription: "agile",
+            id: "888",
+            updated_at: "",
+            created_at: "2024-11-15T10:49:06.237Z",
+            custom_attribute_values: {},
+            item_data: {
+              name: "Cat",
+              product_type: "",
+              categories: [{ id: "999" }],
+              is_archived: false,
+              ecom_visibility: "VISIBLE",
+              description_html: "big animal",
+              variations: [
+                {
+                  id: "7777",
+                  custom_attribute_values: {
+                    image_arr: {
+                      string_value: "foobar-0-9sjs9s",
+                    },
+                  },
+                  item_variation_data: {
+                    item_id: "888",
+                    name: "",
+                    price_money: {
+                      amount: 900,
+                    },
+                    quantity: "999",
+                  },
+                },
+              ],
             },
-            SellOnWeb: true,
-            IsArchived: false,
           },
         ],
       });
@@ -343,7 +361,7 @@ describe("GIVEN ProductView", () => {
       });
 
       expect(products[0]).toHaveTextContent("Cat");
-      expect(products[1]).toHaveTextContent("66");
+      expect(products[1]).toHaveTextContent("9.00");
       expect(products[2]).toHaveTextContent("Elephant");
       expect(products[3]).toHaveTextContent("90");
       expect(products[4]).toHaveTextContent("Dog");
@@ -374,32 +392,48 @@ describe("GIVEN ProductView", () => {
       const sortedProducts = screen.getAllByRole("heading", { level: 3 });
 
       expect(sortedProducts[0]).toHaveTextContent("Cat");
-      expect(sortedProducts[1]).toHaveTextContent("66");
+      expect(sortedProducts[1]).toHaveTextContent("9.00");
       expect(sortedProducts[2]).toHaveTextContent("Elephant");
       expect(sortedProducts[3]).toHaveTextContent("90");
       expect(sortedProducts[4]).toHaveTextContent("Dog");
       expect(sortedProducts[5]).toHaveTextContent("10");
     });
 
-    it.skip("THEN sort the products by newest to oldest", async () => {
+    it("THEN sort the products by newest to oldest", async () => {
       render(ProductView, {
         productArr: [
           ...mockData,
           {
-            Id: 789,
-            Name: "Cat",
-            CategoryId: 999,
-            Description: "small animal",
-            SalePrice: 66,
-            ProductImages: [],
-            ProductTags: [],
-            VariantGroupId: null,
-            CurrentStock: 999,
-            ProductDetails: {
-              DetailedDescription: "agile",
+            id: "888",
+            updated_at: "",
+            created_at: "2024-11-15T10:49:06.237Z",
+            custom_attribute_values: {},
+            item_data: {
+              name: "Newest",
+              product_type: "",
+              categories: [{ id: "999" }],
+              is_archived: false,
+              ecom_visibility: "VISIBLE",
+              description_html: "big animal",
+              variations: [
+                {
+                  id: "7777",
+                  custom_attribute_values: {
+                    image_arr: {
+                      string_value: "foobar-0-9sjs9s",
+                    },
+                  },
+                  item_variation_data: {
+                    item_id: "888",
+                    name: "",
+                    price_money: {
+                      amount: 900,
+                    },
+                    quantity: "9",
+                  },
+                },
+              ],
             },
-            SellOnWeb: true,
-            IsArchived: false,
           },
         ],
       });
@@ -410,12 +444,12 @@ describe("GIVEN ProductView", () => {
         level: 3,
       });
 
-      expect(products[0]).toHaveTextContent("Cat");
-      expect(products[1]).toHaveTextContent("66");
-      expect(products[2]).toHaveTextContent("Elephant");
-      expect(products[3]).toHaveTextContent("90");
+      expect(products[0]).toHaveTextContent("Elephant");
+      expect(products[1]).toHaveTextContent("0.90");
+      expect(products[2]).toHaveTextContent("Newest");
+      expect(products[3]).toHaveTextContent("9.00");
       expect(products[4]).toHaveTextContent("Dog");
-      expect(products[5]).toHaveTextContent("10");
+      expect(products[5]).toHaveTextContent("0.10");
 
       expect(
         (screen.getByRole("option", { name: "in stock" }) as HTMLOptionElement)
@@ -438,12 +472,12 @@ describe("GIVEN ProductView", () => {
 
       const sortedProducts = screen.getAllByRole("heading", { level: 3 });
 
-      expect(sortedProducts[0]).toHaveTextContent("Cat");
-      expect(sortedProducts[1]).toHaveTextContent("66");
+      expect(sortedProducts[0]).toHaveTextContent("Newest");
+      expect(sortedProducts[1]).toHaveTextContent("9.00");
       expect(sortedProducts[2]).toHaveTextContent("Dog");
-      expect(sortedProducts[3]).toHaveTextContent("10");
+      expect(sortedProducts[3]).toHaveTextContent("0.10");
       expect(sortedProducts[4]).toHaveTextContent("Elephant");
-      expect(sortedProducts[5]).toHaveTextContent("90");
+      expect(sortedProducts[5]).toHaveTextContent("0.90");
     });
 
     it.skip("AND the products are already sorted THEN don't sort the products again", async () => {
@@ -452,36 +486,68 @@ describe("GIVEN ProductView", () => {
         productArr: [
           ...mockData,
           {
-            Id: 789,
-            Name: "Cat",
-            CategoryId: 999,
-            Description: "small animal",
-            SalePrice: 66,
-            ProductImages: [],
-            ProductTags: [],
-            VariantGroupId: null,
-            CurrentStock: 999,
-            ProductDetails: {
-              DetailedDescription: "agile",
+            id: "888",
+            updated_at: "",
+            created_at: "2024-11-15T10:49:06.237Z",
+            custom_attribute_values: {},
+            item_data: {
+              name: "Cat",
+              product_type: "",
+              categories: [{ id: "999" }],
+              is_archived: false,
+              ecom_visibility: "VISIBLE",
+              description_html: "big animal",
+              variations: [
+                {
+                  id: "7777",
+                  custom_attribute_values: {
+                    image_arr: {
+                      string_value: "foobar-0-9sjs9s",
+                    },
+                  },
+                  item_variation_data: {
+                    item_id: "888",
+                    name: "",
+                    price_money: {
+                      amount: 900,
+                    },
+                    quantity: "999",
+                  },
+                },
+              ],
             },
-            SellOnWeb: true,
-            IsArchived: false,
           },
           {
-            Id: 790,
-            Name: "Fish",
-            CategoryId: 999,
-            Description: "scaley",
-            SalePrice: 99,
-            ProductImages: [],
-            ProductTags: [],
-            VariantGroupId: null,
-            CurrentStock: 1000,
-            ProductDetails: {
-              DetailedDescription: "lives in water",
+            id: "889",
+            updated_at: "",
+            created_at: "2024-11-15T10:49:06.237Z",
+            custom_attribute_values: {},
+            item_data: {
+              name: "Fish",
+              product_type: "",
+              categories: [{ id: "999" }],
+              is_archived: false,
+              ecom_visibility: "VISIBLE",
+              description_html: "big animal",
+              variations: [
+                {
+                  id: "7777",
+                  custom_attribute_values: {
+                    image_arr: {
+                      string_value: "foobar-0-9sjs9s",
+                    },
+                  },
+                  item_variation_data: {
+                    item_id: "888",
+                    name: "",
+                    price_money: {
+                      amount: 9900,
+                    },
+                    quantity: "1000",
+                  },
+                },
+              ],
             },
-            SellOnWeb: true,
-            IsArchived: false,
           },
         ],
       });
