@@ -61,4 +61,5 @@ export interface SquareProduct {
   item_data: ItemData;
   custom_attribute_values: CustomItemAttributeVals;
   updated_at: string;
+  created_at: string;
 }
