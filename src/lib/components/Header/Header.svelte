@@ -89,6 +89,13 @@
         </a>
         <a
           data-sveltekit-preload-data
+          class={selected.includes("gift") ? "selected" : ""}
+          href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+        >
+          gift guide
+        </a>
+        <a
+          data-sveltekit-preload-data
           class={selected.includes("repairs") ? "selected" : ""}
           href="/repairs"
         >

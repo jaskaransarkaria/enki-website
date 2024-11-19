@@ -15,7 +15,11 @@
 {#if toggleOpen}
   <div class="menu">
     <button on:click={() => toggleAndGo("/shop")}> shop </button>
-    <button on:click={() => toggleAndGo("/gift-guide")}> gift guide </button>
+    <button
+      on:click={() => toggleAndGo("/shop/category/CXWG77NR7TPXXQSZD3QVPLHS")}
+    >
+      gift guide
+    </button>
     <button on:click={() => toggleAndGo("/repairs")}> repairs </button>
     <button on:click={() => toggleAndGo("/classes")}> classes </button>
     <button on:click={() => toggleAndGo("/about")}> about </button>
