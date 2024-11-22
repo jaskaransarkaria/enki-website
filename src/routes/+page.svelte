@@ -102,7 +102,10 @@
             alt="online shop button"
           />
         </a>
-        <a data-sveltekit-preload-data href="/gift-guide">
+        <a
+          data-sveltekit-preload-data
+          href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+        >
           <img
             class="mobile-gift-guide-img"
             src={isAvifSupported ? mobileGiftGuideAvif : mobileGiftGuidePng}

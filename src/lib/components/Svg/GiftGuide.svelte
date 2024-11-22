@@ -4,7 +4,7 @@
 
 <a
   data-sveltekit-preload-data
-  href="/gift-guide"
+  href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
   class="guide"
   data-test-id="guide"
 >

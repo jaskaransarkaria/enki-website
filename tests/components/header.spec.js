@@ -25,8 +25,12 @@ test.describe("Header", () => {
 
     await expect(page.locator("button>> nth=1")).toHaveText("gift guide");
     await page.locator("button>> nth=1").click();
-    await page.waitForURL("http://localhost:4000/gift-guide");
-    expect(page.url()).toBe("http://localhost:4000/gift-guide");
+    await page.waitForURL(
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+    );
+    expect(page.url()).toBe(
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+    );
     await page.locator("img.enki-logo").click();
     await page.waitForURL("http://localhost:4000/");
     expect(page.url()).toBe("http://localhost:4000/");
@@ -97,8 +101,12 @@ test.describe("Header", () => {
 
     await expect(page.locator("a >> nth=1")).toHaveText("gift guide");
     await page.locator("a >> nth=1").click();
-    await page.waitForURL("http://localhost:4000/gift-guide");
-    expect(page.url()).toBe("http://localhost:4000/gift-guide");
+    await page.waitForURL(
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+    );
+    expect(page.url()).toBe(
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+    );
     await page.keyboard.press("Escape");
     await page.locator("img.enki-logo").click();
     await page.waitForURL("http://localhost:4000/");
@@ -147,8 +155,12 @@ test.describe("Header", () => {
     await page.waitForURL("http://localhost:4000/shop");
     expect(page.url()).toBe("http://localhost:4000/shop");
     await page.locator("a >> nth=1").click();
-    await page.waitForURL("http://localhost:4000/gift-guide");
-    expect(page.url()).toBe("http://localhost:4000/gift-guide");
+    await page.waitForURL(
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+    );
+    expect(page.url()).toBe(
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+    );
     await page.locator("a >> nth=2").click();
     await page.waitForURL("http://localhost:4000/repairs");
     expect(page.url()).toBe("http://localhost:4000/repairs");

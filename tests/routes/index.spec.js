@@ -39,8 +39,12 @@ test.describe("Desktop Home Page", () => {
     await page.goBack();
     expect(page.url()).toBe("http://localhost:4000/");
     await page.locator("data-test-id=guide").click();
-    await page.waitForURL("http://localhost:4000/gift-guide");
-    expect(page.url()).toBe("http://localhost:4000/gift-guide");
+    await page.waitForURL(
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+    );
+    expect(page.url()).toBe(
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+    );
     await page.goBack();
     expect(page.url()).toBe("http://localhost:4000/");
   });
