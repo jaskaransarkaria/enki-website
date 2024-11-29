@@ -3,8 +3,6 @@
   import { page } from "$app/stores";
   import CategoryView from "$lib/components/CategoryView/CategoryView.svelte";
 
-  const tags = $page.data.tags;
-
   $: categoryToShow = $page.data.categoryToShow;
   $: productArr = $page.data.productArr;
 
@@ -29,5 +27,4 @@
   {categoryToShow}
   whitelistedUserAgent={$page.data.whitelistedUserAgent}
   {productArr}
-  {tags}
 />
