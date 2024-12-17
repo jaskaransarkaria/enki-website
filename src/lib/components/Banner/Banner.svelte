@@ -14,6 +14,9 @@
           href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">here!</a
         >
       </p>
+      <p>
+        ***CHRISTMAS SHIPPING DATES*** Standard - Weds 18th, Special - Fri 20th
+      </p>
       <p class="free-shipping">Free UK shipping over £40</p>
     </div>
   </a>
