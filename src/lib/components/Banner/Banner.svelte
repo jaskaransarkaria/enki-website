@@ -2,6 +2,12 @@
   import { fade } from "svelte/transition";
   import { page } from "$app/stores";
   export let hasProducts = false;
+
+  const currentDate = new Date();
+
+  const currentMonth = currentDate.getMonth();
+
+  const isXmas = currentMonth === 11;
 </script>
 
 {#if hasProducts && !$page.url.toString().match("32TE2EITCQ6KE4HQ34ORK6V5")}
@@ -14,9 +20,12 @@
           href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">here!</a
         >
       </p>
-      <p>
-        ***CHRISTMAS SHIPPING DATES*** Standard - Weds 18th, Special - Fri 20th
-      </p>
+      {#if isXmas}
+        <p>
+          ***CHRISTMAS SHIPPING DATES*** Standard - Weds 18th, Special - Fri
+          20th
+        </p>
+      {/if}
       <p class="free-shipping">Free UK shipping over £40</p>
     </div>
   </a>
