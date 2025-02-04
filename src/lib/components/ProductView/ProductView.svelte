@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import { beforeUpdate } from "svelte";
   import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
@@ -10,7 +11,6 @@
   import giftWrapOneAvif from "$lib/assets/gift-wrap-1.avif";
   import giftWrapTwoAvif from "$lib/assets/gift-wrap-2.avif";
   import giftWrapThreeAvif from "$lib/assets/gift-wrap-3.avif";
-
   import type { SquareProduct } from "$lib/types/product";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
@@ -162,7 +162,11 @@
           data-testid="products-container"
         >
           {#each sortedCollatedArray as item (item.id)}
-            <SingleProduct product={item} {showDetailedView} />
+            {#if item.item_data.variations.every((v) => {
+              return parseInt(v.item_variation_data.quantity, 10) > 0;
+            }) || Boolean($page.url.pathname === "/shop/search")}
+              <SingleProduct product={item} {showDetailedView} />
+            {/if}
           {/each}
         </div>
       {/if}
