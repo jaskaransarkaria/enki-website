@@ -104,16 +104,16 @@
       {:else}
         <div class="left-repair-content">
           <div class="repairs-price-list">
-            <a href="/repairs/silver-jewellery-price-list.pdf"
+            <a href="/repairs/silver-jewellery-price-list-10-02-25.pdf"
               ><img alt="sliver repairs price list" src={silver} /></a
             >
-            <a href="/repairs/9ct-jewellery-price-list.pdf"
+            <a href="/repairs/9ct-jewellery-price-list-10-02-25.pdf"
               ><img alt="9ct gold repairs list" src={nineCaret} /></a
             >
-            <a href="/repairs/18ct-jewellery-price-list.pdf"
+            <a href="/repairs/18ct-jewellery-price-list-10-02-25.pdf"
               ><img alt="18ct gold repairs list" src={eighteenCaret} /></a
             >
-            <a href="/repairs/platinum-jewellery-price-list.pdf"
+            <a href="/repairs/platinum-jewellery-price-list-10-02-25.pdf"
               ><img alt="platinum repairs list" src={platinum} /></a
             >
           </div>
