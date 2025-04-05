@@ -31,7 +31,7 @@ Basket -> held in local storage via svelte store
 
 Image -> The images only load when they come into view (we use `IntersectionObserver` for that). This allows us to load all of our products onto one page (no need for pagination)
 
-### Categories and NominalCode
+### Categories and NominalCode (epos now legacy, categories are now displayed online or not via Square and variant categories aren't a thing in Square)
 
 - 'NOT_WEB' -- the category won't be shown on the site but will on the till
 - 'CLASSES' -- the category won't be show in the online shop but will be shown on the `classes` page and on the till

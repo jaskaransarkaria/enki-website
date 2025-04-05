@@ -54,28 +54,6 @@ describe("GIVEN HexGrid", () => {
       expect(allHexes[1]).toHaveTextContent("Dog");
     });
 
-    it("AND NominalCode property is 'NOT_WEB' THEN do not render that hexagon", () => {
-      render(HexGrid, {
-        data: [
-          ...mockData,
-          {
-            ...mockData[0],
-            id: "456",
-            custom_attribute_values: {
-              ...mockData[0].custom_attribute_values,
-              epos_now_nominal_code: { string_value: "NOT_WEB" },
-            },
-          },
-        ],
-      });
-
-      const allHexes = screen.getAllByTestId("hex-category-name");
-      expect(screen.queryByTestId("loading-spinner")).not.toBeInTheDocument();
-      expect(allHexes[0]).toHaveTextContent("Elephant");
-      expect(allHexes[1]).toHaveTextContent("Dog");
-      expect(screen.queryByText("Hamster")).not.toBeInTheDocument();
-    });
-
     it("AND the hexagon links to have the correct paths", async () => {
       render(HexGrid, {
         data: mockData,

@@ -10,25 +10,13 @@
   export let categoryToShow: SquareCategory | undefined;
   export let productArr: readonly SquareProduct[];
   export let whitelistedUserAgent: boolean;
-
-  const removeVariantCategories = (categories: SquareCategory[]) =>
-    categories?.filter(
-      (cat) =>
-        cat.custom_attribute_values.epos_now_nominal_code.string_value ===
-          "CATEGORY" ||
-        (!cat.custom_attribute_values.epos_now_nominal_code.string_value &&
-          !cat.custom_attribute_values.epos_now_id.string_value)
-    );
-
-  $: nonVariantCategories =
-    removeVariantCategories(categoryToShow?.children) || [];
 </script>
 
 {#if showBreadcrumbs}
   <Breadcrumbs selectedCategoryId={categoryToShow?.id} />
 {/if}
-{#if nonVariantCategories.length}
-  <HexGrid data={nonVariantCategories} {whitelistedUserAgent} />
+{#if categoryToShow?.children?.length}
+  <HexGrid data={categoryToShow.children} {whitelistedUserAgent} />
 {:else}
   <ProductView {productArr} {whitelistedUserAgent} />
 {/if}

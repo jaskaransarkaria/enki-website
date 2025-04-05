@@ -39,4 +39,5 @@ export interface SquareCategory {
   children: SquareCategory[];
   category_data: CategoryData;
   custom_attribute_values: CustomCatAttributeVals;
+  type: string;
 }
