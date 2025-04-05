@@ -42,8 +42,14 @@
   );
 </script>
 
+<svelte:head>
+  {#if loading}
+    <link rel="stylesheet" href="/loading.css" />
+  {/if}
+</svelte:head>
+
 <svelte:window bind:outerWidth />
-<div class="container" style:cursor={`${loading ? "wait" : "default"}`}>
+<div class="container">
   {#if $basket.length}
     {#each $basket as obj, i (obj.id)}
       <div
