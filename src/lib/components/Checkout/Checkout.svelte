@@ -17,8 +17,8 @@
   });
 
   const handleClick = async (stripePromise: any, basket: any) => {
-    await createCheckoutSession(stripePromise, basket, PUBLIC_SERVER_URL);
     loading = true;
+    await createCheckoutSession(stripePromise, basket, PUBLIC_SERVER_URL);
   };
 </script>
 
