@@ -28,11 +28,7 @@
   }
   $: filteredData = data?.filter(
     (base: SquareCategory): base is SquareCategory =>
-      (base.custom_attribute_values.epos_now_nominal_code.string_value ===
-        "CATEGORY" &&
-        base.id !== "5G6HXSP2KNVZBFNNHRQ4YK7D") ||
-      (!base.custom_attribute_values.epos_now_id.string_value &&
-        !base.custom_attribute_values.epos_now_nominal_code.string_value)
+      base.id !== "5G6HXSP2KNVZBFNNHRQ4YK7D"
   );
 
   $: rowNumber =
