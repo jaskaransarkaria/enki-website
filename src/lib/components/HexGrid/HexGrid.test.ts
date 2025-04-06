@@ -36,6 +36,7 @@ const mockData: SquareCategory[] = [
 describe("GIVEN HexGrid", () => {
   describe("WHEN rendered with NO props", () => {
     it("THEN do NOT render any hexagons AND show loading spinner", () => {
+      window.HTMLElement.prototype.scrollIntoView = function () {};
       const { container } = render(HexGrid);
       expect(container.children).toHaveLength(1);
       expect(screen.getByTestId("loading-spinner")).toBeInTheDocument();
