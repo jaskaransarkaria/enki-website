@@ -53,6 +53,7 @@
 <div class="container">
   {#if loading}
     <LoadingSpinner />
+    <h2>please wait while we redirect you to checkout...</h2>
   {:else if $basket.length}
     {#each $basket as obj, i (obj.id)}
       <div
