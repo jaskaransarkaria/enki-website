@@ -6,6 +6,7 @@
   import basketEmpty from "$lib/assets/basket_empty.png";
   import BasketCounter from "$lib/components/BasketCounter/BasketCounter.svelte";
   import Checkout from "$lib/components/Checkout/Checkout.svelte";
+  import LoadingSpinner from "../LoadingSpinner/LoadingSpinner.svelte";
 
   let basketTotalArr: { total: number }[];
   let total: string;
@@ -50,7 +51,9 @@
 
 <svelte:window bind:outerWidth />
 <div class="container">
-  {#if $basket.length}
+  {#if loading}
+    <LoadingSpinner />
+  {:else if $basket.length}
     {#each $basket as obj, i (obj.id)}
       <div
         data-testid={`basket-${i}`}
