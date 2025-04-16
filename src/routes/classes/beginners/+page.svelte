@@ -13,6 +13,7 @@
   import classesExampleThreeAvif from "$lib/assets/classes_example_3.avif";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
+  const SHOW_VOUCHER = false;
   let ttWidget: HTMLElement;
   let widgetLoaded = false;
   let loaded = new Map();
@@ -125,30 +126,32 @@
       group bookings where you can choose the date and topic. <br /><br />
       Get in touch <a href="/contact">here</a>.
     </p>
-    <div class="voucher-container">
-      <div class="hex-container">
-        <Hex
-          hexHref={`/shop/category/${
-            jewelleryVoucherCategory.id
-          }?name=${encodeURIComponent(
-            jewelleryVoucherCategory.category_data.name
-          )}&imgHash=${encodeURIComponent(
-            jewelleryVoucherCategory.custom_attribute_values.image_arr.string_value.split(
-              ","
-            )[0]
-          )}`}
-          category={jewelleryVoucherCategory}
-          bind:loaded
-        />
+    {#if SHOW_VOUCHER}
+      <div class="voucher-container">
+        <div class="hex-container">
+          <Hex
+            hexHref={`/shop/category/${
+              jewelleryVoucherCategory.id
+            }?name=${encodeURIComponent(
+              jewelleryVoucherCategory.category_data.name
+            )}&imgHash=${encodeURIComponent(
+              jewelleryVoucherCategory.custom_attribute_values.image_arr.string_value.split(
+                ","
+              )[0]
+            )}`}
+            category={jewelleryVoucherCategory}
+            bind:loaded
+          />
+        </div>
+        <p>
+          If class dates aren’t yet announced or you're not sure about a date
+          you can always buy one of our vouchers.<br /><br />Then contact us to
+          arrange a spot in one of our classes.<br /><br />We have three terms
+          of classes, January-March, May-July and September-November, and we
+          release dates at least a month in advance.
+        </p>
       </div>
-      <p>
-        If class dates aren’t yet announced or you're not sure about a date you
-        can always buy one of our vouchers.<br /><br />Then contact us to
-        arrange a spot in one of our classes.<br /><br />We have three terms of
-        classes, January-March, May-July and September-November, and we release
-        dates at least a month in advance.
-      </p>
-    </div>
+    {/if}
   </div>
 
   <div bind:this={ttWidget} class="tt-widget">
