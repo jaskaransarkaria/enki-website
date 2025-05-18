@@ -20,7 +20,6 @@
       );
 
       if (productToShow.length < 1) {
-        console.log("fetching from client to server...");
         const res = await fetch(`${PUBLIC_SERVER_URL}/product?id=${productId}`);
         productToShow = await res.json();
       }
