@@ -1,6 +1,8 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import { onMount } from "svelte";
+  import { PUBLIC_BUCKET_URL, PUBLIC_SERVER_URL } from "$env/static/public";
   import { page } from "$app/stores";
+  import { products } from "$lib/stores/products";
   import comingSoon from "$lib/assets/coming_soon.png";
   import Banner from "$lib/components/Banner/Banner.svelte";
   import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
@@ -8,7 +10,20 @@
 
   import type { SquareProduct } from "$lib/types/product";
 
-  const productToShow: readonly SquareProduct[] = $page.data.productToShow;
+  let productToShow: readonly SquareProduct[] = [];
+
+  onMount(async () => {
+    const productId = $page.url.pathname.split("/").at(-1);
+
+    productToShow = [$products?.find((p) => p.id === productId)].filter(
+      (p) => p !== undefined
+    );
+
+    if (productToShow.length) {
+      const res = await fetch(`${PUBLIC_SERVER_URL}/product?id=${productId}`);
+      productToShow = await res.json();
+    }
+  });
 </script>
 
 <svelte:head>
