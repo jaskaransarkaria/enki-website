@@ -50,7 +50,7 @@
     <h2>Use the code below at the checkout for 10% off</h2>
   {:else}
     <h1><em>hello</em></h1>
-    <h2>Sign up and save 10% off your first online purchase!</h2>
+    <h2>Sign up and save 10% off your next online purchase!</h2>
   {/if}
   {#if $isSignedUp}
     {#await getPromoCode(mcEmailInput)}
