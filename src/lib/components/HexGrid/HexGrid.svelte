@@ -25,7 +25,11 @@
   $: if (browser) {
     gridColumnNumber = getGridCols(window.innerWidth) / 2;
     showGrid = calcShowGrid(window.innerWidth, filteredData.length);
+  } else {
+    gridColumnNumber = 20;
+    showGrid = true;
   }
+
   $: filteredData = data?.filter(
     (base: SquareCategory): base is SquareCategory =>
       base.id !== "5G6HXSP2KNVZBFNNHRQ4YK7D"

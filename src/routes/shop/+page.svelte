@@ -2,7 +2,7 @@
   import { page } from "$app/stores";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
 
-  import type { Base, BaseFn } from "$lib/types/base";
+  import type { BaseFn } from "$lib/types/base";
   import type { SquareCategory } from "$lib/types/category";
 
   export let data: { data: SquareCategory[] } = { data: [] };

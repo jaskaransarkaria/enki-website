@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import { browser } from "$app/environment";
   import { fade } from "svelte/transition";
   import greySquare from "$lib/assets/grey_square.png";
   import emptyHexFour from "$lib/assets/empty_hex_4.png";
@@ -31,8 +32,8 @@
     category.custom_attribute_values.image_arr.string_value
   }${isAvifSupported ? "-avif" : ""}`;
   let hexLoaded = false;
-  let catImg = new Image();
-  let hexImg = new Image();
+  let catImg = browser ? new Image() : {};
+  let hexImg = browser ? new Image() : {};
 
   const hexArr = [hexOne, hexTwo, hexThree, hexFour, hexFive, hexSix];
 </script>
