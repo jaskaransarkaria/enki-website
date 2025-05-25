@@ -78,4 +78,3 @@ User-agent: sitemap-generator-cli
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
-Disallow: /*?
