@@ -47,20 +47,20 @@
     email you to see if you’d like to opt in to our newsletter, you can of
     course opt out at any time.
   </p>
-  <h2>General Terms and Conditions for Classes</h2>
+  <h2>General Terms and Conditions for workshops</h2>
   <p>
-    Safety: Although our classes are very safe there are still some elements of
-    jewellery making that can be dangerous, you must follow all safety
+    Safety: Although our workshops are very safe there are still some elements
+    of jewellery making that can be dangerous, you must follow all safety
     instructions we give during the class. Dietary Requirements: Cake from the
     Earlybird Bakery plus soft and hot drinks will be provided, please ensure
     you have informed us of any dietary requirements a week in advance so we can
     arrange for alternative milk etc.
   </p>
 
-  <h2>Group Classes</h2>
+  <h2>Group workshops</h2>
   <p>
-    Cancellation by us: We reserve the right to cancel our classes due to
-    unforeseen circumstances or under subscription. Our classes are limited to
+    Cancellation by us: We reserve the right to cancel our workshops due to
+    unforeseen circumstances or under subscription. Our workshops are limited to
     ten people and need at least six to run the class. In the event that we
     don’t have six participants the class may be cancelled or re-scheduled, you
     will then be able to receive a full refund or transfer to another date. We
@@ -77,7 +77,7 @@
     If you cancel more than 14 days after making your booking and more than 14
     days before the class, we will offer an alternative date or a 50% refund.
   </p>
-  <h2>Private Classes</h2>
+  <h2>Private workshops</h2>
   <p>
     Payment: There will be a £200 non refundable deposit on booking your class,
     the balance will be due 30 days before the class. Cancellation by you: If
@@ -88,13 +88,13 @@
   </p>
 
   <p>
-    Cancellation by us: We reserve the right to cancel our classes due to
+    Cancellation by us: We reserve the right to cancel our workshops due to
     unforeseen circumstances, we will give as much notice as possible in this
     event but can not be held responsible for any other expenses incurred as a
     result of cancellation. Change of date: If you need to change the date and
     give us 30 days notice we will do our best to find a new date for you.
   </p>
-  <h2>Wedding Ring Classes</h2>
+  <h2>Wedding Ring workshops</h2>
 
   <p>
     The rings: Whilst you will go away with two beautiful rings, please be aware

@@ -85,7 +85,7 @@
     {#if !$isSignedUp}
       <div out:fade={{ duration: 1000 }}>
         <h3>
-          Want to be the first to find out about new products and classes?
+          Want to be the first to find out about new products and workshops?
         </h3>
         <MailChimpSubscribe onSignupFn={signupFn} />
       </div>

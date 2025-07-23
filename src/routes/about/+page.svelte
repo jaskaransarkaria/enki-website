@@ -67,7 +67,7 @@
     <p class="about-shop">
       Enki is a unique gift shop and fully functioning jewellers workshop. We
       repair all types of jewellery onsite and also teach group and private
-      jewellery classes. The Kings Heath store shows the work of many
+      jewellery workshops. The Kings Heath store shows the work of many
       independent crafts people who have become almost invisible on the high
       street today. From baby clothes to pottery, jewellery to cushions, we have
       just the gift you're looking for. <br /><br />We also sell beautiful and
