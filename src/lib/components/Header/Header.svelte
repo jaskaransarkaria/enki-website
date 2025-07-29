@@ -103,10 +103,10 @@
         </a>
         <a
           data-sveltekit-preload-data
-          class={selected.includes("classes") ? "selected" : ""}
-          href="/classes"
+          class={selected.includes("workshops") ? "selected" : ""}
+          href="/workshops"
         >
-          classes
+          workshops
         </a>
         <a
           data-sveltekit-preload-data

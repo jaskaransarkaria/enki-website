@@ -21,7 +21,7 @@
       gift guide
     </button>
     <button on:click={() => toggleAndGo("/repairs")}> repairs </button>
-    <button on:click={() => toggleAndGo("/classes")}> classes </button>
+    <button on:click={() => toggleAndGo("/workshops")}> workshops </button>
     <button on:click={() => toggleAndGo("/about")}> about </button>
     <button on:click={() => toggleAndGo("/contact")}> contact </button>
   </div>

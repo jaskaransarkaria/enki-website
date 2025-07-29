@@ -189,7 +189,7 @@
     border: none;
     justify-content: auto;
     justify-self: auto;
-    text-align: center;
+    text-align: left;
     cursor: auto;
   }
 

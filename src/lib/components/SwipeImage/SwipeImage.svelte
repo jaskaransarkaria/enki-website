@@ -14,6 +14,7 @@
   export let imgArr: { src: string; alt: string }[];
   export let setImgWidth = false;
   export let fullScreen = false;
+  export let slidesPerView = 1;
 </script>
 
 {#if imgArr.length > 1}
@@ -21,7 +22,7 @@
     <Swiper
       modules={[Pagination, A11y, Keyboard, Zoom, Mousewheel]}
       spaceBetween={50}
-      slidesPerView={1}
+      {slidesPerView}
       pagination={{ clickable: true, el: ".custom-pagination-div" }}
       keyboard={{ enabled: true }}
       grabCursor={true}
