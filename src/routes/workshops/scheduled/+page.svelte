@@ -10,12 +10,6 @@
   import CraftThreeAvif from "$lib/assets/craft_3.avif";
   import CraftFiveAvif from "$lib/assets/craft_5.avif";
   import CraftEightAvif from "$lib/assets/craft_8.avif";
-  import classesExampleOneJpg from "$lib/assets/classes_example_1.jpg";
-  import classesExampleTwoJpg from "$lib/assets/classes_example_2.jpg";
-  import classesExampleThreeJpg from "$lib/assets/classes_example_3.jpg";
-  import classesExampleOneAvif from "$lib/assets/classes_example_1.avif";
-  import classesExampleTwoAvif from "$lib/assets/classes_example_2.avif";
-  import classesExampleThreeAvif from "$lib/assets/classes_example_3.avif";
   import GiftVouchers from "$lib/components/Svg/GiftVouchers.svelte";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
@@ -112,7 +106,11 @@
   </div>
 
   <div class="widget-container">
-    <div bind:this={ttJewelleryWidget} class="tt-widget" style:width="40%">
+    <div
+      bind:this={ttJewelleryWidget}
+      class="tt-widget"
+      style:width={isMobile ? "100%" : "40%"}
+    >
       <h2>Jewellery Workshops</h2>
       <div class="tt-widget-fallback">
         <p>
@@ -142,7 +140,11 @@
       {/if}
     </div>
 
-    <div bind:this={ttCraftWidget} class="tt-widget" style:width="40%">
+    <div
+      bind:this={ttCraftWidget}
+      class="tt-widget"
+      style:width={isMobile ? "100%" : "40%"}
+    >
       <h2>Craft Workshops</h2>
       <div class="tt-widget-fallback">
         <p>
