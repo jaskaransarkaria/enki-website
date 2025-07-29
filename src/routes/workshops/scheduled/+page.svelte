@@ -113,6 +113,7 @@
 
   <div class="widget-container">
     <div bind:this={ttJewelleryWidget} class="tt-widget" style:width="40%">
+      <h2>Jewellery Workshops</h2>
       <div class="tt-widget-fallback">
         <p>
           <a
@@ -132,7 +133,7 @@
           src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
           data-url="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&srch=jewellery&show_sort=true"
           data-type="inline"
-          data-inline-minimal="false"
+          data-inline-minimal="true"
           data-inline-show-logo="true"
           data-inline-bg-fill="false"
           data-inline-inherit-ref-from-url-param=""
@@ -142,6 +143,7 @@
     </div>
 
     <div bind:this={ttCraftWidget} class="tt-widget" style:width="40%">
+      <h2>Craft Workshops</h2>
       <div class="tt-widget-fallback">
         <p>
           <a
@@ -161,7 +163,7 @@
           src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
           data-url="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&srch=workshop&show_sort=true"
           data-type="inline"
-          data-inline-minimal="false"
+          data-inline-minimal="true"
           data-inline-show-logo="true"
           data-inline-bg-fill="false"
           data-inline-inherit-ref-from-url-param=""
@@ -173,6 +175,11 @@
 {/if}
 
 <style>
+  h2 {
+    text-align: center;
+    font-family: "Welcomehome5 Regular";
+  }
+
   a {
     cursor: pointer;
   }
