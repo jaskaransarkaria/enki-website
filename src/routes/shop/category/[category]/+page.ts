@@ -45,6 +45,11 @@ export async function load({ fetch, params }) {
 
   const category = traverseCategoryObj(params.category, categoryResults[0]);
 
+  category.children.sort(
+    (a, b) =>
+      a.category_data.parent_category.ordinal -
+      b.category_data.parent_category.ordinal
+  );
   return {
     categoryToShow: category,
     productArr: productResults,
