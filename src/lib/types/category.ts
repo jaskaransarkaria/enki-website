@@ -16,6 +16,7 @@ export interface CategoryPathToRootNode {
 
 export interface CatalogObjectCategory {
   id: string;
+  ordinal: number;
 }
 
 export interface CategoryData {
