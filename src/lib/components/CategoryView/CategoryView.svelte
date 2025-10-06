@@ -11,6 +11,7 @@
   export let categoryToShow: SquareCategory | undefined;
   export let productArr: readonly SquareProduct[];
   export let whitelistedUserAgent: boolean;
+  export let loadingFromStore: boolean = false;
 
   $: products.set(productArr);
 </script>
@@ -18,7 +19,7 @@
 {#if showBreadcrumbs}
   <Breadcrumbs selectedCategoryId={categoryToShow?.id} />
 {/if}
-{#if categoryToShow?.children?.length}
+{#if categoryToShow?.children?.length || (loadingFromStore && !productArr?.length)}
   <HexGrid data={categoryToShow.children} {whitelistedUserAgent} />
 {:else}
   <ProductView {productArr} {whitelistedUserAgent} />

@@ -59,7 +59,7 @@
   };
 
   $: breadcrumbs = [
-    InitialValue,
+    InitialValue[0],
     ...recursiveCatSearch(selectedCategoryId, $readonlyAllCategories, [])
       .slice()
       .reverse(),
@@ -73,7 +73,7 @@
       on:click={async () => await handleBreadcrumbClick(breadcrumb)}
     >
       <img src={emptyHex} alt="breadcrumb icon" />
-      {breadcrumb.category_data.name}
+      {breadcrumb?.category_data?.name}
     </button>
   {/each}
 {/if}
