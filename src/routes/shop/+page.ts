@@ -4,8 +4,10 @@ import { refreshCategoriesFromServer } from "$lib/utils/requests";
 import type { SquareCategory } from "$lib/types/category";
 
 const orderCategories = (resp: SquareCategory[]) =>
-  resp.sort((a: SquareCategory, b: SquareCategory) =>
-    a.category_data.name < b.category_data.name ? -1 : 1
+  resp.sort(
+    (a: SquareCategory, b: SquareCategory) =>
+      a.category_data.parent_category.ordinal -
+      b.category_data.parent_category.ordinal
   );
 
 export async function load({ fetch }) {

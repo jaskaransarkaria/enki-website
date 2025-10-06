@@ -30,10 +30,13 @@
     showGrid = true;
   }
 
-  $: filteredData = data?.filter(
-    (base: SquareCategory): base is SquareCategory =>
-      base.id !== "5G6HXSP2KNVZBFNNHRQ4YK7D"
-  );
+  $: filteredData =
+    data?.length < 1
+      ? []
+      : data?.filter(
+          (base: SquareCategory): base is SquareCategory =>
+            base.id !== "5G6HXSP2KNVZBFNNHRQ4YK7D"
+        );
 
   $: rowNumber =
     filteredData.length > gridColumnNumber
@@ -86,7 +89,7 @@
             category.category_data.name
           )}&imgHash=${
             category.custom_attribute_values.image_arr.string_value
-          }`}
+          }&l=${true}`}
           bind:loaded
         />
       </li>

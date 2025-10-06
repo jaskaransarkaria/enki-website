@@ -32,26 +32,31 @@ const traverseCategoryObj = (
   }
 };
 
-export async function load({ fetch, params }) {
-  const categoryResults = await refreshCategoryFromServer(
-    `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
-    fetch
-  );
-
+export async function load({ fetch, params, url }) {
   const productResults = await refreshProductsFromServer(
     `${setServerUrl(browser, dev)}/products-by-category?id=${params.category}`,
     fetch
   );
 
+  if (browser) {
+    const l = decodeURIComponent(url.searchParams.get("l"));
+    return {
+      categoryToShow: [],
+      productArr: productResults,
+      loadingFromStore: Boolean(l),
+    };
+  }
+
+  const categoryResults = await refreshCategoryFromServer(
+    `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
+    fetch
+  );
+
   const category = traverseCategoryObj(params.category, categoryResults[0]);
 
-  category.children.sort(
-    (a, b) =>
-      a.category_data.parent_category.ordinal -
-      b.category_data.parent_category.ordinal
-  );
   return {
     categoryToShow: category,
     productArr: productResults,
+    loadingFromStore: false,
   };
 }
