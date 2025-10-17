@@ -8,7 +8,7 @@ export async function load({ fetch, url }) {
   // pull the category data from api
   const result = await refreshProductsFromServer(
     `${setServerUrl(browser, dev)}/get-all-products`,
-    fetch
+    fetch,
   );
 
   const searchTerm = decodeURIComponent(url.searchParams.get("search-term"));
@@ -21,13 +21,13 @@ export async function load({ fetch, url }) {
     ...data
       .slice()
       .filter((prod: SquareProduct) =>
-        prod.item_data.name.toLowerCase().match(wordInTitleReg)
+        prod.item_data.name.toLowerCase().match(wordInTitleReg),
       ),
     ...data
       .slice()
       .filter(
         (prod: SquareProduct) =>
-          !prod.item_data.name.toLowerCase().match(wordInTitleReg)
+          !prod.item_data.name.toLowerCase().match(wordInTitleReg),
       ),
   ];
 

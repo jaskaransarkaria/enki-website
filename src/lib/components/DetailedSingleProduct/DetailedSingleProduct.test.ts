@@ -57,19 +57,19 @@ describe("GIVEN DetailedSingleProduct", () => {
       });
 
       expect(
-        screen.getByRole("heading", { level: 2, name: "Dummy" })
+        screen.getByRole("heading", { level: 2, name: "Dummy" }),
       ).toBeVisible();
       expect(
-        screen.getByRole("heading", { level: 4, name: "£10.00" })
+        screen.getByRole("heading", { level: 4, name: "£10.00" }),
       ).toBeVisible();
       expect(
         screen.getByRole("heading", {
           level: 4,
           name: "Dummy",
-        })
+        }),
       ).toBeVisible();
       expect(
-        screen.getByRole("heading", { level: 5, name: "5 in stock" })
+        screen.getByRole("heading", { level: 5, name: "5 in stock" }),
       ).toBeVisible();
     });
 
@@ -97,13 +97,13 @@ describe("GIVEN DetailedSingleProduct", () => {
         screen.getByRole("heading", {
           level: 4,
           name: "Dummy",
-        })
+        }),
       ).toBeVisible();
       expect(
-        screen.getByRole("heading", { level: 4, name: "yup" })
+        screen.getByRole("heading", { level: 4, name: "yup" }),
       ).toBeVisible();
       expect(
-        screen.getByRole("heading", { level: 4, name: "doubleeyes" })
+        screen.getByRole("heading", { level: 4, name: "doubleeyes" }),
       ).toBeVisible();
     });
   });
@@ -116,13 +116,13 @@ describe("GIVEN DetailedSingleProduct", () => {
       });
 
       expect(
-        screen.getByRole("heading", { level: 4, name: "Dummy" })
+        screen.getByRole("heading", { level: 4, name: "Dummy" }),
       ).toBeVisible();
       expect(
-        screen.getByRole("heading", { level: 4, name: "£10.00" })
+        screen.getByRole("heading", { level: 4, name: "£10.00" }),
       ).toBeVisible();
       expect(
-        screen.getByRole("heading", { level: 4, name: "5 in stock" })
+        screen.getByRole("heading", { level: 4, name: "5 in stock" }),
       ).toBeVisible();
     });
 

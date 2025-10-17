@@ -1,6 +1,16 @@
 :root {
-  font-family: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    Arial,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   --font-mono: "Fira Mono", monospace;
   --pure-white: #ffffff;
   --primary-color: #ff6600;
@@ -95,9 +105,17 @@ body {
   height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  font-family: "Welcomehome5 Regular", "Caviar Dreams" -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
-    "Helvetica Neue", sans-serif;
+  font-family:
+    "Welcomehome5 Regular",
+    "Caviar Dreams" -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen-Sans,
+    Ubuntu,
+    Cantarell,
+    "Helvetica Neue",
+    sans-serif;
 }
 
 #svelte {

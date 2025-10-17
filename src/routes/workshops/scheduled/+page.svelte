@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-  <title>{"Enki - Scheduled Group Workshops"}</title>
+  <title>Enki - Scheduled Group Workshops</title>
 </svelte:head>
 
 <svelte:window bind:outerWidth />
@@ -43,15 +43,15 @@
         <SwipeImage
           imgArr={[
             {
-              src: isAvifSupported ? CraftThreeAvif : CraftThreeJpg,
+              src: $isAvifSupported ? CraftThreeAvif : CraftThreeJpg,
               alt: "a workshop attendee inspecting their bangle",
             },
             {
-              src: isAvifSupported ? CraftFiveAvif : CraftFiveJpg,
+              src: $isAvifSupported ? CraftFiveAvif : CraftFiveJpg,
               alt: "an attendee discusses her work with the workshop teacher",
             },
             {
-              src: isAvifSupported ? CraftEightAvif : CraftEightJpg,
+              src: $isAvifSupported ? CraftEightAvif : CraftEightJpg,
               alt: "people showing off their finished workshop rings, bangles and necklaces",
             },
           ]}
@@ -59,17 +59,17 @@
       {:else}
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? CraftThreeAvif : CraftThreeJpg}
+          src={$isAvifSupported ? CraftThreeAvif : CraftThreeJpg}
           alt="a workshop attendee inspecting their bangle"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? CraftFiveAvif : CraftFiveJpg}
+          src={$isAvifSupported ? CraftFiveAvif : CraftFiveJpg}
           alt="an attendee discusses her work with the workshop teacher"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? CraftEightAvif : CraftEightJpg}
+          src={$isAvifSupported ? CraftEightAvif : CraftEightJpg}
           alt="people showing off their finished workshop rings, bangles and necklaces"
         />
       {/if}

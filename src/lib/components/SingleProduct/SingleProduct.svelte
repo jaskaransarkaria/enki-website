@@ -53,7 +53,7 @@
                 product.item_data.variations[0].custom_attribute_values.image_arr.string_value.split(
                   ","
                 )[0]
-              }${isAvifSupported ? "-avif" : ""}`
+              }${$isAvifSupported ? "-avif" : ""}`
             : comingSoon}
           alt={`${product.item_data.name}`}
         />

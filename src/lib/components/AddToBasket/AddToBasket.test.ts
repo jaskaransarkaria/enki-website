@@ -11,10 +11,11 @@ describe("GIVEN AddToBasket", () => {
 
   describe("WHEN rendered without props", () => {
     it("THEN do not display the component", () => {
+      render(AddToBasket);
       const { container } = render(AddToBasket);
-      expect(container.children).toHaveLength(1);
+      expect(container.children).toHaveLength(0);
       expect(
-        screen.queryByRole("button", { name: /add to basket/i })
+        screen.queryByRole("button", { name: /add to basket/i }),
       ).not.toBeInTheDocument();
     });
   });
@@ -30,10 +31,10 @@ describe("GIVEN AddToBasket", () => {
         } as unknown as SquareProduct,
       });
       expect(
-        screen.getByRole("button", { name: /add to basket/i })
+        screen.getByRole("button", { name: /add to basket/i }),
       ).toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: /add to basket/i })
+        screen.getByRole("button", { name: /add to basket/i }),
       ).not.toHaveClass("narrow");
     });
 
@@ -64,7 +65,7 @@ describe("GIVEN AddToBasket", () => {
 
       expect(get(basket)).toEqual([]);
       await userEvent.click(
-        screen.getByRole("button", { name: /add to basket/i })
+        screen.getByRole("button", { name: /add to basket/i }),
       );
       expect(get(basket)).toMatchObject([
         {
@@ -84,10 +85,10 @@ describe("GIVEN AddToBasket", () => {
       // wait for the animation to finish
       waitFor(() => {
         expect(
-          screen.queryByRole("button", { name: /add to basket/i })
+          screen.queryByRole("button", { name: /add to basket/i }),
         ).not.toBeInTheDocument();
         expect(
-          screen.queryByRole("button", { name: /goto basket/i })
+          screen.queryByRole("button", { name: /goto basket/i }),
         ).toBeInTheDocument();
       });
     });
@@ -102,7 +103,7 @@ describe("GIVEN AddToBasket", () => {
       });
 
       expect(
-        screen.getByRole("button", { name: /add to basket/i })
+        screen.getByRole("button", { name: /add to basket/i }),
       ).toHaveClass("narrow");
     });
   });

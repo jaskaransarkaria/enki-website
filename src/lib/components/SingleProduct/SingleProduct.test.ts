@@ -6,7 +6,7 @@ describe("Given SingleProduct", () => {
   describe("WHEN rendered without props", () => {
     it("THEN show no product or product related actions", () => {
       const { container } = render(SingleProduct);
-      expect(container.children).toHaveLength(1);
+      expect(container.children).toHaveLength(0);
     });
   });
   describe("WHEN rendered with props", () => {
@@ -45,7 +45,7 @@ describe("Given SingleProduct", () => {
         },
       });
       expect(
-        screen.getByRole("heading", { name: /elephant/i })
+        screen.getByRole("heading", { name: /elephant/i }),
       ).toHaveTextContent("Elephant");
     });
 
@@ -88,25 +88,25 @@ describe("Given SingleProduct", () => {
       const multiImages = screen.getAllByTestId("swipe-img");
 
       expect(
-        screen.getByRole("heading", { level: 2, name: "Elephant" })
+        screen.getByRole("heading", { level: 2, name: "Elephant" }),
       ).toHaveTextContent("Elephant");
       expect(
-        screen.getByRole("heading", { level: 4, name: /big/i })
+        screen.getByRole("heading", { level: 4, name: /big/i }),
       ).toHaveTextContent("big animal");
       expect(
-        screen.getByRole("heading", { level: 4, name: /2000/i })
+        screen.getByRole("heading", { level: 4, name: /2000/i }),
       ).toHaveTextContent("£2000.00");
       expect(multiImages).toHaveLength(2);
       expect(multiImages[0]).toHaveAttribute(
         "src",
-        "https://storage.googleapis.com/enki-website/foobar-0-avif"
+        "https://storage.googleapis.com/enki-website/foobar-0",
       );
       expect(multiImages[1]).toHaveAttribute(
         "src",
-        "https://storage.googleapis.com/enki-website/foobar-1-avif"
+        "https://storage.googleapis.com/enki-website/foobar-1",
       );
       expect(
-        screen.getByRole("button", { name: "Add to Basket" })
+        screen.getByRole("button", { name: "Add to Basket" }),
       ).toBeInTheDocument();
     });
 
@@ -146,17 +146,17 @@ describe("Given SingleProduct", () => {
         },
       });
       expect(
-        screen.getByRole("heading", { level: 2, name: "Green jacket" })
+        screen.getByRole("heading", { level: 2, name: "Green jacket" }),
       ).toHaveTextContent("Green jacket");
       expect(
-        screen.getByRole("heading", { level: 4, name: /greeny/i })
+        screen.getByRole("heading", { level: 4, name: /greeny/i }),
       ).toHaveTextContent("greeny");
       expect(
-        screen.getByRole("heading", { level: 4, name: /3000/i })
+        screen.getByRole("heading", { level: 4, name: /3000/i }),
       ).toHaveTextContent("£3000");
       expect(screen.queryAllByAltText(/789/i)).toHaveLength(0);
       expect(
-        screen.getByRole("button", { name: "Add to Basket" })
+        screen.getByRole("button", { name: "Add to Basket" }),
       ).toBeInTheDocument();
     });
 

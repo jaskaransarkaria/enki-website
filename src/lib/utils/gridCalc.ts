@@ -30,13 +30,13 @@ export const calcShowGrid = (width: number, dataLength: number): boolean =>
   dataLength <= 2
     ? false
     : getGridCols(width) / 2 - dataLength < 0
-    ? true
-    : false;
+      ? true
+      : false;
 
 export const calcRowNumber = (
   arrLength: number,
   rowWidth: number,
-  rowCount: number
+  rowCount: number,
 ): number => {
   if (rowCount % 2 === 0) {
     if (arrLength <= rowWidth - 1) {

@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-  <title>{"Enki - About"}</title>
+  <title>Enki - About</title>
   <meta property="og:url" content="https://enkionline.com/about" />
 </svelte:head>
 
@@ -31,15 +31,15 @@
         <SwipeImage
           imgArr={[
             {
-              src: isAvifSupported ? leftEnkiAvif : leftEnkiJpg,
+              src: $isAvifSupported ? leftEnkiAvif : leftEnkiJpg,
               alt: "a rectangular wooden display inside the shop",
             },
             {
-              src: isAvifSupported ? aboutShopAvif : aboutShopJpg,
+              src: $isAvifSupported ? aboutShopAvif : aboutShopJpg,
               alt: "the shop front and it's window display",
             },
             {
-              src: isAvifSupported ? rightEnkiAvif : rightEnkiJpg,
+              src: $isAvifSupported ? rightEnkiAvif : rightEnkiJpg,
               alt: "a wooden jeweller's work bench inside the shop",
             },
           ]}
@@ -47,18 +47,18 @@
       {:else}
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? leftEnkiAvif : leftEnkiJpg}
+          src={$isAvifSupported ? leftEnkiAvif : leftEnkiJpg}
           alt="a rectangular wooden display inside the shop"
         />
         <img
           in:fade={{ duration: 600 }}
           class="center-image"
-          src={isAvifSupported ? aboutShopAvif : aboutShopJpg}
+          src={$isAvifSupported ? aboutShopAvif : aboutShopJpg}
           alt="the shop front and it's window display"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? rightEnkiAvif : rightEnkiJpg}
+          src={$isAvifSupported ? rightEnkiAvif : rightEnkiJpg}
           alt="a wooden jeweller's work bench inside the shop"
         />
       {/if}

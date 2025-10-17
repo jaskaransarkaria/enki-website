@@ -6,7 +6,7 @@ test.describe("Back to the top button", () => {
     await page.keyboard.press("Escape");
 
     await expect(
-      page.isHidden("button >> img[alt='back to the top button']")
+      page.isHidden("button >> img[alt='back to the top button']"),
     ).toBeTruthy();
     await page.evaluate(async () => {
       for (let i = 0; i < document.body.scrollHeight; i += 50) {
@@ -14,7 +14,7 @@ test.describe("Back to the top button", () => {
       }
     });
     await expect(
-      page.isVisible("button >> img[alt='back to the top button']")
+      page.isVisible("button >> img[alt='back to the top button']"),
     ).toBeTruthy();
     await expect(page.isVisible(".back-to-top")).toBeTruthy();
     await page.click("button >> img[alt='back to the top button']", {

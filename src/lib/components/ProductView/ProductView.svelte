@@ -117,7 +117,7 @@
               <div class="img-container">
                 <img
                   data-testid="gift-imgs"
-                  src={isAvifSupported ? giftWrapOneAvif : giftWrapOneJpg}
+                  src={$isAvifSupported ? giftWrapOneAvif : giftWrapOneJpg}
                   alt="the inside of a card with happy birthday written out"
                 />
                 <p>
@@ -129,7 +129,7 @@
               <div class="img-container">
                 <img
                   data-testid="gift-imgs"
-                  src={isAvifSupported ? giftWrapTwoAvif : giftWrapTwoJpg}
+                  src={$isAvifSupported ? giftWrapTwoAvif : giftWrapTwoJpg}
                   alt="some gifts wrapped with colourful wrapping paper and pink and green ribbon"
                 />
                 <p>
@@ -142,7 +142,7 @@
               <div class="img-container">
                 <img
                   data-testid="gift-imgs"
-                  src={isAvifSupported ? giftWrapThreeAvif : giftWrapThreeJpg}
+                  src={$isAvifSupported ? giftWrapThreeAvif : giftWrapThreeJpg}
                   alt="some gifts wrapped with brown paper wrapping paper and yellow and green ribbon"
                 />
                 <p>

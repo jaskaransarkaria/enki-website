@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-  <title>{"Enki - Classes"}</title>
+  <title>Enki - Workshops</title>
 </svelte:head>
 
 <div class="container">

@@ -10,7 +10,7 @@ import type { SquareCategory } from "$lib/types/category";
 
 const traverseCategoryObj = (
   id: string,
-  returnedCategoryObj: SquareCategory
+  returnedCategoryObj: SquareCategory,
 ): SquareCategory => {
   if (returnedCategoryObj?.id === id) {
     return returnedCategoryObj;
@@ -35,7 +35,7 @@ const traverseCategoryObj = (
 export async function load({ fetch, params, url }) {
   const productResults = await refreshProductsFromServer(
     `${setServerUrl(browser, dev)}/products-by-category?id=${params.category}`,
-    fetch
+    fetch,
   );
 
   if (browser) {
@@ -49,7 +49,7 @@ export async function load({ fetch, params, url }) {
 
   const categoryResults = await refreshCategoryFromServer(
     `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
-    fetch
+    fetch,
   );
 
   const category = traverseCategoryObj(params.category, categoryResults[0]);

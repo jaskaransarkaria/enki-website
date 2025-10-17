@@ -4,7 +4,7 @@ import type { Writable } from "svelte/store";
 import type { BasketProduct } from "$lib/types/basketProduct";
 
 export const basket: Writable<BasketProduct[]> = writable(
-  browser ? JSON.parse(window.localStorage.getItem("basket") ?? "[]") : []
+  browser ? JSON.parse(window.localStorage.getItem("basket") ?? "[]") : [],
 );
 
 export const reset: () => void = () => basket.set([]);

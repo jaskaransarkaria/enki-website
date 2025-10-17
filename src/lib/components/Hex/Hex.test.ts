@@ -22,7 +22,7 @@ describe("GIVEN Hex", () => {
       });
       expect(screen.getByTestId("empty-hex")).toBeInTheDocument();
       expect(
-        screen.queryByRole("heading", { level: 3 })
+        screen.queryByRole("heading", { level: 3 }),
       ).not.toBeInTheDocument();
     });
 
@@ -42,7 +42,7 @@ describe("GIVEN Hex", () => {
         },
       });
       expect(
-        screen.getByRole("heading", { level: 3, name: "example", exact: true })
+        screen.getByRole("heading", { level: 3, name: "example", exact: true }),
       ).toBeInTheDocument();
       expect(screen.queryByTestId("empty-hex")).not.toBeInTheDocument();
     });
