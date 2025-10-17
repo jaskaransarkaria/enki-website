@@ -1,10 +1,11 @@
 /// <reference types="vitest" />
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
+import { svelteTesting } from "@testing-library/svelte/vite";
 
 /** @type {import('vite').UserConfig} */
-export default defineConfig({
-  plugins: [sveltekit({ configFile: "svelte.config.js" })],
+export default defineConfig(() => ({
+  plugins: [sveltekit(), svelteTesting()],
   alias: {
     $app: "/node_modules/@sveltejs/kit/assets/app",
     $lib: "/src/lib",
@@ -17,7 +18,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    alias: [{ find: /^svelte$/, replacement: "svelte/internal" }],
     setupFiles: ["./setupTests.ts", "jest-canvas-mock"],
     watchExclude: [
       "**/node_modules/**",
@@ -38,4 +38,4 @@ export default defineConfig({
   build: {
     minify: true,
   },
-});
+}));

@@ -11,24 +11,21 @@
 </script>
 
 {#if hasProducts && !$page.url.toString().match("32TE2EITCQ6KE4HQ34ORK6V5")}
-  <a rel="external" href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">
-    <div in:fade={{ duration: 600 }}>
-      <p class="pulse">
-        Gift wrapping service click <a
-          data-sveltekit-preload-data
-          rel="external"
-          href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">here!</a
-        >
+  <div in:fade={{ duration: 600 }}>
+    <p class="pulse">
+      Gift wrapping service click <a
+        data-sveltekit-preload-data
+        rel="external"
+        href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">here!</a
+      >
+    </p>
+    {#if isXmas}
+      <p>
+        ***CHRISTMAS SHIPPING DATES*** Standard - Weds 18th, Special - Fri 20th
       </p>
-      {#if isXmas}
-        <p>
-          ***CHRISTMAS SHIPPING DATES*** Standard - Weds 18th, Special - Fri
-          20th
-        </p>
-      {/if}
-      <p class="free-shipping">Free UK shipping over £40</p>
-    </div>
-  </a>
+    {/if}
+    <p class="free-shipping">Free UK shipping over £40</p>
+  </div>
 {/if}
 
 <style>

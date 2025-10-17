@@ -57,7 +57,7 @@
 <svelte:window bind:outerWidth bind:outerHeight bind:innerWidth />
 
 <svelte:head>
-  <title>{"Enki - Welcome!"}</title>
+  <title>Enki - Welcome!</title>
   <meta property="og:url" content="https://enkionline.com/" />
   <meta property="og:image" content={desktopLandingPagePng} />
   <link rel="preload" as="image" href={desktopLandingPagePng} />
@@ -70,7 +70,7 @@
     style:background-image={isMobile
       ? null
       : `url('${
-          isAvifSupported ? desktopLandingPageAvif : desktopLandingPagePng
+          $isAvifSupported ? desktopLandingPageAvif : desktopLandingPagePng
         }')`}
     style:background-size={isMobile ? null : `cover`}
   >
@@ -90,7 +90,7 @@
     {#if isMobile}
       <img
         class="parallax-inside-shop"
-        src={isAvifSupported ? mobileLandingPageAvif : mobileLandingPagePng}
+        src={$isAvifSupported ? mobileLandingPageAvif : mobileLandingPagePng}
         alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
       />
       <ScrollDown />
@@ -98,7 +98,7 @@
         <a data-sveltekit-preload-data href="/shop">
           <img
             class="mobile-online-shop-img"
-            src={isAvifSupported ? mobileOnlineShopAvif : mobileOnlineShopPng}
+            src={$isAvifSupported ? mobileOnlineShopAvif : mobileOnlineShopPng}
             alt="online shop button"
           />
         </a>
@@ -108,14 +108,14 @@
         >
           <img
             class="mobile-gift-guide-img"
-            src={isAvifSupported ? mobileGiftGuideAvif : mobileGiftGuidePng}
+            src={$isAvifSupported ? mobileGiftGuideAvif : mobileGiftGuidePng}
             alt="gift guide button"
           />
         </a>
         <a data-sveltekit-preload-data href="/repairs">
           <img
             class="mobile-repairs-and-comms-img"
-            src={isAvifSupported
+            src={$isAvifSupported
               ? mobileJewelleryRepairsAvif
               : mobileJewelleryRepairsPng}
             alt="jewellery services button"
@@ -124,21 +124,21 @@
         <a data-sveltekit-preload-data href="/workshops">
           <img
             class="mobile-classes-img"
-            src={isAvifSupported ? mobileWorkshopsAvif : mobileWorkshopsPng}
+            src={$isAvifSupported ? mobileWorkshopsAvif : mobileWorkshopsPng}
             alt="classes button"
           />
         </a>
         <a data-sveltekit-preload-data href="/contact">
           <img
             class="mobile-contact-us-img"
-            src={isAvifSupported ? mobileContactUsAvif : mobileContactUsPng}
+            src={$isAvifSupported ? mobileContactUsAvif : mobileContactUsPng}
             alt="contact us button"
           />
         </a>
         <a data-sveltekit-preload-data href="/about">
           <img
             class="mobile-about-us-img"
-            src={isAvifSupported ? mobileAboutUsAvif : mobileAboutUsPng}
+            src={$isAvifSupported ? mobileAboutUsAvif : mobileAboutUsPng}
             alt="about us button"
           />
         </a>

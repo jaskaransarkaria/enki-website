@@ -39,7 +39,7 @@
   $: selectedGiftWrap = $basket.filter(
     (item) =>
       item.categoryId === "32TE2EITCQ6KE4HQ34ORK6V5" ||
-      item.categoryId === "KYUFP3I2BUEWSTMDUPSHQQJF"
+      item.categoryId === "KYUFP3I2BUEWSTMDUPSHQQJF",
   );
 </script>
 
@@ -97,6 +97,7 @@
                     role="combobox"
                     name="wrap"
                     id="wrap"
+                    data-testid={`add-gift-wrap-${i}`}
                     class="select-wrap"
                     bind:value={obj.giftWrapToUse}
                   >
@@ -136,10 +137,12 @@
                       name="gift-wrap"
                       checked={obj.giftWrap}
                       bind:this={giftWrap[i]}
-                      on:change={() =>
+                      on:change={() => {
+                        giftWrap[i].checked = !!giftWrap[i].checked;
                         giftWrap[i]?.checked
                           ? addGiftWrapping(i)
-                          : removeGiftWrapping(i)}
+                          : removeGiftWrapping(i);
+                      }}
                     />
                   </label>
                 </div>

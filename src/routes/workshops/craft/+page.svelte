@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-  <title>{"Enki - Children's, Hen and Private Craft Parties"}</title>
+  <title>Enki - Children's, Hen and Private Craft Parties</title>
 </svelte:head>
 
 <svelte:window bind:outerWidth />
@@ -37,35 +37,35 @@
         <SwipeImage
           imgArr={[
             {
-              src: isAvifSupported ? CraftOneAvif : CraftOneJpg,
+              src: $isAvifSupported ? CraftOneAvif : CraftOneJpg,
               alt: "a couple enjoying their finished rings",
             },
             {
-              src: isAvifSupported ? CraftTwoAvif : CraftTwoJpg,
+              src: $isAvifSupported ? CraftTwoAvif : CraftTwoJpg,
               alt: "a couple holding hands having finished making their rings",
             },
             {
-              src: isAvifSupported ? CraftThreeAvif : CraftThreeJpg,
+              src: $isAvifSupported ? CraftThreeAvif : CraftThreeJpg,
               alt: "enki jewellery ring boxes",
             },
             {
-              src: isAvifSupported ? CraftFourAvif : CraftFourJpg,
+              src: $isAvifSupported ? CraftFourAvif : CraftFourJpg,
               alt: "a couple's hands showing their gothic wedding rings",
             },
             {
-              src: isAvifSupported ? CraftFiveAvif : CraftFiveJpg,
+              src: $isAvifSupported ? CraftFiveAvif : CraftFiveJpg,
               alt: "a couple holding their hands up sporting their new rings",
             },
             {
-              src: isAvifSupported ? CraftSixAvif : CraftSixJpg,
+              src: $isAvifSupported ? CraftSixAvif : CraftSixJpg,
               alt: "a couple midway through creating their wedding bands",
             },
             {
-              src: isAvifSupported ? CraftSevenAvif : CraftSevenJpg,
+              src: $isAvifSupported ? CraftSevenAvif : CraftSevenJpg,
               alt: "a couple smiling as they stand and inspect their rings",
             },
             {
-              src: isAvifSupported ? CraftEightAvif : CraftEightJpg,
+              src: $isAvifSupported ? CraftEightAvif : CraftEightJpg,
               alt: "a lady with a blow torch, heating her ring while her partner watches",
             },
           ]}
@@ -74,22 +74,22 @@
         <div class="class-pics">
           <img
             in:fade={{ duration: 600 }}
-            src={isAvifSupported ? CraftOneAvif : CraftOneJpg}
+            src={$isAvifSupported ? CraftOneAvif : CraftOneJpg}
             alt="a couple enjoying their finished rings"
           />
           <img
             in:fade={{ duration: 600 }}
-            src={isAvifSupported ? CraftTwoAvif : CraftTwoJpg}
+            src={$isAvifSupported ? CraftTwoAvif : CraftTwoJpg}
             alt="a couple holding hands having finished making their rings"
           />
           <img
             in:fade={{ duration: 600 }}
-            src={isAvifSupported ? CraftThreeAvif : CraftThreeJpg}
+            src={$isAvifSupported ? CraftThreeAvif : CraftThreeJpg}
             alt="enki jewellery ring boxes"
           />
           <img
             in:fade={{ duration: 600 }}
-            src={isAvifSupported ? CraftFourAvif : CraftFourJpg}
+            src={$isAvifSupported ? CraftFourAvif : CraftFourJpg}
             alt="a couple's hands showing their gothic wedding rings"
           />
         </div>
@@ -117,22 +117,22 @@
       <div class="class-pics">
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? CraftFiveAvif : CraftFiveJpg}
+          src={$isAvifSupported ? CraftFiveAvif : CraftFiveJpg}
           alt="a couple holding their hands up sporting their new rings"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? CraftSixAvif : CraftSixJpg}
+          src={$isAvifSupported ? CraftSixAvif : CraftSixJpg}
           alt="a couple midway through creating their wedding bands"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? CraftSevenAvif : CraftSevenJpg}
+          src={$isAvifSupported ? CraftSevenAvif : CraftSevenJpg}
           alt="a couple smiling as they stand and inspect their rings"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? CraftEightAvif : CraftEightJpg}
+          src={$isAvifSupported ? CraftEightAvif : CraftEightJpg}
           alt="a lady with a blow torch, heating her ring while her partner watches"
         />
       </div>

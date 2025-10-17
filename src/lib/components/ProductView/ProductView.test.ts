@@ -84,9 +84,9 @@ describe("GIVEN ProductView", () => {
   describe("WHEN rendered with no prop", () => {
     it("THEN do not display the component", () => {
       const { container } = render(ProductView);
-      expect(container.children).toHaveLength(1);
+      expect(container.children).toHaveLength(0);
       expect(
-        screen.queryByTestId("product-view-container")
+        screen.queryByTestId("product-view-container"),
       ).not.toBeInTheDocument();
     });
   });
@@ -131,13 +131,13 @@ describe("GIVEN ProductView", () => {
 
       expect(giftImages).toHaveLength(0);
       expect(
-        screen.queryByText("Select which gifts", { exact: false })
+        screen.queryByText("Select which gifts", { exact: false }),
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByText("To make your gift extra special", { exact: false })
+        screen.queryByText("To make your gift extra special", { exact: false }),
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByText("There's also a space", { exact: false })
+        screen.queryByText("There's also a space", { exact: false }),
       ).not.toBeInTheDocument();
     });
 
@@ -171,24 +171,24 @@ describe("GIVEN ProductView", () => {
 
       expect(giftImages[0]).toHaveAttribute(
         "src",
-        "/src/lib/assets/gift-wrap-1.avif"
+        "/src/lib/assets/gift-wrap-1.jpeg",
       );
       expect(
-        screen.getByText("Select which gifts", { exact: false })
+        screen.getByText("Select which gifts", { exact: false }),
       ).toBeInTheDocument();
       expect(giftImages[1]).toHaveAttribute(
         "src",
-        "/src/lib/assets/gift-wrap-2.avif"
+        "/src/lib/assets/gift-wrap-2.jpeg",
       );
       expect(
-        screen.getByText("To make your gift extra special", { exact: false })
+        screen.getByText("To make your gift extra special", { exact: false }),
       ).toBeInTheDocument();
       expect(giftImages[2]).toHaveAttribute(
         "src",
-        "/src/lib/assets/gift-wrap-3.avif"
+        "/src/lib/assets/gift-wrap-3.jpeg",
       );
       expect(
-        screen.getByText("There's also a space", { exact: false })
+        screen.getByText("There's also a space", { exact: false }),
       ).toBeInTheDocument();
     });
 
@@ -210,15 +210,15 @@ describe("GIVEN ProductView", () => {
 
       expect(
         (screen.getByRole("option", { name: "A - Z" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(false);
       await userEvent.selectOptions(
         screen.getByRole("combobox"),
-        "alphabetically"
+        "alphabetically",
       );
       expect(
         (screen.getByRole("option", { name: "A - Z" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(true);
 
       const sortedProducts = screen.getAllByRole("heading", { level: 3 });
@@ -250,18 +250,18 @@ describe("GIVEN ProductView", () => {
           screen.getByRole("option", {
             name: "price (high to low)",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBe(false);
       await userEvent.selectOptions(
         screen.getByRole("combobox"),
-        "price-high-low"
+        "price-high-low",
       );
       expect(
         (
           screen.getByRole("option", {
             name: "price (high to low)",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBe(true);
 
       const sortedProducts = screen.getAllByRole("heading", { level: 3 });
@@ -293,18 +293,18 @@ describe("GIVEN ProductView", () => {
           screen.getByRole("option", {
             name: "price (low to high)",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBe(false);
       await userEvent.selectOptions(
         screen.getByRole("combobox"),
-        "price-low-high"
+        "price-low-high",
       );
       expect(
         (
           screen.getByRole("option", {
             name: "price (low to high)",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBe(true);
 
       const sortedProducts = screen.getAllByRole("heading", { level: 3 });
@@ -369,24 +369,24 @@ describe("GIVEN ProductView", () => {
 
       expect(
         (screen.getByRole("option", { name: "in stock" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(true); // this is the default
 
       await userEvent.selectOptions(
         screen.getByRole("combobox"),
-        "price (high to low)"
+        "price (high to low)",
       );
 
       expect(
         (screen.getByRole("option", { name: "in stock" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(false);
 
       await userEvent.selectOptions(screen.getByRole("combobox"), "in stock");
 
       expect(
         (screen.getByRole("option", { name: "in stock" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(true);
 
       const sortedProducts = screen.getAllByRole("heading", { level: 3 });
@@ -453,21 +453,21 @@ describe("GIVEN ProductView", () => {
 
       expect(
         (screen.getByRole("option", { name: "in stock" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(true); // this is the default
 
       await userEvent.selectOptions(screen.getByRole("combobox"), "new");
 
       expect(
         (screen.getByRole("option", { name: "in stock" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(false);
 
       await userEvent.selectOptions(screen.getByRole("combobox"), "new");
 
       expect(
         (screen.getByRole("option", { name: "new" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(true);
 
       const sortedProducts = screen.getAllByRole("heading", { level: 3 });
@@ -560,7 +560,7 @@ describe("GIVEN ProductView", () => {
 
       expect(
         (screen.getByRole("option", { name: "relevant" }) as HTMLOptionElement)
-          .selected
+          .selected,
       ).toBe(true);
 
       expect(products[0]).toHaveTextContent("Elephant");

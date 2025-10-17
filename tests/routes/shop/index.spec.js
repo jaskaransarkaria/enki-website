@@ -12,10 +12,10 @@ test("loads /shop", async ({ page }) => {
   const books = await page.$("a.hex-link >> nth=0");
   await books.click();
   await page.waitForURL(
-    "http://localhost:4000/shop/category/1876023?name=Books&imgHash=1876023"
+    "http://localhost:4000/shop/category/1876023?name=Books&imgHash=1876023",
   );
   expect(page.url()).toBe(
-    "http://localhost:4000/shop/category/1876023?name=Books&imgHash=1876023"
+    "http://localhost:4000/shop/category/1876023?name=Books&imgHash=1876023",
   );
   await page.goBack();
   expect(page.url()).toBe("http://localhost:4000/shop");

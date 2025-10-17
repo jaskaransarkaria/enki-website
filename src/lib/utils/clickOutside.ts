@@ -1,9 +1,9 @@
 export const clickOutside: (
   node: HTMLElement,
-  { enabled: initialEnabled, cb }: { enabled: boolean; cb: () => void }
+  { enabled: initialEnabled, cb }: { enabled: boolean; cb: () => void },
 ) => void = (
   node: HTMLElement,
-  { enabled: initialEnabled, cb }: { enabled: boolean; cb: () => void }
+  { enabled: initialEnabled, cb }: { enabled: boolean; cb: () => void },
 ) => {
   const handleOutsideClick: ({ target }: { target: HTMLElement }) => void = ({
     target,

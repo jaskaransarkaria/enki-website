@@ -82,14 +82,16 @@
       <div class="left-container">
         <a
           data-sveltekit-preload-data
-          class={selected.includes("shop") ? "selected" : ""}
+          class={selected.endsWith("shop") ? "selected" : ""}
           href="/shop"
         >
           shop
         </a>
         <a
           data-sveltekit-preload-data
-          class={selected.includes("gift") ? "selected" : ""}
+          class={selected.includes("CXWG77NR7TPXXQSZD3QVPLHS")
+            ? "selected"
+            : ""}
           href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
         >
           gift guide
@@ -212,6 +214,17 @@
 </div>
 
 <style>
+  a,
+  a:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:hover {
+    color: #ff6600;
+    text-decoration: none;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;

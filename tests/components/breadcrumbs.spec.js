@@ -7,10 +7,10 @@ test.describe("Breadcrumbs", () => {
     await page.goto("/shop/category/1876023");
 
     await expect(page.locator("[data-testid=breadcrumb] >> nth=0")).toHaveText(
-      "Shop"
+      "Shop",
     );
     await expect(page.locator("[data-testid=breadcrumb] >> nth=1")).toHaveText(
-      "Books"
+      "Books",
     );
 
     await page.click("[data-testid=breadcrumb] >> nth=0");
@@ -23,10 +23,10 @@ test.describe("Breadcrumbs", () => {
     await page.click("[data-testid=breadcrumb] >> nth=1");
 
     await page.waitForURL(
-      "http://localhost:4000/shop/category/1876023?name=Books&imgHash=1876023"
+      "http://localhost:4000/shop/category/1876023?name=Books&imgHash=1876023",
     );
     expect(page.url()).toBe(
-      "http://localhost:4000/shop/category/1876023?name=Books&imgHash=1876023"
+      "http://localhost:4000/shop/category/1876023?name=Books&imgHash=1876023",
     );
   });
 });

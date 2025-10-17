@@ -39,8 +39,8 @@ describe("GIVEN updateBasket()", () => {
         mockProduct,
         [],
         "newItem",
-        mockProduct.item_data.variations[0]
-      )
+        mockProduct.item_data.variations[0],
+      ),
     ).toStrictEqual([
       {
         id: mockProduct.id,
@@ -54,7 +54,7 @@ describe("GIVEN updateBasket()", () => {
             .amount / 100,
         currentStock: parseInt(
           mockProduct.item_data.variations[0].item_variation_data.quantity,
-          10
+          10,
         ),
         giftWrap: false,
         giftDescription: "",
@@ -80,7 +80,7 @@ describe("GIVEN updateBasket()", () => {
                 .price_money.amount / 100,
             currentStock: parseInt(
               mockProduct.item_data.variations[0].item_variation_data.quantity,
-              10
+              10,
             ),
             giftWrap: false,
             giftDescription: "",
@@ -88,8 +88,8 @@ describe("GIVEN updateBasket()", () => {
           },
         ],
         "incrementQuantity",
-        mockProduct.item_data.variations[0]
-      )
+        mockProduct.item_data.variations[0],
+      ),
     ).toStrictEqual([
       {
         id: mockProduct.id,
@@ -103,7 +103,7 @@ describe("GIVEN updateBasket()", () => {
             .amount / 100,
         currentStock: parseInt(
           mockProduct.item_data.variations[0].item_variation_data.quantity,
-          10
+          10,
         ),
         giftWrap: false,
         giftDescription: "",
@@ -129,7 +129,7 @@ describe("GIVEN updateBasket()", () => {
                 .price_money.amount,
             currentStock: parseInt(
               mockProduct.item_data.variations[0].item_variation_data.quantity,
-              10
+              10,
             ),
             giftWrap: false,
             giftDescription: "",
@@ -137,8 +137,8 @@ describe("GIVEN updateBasket()", () => {
           },
         ],
         "decrementQuantity",
-        mockProduct.item_data.variations[0]
-      )
+        mockProduct.item_data.variations[0],
+      ),
     ).toStrictEqual([
       {
         id: mockProduct.id,
@@ -152,7 +152,7 @@ describe("GIVEN updateBasket()", () => {
             .amount,
         currentStock: parseInt(
           mockProduct.item_data.variations[0].item_variation_data.quantity,
-          10
+          10,
         ),
         giftWrap: false,
         giftDescription: "",
@@ -178,7 +178,7 @@ describe("GIVEN updateBasket()", () => {
                 .price_money.amount,
             currentStock: parseInt(
               mockProduct.item_data.variations[0].item_variation_data.quantity,
-              10
+              10,
             ),
             giftWrap: false,
             giftDescription: "",
@@ -186,8 +186,8 @@ describe("GIVEN updateBasket()", () => {
           },
         ],
         "decrementQuantity",
-        mockProduct.item_data.variations[0]
-      )
+        mockProduct.item_data.variations[0],
+      ),
     ).toStrictEqual([]);
   });
 });

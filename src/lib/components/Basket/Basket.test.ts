@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/svelte";
+import { render, screen, waitFor } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import Basket from "./Basket.svelte";
 import { get } from "svelte/store";
@@ -29,7 +29,7 @@ const dummyProduct = {
         },
         item_variation_data: {
           item_id: "123",
-          name: "",
+          name: "Elephant",
           price_money: {
             amount: 30000,
           },
@@ -57,8 +57,8 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       render(Basket);
       expect(screen.queryAllByTestId("basket-0")[0]).toBeInTheDocument();
@@ -68,7 +68,7 @@ describe("GIVEN AddToBasket", () => {
     it("THEN display the empty basket image when there are no products in the basket", () => {
       render(Basket);
       expect(
-        screen.queryAllByAltText("cartoon of an empty basket")[0]
+        screen.queryAllByAltText("cartoon of an empty basket")[0],
       ).toHaveAttribute("src", "/src/lib/assets/basket_empty.png");
     });
 
@@ -92,16 +92,16 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       basket.set(
         updateBasket(
           dummyProduct2,
           get(basket),
           "newItem",
-          dummyProduct2.item_data.variations[0]
-        )
+          dummyProduct2.item_data.variations[0],
+        ),
       );
       render(Basket);
       expect(screen.queryByTestId("basket-0")).toBeInTheDocument();
@@ -115,8 +115,8 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       render(Basket);
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
@@ -130,8 +130,8 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       render(Basket);
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
@@ -147,17 +147,17 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       render(Basket);
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       expect(
-        screen.queryByAltText("cartoon of an empty basket")
+        screen.queryByAltText("cartoon of an empty basket"),
       ).not.toBeInTheDocument();
       await userEvent.click(screen.getByText("-"));
       expect(
-        screen.queryByAltText("cartoon of an empty basket")
+        screen.queryByAltText("cartoon of an empty basket"),
       ).toHaveAttribute("src", "/src/lib/assets/basket_empty.png");
     });
 
@@ -167,12 +167,12 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       render(Basket);
       expect(
-        screen.getByRole("checkbox", { checked: false })
+        screen.getByRole("checkbox", { checked: false }),
       ).not.toBeChecked();
       expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
@@ -196,7 +196,7 @@ describe("GIVEN AddToBasket", () => {
       // get the updated total (+ the gift wrap price)
       expect(screen.getByText("Subtotal: £300.95")).toBeInTheDocument();
       expect(
-        screen.queryByText("Subtotal: £300.00", { exact: true })
+        screen.queryByText("Subtotal: £300.00", { exact: true }),
       ).not.toBeInTheDocument();
       // check the values on the basket are updated
       expect(get(basket)).toMatchObject([
@@ -228,6 +228,7 @@ describe("GIVEN AddToBasket", () => {
             {
               id: "22222",
               item_variation_data: {
+                name: "dummyGiftWrap",
                 price_money: { amount: 60000 },
                 quantity: "2",
               },
@@ -242,21 +243,24 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       basket.set(
         updateBasket(
           dummyGiftWrapProduct,
           get(basket),
           "newItem",
-          dummyGiftWrapProduct.item_data.variations[0]
-        )
+          dummyGiftWrapProduct.item_data.variations[0],
+        ),
       );
       render(Basket);
       // gift wrap products don't have a gift wrap check box
+      expect(screen.getAllByText("Subtotal: £900.00")[0]).toBeInTheDocument();
       const allCheckboxes = screen.getAllByRole("checkbox", { checked: false });
+
       await userEvent.click(allCheckboxes[0]);
+
       // get the updated total (+ the gift wrap price)
       expect(screen.getAllByText("Subtotal: £900.95")[0]).toBeInTheDocument();
       // check the values on the basket are updated
@@ -287,14 +291,17 @@ describe("GIVEN AddToBasket", () => {
           price: 300.95,
         },
       ]);
+
       // select gift wrap
-      expect(
-        (
-          screen.getByRole("option", {
-            name: "dummyGiftWrap",
-          }) as HTMLOptionElement
-        ).selected
-      ).toBeFalsy();
+      waitFor(() => {
+        expect(
+          (
+            screen.getByRole("option", {
+              name: "dummyGiftWrap",
+            }) as HTMLOptionElement
+          ).selected,
+        ).toBeFalsy();
+      });
 
       await userEvent.selectOptions(screen.getByRole("combobox"), [
         "dummyGiftWrap",
@@ -305,14 +312,14 @@ describe("GIVEN AddToBasket", () => {
           screen.getByRole("option", {
             name: "dummyGiftWrap",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBeTruthy();
       expect(
         (
           screen.getByRole("option", {
             name: "Standard brown paper",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBeFalsy();
     });
 
@@ -342,16 +349,16 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       basket.set(
         updateBasket(
           dummyGiftWrapProduct,
           get(basket),
           "newItem",
-          dummyGiftWrapProduct.item_data.variations[0]
-        )
+          dummyGiftWrapProduct.item_data.variations[0],
+        ),
       );
       render(Basket);
       // gift wrap products don't have a gift wrap check box
@@ -399,14 +406,14 @@ describe("GIVEN AddToBasket", () => {
           screen.getByRole("option", {
             name: "dummyGiftWrap",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBeTruthy();
       expect(
         (
           screen.getByRole("option", {
             name: "Standard brown paper",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBeFalsy();
 
       // remove gift wrapping
@@ -417,12 +424,12 @@ describe("GIVEN AddToBasket", () => {
       expect(
         screen.queryByRole("option", {
           name: "Standard brown paper",
-        }) as HTMLOptionElement
+        }) as HTMLOptionElement,
       ).not.toBeInTheDocument();
       expect(
         screen.queryByRole("option", {
           name: "dummyGiftWrap",
-        }) as HTMLOptionElement
+        }) as HTMLOptionElement,
       ).not.toBeInTheDocument();
     });
 
@@ -432,8 +439,8 @@ describe("GIVEN AddToBasket", () => {
           dummyProduct,
           [],
           "newItem",
-          dummyProduct.item_data.variations[0]
-        )
+          dummyProduct.item_data.variations[0],
+        ),
       );
       render(Basket);
       const giftWrapCheckbox = screen.getByRole("checkbox", { checked: false });
@@ -468,13 +475,13 @@ describe("GIVEN AddToBasket", () => {
           screen.getByRole("option", {
             name: "Standard brown paper",
           }) as HTMLOptionElement
-        ).selected
+        ).selected,
       ).toBeTruthy();
 
       // add gift wrap description 92 characters (max is 95)
       await userEvent.type(
         screen.getByRole("textbox"),
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis lacus, egestas non"
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus turpis lacus, egestas non",
       );
 
       expect(get(basket)).toMatchObject([

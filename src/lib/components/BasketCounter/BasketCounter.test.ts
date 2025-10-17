@@ -63,8 +63,8 @@ describe("GIVEN BasketCounter", () => {
         dummyProduct,
         [],
         "newItem",
-        dummyProduct.item_data.variations[0]
-      )
+        dummyProduct.item_data.variations[0],
+      ),
     );
     render(BasketCounter, { productObj: dummyBasketProduct });
     expect(get(basket)).toMatchObject([
@@ -106,8 +106,8 @@ describe("GIVEN BasketCounter", () => {
         dummyProduct,
         [],
         "newItem",
-        dummyProduct.item_data.variations[0]
-      )
+        dummyProduct.item_data.variations[0],
+      ),
     );
     render(BasketCounter, { productObj: dummyBasketProduct });
     expect(get(basket)).toMatchObject([
@@ -165,8 +165,8 @@ describe("GIVEN BasketCounter", () => {
         dummyProduct,
         [],
         "newItem",
-        dummyProduct.item_data.variations[0]
-      )
+        dummyProduct.item_data.variations[0],
+      ),
     );
     render(BasketCounter, { productObj: dummyBasketProduct });
     expect(get(basket)).toMatchObject([

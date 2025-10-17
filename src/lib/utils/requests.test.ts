@@ -28,7 +28,7 @@ describe("GIVEN requests.ts", () => {
   describe("GIVEN refreshCategories()", () => {
     it("WHEN fetching categories THEN return the categories", async () => {
       const categories = await refreshCategories(
-        "http://localhost:8888/categories"
+        "http://localhost:8888/categories",
       );
       expect(categories).toStrictEqual(mockCategories);
     });
@@ -43,14 +43,14 @@ describe("GIVEN requests.ts", () => {
     it("WHEN fetching categories THEN return the categories", async () => {
       const categories = await refreshCategoriesFromServer(
         "http://localhost:8888/categories",
-        fetch as unknown as () => Promise<Response>
+        fetch as unknown as () => Promise<Response>,
       );
       expect(categories).toStrictEqual(mockCategories);
     });
     it("WHEN there is an error THEN return the default value", async () => {
       const categories = await refreshCategoriesFromServer(
         "http://localhost:8888/error",
-        fetch as unknown as () => Promise<Response>
+        fetch as unknown as () => Promise<Response>,
       );
       expect(categories).toStrictEqual([]);
     });
@@ -60,14 +60,14 @@ describe("GIVEN requests.ts", () => {
     it("WHEN fetching a category THEN return the category", async () => {
       const category = await refreshCategoryFromServer(
         "http://localhost:8888/category?id=1875996",
-        fetch as unknown as () => Promise<Response>
+        fetch as unknown as () => Promise<Response>,
       );
       expect(category).toStrictEqual(mockCategory);
     });
     it("WHEN there is an error THEN return the default value", async () => {
       const category = await refreshCategoryFromServer(
         "http://localhost:8888/error",
-        fetch as unknown as () => Promise<Response>
+        fetch as unknown as () => Promise<Response>,
       );
       expect(category).toStrictEqual([]);
     });
@@ -77,14 +77,14 @@ describe("GIVEN requests.ts", () => {
     it("WHEN fetching products THEN return the products", async () => {
       const products = await refreshProductsFromServer(
         "http://localhost:8888/products-by-category?id=1876030",
-        fetch as unknown as () => Promise<Response>
+        fetch as unknown as () => Promise<Response>,
       );
       expect(products).toStrictEqual(mockProducts);
     });
     it("WHEN there is an error THEN return the default value", async () => {
       const products = await refreshProductsFromServer(
         "http://localhost:8888/error",
-        fetch as unknown as () => Promise<Response>
+        fetch as unknown as () => Promise<Response>,
       );
       expect(products).toStrictEqual([]);
     });

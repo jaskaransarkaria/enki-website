@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-  <title>{"Enki - Private Wedding Classes"}</title>
+  <title>Enki - Private Wedding Classes</title>
 </svelte:head>
 
 <svelte:window bind:outerWidth />
@@ -37,45 +37,45 @@
         <SwipeImage
           imgArr={[
             {
-              src: isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg,
+              src: $isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg,
               alt: "a couple enjoying their finished rings",
             },
             {
-              src: isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg,
+              src: $isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg,
               alt: "a couple holding hands having finished making their rings",
             },
             {
-              src: isAvifSupported
+              src: $isAvifSupported
                 ? weddingBandsThreeAvif
                 : weddingBandsThreeJpg,
               alt: "enki jewellery ring boxes",
             },
             {
-              src: isAvifSupported
+              src: $isAvifSupported
                 ? weddingBandsElevenAvif
                 : weddingBandsElevenJpg,
               alt: "a couple's hands showing their gothic wedding rings",
             },
             {
-              src: isAvifSupported
+              src: $isAvifSupported
                 ? weddingBandsTwelveAvif
                 : weddingBandsTwelveJpg,
               alt: "a couple holding their hands up sporting their new rings",
             },
             {
-              src: isAvifSupported
+              src: $isAvifSupported
                 ? weddingBandsThirteenAvif
                 : weddingBandsThirteenJpg,
               alt: "a couple midway through creating their wedding bands",
             },
             {
-              src: isAvifSupported
+              src: $isAvifSupported
                 ? weddingBandsFourteenAvif
                 : weddingBandsFourteenJpg,
               alt: "a couple smiling as they stand and inspect their rings",
             },
             {
-              src: isAvifSupported
+              src: $isAvifSupported
                 ? weddingBandsFifteenAvif
                 : weddingBandsFifteenJpg,
               alt: "a lady with a blow torch, heating her ring while her partner watches",
@@ -86,22 +86,22 @@
         <div class="class-pics">
           <img
             in:fade={{ duration: 600 }}
-            src={isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg}
+            src={$isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg}
             alt="a couple enjoying their finished rings"
           />
           <img
             in:fade={{ duration: 600 }}
-            src={isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg}
+            src={$isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg}
             alt="a couple holding hands having finished making their rings"
           />
           <img
             in:fade={{ duration: 600 }}
-            src={isAvifSupported ? weddingBandsThreeAvif : weddingBandsThreeJpg}
+            src={$isAvifSupported ? weddingBandsThreeAvif : weddingBandsThreeJpg}
             alt="enki jewellery ring boxes"
           />
           <img
             in:fade={{ duration: 600 }}
-            src={isAvifSupported
+            src={$isAvifSupported
               ? weddingBandsElevenAvif
               : weddingBandsElevenJpg}
             alt="a couple's hands showing their gothic wedding rings"
@@ -142,26 +142,26 @@
       <div class="class-pics">
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? weddingBandsTwelveAvif : weddingBandsTwelveJpg}
+          src={$isAvifSupported ? weddingBandsTwelveAvif : weddingBandsTwelveJpg}
           alt="a couple holding their hands up sporting their new rings"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported
+          src={$isAvifSupported
             ? weddingBandsThirteenAvif
             : weddingBandsThirteenJpg}
           alt="a couple midway through creating their wedding bands"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported
+          src={$isAvifSupported
             ? weddingBandsFourteenAvif
             : weddingBandsFourteenJpg}
           alt="a couple smiling as they stand and inspect their rings"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported
+          src={$isAvifSupported
             ? weddingBandsFifteenAvif
             : weddingBandsFifteenJpg}
           alt="a lady with a blow torch, heating her ring while her partner watches"

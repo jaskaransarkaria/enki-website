@@ -8,7 +8,7 @@ test.describe("Mobile Home Page", () => {
     await page.goto("/");
     await expect(page.locator("figure")).toHaveClass(/mobile-container/);
     await expect(page.locator("img.parallax-inside-shop")).toHaveClass(
-      /parallax-inside-shop/
+      /parallax-inside-shop/,
     );
     await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.15 });
   });
@@ -40,10 +40,10 @@ test.describe("Desktop Home Page", () => {
     expect(page.url()).toBe("http://localhost:4000/");
     await page.locator("data-test-id=guide").click();
     await page.waitForURL(
-      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS",
     );
     expect(page.url()).toBe(
-      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+      "http://localhost:4000/shop/category/CXWG77NR7TPXXQSZD3QVPLHS",
     );
     await page.goBack();
     expect(page.url()).toBe("http://localhost:4000/");

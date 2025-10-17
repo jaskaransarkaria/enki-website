@@ -18,7 +18,7 @@ test("searches for a product and navigates through to the product", async ({
   await expect(page).toHaveScreenshot({ maxDiffPixelRatio: 0.1 });
 
   expect(page.url()).toBe(
-    "http://localhost:4000/shop/search?search-term=sloth"
+    "http://localhost:4000/shop/search?search-term=sloth",
   );
 
   await page.click(".simple-container >> nth=0");

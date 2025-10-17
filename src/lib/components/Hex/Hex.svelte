@@ -30,7 +30,7 @@
   let imgError = false;
   let imgUrl = `${PUBLIC_BUCKET_URL}/${
     category.custom_attribute_values.image_arr.string_value
-  }${isAvifSupported ? "-avif" : ""}`;
+  }${$isAvifSupported ? "-avif" : ""}`;
   let hexLoaded = false;
   let catImg = browser ? new Image() : {};
   let hexImg = browser ? new Image() : {};

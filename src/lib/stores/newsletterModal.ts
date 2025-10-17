@@ -5,7 +5,7 @@ import type { Writable } from "svelte/store";
 export const modalDismissedCount: Writable<number> = writable(
   browser
     ? JSON.parse(window.localStorage.getItem("modalDismissedCount") ?? "0")
-    : 0
+    : 0,
 );
 
 export const reset: () => void = () => modalDismissedCount.set(0);
@@ -19,7 +19,7 @@ modalDismissedCount.subscribe((val) => {
 export const isSignedUp: Writable<boolean> = writable(
   browser
     ? JSON.parse(window.localStorage.getItem("isSignedUp") ?? "false")
-    : false
+    : false,
 );
 
 isSignedUp.subscribe((val) => {

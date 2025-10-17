@@ -12,7 +12,7 @@ export async function load({ fetch, params }) {
   return {
     productToShow: await refreshProductsFromServer(
       `${setServerUrl(browser, dev)}/product?id=${params.product}`,
-      fetch
+      fetch,
     ),
   };
 }

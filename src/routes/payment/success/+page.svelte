@@ -11,13 +11,13 @@
 </script>
 
 <svelte:head>
-  <title>{"Enki - Payment"}</title>
+  <title>Enki - Payment</title>
 </svelte:head>
 
 <h1>Thank you for your purchase</h1>
 <div class="container">
   <img
-    src={isAvifSupported ? thankYouAvif : thankYouPng}
+    src={$isAvifSupported ? thankYouAvif : thankYouPng}
     alt="thank you for you purchase, a lady carrying lots of colourful gifts"
   />
 </div>

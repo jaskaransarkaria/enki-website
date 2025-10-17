@@ -5,7 +5,7 @@ import type { SquareProduct, VariationData } from "$lib/types/product";
 const removeItemFromBasket = (
   currentQuantity: number,
   list: BasketProduct[],
-  listIndx: number
+  listIndx: number,
 ): BasketProduct[] =>
   currentQuantity === 1
     ? [...list.slice(0, listIndx), ...list.slice(listIndx + 1)]
@@ -29,7 +29,7 @@ const removeItemFromBasket = (
 
 const addItemToBasket = (
   list: BasketProduct[],
-  listIndx: number
+  listIndx: number,
 ): BasketProduct[] => [
   ...list.slice(0, listIndx),
   {
@@ -51,7 +51,7 @@ const addItemToBasket = (
 const addNewItemToBasket = (
   product: SquareProduct,
   variation: VariationData,
-  list: BasketProduct[]
+  list: BasketProduct[],
 ): BasketProduct[] => [
   {
     id: product.id,
@@ -76,7 +76,7 @@ export const updateBasket = (
   product: SquareProduct,
   list: BasketProduct[],
   updateType: string,
-  variation: VariationData
+  variation: VariationData,
 ): BasketProduct[] => {
   const indx = list.findIndex((obj: BasketProduct) => obj.id === product.id);
 

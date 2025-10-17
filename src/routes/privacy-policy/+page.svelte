@@ -1,5 +1,5 @@
 <svelte:head>
-  <title>{"Enki - Privacy policy"}</title>
+  <title>Enki - Privacy policy</title>
 </svelte:head>
 
 <div>

@@ -147,10 +147,10 @@ describe("GIVEN searchProducts()", () => {
       },
     } as SquareProduct;
     expect(
-      searchProducts(searchTerm, [...mockData, mockIsArchived])
+      searchProducts(searchTerm, [...mockData, mockIsArchived]),
     ).toStrictEqual(mockData);
     expect(
-      searchProducts(searchTerm, [...mockData, mockIsArchived])
+      searchProducts(searchTerm, [...mockData, mockIsArchived]),
     ).not.toContain(mockIsArchived);
   });
 
@@ -188,10 +188,10 @@ describe("GIVEN searchProducts()", () => {
       },
     } as SquareProduct;
     expect(
-      searchProducts(searchTerm, [...mockData, mockSellOnWeb])
+      searchProducts(searchTerm, [...mockData, mockSellOnWeb]),
     ).toStrictEqual(mockData);
     expect(
-      searchProducts(searchTerm, [...mockData, mockSellOnWeb])
+      searchProducts(searchTerm, [...mockData, mockSellOnWeb]),
     ).not.toContain(mockSellOnWeb);
   });
 });

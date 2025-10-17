@@ -23,7 +23,7 @@
       on:click={() => {
         if (browser) {
           basket.set(
-            updateBasket(product, $basket, "incrementQuantity", variation)
+            updateBasket(product, $basket, "incrementQuantity", variation),
           );
           addedToBasket = true;
           confetti({

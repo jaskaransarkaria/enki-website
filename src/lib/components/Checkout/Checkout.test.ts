@@ -22,7 +22,7 @@ describe("GIVEN Checkout", () => {
 
     it("THEN successfully creates a checkout and redirects to checkout", async () => {
       vi.mocked(createCheckoutSession).mockImplementationOnce(() =>
-        Promise.resolve(console.log("success"))
+        Promise.resolve(console.log("success")),
       );
       render(Checkout);
 

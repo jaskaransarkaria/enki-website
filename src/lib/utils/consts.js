@@ -15,5 +15,5 @@ const whitelistedUserAgent = [
 
 export const isWhitelistedUserAgent = (userAgent) =>
   Boolean(
-    whitelistedUserAgent.filter((agent) => userAgent?.includes(agent)).length
+    whitelistedUserAgent.filter((agent) => userAgent?.includes(agent)).length,
   );

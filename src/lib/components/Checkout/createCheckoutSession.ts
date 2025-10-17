@@ -1,7 +1,7 @@
 export const createCheckoutSession = async (
   stripePromise: any,
   basket: any,
-  baseServerUrl: string
+  baseServerUrl: string,
 ): Promise<void> => {
   const stripe = await stripePromise;
   // Create a new Checkout Session using the server-side endpoint you

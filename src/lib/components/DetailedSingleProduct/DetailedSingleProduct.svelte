@@ -21,7 +21,7 @@
       ? product.custom_attribute_values.image_arr.string_value
           .split(",")
           .map((img, idx) => ({
-            src: `${PUBLIC_BUCKET_URL}/${img}${isAvifSupported ? "-avif" : ""}`,
+            src: `${PUBLIC_BUCKET_URL}/${img}${$isAvifSupported ? "-avif" : ""}`,
             alt: `${parentProduct.item_data.name} image ${idx + 1}`,
           }))
       : [
@@ -30,7 +30,7 @@
               product?.custom_attribute_values.image_arr.string_value.length > 0
                 ? `${PUBLIC_BUCKET_URL}/${
                     product?.custom_attribute_values.image_arr.string_value
-                  }${isAvifSupported ? "-avif" : ""}`
+                  }${$isAvifSupported ? "-avif" : ""}`
                 : comingSoon,
             alt: `${parentProduct.item_data.name} image 1`,
           },

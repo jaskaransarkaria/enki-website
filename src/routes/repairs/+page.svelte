@@ -22,7 +22,7 @@
 </script>
 
 <svelte:head>
-  <title>{"Enki - Repairs"}</title>
+  <title>Enki - Repairs</title>
   <meta property="og:image" content={servicesFourJpg} />
   <meta property="og:url" content="https://enkionline.com/repairs" />
 </svelte:head>
@@ -36,19 +36,19 @@
         <SwipeImage
           imgArr={[
             {
-              src: isAvifSupported ? servicesOneAvif : servicesOneJpg,
+              src: $isAvifSupported ? servicesOneAvif : servicesOneJpg,
               alt: "a ring being polished on a polishing machine",
             },
             {
-              src: isAvifSupported ? servicesTwoAvif : servicesTwoJpg,
+              src: $isAvifSupported ? servicesTwoAvif : servicesTwoJpg,
               alt: "a jewellery machine for pressing metal",
             },
             {
-              src: isAvifSupported ? servicesFourAvif : servicesFourJpg,
+              src: $isAvifSupported ? servicesFourAvif : servicesFourJpg,
               alt: "a medallion being heated with a blow touch",
             },
             {
-              src: isAvifSupported ? servicesThreeAvif : servicesThreeJpg,
+              src: $isAvifSupported ? servicesThreeAvif : servicesThreeJpg,
               alt: "some jewellery pliers and some jewellery being inspected",
             },
           ]}
@@ -57,23 +57,23 @@
         <img
           in:fade={{ duration: 600 }}
           class="extra-width"
-          src={isAvifSupported ? servicesOneAvif : servicesOneJpg}
+          src={$isAvifSupported ? servicesOneAvif : servicesOneJpg}
           alt="a ring being polished on a polishing machine"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? servicesTwoAvif : servicesTwoJpg}
+          src={$isAvifSupported ? servicesTwoAvif : servicesTwoJpg}
           alt="a jewellery machine for pressing metal"
         />
         <img
           in:fade={{ duration: 600 }}
           class="extra-width"
-          src={isAvifSupported ? servicesThreeAvif : servicesThreeJpg}
+          src={$isAvifSupported ? servicesThreeAvif : servicesThreeJpg}
           alt="some jewellery pliers and some jewellery being inspected"
         />
         <img
           in:fade={{ duration: 600 }}
-          src={isAvifSupported ? servicesFourAvif : servicesFourJpg}
+          src={$isAvifSupported ? servicesFourAvif : servicesFourJpg}
           alt="a medallion being heated with a blow touch"
         />
       {/if}
