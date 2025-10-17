@@ -15,7 +15,6 @@
     <p class="pulse">
       Gift wrapping service click <a
         data-sveltekit-preload-data
-        rel="external"
         href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">here!</a
       >
     </p>
