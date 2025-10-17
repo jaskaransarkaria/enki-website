@@ -82,7 +82,9 @@
       <div class="left-container">
         <a
           data-sveltekit-preload-data
-          class={selected.endsWith("shop") ? "selected" : ""}
+          class={selected.endsWith("/shop") || selected.includes("/shop/")
+            ? "selected"
+            : ""}
           href="/shop"
         >
           shop
