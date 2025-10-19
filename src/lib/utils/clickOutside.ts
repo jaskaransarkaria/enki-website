@@ -17,9 +17,9 @@ export const clickOutside: (
 
   function update({ enabled }: { enabled: boolean }) {
     if (enabled) {
-      window.addEventListener("click", handleOutsideClick as any);
+      window.addEventListener("click", handleOutsideClick as any); // eslint-disable-line @typescript-eslint/no-explicit-any
     } else {
-      window.removeEventListener("click", handleOutsideClick as any);
+      window.removeEventListener("click", handleOutsideClick as any); // eslint-disable-line @typescript-eslint/no-explicit-any
     }
   }
 
@@ -27,7 +27,7 @@ export const clickOutside: (
   return {
     update,
     destroy() {
-      window.removeEventListener("click", handleOutsideClick as any);
+      window.removeEventListener("click", handleOutsideClick as any); // eslint-disable-line @typescript-eslint/no-explicit-any
     },
   };
 };

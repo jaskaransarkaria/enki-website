@@ -44,16 +44,20 @@ export const refreshCategories = async (
   retrieveStateFn(url, getCategoriesArray, [])();
 
 const getCategoryFromServer: (
-  fW: (a: string) => Promise<any>,
+  fW: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
 ) => GetFn<ReadonlyArray<SquareCategory>> =
-  (fetchWrapper: (a: string) => Promise<any>) =>
+  (
+    fetchWrapper: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
+  ) =>
   (url: string): Promise<ReadonlyArray<SquareCategory>> =>
     fetchWrapper(url).then((res) => res.json());
 
 const getProductArrayFromServer: (
-  fW: (a: string) => Promise<any>,
+  fW: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
 ) => GetFn<ReadonlyArray<SquareProduct>> =
-  (fetchWrapper: (a: string) => Promise<any>) =>
+  (
+    fetchWrapper: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
+  ) =>
   (url: string): Promise<ReadonlyArray<SquareProduct>> =>
     fetchWrapper(url).then((res) => res.json());
 
@@ -63,8 +67,10 @@ const getCategoriesArray: GetFn<ReadonlyArray<SquareCategory>> = (
   fetch(url).then((res) => res.json());
 
 const getCategoriesArrayServer: (
-  fW: (a: string) => Promise<any>,
+  fW: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
 ) => GetFn<ReadonlyArray<SquareCategory>> =
-  (fetchWrapper: (a: string) => Promise<any>) =>
+  (
+    fetchWrapper: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
+  ) =>
   (url: string): Promise<ReadonlyArray<SquareCategory>> =>
     fetchWrapper(url).then((res) => res.json());

@@ -1,5 +1,5 @@
 <script>
-  $: workshopHover = false;
+  let workshopHover = $derived(false);
 </script>
 
 <a data-sveltekit-preload-data href="/workshops" data-test-id="workshops">

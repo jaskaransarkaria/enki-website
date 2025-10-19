@@ -1,5 +1,5 @@
 import { updateBasket } from "./basket";
-import type { SquareProduct, VariationData } from "$lib/types/product";
+import type { SquareProduct } from "$lib/types/product";
 
 const mockProduct = {
   id: "123",

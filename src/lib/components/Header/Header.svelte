@@ -1,7 +1,8 @@
 <script lang="ts">
+  /* eslint-disable svelte/no-navigation-without-resolve */
+  import { untrack } from "svelte";
   import { browser } from "$app/environment";
-  import { afterUpdate } from "svelte";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { goto } from "$app/navigation";
   import { tweened } from "svelte/motion";
   import { fade } from "svelte/transition";
@@ -14,7 +15,7 @@
   import basketIcon from "$lib/assets/basket_icon.png";
   import searchIcon from "$lib/assets/search_1.png";
 
-  export let whitelistedUserAgent: boolean;
+  let whitelistedUserAgent: boolean = $props();
 
   const lessThan960 = 150;
   const moreThan960 = 300;
@@ -35,7 +36,7 @@
     duration: 500,
   });
 
-  afterUpdate(() => {
+  $effect(() => {
     selected = window.location.pathname;
   });
 
@@ -58,19 +59,24 @@
     `width: ${width}px; transform: translateX(${x}px);`;
   const growSearchWidth = (width: number) => `width: ${width}px`;
 
-  let showSearch = false;
-  let animateBasketNumber = false;
+  let showSearch = $derived(false);
+  let animateBasketNumber = $derived(false);
 
-  $: outerWidth = 0;
-  $: offset = outerWidth < 960 ? lessThan960 : moreThan960;
-  $: isMobile = outerWidth < 960;
-  $: basketNumber =
-    $basketStore?.reduce((acc, curr) => acc + curr.quantity, 0) ?? 0;
-  $: if (basketNumber) {
-    animateBasketNumber = !animateBasketNumber;
-  }
+  let outerWidth = $derived(0);
+  let offset = $derived(outerWidth < 960 ? lessThan960 : moreThan960);
+  let isMobile = $derived(outerWidth < 960);
+  let basketNumber = $derived(
+    $basketStore?.reduce((acc, curr) => acc + curr.quantity, 0) ?? 0,
+  );
 
-  $: selected = $page.url.toString();
+  $effect(() => {
+    if (basketNumber) {
+      animateBasketNumber = true;
+      untrack(() => (animateBasketNumber = false));
+    }
+  });
+
+  let selected = $derived(page.url.toString());
 </script>
 
 <svelte:window bind:outerWidth />

@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let onSignupFn = (email) => {};
+  export let onSignupFn = (email) => {}; // eslint-disable-line @typescript-eslint/no-unused-vars
 
   export let mcEmailInput = "";
   let mcForm: HTMLFormElement;
@@ -21,7 +21,7 @@
       formData.append("EMAIL", mcEmailInput);
       await fetch(
         "https://enkionline.us7.list-manage.com/subscribe/post?u=e1b4cd47e0fcd668196954f5e&amp;id=8e91d212c7",
-        { method: "post", body: formData, mode: "no-cors" }
+        { method: "post", body: formData, mode: "no-cors" },
       );
     }}
   >
@@ -62,7 +62,10 @@
   #mc_embed_signup {
     background: #fff;
     clear: left;
-    font: 14px Helvetica, Arial, sans-serif;
+    font:
+      14px Helvetica,
+      Arial,
+      sans-serif;
     width: 100%;
   }
 </style>

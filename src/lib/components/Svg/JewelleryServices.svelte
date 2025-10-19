@@ -1,5 +1,5 @@
 <script>
-  $: jewelleryServicesHover = false;
+  let jewelleryServicesHover = $derived(false);
 </script>
 
 <a data-sveltekit-preload-data data-test-id="repairs" href="/repairs">

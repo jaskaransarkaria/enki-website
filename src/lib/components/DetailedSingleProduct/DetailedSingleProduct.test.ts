@@ -1,8 +1,6 @@
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
 import type { SquareProduct } from "$lib/types/product";
-//import { tick } from "svelte";
-import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/svelte";
 import DetailedSingleProduct from "./DetailedSingleProduct.svelte";
 

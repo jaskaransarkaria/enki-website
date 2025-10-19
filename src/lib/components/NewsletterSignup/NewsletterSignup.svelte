@@ -6,7 +6,6 @@
   import MailChimpSubscribe from "../MailChimpSubscribe/MailChimpSubscribe.svelte";
   import { isSignedUp } from "$lib/stores/newsletterModal";
   import { PUBLIC_SERVER_URL } from "$env/static/public";
-  import { stringify } from "fp-ts/lib/Json";
 
   let promoCopied = false;
   let mcEmailInput = "";
@@ -28,7 +27,7 @@
 
   const getPromoCode = async (email) => {
     const res = await fetch(
-      `${PUBLIC_SERVER_URL}/get-promo-code?email=${encodeURIComponent(email)}`
+      `${PUBLIC_SERVER_URL}/get-promo-code?email=${encodeURIComponent(email)}`,
     );
 
     if (res.status === 403) {

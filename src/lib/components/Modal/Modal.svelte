@@ -3,14 +3,16 @@
   import MobileClose from "$lib/components/MobileClose/MobileClose.svelte";
   import { clickOutside } from "$lib/utils/clickOutside";
 
-  export let isMobile: boolean;
-  export let showModal: boolean;
-  export let visible = 0;
-  export let cssClass = "img-view";
-  export let containerClass = "";
-  export let showFullScreen = false;
-  export let onCloseFn = () => {};
-  export let showCross = false;
+  let {
+    isMobile,
+    showModal,
+    visible = 0,
+    cssClass = "img-view",
+    containerClass = "",
+    showFullScreen = false,
+    onCloseFn = () => {},
+    showCross = false,
+  } = $props();
 
   const handleWindowKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape" && showModal) {
@@ -20,9 +22,9 @@
     }
   };
 
-  $: outerHeight = 0;
-  $: outerWidth = 0;
-  $: innerWidth = 0;
+  let outerHeight = $derived(0);
+  let outerWidth = $derived(0);
+  let innerWidth = $derived(0);
 </script>
 
 <svelte:window

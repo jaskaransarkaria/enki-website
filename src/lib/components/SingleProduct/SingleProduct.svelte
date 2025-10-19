@@ -7,13 +7,10 @@
   import DetailedSingleProduct from "$lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  import type { SquareProduct } from "$lib/types/product";
+  let { product, showDetailedView = false } = $props();
 
-  export let product: SquareProduct | null;
-  export let showDetailedView = false;
-
-  $: outerWidth = 0;
-  $: isMobile = outerWidth < 1280;
+  let outerWidth = $derived(0);
+  const isMobile = $derived(outerWidth < 1280);
 </script>
 
 <svelte:window bind:outerWidth />
@@ -47,11 +44,11 @@
       <div class="position-img">
         <ImageLoader
           src={product.item_data.variations[0].custom_attribute_values.image_arr.string_value.split(
-            ","
+            ",",
           )[0]
             ? `${PUBLIC_BUCKET_URL}/${
                 product.item_data.variations[0].custom_attribute_values.image_arr.string_value.split(
-                  ","
+                  ",",
                 )[0]
               }${$isAvifSupported ? "-avif" : ""}`
             : comingSoon}

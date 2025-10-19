@@ -5,7 +5,6 @@ import fetch from "node-fetch";
 import { mockCategories } from "../../../tests/mocks/fixtures/categories";
 import { mockCategory } from "../../../tests/mocks/fixtures/category";
 import { mockProducts } from "../../../tests/mocks/fixtures/products";
-import { mockTags } from "../../../tests/mocks/fixtures/tags";
 import {
   refreshCategories,
   refreshCategoryFromServer,
@@ -17,7 +16,7 @@ describe("GIVEN requests.ts", () => {
   beforeAll(async () => {
     createServer(mockserver("./tests/mocks", true)).listen(8888);
 
-    //@ts-ignore
+    //@ts-expect-error globally mock client side fetch with node fetch
     global.fetch = fetch;
   });
 

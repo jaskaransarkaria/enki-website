@@ -15,14 +15,14 @@
   import CraftSixAvif from "$lib/assets/craft_6.avif";
   import CraftSevenAvif from "$lib/assets/craft_7.avif";
   import CraftEightAvif from "$lib/assets/craft_8.avif";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  $: outerWidth = 0;
-  $: isMobile = outerWidth < 960;
+  let outerWidth = $derived(0);
+  const isMobile = $derived(outerWidth < 960);
 </script>
 
 <svelte:head>
@@ -30,7 +30,7 @@
 </svelte:head>
 
 <svelte:window bind:outerWidth />
-{#if browser || $page.data.whitelistedUserAgent}
+{#if browser || page.data.whitelistedUserAgent}
   <div class="container">
     <div class="class-pics">
       {#if isMobile}

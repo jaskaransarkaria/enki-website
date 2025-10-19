@@ -1,5 +1,5 @@
 <script>
-  $: shopHover = false;
+  let shopHover = $derived(false);
 </script>
 
 <a

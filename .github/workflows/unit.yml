@@ -16,8 +16,8 @@ jobs:
           node-version: 22.20
       - name: Install dependencies
         run: npm ci
-      # - name: Linting
-      #   run: npm run lint
+      - name: Linting
+        run: npm run lint
       - name: Unit tests
         run: npm run test:unit:ci
         env:

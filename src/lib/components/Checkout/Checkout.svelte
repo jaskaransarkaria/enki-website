@@ -5,7 +5,7 @@
   import { createCheckoutSession } from "./createCheckoutSession";
   import { PUBLIC_STRIPE_KEY, PUBLIC_SERVER_URL } from "$env/static/public";
 
-  let stripePromise: any;
+  let stripePromise: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   export let loading = false;
 
   onMount(async () => {
@@ -16,6 +16,7 @@
     stripePromise = await loadStripe(PUBLIC_STRIPE_KEY as string);
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = async (stripePromise: any, basket: any) => {
     loading = true;
     await createCheckoutSession(stripePromise, basket, PUBLIC_SERVER_URL);
