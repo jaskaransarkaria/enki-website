@@ -1,4 +1,5 @@
 <script lang="ts">
+  /* eslint-disable svelte/no-navigation-without-resolve, @typescript-eslint/no-unused-expressions */
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
@@ -8,10 +9,7 @@
   import Checkout from "$lib/components/Checkout/Checkout.svelte";
   import LoadingSpinner from "../LoadingSpinner/LoadingSpinner.svelte";
 
-  let basketTotalArr: { total: number }[];
-  let total: string;
-  let loading = false;
-  let giftWrap: HTMLInputElement[] = [];
+  let loading = $state(false);
 
   const GIFT_WRAP_PRICE = 0.95;
 
@@ -25,21 +23,27 @@
     $basket[i].giftWrap = false;
   };
 
-  $: {
-    basketTotalArr = $basket.map((basketItem) => ({
-      total: basketItem?.price * basketItem?.quantity,
-    }));
-    total = basketTotalArr
-      .reduce((acc: number, cur: { total: number }) => cur.total + acc, 0)
-      .toFixed(2);
-  }
+  let giftWrap: HTMLInputElement[] = $state([]);
 
-  $: outerWidth = 0;
-  $: isMobile = outerWidth < 1280 ? true : false;
-  $: selectedGiftWrap = $basket.filter(
-    (item) =>
-      item.categoryId === "32TE2EITCQ6KE4HQ34ORK6V5" ||
-      item.categoryId === "KYUFP3I2BUEWSTMDUPSHQQJF",
+  let basketTotalArr = $derived(
+    $basket.map((basketItem) => ({
+      total: basketItem?.price * basketItem?.quantity,
+    })),
+  );
+  let total = $derived(
+    basketTotalArr
+      .reduce((acc: number, cur: { total: number }) => cur.total + acc, 0)
+      .toFixed(2),
+  );
+
+  let outerWidth = $derived(0);
+  let isMobile = $derived(outerWidth < 1280 ? true : false);
+  let selectedGiftWrap = $derived(
+    $basket.filter(
+      (item) =>
+        item.categoryId === "32TE2EITCQ6KE4HQ34ORK6V5" ||
+        item.categoryId === "KYUFP3I2BUEWSTMDUPSHQQJF",
+    ),
   );
 </script>
 
@@ -64,7 +68,7 @@
         <img
           src={`${PUBLIC_BUCKET_URL}/${obj.imgHash}`}
           alt={`${obj.name}`}
-          on:click={() => goto(`/shop/product/${obj.id}`)}
+          onclick={() => goto(`/shop/product/${obj.id}`)}
           class={isMobile ? "mobile-product-img" : "product-img"}
         />
         <div class={isMobile ? "mobile-product-details" : "product-details"}>
@@ -80,7 +84,7 @@
               <BasketCounter productObj={obj} />
               <br />
             </div>
-            {#if giftWrap[i] && giftWrap[i].checked}
+            {#if obj.giftWrap}
               <div class="gift-wrap-details">
                 <label class="select-wrap" for="wrap">
                   Fancy gift wrap <a
@@ -109,7 +113,7 @@
                       <option value="Standard brown paper" selected
                         >Standard brown paper</option
                       >
-                      {#each selectedGiftWrap as { name, id }, i (id)}
+                      {#each selectedGiftWrap as { name, id } (id)}
                         <option value={name}>{name}</option>
                       {/each}
                     {/if}
@@ -137,7 +141,7 @@
                       name="gift-wrap"
                       checked={obj.giftWrap}
                       bind:this={giftWrap[i]}
-                      on:change={() => {
+                      onchange={() => {
                         giftWrap[i].checked = !!giftWrap[i].checked;
                         giftWrap[i]?.checked
                           ? addGiftWrapping(i)

@@ -26,7 +26,7 @@
     },
   };
 
-  export let loaded: Map<string, HTMLImageElement> = new Map();
+  export let loaded: Map<string, HTMLImageElement> = new Map(); // eslint-disable-line svelte/prefer-svelte-reactivity
   let imgError = false;
   let imgUrl = `${PUBLIC_BUCKET_URL}/${
     category.custom_attribute_values.image_arr.string_value

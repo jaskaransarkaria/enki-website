@@ -1,5 +1,5 @@
 <script>
-  $: voucherHover = false;
+  let voucherHover = $derived(false);
 </script>
 
 <a

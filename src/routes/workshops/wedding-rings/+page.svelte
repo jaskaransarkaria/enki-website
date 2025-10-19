@@ -15,14 +15,14 @@
   import weddingBandsThirteenAvif from "$lib/assets/wedding_bands_13.avif";
   import weddingBandsFourteenAvif from "$lib/assets/wedding_bands_14.avif";
   import weddingBandsFifteenAvif from "$lib/assets/wedding_bands_15.avif";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  $: outerWidth = 0;
-  $: isMobile = outerWidth < 960;
+  let outerWidth = $derived(0);
+  const isMobile = $derived(outerWidth < 960);
 </script>
 
 <svelte:head>
@@ -30,14 +30,16 @@
 </svelte:head>
 
 <svelte:window bind:outerWidth />
-{#if browser || $page.data.whitelistedUserAgent}
+{#if browser || page.data.whitelistedUserAgent}
   <div class="container">
     <div class="class-pics">
       {#if isMobile}
         <SwipeImage
           imgArr={[
             {
-              src: $isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg,
+              src: $isAvifSupported
+                ? weddingBandsNineAvif
+                : weddingBandsNineJpg,
               alt: "a couple enjoying their finished rings",
             },
             {
@@ -96,7 +98,9 @@
           />
           <img
             in:fade={{ duration: 600 }}
-            src={$isAvifSupported ? weddingBandsThreeAvif : weddingBandsThreeJpg}
+            src={$isAvifSupported
+              ? weddingBandsThreeAvif
+              : weddingBandsThreeJpg}
             alt="enki jewellery ring boxes"
           />
           <img
@@ -142,7 +146,9 @@
       <div class="class-pics">
         <img
           in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? weddingBandsTwelveAvif : weddingBandsTwelveJpg}
+          src={$isAvifSupported
+            ? weddingBandsTwelveAvif
+            : weddingBandsTwelveJpg}
           alt="a couple holding their hands up sporting their new rings"
         />
         <img

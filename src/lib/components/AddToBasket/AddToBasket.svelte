@@ -1,4 +1,5 @@
 <script lang="ts">
+  /*  eslint-disable svelte/no-navigation-without-resolve */
   import confetti from "canvas-confetti";
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";

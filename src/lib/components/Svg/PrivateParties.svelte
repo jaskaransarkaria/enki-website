@@ -1,5 +1,5 @@
 <script>
-  $: privateHover = false;
+  let privateHover = $derived(false);
 </script>
 
 <a

@@ -16,8 +16,8 @@
     if (e.key === "Enter") {
       cb();
       await goto(
-        `/shop/search?search-term=${encodeURIComponent(searchValue)}`,
-        { replaceState: true }
+        `/shop/search?search-term=${encodeURIComponent(searchValue)}`, // eslint-disable-line svelte/no-navigation-without-resolve
+        { replaceState: true },
       );
       searchValue = "";
     }

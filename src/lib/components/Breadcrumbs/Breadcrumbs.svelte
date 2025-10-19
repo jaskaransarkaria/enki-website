@@ -24,7 +24,7 @@
   const recursiveCatSearch = (
     id: string,
     categories: readonly SquareCategory[],
-    results: readonly SquareCategory[]
+    results: readonly SquareCategory[],
   ): readonly SquareCategory[] => {
     // dive deep and find the category then work upwards to the root
     for (const cat of categories) {
@@ -36,7 +36,7 @@
         return recursiveCatSearch(
           cat.category_data.parent_category.id,
           $readonlyAllCategories,
-          [...results, cat]
+          [...results, cat],
         );
       } else if (cat?.children?.length) {
         results = recursiveCatSearch(id, cat.children, results);
@@ -53,9 +53,10 @@
       breadcrumb.custom_attribute_values.image_arr.string_value.split(",")[0]
     }`;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     breadcrumb.category_data.name === "Shop"
-      ? await goto("/shop")
-      : await goto(breadcrumbUrl);
+      ? await goto("/shop") // eslint-disable-line svelte/no-navigation-without-resolve
+      : await goto(breadcrumbUrl); // eslint-disable-line svelte/no-navigation-without-resolve
   };
 
   $: breadcrumbs = [

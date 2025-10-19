@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { browser, dev } from "$app/environment";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import mobileGiftGuideAvif from "$lib/assets/mobile_gift_guide_1.avif";
@@ -32,9 +32,9 @@
     NEWSLETTER_DISMISS_LIMIT,
   } from "$lib/stores/newsletterModal";
 
-  let showModal: boolean;
-  let visible: number = 0;
-  let timeout = 1000;
+  let showModal: boolean = $state(false);
+  let visible: number = $state(0);
+  let timeout = $state(1000);
 
   onMount(() => {
     setTimeout(() => {
@@ -48,10 +48,10 @@
     }, timeout);
   });
 
-  $: outerWidth = 0;
-  $: innerWidth = 0;
-  $: outerHeight = 0;
-  $: isMobile = outerWidth <= 450 ? true : false;
+  let outerWidth = $derived(0);
+  let innerWidth = $derived(0);
+  let outerHeight = $derived(0);
+  const isMobile = $derived(outerWidth <= 450 ? true : false);
 </script>
 
 <svelte:window bind:outerWidth bind:outerHeight bind:innerWidth />
@@ -64,7 +64,7 @@
   <link rel="preload" as="image" href={mobileLandingPagePng} />
 </svelte:head>
 
-{#if (browser && outerWidth > 0) || $page.data.whitelistedUserAgent}
+{#if (browser && outerWidth > 0) || page.data.whitelistedUserAgent}
   <figure
     class={isMobile ? "mobile-container" : "container"}
     style:background-image={isMobile

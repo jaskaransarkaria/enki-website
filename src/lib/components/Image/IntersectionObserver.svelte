@@ -24,7 +24,7 @@
         },
         {
           rootMargin,
-        }
+        },
       );
 
       observer.observe(container);
@@ -32,6 +32,7 @@
     }
 
     // The following is a fallback for older browsers
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function handler() {
       if (browser) {
         const bcr = container.getBoundingClientRect();

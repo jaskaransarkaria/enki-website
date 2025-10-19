@@ -1,5 +1,5 @@
 <script>
-  $: guideHover = false;
+  let guideHover = $derived(false);
 </script>
 
 <a

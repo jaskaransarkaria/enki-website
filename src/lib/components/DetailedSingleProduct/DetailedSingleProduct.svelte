@@ -1,4 +1,5 @@
 <script lang="ts">
+  /* eslint-disable svelte/require-each-key, svelte/no-at-html-tags */
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import comingSoon from "$lib/assets/coming_soon.png";
   import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
@@ -12,7 +13,7 @@
 
   const createImgArr = (
     parentProduct: SquareProduct,
-    product: VariationData
+    product: VariationData,
   ): { src: string; alt: string }[] =>
     product?.custom_attribute_values?.image_arr.string_value.length > 0 &&
     product?.custom_attribute_values?.image_arr.string_value.includes(",") &&
@@ -88,7 +89,7 @@
             ("quantity" in selectedProductVariation.item_variation_data
               ? parseInt(
                   selectedProductVariation.item_variation_data.quantity,
-                  10
+                  10,
                 )
               : 0) <= 0
               ? "sold out"
@@ -127,7 +128,7 @@
           ("quantity" in selectedProductVariation.item_variation_data
             ? parseInt(
                 selectedProductVariation.item_variation_data.quantity,
-                10
+                10,
               )
             : 0) <= 0
             ? "sold out"

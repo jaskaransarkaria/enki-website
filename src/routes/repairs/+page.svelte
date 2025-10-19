@@ -11,14 +11,14 @@
   import eighteenCaret from "$lib/assets/18_carat.png";
   import platinum from "$lib/assets/platinum.png";
   import silver from "$lib/assets/silver.png";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  $: outerWidth = 0;
-  $: isMobile = outerWidth < 960;
+  let outerWidth = $derived(0);
+  const isMobile = $derived(outerWidth < 960);
 </script>
 
 <svelte:head>
@@ -28,7 +28,7 @@
 </svelte:head>
 
 <svelte:window bind:outerWidth />
-{#if browser || $page.data.whitelistedUserAgent}
+{#if browser || page.data.whitelistedUserAgent}
   <div class="container">
     <br />
     <div class="shop-pics">

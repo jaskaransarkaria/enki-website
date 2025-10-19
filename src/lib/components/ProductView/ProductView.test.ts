@@ -75,9 +75,12 @@ const mockData: readonly SquareProduct[] = [
 describe("GIVEN ProductView", () => {
   const originalLocation = global.window.location;
 
+  beforeEach(() => {
+    global.window.sessionStorage.removeItem("filter");
+  });
+
   afterEach(() => {
     global.window.location = originalLocation;
-    global.window.sessionStorage.setItem("filter", null);
     jest.clearAllMocks();
   });
 

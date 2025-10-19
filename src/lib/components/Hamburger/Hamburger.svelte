@@ -6,7 +6,7 @@
 
   const toggleAndGo = (dest: string) => {
     toggleOpen = !toggleOpen;
-    goto(dest);
+    goto(dest); // eslint-disable-line svelte/no-navigation-without-resolve
   };
 </script>
 

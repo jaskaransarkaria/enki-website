@@ -1,5 +1,5 @@
 <script>
-  $: weddingHover = false;
+  let weddingHover = $derived(false);
 </script>
 
 <a

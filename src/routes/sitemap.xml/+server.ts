@@ -10,7 +10,7 @@ export async function GET() {
     });
   } catch (e) {
     return {
-      body: "Error",
+      body: `Error: ${e}`,
     };
   }
 }

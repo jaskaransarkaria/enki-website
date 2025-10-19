@@ -1,4 +1,5 @@
 <script lang="ts">
+  /* eslint-disable svelte/require-each-key, @typescript-eslint/no-unused-vars */
   import { browser } from "$app/environment";
   import {
     getGridCols,
@@ -10,51 +11,60 @@
 
   import type { SquareCategory } from "$lib/types/category";
 
-  export let data: SquareCategory[] = [];
-  export let whitelistedUserAgent = false;
-  export let showFullPage = true;
+  let {
+    data = [],
+    whitelistedUserAgent = false,
+    showFullPage = true,
+  } = $props();
 
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
 
-  let itemsOnLastRow: number;
-  let gridColumnNumber: number;
-  let showGrid: boolean = false;
-  let loaded = new Map();
+  let itemsOnLastRow: number | undefined = $state();
+  let gridColumnNumber: number | undefined = $state();
+  let showGrid: boolean = $state(false);
+  let loaded = $state(new Map());
 
-  $: if (browser) {
-    gridColumnNumber = getGridCols(window.innerWidth) / 2;
-    showGrid = calcShowGrid(window.innerWidth, filteredData.length);
-  } else {
-    gridColumnNumber = 20;
-    showGrid = true;
-  }
+  $effect(() => {
+    if (browser) {
+      gridColumnNumber = getGridCols(window.innerWidth) / 2;
+      showGrid = calcShowGrid(window.innerWidth, filteredData.length);
+    } else {
+      gridColumnNumber = 20;
+      showGrid = true;
+    }
+  });
 
-  $: filteredData =
+  let filteredData = $derived(
     data?.length < 1
       ? []
       : data?.filter(
           (base: SquareCategory): base is SquareCategory =>
-            base.id !== "5G6HXSP2KNVZBFNNHRQ4YK7D"
-        );
+            base.id !== "5G6HXSP2KNVZBFNNHRQ4YK7D",
+        ),
+  );
 
-  $: rowNumber =
+  let rowNumber = $derived(
     filteredData.length > gridColumnNumber
       ? calcRowNumber(filteredData.length, gridColumnNumber, 1)
-      : 1;
-  $: rowOffset = Math.floor(
-    rowNumber % 2 === 0 ? rowNumber / 2 : (rowNumber - 1) / 2
+      : 1,
+  );
+  let rowOffset = $derived(
+    Math.floor(rowNumber % 2 === 0 ? rowNumber / 2 : (rowNumber - 1) / 2),
   ); // the even rows are 1 shorter
-  $: hexesForCompleteGrid = rowNumber * gridColumnNumber - rowOffset;
-  $: emptyHexes =
+  let hexesForCompleteGrid = $derived(rowNumber * gridColumnNumber - rowOffset);
+  let emptyHexes = $derived(
     hexesForCompleteGrid - filteredData.length > 0
       ? createEmptyArray(hexesForCompleteGrid - filteredData.length)
-      : [];
-  $: if (rowNumber) {
-    itemsOnLastRow =
-      (rowNumber % 2 === 0 ? gridColumnNumber - 1 : gridColumnNumber) -
-      emptyHexes.length;
-  }
+      : [],
+  );
+  $effect(() => {
+    if (rowNumber) {
+      itemsOnLastRow =
+        (rowNumber % 2 === 0 ? gridColumnNumber - 1 : gridColumnNumber) -
+        emptyHexes.length;
+    }
+  });
 </script>
 
 {#if browser || whitelistedUserAgent}
@@ -62,8 +72,8 @@
     class={showGrid
       ? "root-categories-container"
       : showFullPage
-      ? "flexbox-container"
-      : "flexbox-container flexbox-container-no-height"}
+        ? "flexbox-container"
+        : "flexbox-container flexbox-container-no-height"}
   >
     {#each filteredData as category, idx (category.id)}
       {@const useEmptyHexes =
@@ -73,7 +83,7 @@
         {#if useEmptyHexes}
           {@const emptyHexesRoundedDown = emptyHexes.slice(
             0,
-            Math.floor(emptyHexes.length / 2)
+            Math.floor(emptyHexes.length / 2),
           )}
           {#each emptyHexesRoundedDown as _}
             <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
@@ -86,7 +96,7 @@
         <Hex
           {category}
           hexHref={`/shop/category/${category.id}?name=${encodeURIComponent(
-            category.category_data.name
+            category.category_data.name,
           )}&imgHash=${
             category.custom_attribute_values.image_arr.string_value
           }&l=${true}`}
@@ -97,7 +107,7 @@
         {#if useEmptyHexes}
           {@const emptyHexesRoundedUp = emptyHexes.slice(
             0,
-            Math.ceil(emptyHexes.length / 2)
+            Math.ceil(emptyHexes.length / 2),
           )}
           {#each emptyHexesRoundedUp as _}
             <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>

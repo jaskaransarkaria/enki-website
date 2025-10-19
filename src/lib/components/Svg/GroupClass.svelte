@@ -1,5 +1,5 @@
 <script>
-  $: groupHover = false;
+  let groupHover = $derived(false);
 </script>
 
 <a

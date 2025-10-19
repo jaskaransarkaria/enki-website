@@ -1,4 +1,5 @@
 <script lang="ts">
+  /* eslint-disable svelte/no-navigation-without-resolve */
   import confetti from "canvas-confetti";
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
@@ -26,8 +27,8 @@
     }
   };
 
-  $: outerWidth = 0;
-  $: isMobile = outerWidth < 960;
+  let outerWidth = $derived(0);
+  let isMobile = $derived(outerWidth < 960);
 </script>
 
 <svelte:window bind:outerWidth />

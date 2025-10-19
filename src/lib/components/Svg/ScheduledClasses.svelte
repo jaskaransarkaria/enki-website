@@ -1,5 +1,5 @@
 <script>
-  $: scheduledHover = false;
+  let scheduledHover = $derived(false);
 </script>
 
 <a

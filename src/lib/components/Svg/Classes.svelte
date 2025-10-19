@@ -1,5 +1,5 @@
 <script>
-  $: classesHover = false;
+  let classesHover = $derived(false);
 </script>
 
 <a data-sveltekit-preload-data href="/classes" data-test-id="classes">

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { beforeUpdate } from "svelte";
+  import { page } from "$app/state";
   import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
   import Banner from "$lib/components/Banner/Banner.svelte";
@@ -14,19 +13,24 @@
   import type { SquareProduct } from "$lib/types/product";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  export let productArr: readonly SquareProduct[] = [];
-  export let showDetailedView = false;
-  export let whitelistedUserAgent = false;
-  export let sorted = false;
+  let {
+    productArr = [],
+    showDetailedView = false,
+    whitelistedUserAgent = false,
+    sorted = false,
+  } = $props();
 
-  let sortBy: string =
-    browser && !sorted ? window.sessionStorage.getItem("filter") : "relevant";
+  let sortBy: string = $derived(
+    (browser && !sorted
+      ? window.sessionStorage.getItem("filter")
+      : "relevant") ?? "in-stock",
+  );
 
   const sortByStock = (collatedArray: readonly SquareProduct[]) => {
     return collatedArray.slice().sort((a, b) => {
       return parseInt(
         a.item_data.variations[0].item_variation_data.quantity,
-        10
+        10,
       ) > parseInt(b.item_data.variations[0].item_variation_data.quantity, 10)
         ? -1
         : 1;
@@ -35,62 +39,62 @@
 
   const sortArray = (
     sortBy: string,
-    collatedArray: readonly SquareProduct[]
+    collatedArray: readonly SquareProduct[],
   ) => {
     switch (sortBy) {
       case "price-high-low":
-        browser && window.sessionStorage.setItem("filter", "price-high-low");
+        browser && window.sessionStorage.setItem("filter", "price-high-low"); // eslint-disable-line @typescript-eslint/no-unused-expressions
         return collatedArray
           .slice()
           .sort((a, b) =>
             a.item_data.variations[0].item_variation_data.price_money.amount >
             b.item_data.variations[0].item_variation_data.price_money.amount
               ? -1
-              : 1
+              : 1,
           );
       case "price-low-high":
-        browser && window.sessionStorage.setItem("filter", "price-low-high");
+        browser && window.sessionStorage.setItem("filter", "price-low-high"); // eslint-disable-line @typescript-eslint/no-unused-expressions
         return collatedArray
           .slice()
           .sort((a, b) =>
             a.item_data.variations[0].item_variation_data.price_money.amount >
             b.item_data.variations[0].item_variation_data.price_money.amount
               ? 1
-              : -1
+              : -1,
           );
       case "alphabetically":
-        browser && window.sessionStorage.setItem("filter", "alphabetically");
+        browser && window.sessionStorage.setItem("filter", "alphabetically"); // eslint-disable-line @typescript-eslint/no-unused-expressions
         return collatedArray
           .slice()
           .sort((a, b) => (a.item_data.name < b.item_data.name ? -1 : 1));
       case "newest-to-oldest":
-        browser && window.sessionStorage.setItem("filter", "newest-to-oldest");
+        browser && window.sessionStorage.setItem("filter", "newest-to-oldest"); // eslint-disable-line @typescript-eslint/no-unused-expressions
         return collatedArray
           .slice()
           .sort((a, b) =>
-            new Date(a.created_at) < new Date(b.created_at) ? 1 : -1
+            new Date(a.created_at) < new Date(b.created_at) ? 1 : -1,
           );
       default:
-        browser && window.sessionStorage.setItem("filter", "in-stock");
+        browser && window.sessionStorage.setItem("filter", "in-stock"); // eslint-disable-line @typescript-eslint/no-unused-expressions
         return sortByStock(collatedArray);
     }
   };
 
-  beforeUpdate(
-    () =>
-      (sortBy =
-        sorted && (sortBy === null || sortBy === "relevant")
-          ? "relevant"
-          : window.sessionStorage.getItem("filter"))
-  );
+  $effect.pre(() => {
+    sortBy =
+      sorted && (sortBy === null || sortBy === "relevant")
+        ? "relevant"
+        : (window.sessionStorage.getItem("filter") ?? "in-stock");
+  });
 
-  $: sortedCollatedArray =
+  let sortedCollatedArray = $derived(
     sorted && (sortBy === null || sortBy === "relevant")
       ? productArr
-      : sortArray(sortBy, productArr);
+      : sortArray(sortBy, productArr),
+  );
 
-  $: outerWidth = 0;
-  $: isMobile = outerWidth < 960;
+  let outerWidth = $derived(0);
+  let isMobile = $derived(outerWidth < 960);
 </script>
 
 <svelte:window bind:outerWidth />
@@ -100,13 +104,26 @@
     <div class="sort-container">
       <select role="combobox" name="products" id="products" bind:value={sortBy}>
         {#if sorted}
-          <option value="relevant">relevant</option>
+          <option selected={sortBy === "relevant"} value="relevant"
+            >relevant</option
+          >
         {/if}
-        <option value="alphabetically">A - Z</option>
-        <option value="price-high-low">price (high to low)</option>
-        <option value="price-low-high">price (low to high)</option>
-        <option value="in-stock">in stock</option>
-        <option value="newest-to-oldest">new</option>
+        <option selected={sortBy === "alphabetically"} value="alphabetically"
+          >A - Z</option
+        >
+        <option selected={sortBy === "price-high-low"} value="price-high-low"
+          >price (high to low)</option
+        >
+        <option selected={sortBy === "price-low-high"} value="price-low-high"
+          >price (low to high)</option
+        >
+        <option selected={sortBy === "in-stock"} value="in-stock"
+          >in stock</option
+        >
+        <option
+          selected={sortBy === "newest-to-oldest"}
+          value="newest-to-oldest">new</option
+        >
       </select>
     </div>
     {#key sortBy}
@@ -164,7 +181,7 @@
           {#each sortedCollatedArray as item (item.id)}
             {#if item.item_data.variations.every((v) => {
               return parseInt(v.item_variation_data.quantity, 10) > 0;
-            }) || Boolean($page.url.pathname === "/shop/search")}
+            }) || Boolean(page.url.pathname === "/shop/search")}
               <SingleProduct product={item} {showDetailedView} />
             {/if}
           {/each}

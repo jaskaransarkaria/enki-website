@@ -1,6 +1,6 @@
 export const createCheckoutSession = async (
-  stripePromise: any,
-  basket: any,
+  stripePromise: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+  basket: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   baseServerUrl: string,
 ): Promise<void> => {
   const stripe = await stripePromise;

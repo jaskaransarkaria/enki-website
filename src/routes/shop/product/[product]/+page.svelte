@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { PUBLIC_BUCKET_URL, PUBLIC_SERVER_URL } from "$env/static/public";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { products } from "$lib/stores/products";
   import comingSoon from "$lib/assets/coming_soon.png";
   import Banner from "$lib/components/Banner/Banner.svelte";
@@ -10,13 +10,13 @@
 
   import type { SquareProduct } from "$lib/types/product";
 
-  let productToShow: readonly SquareProduct[] = $page.data.productToShow;
+  let productToShow: readonly SquareProduct[] = $state(page.data.productToShow);
 
   onMount(async () => {
     if (productToShow.length < 1) {
-      const productId = $page.url.pathname.split("/").at(-1);
+      const productId = page.url.pathname.split("/").at(-1);
       productToShow = [$products?.find((p) => p.id === productId)].filter(
-        (p) => p !== undefined
+        (p) => p !== undefined,
       );
 
       if (productToShow.length < 1) {
@@ -33,15 +33,15 @@
     property="og:title"
     content={`Enki - ${productToShow[0]?.item_data.name}`}
   />
-  <meta property="og:url" content={$page.url.toString()} />
+  <meta property="og:url" content={page.url.toString()} />
   <meta
     property="og:image"
     content={`${PUBLIC_BUCKET_URL}/${
       productToShow[0]?.custom_attribute_values.image_arr.string_value.split(
-        ","
+        ",",
       )[0]
         ? productToShow[0]?.custom_attribute_values.image_arr.string_value.split(
-            ","
+            ",",
           )[0]
         : comingSoon
     }`}
@@ -54,7 +54,7 @@
   <meta property="og:locale" content="en_GB" />
 </svelte:head>
 
-{#if productToShow.length || $page.data.whitelistedUserAgent}
+{#if productToShow.length || page.data.whitelistedUserAgent}
   <Banner hasProducts />
   <Breadcrumbs
     selectedCategoryId={productToShow[0].item_data.categories[0].id}
