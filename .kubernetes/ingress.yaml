@@ -8,6 +8,10 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "7200"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "7200"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "7200"
+    nginx.ingress.kubernetes.io/proxy-body-size: 30m
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 256k
+    nginx.ingress.kubernetes.io/proxy-buffering: 'on'
+    nginx.ingress.kubernetes.io/proxy-buffers-number: '4'
     cert-manager.io/issuer: "letsencrypt-production"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "Cache-Control: public, max-age=7889400";
