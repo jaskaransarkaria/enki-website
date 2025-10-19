@@ -36,6 +36,7 @@
   let hexImg = browser ? new Image() : {};
 
   const hexArr = [hexOne, hexTwo, hexThree, hexFour, hexFive, hexSix];
+  $: console.log("is", $isAvifSupported, imgUrl);
 </script>
 
 <div class="hex-in">

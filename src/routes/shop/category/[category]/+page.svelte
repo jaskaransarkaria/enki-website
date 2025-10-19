@@ -7,15 +7,15 @@
   import { refreshCategories } from "$lib/utils/requests";
   import type { SquareCategory } from "$lib/types/category";
 
-  let loadingFromStore: boolean = page.data.loadingFromStore;
+  let loadingFromStore: boolean = $state(page.data.loadingFromStore);
 
   let categoryToShow = $derived(page.data.categoryToShow);
   let productArr = $derived(page.data.productArr);
 
-  let imgHash = $derived(
+  let imgHash = $state(
     decodeURIComponent(page.url.searchParams.get("imgHash") ?? ""),
   );
-  let name = $derived(
+  let name = $state(
     decodeURIComponent(page.url.searchParams.get("name") ?? ""),
   );
 
