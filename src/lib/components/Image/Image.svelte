@@ -2,11 +2,15 @@
   import { onMount } from "svelte";
   import comingSoon from "$lib/assets/coming_soon.png";
 
-  export let src: string;
-  export let alt: string;
+  interface Props {
+    src: string;
+    alt: string;
+  }
 
-  let loaded = false;
-  let thisImage: HTMLImageElement;
+  let { src, alt }: Props = $props();
+
+  let loaded = $state(false);
+  let thisImage: HTMLImageElement = $state();
 
   onMount(() => {
     thisImage.onload = () => {
@@ -20,7 +24,7 @@
   {alt}
   class:loaded
   bind:this={thisImage}
-  on:error={() => {
+  onerror={() => {
     if (thisImage.src != comingSoon) {
       thisImage.src = comingSoon;
     }

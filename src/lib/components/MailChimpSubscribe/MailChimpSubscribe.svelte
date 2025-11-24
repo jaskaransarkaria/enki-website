@@ -1,8 +1,13 @@
 <script lang="ts">
-  export let onSignupFn = (email) => {}; // eslint-disable-line @typescript-eslint/no-unused-vars
+  interface Props {
+    onSignupFn?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    mcEmailInput?: string;
+  }
 
-  export let mcEmailInput = "";
-  let mcForm: HTMLFormElement;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let { onSignupFn = (email) => {}, mcEmailInput = $bindable("") }: Props =
+    $props();
+  let mcForm: HTMLFormElement = $state();
 </script>
 
 <!-- Begin Mailchimp Signup Form -->
@@ -14,7 +19,7 @@
     class="validate"
     novalidate
     bind:this={mcForm}
-    on:submit={async (e) => {
+    onsubmit={async (e) => {
       e.preventDefault();
       onSignupFn(mcEmailInput);
       let formData = new FormData();

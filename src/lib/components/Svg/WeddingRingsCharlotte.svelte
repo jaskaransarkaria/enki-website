@@ -8,8 +8,8 @@
   data-test-id="wedding-rings"
 >
   <svg
-    on:mouseenter={() => (weddingHover = true)}
-    on:mouseleave={() => (weddingHover = false)}
+    onmouseenter={() => (weddingHover = true)}
+    onmouseleave={() => (weddingHover = false)}
     width="471.463"
     height="529.765"
     viewBox="0 0 124.741 140.167"

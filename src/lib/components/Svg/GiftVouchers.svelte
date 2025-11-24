@@ -8,8 +8,8 @@
   href="https://buytickets.at/enki/store"
 >
   <svg
-    on:mouseenter={() => (voucherHover = true)}
-    on:mouseleave={() => (voucherHover = false)}
+    onmouseenter={() => (voucherHover = true)}
+    onmouseleave={() => (voucherHover = false)}
     width="781.749"
     height="288.596"
     viewBox="0 0 206.838 76.358"

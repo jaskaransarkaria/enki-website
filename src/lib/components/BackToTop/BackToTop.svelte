@@ -1,8 +1,12 @@
-<script>
+<script lang="ts">
   import backToTopImg from "$lib/assets/back_to_top_3.png";
 
-  export let showOnPx = 150;
-  let hidden = true;
+  interface Props {
+    showOnPx?: number;
+  }
+
+  let { showOnPx = 150 }: Props = $props();
+  let hidden = $state(true);
 
   function goTop() {
     document.body.scrollIntoView();
@@ -25,9 +29,9 @@
   }
 </script>
 
-<svelte:window on:scroll={handleOnScroll} />
+<svelte:window onscroll={handleOnScroll} />
 
-<button class="back-to-top" on:click={goTop} class:hidden
+<button class="back-to-top" onclick={goTop} class:hidden
   ><img src={backToTopImg} alt="back to the top button" /></button
 >
 

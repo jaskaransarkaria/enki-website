@@ -7,7 +7,11 @@
   import type { SquareCategory } from "$lib/types/category";
   import { onMount } from "svelte";
 
-  export let data: { data: SquareCategory[] } = { data: [] };
+  interface Props {
+    data?: { data: SquareCategory[] };
+  }
+
+  let { data = { data: [] } }: Props = $props();
 
   const whitelistedUserAgent = $page.data.whitelistedUserAgent;
   const queryParams = $page.url.toString().split("?")[1];

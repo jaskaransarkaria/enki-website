@@ -123,7 +123,7 @@
                   maxlength="95"
                   placeholder="Add a message for your gift here..."
                   bind:value={obj.giftDescription}
-                />
+></textarea>
               </div>
             {/if}
             <div class="price">

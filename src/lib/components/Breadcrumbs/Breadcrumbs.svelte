@@ -10,9 +10,18 @@
 
   type Crumb = SquareCategory;
 
-  export let selectedCategoryId: string;
+  interface Props {
+    selectedCategoryId: string;
+  }
 
-  let breadcrumbs: Crumb[];
+  let { selectedCategoryId }: Props = $props();
+
+  let breadcrumbs: Crumb[] = $derived([
+    InitialValue[0],
+    ...recursiveCatSearch(selectedCategoryId, $readonlyAllCategories, [])
+      .slice()
+      .reverse(),
+  ]);
 
   onMount(async () => {
     if (!$readonlyAllCategories?.length) {
@@ -59,19 +68,14 @@
       : await goto(breadcrumbUrl); // eslint-disable-line svelte/no-navigation-without-resolve
   };
 
-  $: breadcrumbs = [
-    InitialValue[0],
-    ...recursiveCatSearch(selectedCategoryId, $readonlyAllCategories, [])
-      .slice()
-      .reverse(),
-  ];
+  
 </script>
 
 {#if selectedCategoryId}
   {#each breadcrumbs as breadcrumb (breadcrumb.id)}
     <button
       data-testid="breadcrumb"
-      on:click={async () => await handleBreadcrumbClick(breadcrumb)}
+      onclick={async () => await handleBreadcrumbClick(breadcrumb)}
     >
       <img src={emptyHex} alt="breadcrumb icon" />
       {breadcrumb?.category_data?.name}

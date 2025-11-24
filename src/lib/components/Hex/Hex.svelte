@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SvelteMap } from "svelte/reactivity";
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { browser } from "$app/environment";
   import { fade } from "svelte/transition";
@@ -14,29 +15,36 @@
   import type { SquareCategory } from "$lib/types/category";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  export let hexHref = "";
-  export let isEmpty = false;
-  export let category: SquareCategory = {
-    id: "",
-    children: [],
-    custom_attribute_values: {
-      image_arr: {
-        string_value: "",
+  interface Props {
+    hexHref?: string;
+    isEmpty?: boolean;
+    category?: SquareCategory;
+    loaded?: Map<string, HTMLImageElement>;
+  }
+
+  let {
+    hexHref = "",
+    isEmpty = false,
+    category = {
+      id: "",
+      children: [],
+      custom_attribute_values: {
+        image_arr: {
+          string_value: "",
+        },
       },
     },
-  };
-
-  export let loaded: Map<string, HTMLImageElement> = new Map(); // eslint-disable-line svelte/prefer-svelte-reactivity
-  let imgError = false;
+    loaded = new SvelteMap(),
+  }: Props = $props();
+  let imgError = $state(false);
   let imgUrl = `${PUBLIC_BUCKET_URL}/${
     category.custom_attribute_values.image_arr.string_value
   }${$isAvifSupported ? "-avif" : ""}`;
-  let hexLoaded = false;
-  let catImg = browser ? new Image() : {};
-  let hexImg = browser ? new Image() : {};
+  let hexLoaded = $state(false);
+  let catImg = $state(browser ? new Image() : {});
+  let hexImg = $state(browser ? new Image() : {});
 
   const hexArr = [hexOne, hexTwo, hexThree, hexFour, hexFive, hexSix];
-  $: console.log("is", $isAvifSupported, imgUrl);
 </script>
 
 <div class="hex-in">
@@ -62,7 +70,7 @@
             alt={`category ${category.category_data.name}`}
             data-testid="cdn-img"
             bind:this={catImg}
-            on:load={() => {
+            onload={() => {
               loaded.set(imgUrl, catImg);
               catImg.classList.remove("preload-hex-img");
               catImg.classList.add("hex-img");
@@ -73,11 +81,11 @@
           <img
             src={imgUrl}
             bind:this={catImg}
-            on:load={() => {
+            onload={() => {
               loaded.set(imgUrl, catImg);
               catImg.classList.add("hex-img");
             }}
-            on:error={() => (imgError = true)}
+            onerror={() => (imgError = true)}
             alt={`category ${category.category_data.name}`}
             data-testid="cdn-img"
             class="preload-hex-img"
@@ -87,7 +95,7 @@
           src={hexArr[Math.floor(Math.random() * 6)]}
           alt="hexagon shape for the category button"
           bind:this={hexImg}
-          on:load={() => {
+          onload={() => {
             hexLoaded = true;
           }}
           class="hex-img"

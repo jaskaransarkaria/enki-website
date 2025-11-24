@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let clickFn = () => {};
+  let { clickFn = () => {} } = $props();
 </script>
 
 <div>
@@ -10,7 +10,7 @@
     fill="#ff6600"
     class="bi bi-copy"
     viewBox="0 0 16 16"
-    on:click={() => clickFn()}
+    onclick={() => clickFn()}
   >
     <path
       fill-rule="evenodd"

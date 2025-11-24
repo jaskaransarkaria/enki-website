@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
@@ -7,8 +7,13 @@
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
   import "../app.css";
   import { onMount } from "svelte";
+  interface Props {
+    children?: import("svelte").Snippet;
+  }
 
-  let checkAvif = false;
+  let { children }: Props = $props();
+
+  let checkAvif = $state(false);
 
   onMount(() => {
     if ($isAvifSupported === null) {
@@ -36,9 +41,9 @@
 </svelte:head>
 
 <div class="container">
-  <Header whitelistedUserAgent={$page.data.whitelistedUserAgent} />
-  <div class="header-block" />
-  <slot />
+  <Header whitelistedUserAgent={page.data.whitelistedUserAgent} />
+  <div class="header-block"></div>
+  {@render children?.()}
   <BackToTop />
 </div>
 <Footer />
@@ -47,11 +52,10 @@
     class="avif-supported-check"
     alt="not visible and is used to check if your browser supports the avif format"
     src="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A="
-    on:load={() => {
+    onload={() => {
       isAvifSupported.set(true);
-      console.log($isAvifSupported);
     }}
-    on:error={() => {
+    onerror={() => {
       isAvifSupported.set(false);
     }}
   />

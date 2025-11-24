@@ -1,7 +1,11 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
   import { page } from "$app/stores";
-  export let hasProducts = false;
+  interface Props {
+    hasProducts?: boolean;
+  }
+
+  let { hasProducts = false }: Props = $props();
 
   const currentDate = new Date();
 

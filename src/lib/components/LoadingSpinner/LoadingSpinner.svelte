@@ -7,10 +7,10 @@
 </script>
 
 <div class="lds-ring" data-testid="loading-spinner">
-  <div />
-  <div />
-  <div />
-  <div />
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
 </div>
 
 <style>

@@ -5,8 +5,12 @@
   import { createCheckoutSession } from "./createCheckoutSession";
   import { PUBLIC_STRIPE_KEY, PUBLIC_SERVER_URL } from "$env/static/public";
 
-  let stripePromise: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-  export let loading = false;
+  let stripePromise: any = $state(); // eslint-disable-line @typescript-eslint/no-explicit-any
+  interface Props {
+    loading?: boolean;
+  }
+
+  let { loading = $bindable(false) }: Props = $props();
 
   onMount(async () => {
     // Create an instance of the Stripe object with your publishable API key
@@ -26,7 +30,7 @@
 <button
   id="checkout-button"
   class="goto-checkout"
-  on:click={async () => await handleClick(stripePromise, $basket)}
+  onclick={async () => await handleClick(stripePromise, $basket)}
   >Checkout</button
 >
 

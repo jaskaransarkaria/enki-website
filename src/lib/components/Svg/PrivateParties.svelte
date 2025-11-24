@@ -11,8 +11,8 @@
     xmlns="http://www.w3.org/2000/svg"
     width="471.032"
     height="529.138"
-    on:mouseenter={() => (privateHover = true)}
-    on:mouseleave={() => (privateHover = false)}
+    onmouseenter={() => (privateHover = true)}
+    onmouseleave={() => (privateHover = false)}
     viewBox="0 0 124.627 140.001"
   >
     <g

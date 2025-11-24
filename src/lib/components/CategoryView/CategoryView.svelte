@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
@@ -7,13 +9,25 @@
   import type { SquareCategory } from "$lib/types/category";
   import type { SquareProduct } from "$lib/types/product";
 
-  export let showBreadcrumbs = true;
-  export let categoryToShow: SquareCategory | undefined;
-  export let productArr: readonly SquareProduct[];
-  export let whitelistedUserAgent: boolean;
-  export let loadingFromStore: boolean = false;
+  interface Props {
+    showBreadcrumbs?: boolean;
+    categoryToShow: SquareCategory | undefined;
+    productArr: readonly SquareProduct[];
+    whitelistedUserAgent: boolean;
+    loadingFromStore?: boolean;
+  }
 
-  $: products.set(productArr);
+  let {
+    showBreadcrumbs = true,
+    categoryToShow,
+    productArr,
+    whitelistedUserAgent,
+    loadingFromStore = false
+  }: Props = $props();
+
+  run(() => {
+    products.set(productArr);
+  });
 </script>
 
 {#if showBreadcrumbs}
