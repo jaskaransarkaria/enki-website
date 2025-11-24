@@ -2,7 +2,7 @@
   import { goto } from "$app/navigation";
   import MobileClose from "../MobileClose/MobileClose.svelte";
 
-  let toggleOpen = false;
+  let toggleOpen = $state(false);
 
   const toggleAndGo = (dest: string) => {
     toggleOpen = !toggleOpen;
@@ -14,16 +14,16 @@
 
 {#if toggleOpen}
   <div class="menu">
-    <button on:click={() => toggleAndGo("/shop")}> shop </button>
+    <button onclick={() => toggleAndGo("/shop")}> shop </button>
     <button
-      on:click={() => toggleAndGo("/shop/category/CXWG77NR7TPXXQSZD3QVPLHS")}
+      onclick={() => toggleAndGo("/shop/category/CXWG77NR7TPXXQSZD3QVPLHS")}
     >
       gift guide
     </button>
-    <button on:click={() => toggleAndGo("/repairs")}> repairs </button>
-    <button on:click={() => toggleAndGo("/workshops")}> workshops </button>
-    <button on:click={() => toggleAndGo("/about")}> about </button>
-    <button on:click={() => toggleAndGo("/contact")}> contact </button>
+    <button onclick={() => toggleAndGo("/repairs")}> repairs </button>
+    <button onclick={() => toggleAndGo("/workshops")}> workshops </button>
+    <button onclick={() => toggleAndGo("/about")}> about </button>
+    <button onclick={() => toggleAndGo("/contact")}> contact </button>
   </div>
 {/if}
 

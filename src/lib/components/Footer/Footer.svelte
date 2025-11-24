@@ -100,13 +100,13 @@
             class="mobile-footer-icons"
             src={telephoneMobile}
             alt="contact us"
-            on:click={() => goto("/contact")}
+            onclick={() => goto("/contact")}
           />
           <img
             class="mobile-footer-icons"
             src={instaLogo}
             alt="link to instagram"
-            on:click={() =>
+            onclick={() =>
               (window.location.href =
                 "https://www.instagram.com/enkionline/?hl=en")}
           />
@@ -114,7 +114,7 @@
             class="mobile-footer-icons"
             src={fbLogo}
             alt="link to facebook"
-            on:click={() =>
+            onclick={() =>
               (window.location.href =
                 "https://www.facebook.com/Enki-1665334930147391")}
           />
@@ -123,7 +123,7 @@
             class="mobile-footer-icons"
             src={github}
             alt="link to website source code"
-            on:click={() =>
+            onclick={() =>
               (window.location.href =
                 "https://www.github.com/jaskaransarkaria/enki-website")}
           />

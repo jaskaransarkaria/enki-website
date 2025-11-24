@@ -7,8 +7,8 @@
   import { isSignedUp } from "$lib/stores/newsletterModal";
   import { PUBLIC_SERVER_URL } from "$env/static/public";
 
-  let promoCopied = false;
-  let mcEmailInput = "";
+  let promoCopied = $state(false);
+  let mcEmailInput = $state("");
 
   const signupFn = (input: string) => {
     if (input.includes("@")) {

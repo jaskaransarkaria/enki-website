@@ -1,25 +1,33 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
   import { spring } from "svelte/motion";
   import { basket } from "$lib/stores/basket";
   import { updateBasket } from "$lib/utils/basket";
 
   import type { BasketProduct } from "$lib/types/basketProduct";
 
-  export let productObj: BasketProduct;
+  interface Props {
+    productObj: BasketProduct;
+  }
+
+  let { productObj }: Props = $props();
 
   const displayedCount = spring();
-  $: displayedCount.set(productObj.quantity);
-  $: offset = modulo($displayedCount, 1);
 
   function modulo(n: number, m: number) {
     // handle negative numbers
     return ((n % m) + m) % m;
   }
+  run(() => {
+    displayedCount.set(productObj.quantity);
+  });
+  let offset = $derived(modulo($displayedCount, 1));
 </script>
 
 <div class="counter">
   <button
-    on:click={() =>
+    onclick={() =>
       productObj.quantity < productObj.currentStock
         ? basket.set(
             updateBasket(
@@ -51,7 +59,7 @@
   </div>
 
   <button
-    on:click={() =>
+    onclick={() =>
       basket.set(
         updateBasket(
           {

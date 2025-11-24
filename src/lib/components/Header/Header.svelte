@@ -143,7 +143,7 @@
         alt="Enki"
         loading="eager"
         class="enki-logo"
-        on:click={() => goto("/")}
+        onclick={() => goto("/")}
       />
     {/if}
   {:else}
@@ -153,7 +153,7 @@
       alt="Enki"
       loading="eager"
       class="enki-logo"
-      on:click={() => goto("/")}
+      onclick={() => goto("/")}
     />
   {/if}
   <div class="right-container">
@@ -162,7 +162,7 @@
       src={searchIcon}
       alt="search"
       style={move($left)}
-      on:click={handleClick}
+      onclick={handleClick}
       use:clickOutside={{ enabled: showSearch, cb: handleClick }}
     />
     {#if showSearch}
@@ -179,7 +179,7 @@
         class="basket-icon"
         src={basketIcon}
         alt="basket"
-        on:click={() => goto("/shop/basket")}
+        onclick={() => goto("/shop/basket")}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +190,7 @@
         width={isMobile ? "15" : "25"}
         height={isMobile ? "15" : "25"}
         class="num-basket-items"
-        on:click={() => goto("/shop/basket")}
+        onclick={() => goto("/shop/basket")}
       >
         <g>
           <circle

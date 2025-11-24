@@ -4,8 +4,8 @@
 
 <a data-sveltekit-preload-data href="/classes" data-test-id="classes">
   <svg
-    on:mouseenter={() => (classesHover = true)}
-    on:mouseleave={() => (classesHover = false)}
+    onmouseenter={() => (classesHover = true)}
+    onmouseleave={() => (classesHover = false)}
     viewBox="0 0 29.624 26.458"
   >
     <g

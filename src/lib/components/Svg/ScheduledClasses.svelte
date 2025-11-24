@@ -11,8 +11,8 @@
     width="471.463"
     height="529.765"
     viewBox="0 0 124.741 140.167"
-    on:mouseenter={() => (scheduledHover = true)}
-    on:mouseleave={() => (scheduledHover = false)}
+    onmouseenter={() => (scheduledHover = true)}
+    onmouseleave={() => (scheduledHover = false)}
     xmlns="http://www.w3.org/2000/svg"
   >
     <g

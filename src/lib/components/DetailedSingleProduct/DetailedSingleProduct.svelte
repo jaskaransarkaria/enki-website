@@ -8,8 +8,12 @@
   import type { SquareProduct, VariationData } from "$lib/types/product";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
-  export let product: SquareProduct;
-  export let isMobile: boolean;
+  interface Props {
+    product: SquareProduct;
+    isMobile: boolean;
+  }
+
+  let { product, isMobile }: Props = $props();
 
   const createImgArr = (
     parentProduct: SquareProduct,
@@ -39,7 +43,7 @@
 
   let clientWidth: number = 0;
 
-  let selectedProductVariation = product.item_data.variations[0];
+  let selectedProductVariation = $state(product.item_data.variations[0]);
 </script>
 
 {#if isMobile}

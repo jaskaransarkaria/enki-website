@@ -4,11 +4,11 @@
 
 <section in:fade={{ delay: 300, duration: 1000 }} class="mobile-scroll-prompt">
   <button
-    on:click={() =>
+    onclick={() =>
       window.scroll({
         top: 750,
         behavior: "smooth",
-      })}><span />scroll</button
+      })}><span></span>scroll</button
   >
 </section>
 

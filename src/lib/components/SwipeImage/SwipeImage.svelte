@@ -11,10 +11,19 @@
 
   import comingSoon from "$lib/assets/coming_soon.png";
 
-  export let imgArr: { src: string; alt: string }[];
-  export let setImgWidth = false;
-  export let fullScreen = false;
-  export let slidesPerView = 1;
+  interface Props {
+    imgArr: { src: string; alt: string }[];
+    setImgWidth?: boolean;
+    fullScreen?: boolean;
+    slidesPerView?: number;
+  }
+
+  let {
+    imgArr = $bindable(),
+    setImgWidth = false,
+    fullScreen = false,
+    slidesPerView = 1
+  }: Props = $props();
 </script>
 
 {#if imgArr.length > 1}
@@ -40,7 +49,7 @@
               data-testid="swipe-img"
               class={fullScreen ? "full-screen" : ""}
             />
-            <div class="custom-pagination-div" />
+            <div class="custom-pagination-div"></div>
           </div>
         </SwiperSlide>
       {/each}
@@ -51,7 +60,7 @@
     <img
       src={imgArr[0].src}
       alt={imgArr[0].alt}
-      on:error={() => {
+      onerror={() => {
         if (imgArr[0].src != comingSoon) {
           imgArr[0].src = comingSoon;
         }

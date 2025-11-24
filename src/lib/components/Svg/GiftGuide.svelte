@@ -9,8 +9,8 @@
   data-test-id="guide"
 >
   <svg
-    on:mouseenter={() => (guideHover = true)}
-    on:mouseleave={() => (guideHover = false)}
+    onmouseenter={() => (guideHover = true)}
+    onmouseleave={() => (guideHover = false)}
     viewBox="0 0 243.646 163.987"
   >
     <g class={guideHover ? "layer1" : ""} transform="translate(76.396 -14.274)">

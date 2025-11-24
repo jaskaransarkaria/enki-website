@@ -9,19 +9,23 @@
 
   import type { SquareProduct, VariationData } from "$lib/types/product";
 
-  export let product: SquareProduct;
-  export let detailed = false;
-  export let variation: VariationData;
+  interface Props {
+    product: SquareProduct;
+    detailed?: boolean;
+    variation: VariationData;
+  }
+
+  let { product, detailed = false, variation }: Props = $props();
 
   let addedToBasket =
-    $basket.findIndex((item) => item.id === product.id) === -1 ? false : true;
+    $state($basket.findIndex((item) => item.id === product.id) === -1 ? false : true);
 </script>
 
 {#if product}
   {#if !addedToBasket}
     <button
       class={`add-to-basket ${detailed ? "narrow" : ""}`}
-      on:click={() => {
+      onclick={() => {
         if (browser) {
           basket.set(
             updateBasket(product, $basket, "incrementQuantity", variation),
@@ -48,7 +52,7 @@
     <button
       class={`goto-basket ${detailed ? "narrow" : ""}`}
       in:fade={{ duration: 500 }}
-      on:click={() => goto("/shop/basket")}
+      onclick={() => goto("/shop/basket")}
     >
       Go to Basket
     </button>

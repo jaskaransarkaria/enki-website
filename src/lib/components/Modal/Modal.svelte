@@ -3,7 +3,7 @@
   import MobileClose from "$lib/components/MobileClose/MobileClose.svelte";
   import { clickOutside } from "$lib/utils/clickOutside";
 
-  let {
+  let { children,
     isMobile,
     showModal,
     visible = 0,
@@ -31,7 +31,7 @@
   bind:outerHeight
   bind:outerWidth
   bind:innerWidth
-  on:keydown={handleWindowKeyDown}
+  onkeydown={handleWindowKeyDown}
 />
 
 {#if showModal}
@@ -63,10 +63,10 @@
           bind:bool={showModal}
           positionOverride="top: 1%; left: 2%"
         />
-        <slot />
+        {@render children?.()}
       {:else}
         <div class={showFullScreen ? "full-screen-img-view" : ""}>
-          <slot />
+          {@render children?.()}
         </div>
       {/if}
     </div>

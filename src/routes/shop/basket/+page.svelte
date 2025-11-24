@@ -1,4 +1,4 @@
-<script context="module">
+<script module>
   import Basket from "$lib/components/Basket/Basket.svelte";
 </script>
 

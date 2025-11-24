@@ -1,20 +1,24 @@
 <script lang="ts">
-  export let bool: boolean;
-  export let cb: () => void;
-  export let positionOverride: string = "";
+  interface Props {
+    bool: boolean;
+    cb: () => void;
+    positionOverride?: string;
+  }
+
+  let { bool, cb, positionOverride = "" }: Props = $props();
 </script>
 
 <div
   class={bool ? "open" : ""}
   id="nav-icon"
   data-testid="mobile-close"
-  on:click={cb}
+  onclick={cb}
   style={positionOverride}
 >
-  <span />
-  <span />
-  <span />
-  <span />
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
 </div>
 
 <style>

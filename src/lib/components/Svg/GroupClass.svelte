@@ -8,8 +8,8 @@
   data-test-id="group-class"
 >
   <svg
-    on:mouseenter={() => (groupHover = true)}
-    on:mouseleave={() => (groupHover = false)}
+    onmouseenter={() => (groupHover = true)}
+    onmouseleave={() => (groupHover = false)}
     viewBox="0 0 189.303 212.123"
   >
     <g

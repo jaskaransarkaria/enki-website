@@ -1,10 +1,21 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  export let width: string;
-  export let cb: () => void;
+  interface Props {
+    width: string;
+    cb: () => void;
+  }
 
-  let searchValue = "";
+  let { width, cb }: Props = $props();
+
+  let searchValue = $state("");
+  let loading = $state(false);
 </script>
+
+<svelte:head>
+  {#if loading}
+    <link rel="stylesheet" href="/loading.css" />
+  {/if}
+</svelte:head>
 
 <input
   data-testid="search-bar"
@@ -12,13 +23,15 @@
   type="search"
   style={width}
   bind:value={searchValue}
-  on:keydown={async (e) => {
+  onkeydown={async (e) => {
     if (e.key === "Enter") {
+      loading = true;
       cb();
       await goto(
         `/shop/search?search-term=${encodeURIComponent(searchValue)}`, // eslint-disable-line svelte/no-navigation-without-resolve
         { replaceState: true },
       );
+      loading = false;
       searchValue = "";
     }
   }}
