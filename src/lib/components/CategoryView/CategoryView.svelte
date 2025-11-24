@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
-
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
   import ProductView from "$lib/components/ProductView/ProductView.svelte";
   import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
@@ -22,10 +20,10 @@
     categoryToShow,
     productArr,
     whitelistedUserAgent,
-    loadingFromStore = false
+    loadingFromStore = false,
   }: Props = $props();
 
-  run(() => {
+  $effect(() => {
     products.set(productArr);
   });
 </script>
