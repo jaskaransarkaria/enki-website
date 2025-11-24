@@ -15,7 +15,7 @@
   import basketIcon from "$lib/assets/basket_icon.png";
   import searchIcon from "$lib/assets/search_1.png";
 
-  let whitelistedUserAgent: boolean = $props();
+  let { whitelistedUserAgent, loading = $bindable() } = $props();
 
   const lessThan960 = 150;
   const moreThan960 = 300;
@@ -167,7 +167,11 @@
     />
     {#if showSearch}
       <div class="search-bar" style={grow($growSearch, $searchLeft)}>
-        <SearchProducts width={growSearchWidth($width)} cb={handleClick} />
+        <SearchProducts
+          width={growSearchWidth($width)}
+          cb={handleClick}
+          bind:loading
+        />
       </div>
     {/if}
     <div

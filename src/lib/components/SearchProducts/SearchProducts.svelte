@@ -3,12 +3,12 @@
   interface Props {
     width: string;
     cb: () => void;
+    loading: boolean;
   }
 
-  let { width, cb }: Props = $props();
+  let { width, cb, loading = $bindable() }: Props = $props();
 
   let searchValue = $state("");
-  let loading = $state(false);
 </script>
 
 <svelte:head>
@@ -33,6 +33,7 @@
       );
       loading = false;
       searchValue = "";
+      loading = false;
     }
   }}
 />

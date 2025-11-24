@@ -7,6 +7,7 @@
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
   import "../app.css";
   import { onMount } from "svelte";
+  import LoadingSpinner from "$lib/components/LoadingSpinner/LoadingSpinner.svelte";
   interface Props {
     children?: import("svelte").Snippet;
   }
@@ -14,6 +15,7 @@
   let { children }: Props = $props();
 
   let checkAvif = $state(false);
+  let loading = $state(false);
 
   onMount(() => {
     if ($isAvifSupported === null) {
@@ -41,9 +43,17 @@
 </svelte:head>
 
 <div class="container">
-  <Header whitelistedUserAgent={page.data.whitelistedUserAgent} />
+  <Header whitelistedUserAgent={page.data.whitelistedUserAgent} bind:loading />
   <div class="header-block"></div>
-  {@render children?.()}
+  {#if loading}
+    <div
+      style=" display: flex; flex-wrap: wrap; align-items: center; justify-content: center; height: 90vh;"
+    >
+      <LoadingSpinner />
+    </div>
+  {:else}
+    {@render children?.()}
+  {/if}
   <BackToTop />
 </div>
 <Footer />

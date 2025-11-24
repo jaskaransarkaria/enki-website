@@ -9,6 +9,7 @@
   import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
 
   import type { SquareProduct } from "$lib/types/product";
+  import LoadingSpinner from "$lib/components/LoadingSpinner/LoadingSpinner.svelte";
 
   let productToShow: readonly SquareProduct[] = $state(page.data.productToShow);
 
@@ -61,6 +62,10 @@
   />
   <div>
     <SingleProduct product={productToShow[0]} showDetailedView />
+  </div>
+{:else}
+  <div>
+    <LoadingSpinner />
   </div>
 {/if}
 
