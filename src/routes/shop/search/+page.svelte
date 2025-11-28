@@ -52,7 +52,7 @@
   )?.toLowerCase()}"
 </h2>
 {#if page.data.data.length}
-  <ProductView productArr={page.data.data} sorted />
+  <ProductView productArr={page.data.data} sortBy="relevant" sorted />
 {/if}
 
 <style>

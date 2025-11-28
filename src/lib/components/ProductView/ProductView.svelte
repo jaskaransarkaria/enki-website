@@ -18,13 +18,10 @@
     showDetailedView = false,
     whitelistedUserAgent = false,
     sorted = false,
+    sortBy = null,
   } = $props();
 
-  let sortBy: string = $derived(
-    (browser && !sorted
-      ? window.sessionStorage.getItem("filter")
-      : "relevant") ?? "in-stock",
-  );
+  let relevantProductArr: readonly SquareProduct[] = [];
 
   const sortByStock = (collatedArray: readonly SquareProduct[]) => {
     return collatedArray.slice().sort((a, b) => {
@@ -81,15 +78,20 @@
   };
 
   $effect.pre(() => {
-    sortBy =
-      sorted && (sortBy === null || sortBy === "relevant")
-        ? "relevant"
-        : (window.sessionStorage.getItem("filter") ?? "in-stock");
+    if (sortBy === "relevant") {
+      relevantProductArr = productArr.slice();
+      return;
+    }
+
+    if (sortBy === null) {
+      sortBy = window.sessionStorage.getItem("filter") ?? "in-stock";
+      return;
+    }
   });
 
   let sortedCollatedArray = $derived(
-    sorted && (sortBy === null || sortBy === "relevant")
-      ? productArr
+    sorted && sortBy === "relevant"
+      ? relevantProductArr
       : sortArray(sortBy, productArr),
   );
 
