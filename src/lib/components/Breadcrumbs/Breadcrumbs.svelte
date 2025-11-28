@@ -16,20 +16,6 @@
 
   let { selectedCategoryId }: Props = $props();
 
-  let breadcrumbs: Crumb[] = $derived([
-    InitialValue[0],
-    ...recursiveCatSearch(selectedCategoryId, $readonlyAllCategories, [])
-      .slice()
-      .reverse(),
-  ]);
-
-  onMount(async () => {
-    if (!$readonlyAllCategories?.length) {
-      const result = await refreshCategories(`${PUBLIC_SERVER_URL}/categories`);
-      readonlyAllCategories.set([...result]);
-    }
-  });
-
   const recursiveCatSearch = (
     id: string,
     categories: readonly SquareCategory[],
@@ -55,6 +41,20 @@
     return results;
   };
 
+  let breadcrumbs: Crumb[] = $derived([
+    InitialValue[0],
+    ...recursiveCatSearch(selectedCategoryId, $readonlyAllCategories, [])
+      .slice()
+      .reverse(),
+  ]);
+
+  onMount(async () => {
+    if (!$readonlyAllCategories?.length) {
+      const result = await refreshCategories(`${PUBLIC_SERVER_URL}/categories`);
+      readonlyAllCategories.set([...result]);
+    }
+  });
+
   const handleBreadcrumbClick = async (breadcrumb: SquareCategory) => {
     const breadcrumbUrl = `/shop/category/${
       breadcrumb.id
@@ -67,8 +67,6 @@
       ? await goto("/shop") // eslint-disable-line svelte/no-navigation-without-resolve
       : await goto(breadcrumbUrl); // eslint-disable-line svelte/no-navigation-without-resolve
   };
-
-  
 </script>
 
 {#if selectedCategoryId}
