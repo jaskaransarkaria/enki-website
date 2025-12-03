@@ -15,7 +15,7 @@
 </script>
 
 {#if hasProducts && !$page.url.toString().match("32TE2EITCQ6KE4HQ34ORK6V5")}
-  <div in:fade={{ duration: 600 }}>
+  <div in:fade={{ duration: 600 }} class={isXmas ? "xmasDiv" : ""}>
     <p class="pulse">
       Gift wrapping service click <a
         data-sveltekit-preload-data
@@ -23,9 +23,7 @@
       >
     </p>
     {#if isXmas}
-      <p>
-        ***CHRISTMAS SHIPPING DATES*** Standard - Weds 18th, Special - Fri 20th
-      </p>
+      <p>***CHRISTMAS SHIPPING DEADLINES*** Standard - 17th, Special - 20th</p>
     {/if}
     <p class="free-shipping">Free UK shipping over £40</p>
   </div>
@@ -41,6 +39,15 @@
     margin-bottom: 1.5em;
     box-shadow: 1px 1.5px 4px #888888;
     text-align: center;
+  }
+
+  .xmasDiv {
+    height: 60px;
+  }
+
+  .xmasDiv p {
+    line-height: 1;
+    font-size: 0.75em;
   }
 
   div p {
@@ -70,9 +77,32 @@
       line-height: 0;
       font-size: 0.7em;
     }
+
+    .xmasDiv {
+      height: 80px;
+    }
+
+    .xmasDiv p {
+      line-height: 1;
+      font-size: 0.9em;
+    }
+  }
+
+  @media (min-width: 500px) {
+    .xmasDiv {
+      height: 50px;
+    }
   }
 
   @media (min-width: 960px) {
+    .xmasDiv {
+      height: 30px;
+    }
+
+    .xmasDiv p {
+      line-height: 0;
+    }
+
     div p {
       font-size: 1em;
     }
