@@ -4,7 +4,7 @@ metadata:
   name: enki-website
   namespace: enki
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: enki-website
@@ -23,7 +23,7 @@ spec:
           value: https://server.enkionline.com
         - name: PUBLIC_STRIPE_KEY
           value: pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau
-        image: jaskaransarkaria/enki-website:v6.1.1
+        image: jaskaransarkaria/enki-website:v6.1.2
         name: enki-website
         ports:
         - containerPort: 5000
