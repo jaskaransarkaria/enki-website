@@ -71,6 +71,9 @@
           .sort((a, b) =>
             new Date(a.created_at) < new Date(b.created_at) ? 1 : -1,
           );
+      case "include-out-of-stock":
+        browser && window.sessionStorage.setItem("filter", "include-out-of-stock"); // eslint-disable-line @typescript-eslint/no-unused-expressions
+        return sortByStock(collatedArray);
       default:
         browser && window.sessionStorage.setItem("filter", "in-stock"); // eslint-disable-line @typescript-eslint/no-unused-expressions
         return sortByStock(collatedArray);
@@ -121,6 +124,9 @@
         >
         <option selected={sortBy === "in-stock"} value="in-stock"
           >in stock</option
+        >
+        <option selected={sortBy === "include-out-of-stock"} value="include-out-of-stock"
+          >all</option
         >
         <option
           selected={sortBy === "newest-to-oldest"}
@@ -182,7 +188,7 @@
         >
           {#each sortedCollatedArray as item (item.id)}
             {#if item.item_data.variations.every((v) => {
-              return parseInt(v.item_variation_data.quantity, 10) > 0;
+              return sortBy === "include-out-of-stock" || parseInt(v.item_variation_data.quantity, 10) > 0;
             }) || Boolean(page.url.pathname === "/shop/search")}
               <SingleProduct product={item} {showDetailedView} />
             {/if}
