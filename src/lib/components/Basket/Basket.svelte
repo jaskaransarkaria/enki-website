@@ -11,15 +11,11 @@
 
   let loading = $state(false);
 
-  const GIFT_WRAP_PRICE = 0.95;
-
   const addGiftWrapping = (i: number) => {
-    $basket[i].price += GIFT_WRAP_PRICE;
     $basket[i].giftWrap = true;
   };
 
   const removeGiftWrapping = (i: number) => {
-    $basket[i].price -= GIFT_WRAP_PRICE;
     $basket[i].giftWrap = false;
   };
 
@@ -45,6 +41,12 @@
         item.categoryId === "KYUFP3I2BUEWSTMDUPSHQQJF",
     ),
   );
+
+  const currentDate = new Date();
+
+  const currentMonth = currentDate.getMonth();
+
+  const isXmas = currentMonth === 11;
 </script>
 
 <svelte:head>
@@ -91,11 +93,13 @@
                     data-sveltekit-preload-data
                     href="/shop/category/32TE2EITCQ6KE4HQ34ORK6V5">here</a
                   >
-                  & christmas wrap
-                  <a
-                    data-sveltekit-preload-data
-                    href="/shop/category/KYUFP3I2BUEWSTMDUPSHQQJF">here</a
-                  >
+                  {#if isXmas}
+                    & christmas wrap
+                    <a
+                      data-sveltekit-preload-data
+                      href="/shop/category/KYUFP3I2BUEWSTMDUPSHQQJF">here</a
+                    >
+                  {/if}
                   <hr />
                   <select
                     role="combobox"
@@ -133,7 +137,7 @@
               {#if obj?.categoryId !== "32TE2EITCQ6KE4HQ34ORK6V5"}
                 <div class="gift-wrapping">
                   <label for="gift-wrap"
-                    >Gift Wrap for £{GIFT_WRAP_PRICE}
+                    >Free Gift Wrapping
                     <input
                       data-testid={`add-gift-wrap-${i}`}
                       type="checkbox"

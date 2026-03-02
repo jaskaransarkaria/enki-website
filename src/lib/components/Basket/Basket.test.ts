@@ -194,10 +194,7 @@ describe("GIVEN AddToBasket", () => {
       await userEvent.click(screen.getByRole("checkbox", { checked: false }));
       expect(screen.getByRole("checkbox", { checked: true })).toBeChecked();
       // get the updated total (+ the gift wrap price)
-      expect(screen.getByText("Subtotal: £300.95")).toBeInTheDocument();
-      expect(
-        screen.queryByText("Subtotal: £300.00", { exact: true }),
-      ).not.toBeInTheDocument();
+      expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       // check the values on the basket are updated
       expect(get(basket)).toMatchObject([
         {
@@ -211,7 +208,7 @@ describe("GIVEN AddToBasket", () => {
           name: "Elephant",
           quantity: 1,
           giftWrap: true,
-          price: 300.95,
+          price: 300.0,
         },
       ]);
     });
@@ -262,7 +259,7 @@ describe("GIVEN AddToBasket", () => {
       await userEvent.click(allCheckboxes[0]);
 
       // get the updated total (+ the gift wrap price)
-      expect(screen.getAllByText("Subtotal: £900.95")[0]).toBeInTheDocument();
+      expect(screen.getAllByText("Subtotal: £900.00")[0]).toBeInTheDocument();
       // check the values on the basket are updated
       expect(get(basket)).toMatchObject([
         {
@@ -288,7 +285,7 @@ describe("GIVEN AddToBasket", () => {
           name: "Elephant",
           quantity: 1,
           giftWrap: true,
-          price: 300.95,
+          price: 300.0,
         },
       ]);
 
@@ -365,8 +362,7 @@ describe("GIVEN AddToBasket", () => {
       const allCheckboxes = screen.getAllByRole("checkbox", { checked: false });
       await userEvent.click(allCheckboxes[0]);
 
-      // updated subtotal with giftwrapping
-      expect(screen.getByText("Subtotal: £356.50")).toBeInTheDocument();
+      expect(screen.getByText("Subtotal: £355.55")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
         {
           id: "888",
@@ -392,7 +388,7 @@ describe("GIVEN AddToBasket", () => {
           name: "Elephant",
           quantity: 1,
           giftWrap: true,
-          price: 300.95,
+          price: 300.0,
         },
       ]);
 
@@ -419,7 +415,6 @@ describe("GIVEN AddToBasket", () => {
       // remove gift wrapping
       await userEvent.click(allCheckboxes[0]);
 
-      // subtotal removes gift wrapping charge
       expect(screen.getByText("Subtotal: £355.55")).toBeInTheDocument();
       expect(
         screen.queryByRole("option", {
@@ -448,7 +443,7 @@ describe("GIVEN AddToBasket", () => {
       await userEvent.click(giftWrapCheckbox);
 
       // updated subtotal with giftwrapping
-      expect(screen.getByText("Subtotal: £300.95")).toBeInTheDocument();
+      expect(screen.getByText("Subtotal: £300.00")).toBeInTheDocument();
       expect(get(basket)).toMatchObject([
         {
           id: "123",
@@ -459,7 +454,7 @@ describe("GIVEN AddToBasket", () => {
           name: "Elephant",
           quantity: 1,
           giftWrap: true,
-          price: 300.95,
+          price: 300.0,
           imgHash: "foobar-0-9sjs9s",
           variationId: "456",
         },
@@ -497,7 +492,7 @@ describe("GIVEN AddToBasket", () => {
           name: "Elephant",
           quantity: 1,
           giftWrap: true,
-          price: 300.95,
+          price: 300.0,
         },
       ]);
     });

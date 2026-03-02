@@ -148,7 +148,7 @@
                 <p>
                   Select which gifts you'd like wrapped on the basket page and
                   we'll wrap them for you in recycled kraft paper and colourful
-                  raffia ribbon, for 95p per gift.
+                  raffia ribbon.
                 </p>
               </div>
               <div class="img-container">
