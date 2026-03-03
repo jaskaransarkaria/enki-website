@@ -4,6 +4,10 @@ WORKDIR /usr/src/app
 
 COPY package*.json  ./
 
+RUN apk update
+
+RUN apk add git
+
 RUN npm ci
 
 COPY . ./
@@ -15,7 +19,7 @@ ENV PUBLIC_INTERNAL_K8S_URL="http://enki-server.enki.svc.cluster.local:5001"
 
 RUN npm run build
 
-FROM node:18.19-alpine3.18
+FROM node:22.20-alpine3.21
 
 WORKDIR /usr/src/app
 
