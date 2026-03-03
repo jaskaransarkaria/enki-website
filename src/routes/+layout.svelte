@@ -1,5 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state";
+import { beforeNavigate } from "$app/navigation";
+import { updated } from "$app/state";
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
@@ -22,6 +24,12 @@
       checkAvif = true;
     }
   });
+
+	beforeNavigate(({ willUnload, to }) => {
+		if (updated.current && !willUnload && to?.url) {
+			location.href = to.url.href;
+		}
+	});
 </script>
 
 <svelte:head>
