@@ -7,6 +7,7 @@ import {
 } from "$lib/utils/requests";
 
 import type { SquareCategory } from "$lib/types/category";
+import type { SquareProduct } from "$lib/types/product";
 
 const traverseCategoryObj = (
   id: string,
@@ -33,10 +34,23 @@ const traverseCategoryObj = (
 };
 
 export async function load({ fetch, params, url }) {
-  const productResults = await refreshProductsFromServer(
-    `${setServerUrl(browser, dev)}/products-by-category?id=${params.category}`,
+  let productResults: SquareProduct[] = [];
+
+  const categoryResults = await refreshCategoryFromServer(
+    `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
     fetch,
   );
+
+  const category = traverseCategoryObj(params.category, categoryResults[0]);
+
+  if (category.children.length === 0) {
+    productResults = [
+      ...(await refreshProductsFromServer(
+        `${setServerUrl(browser, dev)}/products-by-category?id=${params.category}`,
+        fetch,
+      )),
+    ];
+  }
 
   if (browser) {
     const l = decodeURIComponent(url.searchParams.get("l"));
@@ -46,13 +60,6 @@ export async function load({ fetch, params, url }) {
       loadingFromStore: Boolean(l),
     };
   }
-
-  const categoryResults = await refreshCategoryFromServer(
-    `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
-    fetch,
-  );
-
-  const category = traverseCategoryObj(params.category, categoryResults[0]);
 
   return {
     categoryToShow: category,
