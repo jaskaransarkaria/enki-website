@@ -14,16 +14,12 @@
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
 
   const SHOW_VOUCHER = true;
-  let ttJewelleryWidget: HTMLElement = $state(undefined);
-  let ttCraftWidget: HTMLElement = $state(undefined);
-  let jewelleryWidgetLoaded = $state(false);
-  let craftWidgetLoaded = $state(false);
+  let ttWidget: HTMLElement = $state(undefined);
+  let widgetLoaded = $state(false);
 
   onMount(() => {
-    ttJewelleryWidget.className = "tt-widget";
-    jewelleryWidgetLoaded = true;
-    ttCraftWidget.className = "tt-widget";
-    craftWidgetLoaded = true;
+    ttWidget.className = "tt-widget";
+    widgetLoaded = true;
   });
 
   let outerWidth = $derived(0);
@@ -103,18 +99,17 @@
       </div>
     {/if}
   </div>
-
   <div class="widget-container">
     <div
-      bind:this={ttJewelleryWidget}
+      bind:this={ttWidget}
       class="tt-widget"
       style:width={isMobile ? "100%" : "40%"}
     >
-      <h2>Jewellery Workshops</h2>
+      <h2>Upcoming Workshops</h2>
       <div class="tt-widget-fallback">
         <p>
           <a
-            href="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&srch=jewellery&show_sort=true"
+            href="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&show_sort=true"
             target="_blank">Click here to buy tickets</a
           ><br /><small
             ><a
@@ -125,45 +120,12 @@
           >
         </p>
       </div>
-      {#if jewelleryWidgetLoaded}
+      {#if widgetLoaded}
         <script
           src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
-          data-url="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&srch=jewellery&show_sort=true"
+          data-url="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&show_sort=true"
           data-inline-minimal="true"
           data-inline-show-logo="false"
-          data-inline-bg-fill="false"
-          data-inline-inherit-ref-from-url-param=""
-          data-inline-ref="website_widget"
-        ></script>
-      {/if}
-    </div>
-    <div
-      bind:this={ttCraftWidget}
-      class="tt-widget"
-      style:width={isMobile ? "100%" : "40%"}
-    >
-      <h2>Craft Workshops</h2>
-      <div class="tt-widget-fallback">
-        <p>
-          <a
-            href="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&srch=workshop&show_sort=true"
-            target="_blank">Click here to buy tickets</a
-          ><br /><small
-            ><a
-              href="https://www.tickettailor.com?rf=wdg_113333"
-              class="tt-widget-powered"
-              >Sell tickets online with Ticket Tailor</a
-            ></small
-          >
-        </p>
-      </div>
-      {#if craftWidgetLoaded}
-        <script
-          src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
-          data-url="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&srch=workshop&show_sort=true"
-          data-type="inline"
-          data-inline-minimal="false"
-          data-inline-show-logo="true"
           data-inline-bg-fill="false"
           data-inline-inherit-ref-from-url-param=""
           data-inline-ref="website_widget"
