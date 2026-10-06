@@ -124,7 +124,7 @@
         <script
           src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
           data-url="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&show_sort=true"
-          data-inline-minimal="true"
+          data-inline-minimal="false"
           data-inline-show-logo="false"
           data-inline-bg-fill="false"
           data-inline-inherit-ref-from-url-param=""
