@@ -92,9 +92,9 @@
           announced or you're not sure when the recipient is available, you can
           always buy one of our vouchers!
           <br /><br />
-          Vouchers are valid for a year and can be used to purchase any workshop
-          posted on our website, just enter the voucher code when you are prompted
-          to when purchasing a workshop.
+          Vouchers are valid for a year and can be used to purchase any workshop posted
+          on our website, just enter the voucher code when you are prompted to when
+          purchasing a workshop.
           <br /><br />
           We schedule classes at least a month in advance so watch this space! We
           also have physical vouchers at the shop that you can collect or arrange
@@ -114,7 +114,7 @@
       <div class="tt-widget-fallback">
         <p>
           <a
-            href="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&srch=jewellery&show_sort=true"
+            href="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&srch=jewellery&show_sort=true"
             target="_blank">Click here to buy tickets</a
           ><br /><small
             ><a
@@ -128,17 +128,15 @@
       {#if jewelleryWidgetLoaded}
         <script
           src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
-          data-url="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&srch=jewellery&show_sort=true"
-          data-type="inline"
-          data-inline-minimal="false"
-          data-inline-show-logo="true"
+          data-url="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&srch=jewellery&show_sort=true"
+          data-inline-minimal="true"
+          data-inline-show-logo="false"
           data-inline-bg-fill="false"
           data-inline-inherit-ref-from-url-param=""
           data-inline-ref="website_widget"
         ></script>
       {/if}
     </div>
-
     <div
       bind:this={ttCraftWidget}
       class="tt-widget"
