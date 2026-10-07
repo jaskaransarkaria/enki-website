@@ -16,10 +16,15 @@
   const SHOW_VOUCHER = true;
   let ttWidget: HTMLElement = $state(undefined);
   let widgetLoaded = $state(false);
+  let ttListWidget: HTMLElement = $state(undefined);
+  let widgetListLoaded = $state(false);
 
   onMount(() => {
     ttWidget.className = "tt-widget";
     widgetLoaded = true;
+
+    ttListWidget.className = "tt-widget";
+    widgetListLoaded = true;
   });
 
   let outerWidth = $derived(0);
@@ -100,11 +105,7 @@
     {/if}
   </div>
   <div class="widget-container">
-    <div
-      bind:this={ttWidget}
-      class="tt-widget"
-      style:width={isMobile ? "100%" : "40%"}
-    >
+    <div bind:this={ttWidget} class="tt-widget" style:width="100%">
       <h2>Upcoming Workshops</h2>
       <div class="tt-widget-fallback">
         <p>
@@ -132,6 +133,34 @@
         ></script>
       {/if}
     </div>
+  </div>
+
+  <div bind:this={ttListWidget} class="tt-widget">
+    <div class="tt-widget-fallback">
+      <p>
+        <a
+          href="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&show_sort=true&show_event_filter=false"
+          target="_blank">Click here to buy tickets</a
+        ><br /><small
+          ><a
+            href="https://www.tickettailor.com?rf=wdg_113333"
+            class="tt-widget-powered">Sell tickets online with Ticket Tailor</a
+          ></small
+        >
+      </p>
+    </div>
+    {#if widgetListLoaded}
+      <script
+        src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
+        data-url="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&show_sort=true&show_event_filter=false"
+        data-type="inline"
+        data-inline-minimal="false"
+        data-inline-show-logo="false"
+        data-inline-bg-fill="false"
+        data-inline-inherit-ref-from-url-param=""
+        data-inline-ref="website_widget"
+      ></script>
+    {/if}
   </div>
 {/if}
 
