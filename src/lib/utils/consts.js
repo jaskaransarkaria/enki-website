@@ -1,5 +1,5 @@
 const whitelistedUserAgent = [
-  "GoogleBot",
+  "Googlebot",
   "Twitterbot",
   "facebookexternalhit",
   "baiduspider",
