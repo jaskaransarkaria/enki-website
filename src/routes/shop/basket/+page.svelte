@@ -3,6 +3,7 @@
 </script>
 
 <svelte:head>
+  <meta name="robots" content="noindex, follow" />
   <title>Enki - Basket</title>
 </svelte:head>
 <Basket />

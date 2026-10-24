@@ -1,7 +1,6 @@
+import { SITE_URL } from "$lib/constants";
 import type { SquareCategory } from "$lib/types/category";
 import type { SquareProduct } from "$lib/types/product";
-
-export const SITE_URL = "https://enkionline.com";
 
 /**
  * Pages that are always indexable and don't depend on catalog data.

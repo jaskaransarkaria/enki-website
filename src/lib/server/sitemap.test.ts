@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
+import { SITE_URL } from "$lib/constants";
 import {
   buildSitemapXml,
   collectEntries,
   isIndexableProduct,
-  SITE_URL,
   STATIC_ROUTES,
   toLastmod,
 } from "./sitemap";
