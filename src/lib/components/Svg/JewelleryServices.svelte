@@ -2,12 +2,15 @@
   let jewelleryServicesHover = $derived(false);
 </script>
 
-<a data-sveltekit-preload-data data-test-id="repairs" href="/repairs">
-  <svg
-    onmouseenter={() => (jewelleryServicesHover = true)}
-    onmouseleave={() => (jewelleryServicesHover = false)}
-    viewBox="0 0 182.214 160.378"
-  >
+<a
+  data-sveltekit-preload-data
+  data-test-id="repairs"
+  href="/repairs"
+  aria-label="Jewellery services"
+  onmouseenter={() => (jewelleryServicesHover = true)}
+  onmouseleave={() => (jewelleryServicesHover = false)}
+>
+  <svg viewBox="0 0 182.214 160.378">
     <g
       class={jewelleryServicesHover ? "layer1" : ""}
       transform="translate(90.399234,-3.3532227)"

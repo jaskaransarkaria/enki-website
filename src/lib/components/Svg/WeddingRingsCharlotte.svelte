@@ -6,10 +6,10 @@
   data-sveltekit-preload-data
   href="/workshops/wedding-rings"
   data-test-id="wedding-rings"
+  onmouseenter={() => (weddingHover = true)}
+  onmouseleave={() => (weddingHover = false)}
 >
   <svg
-    onmouseenter={() => (weddingHover = true)}
-    onmouseleave={() => (weddingHover = false)}
     width="471.463"
     height="529.765"
     viewBox="0 0 124.741 140.167"

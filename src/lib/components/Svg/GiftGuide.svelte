@@ -7,12 +7,10 @@
   href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
   class="guide"
   data-test-id="guide"
+  onmouseenter={() => (guideHover = true)}
+  onmouseleave={() => (guideHover = false)}
 >
-  <svg
-    onmouseenter={() => (guideHover = true)}
-    onmouseleave={() => (guideHover = false)}
-    viewBox="0 0 243.646 163.987"
-  >
+  <svg viewBox="0 0 243.646 163.987">
     <g class={guideHover ? "layer1" : ""} transform="translate(76.396 -14.274)">
       <rect
         style="fill:#fff;stroke:#fff;stroke-width:.265832"

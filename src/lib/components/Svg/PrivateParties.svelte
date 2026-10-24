@@ -6,13 +6,13 @@
   data-sveltekit-preload-data
   href="/workshops/craft"
   data-test-id="private-class"
+  onmouseenter={() => (privateHover = true)}
+  onmouseleave={() => (privateHover = false)}
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="471.032"
     height="529.138"
-    onmouseenter={() => (privateHover = true)}
-    onmouseleave={() => (privateHover = false)}
     viewBox="0 0 124.627 140.001"
   >
     <g

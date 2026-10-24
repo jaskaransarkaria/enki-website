@@ -6,12 +6,10 @@
   data-sveltekit-preload-data
   href="/classes/beginners"
   data-test-id="group-class"
+  onmouseenter={() => (groupHover = true)}
+  onmouseleave={() => (groupHover = false)}
 >
-  <svg
-    onmouseenter={() => (groupHover = true)}
-    onmouseleave={() => (groupHover = false)}
-    viewBox="0 0 189.303 212.123"
-  >
+  <svg viewBox="0 0 189.303 212.123">
     <g
       class={groupHover ? "layer1" : ""}
       transform="translate(34.197175,20.393793)"

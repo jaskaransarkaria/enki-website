@@ -6,10 +6,10 @@
   target="_blank"
   data-sveltekit-preload-data
   href="https://buytickets.at/enki/store"
+  onmouseenter={() => (voucherHover = true)}
+  onmouseleave={() => (voucherHover = false)}
 >
   <svg
-    onmouseenter={() => (voucherHover = true)}
-    onmouseleave={() => (voucherHover = false)}
     width="781.749"
     height="288.596"
     viewBox="0 0 206.838 76.358"

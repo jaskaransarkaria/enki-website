@@ -6,13 +6,13 @@
   data-sveltekit-preload-data
   href="/workshops/scheduled"
   data-test-id="group-class"
+  onmouseenter={() => (scheduledHover = true)}
+  onmouseleave={() => (scheduledHover = false)}
 >
   <svg
     width="471.463"
     height="529.765"
     viewBox="0 0 124.741 140.167"
-    onmouseenter={() => (scheduledHover = true)}
-    onmouseleave={() => (scheduledHover = false)}
     xmlns="http://www.w3.org/2000/svg"
   >
     <g

@@ -36,9 +36,14 @@
     duration: 500,
   });
 
-  $effect(() => {
-    selected = window.location.pathname;
-  });
+  const keyActivate =
+    (fn: () => void) =>
+    (event: KeyboardEvent): void => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        fn();
+      }
+    };
 
   function handleClick() {
     if (!showSearch) {
@@ -137,34 +142,38 @@
   {/if}
   {#if outerWidth < 1280}
     {#if !showSearch}
+      <a href="/" class="enki-logo-link" aria-label="Enki home">
+        <img
+          transition:fade|local
+          src={header}
+          alt="Enki"
+          loading="eager"
+          class="enki-logo"
+        />
+      </a>
+    {/if}
+  {:else}
+    <a href="/" class="enki-logo-link" aria-label="Enki home">
       <img
         transition:fade|local
         src={header}
         alt="Enki"
         loading="eager"
         class="enki-logo"
-        onclick={() => goto("/")}
       />
-    {/if}
-  {:else}
-    <img
-      transition:fade|local
-      src={header}
-      alt="Enki"
-      loading="eager"
-      class="enki-logo"
-      onclick={() => goto("/")}
-    />
+    </a>
   {/if}
   <div class="right-container">
-    <img
+    <button
+      type="button"
       class="search-icon"
-      src={searchIcon}
-      alt="search"
+      aria-label="Search"
       style={move($left)}
       onclick={handleClick}
       use:clickOutside={{ enabled: showSearch, cb: handleClick }}
-    />
+    >
+      <img src={searchIcon} alt="search" />
+    </button>
     {#if showSearch}
       <div class="search-bar" style={grow($growSearch, $searchLeft)}>
         <SearchProducts
@@ -179,12 +188,14 @@
         ? "mobile-basket-icon-container"
         : "basket-icon-container"}
     >
-      <img
+      <button
+        type="button"
         class="basket-icon"
-        src={basketIcon}
-        alt="basket"
+        aria-label="Basket"
         onclick={() => goto("/shop/basket")}
-      />
+      >
+        <img src={basketIcon} alt="basket" />
+      </button>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -194,7 +205,11 @@
         width={isMobile ? "15" : "25"}
         height={isMobile ? "15" : "25"}
         class="num-basket-items"
+        role="button"
+        tabindex="0"
+        aria-label="Basket"
         onclick={() => goto("/shop/basket")}
+        onkeydown={keyActivate(() => goto("/shop/basket"))}
       >
         <g>
           <circle
@@ -307,22 +322,40 @@
     cursor: pointer;
   }
 
-  .basket-icon {
-    margin-right: 10px;
-  }
-
   .basket-icon,
   .search-icon {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
     width: 25px;
     align-self: center;
   }
 
-  .enki-logo {
+  .basket-icon {
+    margin-right: 10px;
+  }
+
+  .basket-icon img,
+  .search-icon img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .enki-logo-link {
     position: absolute;
     top: 22.5%;
     left: 50%;
     width: 75px;
     transform: translateX(-50%);
+    display: block;
+  }
+
+  .enki-logo {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   a {
@@ -342,7 +375,7 @@
       width: 30px;
     }
 
-    .enki-logo {
+    .enki-logo-link {
       top: 15%;
       width: 100px;
     }
@@ -354,7 +387,7 @@
       width: 35px;
     }
 
-    .enki-logo {
+    .enki-logo-link {
       top: 10%;
       width: 110px;
     }
@@ -395,7 +428,7 @@
       width: 40px;
     }
 
-    .enki-logo {
+    .enki-logo-link {
       top: 15%;
       width: 120px;
     }
@@ -406,7 +439,7 @@
       width: 35%;
     }
 
-    .enki-logo {
+    .enki-logo-link {
       top: 15%;
       width: 130px;
     }
@@ -424,7 +457,7 @@
       width: 45px;
     }
 
-    .enki-logo {
+    .enki-logo-link {
       top: 15%;
       width: 140px;
     }

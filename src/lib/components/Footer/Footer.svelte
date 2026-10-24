@@ -1,7 +1,5 @@
 <script lang="ts">
-  /* eslint-disable svelte/no-navigation-without-resolve */
   import confetti from "canvas-confetti";
-  import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
   import telephoneMobile from "$lib/assets/telephone.png";
   import telephone from "$lib/assets/telephone_3.png";
@@ -96,37 +94,50 @@
         <a href="/terms-and-conditions">Terms and conditions</a>
         <a href="/privacy-policy">Privacy policy</a>
         <div class="mobile-icons">
-          <img
-            class="mobile-footer-icons"
-            src={telephoneMobile}
-            alt="contact us"
-            onclick={() => goto("/contact")}
-          />
-          <img
-            class="mobile-footer-icons"
-            src={instaLogo}
-            alt="link to instagram"
-            onclick={() =>
-              (window.location.href =
-                "https://www.instagram.com/enkionline/?hl=en")}
-          />
-          <img
-            class="mobile-footer-icons"
-            src={fbLogo}
-            alt="link to facebook"
-            onclick={() =>
-              (window.location.href =
-                "https://www.facebook.com/Enki-1665334930147391")}
-          />
-          <img
-            loading="lazy"
-            class="mobile-footer-icons"
-            src={github}
-            alt="link to website source code"
-            onclick={() =>
-              (window.location.href =
-                "https://www.github.com/jaskaransarkaria/enki-website")}
-          />
+          <a href="/contact" aria-label="Contact us">
+            <img
+              class="mobile-footer-icons"
+              src={telephoneMobile}
+              alt="contact us"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/enkionline/?hl=en"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to instagram"
+          >
+            <img
+              class="mobile-footer-icons"
+              src={instaLogo}
+              alt="link to instagram"
+            />
+          </a>
+          <a
+            href="https://www.facebook.com/Enki-1665334930147391"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to facebook"
+          >
+            <img
+              class="mobile-footer-icons"
+              src={fbLogo}
+              alt="link to facebook"
+            />
+          </a>
+          <a
+            href="https://www.github.com/jaskaransarkaria/enki-website"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to website source code"
+          >
+            <img
+              loading="lazy"
+              class="mobile-footer-icons"
+              src={github}
+              alt="link to website source code"
+            />
+          </a>
         </div>
       </div>
     {/if}

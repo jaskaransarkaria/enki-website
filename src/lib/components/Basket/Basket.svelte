@@ -67,12 +67,17 @@
         class={isMobile ? "mobile-product" : "product"}
         in:fade
       >
-        <img
-          src={`${PUBLIC_BUCKET_URL}/${obj.imgHash}`}
-          alt={`${obj.name}`}
-          onclick={() => goto(`/shop/product/${obj.id}`)}
+        <button
+          type="button"
           class={isMobile ? "mobile-product-img" : "product-img"}
-        />
+          aria-label={`View ${obj.name}`}
+          onclick={() => goto(`/shop/product/${obj.id}`)}
+        >
+          <img
+            src={`${PUBLIC_BUCKET_URL}/${obj.imgHash}`}
+            alt={`${obj.name}`}
+          />
+        </button>
         <div class={isMobile ? "mobile-product-details" : "product-details"}>
           <h2 class={isMobile ? "mobile-product-name" : "product-name"}>
             {obj.name}
@@ -127,7 +132,7 @@
                   maxlength="95"
                   placeholder="Add a message for your gift here..."
                   bind:value={obj.giftDescription}
-></textarea>
+                ></textarea>
               </div>
             {/if}
             <div class="price">
@@ -286,6 +291,20 @@
     margin-top: auto;
     margin-bottom: 55px;
     justify-content: space-between;
+  }
+
+  .mobile-product-img,
+  .product-img {
+    background: none;
+    border: 0;
+    padding: 0;
+  }
+
+  .mobile-product-img img,
+  .product-img img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .mobile-product-img {

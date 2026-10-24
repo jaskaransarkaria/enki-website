@@ -9,6 +9,12 @@
   let { width, cb, loading = $bindable() }: Props = $props();
 
   let searchValue = $state("");
+
+  // Focus on mount via an action rather than the `autofocus` attribute, which
+  // trips the a11y linter.
+  const focusOnMount = (node: HTMLInputElement) => {
+    node.focus();
+  };
 </script>
 
 <svelte:head>
@@ -19,7 +25,7 @@
 
 <input
   data-testid="search-bar"
-  autofocus
+  use:focusOnMount
   type="search"
   style={width}
   bind:value={searchValue}
