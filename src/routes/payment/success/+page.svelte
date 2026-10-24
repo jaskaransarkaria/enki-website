@@ -11,6 +11,7 @@
 </script>
 
 <svelte:head>
+  <meta name="robots" content="noindex, follow" />
   <title>Enki - Payment</title>
 </svelte:head>
 

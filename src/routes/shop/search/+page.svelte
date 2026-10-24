@@ -11,6 +11,7 @@
 </script>
 
 <svelte:head>
+  <meta name="robots" content="noindex, follow" />
   <title
     >{`Enki - Search Results: ${page.url.searchParams.get(
       "search-term",

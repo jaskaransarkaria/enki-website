@@ -2,6 +2,7 @@
   import { page } from "$app/state";
   import { beforeNavigate } from "$app/navigation";
   import { updated, navigating } from "$app/state";
+  import { SITE_URL } from "$lib/constants";
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
@@ -61,6 +62,7 @@
 <svelte:head>
   <meta property="og:title" content="Enki" />
   <meta property="og:url" content="https://enkionline.com" />
+  <link rel="canonical" href={`${SITE_URL}${page.url.pathname}`} />
   <meta property="og:image" content={aboutShopOneJpg} />
   <meta property="og:type" content="website" />
   <meta
