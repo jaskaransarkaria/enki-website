@@ -8,6 +8,14 @@
   import fb from "$lib/assets/useful_link_fb.png";
 </script>
 
+<svelte:head>
+  <title>Enki - Useful Links</title>
+  <meta
+    name="description"
+    content="Links to Enki's loyalty scheme, Instagram and Facebook."
+  />
+</svelte:head>
+
 <div>
   <a href="https://app.loyalty.dog/l/ywUwKafuu" target="_blank" rel="noreferrer"
     ><img

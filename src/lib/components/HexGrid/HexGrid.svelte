@@ -93,15 +93,7 @@
         {/if}
       {/if}
       <li class={showGrid ? "hex" : "hex-flex"}>
-        <Hex
-          {category}
-          hexHref={`/shop/category/${category.id}?name=${encodeURIComponent(
-            category.category_data.name,
-          )}&imgHash=${
-            category.custom_attribute_values.image_arr.string_value
-          }&l=${true}`}
-          bind:loaded
-        />
+        <Hex {category} hexHref={`/shop/category/${category.id}`} bind:loaded />
       </li>
       {#if idx === filteredData.length - 1}
         {#if useEmptyHexes}

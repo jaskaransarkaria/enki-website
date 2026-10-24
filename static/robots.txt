@@ -1,7 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 Sitemap: https://enkionline.com/sitemap.xml
 User-agent: *
-Disallow: /
+Disallow: /payment
+Disallow: /shop/search
+Disallow: /shop/basket
 Disallow: /*? # This will prevent crawlers from accessing any pages with query params
 
 # Certain social media sites are whitelisted to allow crawlers to index the

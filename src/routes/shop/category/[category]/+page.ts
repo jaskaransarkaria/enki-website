@@ -1,6 +1,6 @@
 import { browser, dev } from "$app/environment";
+import { error } from "@sveltejs/kit";
 import { setServerUrl } from "$lib/utils/setServerUrl";
-import { PUBLIC_SERVER_URL } from "$env/static/public";
 import {
   refreshCategoryFromServer,
   refreshProductsFromServer,
@@ -12,7 +12,7 @@ import type { SquareProduct } from "$lib/types/product";
 const traverseCategoryObj = (
   id: string,
   returnedCategoryObj: SquareCategory,
-): SquareCategory => {
+): SquareCategory | undefined => {
   if (returnedCategoryObj?.id === id) {
     return returnedCategoryObj;
   } else if (returnedCategoryObj?.children) {
@@ -27,43 +27,39 @@ const traverseCategoryObj = (
         }
       }
     }
-  } else {
-    // category id doesn't match and is the end of the branch in the tree
-    return undefined;
   }
+
+  // category id doesn't match and is the end of the branch in the tree
+  return undefined;
 };
 
-export async function load({ fetch, params, url }) {
-  let productResults: SquareProduct[] = [];
+export async function load({ fetch, params }) {
+  const serverUrl = setServerUrl(browser, dev);
 
   const categoryResults = await refreshCategoryFromServer(
-    `${PUBLIC_SERVER_URL}/category?id=${params.category}`,
+    `${serverUrl}/category?id=${params.category}`,
     fetch,
   );
 
-  const category = traverseCategoryObj(params.category, categoryResults[0]);
+  const category = traverseCategoryObj(params.category, categoryResults?.[0]);
 
-  if (category.children.length === 0) {
+  if (!category) {
+    error(404, "Category not found");
+  }
+
+  let productResults: SquareProduct[] = [];
+
+  if (!category.children?.length) {
     productResults = [
       ...(await refreshProductsFromServer(
-        `${setServerUrl(browser, dev)}/products-by-category?id=${params.category}`,
+        `${serverUrl}/products-by-category?id=${params.category}`,
         fetch,
       )),
     ];
   }
 
-  if (browser) {
-    const l = decodeURIComponent(url.searchParams.get("l"));
-    return {
-      categoryToShow: [],
-      productArr: productResults,
-      loadingFromStore: Boolean(l),
-    };
-  }
-
   return {
     categoryToShow: category,
     productArr: productResults,
-    loadingFromStore: false,
   };
 }
