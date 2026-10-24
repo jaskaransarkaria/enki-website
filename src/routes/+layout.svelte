@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state";
 import { beforeNavigate } from "$app/navigation";
-import { updated } from "$app/state";
+import { updated, navigating } from "$app/state";
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
@@ -18,6 +18,27 @@ import { updated } from "$app/state";
 
   let checkAvif = $state(false);
   let loading = $state(false);
+
+  // Only show the navigation spinner for product/category clicks, and only
+  // after a short delay so preloaded, near-instant navigations don't flicker.
+  const isCatalogNavigation = $derived(
+    Boolean(
+      navigating.to?.url.pathname.startsWith("/shop/product/") ||
+        navigating.to?.url.pathname.startsWith("/shop/category/"),
+    ),
+  );
+  let showNavigationSpinner = $state(false);
+
+  $effect(() => {
+    if (!isCatalogNavigation) {
+      showNavigationSpinner = false;
+      return;
+    }
+
+    const timer = setTimeout(() => (showNavigationSpinner = true), 150);
+
+    return () => clearTimeout(timer);
+  });
 
   onMount(() => {
     if ($isAvifSupported === null) {
@@ -51,6 +72,11 @@ import { updated } from "$app/state";
 </svelte:head>
 
 <div class="container">
+  {#if showNavigationSpinner}
+    <div class="navigation-overlay" data-testid="navigation-spinner">
+      <LoadingSpinner />
+    </div>
+  {/if}
   <Header whitelistedUserAgent={page.data.whitelistedUserAgent} bind:loading />
   <div class="header-block"></div>
   {#if loading}
@@ -86,6 +112,17 @@ import { updated } from "$app/state";
 
   .container {
     min-height: 100vh;
+  }
+
+  .navigation-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255 255 255 / 0.7);
+    pointer-events: none;
   }
 
   .header-block {
