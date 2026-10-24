@@ -12,7 +12,6 @@
     categoryToShow: SquareCategory | undefined;
     productArr: readonly SquareProduct[];
     whitelistedUserAgent: boolean;
-    loadingFromStore?: boolean;
   }
 
   let {
@@ -20,7 +19,6 @@
     categoryToShow,
     productArr,
     whitelistedUserAgent,
-    loadingFromStore = false,
   }: Props = $props();
 
   $effect(() => {
@@ -31,7 +29,7 @@
 {#if showBreadcrumbs}
   <Breadcrumbs selectedCategoryId={categoryToShow?.id} />
 {/if}
-{#if categoryToShow?.children?.length || (loadingFromStore && !productArr?.length)}
+{#if categoryToShow?.children?.length}
   <HexGrid data={categoryToShow.children} {whitelistedUserAgent} />
 {:else}
   <ProductView {productArr} {whitelistedUserAgent} />

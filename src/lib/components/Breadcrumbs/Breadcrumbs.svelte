@@ -56,11 +56,7 @@
   });
 
   const handleBreadcrumbClick = async (breadcrumb: SquareCategory) => {
-    const breadcrumbUrl = `/shop/category/${
-      breadcrumb.id
-    }?name=${encodeURIComponent(breadcrumb.category_data.name)}&imgHash=${
-      breadcrumb.custom_attribute_values.image_arr.string_value.split(",")[0]
-    }`;
+    const breadcrumbUrl = `/shop/category/${breadcrumb.id}`;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     breadcrumb.category_data.name === "Shop"

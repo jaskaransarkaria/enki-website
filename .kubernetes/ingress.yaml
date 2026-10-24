@@ -17,6 +17,11 @@ metadata:
     # everything else (SSR pages set no-cache, /sitemap.xml sets max-age=3600,
     # and /_app/immutable assets are served with a 1 year immutable header).
     nginx.ingress.kubernetes.io/configuration-snippet: |
+      # Redirect the www host to the apex at the edge, before it reaches the
+      # app. This also covers static assets, which bypass the app's handle hook.
+      if ($host = "www.enkionline.com") {
+        return 301 https://enkionline.com$request_uri;
+      }
       if ($uri ~* "^/(?!_app/).*\.(woff2?|ttf|otf|eot|png|jpe?g|avif|webp|svg|ico|pdf|css|js)$") {
         more_set_headers "Cache-Control: public, max-age=7889400";
       }

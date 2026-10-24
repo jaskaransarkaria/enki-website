@@ -1,6 +1,16 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import notFoundImg from "$lib/assets/404.png";
 </script>
+
+<svelte:head>
+  <title
+    >{page.status === 404
+      ? "Enki - Page not found"
+      : "Enki - Something went wrong"}</title
+  >
+  <meta name="robots" content="noindex, follow" />
+</svelte:head>
 
 <div>
   <img

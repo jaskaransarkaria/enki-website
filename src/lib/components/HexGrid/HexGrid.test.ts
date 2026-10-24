@@ -62,14 +62,8 @@ describe("GIVEN HexGrid", () => {
 
       const hexButtons = screen.getAllByRole("link");
 
-      expect(hexButtons[0]).toHaveAttribute(
-        "href",
-        "/shop/category/111?name=Elephant&imgHash=foobar&l=true",
-      );
-      expect(hexButtons[1]).toHaveAttribute(
-        "href",
-        "/shop/category/456?name=Dog&imgHash=blahblah&l=true",
-      );
+      expect(hexButtons[0]).toHaveAttribute("href", "/shop/category/111");
+      expect(hexButtons[1]).toHaveAttribute("href", "/shop/category/456");
     });
   });
 });

@@ -4,6 +4,14 @@
   export const prerender = true;
 </script>
 
+<svelte:head>
+  <title>Enki - Terms and Conditions</title>
+  <meta
+    name="description"
+    content="Enki's terms and conditions, including delivery, returns and payment."
+  />
+</svelte:head>
+
 <div>
   <h1>Terms and Conditions</h1>
   <p>
