@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { PUBLIC_BUCKET_URL } from "$env/static/public";
 import { SITE_URL } from "$lib/constants";
 import {
   buildSitemapXml,
@@ -33,6 +34,38 @@ const makeProduct = (
         ordinal,
       })),
       ...overrides,
+    },
+  }) as unknown as SquareProduct;
+
+const makeProductWithImages = (
+  id: string,
+  categoryIds: string[],
+  hashes: string[],
+): SquareProduct =>
+  ({
+    id,
+    created_at: "2026-01-01T00:00:00.000Z",
+    updated_at: "2026-10-09T13:22:01.926Z",
+    custom_attribute_values: {},
+    item_data: {
+      name: `Product ${id}`,
+      description_html: "",
+      is_archived: false,
+      ecom_visibility: "VISIBLE",
+      product_type: "ITEM",
+      categories: categoryIds.map((categoryId, ordinal) => ({
+        id: categoryId,
+        ordinal,
+      })),
+      variations: [
+        {
+          id: `${id}-v1`,
+          item_variation_data: {},
+          custom_attribute_values: {
+            image_arr: { string_value: hashes.join(",") },
+          },
+        },
+      ],
     },
   }) as unknown as SquareProduct;
 
@@ -148,6 +181,38 @@ describe("GIVEN sitemap.ts", () => {
       expect(productEntry?.lastmod).toBe("2026-10-09");
     });
 
+    it("WHEN a category subtree has products THEN lastmod is the newest product date", () => {
+      const entries = collectEntries(
+        [
+          makeProduct("old", ["leaf"], {}, "2026-01-01T00:00:00.000Z"),
+          makeProduct("new", ["leaf"], {}, "2026-10-09T00:00:00.000Z"),
+        ],
+        [makeCategory("root", [makeCategory("leaf")])],
+      );
+
+      const leaf = entries.find((entry) => entry.loc === "/shop/category/leaf");
+      const root = entries.find((entry) => entry.loc === "/shop/category/root");
+
+      expect(leaf?.lastmod).toBe("2026-10-09");
+      expect(root?.lastmod).toBe("2026-10-09");
+    });
+
+    it("WHEN a product has variation images THEN includes absolute image URLs", () => {
+      const entries = collectEntries(
+        [makeProductWithImages("p", ["1"], ["hash-a", "hash-b"])],
+        [],
+      );
+
+      const productEntry = entries.find(
+        (entry) => entry.loc === "/shop/product/p",
+      );
+
+      expect(productEntry?.images).toStrictEqual([
+        `${PUBLIC_BUCKET_URL}/hash-a`,
+        `${PUBLIC_BUCKET_URL}/hash-b`,
+      ]);
+    });
+
     it("WHEN collecting THEN entries are sorted by loc", () => {
       const entries = collectEntries(
         [makeProduct("b", ["1"]), makeProduct("a", ["1"])],
@@ -171,9 +236,23 @@ describe("GIVEN sitemap.ts", () => {
         true,
       );
       expect(xml).toContain(
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+        'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+      );
+      expect(xml).toContain(
+        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"',
       );
       expect(xml.trimEnd().endsWith("</urlset>")).toBe(true);
+    });
+
+    it("WHEN a product has images THEN the xml includes image entries", () => {
+      const xmlWithImages = buildSitemapXml(
+        [makeProductWithImages("p", ["1"], ["hash-a"])],
+        [makeCategory("1")],
+      );
+
+      expect(xmlWithImages).toContain(
+        `<image:loc>${PUBLIC_BUCKET_URL}/hash-a</image:loc>`,
+      );
     });
 
     it("WHEN building the xml THEN it uses absolute URLs", () => {
