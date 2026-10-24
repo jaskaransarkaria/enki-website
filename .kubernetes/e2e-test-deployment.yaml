@@ -34,13 +34,23 @@ spec:
               value: "pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau"
           ports:
             - containerPort: 5000
-          volumeMounts:
-            - name: sitemap-volume
-              mountPath: /usr/src/app/src/
-      volumes:
-        - name: sitemap-volume
-          configMap:
-            name: sitemap
+          startupProbe:
+            tcpSocket:
+              port: 5000
+            periodSeconds: 2
+            failureThreshold: 30
+          readinessProbe:
+            tcpSocket:
+              port: 5000
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            tcpSocket:
+              port: 5000
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
 
       imagePullSecrets:
         - name: regcred

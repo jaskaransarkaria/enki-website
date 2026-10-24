@@ -10,7 +10,6 @@ const whitelistedUserAgent = [
   "Googlebot-Mobile",
   "slurp",
   "yandex",
-  "sitemap-generator-cli",
 ];
 
 export const isWhitelistedUserAgent = (userAgent) =>

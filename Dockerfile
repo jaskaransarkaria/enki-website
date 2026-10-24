@@ -24,7 +24,6 @@ FROM node:22.20-alpine3.21
 WORKDIR /usr/src/app
 
 RUN mkdir build
-RUN mkdir src
 
 COPY --from=builder /usr/src/app/build/ build/
 COPY --from=builder /usr/src/app/package.json build/

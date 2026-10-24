@@ -27,6 +27,25 @@ spec:
         name: enki-website
         ports:
         - containerPort: 5000
+        # The server only opens the port once the sitemap warm-up (init hook)
+        # has finished, so the startup probe gates the other probes until then.
+        startupProbe:
+          tcpSocket:
+            port: 5000
+          periodSeconds: 2
+          failureThreshold: 30
+        readinessProbe:
+          tcpSocket:
+            port: 5000
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
+        livenessProbe:
+          tcpSocket:
+            port: 5000
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3
         resources:
           limits:
             cpu: 256m
@@ -34,12 +53,5 @@ spec:
           requests:
             cpu: 32m
             memory: 64Mi
-        volumeMounts:
-        - mountPath: /usr/src/app/src/
-          name: sitemap-volume
       imagePullSecrets:
       - name: regcred
-      volumes:
-      - configMap:
-          name: sitemap
-        name: sitemap-volume

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state";
-import { beforeNavigate } from "$app/navigation";
-import { updated } from "$app/state";
+  import { beforeNavigate } from "$app/navigation";
+  import { updated, navigating } from "$app/state";
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
@@ -19,17 +19,43 @@ import { updated } from "$app/state";
   let checkAvif = $state(false);
   let loading = $state(false);
 
+  // Turn the cursor into a busy spinner for product/category navigations.
+  // The short delay avoids flicker on preloaded, near-instant navigations.
+  const isCatalogNavigation = $derived(
+    Boolean(
+      navigating.to?.url.pathname.startsWith("/shop/product/") ||
+      navigating.to?.url.pathname.startsWith("/shop/category/"),
+    ),
+  );
+
+  $effect(() => {
+    if (!isCatalogNavigation) {
+      document.documentElement.classList.remove("navigating");
+      return;
+    }
+
+    const timer = setTimeout(
+      () => document.documentElement.classList.add("navigating"),
+      200,
+    );
+
+    return () => {
+      clearTimeout(timer);
+      document.documentElement.classList.remove("navigating");
+    };
+  });
+
   onMount(() => {
     if ($isAvifSupported === null) {
       checkAvif = true;
     }
   });
 
-	beforeNavigate(({ willUnload, to }) => {
-		if (updated.current && !willUnload && to?.url) {
-			location.href = to.url.href;
-		}
-	});
+  beforeNavigate(({ willUnload, to }) => {
+    if (updated.current && !willUnload && to?.url) {
+      location.href = to.url.href;
+    }
+  });
 </script>
 
 <svelte:head>
@@ -86,6 +112,11 @@ import { updated } from "$app/state";
 
   .container {
     min-height: 100vh;
+  }
+
+  :global(html.navigating),
+  :global(html.navigating *) {
+    cursor: wait !important;
   }
 
   .header-block {

@@ -75,6 +75,6 @@ For categories the hash is added to the category description.
 
 Argo CD handles the deployment pipeline deploying when a commit on main is tagged with the an incremented semver eg. v01.02.03
 
-Once the deployment is initialised the container runs a pre-deployment hook to generate an upto date sitemap using `npm run sitemap-generator`. This also runs on a cron once a week early Wednesday morning.
+The sitemap is generated on demand by the `/sitemap.xml` server route (`src/lib/server/sitemap.ts`) from the backend catalog API. It is cached in memory for 6 hours, so no cron job, ConfigMap or pre-deployment step is required. Only indexable products and non-empty categories are included, and `lastmod` comes from each product's real `updated_at` timestamp.
 
 The app is deployed to a slim apline node container and with a node adapter to serve svelte-kit. It's hosted in our kubernetes cluster and has 3 replicas.
