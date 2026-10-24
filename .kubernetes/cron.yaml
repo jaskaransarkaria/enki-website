@@ -17,7 +17,7 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["configmaps"]
-    verbs: ["*"] 
+    verbs: ["*"]
 
 ---
 # bind the role to the service account
@@ -44,17 +44,16 @@ metadata:
 spec:
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 0
-  schedule: '30 04 * * *' # cron spec of time, here, 04.30am every day
+  schedule: "30 04 * * *" # cron spec of time, here, 04.30am every day
   jobTemplate:
     spec:
       backoffLimit: 2 # this has very low chance of failing, as all this does
-                      # is prompt kubernetes to schedule new replica set for
-                      # the deployment
+        # is prompt kubernetes to schedule new replica set for
+        # the deployment
       template:
         spec:
           serviceAccountName: update-sitemap-xml
           restartPolicy: Never
           containers:
             - name: kubectl
-              image: jaskaransarkaria/nodejs-kubectl
-
+              image: jaskaransarkaria/nodejs-kubectl:241026
