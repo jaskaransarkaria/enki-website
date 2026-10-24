@@ -36,10 +36,16 @@
     },
     loaded = new SvelteMap(),
   }: Props = $props();
+  const imageHash = $derived(
+    category.custom_attribute_values?.image_arr?.string_value ?? "",
+  );
+  const categoryName = $derived(category.category_data?.name ?? "");
   let imgError = $state(false);
-  let imgUrl = `${PUBLIC_BUCKET_URL}/${
-    category.custom_attribute_values.image_arr.string_value
-  }${$isAvifSupported ? "-avif" : ""}`;
+  const imgUrl = $derived(
+    imageHash
+      ? `${PUBLIC_BUCKET_URL}/${imageHash}${$isAvifSupported ? "-avif" : ""}`
+      : "",
+  );
   let hexLoaded = $state(false);
   let catImg = $state(browser ? new Image() : {});
   let hexImg = $state(browser ? new Image() : {});
@@ -67,7 +73,7 @@
         {#if imgError}
           <img
             src={greySquare}
-            alt={`category ${category.category_data.name}`}
+            alt={`category ${categoryName}`}
             data-testid="cdn-img"
             bind:this={catImg}
             onload={() => {
@@ -86,7 +92,7 @@
               catImg.classList.add("hex-img");
             }}
             onerror={() => (imgError = true)}
-            alt={`category ${category.category_data.name}`}
+            alt={`category ${categoryName}`}
             data-testid="cdn-img"
             class="preload-hex-img"
           />
@@ -102,7 +108,7 @@
         />
         <div class="category-name">
           <h3 data-testid="hex-category-name" in:fade={{ duration: 500 }}>
-            {category.category_data.name}
+            {categoryName}
           </h3>
         </div>
       {/key}

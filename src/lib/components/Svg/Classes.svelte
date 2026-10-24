@@ -2,12 +2,15 @@
   let classesHover = $derived(false);
 </script>
 
-<a data-sveltekit-preload-data href="/classes" data-test-id="classes">
-  <svg
-    onmouseenter={() => (classesHover = true)}
-    onmouseleave={() => (classesHover = false)}
-    viewBox="0 0 29.624 26.458"
-  >
+<a
+  data-sveltekit-preload-data
+  href="/classes"
+  data-test-id="classes"
+  aria-label="Classes"
+  onmouseenter={() => (classesHover = true)}
+  onmouseleave={() => (classesHover = false)}
+>
+  <svg viewBox="0 0 29.624 26.458">
     <g
       class={classesHover ? "layer1" : ""}
       transform="translate(-22.538522,-57.401388)"

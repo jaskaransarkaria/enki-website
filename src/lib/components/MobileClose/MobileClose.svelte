@@ -8,10 +8,12 @@
   let { bool, cb, positionOverride = "" }: Props = $props();
 </script>
 
-<div
+<button
+  type="button"
   class={bool ? "open" : ""}
   id="nav-icon"
   data-testid="mobile-close"
+  aria-label="Toggle menu"
   onclick={cb}
   style={positionOverride}
 >
@@ -19,10 +21,13 @@
   <span></span>
   <span></span>
   <span></span>
-</div>
+</button>
 
 <style>
   #nav-icon {
+    background: none;
+    border: 0;
+    padding: 0;
     position: absolute;
     width: 40px;
     height: 45px;

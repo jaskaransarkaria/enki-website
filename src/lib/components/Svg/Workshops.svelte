@@ -2,10 +2,14 @@
   let workshopHover = $derived(false);
 </script>
 
-<a data-sveltekit-preload-data href="/workshops" data-test-id="workshops">
+<a
+  data-sveltekit-preload-data
+  href="/workshops"
+  data-test-id="workshops"
+  onmouseenter={() => (workshopHover = true)}
+  onmouseleave={() => (workshopHover = false)}
+>
   <svg
-    onmouseenter={() => (workshopHover = true)}
-    onmouseleave={() => (workshopHover = false)}
     width="800"
     height="717.891"
     viewBox="0 0 211.667 189.942"
