@@ -13,8 +13,17 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-buffering: 'on'
     nginx.ingress.kubernetes.io/proxy-buffers-number: '4'
     cert-manager.io/issuer: "letsencrypt-production"
+    # Long-cache only unhashed static assets. The app owns Cache-Control for
+    # everything else (SSR pages set no-cache, /sitemap.xml sets max-age=3600,
+    # and /_app/immutable assets are served with a 1 year immutable header).
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_headers "Cache-Control: public, max-age=7889400";
+      if ($uri ~* "^/(?!_app/).*\.(woff2?|ttf|otf|eot|png|jpe?g|avif|webp|svg|ico|pdf|css|js)$") {
+        more_set_headers "Cache-Control: public, max-age=7889400";
+      }
+      # Extensionless paths are pages (prerendered HTML bypasses the app hook).
+      if ($uri !~ "\.") {
+        more_set_headers "Cache-Control: no-cache";
+      }
 spec:
   tls:
    - secretName: enki-website-production
