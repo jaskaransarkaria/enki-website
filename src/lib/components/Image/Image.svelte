@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import comingSoon from "$lib/assets/coming_soon.png";
+  import comingSoon from "#lib/assets/coming_soon.png";
 
   interface Props {
     src: string;

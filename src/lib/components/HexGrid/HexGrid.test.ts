@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/svelte";
 import HexGrid from "./HexGrid.svelte";
 
-import type { SquareCategory } from "$lib/types/category";
+import type { SquareCategory } from "#lib/types/category.js";
 
 const mockData: SquareCategory[] = [
   {

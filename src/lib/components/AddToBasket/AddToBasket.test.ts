@@ -3,8 +3,8 @@ import { render, screen, waitFor } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import AddToBasket from "./AddToBasket.svelte";
 import { get } from "svelte/store";
-import { basket, reset as resetBasketStore } from "$lib/stores/basket";
-import type { SquareProduct } from "$lib/types/product";
+import { basket, reset as resetBasketStore } from "#lib/stores/basket.js";
+import type { SquareProduct } from "#lib/types/product.js";
 
 describe("GIVEN AddToBasket", () => {
   beforeEach(() => resetBasketStore());

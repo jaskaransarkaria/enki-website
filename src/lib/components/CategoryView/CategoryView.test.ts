@@ -2,10 +2,10 @@ import "@testing-library/jest-dom";
 import { vi } from "vitest";
 import { render, screen } from "@testing-library/svelte";
 import CategoryView from "./CategoryView.svelte";
-import { reset as resetCategoriesStore } from "$lib/stores/basket";
+import { reset as resetCategoriesStore } from "#lib/stores/basket.js";
 
-import type { SquareCategory } from "$lib/types/category";
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareCategory } from "#lib/types/category.js";
+import type { SquareProduct } from "#lib/types/product.js";
 
 const nestedCategories = {
   id: "000",

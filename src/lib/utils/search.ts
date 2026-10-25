@@ -1,4 +1,4 @@
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareProduct } from "#lib/types/product.js";
 
 export const searchProducts = (
   prodToFind: RegExp,

@@ -1,7 +1,7 @@
-import { browser } from "$app/environment";
+import { browser } from "$app/env";
 import { writable } from "svelte/store";
 import type { Writable } from "svelte/store";
-import type { BasketProduct } from "$lib/types/basketProduct";
+import type { BasketProduct } from "#lib/types/basketProduct.js";
 
 export const basket: Writable<BasketProduct[]> = writable(
   browser ? JSON.parse(window.localStorage.getItem("basket") ?? "[]") : [],

@@ -3,7 +3,7 @@ import { render, screen, within } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import ProductView from "./ProductView.svelte";
 
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareProduct } from "#lib/types/product.js";
 
 const mockData: readonly SquareProduct[] = [
   {

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import maps from "$lib/assets/maps.png";
-  import telephone from "$lib/assets/telephone.png";
+  import maps from "#lib/assets/maps.png";
+  import telephone from "#lib/assets/telephone.png";
   import { fade } from "svelte/transition";
 </script>
 

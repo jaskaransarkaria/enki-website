@@ -1,11 +1,11 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import CopyIcon from "$lib/components/Svg/CopyIcon.svelte";
+  import CopyIcon from "#lib/components/Svg/CopyIcon.svelte";
   import confetti from "canvas-confetti";
 
   import MailChimpSubscribe from "../MailChimpSubscribe/MailChimpSubscribe.svelte";
-  import { isSignedUp } from "$lib/stores/newsletterModal";
-  import { PUBLIC_SERVER_URL } from "$env/static/public";
+  import { isSignedUp } from "#lib/stores/newsletterModal.js";
+  import { PUBLIC_SERVER_URL } from "$app/env/public";
 
   let promoCopied = $state(false);
   let mcEmailInput = $state("");

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import PrivateParties from "$lib/components/Svg/PrivateParties.svelte";
-  import WeddingRings from "$lib/components/Svg/WeddingRingsCharlotte.svelte";
-  import ScheduledClasses from "$lib/components/Svg/ScheduledClasses.svelte";
+  import PrivateParties from "#lib/components/Svg/PrivateParties.svelte";
+  import WeddingRings from "#lib/components/Svg/WeddingRingsCharlotte.svelte";
+  import ScheduledClasses from "#lib/components/Svg/ScheduledClasses.svelte";
 </script>
 
 <svelte:head>

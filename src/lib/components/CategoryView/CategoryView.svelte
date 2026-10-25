@@ -1,11 +1,11 @@
 <script lang="ts">
-  import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
-  import ProductView from "$lib/components/ProductView/ProductView.svelte";
-  import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
-  import { products } from "$lib/stores/products";
+  import Breadcrumbs from "#lib/components/Breadcrumbs/Breadcrumbs.svelte";
+  import ProductView from "#lib/components/ProductView/ProductView.svelte";
+  import HexGrid from "#lib/components/HexGrid/HexGrid.svelte";
+  import { products } from "#lib/stores/products.js";
 
-  import type { SquareCategory } from "$lib/types/category";
-  import type { SquareProduct } from "$lib/types/product";
+  import type { SquareCategory } from "#lib/types/category.js";
+  import type { SquareProduct } from "#lib/types/product.js";
 
   interface Props {
     showBreadcrumbs?: boolean;

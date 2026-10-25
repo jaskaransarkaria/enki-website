@@ -1,19 +1,19 @@
 <script lang="ts">
   import { SvelteMap } from "svelte/reactivity";
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
-  import { browser } from "$app/environment";
+  import { PUBLIC_BUCKET_URL } from "$app/env/public";
+  import { browser } from "$app/env";
   import { fade } from "svelte/transition";
-  import greySquare from "$lib/assets/grey_square.png";
-  import emptyHexFour from "$lib/assets/empty_hex_4.png";
-  import hexOne from "$lib/assets/hex_1.svg";
-  import hexTwo from "$lib/assets/hex_2.svg";
-  import hexThree from "$lib/assets/hex_3.svg";
-  import hexFour from "$lib/assets/hex_4.svg";
-  import hexFive from "$lib/assets/hex_5.svg";
-  import hexSix from "$lib/assets/hex_6.svg";
+  import greySquare from "#lib/assets/grey_square.png";
+  import emptyHexFour from "#lib/assets/empty_hex_4.png";
+  import hexOne from "#lib/assets/hex_1.svg";
+  import hexTwo from "#lib/assets/hex_2.svg";
+  import hexThree from "#lib/assets/hex_3.svg";
+  import hexFour from "#lib/assets/hex_4.svg";
+  import hexFive from "#lib/assets/hex_5.svg";
+  import hexSix from "#lib/assets/hex_6.svg";
 
-  import type { SquareCategory } from "$lib/types/category";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import type { SquareCategory } from "#lib/types/category.js";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
   interface Props {
     hexHref?: string;

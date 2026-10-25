@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareProduct } from "#lib/types/product.js";
 import { render, screen } from "@testing-library/svelte";
 import DetailedSingleProduct from "./DetailedSingleProduct.svelte";
 

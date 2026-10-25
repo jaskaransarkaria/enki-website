@@ -1,5 +1,5 @@
 import { searchProducts } from "./search";
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareProduct } from "#lib/types/product.js";
 
 const mockData: readonly SquareProduct[] = [
   {

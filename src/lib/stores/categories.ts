@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { SquareCategory } from "$lib/types/category";
+import type { SquareCategory } from "#lib/types/category.js";
 
 export const InitialValue: SquareCategory[] = [
   {

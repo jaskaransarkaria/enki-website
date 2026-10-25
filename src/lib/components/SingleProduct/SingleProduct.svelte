@@ -1,15 +1,16 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
-  import lowInStockTeal from "$lib/assets/low_in_stock_teal_1.png";
-  import outOfStockOrange from "$lib/assets/out_of_stock_orange.png";
-  import comingSoon from "$lib/assets/coming_soon.png";
-  import ImageLoader from "$lib/components/Image/ImageLoader.svelte";
-  import DetailedSingleProduct from "$lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
+  import { PUBLIC_BUCKET_URL } from "$app/env/public";
+  import lowInStockTeal from "#lib/assets/low_in_stock_teal_1.png";
+  import outOfStockOrange from "#lib/assets/out_of_stock_orange.png";
+  import comingSoon from "#lib/assets/coming_soon.png";
+  import ImageLoader from "#lib/components/Image/ImageLoader.svelte";
+  import DetailedSingleProduct from "#lib/components/DetailedSingleProduct/DetailedSingleProduct.svelte";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
   let { product, showDetailedView = false } = $props();
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 1280);
 </script>
 

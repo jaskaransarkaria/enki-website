@@ -1,6 +1,6 @@
-import { PUBLIC_INTERNAL_K8S_URL } from "$env/static/public";
-import { acceptsGzip, gzipString } from "$lib/server/gzip";
-import { getSitemap } from "$lib/server/sitemapCache";
+import { PUBLIC_INTERNAL_K8S_URL } from "$app/env/public";
+import { acceptsGzip, gzipString } from "#lib/server/gzip.js";
+import { getSitemap } from "#lib/server/sitemapCache.js";
 
 export const prerender = false;
 

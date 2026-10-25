@@ -1,17 +1,18 @@
 <script lang="ts">
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
   import { page } from "$app/state";
   import { fade } from "svelte/transition";
-  import { browser } from "$app/environment";
-  import Banner from "$lib/components/Banner/Banner.svelte";
-  import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
-  import giftWrapOneJpg from "$lib/assets/gift-wrap-1.jpeg";
-  import giftWrapTwoJpg from "$lib/assets/gift-wrap-2.jpeg";
-  import giftWrapThreeJpg from "$lib/assets/gift-wrap-3.jpeg";
-  import giftWrapOneAvif from "$lib/assets/gift-wrap-1.avif";
-  import giftWrapTwoAvif from "$lib/assets/gift-wrap-2.avif";
-  import giftWrapThreeAvif from "$lib/assets/gift-wrap-3.avif";
-  import type { SquareProduct } from "$lib/types/product";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import { browser } from "$app/env";
+  import Banner from "#lib/components/Banner/Banner.svelte";
+  import SingleProduct from "#lib/components/SingleProduct/SingleProduct.svelte";
+  import giftWrapOneJpg from "#lib/assets/gift-wrap-1.jpeg";
+  import giftWrapTwoJpg from "#lib/assets/gift-wrap-2.jpeg";
+  import giftWrapThreeJpg from "#lib/assets/gift-wrap-3.jpeg";
+  import giftWrapOneAvif from "#lib/assets/gift-wrap-1.avif";
+  import giftWrapTwoAvif from "#lib/assets/gift-wrap-2.avif";
+  import giftWrapThreeAvif from "#lib/assets/gift-wrap-3.avif";
+  import type { SquareProduct } from "#lib/types/product.js";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
   let {
     productArr = [],
@@ -99,7 +100,7 @@
       : sortArray(sortBy, productArr),
   );
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   let isMobile = $derived(outerWidth < 960);
 </script>
 

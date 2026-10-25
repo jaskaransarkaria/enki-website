@@ -1,6 +1,6 @@
-import comingSoon from "$lib/assets/coming_soon.png";
-import type { BasketProduct } from "$lib/types/basketProduct";
-import type { SquareProduct, VariationData } from "$lib/types/product";
+import comingSoon from "#lib/assets/coming_soon.png";
+import type { BasketProduct } from "#lib/types/basketProduct.js";
+import type { SquareProduct, VariationData } from "#lib/types/product.js";
 
 const removeItemFromBasket = (
   currentQuantity: number,

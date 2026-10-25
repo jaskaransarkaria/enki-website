@@ -1,18 +1,19 @@
 <script lang="ts">
-  import dora from "$lib/assets/dora_1.png";
-  import faith from "$lib/assets/faith_1.png";
-  import ellis from "$lib/assets/ellis.png";
-  import leftEnkiJpg from "$lib/assets/left_enki.jpg";
-  import leftEnkiAvif from "$lib/assets/left_enki.avif";
-  import aboutShopJpg from "$lib/assets/about_shop_1.jpg";
-  import aboutShopAvif from "$lib/assets/about_shop_1.avif";
-  import rightEnkiJpg from "$lib/assets/right_enki.jpg";
-  import rightEnkiAvif from "$lib/assets/right_enki.avif";
-  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
+  import dora from "#lib/assets/dora_1.png";
+  import faith from "#lib/assets/faith_1.png";
+  import ellis from "#lib/assets/ellis.png";
+  import leftEnkiJpg from "#lib/assets/left_enki.jpg";
+  import leftEnkiAvif from "#lib/assets/left_enki.avif";
+  import aboutShopJpg from "#lib/assets/about_shop_1.jpg";
+  import aboutShopAvif from "#lib/assets/about_shop_1.avif";
+  import rightEnkiJpg from "#lib/assets/right_enki.jpg";
+  import rightEnkiAvif from "#lib/assets/right_enki.avif";
+  import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 960);
 </script>
 

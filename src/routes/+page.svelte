@@ -1,36 +1,37 @@
 <script lang="ts">
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
   import { onMount } from "svelte";
-  import { dev } from "$app/environment";
-  import { SITE_URL } from "$lib/constants";
-  import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
-  import mobileGiftGuideAvif from "$lib/assets/mobile_gift_guide_1.avif";
-  import mobileAboutUsAvif from "$lib/assets/mobile_about_us_3.avif";
-  import mobileContactUsAvif from "$lib/assets/mobile_contact_us_3.avif";
-  import mobileJewelleryRepairsAvif from "$lib/assets/mobile_jewellery_repairs_3.avif";
-  import mobileWorkshopsAvif from "$lib/assets/mobile_workshops.avif";
-  import mobileOnlineShopAvif from "$lib/assets/mobile_online_shop_3.avif";
-  import mobileLandingPageAvif from "$lib/assets/mobile_landing_page_2.avif";
-  import mobileGiftGuidePng from "$lib/assets/mobile_gift_guide_1.png";
-  import mobileAboutUsPng from "$lib/assets/mobile_about_us_3.png";
-  import mobileContactUsPng from "$lib/assets/mobile_contact_us_3.png";
-  import mobileJewelleryRepairsPng from "$lib/assets/mobile_jewellery_repairs_3.png";
-  import mobileWorkshopsPng from "$lib/assets/mobile_workshops.png";
-  import mobileOnlineShopPng from "$lib/assets/mobile_online_shop_3.png";
-  import mobileLandingPagePng from "$lib/assets/mobile_landing_page_2.png";
-  import desktopLandingPagePng from "$lib/assets/inside_enki_desktop_4.png";
-  import desktopLandingPageAvif from "$lib/assets/inside_enki_desktop_4.avif";
-  import OnlineShop from "$lib/components/Svg/OnlineShop.svelte";
-  import JewelleryServices from "$lib/components/Svg/JewelleryServices.svelte";
-  import Workshops from "$lib/components/Svg/Workshops.svelte";
-  import GiftGuide from "$lib/components/Svg/GiftGuide.svelte";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
-  import Modal from "$lib/components/Modal/Modal.svelte";
-  import NewsletterSignup from "$lib/components/NewsletterSignup/NewsletterSignup.svelte";
+  import { dev } from "$app/env";
+  import { SITE_URL } from "#lib/constants.js";
+  import ScrollDown from "#lib/components/ScrollDown/ScrollDown.svelte";
+  import mobileGiftGuideAvif from "#lib/assets/mobile_gift_guide_1.avif";
+  import mobileAboutUsAvif from "#lib/assets/mobile_about_us_3.avif";
+  import mobileContactUsAvif from "#lib/assets/mobile_contact_us_3.avif";
+  import mobileJewelleryRepairsAvif from "#lib/assets/mobile_jewellery_repairs_3.avif";
+  import mobileWorkshopsAvif from "#lib/assets/mobile_workshops.avif";
+  import mobileOnlineShopAvif from "#lib/assets/mobile_online_shop_3.avif";
+  import mobileLandingPageAvif from "#lib/assets/mobile_landing_page_2.avif";
+  import mobileGiftGuidePng from "#lib/assets/mobile_gift_guide_1.png";
+  import mobileAboutUsPng from "#lib/assets/mobile_about_us_3.png";
+  import mobileContactUsPng from "#lib/assets/mobile_contact_us_3.png";
+  import mobileJewelleryRepairsPng from "#lib/assets/mobile_jewellery_repairs_3.png";
+  import mobileWorkshopsPng from "#lib/assets/mobile_workshops.png";
+  import mobileOnlineShopPng from "#lib/assets/mobile_online_shop_3.png";
+  import mobileLandingPagePng from "#lib/assets/mobile_landing_page_2.png";
+  import desktopLandingPagePng from "#lib/assets/inside_enki_desktop_4.png";
+  import desktopLandingPageAvif from "#lib/assets/inside_enki_desktop_4.avif";
+  import OnlineShop from "#lib/components/Svg/OnlineShop.svelte";
+  import JewelleryServices from "#lib/components/Svg/JewelleryServices.svelte";
+  import Workshops from "#lib/components/Svg/Workshops.svelte";
+  import GiftGuide from "#lib/components/Svg/GiftGuide.svelte";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
+  import Modal from "#lib/components/Modal/Modal.svelte";
+  import NewsletterSignup from "#lib/components/NewsletterSignup/NewsletterSignup.svelte";
   import {
     isSignedUp,
     modalDismissedCount,
     NEWSLETTER_DISMISS_LIMIT,
-  } from "$lib/stores/newsletterModal";
+  } from "#lib/stores/newsletterModal.js";
 
   let showModal: boolean = $state(false);
   let visible: number = $state(0);
@@ -48,7 +49,7 @@
     }, timeout);
   });
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   let innerWidth = $derived(0);
   let outerHeight = $derived(0);
   const isMobile = $derived(outerWidth <= 450 ? true : false);

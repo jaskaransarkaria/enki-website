@@ -1,17 +1,17 @@
-import { browser, dev } from "$app/environment";
+import { browser, dev } from "$app/env";
 import { error } from "@sveltejs/kit";
-import { SITE_URL } from "$lib/constants";
-import { setServerUrl } from "$lib/utils/setServerUrl";
+import { SITE_URL } from "#lib/constants.js";
+import { setServerUrl } from "#lib/utils/setServerUrl.js";
 import {
   refreshCategoriesFromServer,
   refreshProductsFromServer,
-} from "$lib/utils/requests";
-import { stripSupplierSuffix } from "$lib/utils/seo";
+} from "#lib/utils/requests.js";
+import { stripSupplierSuffix } from "#lib/utils/seo.js";
 import {
   categoryTrail,
   shopBreadcrumb,
   type Breadcrumb,
-} from "$lib/utils/structuredData";
+} from "#lib/utils/structuredData.js";
 
 export async function load({ fetch, params }) {
   const serverUrl = setServerUrl(browser, dev);

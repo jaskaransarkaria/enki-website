@@ -1,14 +1,15 @@
 <script lang="ts">
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
   import confetti from "canvas-confetti";
   import { fade } from "svelte/transition";
-  import telephoneMobile from "$lib/assets/telephone.png";
-  import telephone from "$lib/assets/telephone_3.png";
-  import stripeBadgeWhite from "$lib/assets/stripe-badge-white.png";
-  import instaLogo from "$lib/assets/insta_logo_3.png";
-  import fbLogo from "$lib/assets/fb_logo_3.png";
-  import github from "$lib/assets/github.png";
-  import { isSignedUp } from "$lib/stores/newsletterModal";
-  import MailChimpSubscribe from "$lib/components/MailChimpSubscribe/MailChimpSubscribe.svelte";
+  import telephoneMobile from "#lib/assets/telephone.png";
+  import telephone from "#lib/assets/telephone_3.png";
+  import stripeBadgeWhite from "#lib/assets/stripe-badge-white.png";
+  import instaLogo from "#lib/assets/insta_logo_3.png";
+  import fbLogo from "#lib/assets/fb_logo_3.png";
+  import github from "#lib/assets/github.png";
+  import { isSignedUp } from "#lib/stores/newsletterModal.js";
+  import MailChimpSubscribe from "#lib/components/MailChimpSubscribe/MailChimpSubscribe.svelte";
 
   const signupFn = (input: string) => {
     if (input.includes("@")) {
@@ -25,7 +26,7 @@
     }
   };
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   let isMobile = $derived(outerWidth < 960);
 </script>
 

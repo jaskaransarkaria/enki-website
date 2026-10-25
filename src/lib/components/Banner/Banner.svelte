@@ -1,12 +1,12 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
+
   interface Props {
     hasProducts?: boolean;
   }
 
   let { hasProducts = false }: Props = $props();
-
   const currentDate = new Date();
 
   const currentMonth = currentDate.getMonth();
@@ -14,7 +14,7 @@
   const isXmas = currentMonth === 11;
 </script>
 
-{#if hasProducts && !$page.url.toString().match("32TE2EITCQ6KE4HQ34ORK6V5")}
+{#if hasProducts && !page.url.toString().match("32TE2EITCQ6KE4HQ34ORK6V5")}
   <div in:fade={{ duration: 600 }} class={isXmas ? "xmasDiv" : ""}>
     <p class="pulse">
       Gift wrapping service click <a

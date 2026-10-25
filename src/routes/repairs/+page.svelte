@@ -1,22 +1,23 @@
 <script lang="ts">
-  import { SITE_URL } from "$lib/constants";
-  import servicesOneJpg from "$lib/assets/services_1.jpg";
-  import servicesTwoJpg from "$lib/assets/services_2.jpg";
-  import servicesThreeJpg from "$lib/assets/services_3.jpg";
-  import servicesFourJpg from "$lib/assets/services_4.jpg";
-  import servicesOneAvif from "$lib/assets/services_1.avif";
-  import servicesTwoAvif from "$lib/assets/services_2.avif";
-  import servicesThreeAvif from "$lib/assets/services_3.avif";
-  import servicesFourAvif from "$lib/assets/services_4.avif";
-  import nineCaret from "$lib/assets/9_carat.png";
-  import eighteenCaret from "$lib/assets/18_carat.png";
-  import platinum from "$lib/assets/platinum.png";
-  import silver from "$lib/assets/silver.png";
-  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
+  import { SITE_URL } from "#lib/constants.js";
+  import servicesOneJpg from "#lib/assets/services_1.jpg";
+  import servicesTwoJpg from "#lib/assets/services_2.jpg";
+  import servicesThreeJpg from "#lib/assets/services_3.jpg";
+  import servicesFourJpg from "#lib/assets/services_4.jpg";
+  import servicesOneAvif from "#lib/assets/services_1.avif";
+  import servicesTwoAvif from "#lib/assets/services_2.avif";
+  import servicesThreeAvif from "#lib/assets/services_3.avif";
+  import servicesFourAvif from "#lib/assets/services_4.avif";
+  import nineCaret from "#lib/assets/9_carat.png";
+  import eighteenCaret from "#lib/assets/18_carat.png";
+  import platinum from "#lib/assets/platinum.png";
+  import silver from "#lib/assets/silver.png";
+  import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 960);
 </script>
 

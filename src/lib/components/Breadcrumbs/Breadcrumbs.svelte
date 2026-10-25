@@ -1,12 +1,15 @@
 <script lang="ts">
-  import { PUBLIC_SERVER_URL } from "$env/static/public";
+  import { PUBLIC_SERVER_URL } from "$app/env/public";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
-  import emptyHex from "$lib/assets/empty_hex_1.png";
-  import { refreshCategories } from "$lib/utils/requests";
-  import { readonlyAllCategories, InitialValue } from "$lib/stores/categories";
+  import emptyHex from "#lib/assets/empty_hex_1.png";
+  import { refreshCategories } from "#lib/utils/requests.js";
+  import {
+    readonlyAllCategories,
+    InitialValue,
+  } from "#lib/stores/categories.js";
 
-  import { type SquareCategory } from "$lib/types/category";
+  import { type SquareCategory } from "#lib/types/category.js";
 
   type Crumb = SquareCategory;
 
@@ -58,10 +61,13 @@
   const handleBreadcrumbClick = async (breadcrumb: SquareCategory) => {
     const breadcrumbUrl = `/shop/category/${breadcrumb.id}`;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    breadcrumb.category_data.name === "Shop"
-      ? await goto("/shop") // eslint-disable-line svelte/no-navigation-without-resolve
-      : await goto(breadcrumbUrl); // eslint-disable-line svelte/no-navigation-without-resolve
+    if (breadcrumb.category_data.name === "Shop") {
+      // eslint-disable-next-line svelte/no-navigation-without-resolve
+      await goto("/shop");
+    } else {
+      // eslint-disable-next-line svelte/no-navigation-without-resolve
+      await goto(breadcrumbUrl);
+    }
   };
 </script>
 

@@ -1,18 +1,19 @@
 <script lang="ts">
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
   /* eslint-disable svelte/no-navigation-without-resolve */
   import { untrack } from "svelte";
   import { page } from "$app/state";
   import { goto } from "$app/navigation";
   import { tweened } from "svelte/motion";
   import { fade } from "svelte/transition";
-  import { basket as basketStore } from "$lib/stores/basket";
-  import SearchProducts from "$lib/components/SearchProducts/SearchProducts.svelte";
-  import Hamburger from "$lib/components/Hamburger/Hamburger.svelte";
-  import { clickOutside } from "$lib/utils/clickOutside";
+  import { basket as basketStore } from "#lib/stores/basket.js";
+  import SearchProducts from "#lib/components/SearchProducts/SearchProducts.svelte";
+  import Hamburger from "#lib/components/Hamburger/Hamburger.svelte";
+  import { clickOutside } from "#lib/utils/clickOutside.js";
 
-  import header from "$lib/assets/header_1.png";
-  import basketIcon from "$lib/assets/basket_icon.png";
-  import searchIcon from "$lib/assets/search_1.png";
+  import header from "#lib/assets/header_1.png";
+  import basketIcon from "#lib/assets/basket_icon.png";
+  import searchIcon from "#lib/assets/search_1.png";
 
   let { loading = $bindable() } = $props();
 
@@ -66,7 +67,7 @@
   let showSearch = $derived(false);
   let animateBasketNumber = $derived(false);
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   let offset = $derived(outerWidth < 960 ? lessThan960 : moreThan960);
   let isMobile = $derived(outerWidth < 960);
   let basketNumber = $derived(

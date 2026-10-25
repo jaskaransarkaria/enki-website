@@ -1,23 +1,23 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { PUBLIC_SERVER_URL } from "$env/static/public";
+  import { PUBLIC_SERVER_URL } from "$app/env/public";
   import { page } from "$app/state";
-  import { SITE_URL } from "$lib/constants";
-  import { productDescription, productTitle } from "$lib/utils/seo";
+  import { SITE_URL } from "#lib/constants.js";
+  import { productDescription, productTitle } from "#lib/utils/seo.js";
   import {
     breadcrumbJsonLd,
     jsonLdScript,
     productImageUrls,
     productJsonLd,
-  } from "$lib/utils/structuredData";
-  import { products } from "$lib/stores/products";
-  import comingSoon from "$lib/assets/coming_soon.png";
-  import Banner from "$lib/components/Banner/Banner.svelte";
-  import SingleProduct from "$lib/components/SingleProduct/SingleProduct.svelte";
-  import Breadcrumbs from "$lib/components/Breadcrumbs/Breadcrumbs.svelte";
+  } from "#lib/utils/structuredData.js";
+  import { products } from "#lib/stores/products.js";
+  import comingSoon from "#lib/assets/coming_soon.png";
+  import Banner from "#lib/components/Banner/Banner.svelte";
+  import SingleProduct from "#lib/components/SingleProduct/SingleProduct.svelte";
+  import Breadcrumbs from "#lib/components/Breadcrumbs/Breadcrumbs.svelte";
 
-  import type { SquareProduct } from "$lib/types/product";
-  import LoadingSpinner from "$lib/components/LoadingSpinner/LoadingSpinner.svelte";
+  import type { SquareProduct } from "#lib/types/product.js";
+  import LoadingSpinner from "#lib/components/LoadingSpinner/LoadingSpinner.svelte";
 
   let productToShow: readonly SquareProduct[] = $state(page.data.productToShow);
 

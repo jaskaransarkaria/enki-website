@@ -1,5 +1,5 @@
 <script module>
-  import Basket from "$lib/components/Basket/Basket.svelte";
+  import Basket from "#lib/components/Basket/Basket.svelte";
 </script>
 
 <svelte:head>
