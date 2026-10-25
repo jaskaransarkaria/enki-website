@@ -45,7 +45,7 @@ Disallow: /shop/search
 Disallow: /shop/basket
 Disallow: /*?
 
-User-agent: DuckDuckGoBot
+User-agent: DuckDuckBot
 Disallow: /payment
 Disallow: /shop/search
 Disallow: /shop/basket
