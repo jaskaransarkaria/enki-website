@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { dev } from "$app/environment";
+  import { SITE_URL } from "$lib/constants";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import mobileGiftGuideAvif from "$lib/assets/mobile_gift_guide_1.avif";
   import mobileAboutUsAvif from "$lib/assets/mobile_about_us_3.avif";
@@ -69,7 +70,7 @@
     property="og:description"
     content="Independent gift shop and working jewellers on Kings Heath High Street, Birmingham. Cards, gifts, jewellery repairs and wedding ring classes."
   />
-  <meta property="og:image" content={desktopLandingPagePng} />
+  <meta property="og:image" content={`${SITE_URL}${desktopLandingPagePng}`} />
   <link rel="preload" as="image" href={desktopLandingPagePng} />
   <link rel="preload" as="image" href={mobileLandingPagePng} />
 </svelte:head>

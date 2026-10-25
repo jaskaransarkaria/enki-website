@@ -109,7 +109,7 @@
 <svelte:head>
   <meta property="og:url" content={`${SITE_URL}${page.url.pathname}`} />
   <link rel="canonical" href={`${SITE_URL}${page.url.pathname}`} />
-  <meta property="og:image" content={aboutShopOneJpg} />
+  <meta property="og:image" content={`${SITE_URL}${aboutShopOneJpg}`} />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_GB" />
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
