@@ -8,8 +8,6 @@
   import aboutShopAvif from "$lib/assets/about_shop_1.avif";
   import rightEnkiJpg from "$lib/assets/right_enki.jpg";
   import rightEnkiAvif from "$lib/assets/right_enki.avif";
-  import { page } from "$app/state";
-  import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
@@ -19,106 +17,110 @@
 </script>
 
 <svelte:head>
-  <title>Enki - About</title>
-  <meta property="og:url" content="https://enkionline.com/about" />
+  <title>About Enki | Independent Jewellers, Kings Heath</title>
+  <meta
+    name="description"
+    content="Enki has been on Kings Heath High Street since 2017: a gift shop downstairs and a working jewellery workshop upstairs. Meet the people behind it."
+  />
+  <meta
+    property="og:title"
+    content="About Enki | Independent Jewellers, Kings Heath"
+  />
+  <meta
+    property="og:description"
+    content="Enki has been on Kings Heath High Street since 2017: a gift shop downstairs and a working jewellery workshop upstairs. Meet the people behind it."
+  />
 </svelte:head>
 
 <svelte:window bind:outerWidth />
-{#if browser || page.data.whitelistedUserAgent}
-  <div class="container">
-    <div class="shop-pics">
-      {#if isMobile}
-        <SwipeImage
-          imgArr={[
-            {
-              src: $isAvifSupported ? leftEnkiAvif : leftEnkiJpg,
-              alt: "a rectangular wooden display inside the shop",
-            },
-            {
-              src: $isAvifSupported ? aboutShopAvif : aboutShopJpg,
-              alt: "the shop front and it's window display",
-            },
-            {
-              src: $isAvifSupported ? rightEnkiAvif : rightEnkiJpg,
-              alt: "a wooden jeweller's work bench inside the shop",
-            },
-          ]}
-        />
-      {:else}
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? leftEnkiAvif : leftEnkiJpg}
-          alt="a rectangular wooden display inside the shop"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          class="center-image"
-          src={$isAvifSupported ? aboutShopAvif : aboutShopJpg}
-          alt="the shop front and it's window display"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? rightEnkiAvif : rightEnkiJpg}
-          alt="a wooden jeweller's work bench inside the shop"
-        />
-      {/if}
+<div class="container">
+  <div class="shop-pics">
+    {#if isMobile}
+      <SwipeImage
+        imgArr={[
+          {
+            src: $isAvifSupported ? leftEnkiAvif : leftEnkiJpg,
+            alt: "a rectangular wooden display inside the shop",
+          },
+          {
+            src: $isAvifSupported ? aboutShopAvif : aboutShopJpg,
+            alt: "the shop front and it's window display",
+          },
+          {
+            src: $isAvifSupported ? rightEnkiAvif : rightEnkiJpg,
+            alt: "a wooden jeweller's work bench inside the shop",
+          },
+        ]}
+      />
+    {:else}
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported ? leftEnkiAvif : leftEnkiJpg}
+        alt="a rectangular wooden display inside the shop"
+      />
+      <img
+        in:fade={{ duration: 600 }}
+        class="center-image"
+        src={$isAvifSupported ? aboutShopAvif : aboutShopJpg}
+        alt="the shop front and it's window display"
+      />
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported ? rightEnkiAvif : rightEnkiJpg}
+        alt="a wooden jeweller's work bench inside the shop"
+      />
+    {/if}
+  </div>
+  <h1>About</h1>
+  <p class="about-shop">
+    Enki is a unique gift shop and fully functioning jewellers workshop. We
+    repair all types of jewellery onsite and also teach group and private
+    jewellery workshops. The Kings Heath store shows the work of many
+    independent crafts people who have become almost invisible on the high
+    street today. From baby clothes to pottery, jewellery to cushions, we have
+    just the gift you're looking for. <br /><br />We also sell beautiful and
+    unique cards and wrapping paper to make your present that bit more special.
+  </p>
+  <h2>Meet the team</h2>
+  <div class="employee-cards">
+    <div class="card">
+      <img
+        in:fade={{ duration: 600 }}
+        src={faith}
+        alt="shop owner faith cartoon"
+      />
+      <p>
+        Faith started Enki in 2017 in a small shop not far from the current
+        location. She is a jeweller with over ten years of experience who
+        specialises in repairing antique jewellery. She's at the shop on Mondays
+        and Fridays.
+      </p>
     </div>
-    <h1>About</h1>
-    <p class="about-shop">
-      Enki is a unique gift shop and fully functioning jewellers workshop. We
-      repair all types of jewellery onsite and also teach group and private
-      jewellery workshops. The Kings Heath store shows the work of many
-      independent crafts people who have become almost invisible on the high
-      street today. From baby clothes to pottery, jewellery to cushions, we have
-      just the gift you're looking for. <br /><br />We also sell beautiful and
-      unique cards and wrapping paper to make your present that bit more
-      special.
-    </p>
-    <h2>Meet the team</h2>
-    <div class="employee-cards">
-      <div class="card">
-        <img
-          in:fade={{ duration: 600 }}
-          src={faith}
-          alt="shop owner faith cartoon"
-        />
-        <p>
-          Faith started Enki in 2017 in a small shop not far from the current
-          location. She is a jeweller with over ten years of experience who
-          specialises in repairing antique jewellery. She's at the shop on
-          Mondays and Fridays.
-        </p>
-      </div>
-      <div class="card">
-        <img
-          in:fade={{ duration: 600 }}
-          src={dora}
-          alt="shop manager cartoon"
-        />
-        <p>
-          Dora joined Enki in 2018 and has been making jewellery ever since,
-          she’s always been a crafter and can do amazing things with beads! She
-          comes from Germany but has been in Brum since 2016. You can find her
-          at Enki Wednesday to Saturday and every other Sunday.
-        </p>
-      </div>
-      <div class="card">
-        <img
-          in:fade={{ duration: 600 }}
-          src={ellis}
-          alt="Sunday/ Monday shop keeper cartoon"
-        />
-        <p>
-          Ellis joined us in 2022 on a part time basis, and works as a graphic
-          artist and designer in the city too. You can find their work at
-          <a href="https://www.instagram.com/ellismilesdesigner/" rel="_blank"
-            >@ellismilesdesigner</a
-          > on Instagram, and they work at Enki on Sundays, Mondays and Tuesdays!
-        </p>
-      </div>
+    <div class="card">
+      <img in:fade={{ duration: 600 }} src={dora} alt="shop manager cartoon" />
+      <p>
+        Dora joined Enki in 2018 and has been making jewellery ever since, she’s
+        always been a crafter and can do amazing things with beads! She comes
+        from Germany but has been in Brum since 2016. You can find her at Enki
+        Wednesday to Saturday and every other Sunday.
+      </p>
+    </div>
+    <div class="card">
+      <img
+        in:fade={{ duration: 600 }}
+        src={ellis}
+        alt="Sunday/ Monday shop keeper cartoon"
+      />
+      <p>
+        Ellis joined us in 2022 on a part time basis, and works as a graphic
+        artist and designer in the city too. You can find their work at
+        <a href="https://www.instagram.com/ellismilesdesigner/" rel="_blank"
+          >@ellismilesdesigner</a
+        > on Instagram, and they work at Enki on Sundays, Mondays and Tuesdays!
+      </p>
     </div>
   </div>
-{/if}
+</div>
 
 <style>
   h1,

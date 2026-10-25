@@ -16,7 +16,6 @@
   let {
     productArr = [],
     showDetailedView = false,
-    whitelistedUserAgent = false,
     sorted = false,
     sortBy = null,
   } = $props();
@@ -72,7 +71,9 @@
             new Date(a.created_at) < new Date(b.created_at) ? 1 : -1,
           );
       case "include-out-of-stock":
-        browser && window.sessionStorage.setItem("filter", "include-out-of-stock"); // eslint-disable-line @typescript-eslint/no-unused-expressions
+        if (browser) {
+          window.sessionStorage.setItem("filter", "include-out-of-stock");
+        }
         return sortByStock(collatedArray);
       default:
         browser && window.sessionStorage.setItem("filter", "in-stock"); // eslint-disable-line @typescript-eslint/no-unused-expressions
@@ -125,8 +126,9 @@
         <option selected={sortBy === "in-stock"} value="in-stock"
           >in stock</option
         >
-        <option selected={sortBy === "include-out-of-stock"} value="include-out-of-stock"
-          >all</option
+        <option
+          selected={sortBy === "include-out-of-stock"}
+          value="include-out-of-stock">all</option
         >
         <option
           selected={sortBy === "newest-to-oldest"}
@@ -135,66 +137,64 @@
       </select>
     </div>
     {#key sortBy}
-      {#if (productArr && browser) || whitelistedUserAgent}
-        {#if browser && window.location.pathname.includes("32TE2EITCQ6KE4HQ34ORK6V5")}
-          <div class="gift-wrap-container">
-            <div class="gift-wrap-img-container">
-              <div class="img-container">
-                <img
-                  data-testid="gift-imgs"
-                  src={$isAvifSupported ? giftWrapOneAvif : giftWrapOneJpg}
-                  alt="the inside of a card with happy birthday written out"
-                />
-                <p>
-                  Select which gifts you'd like wrapped on the basket page and
-                  we'll wrap them for you in recycled kraft paper and colourful
-                  raffia ribbon.
-                </p>
-              </div>
-              <div class="img-container">
-                <img
-                  data-testid="gift-imgs"
-                  src={$isAvifSupported ? giftWrapTwoAvif : giftWrapTwoJpg}
-                  alt="some gifts wrapped with colourful wrapping paper and pink and green ribbon"
-                />
-                <p>
-                  To make your gift extra special just add one of our printed
-                  wraps below and we'll us it to wrap whichever gifts are
-                  selected in the basket. A sheet should do one large, two small
-                  or lots of little gifts.
-                </p>
-              </div>
-              <div class="img-container">
-                <img
-                  data-testid="gift-imgs"
-                  src={$isAvifSupported ? giftWrapThreeAvif : giftWrapThreeJpg}
-                  alt="some gifts wrapped with brown paper wrapping paper and yellow and green ribbon"
-                />
-                <p>
-                  There's also a space for you to write a message for the
-                  recipient, if you have a card in your basket we'll write in
-                  that, if not we'll write on one of our enki gift tags.
-                </p>
-              </div>
+      {#if browser && window.location.pathname.includes("32TE2EITCQ6KE4HQ34ORK6V5")}
+        <div class="gift-wrap-container">
+          <div class="gift-wrap-img-container">
+            <div class="img-container">
+              <img
+                data-testid="gift-imgs"
+                src={$isAvifSupported ? giftWrapOneAvif : giftWrapOneJpg}
+                alt="the inside of a card with happy birthday written out"
+              />
+              <p>
+                Select which gifts you'd like wrapped on the basket page and
+                we'll wrap them for you in recycled kraft paper and colourful
+                raffia ribbon.
+              </p>
+            </div>
+            <div class="img-container">
+              <img
+                data-testid="gift-imgs"
+                src={$isAvifSupported ? giftWrapTwoAvif : giftWrapTwoJpg}
+                alt="some gifts wrapped with colourful wrapping paper and pink and green ribbon"
+              />
+              <p>
+                To make your gift extra special just add one of our printed
+                wraps below and we'll us it to wrap whichever gifts are selected
+                in the basket. A sheet should do one large, two small or lots of
+                little gifts.
+              </p>
+            </div>
+            <div class="img-container">
+              <img
+                data-testid="gift-imgs"
+                src={$isAvifSupported ? giftWrapThreeAvif : giftWrapThreeJpg}
+                alt="some gifts wrapped with brown paper wrapping paper and yellow and green ribbon"
+              />
+              <p>
+                There's also a space for you to write a message for the
+                recipient, if you have a card in your basket we'll write in
+                that, if not we'll write on one of our enki gift tags.
+              </p>
             </div>
           </div>
-        {/if}
-        <div
-          in:fade|local={{ delay: 500 }}
-          class={showDetailedView || (productArr.length <= 3 && !isMobile) // if there are only 3 products then center them
-            ? "detailed-products-container"
-            : "products-container"}
-          data-testid="products-container"
-        >
-          {#each sortedCollatedArray as item (item.id)}
-            {#if item.item_data.variations.every((v) => {
-              return sortBy === "include-out-of-stock" || parseInt(v.item_variation_data.quantity, 10) > 0;
-            }) || Boolean(page.url.pathname === "/shop/search")}
-              <SingleProduct product={item} {showDetailedView} />
-            {/if}
-          {/each}
         </div>
       {/if}
+      <div
+        in:fade|local={{ delay: 500 }}
+        class={showDetailedView || (productArr.length <= 3 && !isMobile) // if there are only 3 products then center them
+          ? "detailed-products-container"
+          : "products-container"}
+        data-testid="products-container"
+      >
+        {#each sortedCollatedArray as item (item.id)}
+          {#if item.item_data.variations.every((v) => {
+            return sortBy === "include-out-of-stock" || parseInt(v.item_variation_data.quantity, 10) > 0;
+          }) || Boolean(page.url.pathname === "/shop/search")}
+            <SingleProduct product={item} {showDetailedView} />
+          {/if}
+        {/each}
+      </div>
     {/key}
   </div>
 {/if}

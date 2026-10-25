@@ -88,4 +88,34 @@ describe("GIVEN requests.ts", () => {
       expect(products).toStrictEqual([]);
     });
   });
+
+  describe("GIVEN a non-array response body", () => {
+    // The backend returns an empty 500 body for missing records; `res.json()`
+    // then resolves to `undefined`/`null` rather than throwing.
+    const nullBody = async () => new Response("null", { status: 200 });
+
+    it("WHEN fetching products THEN returns the default value", async () => {
+      const products = await refreshProductsFromServer(
+        "http://x/products",
+        nullBody as unknown as () => Promise<Response>,
+      );
+      expect(products).toStrictEqual([]);
+    });
+
+    it("WHEN fetching categories THEN returns the default value", async () => {
+      const categories = await refreshCategoriesFromServer(
+        "http://x/categories",
+        nullBody as unknown as () => Promise<Response>,
+      );
+      expect(categories).toStrictEqual([]);
+    });
+
+    it("WHEN fetching a category THEN returns the default value", async () => {
+      const category = await refreshCategoryFromServer(
+        "http://x/category?id=1",
+        nullBody as unknown as () => Promise<Response>,
+      );
+      expect(category).toStrictEqual([]);
+    });
+  });
 });

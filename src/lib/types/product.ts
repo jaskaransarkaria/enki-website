@@ -31,6 +31,7 @@ interface CustomItemAttributeVals {
 
 interface PriceMoney {
   amount: number;
+  currency?: string;
 }
 
 interface ItemVariationData {
@@ -38,6 +39,8 @@ interface ItemVariationData {
   item_id: string;
   price_money: PriceMoney;
   quantity: string;
+  sku?: string;
+  upc?: string;
 }
 
 export interface VariationData {
@@ -49,6 +52,7 @@ export interface VariationData {
 interface ItemData {
   name: string;
   categories: CatalogObjectCategory[];
+  description?: string;
   description_html: string;
   is_archived: boolean;
   ecom_visibility: string;

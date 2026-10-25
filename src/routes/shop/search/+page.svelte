@@ -24,7 +24,6 @@
         "search-term",
       )}`}
     />
-    <meta property="og:url" content={page.url.toString()} />
     <meta
       property="og:image"
       content={`${PUBLIC_BUCKET_URL}/${

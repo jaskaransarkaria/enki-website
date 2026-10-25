@@ -3,6 +3,7 @@
   import { beforeNavigate } from "$app/navigation";
   import { updated, navigating } from "$app/state";
   import { SITE_URL } from "$lib/constants";
+  import { jsonLdScript } from "$lib/utils/structuredData";
   import Header from "$lib/components/Header/Header.svelte";
   import Footer from "$lib/components/Footer/Footer.svelte";
   import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
@@ -16,6 +17,52 @@
   }
 
   let { children }: Props = $props();
+
+  const businessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["Store", "JewelryStore"],
+    "@id": `${SITE_URL}/#business`,
+    name: "Enki",
+    description:
+      "Independent gift shop and working jewellers in Kings Heath, Birmingham: cards, gifts, jewellery repairs, wedding ring classes and jewellery and craft workshops.",
+    url: `${SITE_URL}/`,
+    telephone: "+44 121 444 4453",
+    email: "faith@enkionline.com",
+    foundingDate: "2017",
+    image: `${SITE_URL}${aboutShopOneJpg}`,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "30 High Street",
+      addressLocality: "Kings Heath, Birmingham",
+      postalCode: "B14 7JT",
+      addressCountry: "GB",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 52.43718715965811,
+      longitude: -1.892812886574717,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "10:00",
+        closes: "17:00",
+      },
+    ],
+    sameAs: [
+      "https://www.instagram.com/enkionline/",
+      "https://www.facebook.com/Enki-1665334930147391",
+    ],
+  };
 
   let checkAvif = $state(false);
   let loading = $state(false);
@@ -60,16 +107,13 @@
 </script>
 
 <svelte:head>
-  <meta property="og:title" content="Enki" />
-  <meta property="og:url" content="https://enkionline.com" />
+  <meta property="og:url" content={`${SITE_URL}${page.url.pathname}`} />
   <link rel="canonical" href={`${SITE_URL}${page.url.pathname}`} />
   <meta property="og:image" content={aboutShopOneJpg} />
   <meta property="og:type" content="website" />
-  <meta
-    property="og:description"
-    content="Independent jewellers and craft gallery -- Kings Heath Birmingham"
-  />
   <meta property="og:locale" content="en_GB" />
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html jsonLdScript(businessJsonLd)}
   <!-- Chrome, Firefox OS and Opera -->
   <meta name="theme-color" content="#008080" />
   <!-- Windows Phone -->
@@ -79,7 +123,7 @@
 </svelte:head>
 
 <div class="container">
-  <Header whitelistedUserAgent={page.data.whitelistedUserAgent} bind:loading />
+  <Header bind:loading />
   <div class="header-block"></div>
   {#if loading}
     <div

@@ -5,8 +5,19 @@
 </script>
 
 <svelte:head>
-  <title>Enki - Contact</title>
-  <meta property="og:url" content="https://enkionline.com/contact" />
+  <title>Contact &amp; Opening Hours | Enki, Kings Heath</title>
+  <meta
+    name="description"
+    content="Find Enki at 30 High Street, Kings Heath, Birmingham B14 7JT. Open every day 10am–5pm. Call 0121 444 4453 or email faith@enkionline.com."
+  />
+  <meta
+    property="og:title"
+    content="Contact &amp; Opening Hours | Enki, Kings Heath"
+  />
+  <meta
+    property="og:description"
+    content="Find Enki at 30 High Street, Kings Heath, Birmingham B14 7JT. Open every day 10am–5pm. Call 0121 444 4453 or email faith@enkionline.com."
+  />
 </svelte:head>
 
 <div class="contact-us-container">

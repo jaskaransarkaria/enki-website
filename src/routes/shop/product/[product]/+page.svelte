@@ -2,6 +2,12 @@
   import { onMount } from "svelte";
   import { PUBLIC_BUCKET_URL, PUBLIC_SERVER_URL } from "$env/static/public";
   import { page } from "$app/state";
+  import { productDescription, productTitle } from "$lib/utils/seo";
+  import {
+    breadcrumbJsonLd,
+    jsonLdScript,
+    productJsonLd,
+  } from "$lib/utils/structuredData";
   import { products } from "$lib/stores/products";
   import comingSoon from "$lib/assets/coming_soon.png";
   import Banner from "$lib/components/Banner/Banner.svelte";
@@ -22,19 +28,29 @@
 
       if (productToShow.length < 1) {
         const res = await fetch(`${PUBLIC_SERVER_URL}/product?id=${productId}`);
-        productToShow = await res.json();
+        if (res.ok) {
+          const data = await res.json();
+          productToShow = Array.isArray(data) ? data : [];
+        }
       }
     }
   });
 </script>
 
 <svelte:head>
-  <title>{`Enki - ${productToShow[0]?.item_data.name}`}</title>
+  <title>{productTitle(productToShow[0]?.item_data?.name)}</title>
+  <meta
+    name="description"
+    content={productDescription(productToShow[0]?.item_data?.description_html)}
+  />
   <meta
     property="og:title"
-    content={`Enki - ${productToShow[0]?.item_data.name}`}
+    content={productTitle(productToShow[0]?.item_data?.name)}
   />
-  <meta property="og:url" content={page.url.toString()} />
+  <meta
+    property="og:description"
+    content={productDescription(productToShow[0]?.item_data?.description_html)}
+  />
   <meta
     property="og:image"
     content={`${PUBLIC_BUCKET_URL}/${
@@ -48,14 +64,18 @@
     }`}
   />
   <meta property="og:type" content="website" />
-  <meta
-    property="og:description"
-    content={`Shop at Enki for ${productToShow[0]?.item_data.name}`}
-  />
   <meta property="og:locale" content="en_GB" />
+  {#if productToShow[0]}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html jsonLdScript(productJsonLd(productToShow[0]))}
+  {/if}
+  {#if page.data.breadcrumbTrail?.length}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html jsonLdScript(breadcrumbJsonLd(page.data.breadcrumbTrail))}
+  {/if}
 </svelte:head>
 
-{#if productToShow.length || page.data.whitelistedUserAgent}
+{#if productToShow.length}
   <Banner hasProducts />
   <Breadcrumbs
     selectedCategoryId={productToShow[0].item_data.categories[0].id}

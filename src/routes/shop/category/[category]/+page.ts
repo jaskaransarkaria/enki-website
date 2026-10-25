@@ -2,9 +2,15 @@ import { browser, dev } from "$app/environment";
 import { error } from "@sveltejs/kit";
 import { setServerUrl } from "$lib/utils/setServerUrl";
 import {
+  refreshCategoriesFromServer,
   refreshCategoryFromServer,
   refreshProductsFromServer,
 } from "$lib/utils/requests";
+import {
+  categoryTrail,
+  shopBreadcrumb,
+  type Breadcrumb,
+} from "$lib/utils/structuredData";
 
 import type { SquareCategory } from "$lib/types/category";
 import type { SquareProduct } from "$lib/types/product";
@@ -58,8 +64,22 @@ export async function load({ fetch, params }) {
     ];
   }
 
+  // Build the breadcrumb trail server-side (the client already has the store).
+  let breadcrumbTrail: Breadcrumb[] = [];
+  if (!browser) {
+    const categories = await refreshCategoriesFromServer(
+      `${serverUrl}/categories`,
+      fetch,
+    );
+    breadcrumbTrail = [
+      shopBreadcrumb,
+      ...categoryTrail(categories, params.category),
+    ];
+  }
+
   return {
     categoryToShow: category,
     productArr: productResults,
+    breadcrumbTrail,
   };
 }
