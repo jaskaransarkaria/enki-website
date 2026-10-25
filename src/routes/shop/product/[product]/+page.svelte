@@ -1,11 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { PUBLIC_BUCKET_URL, PUBLIC_SERVER_URL } from "$env/static/public";
+  import { PUBLIC_SERVER_URL } from "$env/static/public";
   import { page } from "$app/state";
+  import { SITE_URL } from "$lib/constants";
   import { productDescription, productTitle } from "$lib/utils/seo";
   import {
     breadcrumbJsonLd,
     jsonLdScript,
+    productImageUrls,
     productJsonLd,
   } from "$lib/utils/structuredData";
   import { products } from "$lib/stores/products";
@@ -18,6 +20,14 @@
   import LoadingSpinner from "$lib/components/LoadingSpinner/LoadingSpinner.svelte";
 
   let productToShow: readonly SquareProduct[] = $state(page.data.productToShow);
+
+  // Use the image the page actually shows (variation-level), not the
+  // product-level field, which is empty for most items.
+  const ogImage = $derived(
+    productToShow[0]
+      ? (productImageUrls(productToShow[0])[0] ?? `${SITE_URL}${comingSoon}`)
+      : `${SITE_URL}${comingSoon}`,
+  );
 
   onMount(async () => {
     if (productToShow.length < 1) {
@@ -51,18 +61,7 @@
     property="og:description"
     content={productDescription(productToShow[0]?.item_data?.description_html)}
   />
-  <meta
-    property="og:image"
-    content={`${PUBLIC_BUCKET_URL}/${
-      productToShow[0]?.custom_attribute_values.image_arr.string_value.split(
-        ",",
-      )[0]
-        ? productToShow[0]?.custom_attribute_values.image_arr.string_value.split(
-            ",",
-          )[0]
-        : comingSoon
-    }`}
-  />
+  <meta property="og:image" content={ogImage} />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_GB" />
   {#if productToShow[0]}
