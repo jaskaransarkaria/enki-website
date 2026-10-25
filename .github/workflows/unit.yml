@@ -22,3 +22,6 @@ jobs:
         run: npm run test:unit:ci
         env:
           PUBLIC_BUCKET_URL: https://storage.googleapis.com/enki-website
+          PUBLIC_SERVER_URL: http://localhost:8080
+          PUBLIC_INTERNAL_K8S_URL: http://localhost:5001
+          PUBLIC_STRIPE_KEY: pk_test_ci_placeholder
