@@ -3,6 +3,11 @@
   import { PUBLIC_BUCKET_URL, PUBLIC_SERVER_URL } from "$env/static/public";
   import { page } from "$app/state";
   import { productDescription, productTitle } from "$lib/utils/seo";
+  import {
+    breadcrumbJsonLd,
+    jsonLdScript,
+    productJsonLd,
+  } from "$lib/utils/structuredData";
   import { products } from "$lib/stores/products";
   import comingSoon from "$lib/assets/coming_soon.png";
   import Banner from "$lib/components/Banner/Banner.svelte";
@@ -57,6 +62,14 @@
   />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_GB" />
+  {#if productToShow[0]}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html jsonLdScript(productJsonLd(productToShow[0]))}
+  {/if}
+  {#if page.data.breadcrumbTrail?.length}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html jsonLdScript(breadcrumbJsonLd(page.data.breadcrumbTrail))}
+  {/if}
 </svelte:head>
 
 {#if productToShow.length || page.data.whitelistedUserAgent}

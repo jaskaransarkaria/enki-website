@@ -2,6 +2,7 @@
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/state";
   import CategoryView from "$lib/components/CategoryView/CategoryView.svelte";
+  import { breadcrumbJsonLd, jsonLdScript } from "$lib/utils/structuredData";
 
   let categoryToShow = $derived(page.data.categoryToShow);
   let productArr = $derived(page.data.productArr);
@@ -31,6 +32,10 @@
   <meta property="og:image" content={`${PUBLIC_BUCKET_URL}/${imgHash}`} />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_GB" />
+  {#if page.data.breadcrumbTrail?.length}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html jsonLdScript(breadcrumbJsonLd(page.data.breadcrumbTrail))}
+  {/if}
 </svelte:head>
 
 <h1 class="visually-hidden">{name}</h1>

@@ -29,10 +29,14 @@ const decodeEntities = (text: string): string =>
     )
     .replace(/&amp;/g, "&");
 
-const firstSentence = (html: string): string => {
-  const text = decodeEntities(html.replace(/<[^>]*>/g, " "))
+/** Strip HTML tags and decode entities to plain text. */
+export const plainText = (html = ""): string =>
+  decodeEntities(html.replace(/<[^>]*>/g, " "))
     .replace(/\s+/g, " ")
     .trim();
+
+const firstSentence = (html: string): string => {
+  const text = plainText(html);
   const match = text.match(/^.*?[.!?](?=\s|$)/);
 
   return (match ? match[0] : text).trim();
