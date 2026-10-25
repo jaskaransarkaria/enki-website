@@ -5,7 +5,19 @@
 </script>
 
 <svelte:head>
-  <title>Enki - Workshops</title>
+  <title>Jewellery &amp; Craft Workshops in Birmingham | Enki</title>
+  <meta
+    name="description"
+    content="Wedding ring classes, jewellery making workshops, craft classes and private parties above our shop on Kings Heath High Street, Birmingham."
+  />
+  <meta
+    property="og:title"
+    content="Jewellery &amp; Craft Workshops in Birmingham | Enki"
+  />
+  <meta
+    property="og:description"
+    content="Wedding ring classes, jewellery making workshops, craft classes and private parties above our shop on Kings Heath High Street, Birmingham."
+  />
 </svelte:head>
 
 <div class="container">

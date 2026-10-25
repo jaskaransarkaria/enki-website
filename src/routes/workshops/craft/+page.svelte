@@ -26,7 +26,19 @@
 </script>
 
 <svelte:head>
-  <title>Enki - Children's, Hen and Private Craft Parties</title>
+  <title>Hen Party &amp; Private Craft Workshops Birmingham | Enki</title>
+  <meta
+    name="description"
+    content="Private jewellery and craft parties in Kings Heath, Birmingham: hen dos, birthdays and kids' parties. Lino printing, beading, needle felting and more."
+  />
+  <meta
+    property="og:title"
+    content="Hen Party &amp; Private Craft Workshops Birmingham | Enki"
+  />
+  <meta
+    property="og:description"
+    content="Private jewellery and craft parties in Kings Heath, Birmingham: hen dos, birthdays and kids' parties. Lino printing, beading, needle felting and more."
+  />
 </svelte:head>
 
 <svelte:window bind:outerWidth />
@@ -101,8 +113,7 @@
       workshops.<br />
       <br />
       If you would like to do a craft we don't currently offer please let us know,
-      we have a huge network of local makers and would love to make your dream a
-      reality!
+      we have a huge network of local makers and would love to make your dream a reality!
     </p>
     <br />
     <p>

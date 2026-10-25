@@ -2,7 +2,6 @@
   import { PUBLIC_BUCKET_URL } from "$env/static/public";
   import { page } from "$app/state";
   import CategoryView from "$lib/components/CategoryView/CategoryView.svelte";
-  import { SITE_URL } from "$lib/constants";
 
   let categoryToShow = $derived(page.data.categoryToShow);
   let productArr = $derived(page.data.productArr);
@@ -16,19 +15,21 @@
 </script>
 
 <svelte:head>
-  <title>{`Enki - ${name}`}</title>
+  <title>{`${name} | Enki, Kings Heath Birmingham`}</title>
   <meta
     name="description"
-    content={`Shop ${name} at Enki, independent jewellers and craft gallery in Kings Heath, Birmingham.`}
+    content={`Shop ${name} at Enki, an independent gift shop in Kings Heath, Birmingham. UK delivery, free over £40.`}
   />
-  <meta property="og:title" content={`Enki - ${name}`} />
-  <meta property="og:url" content={`${SITE_URL}${page.url.pathname}`} />
-  <meta property="og:image" content={`${PUBLIC_BUCKET_URL}/${imgHash}`} />
-  <meta property="og:type" content="website" />
+  <meta
+    property="og:title"
+    content={`${name} | Enki, Kings Heath Birmingham`}
+  />
   <meta
     property="og:description"
-    content={`Shop at Enki for gifts in the ${name} category`}
+    content={`Shop ${name} at Enki, an independent gift shop in Kings Heath, Birmingham. UK delivery, free over £40.`}
   />
+  <meta property="og:image" content={`${PUBLIC_BUCKET_URL}/${imgHash}`} />
+  <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_GB" />
 </svelte:head>
 

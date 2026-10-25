@@ -19,8 +19,19 @@
 </script>
 
 <svelte:head>
-  <title>Enki - About</title>
-  <meta property="og:url" content="https://enkionline.com/about" />
+  <title>About Enki | Independent Jewellers, Kings Heath</title>
+  <meta
+    name="description"
+    content="Enki has been on Kings Heath High Street since 2017: a gift shop downstairs and a working jewellery workshop upstairs. Meet the people behind it."
+  />
+  <meta
+    property="og:title"
+    content="About Enki | Independent Jewellers, Kings Heath"
+  />
+  <meta
+    property="og:description"
+    content="Enki has been on Kings Heath High Street since 2017: a gift shop downstairs and a working jewellery workshop upstairs. Meet the people behind it."
+  />
 </svelte:head>
 
 <svelte:window bind:outerWidth />

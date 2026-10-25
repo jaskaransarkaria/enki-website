@@ -14,6 +14,11 @@
     name="description"
     content="Links to Enki's loyalty scheme, Instagram and Facebook."
   />
+  <meta property="og:title" content="Enki - Useful Links" />
+  <meta
+    property="og:description"
+    content="Links to Enki's loyalty scheme, Instagram and Facebook."
+  />
 </svelte:head>
 
 <div>

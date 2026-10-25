@@ -22,9 +22,20 @@
 </script>
 
 <svelte:head>
-  <title>Enki - Repairs</title>
+  <title>Jewellery Repairs Kings Heath, Birmingham | Enki</title>
+  <meta
+    name="description"
+    content="Ring resizing, chain and clasp repairs, claw re-tipping, re-stringing and more, done by jewellers in our Kings Heath workshop. Estimates before any work."
+  />
+  <meta
+    property="og:title"
+    content="Jewellery Repairs Kings Heath, Birmingham | Enki"
+  />
+  <meta
+    property="og:description"
+    content="Ring resizing, chain and clasp repairs, claw re-tipping, re-stringing and more, done by jewellers in our Kings Heath workshop. Estimates before any work."
+  />
   <meta property="og:image" content={servicesFourJpg} />
-  <meta property="og:url" content="https://enkionline.com/repairs" />
 </svelte:head>
 
 <svelte:window bind:outerWidth />

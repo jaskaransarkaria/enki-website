@@ -13,6 +13,11 @@
 <svelte:head>
   <meta name="robots" content="noindex, follow" />
   <title>Enki - Payment</title>
+  <meta property="og:title" content="Enki - Payment" />
+  <meta
+    property="og:description"
+    content="Thank you for your order from Enki."
+  />
 </svelte:head>
 
 <h1>Thank you for your purchase</h1>

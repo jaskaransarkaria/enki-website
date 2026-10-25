@@ -60,15 +60,10 @@
 </script>
 
 <svelte:head>
-  <meta property="og:title" content="Enki" />
-  <meta property="og:url" content="https://enkionline.com" />
+  <meta property="og:url" content={`${SITE_URL}${page.url.pathname}`} />
   <link rel="canonical" href={`${SITE_URL}${page.url.pathname}`} />
   <meta property="og:image" content={aboutShopOneJpg} />
   <meta property="og:type" content="website" />
-  <meta
-    property="og:description"
-    content="Independent jewellers and craft gallery -- Kings Heath Birmingham"
-  />
   <meta property="og:locale" content="en_GB" />
   <!-- Chrome, Firefox OS and Opera -->
   <meta name="theme-color" content="#008080" />

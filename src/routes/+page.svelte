@@ -57,8 +57,19 @@
 <svelte:window bind:outerWidth bind:outerHeight bind:innerWidth />
 
 <svelte:head>
-  <title>Enki - Welcome!</title>
-  <meta property="og:url" content="https://enkionline.com/" />
+  <title>Enki | Gift Shop, Jewellery Repairs &amp; Classes, Kings Heath</title>
+  <meta
+    name="description"
+    content="Independent gift shop and working jewellers on Kings Heath High Street, Birmingham. Cards, gifts, jewellery repairs and wedding ring classes."
+  />
+  <meta
+    property="og:title"
+    content="Enki | Gift Shop, Jewellery Repairs &amp; Classes, Kings Heath"
+  />
+  <meta
+    property="og:description"
+    content="Independent gift shop and working jewellers on Kings Heath High Street, Birmingham. Cards, gifts, jewellery repairs and wedding ring classes."
+  />
   <meta property="og:image" content={desktopLandingPagePng} />
   <link rel="preload" as="image" href={desktopLandingPagePng} />
   <link rel="preload" as="image" href={mobileLandingPagePng} />

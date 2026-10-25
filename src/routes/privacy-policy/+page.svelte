@@ -1,5 +1,14 @@
 <svelte:head>
   <title>Enki - Privacy policy</title>
+  <meta
+    name="description"
+    content="How Enki Birmingham Ltd collects, uses and protects your personal information, and your rights under UK data protection law."
+  />
+  <meta property="og:title" content="Enki - Privacy policy" />
+  <meta
+    property="og:description"
+    content="How Enki Birmingham Ltd collects, uses and protects your personal information, and your rights under UK data protection law."
+  />
 </svelte:head>
 
 <div>
@@ -28,11 +37,11 @@
     provided in the Data Protection Laws; Data Protection Laws any applicable law
     relating to the processing of personal Data, including but not limited to the
     GDPR, and any national implementing and supplementary laws, regulations and secondary
-    legislation; GDPR The UK General Data Protection Regulation; Enki Birmingham
-    Ltd, We or us Enki Birmingham Ltd, a company incorporated in England and Wales
-    with registered number 129 09540 whose registered office is at 30 High Street,
-    Kings Heath, West Midlands, B14 7JT; User or you any third party that accesses
-    the Website and is not either
+    legislation; GDPR The UK General Data Protection Regulation; Enki Birmingham Ltd,
+    We or us Enki Birmingham Ltd, a company incorporated in England and Wales with
+    registered number 129 09540 whose registered office is at 30 High Street, Kings
+    Heath, West Midlands, B14 7JT; User or you any third party that accesses the Website
+    and is not either
     <br />
     <br />
     (i) employed by Enki Birmingham Ltd and a cting in the course of their employment
@@ -104,8 +113,8 @@
     <br />
     e. when you make payments to us, through this Website or otherwise;
     <br />
-    f. when you elect to receive marketing communications from us; in each case,
-    in accordance with this privacy policy. Data that is collected automatically
+    f. when you elect to receive marketing communications from us; in each case, in
+    accordance with this privacy policy. Data that is collected automatically
     <br />
     <br />
     8. To the extent that you access the Website, we will collect your Data automatically,
@@ -152,10 +161,10 @@
     the section headed "Your rights" below.
     <br />
     <br />
-    12. When you register with us and set up an account to receive our services,
-    the legal basis for this processing is the performance of a contract between
-    you and us and/or taking steps, at your request, to enter into such a contract.
-    Keeping Data secure
+    12. When you register with us and set up an account to receive our services, the
+    legal basis for this processing is the performance of a contract between you and
+    us and/or taking steps, at your request, to enter into such a contract. Keeping
+    Data secure
     <br />
     <br />
     13. We will use technical and organisational measures to safeguard your Data,
@@ -172,8 +181,8 @@
     <br />
     15. If you want detailed information from Get Safe Online on how to protect your
     information and your computers and devices against fraud, identity theft, viruses
-    and many other online problems, please visit www.getsafeonline.org. Get Safe
-    Online is supported by HM Government and leading businesses. Data retention
+    and many other online problems, please visit www.getsafeonline.org. Get Safe Online
+    is supported by HM Government and leading businesses. Data retention
     <br />
     <br />
     16. Unless a longer retention period is required or permitted by law, we will
@@ -225,45 +234,45 @@
     <a href="https://ico.org.uk" rel="external">https://ico.org.uk/</a>
     <br />
     <br />
-    21. It is important that the Data we hold about you is accurate and current.
-    Please keep us informed if your Data changes during the period for which we hold
-    it. Links to other websites
+    21. It is important that the Data we hold about you is accurate and current. Please
+    keep us informed if your Data changes during the period for which we hold it.
+    Links to other websites
     <br />
     <br />
-    22. This Website may, from time to time, provide links to other websites. We
-    have no control over such websites and are not responsible for the content of
-    these websites. This privacy policy does not extend to your use of such websites.
-    You are advised to read the privacy policy or statement of other websites prior
-    to using them. Changes of business ownership and control
+    22. This Website may, from time to time, provide links to other websites. We have
+    no control over such websites and are not responsible for the content of these
+    websites. This privacy policy does not extend to your use of such websites. You
+    are advised to read the privacy policy or statement of other websites prior to
+    using them. Changes of business ownership and control
     <br />
     <br />
     23. Enki Birmingham Ltd may, from time to time, expand or reduce our business
     and this may involve the sale and/or the transfer of control of all or part of
     Enki Birmingham Ltd. Data provided by Users will, where it is relevant to any
-    part of our business so transferred, be transferred along with that part and
-    the new owner or newly controlling party will, under the terms of this privacy
-    policy, be permitted to use the Data for the purposes for which it was originally
-    supplied to us.
+    part of our business so transferred, be transferred along with that part and the
+    new owner or newly controlling party will, under the terms of this privacy policy,
+    be permitted to use the Data for the purposes for which it was originally supplied
+    to us.
     <br />
     <br />
     24. We may also disclose Data to a prospective purchaser of our business or any
     part of it.
     <br />
     <br />
-    25. In the above instances, we will take steps with the aim of ensuring your
-    privacy is protected. General
+    25. In the above instances, we will take steps with the aim of ensuring your privacy
+    is protected. General
     <br />
     <br />
-    26. You may not transfer any of your rights under this privacy policy to any
-    other person. We may transfer our rights under this privacy policy where we reasonably
+    26. You may not transfer any of your rights under this privacy policy to any other
+    person. We may transfer our rights under this privacy policy where we reasonably
     believe your rights will not be affected.
     <br />
     <br />
     27. If any court or competent authority finds that any provision of this privacy
-    policy (or part of any provision) is invalid, illegal or unenforceable, that
-    provision or part-provision will, to the extent required, be deemed to be deleted,
-    and the validity and enforceability of the other provisions of this privacy policy
-    will not be affected.
+    policy (or part of any provision) is invalid, illegal or unenforceable, that provision
+    or part-provision will, to the extent required, be deemed to be deleted, and the
+    validity and enforceability of the other provisions of this privacy policy will
+    not be affected.
     <br />
     <br />
     28. Unless otherwise agreed, no delay, act or omission by a party in exercising

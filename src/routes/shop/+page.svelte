@@ -27,7 +27,19 @@
 </script>
 
 <svelte:head>
-  <title>Enki - Shop</title>
+  <title>Shop Gifts Online | Enki, Kings Heath Birmingham</title>
+  <meta
+    name="description"
+    content="Gifts, homeware, toys, books and jewellery from UK makers, chosen by our Kings Heath shop. Free UK delivery on orders over £40."
+  />
+  <meta
+    property="og:title"
+    content="Shop Gifts Online | Enki, Kings Heath Birmingham"
+  />
+  <meta
+    property="og:description"
+    content="Gifts, homeware, toys, books and jewellery from UK makers, chosen by our Kings Heath shop. Free UK delivery on orders over £40."
+  />
 </svelte:head>
 
 <HexGrid data={data.data} {categoryFn} {whitelistedUserAgent} />

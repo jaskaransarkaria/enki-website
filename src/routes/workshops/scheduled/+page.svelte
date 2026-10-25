@@ -32,7 +32,19 @@
 </script>
 
 <svelte:head>
-  <title>Enki - Scheduled Group Workshops</title>
+  <title>Jewellery Making Classes Birmingham | Enki Kings Heath</title>
+  <meta
+    name="description"
+    content="Make a silver ring, bangle, cuff or stone-set pendant in a small class in Kings Heath, Birmingham. All tools, materials, tea and cake included."
+  />
+  <meta
+    property="og:title"
+    content="Jewellery Making Classes Birmingham | Enki Kings Heath"
+  />
+  <meta
+    property="og:description"
+    content="Make a silver ring, bangle, cuff or stone-set pendant in a small class in Kings Heath, Birmingham. All tools, materials, tea and cake included."
+  />
 </svelte:head>
 
 <svelte:window bind:outerWidth />

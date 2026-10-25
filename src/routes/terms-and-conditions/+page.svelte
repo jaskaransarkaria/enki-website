@@ -10,6 +10,11 @@
     name="description"
     content="Enki's terms and conditions for the website and online shop, group classes, wedding ring workshops and jewellery repairs, plus our privacy policy."
   />
+  <meta property="og:title" content="Enki - Terms and Conditions" />
+  <meta
+    property="og:description"
+    content="Enki's terms and conditions for the website and online shop, group classes, wedding ring workshops and jewellery repairs, plus our privacy policy."
+  />
 </svelte:head>
 
 <div>

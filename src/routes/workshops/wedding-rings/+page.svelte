@@ -26,7 +26,19 @@
 </script>
 
 <svelte:head>
-  <title>Enki - Private Wedding Classes</title>
+  <title>Make Your Own Wedding Rings, Birmingham | Enki</title>
+  <meta
+    name="description"
+    content="Make each other's wedding rings in a private class with our jewellers in Kings Heath, Birmingham. Silver, gold or platinum, hallmarked before the big day."
+  />
+  <meta
+    property="og:title"
+    content="Make Your Own Wedding Rings, Birmingham | Enki"
+  />
+  <meta
+    property="og:description"
+    content="Make each other's wedding rings in a private class with our jewellers in Kings Heath, Birmingham. Silver, gold or platinum, hallmarked before the big day."
+  />
 </svelte:head>
 
 <svelte:window bind:outerWidth />
@@ -122,16 +134,15 @@
       wedding ring, guided by one of our resident jewellers.
       <br />
       <br />
-      You will start with an initial silver practice ring which you will be able
-      to take home after the class. You will then make the real thing in gold or
-      the metal of your choice which will be taken away to be hallmarked before being
+      You will start with an initial silver practice ring which you will be able to
+      take home after the class. You will then make the real thing in gold or the
+      metal of your choice which will be taken away to be hallmarked before being
       returned to you in plenty of time for your big day.
       <br />
       <br />
       To make the experience extra special we provide cake from the wonderful Early
-      Bird Bakery next door. If you aren't local we can give you lots of tips on
-      where to stay and what to do in the area if you want to make a mini-break of
-      it.
+      Bird Bakery next door. If you aren't local we can give you lots of tips on where
+      to stay and what to do in the area if you want to make a mini-break of it.
     </p>
     <br />
     <p>
