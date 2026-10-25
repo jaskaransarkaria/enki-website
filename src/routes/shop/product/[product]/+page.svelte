@@ -72,7 +72,7 @@
   {/if}
 </svelte:head>
 
-{#if productToShow.length || page.data.whitelistedUserAgent}
+{#if productToShow.length}
   <Banner hasProducts />
   <Breadcrumbs
     selectedCategoryId={productToShow[0].item_data.categories[0].id}

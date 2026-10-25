@@ -13,7 +13,6 @@
 
   let { data = { data: [] } }: Props = $props();
 
-  const whitelistedUserAgent = $page.data.whitelistedUserAgent;
   const queryParams = $page.url.toString().split("?")[1];
 
   const categoryFn: BaseFn = (category: SquareCategory) =>
@@ -42,4 +41,4 @@
   />
 </svelte:head>
 
-<HexGrid data={data.data} {categoryFn} {whitelistedUserAgent} />
+<HexGrid data={data.data} {categoryFn} />

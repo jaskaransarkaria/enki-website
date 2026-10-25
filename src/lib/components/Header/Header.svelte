@@ -1,7 +1,6 @@
 <script lang="ts">
   /* eslint-disable svelte/no-navigation-without-resolve */
   import { untrack } from "svelte";
-  import { browser } from "$app/environment";
   import { page } from "$app/state";
   import { goto } from "$app/navigation";
   import { tweened } from "svelte/motion";
@@ -15,7 +14,7 @@
   import basketIcon from "$lib/assets/basket_icon.png";
   import searchIcon from "$lib/assets/search_1.png";
 
-  let { whitelistedUserAgent, loading = $bindable() } = $props();
+  let { loading = $bindable() } = $props();
 
   const lessThan960 = 150;
   const moreThan960 = 300;
@@ -86,59 +85,55 @@
 
 <svelte:window bind:outerWidth />
 <div class="header">
-  {#if browser || whitelistedUserAgent}
-    {#if outerWidth < 1280}
-      <Hamburger />
-    {:else}
-      <div class="left-container">
-        <a
-          data-sveltekit-preload-data
-          class={selected.endsWith("/shop") || selected.includes("/shop/")
-            ? "selected"
-            : ""}
-          href="/shop"
-        >
-          shop
-        </a>
-        <a
-          data-sveltekit-preload-data
-          class={selected.includes("CXWG77NR7TPXXQSZD3QVPLHS")
-            ? "selected"
-            : ""}
-          href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
-        >
-          gift guide
-        </a>
-        <a
-          data-sveltekit-preload-data
-          class={selected.includes("repairs") ? "selected" : ""}
-          href="/repairs"
-        >
-          repairs
-        </a>
-        <a
-          data-sveltekit-preload-data
-          class={selected.includes("workshops") ? "selected" : ""}
-          href="/workshops"
-        >
-          workshops
-        </a>
-        <a
-          data-sveltekit-preload-data
-          class={selected.includes("about") ? "selected" : ""}
-          href="/about"
-        >
-          about
-        </a>
-        <a
-          data-sveltekit-preload-data
-          class={selected.includes("contact") ? "selected" : ""}
-          href="/contact"
-        >
-          contact
-        </a>
-      </div>
-    {/if}
+  {#if outerWidth < 1280}
+    <Hamburger />
+  {:else}
+    <div class="left-container">
+      <a
+        data-sveltekit-preload-data
+        class={selected.endsWith("/shop") || selected.includes("/shop/")
+          ? "selected"
+          : ""}
+        href="/shop"
+      >
+        shop
+      </a>
+      <a
+        data-sveltekit-preload-data
+        class={selected.includes("CXWG77NR7TPXXQSZD3QVPLHS") ? "selected" : ""}
+        href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+      >
+        gift guide
+      </a>
+      <a
+        data-sveltekit-preload-data
+        class={selected.includes("repairs") ? "selected" : ""}
+        href="/repairs"
+      >
+        repairs
+      </a>
+      <a
+        data-sveltekit-preload-data
+        class={selected.includes("workshops") ? "selected" : ""}
+        href="/workshops"
+      >
+        workshops
+      </a>
+      <a
+        data-sveltekit-preload-data
+        class={selected.includes("about") ? "selected" : ""}
+        href="/about"
+      >
+        about
+      </a>
+      <a
+        data-sveltekit-preload-data
+        class={selected.includes("contact") ? "selected" : ""}
+        href="/contact"
+      >
+        contact
+      </a>
+    </div>
   {/if}
   {#if outerWidth < 1280}
     {#if !showSearch}

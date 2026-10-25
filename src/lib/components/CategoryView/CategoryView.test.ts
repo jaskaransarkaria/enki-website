@@ -95,7 +95,6 @@ describe("GIVEN CategoryView", () => {
         categoryFn: (cat: SquareCategory) => `${cat} fn fired`,
         categoryToShow: nestedCategories,
         productArr: [],
-        whitelistedUserAgent: true,
       });
 
       //breadcrumbs should be mounted
@@ -122,7 +121,6 @@ describe("GIVEN CategoryView", () => {
         categoryFn: (cat: SquareCategory) => `${cat} fn fired`,
         categoryToShow: {} as SquareCategory,
         productArr: dummyProductArr,
-        whitelistedUserAgent: true,
       });
 
       expect(screen.getByText("Elephant")).toBeInTheDocument();

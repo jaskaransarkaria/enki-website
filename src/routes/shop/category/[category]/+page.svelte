@@ -40,11 +40,7 @@
 
 <h1 class="visually-hidden">{name}</h1>
 
-<CategoryView
-  {categoryToShow}
-  whitelistedUserAgent={page.data.whitelistedUserAgent}
-  {productArr}
-/>
+<CategoryView {categoryToShow} {productArr} />
 
 <style>
   .visually-hidden {

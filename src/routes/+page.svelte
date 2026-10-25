@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { page } from "$app/state";
-  import { browser, dev } from "$app/environment";
+  import { dev } from "$app/environment";
   import ScrollDown from "$lib/components/ScrollDown/ScrollDown.svelte";
   import mobileGiftGuideAvif from "$lib/assets/mobile_gift_guide_1.avif";
   import mobileAboutUsAvif from "$lib/assets/mobile_about_us_3.avif";
@@ -75,93 +74,91 @@
   <link rel="preload" as="image" href={mobileLandingPagePng} />
 </svelte:head>
 
-{#if (browser && outerWidth > 0) || page.data.whitelistedUserAgent}
-  <figure
-    class={isMobile ? "mobile-container" : "container"}
-    style:background-image={isMobile
-      ? null
-      : `url('${
-          $isAvifSupported ? desktopLandingPageAvif : desktopLandingPagePng
-        }')`}
-    style:background-size={isMobile ? null : `cover`}
+<figure
+  class={isMobile ? "mobile-container" : "container"}
+  style:background-image={isMobile
+    ? null
+    : `url('${
+        $isAvifSupported ? desktopLandingPageAvif : desktopLandingPagePng
+      }')`}
+  style:background-size={isMobile ? null : `cover`}
+>
+  <Modal
+    {isMobile}
+    cssClass="home-modal"
+    containerClass="home-mobile-show-modal"
+    showCross
+    bind:showModal
+    bind:visible
+    onCloseFn={() => {
+      modalDismissedCount.set(($modalDismissedCount += 1));
+    }}
   >
-    <Modal
-      {isMobile}
-      cssClass="home-modal"
-      containerClass="home-mobile-show-modal"
-      showCross
-      bind:showModal
-      bind:visible
-      onCloseFn={() => {
-        modalDismissedCount.set(($modalDismissedCount += 1));
-      }}
-    >
-      <NewsletterSignup />
-    </Modal>
-    {#if isMobile}
-      <img
-        class="parallax-inside-shop"
-        src={$isAvifSupported ? mobileLandingPageAvif : mobileLandingPagePng}
-        alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
-      />
-      <ScrollDown />
-      <div class="mobile-button-container">
-        <a data-sveltekit-preload-data href="/shop">
-          <img
-            class="mobile-online-shop-img"
-            src={$isAvifSupported ? mobileOnlineShopAvif : mobileOnlineShopPng}
-            alt="online shop button"
-          />
-        </a>
-        <a
-          data-sveltekit-preload-data
-          href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
-        >
-          <img
-            class="mobile-gift-guide-img"
-            src={$isAvifSupported ? mobileGiftGuideAvif : mobileGiftGuidePng}
-            alt="gift guide button"
-          />
-        </a>
-        <a data-sveltekit-preload-data href="/repairs">
-          <img
-            class="mobile-repairs-and-comms-img"
-            src={$isAvifSupported
-              ? mobileJewelleryRepairsAvif
-              : mobileJewelleryRepairsPng}
-            alt="jewellery services button"
-          />
-        </a>
-        <a data-sveltekit-preload-data href="/workshops">
-          <img
-            class="mobile-classes-img"
-            src={$isAvifSupported ? mobileWorkshopsAvif : mobileWorkshopsPng}
-            alt="classes button"
-          />
-        </a>
-        <a data-sveltekit-preload-data href="/contact">
-          <img
-            class="mobile-contact-us-img"
-            src={$isAvifSupported ? mobileContactUsAvif : mobileContactUsPng}
-            alt="contact us button"
-          />
-        </a>
-        <a data-sveltekit-preload-data href="/about">
-          <img
-            class="mobile-about-us-img"
-            src={$isAvifSupported ? mobileAboutUsAvif : mobileAboutUsPng}
-            alt="about us button"
-          />
-        </a>
-      </div>
-    {:else}
-      <JewelleryServices />
-      <Workshops />
-      <OnlineShop />
-      <GiftGuide />
-    {/if}
-  </figure>
-{/if}
+    <NewsletterSignup />
+  </Modal>
+  {#if isMobile}
+    <img
+      class="parallax-inside-shop"
+      src={$isAvifSupported ? mobileLandingPageAvif : mobileLandingPagePng}
+      alt="welcome to the shop, this illustration shows the shopkeeper behind her bench"
+    />
+    <ScrollDown />
+    <div class="mobile-button-container">
+      <a data-sveltekit-preload-data href="/shop">
+        <img
+          class="mobile-online-shop-img"
+          src={$isAvifSupported ? mobileOnlineShopAvif : mobileOnlineShopPng}
+          alt="online shop button"
+        />
+      </a>
+      <a
+        data-sveltekit-preload-data
+        href="/shop/category/CXWG77NR7TPXXQSZD3QVPLHS"
+      >
+        <img
+          class="mobile-gift-guide-img"
+          src={$isAvifSupported ? mobileGiftGuideAvif : mobileGiftGuidePng}
+          alt="gift guide button"
+        />
+      </a>
+      <a data-sveltekit-preload-data href="/repairs">
+        <img
+          class="mobile-repairs-and-comms-img"
+          src={$isAvifSupported
+            ? mobileJewelleryRepairsAvif
+            : mobileJewelleryRepairsPng}
+          alt="jewellery services button"
+        />
+      </a>
+      <a data-sveltekit-preload-data href="/workshops">
+        <img
+          class="mobile-classes-img"
+          src={$isAvifSupported ? mobileWorkshopsAvif : mobileWorkshopsPng}
+          alt="classes button"
+        />
+      </a>
+      <a data-sveltekit-preload-data href="/contact">
+        <img
+          class="mobile-contact-us-img"
+          src={$isAvifSupported ? mobileContactUsAvif : mobileContactUsPng}
+          alt="contact us button"
+        />
+      </a>
+      <a data-sveltekit-preload-data href="/about">
+        <img
+          class="mobile-about-us-img"
+          src={$isAvifSupported ? mobileAboutUsAvif : mobileAboutUsPng}
+          alt="about us button"
+        />
+      </a>
+    </div>
+  {:else}
+    <JewelleryServices />
+    <Workshops />
+    <OnlineShop />
+    <GiftGuide />
+  {/if}
+</figure>
 
 <style>
   .container {

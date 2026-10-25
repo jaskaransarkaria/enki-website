@@ -11,11 +11,7 @@
 
   import type { SquareCategory } from "$lib/types/category";
 
-  let {
-    data = [],
-    whitelistedUserAgent = false,
-    showFullPage = true,
-  } = $props();
+  let { data = [], showFullPage = true } = $props();
 
   const createEmptyArray = (length: number) =>
     new Array(length).fill(undefined);
@@ -67,52 +63,50 @@
   });
 </script>
 
-{#if browser || whitelistedUserAgent}
-  <ul
-    class={showGrid
-      ? "root-categories-container"
-      : showFullPage
-        ? "flexbox-container"
-        : "flexbox-container flexbox-container-no-height"}
-  >
-    {#each filteredData as category, idx (category.id)}
-      {@const useEmptyHexes =
-        filteredData.length > gridColumnNumber && emptyHexes.length}
-      {@const lastItem = idx === filteredData.length - itemsOnLastRow}
-      {#if lastItem}
-        {#if useEmptyHexes}
-          {@const emptyHexesRoundedDown = emptyHexes.slice(
-            0,
-            Math.floor(emptyHexes.length / 2),
-          )}
-          {#each emptyHexesRoundedDown as _}
-            <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
-              <Hex isEmpty />
-            </li>
-          {/each}
-        {/if}
+<ul
+  class={showGrid
+    ? "root-categories-container"
+    : showFullPage
+      ? "flexbox-container"
+      : "flexbox-container flexbox-container-no-height"}
+>
+  {#each filteredData as category, idx (category.id)}
+    {@const useEmptyHexes =
+      filteredData.length > gridColumnNumber && emptyHexes.length}
+    {@const lastItem = idx === filteredData.length - itemsOnLastRow}
+    {#if lastItem}
+      {#if useEmptyHexes}
+        {@const emptyHexesRoundedDown = emptyHexes.slice(
+          0,
+          Math.floor(emptyHexes.length / 2),
+        )}
+        {#each emptyHexesRoundedDown as _}
+          <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
+            <Hex isEmpty />
+          </li>
+        {/each}
       {/if}
-      <li class={showGrid ? "hex" : "hex-flex"}>
-        <Hex {category} hexHref={`/shop/category/${category.id}`} bind:loaded />
-      </li>
-      {#if idx === filteredData.length - 1}
-        {#if useEmptyHexes}
-          {@const emptyHexesRoundedUp = emptyHexes.slice(
-            0,
-            Math.ceil(emptyHexes.length / 2),
-          )}
-          {#each emptyHexesRoundedUp as _}
-            <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
-              <Hex isEmpty />
-            </li>
-          {/each}
-        {/if}
+    {/if}
+    <li class={showGrid ? "hex" : "hex-flex"}>
+      <Hex {category} hexHref={`/shop/category/${category.id}`} bind:loaded />
+    </li>
+    {#if idx === filteredData.length - 1}
+      {#if useEmptyHexes}
+        {@const emptyHexesRoundedUp = emptyHexes.slice(
+          0,
+          Math.ceil(emptyHexes.length / 2),
+        )}
+        {#each emptyHexesRoundedUp as _}
+          <li class={showGrid ? "hex hex-empty" : "hex-flex-empty"}>
+            <Hex isEmpty />
+          </li>
+        {/each}
       {/if}
-    {:else}
-      <LoadingSpinner />
-    {/each}
-  </ul>
-{/if}
+    {/if}
+  {:else}
+    <LoadingSpinner />
+  {/each}
+</ul>
 
 <style>
   .root-categories-container {

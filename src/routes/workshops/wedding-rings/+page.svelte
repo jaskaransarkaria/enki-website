@@ -15,8 +15,6 @@
   import weddingBandsThirteenAvif from "$lib/assets/wedding_bands_13.avif";
   import weddingBandsFourteenAvif from "$lib/assets/wedding_bands_14.avif";
   import weddingBandsFifteenAvif from "$lib/assets/wedding_bands_15.avif";
-  import { page } from "$app/state";
-  import { browser } from "$app/environment";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "$lib/stores/isAvifSupported";
@@ -42,151 +40,143 @@
 </svelte:head>
 
 <svelte:window bind:outerWidth />
-{#if browser || page.data.whitelistedUserAgent}
-  <div class="container">
-    <div class="class-pics">
-      {#if isMobile}
-        <SwipeImage
-          imgArr={[
-            {
-              src: $isAvifSupported
-                ? weddingBandsNineAvif
-                : weddingBandsNineJpg,
-              alt: "a couple enjoying their finished rings",
-            },
-            {
-              src: $isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg,
-              alt: "a couple holding hands having finished making their rings",
-            },
-            {
-              src: $isAvifSupported
-                ? weddingBandsThreeAvif
-                : weddingBandsThreeJpg,
-              alt: "enki jewellery ring boxes",
-            },
-            {
-              src: $isAvifSupported
-                ? weddingBandsElevenAvif
-                : weddingBandsElevenJpg,
-              alt: "a couple's hands showing their gothic wedding rings",
-            },
-            {
-              src: $isAvifSupported
-                ? weddingBandsTwelveAvif
-                : weddingBandsTwelveJpg,
-              alt: "a couple holding their hands up sporting their new rings",
-            },
-            {
-              src: $isAvifSupported
-                ? weddingBandsThirteenAvif
-                : weddingBandsThirteenJpg,
-              alt: "a couple midway through creating their wedding bands",
-            },
-            {
-              src: $isAvifSupported
-                ? weddingBandsFourteenAvif
-                : weddingBandsFourteenJpg,
-              alt: "a couple smiling as they stand and inspect their rings",
-            },
-            {
-              src: $isAvifSupported
-                ? weddingBandsFifteenAvif
-                : weddingBandsFifteenJpg,
-              alt: "a lady with a blow torch, heating her ring while her partner watches",
-            },
-          ]}
-        />
-      {:else}
-        <div class="class-pics">
-          <img
-            in:fade={{ duration: 600 }}
-            src={$isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg}
-            alt="a couple enjoying their finished rings"
-          />
-          <img
-            in:fade={{ duration: 600 }}
-            src={$isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg}
-            alt="a couple holding hands having finished making their rings"
-          />
-          <img
-            in:fade={{ duration: 600 }}
-            src={$isAvifSupported
+<div class="container">
+  <div class="class-pics">
+    {#if isMobile}
+      <SwipeImage
+        imgArr={[
+          {
+            src: $isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg,
+            alt: "a couple enjoying their finished rings",
+          },
+          {
+            src: $isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg,
+            alt: "a couple holding hands having finished making their rings",
+          },
+          {
+            src: $isAvifSupported
               ? weddingBandsThreeAvif
-              : weddingBandsThreeJpg}
-            alt="enki jewellery ring boxes"
-          />
-          <img
-            in:fade={{ duration: 600 }}
-            src={$isAvifSupported
+              : weddingBandsThreeJpg,
+            alt: "enki jewellery ring boxes",
+          },
+          {
+            src: $isAvifSupported
               ? weddingBandsElevenAvif
-              : weddingBandsElevenJpg}
-            alt="a couple's hands showing their gothic wedding rings"
-          />
-        </div>
-      {/if}
-    </div>
-    <h1>
-      Make your partner the most important piece of jewellery they’ll ever own
-    </h1>
-
-    <p>
-      In this private class for you and your partner, you will make each other a
-      wedding ring, guided by one of our resident jewellers.
-      <br />
-      <br />
-      You will start with an initial silver practice ring which you will be able to
-      take home after the class. You will then make the real thing in gold or the
-      metal of your choice which will be taken away to be hallmarked before being
-      returned to you in plenty of time for your big day.
-      <br />
-      <br />
-      To make the experience extra special we provide cake from the wonderful Early
-      Bird Bakery next door. If you aren't local we can give you lots of tips on where
-      to stay and what to do in the area if you want to make a mini-break of it.
-    </p>
-    <br />
-    <p>
-      If you have any queries please <a href="mailto: workshop@enkionline.com"
-        >contact us</a
-      >.
-    </p>
-    <br />
-    <br />
-    <br />
-    {#if !isMobile}
+              : weddingBandsElevenJpg,
+            alt: "a couple's hands showing their gothic wedding rings",
+          },
+          {
+            src: $isAvifSupported
+              ? weddingBandsTwelveAvif
+              : weddingBandsTwelveJpg,
+            alt: "a couple holding their hands up sporting their new rings",
+          },
+          {
+            src: $isAvifSupported
+              ? weddingBandsThirteenAvif
+              : weddingBandsThirteenJpg,
+            alt: "a couple midway through creating their wedding bands",
+          },
+          {
+            src: $isAvifSupported
+              ? weddingBandsFourteenAvif
+              : weddingBandsFourteenJpg,
+            alt: "a couple smiling as they stand and inspect their rings",
+          },
+          {
+            src: $isAvifSupported
+              ? weddingBandsFifteenAvif
+              : weddingBandsFifteenJpg,
+            alt: "a lady with a blow torch, heating her ring while her partner watches",
+          },
+        ]}
+      />
+    {:else}
       <div class="class-pics">
         <img
           in:fade={{ duration: 600 }}
-          src={$isAvifSupported
-            ? weddingBandsTwelveAvif
-            : weddingBandsTwelveJpg}
-          alt="a couple holding their hands up sporting their new rings"
+          src={$isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg}
+          alt="a couple enjoying their finished rings"
+        />
+        <img
+          in:fade={{ duration: 600 }}
+          src={$isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg}
+          alt="a couple holding hands having finished making their rings"
+        />
+        <img
+          in:fade={{ duration: 600 }}
+          src={$isAvifSupported ? weddingBandsThreeAvif : weddingBandsThreeJpg}
+          alt="enki jewellery ring boxes"
         />
         <img
           in:fade={{ duration: 600 }}
           src={$isAvifSupported
-            ? weddingBandsThirteenAvif
-            : weddingBandsThirteenJpg}
-          alt="a couple midway through creating their wedding bands"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported
-            ? weddingBandsFourteenAvif
-            : weddingBandsFourteenJpg}
-          alt="a couple smiling as they stand and inspect their rings"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported
-            ? weddingBandsFifteenAvif
-            : weddingBandsFifteenJpg}
-          alt="a lady with a blow torch, heating her ring while her partner watches"
+            ? weddingBandsElevenAvif
+            : weddingBandsElevenJpg}
+          alt="a couple's hands showing their gothic wedding rings"
         />
       </div>
     {/if}
   </div>
-{/if}
+  <h1>
+    Make your partner the most important piece of jewellery they’ll ever own
+  </h1>
+
+  <p>
+    In this private class for you and your partner, you will make each other a
+    wedding ring, guided by one of our resident jewellers.
+    <br />
+    <br />
+    You will start with an initial silver practice ring which you will be able to
+    take home after the class. You will then make the real thing in gold or the metal
+    of your choice which will be taken away to be hallmarked before being returned
+    to you in plenty of time for your big day.
+    <br />
+    <br />
+    To make the experience extra special we provide cake from the wonderful Early
+    Bird Bakery next door. If you aren't local we can give you lots of tips on where
+    to stay and what to do in the area if you want to make a mini-break of it.
+  </p>
+  <br />
+  <p>
+    If you have any queries please <a href="mailto: workshop@enkionline.com"
+      >contact us</a
+    >.
+  </p>
+  <br />
+  <br />
+  <br />
+  {#if !isMobile}
+    <div class="class-pics">
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported ? weddingBandsTwelveAvif : weddingBandsTwelveJpg}
+        alt="a couple holding their hands up sporting their new rings"
+      />
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported
+          ? weddingBandsThirteenAvif
+          : weddingBandsThirteenJpg}
+        alt="a couple midway through creating their wedding bands"
+      />
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported
+          ? weddingBandsFourteenAvif
+          : weddingBandsFourteenJpg}
+        alt="a couple smiling as they stand and inspect their rings"
+      />
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported
+          ? weddingBandsFifteenAvif
+          : weddingBandsFifteenJpg}
+        alt="a lady with a blow torch, heating her ring while her partner watches"
+      />
+    </div>
+  {/if}
+</div>
 
 <style>
   h1,

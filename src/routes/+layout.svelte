@@ -123,7 +123,7 @@
 </svelte:head>
 
 <div class="container">
-  <Header whitelistedUserAgent={page.data.whitelistedUserAgent} bind:loading />
+  <Header bind:loading />
   <div class="header-block"></div>
   {#if loading}
     <div

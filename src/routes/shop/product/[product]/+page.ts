@@ -13,13 +13,6 @@ import {
 } from "$lib/utils/structuredData";
 
 export async function load({ fetch, params }) {
-  if (browser) {
-    return {
-      productToShow: [],
-      breadcrumbTrail: [] as Breadcrumb[],
-    };
-  }
-
   const serverUrl = setServerUrl(browser, dev);
 
   const productToShow = await refreshProductsFromServer(
@@ -27,26 +20,30 @@ export async function load({ fetch, params }) {
     fetch,
   );
 
-  const categories = await refreshCategoriesFromServer(
-    `${serverUrl}/categories`,
-    fetch,
-  );
+  // Build the breadcrumb trail server-side (the client already has the store).
+  let breadcrumbTrail: Breadcrumb[] = [];
+  if (!browser) {
+    const categories = await refreshCategoriesFromServer(
+      `${serverUrl}/categories`,
+      fetch,
+    );
 
-  const product = productToShow[0];
-  const categoryId = product?.item_data?.categories?.[0]?.id;
+    const product = productToShow[0];
+    const categoryId = product?.item_data?.categories?.[0]?.id;
 
-  const breadcrumbTrail: Breadcrumb[] = [
-    shopBreadcrumb,
-    ...(categoryId ? categoryTrail(categories, categoryId) : []),
-    ...(product
-      ? [
-          {
-            name: stripSupplierSuffix(product.item_data.name),
-            url: `${SITE_URL}/shop/product/${product.id}`,
-          },
-        ]
-      : []),
-  ];
+    breadcrumbTrail = [
+      shopBreadcrumb,
+      ...(categoryId ? categoryTrail(categories, categoryId) : []),
+      ...(product
+        ? [
+            {
+              name: stripSupplierSuffix(product.item_data.name),
+              url: `${SITE_URL}/shop/product/${product.id}`,
+            },
+          ]
+        : []),
+    ];
+  }
 
   return { productToShow, breadcrumbTrail };
 }

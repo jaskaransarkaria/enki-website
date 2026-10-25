@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { page } from "$app/state";
-  import { browser } from "$app/environment";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
@@ -48,110 +46,80 @@
 </svelte:head>
 
 <svelte:window bind:outerWidth />
-{#if browser || page.data.whitelistedUserAgent}
-  <div class="container">
-    <div class="class-pics">
-      {#if isMobile}
-        <SwipeImage
-          imgArr={[
-            {
-              src: $isAvifSupported ? CraftThreeAvif : CraftThreeJpg,
-              alt: "a workshop attendee inspecting their bangle",
-            },
-            {
-              src: $isAvifSupported ? CraftFiveAvif : CraftFiveJpg,
-              alt: "an attendee discusses her work with the workshop teacher",
-            },
-            {
-              src: $isAvifSupported ? CraftEightAvif : CraftEightJpg,
-              alt: "people showing off their finished workshop rings, bangles and necklaces",
-            },
-          ]}
-        />
-      {:else}
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? CraftThreeAvif : CraftThreeJpg}
-          alt="a workshop attendee inspecting their bangle"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? CraftFiveAvif : CraftFiveJpg}
-          alt="an attendee discusses her work with the workshop teacher"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? CraftEightAvif : CraftEightJpg}
-          alt="people showing off their finished workshop rings, bangles and necklaces"
-        />
-      {/if}
-    </div>
-    <p>
-      Ever wanted to make your own jewellery? Like to try your hand at lino
-      printing? Looking for a unique present for a friend?
-      <br /><br />At Enki we host a wide range of workshops where you can meet
-      new people and learn a new craft. The one off workshops include all the
-      tools and materials needed, expert tuition and light refreshments.<br
-      /><br />Click on the workshops below to find out more about each event.<br
-      /><br />We also take group bookings where you can choose the date and
-      topic. <br /><br />
-      Get in touch <a href="/contact">here</a>.
-    </p>
-    {#if SHOW_VOUCHER}
-      <div class="voucher-container">
-        <GiftVouchers />
-        <p>
-          If you'd like to purchase a workshop as a gift and dates aren’t yet
-          announced or you're not sure when the recipient is available, you can
-          always buy one of our vouchers!
-          <br /><br />
-          Vouchers are valid for a year and can be used to purchase any workshop posted
-          on our website, just enter the voucher code when you are prompted to when
-          purchasing a workshop.
-          <br /><br />
-          We schedule classes at least a month in advance so watch this space! We
-          also have physical vouchers at the shop that you can collect or arrange
-          postage for if you want something to give in person.
-        </p>
-      </div>
+<div class="container">
+  <div class="class-pics">
+    {#if isMobile}
+      <SwipeImage
+        imgArr={[
+          {
+            src: $isAvifSupported ? CraftThreeAvif : CraftThreeJpg,
+            alt: "a workshop attendee inspecting their bangle",
+          },
+          {
+            src: $isAvifSupported ? CraftFiveAvif : CraftFiveJpg,
+            alt: "an attendee discusses her work with the workshop teacher",
+          },
+          {
+            src: $isAvifSupported ? CraftEightAvif : CraftEightJpg,
+            alt: "people showing off their finished workshop rings, bangles and necklaces",
+          },
+        ]}
+      />
+    {:else}
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported ? CraftThreeAvif : CraftThreeJpg}
+        alt="a workshop attendee inspecting their bangle"
+      />
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported ? CraftFiveAvif : CraftFiveJpg}
+        alt="an attendee discusses her work with the workshop teacher"
+      />
+      <img
+        in:fade={{ duration: 600 }}
+        src={$isAvifSupported ? CraftEightAvif : CraftEightJpg}
+        alt="people showing off their finished workshop rings, bangles and necklaces"
+      />
     {/if}
   </div>
-  <div class="widget-container">
-    <div bind:this={ttWidget} class="tt-widget" style:width="100%">
-      <h2>Upcoming Workshops</h2>
-      <div class="tt-widget-fallback">
-        <p>
-          <a
-            href="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&show_sort=true"
-            target="_blank">Click here to buy tickets</a
-          ><br /><small
-            ><a
-              href="https://www.tickettailor.com?rf=wdg_113333"
-              class="tt-widget-powered"
-              >Sell tickets online with Ticket Tailor</a
-            ></small
-          >
-        </p>
-      </div>
-      {#if widgetLoaded}
-        <script
-          src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
-          data-url="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&show_sort=true"
-          data-inline-minimal="false"
-          data-inline-show-logo="false"
-          data-inline-bg-fill="false"
-          data-inline-inherit-ref-from-url-param=""
-          data-inline-ref="website_widget"
-        ></script>
-      {/if}
+  <p>
+    Ever wanted to make your own jewellery? Like to try your hand at lino
+    printing? Looking for a unique present for a friend?
+    <br /><br />At Enki we host a wide range of workshops where you can meet new
+    people and learn a new craft. The one off workshops include all the tools
+    and materials needed, expert tuition and light refreshments.<br /><br
+    />Click on the workshops below to find out more about each event.<br /><br
+    />We also take group bookings where you can choose the date and topic.
+    <br /><br />
+    Get in touch <a href="/contact">here</a>.
+  </p>
+  {#if SHOW_VOUCHER}
+    <div class="voucher-container">
+      <GiftVouchers />
+      <p>
+        If you'd like to purchase a workshop as a gift and dates aren’t yet
+        announced or you're not sure when the recipient is available, you can
+        always buy one of our vouchers!
+        <br /><br />
+        Vouchers are valid for a year and can be used to purchase any workshop posted
+        on our website, just enter the voucher code when you are prompted to when
+        purchasing a workshop.
+        <br /><br />
+        We schedule classes at least a month in advance so watch this space! We also
+        have physical vouchers at the shop that you can collect or arrange postage
+        for if you want something to give in person.
+      </p>
     </div>
-  </div>
-
-  <div bind:this={ttListWidget} class="tt-widget">
+  {/if}
+</div>
+<div class="widget-container">
+  <div bind:this={ttWidget} class="tt-widget" style:width="100%">
+    <h2>Upcoming Workshops</h2>
     <div class="tt-widget-fallback">
       <p>
         <a
-          href="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&show_sort=true&show_event_filter=false"
+          href="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&show_sort=true"
           target="_blank">Click here to buy tickets</a
         ><br /><small
           ><a
@@ -161,11 +129,10 @@
         >
       </p>
     </div>
-    {#if widgetListLoaded}
+    {#if widgetLoaded}
       <script
         src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
-        data-url="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&show_sort=true&show_event_filter=false"
-        data-type="inline"
+        data-url="https://www.tickettailor.com/all-tickets-calendar/enki/?ref=website_widget&show_sort=true"
         data-inline-minimal="false"
         data-inline-show-logo="false"
         data-inline-bg-fill="false"
@@ -174,7 +141,35 @@
       ></script>
     {/if}
   </div>
-{/if}
+</div>
+
+<div bind:this={ttListWidget} class="tt-widget">
+  <div class="tt-widget-fallback">
+    <p>
+      <a
+        href="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&show_sort=true&show_event_filter=false"
+        target="_blank">Click here to buy tickets</a
+      ><br /><small
+        ><a
+          href="https://www.tickettailor.com?rf=wdg_113333"
+          class="tt-widget-powered">Sell tickets online with Ticket Tailor</a
+        ></small
+      >
+    </p>
+  </div>
+  {#if widgetListLoaded}
+    <script
+      src="https://cdn.tickettailor.com/js/widgets/min/widget.js"
+      data-url="https://www.tickettailor.com/all-tickets/enki/?ref=website_widget&show_sort=true&show_event_filter=false"
+      data-type="inline"
+      data-inline-minimal="false"
+      data-inline-show-logo="false"
+      data-inline-bg-fill="false"
+      data-inline-inherit-ref-from-url-param=""
+      data-inline-ref="website_widget"
+    ></script>
+  {/if}
+</div>
 
 <style>
   h2 {
