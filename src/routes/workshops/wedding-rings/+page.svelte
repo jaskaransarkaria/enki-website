@@ -1,25 +1,26 @@
 <script lang="ts">
-  import weddingBandsThreeJpg from "$lib/assets/wedding_bands_3.jpg";
-  import weddingBandsNineJpg from "$lib/assets/wedding_bands_9.jpg";
-  import weddingBandsTenJpg from "$lib/assets/wedding_bands_10.jpg";
-  import weddingBandsElevenJpg from "$lib/assets/wedding_bands_11.jpg";
-  import weddingBandsTwelveJpg from "$lib/assets/wedding_bands_12.jpg";
-  import weddingBandsThirteenJpg from "$lib/assets/wedding_bands_13.jpg";
-  import weddingBandsFourteenJpg from "$lib/assets/wedding_bands_14.jpg";
-  import weddingBandsFifteenJpg from "$lib/assets/wedding_bands_15.jpg";
-  import weddingBandsThreeAvif from "$lib/assets/wedding_bands_3.avif";
-  import weddingBandsNineAvif from "$lib/assets/wedding_bands_9.avif";
-  import weddingBandsTenAvif from "$lib/assets/wedding_bands_10.avif";
-  import weddingBandsElevenAvif from "$lib/assets/wedding_bands_11.avif";
-  import weddingBandsTwelveAvif from "$lib/assets/wedding_bands_12.avif";
-  import weddingBandsThirteenAvif from "$lib/assets/wedding_bands_13.avif";
-  import weddingBandsFourteenAvif from "$lib/assets/wedding_bands_14.avif";
-  import weddingBandsFifteenAvif from "$lib/assets/wedding_bands_15.avif";
-  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
+  import weddingBandsThreeJpg from "#lib/assets/wedding_bands_3.jpg";
+  import weddingBandsNineJpg from "#lib/assets/wedding_bands_9.jpg";
+  import weddingBandsTenJpg from "#lib/assets/wedding_bands_10.jpg";
+  import weddingBandsElevenJpg from "#lib/assets/wedding_bands_11.jpg";
+  import weddingBandsTwelveJpg from "#lib/assets/wedding_bands_12.jpg";
+  import weddingBandsThirteenJpg from "#lib/assets/wedding_bands_13.jpg";
+  import weddingBandsFourteenJpg from "#lib/assets/wedding_bands_14.jpg";
+  import weddingBandsFifteenJpg from "#lib/assets/wedding_bands_15.jpg";
+  import weddingBandsThreeAvif from "#lib/assets/wedding_bands_3.avif";
+  import weddingBandsNineAvif from "#lib/assets/wedding_bands_9.avif";
+  import weddingBandsTenAvif from "#lib/assets/wedding_bands_10.avif";
+  import weddingBandsElevenAvif from "#lib/assets/wedding_bands_11.avif";
+  import weddingBandsTwelveAvif from "#lib/assets/wedding_bands_12.avif";
+  import weddingBandsThirteenAvif from "#lib/assets/wedding_bands_13.avif";
+  import weddingBandsFourteenAvif from "#lib/assets/wedding_bands_14.avif";
+  import weddingBandsFifteenAvif from "#lib/assets/wedding_bands_15.avif";
+  import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 960);
 </script>
 

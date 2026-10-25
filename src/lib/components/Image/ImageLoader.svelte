@@ -10,7 +10,7 @@
   let { src, alt }: Props = $props();
 </script>
 
-<IntersectionObserver once={true} >
+<IntersectionObserver once={true}>
   {#snippet children({ intersecting })}
     {#if intersecting}
       <Image {alt} {src} />

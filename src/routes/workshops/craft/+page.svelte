@@ -1,25 +1,26 @@
 <script lang="ts">
-  import CraftOneJpg from "$lib/assets/craft_1.jpg";
-  import CraftTwoJpg from "$lib/assets/craft_2.jpg";
-  import CraftThreeJpg from "$lib/assets/craft_3.jpg";
-  import CraftFourJpg from "$lib/assets/craft_4.jpg";
-  import CraftFiveJpg from "$lib/assets/craft_5.jpg";
-  import CraftSixJpg from "$lib/assets/craft_6.jpg";
-  import CraftSevenJpg from "$lib/assets/craft_7.jpg";
-  import CraftEightJpg from "$lib/assets/craft_8.jpg";
-  import CraftOneAvif from "$lib/assets/craft_1.avif";
-  import CraftTwoAvif from "$lib/assets/craft_2.avif";
-  import CraftThreeAvif from "$lib/assets/craft_3.avif";
-  import CraftFourAvif from "$lib/assets/craft_4.avif";
-  import CraftFiveAvif from "$lib/assets/craft_5.avif";
-  import CraftSixAvif from "$lib/assets/craft_6.avif";
-  import CraftSevenAvif from "$lib/assets/craft_7.avif";
-  import CraftEightAvif from "$lib/assets/craft_8.avif";
-  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
+  import CraftOneJpg from "#lib/assets/craft_1.jpg";
+  import CraftTwoJpg from "#lib/assets/craft_2.jpg";
+  import CraftThreeJpg from "#lib/assets/craft_3.jpg";
+  import CraftFourJpg from "#lib/assets/craft_4.jpg";
+  import CraftFiveJpg from "#lib/assets/craft_5.jpg";
+  import CraftSixJpg from "#lib/assets/craft_6.jpg";
+  import CraftSevenJpg from "#lib/assets/craft_7.jpg";
+  import CraftEightJpg from "#lib/assets/craft_8.jpg";
+  import CraftOneAvif from "#lib/assets/craft_1.avif";
+  import CraftTwoAvif from "#lib/assets/craft_2.avif";
+  import CraftThreeAvif from "#lib/assets/craft_3.avif";
+  import CraftFourAvif from "#lib/assets/craft_4.avif";
+  import CraftFiveAvif from "#lib/assets/craft_5.avif";
+  import CraftSixAvif from "#lib/assets/craft_6.avif";
+  import CraftSevenAvif from "#lib/assets/craft_7.avif";
+  import CraftEightAvif from "#lib/assets/craft_8.avif";
+  import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 960);
 </script>
 

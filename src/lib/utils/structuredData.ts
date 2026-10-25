@@ -1,7 +1,7 @@
-import { PUBLIC_BUCKET_URL } from "$env/static/public";
-import { SITE_URL } from "$lib/constants";
-import type { SquareCategory } from "$lib/types/category";
-import type { SquareProduct } from "$lib/types/product";
+import { PUBLIC_BUCKET_URL } from "$app/env/public";
+import { SITE_URL } from "#lib/constants.js";
+import type { SquareCategory } from "#lib/types/category.js";
+import type { SquareProduct } from "#lib/types/product.js";
 import { plainText, stripSupplierSuffix } from "./seo";
 
 export const BUSINESS_ID = `${SITE_URL}/#business`;
@@ -71,7 +71,6 @@ export interface Breadcrumb {
   name: string;
   url: string;
 }
-
 export const shopBreadcrumb: Breadcrumb = {
   name: "Shop",
   url: `${SITE_URL}/shop`,

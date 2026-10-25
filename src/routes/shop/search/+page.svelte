@@ -1,9 +1,9 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
-  import comingSoon from "$lib/assets/coming_soon.png";
-  import ProductView from "$lib/components/ProductView/ProductView.svelte";
-  import { products } from "$lib/stores/products";
+  import { PUBLIC_BUCKET_URL } from "$app/env/public";
+  import comingSoon from "#lib/assets/coming_soon.png";
+  import ProductView from "#lib/components/ProductView/ProductView.svelte";
+  import { products } from "#lib/stores/products.js";
 
   $effect(() => {
     products.set(page.data.data);

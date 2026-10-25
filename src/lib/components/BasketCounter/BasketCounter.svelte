@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { run } from 'svelte/legacy';
+  import { run } from "svelte/legacy";
 
   import { spring } from "svelte/motion";
-  import { basket } from "$lib/stores/basket";
-  import { updateBasket } from "$lib/utils/basket";
+  import { basket } from "#lib/stores/basket.js";
+  import { updateBasket } from "#lib/utils/basket.js";
 
-  import type { BasketProduct } from "$lib/types/basketProduct";
+  import type { BasketProduct } from "#lib/types/basketProduct.js";
 
   interface Props {
     productObj: BasketProduct;
@@ -40,8 +40,8 @@
               },
               $basket,
               "incrementQuantity",
-              undefined
-            )
+              undefined,
+            ),
           )
         : undefined}
     aria-label="Increase the counter by one"
@@ -71,8 +71,8 @@
           },
           $basket,
           "decrementQuantity",
-          undefined
-        )
+          undefined,
+        ),
       )}
     aria-label="Decrease the counter by one"
   >

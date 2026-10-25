@@ -1,12 +1,13 @@
 <script lang="ts">
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
   /* eslint-disable svelte/no-navigation-without-resolve, @typescript-eslint/no-unused-expressions */
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import { PUBLIC_BUCKET_URL } from "$app/env/public";
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
-  import { basket } from "$lib/stores/basket";
-  import basketEmpty from "$lib/assets/basket_empty.png";
-  import BasketCounter from "$lib/components/BasketCounter/BasketCounter.svelte";
-  import Checkout from "$lib/components/Checkout/Checkout.svelte";
+  import { basket } from "#lib/stores/basket.js";
+  import basketEmpty from "#lib/assets/basket_empty.png";
+  import BasketCounter from "#lib/components/BasketCounter/BasketCounter.svelte";
+  import Checkout from "#lib/components/Checkout/Checkout.svelte";
   import LoadingSpinner from "../LoadingSpinner/LoadingSpinner.svelte";
 
   let loading = $state(false);
@@ -32,7 +33,7 @@
       .toFixed(2),
   );
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   let isMobile = $derived(outerWidth < 1280 ? true : false);
   let selectedGiftWrap = $derived(
     $basket.filter(
@@ -131,8 +132,7 @@
                 <textarea
                   maxlength="95"
                   placeholder="Add a message for your gift here..."
-                  bind:value={obj.giftDescription}
-                ></textarea>
+                  bind:value={obj.giftDescription}></textarea>
               </div>
             {/if}
             <div class="price">

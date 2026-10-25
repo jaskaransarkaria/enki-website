@@ -1,5 +1,5 @@
 <script lang="ts">
-  import backToTopImg from "$lib/assets/back_to_top_3.png";
+  import backToTopImg from "#lib/assets/back_to_top_3.png";
 
   interface Props {
     showOnPx?: number;
@@ -39,7 +39,9 @@
   .back-to-top {
     all: unset;
     opacity: 1;
-    transition: opacity 0.5s, visibility 0.5s;
+    transition:
+      opacity 0.5s,
+      visibility 0.5s;
     position: sticky;
     bottom: 5vh;
     left: 100%;

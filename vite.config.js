@@ -1,15 +1,26 @@
-/// <reference types="vitest" />
+import * as child_process from "node:child_process";
+import adapter from "@sveltejs/adapter-node";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { sveltekit } from "@sveltejs/kit/vite";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import { svelteTesting } from "@testing-library/svelte/vite";
 
-/** @type {import('vite').UserConfig} */
 export default defineConfig(() => ({
-  plugins: [sveltekit(), svelteTesting()],
-  alias: {
-    $app: "/node_modules/@sveltejs/kit/assets/app",
-    $lib: "/src/lib",
-  },
+  plugins: [
+    sveltekit({
+      preprocess: vitePreprocess(),
+      adapter: adapter({
+        // default options are shown
+        out: "build",
+        precompress: true,
+      }),
+      version: {
+        name: child_process.execSync("git rev-parse HEAD").toString().trim(),
+        pollInterval: 2500,
+      },
+    }),
+    svelteTesting(),
+  ],
   server: {
     fs: {
       allow: [".."],
@@ -19,13 +30,6 @@ export default defineConfig(() => ({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./setupTests.ts", "jest-canvas-mock"],
-    watchExclude: [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/cypress/**",
-      "**/.{idea,git,cache,output,temp}/**",
-      "**.spec.js",
-    ],
     exclude: [
       "**/node_modules/**",
       "**/dist/**",
@@ -34,7 +38,6 @@ export default defineConfig(() => ({
       "**.spec.js",
     ],
   },
-  legacy: { buildSsrCjsExternalHeuristics: true },
   build: {
     minify: true,
   },

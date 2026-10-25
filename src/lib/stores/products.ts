@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareProduct } from "#lib/types/product.js";
 
 export const products = writable<readonly SquareProduct[]>([]);
 

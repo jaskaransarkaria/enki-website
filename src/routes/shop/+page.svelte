@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import HexGrid from "$lib/components/HexGrid/HexGrid.svelte";
-  import { readonlyAllCategories } from "$lib/stores/categories";
+  import { page } from "$app/state";
+  import HexGrid from "#lib/components/HexGrid/HexGrid.svelte";
+  import { readonlyAllCategories } from "#lib/stores/categories.js";
 
-  import type { BaseFn } from "$lib/types/base";
-  import type { SquareCategory } from "$lib/types/category";
+  import type { BaseFn } from "#lib/types/base.js";
+  import type { SquareCategory } from "#lib/types/category.js";
   import { onMount } from "svelte";
 
   interface Props {
@@ -12,13 +12,9 @@
   }
 
   let { data = { data: [] } }: Props = $props();
-
-  const queryParams = $page.url.toString().split("?")[1];
-
+  const queryParams = page.url.toString().split("?")[1];
   const categoryFn: BaseFn = (category: SquareCategory) =>
-    `${$page.url.toString().split("?")[0]}/category/${category.id}${
-      queryParams ? "?" + queryParams : ""
-    }`;
+    `${page.url.toString().split("?")[0]}/category/${category.id}${queryParams ? "?" + queryParams : ""}`;
 
   onMount(async () => {
     readonlyAllCategories.set(data.data);

@@ -1,8 +1,8 @@
-import { PUBLIC_INTERNAL_K8S_URL } from "$env/static/public";
-import { withDefaultCacheHeaders } from "$lib/server/cacheHeaders";
-import { apexRedirectUrl } from "$lib/server/redirects";
-import { warmSitemapCache } from "$lib/server/sitemapCache";
-import type { Handle } from "@sveltejs/kit";
+import type { Handle } from "@sveltejs/kit/hooks";
+import { PUBLIC_INTERNAL_K8S_URL } from "$app/env/public";
+import { withDefaultCacheHeaders } from "#lib/server/cacheHeaders.js";
+import { apexRedirectUrl } from "#lib/server/redirects.js";
+import { warmSitemapCache } from "#lib/server/sitemapCache.js";
 
 // Runs before the server starts responding. Building the sitemap here means
 // the first request is served from cache; the port only opens once warm-up has

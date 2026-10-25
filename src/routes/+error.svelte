@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import notFoundImg from "$lib/assets/404.png";
+  import notFoundImg from "#lib/assets/404.png";
 </script>
 
 <svelte:head>

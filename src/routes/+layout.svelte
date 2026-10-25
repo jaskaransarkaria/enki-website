@@ -2,16 +2,16 @@
   import { page } from "$app/state";
   import { beforeNavigate } from "$app/navigation";
   import { updated, navigating } from "$app/state";
-  import { SITE_URL } from "$lib/constants";
-  import { jsonLdScript } from "$lib/utils/structuredData";
-  import Header from "$lib/components/Header/Header.svelte";
-  import Footer from "$lib/components/Footer/Footer.svelte";
-  import BackToTop from "$lib/components/BackToTop/BackToTop.svelte";
-  import aboutShopOneJpg from "$lib/assets/about_shop_1.jpg";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import { SITE_URL } from "#lib/constants.js";
+  import { jsonLdScript } from "#lib/utils/structuredData.js";
+  import Header from "#lib/components/Header/Header.svelte";
+  import Footer from "#lib/components/Footer/Footer.svelte";
+  import BackToTop from "#lib/components/BackToTop/BackToTop.svelte";
+  import aboutShopOneJpg from "#lib/assets/about_shop_1.jpg";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
   import "../app.css";
   import { onMount } from "svelte";
-  import LoadingSpinner from "$lib/components/LoadingSpinner/LoadingSpinner.svelte";
+  import LoadingSpinner from "#lib/components/LoadingSpinner/LoadingSpinner.svelte";
   interface Props {
     children?: import("svelte").Snippet;
   }
@@ -99,7 +99,9 @@
     }
   });
 
-  beforeNavigate(({ willUnload, to }) => {
+  beforeNavigate(({ willUnload, to, shallow, type }) => {
+    if (shallow && type === "goto") return;
+
     if (updated.current && !willUnload && to?.url) {
       location.href = to.url.href;
     }

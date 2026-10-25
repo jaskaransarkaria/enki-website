@@ -1,7 +1,7 @@
-import { PUBLIC_BUCKET_URL } from "$env/static/public";
-import { SITE_URL } from "$lib/constants";
-import type { SquareCategory } from "$lib/types/category";
-import type { SquareProduct } from "$lib/types/product";
+import { PUBLIC_BUCKET_URL } from "$app/env/public";
+import { SITE_URL } from "#lib/constants.js";
+import type { SquareCategory } from "#lib/types/category.js";
+import type { SquareProduct } from "#lib/types/product.js";
 
 /**
  * Pages that are always indexable and don't depend on catalog data.
@@ -99,6 +99,7 @@ export const collectEntries = (
     for (const category of nodes) {
       const childrenLastmod = visit(category.children ?? []);
       const ownLastmod = directLastmod.get(category.id);
+
       const lastmod =
         ownLastmod && childrenLastmod
           ? ownLastmod > childrenLastmod

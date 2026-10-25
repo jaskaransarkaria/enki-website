@@ -1,19 +1,19 @@
-import { browser, dev } from "$app/environment";
+import { browser, dev } from "$app/env";
 import { error } from "@sveltejs/kit";
-import { setServerUrl } from "$lib/utils/setServerUrl";
+import { setServerUrl } from "#lib/utils/setServerUrl.js";
 import {
   refreshCategoriesFromServer,
   refreshCategoryFromServer,
   refreshProductsFromServer,
-} from "$lib/utils/requests";
+} from "#lib/utils/requests.js";
 import {
   categoryTrail,
   shopBreadcrumb,
   type Breadcrumb,
-} from "$lib/utils/structuredData";
+} from "#lib/utils/structuredData.js";
 
-import type { SquareCategory } from "$lib/types/category";
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareCategory } from "#lib/types/category.js";
+import type { SquareProduct } from "#lib/types/product.js";
 
 const traverseCategoryObj = (
   id: string,

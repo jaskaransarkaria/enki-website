@@ -3,9 +3,9 @@
   // it so that it gets served as a static asset in prod
   export const prerender = true;
 
-  import loyalty from "$lib/assets/useful_link_loyalty.png";
-  import insta from "$lib/assets/useful_link_insta.png";
-  import fb from "$lib/assets/useful_link_fb.png";
+  import loyalty from "#lib/assets/useful_link_loyalty.png";
+  import insta from "#lib/assets/useful_link_insta.png";
+  import fb from "#lib/assets/useful_link_fb.png";
 </script>
 
 <svelte:head>

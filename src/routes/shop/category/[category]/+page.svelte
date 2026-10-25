@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
+  import { PUBLIC_BUCKET_URL } from "$app/env/public";
   import { page } from "$app/state";
-  import CategoryView from "$lib/components/CategoryView/CategoryView.svelte";
-  import { breadcrumbJsonLd, jsonLdScript } from "$lib/utils/structuredData";
+  import CategoryView from "#lib/components/CategoryView/CategoryView.svelte";
+  import { breadcrumbJsonLd, jsonLdScript } from "#lib/utils/structuredData.js";
 
   let categoryToShow = $derived(page.data.categoryToShow);
   let productArr = $derived(page.data.productArr);

@@ -1,12 +1,12 @@
 <script lang="ts">
   /* eslint-disable svelte/require-each-key, svelte/no-at-html-tags */
-  import { PUBLIC_BUCKET_URL } from "$env/static/public";
-  import comingSoon from "$lib/assets/coming_soon.png";
-  import AddToBasket from "$lib/components/AddToBasket/AddToBasket.svelte";
-  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
+  import { PUBLIC_BUCKET_URL } from "$app/env/public";
+  import comingSoon from "#lib/assets/coming_soon.png";
+  import AddToBasket from "#lib/components/AddToBasket/AddToBasket.svelte";
+  import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
 
-  import type { SquareProduct, VariationData } from "$lib/types/product";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import type { SquareProduct, VariationData } from "#lib/types/product.js";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
   interface Props {
     product: SquareProduct;
@@ -115,18 +115,14 @@
       </div>
     </div>
     <div class="detailed-products-footer">
-      <h2>
-        {`${product.item_data.name}`}
-      </h2>
-
+      <h2>{`${product.item_data.name}`}</h2>
       <h4>
-        {`£${(
-          selectedProductVariation.item_variation_data.price_money.amount / 100
-        ).toFixed(2)}`}
+        {`£${(selectedProductVariation.item_variation_data.price_money.amount / 100).toFixed(2)}`}
       </h4>
       <div class="description-html">
         {@html product.item_data.description_html}
       </div>
+
       <h5>
         {`${
           ("quantity" in selectedProductVariation.item_variation_data

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { loadStripe } from "@stripe/stripe-js/pure.js";
   import { onMount } from "svelte";
-  import { basket } from "$lib/stores/basket";
+  import { basket } from "#lib/stores/basket.js";
   import { createCheckoutSession } from "./createCheckoutSession";
-  import { PUBLIC_STRIPE_KEY, PUBLIC_SERVER_URL } from "$env/static/public";
+  import { PUBLIC_STRIPE_KEY, PUBLIC_SERVER_URL } from "$app/env/public";
 
   let stripePromise: any = $state(); // eslint-disable-line @typescript-eslint/no-explicit-any
   interface Props {

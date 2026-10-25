@@ -1,9 +1,10 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import MobileClose from "$lib/components/MobileClose/MobileClose.svelte";
-  import { clickOutside } from "$lib/utils/clickOutside";
+  import MobileClose from "#lib/components/MobileClose/MobileClose.svelte";
+  import { clickOutside } from "#lib/utils/clickOutside.js";
 
-  let { children,
+  let {
+    children,
     isMobile,
     showModal,
     visible = 0,

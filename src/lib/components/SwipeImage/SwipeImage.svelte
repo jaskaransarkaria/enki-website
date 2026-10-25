@@ -9,7 +9,7 @@
   import "swiper/css/navigation";
   import "swiper/css/pagination";
 
-  import comingSoon from "$lib/assets/coming_soon.png";
+  import comingSoon from "#lib/assets/coming_soon.png";
 
   interface Props {
     imgArr: { src: string; alt: string }[];
@@ -22,7 +22,7 @@
     imgArr = $bindable(),
     setImgWidth = false,
     fullScreen = false,
-    slidesPerView = 1
+    slidesPerView = 1,
   }: Props = $props();
 </script>
 

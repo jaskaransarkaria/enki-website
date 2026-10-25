@@ -1,15 +1,15 @@
 <script lang="ts">
   /* eslint-disable svelte/require-each-key, @typescript-eslint/no-unused-vars */
-  import { browser } from "$app/environment";
+  import { browser } from "$app/env";
   import {
     getGridCols,
     calcShowGrid,
     calcRowNumber,
-  } from "$lib/utils/gridCalc";
-  import LoadingSpinner from "$lib/components/LoadingSpinner/LoadingSpinner.svelte";
-  import Hex from "$lib/components/Hex/Hex.svelte";
+  } from "#lib/utils/gridCalc.js";
+  import LoadingSpinner from "#lib/components/LoadingSpinner/LoadingSpinner.svelte";
+  import Hex from "#lib/components/Hex/Hex.svelte";
 
-  import type { SquareCategory } from "$lib/types/category";
+  import type { SquareCategory } from "#lib/types/category.js";
 
   let { data = [], showFullPage = true } = $props();
 

@@ -3,13 +3,13 @@ import { vi } from "vitest";
 import { tick } from "svelte";
 import { render, screen } from "@testing-library/svelte";
 import Breadcrumbs from "./Breadcrumbs.svelte";
-import { refreshCategories } from "$lib/utils/requests";
+import { refreshCategories } from "#lib/utils/requests.js";
 import {
   readonlyAllCategories,
   resetReadonlyAllCategoriesStore,
-} from "$lib/stores/categories";
+} from "#lib/stores/categories.js";
 
-vi.mock("$lib/utils/requests");
+vi.mock("#lib/utils/requests.js");
 
 describe("GIVEN Breadcrumbs", () => {
   beforeEach(() => {

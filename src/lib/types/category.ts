@@ -1,5 +1,5 @@
-import type { Base } from "$lib/types/base";
-import type { Attr } from "$lib/types/customAttributes";
+import type { Base } from "#lib/types/base.js";
+import type { Attr } from "#lib/types/customAttributes.js";
 
 export interface Category extends Base {
   CategoryId?: number; // if its a variant

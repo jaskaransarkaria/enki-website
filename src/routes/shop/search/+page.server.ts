@@ -1,8 +1,8 @@
-import { browser, dev } from "$app/environment";
-import { setServerUrl } from "$lib/utils/setServerUrl";
-import { searchProducts } from "$lib/utils/search";
-import { refreshProductsFromServer } from "$lib/utils/requests";
-import type { SquareProduct } from "$lib/types/product";
+import { browser, dev } from "$app/env";
+import { setServerUrl } from "#lib/utils/setServerUrl.js";
+import { searchProducts } from "#lib/utils/search.js";
+import { refreshProductsFromServer } from "#lib/utils/requests.js";
+import type { SquareProduct } from "#lib/types/product.js";
 
 // Escape user input before it is used inside a RegExp so a stray "(" can't
 // throw and a crafted term can't inject regex syntax.

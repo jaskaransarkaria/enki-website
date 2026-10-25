@@ -1,4 +1,4 @@
-FROM node:22.20-alpine3.21 as builder
+FROM node:26.12.1-alpine3.24 as builder
 
 WORKDIR /usr/src/app
 
@@ -19,7 +19,7 @@ ENV PUBLIC_INTERNAL_K8S_URL="http://enki-server.enki.svc.cluster.local:5001"
 
 RUN npm run build
 
-FROM node:22.20-alpine3.21
+FROM node:26.12.1-alpine3.24
 
 WORKDIR /usr/src/app
 

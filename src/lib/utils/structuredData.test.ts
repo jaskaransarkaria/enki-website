@@ -1,14 +1,14 @@
 import { describe, it, expect } from "vitest";
-import { PUBLIC_BUCKET_URL } from "$env/static/public";
-import { SITE_URL } from "$lib/constants";
+import { PUBLIC_BUCKET_URL } from "$app/env/public";
+import { SITE_URL } from "#lib/constants.js";
 import {
   breadcrumbJsonLd,
   categoryTrail,
   jsonLdScript,
   productJsonLd,
 } from "./structuredData";
-import type { SquareCategory } from "$lib/types/category";
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareCategory } from "#lib/types/category.js";
+import type { SquareProduct } from "#lib/types/product.js";
 
 const makeProduct = (): SquareProduct =>
   ({

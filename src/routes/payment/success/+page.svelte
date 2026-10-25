@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { reset as resetBasketStore } from "$lib/stores/basket";
-  import thankYouPng from "$lib/assets/thank_you_page.png";
-  import thankYouAvif from "$lib/assets/thank_you_page.avif";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import { reset as resetBasketStore } from "#lib/stores/basket.js";
+  import thankYouPng from "#lib/assets/thank_you_page.png";
+  import thankYouAvif from "#lib/assets/thank_you_page.avif";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
   onMount(() => {
     resetBasketStore();

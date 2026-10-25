@@ -1,7 +1,7 @@
-import { browser, dev } from "$app/environment";
-import { setServerUrl } from "$lib/utils/setServerUrl";
-import { refreshCategoriesFromServer } from "$lib/utils/requests";
-import type { SquareCategory } from "$lib/types/category";
+import { browser, dev } from "$app/env";
+import { setServerUrl } from "#lib/utils/setServerUrl.js";
+import { refreshCategoriesFromServer } from "#lib/utils/requests.js";
+import type { SquareCategory } from "#lib/types/category.js";
 
 const orderCategories = (resp: SquareCategory[]) =>
   resp.sort(

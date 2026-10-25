@@ -1,13 +1,13 @@
 <script lang="ts">
   /*  eslint-disable svelte/no-navigation-without-resolve */
   import confetti from "canvas-confetti";
-  import { browser } from "$app/environment";
+  import { browser } from "$app/env";
   import { goto } from "$app/navigation";
   import { fade } from "svelte/transition";
-  import { basket } from "$lib/stores/basket";
-  import { updateBasket } from "$lib/utils/basket";
+  import { basket } from "#lib/stores/basket.js";
+  import { updateBasket } from "#lib/utils/basket.js";
 
-  import type { SquareProduct, VariationData } from "$lib/types/product";
+  import type { SquareProduct, VariationData } from "#lib/types/product.js";
 
   interface Props {
     product: SquareProduct;
@@ -17,8 +17,9 @@
 
   let { product, detailed = false, variation }: Props = $props();
 
-  let addedToBasket =
-    $state($basket.findIndex((item) => item.id === product.id) === -1 ? false : true);
+  let addedToBasket = $state(
+    $basket.findIndex((item) => item.id === product.id) === -1 ? false : true,
+  );
 </script>
 
 {#if product}

@@ -3,10 +3,10 @@ import { render, screen, waitFor } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import Basket from "./Basket.svelte";
 import { get } from "svelte/store";
-import { basket, reset as resetBasketStore } from "$lib/stores/basket";
-import { updateBasket } from "$lib/utils/basket";
+import { basket, reset as resetBasketStore } from "#lib/stores/basket.js";
+import { updateBasket } from "#lib/utils/basket.js";
 
-import type { SquareProduct } from "$lib/types/product";
+import type { SquareProduct } from "#lib/types/product.js";
 
 const dummyProduct = {
   id: "123",

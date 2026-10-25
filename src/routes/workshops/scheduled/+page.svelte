@@ -1,15 +1,16 @@
 <script lang="ts">
+  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  import SwipeImage from "$lib/components/SwipeImage/SwipeImage.svelte";
-  import CraftThreeJpg from "$lib/assets/craft_3.jpg";
-  import CraftFiveJpg from "$lib/assets/craft_5.jpg";
-  import CraftEightJpg from "$lib/assets/craft_8.jpg";
-  import CraftThreeAvif from "$lib/assets/craft_3.avif";
-  import CraftFiveAvif from "$lib/assets/craft_5.avif";
-  import CraftEightAvif from "$lib/assets/craft_8.avif";
-  import GiftVouchers from "$lib/components/Svg/GiftVouchers.svelte";
-  import { isAvifSupported } from "$lib/stores/isAvifSupported";
+  import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
+  import CraftThreeJpg from "#lib/assets/craft_3.jpg";
+  import CraftFiveJpg from "#lib/assets/craft_5.jpg";
+  import CraftEightJpg from "#lib/assets/craft_8.jpg";
+  import CraftThreeAvif from "#lib/assets/craft_3.avif";
+  import CraftFiveAvif from "#lib/assets/craft_5.avif";
+  import CraftEightAvif from "#lib/assets/craft_8.avif";
+  import GiftVouchers from "#lib/components/Svg/GiftVouchers.svelte";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
 
   const SHOW_VOUCHER = true;
   let ttWidget: HTMLElement = $state(undefined);
@@ -25,7 +26,7 @@
     widgetListLoaded = true;
   });
 
-  let outerWidth = $derived(0);
+  let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 960);
 </script>
 
