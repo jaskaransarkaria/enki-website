@@ -1,4 +1,5 @@
 import { browser, dev } from "$app/environment";
+import { error } from "@sveltejs/kit";
 import { SITE_URL } from "$lib/constants";
 import { setServerUrl } from "$lib/utils/setServerUrl";
 import {
@@ -19,6 +20,10 @@ export async function load({ fetch, params }) {
     `${serverUrl}/product?id=${params.product}`,
     fetch,
   );
+
+  if (!productToShow.length) {
+    error(404, "Product not found");
+  }
 
   // Build the breadcrumb trail server-side (the client already has the store).
   let breadcrumbTrail: Breadcrumb[] = [];

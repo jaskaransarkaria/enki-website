@@ -28,7 +28,10 @@
 
       if (productToShow.length < 1) {
         const res = await fetch(`${PUBLIC_SERVER_URL}/product?id=${productId}`);
-        productToShow = await res.json();
+        if (res.ok) {
+          const data = await res.json();
+          productToShow = Array.isArray(data) ? data : [];
+        }
       }
     }
   });

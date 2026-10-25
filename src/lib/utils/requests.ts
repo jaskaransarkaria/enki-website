@@ -22,6 +22,13 @@ const retrieveStateFn = <T>(url: string, getState: GetFn<T>, defaultValue: T) =>
     TE.getOrElse(() => T.of(defaultValue)),
   )(url);
 
+/**
+ * The backend returns an empty 500 body for missing records, which `res.json()`
+ * resolves to `undefined`. Coerce anything that isn't an array to `[]` so
+ * callers can always treat the result as an array.
+ */
+const asArray = <T>(data: unknown): T[] => (Array.isArray(data) ? data : []);
+
 export const refreshCategoriesFromServer = async (
   url: string,
   fetchWrapper: FetchWrapper,
@@ -47,32 +54,26 @@ export const refreshCategories = async (
 
 const getCategoryFromServer: (
   fW: FetchWrapper,
-) => GetFn<ReadonlyArray<SquareCategory>> =
-  (
-    fetchWrapper: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
-  ) =>
-  (url: string): Promise<ReadonlyArray<SquareCategory>> =>
-    fetchWrapper(url).then((res) => res.json());
+) => GetFn<ReadonlyArray<SquareCategory>> = (fetchWrapper) => (url) =>
+  fetchWrapper(url)
+    .then((res) => res.json())
+    .then((data) => asArray<SquareCategory>(data));
 
 const getProductArrayFromServer: (
   fW: FetchWrapper,
-) => GetFn<ReadonlyArray<SquareProduct>> =
-  (
-    fetchWrapper: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
-  ) =>
-  (url: string): Promise<ReadonlyArray<SquareProduct>> =>
-    fetchWrapper(url).then((res) => res.json());
+) => GetFn<ReadonlyArray<SquareProduct>> = (fetchWrapper) => (url) =>
+  fetchWrapper(url)
+    .then((res) => res.json())
+    .then((data) => asArray<SquareProduct>(data));
 
-const getCategoriesArray: GetFn<ReadonlyArray<SquareCategory>> = (
-  url: string,
-): Promise<ReadonlyArray<SquareCategory>> =>
-  fetch(url).then((res) => res.json());
+const getCategoriesArray: GetFn<ReadonlyArray<SquareCategory>> = (url) =>
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => asArray<SquareCategory>(data));
 
 const getCategoriesArrayServer: (
   fW: FetchWrapper,
-) => GetFn<ReadonlyArray<SquareCategory>> =
-  (
-    fetchWrapper: (a: string) => Promise<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
-  ) =>
-  (url: string): Promise<ReadonlyArray<SquareCategory>> =>
-    fetchWrapper(url).then((res) => res.json());
+) => GetFn<ReadonlyArray<SquareCategory>> = (fetchWrapper) => (url) =>
+  fetchWrapper(url)
+    .then((res) => res.json())
+    .then((data) => asArray<SquareCategory>(data));
