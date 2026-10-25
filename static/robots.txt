@@ -1,77 +1,14 @@
-# https://www.robotstxt.org/robotstxt.html
-Sitemap: https://enkionline.com/sitemap.xml
+# https://www.robotstxt.org/robots.txt
+#
+# Allow every search engine to crawl the site. Only pages with no search value
+# are blocked; duplicate and query-string URLs are consolidated with canonical
+# tags rather than robots.txt.
+
 User-agent: *
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*? # This will prevent crawlers from accessing any pages with query params
+Allow: /
 
-# Certain social media sites are whitelisted to allow crawlers to index the
-# site 
-User-agent: Twitterbot
 Disallow: /payment
-Disallow: /shop/search
 Disallow: /shop/basket
-Disallow: /*?
+Disallow: /shop/search
 
-User-agent: facebookexternalhit
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-
-User-agent: baiduspider
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-
-User-agent: baiduspider-mobile
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-
-User-agent: bingbot
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-Crawl-delay: 10
-
-User-agent: msnbot
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-
-User-agent: DuckDuckBot
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-
-User-agent: Googlebot
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-
-User-agent: Googlebot-Mobile
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-
-User-agent: slurp
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-
-User-agent: yandex
-Disallow: /payment
-Disallow: /shop/search
-Disallow: /shop/basket
-Disallow: /*?
-Crawl-delay: 5
+Sitemap: https://enkionline.com/sitemap.xml
