@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SITE_URL } from "$lib/constants";
   import servicesOneJpg from "$lib/assets/services_1.jpg";
   import servicesTwoJpg from "$lib/assets/services_2.jpg";
   import servicesThreeJpg from "$lib/assets/services_3.jpg";
@@ -33,7 +34,7 @@
     property="og:description"
     content="Ring resizing, chain and clasp repairs, claw re-tipping, re-stringing and more, done by jewellers in our Kings Heath workshop. Estimates before any work."
   />
-  <meta property="og:image" content={servicesFourJpg} />
+  <meta property="og:image" content={`${SITE_URL}${servicesFourJpg}`} />
 </svelte:head>
 
 <svelte:window bind:outerWidth />
