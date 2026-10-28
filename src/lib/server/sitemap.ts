@@ -137,24 +137,19 @@ export const collectEntries = (
   return entries.sort((a, b) => a.loc.localeCompare(b.loc));
 };
 
-export const buildSitemapXml = (
-  products: readonly SquareProduct[],
-  categories: readonly SquareCategory[],
-): string => {
-  const urls = collectEntries(products, categories).map(
-    ({ loc, lastmod, images }) => {
-      const lines = [`    <loc>${escapeXml(`${SITE_URL}${loc}`)}</loc>`];
-      if (lastmod) lines.push(`    <lastmod>${lastmod}</lastmod>`);
+export const entriesToXml = (entries: readonly SitemapEntry[]): string => {
+  const urls = entries.map(({ loc, lastmod, images }) => {
+    const lines = [`    <loc>${escapeXml(`${SITE_URL}${loc}`)}</loc>`];
+    if (lastmod) lines.push(`    <lastmod>${lastmod}</lastmod>`);
 
-      for (const image of images ?? []) {
-        lines.push(
-          `    <image:image>\n      <image:loc>${escapeXml(image)}</image:loc>\n    </image:image>`,
-        );
-      }
+    for (const image of images ?? []) {
+      lines.push(
+        `    <image:image>\n      <image:loc>${escapeXml(image)}</image:loc>\n    </image:image>`,
+      );
+    }
 
-      return `  <url>\n${lines.join("\n")}\n  </url>`;
-    },
-  );
+    return `  <url>\n${lines.join("\n")}\n  </url>`;
+  });
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -165,20 +160,131 @@ export const buildSitemapXml = (
   ].join("\n");
 };
 
+export const buildSitemapXml = (
+  products: readonly SquareProduct[],
+  categories: readonly SquareCategory[],
+): string => entriesToXml(collectEntries(products, categories));
+
 export const FETCH_TIMEOUT_MS = 30_000;
 
-const fetchCatalog = (url: string) =>
-  fetch(url, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+/**
+ * Total time budget for validating catalogue entries. The sitemap is warmed up
+ * before the server accepts traffic, so this stays well inside the Kubernetes
+ * startup probe (30 × 2s). Entries not reached within the budget are kept
+ * unvalidated rather than delaying startup further.
+ */
+export const VALIDATION_BUDGET_MS = 30_000;
+
+/** How many entry validations run in parallel. */
+export const VALIDATION_CONCURRENCY = 16;
+
+/**
+ * Guard against caching a gutted sitemap when the backend itself is unhealthy:
+ * if more than this share of catalogue entries fail validation, abort the
+ * rebuild so the previous sitemap is served instead.
+ */
+export const MAX_VALIDATION_FAILURE_RATIO = 0.25;
+
+const fetchCatalog = (url: string, fetchImpl: typeof fetch) =>
+  fetchImpl(url, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+
+/**
+ * The backend endpoint the matching page's `load` calls to resolve an entry.
+ * Static routes aren't backed by the catalogue and aren't validated.
+ */
+export const entryValidationUrl = (
+  apiBaseUrl: string,
+  loc: string,
+): string | undefined => {
+  const product = loc.match(/^\/shop\/product\/(.+)$/);
+  if (product) return `${apiBaseUrl}/product?id=${product[1]}`;
+
+  const category = loc.match(/^\/shop\/category\/(.+)$/);
+  if (category) return `${apiBaseUrl}/category?id=${category[1]}`;
+
+  return undefined;
+};
+
+/**
+ * Drop entries whose page would 404. `/get-all-products` and the single-item
+ * endpoints can disagree (e.g. a product present in the catalogue list but
+ * missing from `/product`), so each catalogue-backed entry is checked against
+ * the same endpoint its page uses.
+ *
+ * Network/timeout errors are treated as "unknown" and the entry is kept, so a
+ * transient blip can't strip the sitemap. If too many entries fail outright the
+ * backend is presumed unhealthy and we throw, letting the caller serve the
+ * previous sitemap rather than caching a gutted one.
+ */
+export const filterResolvableEntries = async (
+  apiBaseUrl: string,
+  entries: readonly SitemapEntry[],
+  fetchImpl: typeof fetch = fetch,
+): Promise<SitemapEntry[]> => {
+  const urls = entries.map((entry) =>
+    entryValidationUrl(apiBaseUrl, entry.loc),
+  );
+  const checks = urls.filter((url) => url !== undefined).length;
+  if (checks === 0) return [...entries];
+
+  const keep = new Array<boolean>(entries.length).fill(true);
+  let cursor = 0;
+  let failures = 0;
+
+  const controller = new AbortController();
+  const deadline = Date.now() + VALIDATION_BUDGET_MS;
+  const budget = setTimeout(() => controller.abort(), VALIDATION_BUDGET_MS);
+
+  const worker = async () => {
+    while (cursor < entries.length && Date.now() < deadline) {
+      const index = cursor++;
+      const url = urls[index];
+      if (!url) continue;
+
+      try {
+        const response = await fetchImpl(url, { signal: controller.signal });
+        if (!response.ok) {
+          keep[index] = false;
+          failures += 1;
+        }
+      } catch {
+        // Unknown (network/timeout/budget): keep the entry.
+      }
+    }
+  };
+
+  try {
+    await Promise.all(
+      Array.from(
+        { length: Math.min(VALIDATION_CONCURRENCY, entries.length) },
+        worker,
+      ),
+    );
+  } finally {
+    clearTimeout(budget);
+  }
+
+  if (failures / checks > MAX_VALIDATION_FAILURE_RATIO) {
+    throw new Error(
+      `Sitemap validation failed for ${failures}/${checks} catalogue entries`,
+    );
+  }
+
+  return entries.filter((_, index) => keep[index]);
+};
 
 /**
  * Fetch the catalog from the backend and turn it into a sitemap.
  * `priority` and `changefreq` are intentionally omitted: Google ignores both,
  * and the generated priority values were invalid anyway.
  */
-export const buildSitemap = async (apiBaseUrl: string): Promise<string> => {
+export const buildSitemap = async (
+  apiBaseUrl: string,
+  fetchImpl: typeof fetch = fetch,
+): Promise<string> => {
   const [productsResponse, categoriesResponse] = await Promise.all([
-    fetchCatalog(`${apiBaseUrl}/get-all-products`),
-    fetchCatalog(`${apiBaseUrl}/categories`),
+    fetchCatalog(`${apiBaseUrl}/get-all-products`, fetchImpl),
+    fetchCatalog(`${apiBaseUrl}/categories`, fetchImpl),
   ]);
 
   if (!productsResponse.ok || !categoriesResponse.ok) {
@@ -192,5 +298,11 @@ export const buildSitemap = async (apiBaseUrl: string): Promise<string> => {
     categoriesResponse.json() as Promise<SquareCategory[]>,
   ]);
 
-  return buildSitemapXml(products, categories);
+  const entries = await filterResolvableEntries(
+    apiBaseUrl,
+    collectEntries(products, categories),
+    fetchImpl,
+  );
+
+  return entriesToXml(entries);
 };
