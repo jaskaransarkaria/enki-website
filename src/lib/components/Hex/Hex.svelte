@@ -18,6 +18,7 @@
   interface Props {
     hexHref?: string;
     isEmpty?: boolean;
+    index?: number;
     category?: SquareCategory;
     loaded?: Map<string, HTMLImageElement>;
   }
@@ -25,6 +26,7 @@
   let {
     hexHref = "",
     isEmpty = false,
+    index = 0,
     category = {
       id: "",
       children: [],
@@ -98,7 +100,7 @@
           />
         {/if}
         <img
-          src={hexArr[Math.floor(Math.random() * 6)]}
+          src={hexArr[index % hexArr.length]}
           alt="hexagon shape for the category button"
           bind:this={hexImg}
           onload={() => {

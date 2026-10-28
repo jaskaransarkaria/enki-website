@@ -88,7 +88,12 @@
       {/if}
     {/if}
     <li class={showGrid ? "hex" : "hex-flex"}>
-      <Hex {category} hexHref={`/shop/category/${category.id}`} bind:loaded />
+      <Hex
+        {category}
+        {idx}
+        hexHref={`/shop/category/${category.id}`}
+        bind:loaded
+      />
     </li>
     {#if idx === filteredData.length - 1}
       {#if useEmptyHexes}
