@@ -2,11 +2,15 @@ import { describe, it, expect } from "vitest";
 import { PUBLIC_BUCKET_URL } from "$app/env/public";
 import { SITE_URL } from "#lib/constants.js";
 import {
+  buildSitemap,
   buildSitemapXml,
   collectEntries,
+  entryValidationUrl,
+  filterResolvableEntries,
   isIndexableProduct,
   STATIC_ROUTES,
   toLastmod,
+  type SitemapEntry,
 } from "./sitemap";
 import type { SquareCategory } from "#lib/types/category.js";
 import type { SquareProduct } from "#lib/types/product.js";
@@ -273,6 +277,110 @@ describe("GIVEN sitemap.ts", () => {
       for (const lastmod of lastmods) {
         expect(lastmod).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       }
+    });
+  });
+
+  describe("GIVEN entryValidationUrl()", () => {
+    it("WHEN given a product loc THEN returns the product endpoint", () => {
+      expect(entryValidationUrl("http://api", "/shop/product/abc")).toBe(
+        "http://api/product?id=abc",
+      );
+    });
+
+    it("WHEN given a category loc THEN returns the category endpoint", () => {
+      expect(entryValidationUrl("http://api", "/shop/category/xyz")).toBe(
+        "http://api/category?id=xyz",
+      );
+    });
+
+    it("WHEN given a static route THEN returns undefined", () => {
+      expect(entryValidationUrl("http://api", "/about")).toBeUndefined();
+    });
+  });
+
+  describe("GIVEN filterResolvableEntries()", () => {
+    const entries: SitemapEntry[] = [
+      { loc: "/about" },
+      ...Array.from({ length: 10 }, (_, i) => ({
+        loc: `/shop/product/good-${i}`,
+      })),
+      { loc: "/shop/product/bad" },
+      { loc: "/shop/category/leaf" },
+    ];
+
+    const mockFetch = (failing: Set<string>): typeof fetch =>
+      (async (input: string | URL) => ({
+        ok: !failing.has(String(input)),
+        status: failing.has(String(input)) ? 500 : 200,
+      })) as unknown as typeof fetch;
+
+    it("WHEN a catalogue entry 404s THEN it is dropped", async () => {
+      const result = await filterResolvableEntries(
+        "http://api",
+        entries,
+        mockFetch(new Set(["http://api/product?id=bad"])),
+      );
+      const locs = result.map((entry) => entry.loc);
+
+      expect(locs).not.toContain("/shop/product/bad");
+      expect(locs).toContain("/shop/product/good-0");
+      expect(locs).toContain("/shop/category/leaf");
+      // static routes aren't backed by the catalogue and are always kept
+      expect(locs).toContain("/about");
+    });
+
+    it("WHEN validation errors (network) THEN the entry is kept", async () => {
+      const failingFetch = (async () => {
+        throw new Error("network");
+      }) as unknown as typeof fetch;
+
+      const result = await filterResolvableEntries(
+        "http://api",
+        entries,
+        failingFetch,
+      );
+
+      expect(result).toHaveLength(entries.length);
+    });
+
+    it("WHEN most entries fail THEN it throws instead of gutting the sitemap", async () => {
+      const allFail = (async () => ({
+        ok: false,
+        status: 500,
+      })) as unknown as typeof fetch;
+
+      await expect(
+        filterResolvableEntries("http://api", entries, allFail),
+      ).rejects.toThrow(/validation failed/i);
+    });
+  });
+
+  describe("GIVEN buildSitemap()", () => {
+    it("WHEN the catalogue lists an unresolvable product THEN it is omitted", async () => {
+      const products = [
+        ...Array.from({ length: 10 }, (_, i) =>
+          makeProduct(`good-${i}`, ["cat"]),
+        ),
+        makeProduct("bad", ["cat"]),
+      ];
+      const categories = [makeCategory("cat")];
+
+      const fetchImpl = (async (input: string | URL) => {
+        const url = String(input);
+        if (url.endsWith("/get-all-products")) {
+          return { ok: true, status: 200, json: async () => products };
+        }
+        if (url.endsWith("/categories")) {
+          return { ok: true, status: 200, json: async () => categories };
+        }
+        return { ok: !url.includes("id=bad"), status: 200 };
+      }) as unknown as typeof fetch;
+
+      const xml = await buildSitemap("http://api", fetchImpl);
+
+      expect(xml).toContain(`<loc>${SITE_URL}/shop/product/good-0</loc>`);
+      expect(xml).not.toContain(`<loc>${SITE_URL}/shop/product/bad</loc>`);
+      expect(xml).toContain(`<loc>${SITE_URL}/shop/category/cat</loc>`);
     });
   });
 });
