@@ -18,6 +18,11 @@
 
   let { children }: Props = $props();
 
+  // Asset imports are relative during SSR but absolute on the client. Resolve
+  // against SITE_URL so both renders produce the same value (otherwise the
+  // client yields a doubled URL like "https://enkionline.comhttps://…").
+  const aboutShopOneUrl = new URL(aboutShopOneJpg, SITE_URL).href;
+
   const businessJsonLd = {
     "@context": "https://schema.org",
     "@type": ["Store", "JewelryStore"],
@@ -29,7 +34,7 @@
     telephone: "+44 121 444 4453",
     email: "faith@enkionline.com",
     foundingDate: "2017",
-    image: `${SITE_URL}${aboutShopOneJpg}`,
+    image: aboutShopOneUrl,
     address: {
       "@type": "PostalAddress",
       streetAddress: "30 High Street",
@@ -111,7 +116,7 @@
 <svelte:head>
   <meta property="og:url" content={`${SITE_URL}${page.url.pathname}`} />
   <link rel="canonical" href={`${SITE_URL}${page.url.pathname}`} />
-  <meta property="og:image" content={`${SITE_URL}${aboutShopOneJpg}`} />
+  <meta property="og:image" content={aboutShopOneUrl} />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_GB" />
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
