@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { PUBLIC_SERVER_URL } from "$app/env/public";
+  import { CLIENT_API_BASE } from "#lib/utils/setServerUrl.js";
   import { page } from "$app/state";
   import { SITE_URL } from "#lib/constants.js";
   import { productDescription, productTitle } from "#lib/utils/seo.js";
@@ -37,7 +37,7 @@
       );
 
       if (productToShow.length < 1) {
-        const res = await fetch(`${PUBLIC_SERVER_URL}/product?id=${productId}`);
+        const res = await fetch(`${CLIENT_API_BASE}/product?id=${productId}`);
         if (res.ok) {
           const data = await res.json();
           productToShow = Array.isArray(data) ? data : [];

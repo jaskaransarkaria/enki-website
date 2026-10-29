@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_SERVER_URL } from "$app/env/public";
+  import { CLIENT_API_BASE } from "#lib/utils/setServerUrl.js";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import emptyHex from "#lib/assets/empty_hex_1.png";
@@ -53,7 +53,7 @@
 
   onMount(async () => {
     if (!$readonlyAllCategories?.length) {
-      const result = await refreshCategories(`${PUBLIC_SERVER_URL}/categories`);
+      const result = await refreshCategories(`${CLIENT_API_BASE}/categories`);
       readonlyAllCategories.set([...result]);
     }
   });
