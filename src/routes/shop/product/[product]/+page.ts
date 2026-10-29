@@ -1,5 +1,5 @@
 import { browser, dev } from "$app/env";
-import { error } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 import { SITE_URL } from "#lib/constants.js";
 import { setServerUrl } from "#lib/utils/setServerUrl.js";
 import {
@@ -16,13 +16,22 @@ import {
 export async function load({ fetch, params }) {
   const serverUrl = setServerUrl(browser, dev);
 
+  // Catalogue IDs are uppercase. Normalise the URL param so a lowercase or
+  // mixed-case variant (e.g. one Google lowercased) resolves instead of
+  // 404ing, then 301 to the canonical URL so the cases don't compete.
+  const productId = params.product.toUpperCase();
+
   const productToShow = await refreshProductsFromServer(
-    `${serverUrl}/product?id=${params.product}`,
+    `${serverUrl}/product?id=${productId}`,
     fetch,
   );
 
   if (!productToShow.length) {
     error(404, "Product not found");
+  }
+
+  if (params.product !== productToShow[0].id) {
+    redirect(301, `/shop/product/${productToShow[0].id}`);
   }
 
   // Build the breadcrumb trail server-side (the client already has the store).

@@ -1,5 +1,5 @@
 import { browser, dev } from "$app/env";
-import { error } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 import { setServerUrl } from "#lib/utils/setServerUrl.js";
 import {
   refreshCategoriesFromServer,
@@ -42,15 +42,24 @@ const traverseCategoryObj = (
 export async function load({ fetch, params }) {
   const serverUrl = setServerUrl(browser, dev);
 
+  // Catalogue IDs are uppercase. Normalise the URL param so a lowercase or
+  // mixed-case variant (e.g. one Google lowercased) resolves instead of
+  // 404ing, then 301 to the canonical URL so the cases don't compete.
+  const categoryId = params.category.toUpperCase();
+
   const categoryResults = await refreshCategoryFromServer(
-    `${serverUrl}/category?id=${params.category}`,
+    `${serverUrl}/category?id=${categoryId}`,
     fetch,
   );
 
-  const category = traverseCategoryObj(params.category, categoryResults?.[0]);
+  const category = traverseCategoryObj(categoryId, categoryResults?.[0]);
 
   if (!category) {
     error(404, "Category not found");
+  }
+
+  if (params.category !== category.id) {
+    redirect(301, `/shop/category/${category.id}`);
   }
 
   let productResults: SquareProduct[] = [];
@@ -58,7 +67,7 @@ export async function load({ fetch, params }) {
   if (!category.children?.length) {
     productResults = [
       ...(await refreshProductsFromServer(
-        `${serverUrl}/products-by-category?id=${params.category}`,
+        `${serverUrl}/products-by-category?id=${categoryId}`,
         fetch,
       )),
     ];
@@ -73,7 +82,7 @@ export async function load({ fetch, params }) {
     );
     breadcrumbTrail = [
       shopBreadcrumb,
-      ...categoryTrail(categories, params.category),
+      ...categoryTrail(categories, categoryId),
     ];
   }
 

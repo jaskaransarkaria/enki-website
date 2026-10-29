@@ -90,7 +90,7 @@
     <li class={showGrid ? "hex" : "hex-flex"}>
       <Hex
         {category}
-        {idx}
+        index={idx}
         hexHref={`/shop/category/${category.id}`}
         bind:loaded
       />

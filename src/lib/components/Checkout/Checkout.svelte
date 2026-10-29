@@ -3,7 +3,8 @@
   import { onMount } from "svelte";
   import { basket } from "#lib/stores/basket.js";
   import { createCheckoutSession } from "./createCheckoutSession";
-  import { PUBLIC_STRIPE_KEY, PUBLIC_SERVER_URL } from "$app/env/public";
+  import { PUBLIC_STRIPE_KEY } from "$app/env/public";
+  import { CLIENT_API_BASE } from "#lib/utils/setServerUrl.js";
 
   let stripePromise: any = $state(); // eslint-disable-line @typescript-eslint/no-explicit-any
   interface Props {
@@ -23,7 +24,7 @@
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClick = async (stripePromise: any, basket: any) => {
     loading = true;
-    await createCheckoutSession(stripePromise, basket, PUBLIC_SERVER_URL);
+    await createCheckoutSession(stripePromise, basket, CLIENT_API_BASE);
   };
 </script>
 
