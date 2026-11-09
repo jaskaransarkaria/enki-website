@@ -23,7 +23,10 @@
       >
     </p>
     {#if isXmas}
-      <p>***CHRISTMAS SHIPPING DEADLINES*** Standard - 17th, Special - 20th</p>
+      <p>
+        ***CHRISTMAS SHIPPING DEADLINES*** Standard - 16th, Special - 18th, in
+        store collection - 24th
+      </p>
     {/if}
     <p class="free-shipping">Free UK shipping over £40</p>
   </div>

@@ -1,6 +1,12 @@
 <script lang="ts">
-  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
-  import { SITE_URL } from "#lib/constants.js";
+  import "#lib/styles/marketing.css";
+  import EnquiryForm from "#lib/components/EnquiryForm/EnquiryForm.svelte";
+  import {
+    GOOGLE_REVIEWS_URL,
+    REPAIRS_EMAIL,
+    SITE_URL,
+  } from "#lib/constants.js";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
   import servicesOneJpg from "#lib/assets/services_1.jpg";
   import servicesTwoJpg from "#lib/assets/services_2.jpg";
   import servicesThreeJpg from "#lib/assets/services_3.jpg";
@@ -9,13 +15,6 @@
   import servicesTwoAvif from "#lib/assets/services_2.avif";
   import servicesThreeAvif from "#lib/assets/services_3.avif";
   import servicesFourAvif from "#lib/assets/services_4.avif";
-  import nineCaret from "#lib/assets/9_carat.png";
-  import eighteenCaret from "#lib/assets/18_carat.png";
-  import platinum from "#lib/assets/platinum.png";
-  import silver from "#lib/assets/silver.png";
-  import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
-  import { fade } from "svelte/transition";
-  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
   import {
     faqJsonLd,
     jsonLdScript,
@@ -125,8 +124,77 @@
     },
   ];
 
-  let outerWidth = $state(initialViewportWidth());
-  const isMobile = $derived(outerWidth < 960);
+  const steps = [
+    {
+      title: "Bring it in",
+      text: "Drop your jewellery off at the shop, or send us a photo first.",
+    },
+    {
+      title: "Get a free quote",
+      text: "We look at it and tell you the price before we start any work.",
+    },
+    {
+      title: "Collect it",
+      text: "We'll let you know when it's ready, usually within 2 weeks.",
+    },
+  ];
+
+  const commonRepairs = [
+    { name: "Ring resizing", price: "from £35" },
+    { name: "Chain repair (soldering broken links)", price: "from £25" },
+    { name: "New clasp", price: "from £25" },
+    { name: "Stone re-setting", price: "from £20" },
+  ];
+
+  // TODO(content): add before & after photos. The section stays hidden until
+  // there's at least one pair.
+  const beforeAfter: {
+    before: string;
+    after: string;
+    caption: string;
+  }[] = [];
+
+  const reviews = [
+    {
+      quote:
+        "Beautiful little shop. I needed a bracelet repaired and a ring setting. Faith gave me some great advice and the repairs were done quickly.",
+      by: "Alexandra B",
+    },
+    {
+      quote:
+        "I'd been restoring a snare drum of huge sentimental value to me but the part I'd sourced needed some delicate filing to fit the existing mechanism… The staff took a real interest in the project and carried out the job there and then.",
+      by: "Dave T",
+    },
+    {
+      quote:
+        "Had my wedding ring cut off due to swollen finger, it was repaired with an additional piece added, not the slightest sign anything had happened.",
+      by: "Will M",
+    },
+    {
+      quote:
+        "I was in and out in ten minutes with my ring repaired and very shiny. Fantastic service and very knowledgeable. Highly recommended.",
+      by: "Claire B",
+    },
+  ];
+
+  const heroPhotos = $derived([
+    {
+      src: $isAvifSupported ? servicesOneAvif : servicesOneJpg,
+      alt: "a ring being polished on a polishing machine",
+    },
+    {
+      src: $isAvifSupported ? servicesTwoAvif : servicesTwoJpg,
+      alt: "a jewellery machine for pressing metal",
+    },
+    {
+      src: $isAvifSupported ? servicesFourAvif : servicesFourJpg,
+      alt: "a medallion being heated with a blow torch",
+    },
+    {
+      src: $isAvifSupported ? servicesThreeAvif : servicesThreeJpg,
+      alt: "jewellery pliers and a piece of jewellery being inspected",
+    },
+  ]);
 </script>
 
 <svelte:head>
@@ -152,418 +220,241 @@
   {@html jsonLdScript(reviewJsonLd(repairReviews))}
 </svelte:head>
 
-<svelte:window bind:outerWidth />
-<div class="container">
-  <br />
-  <div class="shop-pics">
-    {#if isMobile}
-      <SwipeImage
-        imgArr={[
-          {
-            src: $isAvifSupported ? servicesOneAvif : servicesOneJpg,
-            alt: "a ring being polished on a polishing machine",
-          },
-          {
-            src: $isAvifSupported ? servicesTwoAvif : servicesTwoJpg,
-            alt: "a jewellery machine for pressing metal",
-          },
-          {
-            src: $isAvifSupported ? servicesFourAvif : servicesFourJpg,
-            alt: "a medallion being heated with a blow touch",
-          },
-          {
-            src: $isAvifSupported ? servicesThreeAvif : servicesThreeJpg,
-            alt: "some jewellery pliers and some jewellery being inspected",
-          },
-        ]}
-      />
-    {:else}
-      <img
-        in:fade={{ duration: 600 }}
-        class="extra-width"
-        src={$isAvifSupported ? servicesOneAvif : servicesOneJpg}
-        alt="a ring being polished on a polishing machine"
-      />
-      <img
-        in:fade={{ duration: 600 }}
-        src={$isAvifSupported ? servicesTwoAvif : servicesTwoJpg}
-        alt="a jewellery machine for pressing metal"
-      />
-      <img
-        in:fade={{ duration: 600 }}
-        class="extra-width"
-        src={$isAvifSupported ? servicesThreeAvif : servicesThreeJpg}
-        alt="some jewellery pliers and some jewellery being inspected"
-      />
-      <img
-        in:fade={{ duration: 600 }}
-        src={$isAvifSupported ? servicesFourAvif : servicesFourJpg}
-        alt="a medallion being heated with a blow touch"
-      />
-    {/if}
-  </div>
-  <div class="repair-content">
-    {#if isMobile}
-      <p>
-        Got a necklace you're afraid to wear because the clasp sometimes fails?
-        Have a ring you've loved for such a long time that the shank has worn
-        away to nothing? We hate to see jewellery thrown away, bring it in and
-        we’ll get it back to its former glory. We can even create a new partner
-        for a lonely earring! <a href="/contact">Get in touch.</a>
+<main class="enki-page">
+  <section class="split hero">
+    <div>
+      <h1>Jewellery repairs in Kings Heath</h1>
+      <p class="lead">
+        Got a necklace you're afraid to wear because the clasp keeps failing, or
+        a ring you've worn so long the band has worn thin? We hate seeing
+        jewellery thrown away. Our jewellers repair all kinds of jewellery right
+        here in our workshop, and we can even make a new partner for a lonely
+        earring.
       </p>
-      <div class="repairs-price-list">
-        <a href="/repairs/silver-jewellery-price-list-10-02-25.pdf"
-          ><img alt="sliver repairs price list" src={silver} /></a
-        >
-        <a href="/repairs/9ct-jewellery-price-list-10-02-25.pdf"
-          ><img alt="9ct gold repairs list" src={nineCaret} /></a
-        >
-        <a href="/repairs/18ct-jewellery-price-list-10-02-25.pdf"
-          ><img alt="18ct gold repairs list" src={eighteenCaret} /></a
-        >
-        <a href="/repairs/platinum-jewellery-price-list-10-02-25.pdf"
-          ><img alt="platinum repairs list" src={platinum} /></a
-        >
+      <p class="panel panel-mint when">
+        <strong>When to come in:</strong> a jeweller is in most days except Tuesdays
+        and Sundays. You can drop repairs off any day, 10am–5pm.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="#quote">Send a photo for a quote</a>
+        <a class="btn btn-outline" href="#how-it-works">How it works</a>
       </div>
-    {:else}
-      <div class="left-repair-content">
-        <div class="repairs-price-list">
-          <a href="/repairs/silver-jewellery-price-list-10-02-25.pdf"
-            ><img alt="sliver repairs price list" src={silver} /></a
-          >
-          <a href="/repairs/9ct-jewellery-price-list-10-02-25.pdf"
-            ><img alt="9ct gold repairs list" src={nineCaret} /></a
-          >
-          <a href="/repairs/18ct-jewellery-price-list-10-02-25.pdf"
-            ><img alt="18ct gold repairs list" src={eighteenCaret} /></a
-          >
-          <a href="/repairs/platinum-jewellery-price-list-10-02-25.pdf"
-            ><img alt="platinum repairs list" src={platinum} /></a
-          >
-        </div>
+    </div>
+    <div class="hero-photos">
+      {#each heroPhotos as image (image.alt)}
+        <img class="photo" src={image.src} alt={image.alt} />
+      {/each}
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works" aria-labelledby="how-title">
+    <h2 class="section-title" id="how-title">How it works</h2>
+    <ol class="steps grid grid-3">
+      {#each steps as step, i (step.title)}
+        <li class="framed step center">
+          <div class="framed-inner">
+            <span class="step-number" aria-hidden="true">{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </div>
+        </li>
+      {/each}
+    </ol>
+  </section>
+
+  <section class="section split repairs-info">
+    <div>
+      <h2>Common repairs</h2>
+      <table class="price-table">
+        <tbody>
+          {#each commonRepairs as repair (repair.name)}
+            <tr>
+              <th scope="row">{repair.name}</th>
+              <td>{repair.price}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+      <p class="muted">
+        Prices depend on the metal and the piece. Not sure? Bring it in for a
+        free quote.
+      </p>
+    </div>
+    <div>
+      <h2>What we can help with</h2>
+      <div class="panel">
+        <p>
+          <strong>Yes:</strong> rings, chains, clasps, earrings, antique jewellery,
+          remodelling old pieces, and making a match for a lost earring.
+        </p>
+        <p>
+          <strong>Engraving:</strong> available through a trusted local engraver,
+          so it takes a little longer.
+        </p>
+        <p><strong>Sorry, no:</strong> we don't repair watches.</p>
       </div>
-      <p>
-        Got a necklace you're afraid to wear because the clasp sometimes fails?
-        Have a ring you've loved for such a long time that the shank has worn
-        away to nothing? We hate to see jewellery thrown away, bring it in and
-        we’ll get it back to its former glory. We can even create a new partner
-        for a lonely earring! <a href="/contact">Get in touch</a>.
-      </p>
-    {/if}
-  </div>
-  <div class="testimonials-container">
-    {#if isMobile}
-      <h2>Testimonials</h2>
-      <p>
-        "Beautiful little shop. I needed a bracelet repaired and a ring setting.
-        Faith gave me some great advice and the repairs were done quickly." -
-        Alexandra B
-      </p>
-      <hr style:width="90%" />
-      <p>
-        "Had my wedding ring cut off due to swollen finger, it was repaired with
-        an additional piece added, not the slightest sign anything had happened
-        . Would recommend her to anyone. Thank you." - Will M
-      </p>
-      <hr style:width="90%" />
-      <p>
-        "I ran into trouble restoring an old Gretsch snare drum of huge
-        sentimental value to me - the modern part I'd sourced in the USA arrived
-        but some delicate filing was needed in order to fit the part to the
-        existing mechanism… The staff were friendly and took a real interest in
-        the project and carefully carried out the delicate job there and then. I
-        could not be happier and would highly recommend the store, its staff and
-        their considerable - and adaptable - expertise." - Dave T
-      </p>
-      <hr style:width="90%" />
-      <p>
-        "I took a diamond ring to Enki to be repaired. The lady listened to my
-        description of what was wrong. She used several tools to look at the
-        ring and complete the repair. I was in and out in ten minutes with my
-        ring repaired and very shiny. Fantastic service and very knowledgeable.
-        Highly recommended." - Claire B
-      </p>
-    {:else}
-      <blockquote>
-        Beautiful little shop. I needed a bracelet repaired and a ring setting.
-        Faith gave me some great advice and the repairs were done quickly.
-        <footer>
-          <cite>Alexandra B</cite>
-        </footer>
-      </blockquote>
-      <blockquote>
-        I'd been restoring a snare drum of huge sentimental value to me but the
-        part I'd sourced needed some delicate filing to fit the existing
-        mechanism… The staff took a real interest in the project and carried out
-        the job there and then. I could not be happier and would highly
-        recommend the store, its staff and their considerable and adaptable
-        expertise.
-        <footer>
-          <cite>Dave T</cite>
-        </footer>
-      </blockquote>
-      <blockquote>
-        Had my wedding ring cut off due to swollen finger, it was repaired with
-        an additional piece added, not the slightest sign anything had happened.
-        Would recommend her to anyone. Thank you.
-        <footer>
-          <cite>Will M</cite>
-        </footer>
-      </blockquote>
-      <blockquote>
-        I took a diamond ring to Enki to be repaired. The lady listened to my
-        description of what was wrong. She used several tools to look at the
-        ring and complete the repair. I was in and out in ten minutes with my
-        ring repaired and very shiny. Fantastic service and very knowledgeable.
-        Highly recommended.
-        <footer>
-          <cite>Claire B</cite>
-        </footer>
-      </blockquote>
-    {/if}
-  </div>
-</div>
+    </div>
+  </section>
+
+  {#if beforeAfter.length}
+    <section class="section" aria-labelledby="ba-title">
+      <h2 class="section-title" id="ba-title">Before &amp; after</h2>
+      <div class="grid grid-3">
+        {#each beforeAfter as item (item.caption)}
+          <figure class="before-after">
+            <div class="pair">
+              <img
+                class="photo"
+                src={item.before}
+                alt="Before: {item.caption}"
+              />
+              <img class="photo" src={item.after} alt="After: {item.caption}" />
+            </div>
+            <figcaption class="muted">{item.caption}</figcaption>
+          </figure>
+        {/each}
+      </div>
+    </section>
+  {/if}
+
+  <section class="section" aria-labelledby="reviews-title">
+    <h2 class="section-title" id="reviews-title">What customers say</h2>
+    <div class="grid grid-4">
+      {#each reviews as review (review.by)}
+        <blockquote class="review">
+          <p>“{review.quote}”</p>
+          <footer>{review.by}, Google review</footer>
+        </blockquote>
+      {/each}
+    </div>
+    <p class="center reviews-link">
+      <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer"
+        >Read all our Google reviews</a
+      >
+    </p>
+  </section>
+
+  <section class="section panel" id="quote" aria-labelledby="quote-title">
+    <h2 id="quote-title">Send a photo for a quote</h2>
+    <p>
+      We'll give you a rough idea of price. For an exact quote we'll need to see
+      the piece in person.
+    </p>
+    <EnquiryForm
+      to={REPAIRS_EMAIL}
+      subject="Repair quote request"
+      footer="(Photos of the piece attached)"
+      submitLabel="Send"
+      columns={2}
+    >
+      <div class="field">
+        <label for="rq-name">Your name</label>
+        <input id="rq-name" name="name" autocomplete="name" required />
+      </div>
+      <div class="field">
+        <label for="rq-contact">Email or phone</label>
+        <input id="rq-contact" name="contact" required />
+      </div>
+      <div class="field field-full">
+        <label for="rq-details">What needs doing?</label>
+        <textarea id="rq-details" name="details" required></textarea>
+      </div>
+      <div class="field field-full">
+        <label for="rq-photos">Photos of the piece</label>
+        <input
+          id="rq-photos"
+          name="photos"
+          type="file"
+          multiple
+          accept="image/*"
+        />
+        <p class="photo-hint">
+          Front, back and any damage — a few photos help us give you an accurate
+          quote. There's a 10&nbsp;MB total limit.
+        </p>
+      </div>
+    </EnquiryForm>
+  </section>
+</main>
 
 <style>
-  h2 {
-    text-align: center;
-    font-family: "Welcomehome5 Regular";
+  .hero {
+    align-items: start;
+    padding-top: 1.5rem;
   }
 
-  .container {
-    display: flex;
-    min-height: 100vh;
-    width: 100vw;
-    flex-direction: column;
-    align-items: center;
+  .hero-photos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
   }
 
-  .repair-content {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    align-self: center;
+  .hero-photos .photo {
+    aspect-ratio: 5 / 4;
   }
 
-  .repairs-price-list {
+  .when {
+    font-size: 0.95rem;
+  }
+
+  .step .step-number {
+    font-size: 2.2rem;
+  }
+
+  .repairs-info {
+    align-items: start;
+  }
+
+  .price-table {
     width: 100%;
-    text-align: center;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
   }
 
-  .repairs-price-list > a {
-    margin: 1em;
-    justify-self: center;
+  .price-table th,
+  .price-table td {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--enki-line);
+    font-weight: normal;
+    text-align: left;
   }
 
-  .repairs-price-list > a > img {
-    margin-top: 1em;
-    width: 80%;
-  }
-
-  .left-repair-content {
-    margin: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-
-  .repair-content > p {
-    height: 50%;
-    width: auto;
-    font-size: 1em;
-    padding: 1em;
-    border: 0.2em solid var(--accent-color);
-    text-align: center;
-    box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
-  }
-
-  .testimonials-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  blockquote {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    font-family: "Caviar Dreams";
-    position: relative;
-    margin: 1em;
-    width: 15vw;
-    height: 15vw;
-    border: 0.2em solid var(--accent-color);
-    text-align: center;
-    box-shadow: 0 3px 20px rgb(0 0 0 / 0.2);
-  }
-
-  cite {
-    font-family: "Caviar Dreams Italic";
-  }
-
-  blockquote:before {
-    font-family: "Caviar Dreams";
-    color: var(--accent-color);
-    position: absolute;
-    font-size: 6em;
-    line-height: 1;
-    top: 0;
-    left: 0;
-    content: "\201C";
-  }
-  blockquote:after {
-    font-family: "Caviar Dreams";
-    color: var(--accent-color);
-    position: absolute;
-    /* display: block; don't use this, it raised the quote too high from the bottom - defeated line-height? */
-    float: right;
-    font-size: 6em;
-    line-height: 1;
-    right: 0;
-    bottom: -0.5em;
-    content: "\201D";
-  }
-  blockquote footer {
-    padding: 0 2em 0 0;
+  .price-table td {
+    padding-left: 1rem;
+    font-weight: bold;
     text-align: right;
-  }
-  blockquote cite:before {
-    content: "\2013";
+    white-space: nowrap;
   }
 
-  .testimonials-container > p {
-    margin: 1em;
+  .before-after {
+    margin: 0;
   }
 
-  .shop-pics {
-    display: flex;
-    flex-direction: row;
-    width: 75%;
-    height: 10%;
-    align-self: center;
-    justify-content: center;
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
   }
 
-  .shop-pics > * {
-    height: 100%;
-    max-width: 30%;
-    padding: 5px;
+  .pair .photo {
+    aspect-ratio: 1 / 1;
   }
 
-  p {
-    width: 90%;
-    align-self: center;
-    text-align: center;
-    font-family: "Caviar Dreams";
+  .remodel {
+    padding: clamp(1.25rem, 3vw, 2rem);
   }
 
-  @media (min-width: 600px) {
-    .repairs-price-list {
-      display: grid;
-      align-self: center;
-      height: auto;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-    }
-
-    .repairs-price-list > a > img {
-      width: 100%;
-    }
-
-    .repairs-price-list > a > img:hover {
-      transform: scale(1.015);
-    }
+  .reviews-link {
+    margin-top: 1.25rem;
   }
 
-  @media (min-width: 960px) {
-    .repair-content > p {
-      font-size: 1em;
-    }
-
-    blockquote {
-      font-size: 0.6em;
-      padding: 0.3em;
-    }
-
-    .testimonials-container {
-      flex-direction: row;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .repair-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    hr {
-      display: none;
-    }
-
-    .shop-pics {
-      height: 250px;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .repair-content > p {
-      font-size: 100%;
-    }
-
-    blockquote {
-      font-size: 0.7em;
-    }
-
-    .repairs-price-list > a {
-      margin: 0.5em;
-    }
-
-    .shop-pics {
-      height: 300px;
-    }
-  }
-
-  @media (min-width: 1400px) {
-    blockquote {
-      font-size: 0.8em;
-    }
-
-    .shop-pics {
-      height: 350px;
-    }
-  }
-
-  @media (min-width: 1600px) {
-    blockquote {
-      font-size: 0.9em;
-    }
-
-    .repair-content > p {
-      font-size: 1.5em;
-    }
-
-    .shop-pics {
-      height: 400px;
-    }
-  }
-
-  @media (min-width: 1920px) {
-    blockquote {
-      font-size: 1em;
-    }
-
-    .shop-pics {
-      height: 450px;
-    }
-  }
-
-  @media (min-width: 2200px) {
-    blockquote {
-      font-size: 1.2em;
-    }
-
-    .repair-content > p {
-      font-size: 2em;
-    }
+  .photo-hint {
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border: 1px dashed #b9b9b9;
+    border-radius: var(--enki-radius);
+    background: #fff;
+    font-size: 0.95rem;
   }
 </style>
