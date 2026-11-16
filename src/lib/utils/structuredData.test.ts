@@ -4,8 +4,11 @@ import { SITE_URL } from "#lib/constants.js";
 import {
   breadcrumbJsonLd,
   categoryTrail,
+  faqJsonLd,
   jsonLdScript,
+  localBusinessJsonLd,
   productJsonLd,
+  serviceJsonLd,
 } from "./structuredData";
 import type { SquareCategory } from "#lib/types/category.js";
 import type { SquareProduct } from "#lib/types/product.js";
@@ -140,6 +143,54 @@ describe("GIVEN structuredData.ts", () => {
 
       expect(json.itemListElement[0].position).toBe(1);
       expect(json.itemListElement[1].position).toBe(2);
+    });
+  });
+
+  describe("GIVEN faqJsonLd()", () => {
+    it("WHEN given FAQs THEN wraps them in FAQPage schema", () => {
+      const json = faqJsonLd([
+        { question: "How much?", answer: "£10" },
+        { question: "When?", answer: "Now" },
+      ]);
+
+      expect(json["@type"]).toBe("FAQPage");
+      expect(json.mainEntity).toHaveLength(2);
+      expect(json.mainEntity[0]["@type"]).toBe("Question");
+      expect(json.mainEntity[0].name).toBe("How much?");
+      expect(json.mainEntity[0].acceptedAnswer["@type"]).toBe("Answer");
+      expect(json.mainEntity[0].acceptedAnswer.text).toBe("£10");
+    });
+  });
+
+  describe("GIVEN serviceJsonLd()", () => {
+    it("WHEN given services THEN wraps them in Service/OfferCatalog", () => {
+      const json = serviceJsonLd([
+        {
+          name: "Ring resize",
+          description: "Make ring bigger",
+          url: "https://enkionline.com/repairs",
+          price: "£30",
+        },
+      ]);
+
+      expect(json["@type"]).toBe("Service");
+      expect(json.areaServed.name).toBe("Birmingham");
+      const catalog = json.hasOfferCatalog;
+      expect(catalog["@type"]).toBe("OfferCatalog");
+      expect(catalog.itemListElement).toHaveLength(1);
+      expect(catalog.itemListElement[0].itemOffered.name).toBe("Ring resize");
+    });
+  });
+
+  describe("GIVEN localBusinessJsonLd()", () => {
+    it("WHEN called THEN returns entity-rich LocalBusiness", () => {
+      const json = localBusinessJsonLd();
+
+      expect(json["@type"]).toEqual(["Store", "JewelryStore"]);
+      expect(json.name).toBe("Enki");
+      expect(json.areaServed).toHaveLength(5);
+      expect(json.sameAs).toContain("https://www.instagram.com/enkionline/");
+      expect(json.openingHoursSpecification.opens).toBe("10:00");
     });
   });
 });

@@ -1,5 +1,5 @@
 import { PUBLIC_BUCKET_URL } from "$app/env/public";
-import { SITE_URL } from "#lib/constants.js";
+import { GOOGLE_REVIEWS_URL, REPAIRS_EMAIL, SITE_URL } from "#lib/constants.js";
 import type { SquareCategory } from "#lib/types/category.js";
 import type { SquareProduct } from "#lib/types/product.js";
 import { plainText, stripSupplierSuffix } from "./seo";
@@ -116,3 +116,147 @@ export const categoryTrail = (
 
   return trail;
 };
+
+// ── AEO / GEO schemas ──────────────────────────────────────────
+// These help AI answer engines (Google AI Overviews, Perplexity,
+// ChatGPT) understand what the business does and surface it in
+// zero-click answers.
+
+/** Single Q&A pair for an FAQPage. */
+export interface Faq {
+  question: string;
+  answer: string;
+}
+
+/**
+ * FAQPage structured data. Google uses this to power the expandable Q&A
+ * snippets that often appear in AI Overviews.
+ */
+export const faqJsonLd = (faqs: Faq[]) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+});
+
+/**
+ * Service schema. Tells AI engines exactly what services the business
+ * offers, where, and at what price point.
+ */
+export interface ServiceOffering {
+  name: string;
+  description: string;
+  url: string;
+  price?: string;
+}
+
+export const serviceJsonLd = (services: ServiceOffering[]) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  provider: { "@id": BUSINESS_ID },
+  serviceType: services.map((s) => s.name).join(", "),
+  areaServed: {
+    "@type": "City",
+    name: "Birmingham",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Jewellery services",
+    itemListElement: services.map((s) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: s.name,
+        description: s.description,
+        url: s.url,
+        ...(s.price ? { offers: { "@type": "Offer", price: s.price } } : {}),
+      },
+    })),
+  },
+});
+
+/**
+ * LocalBusiness schema with entity-rich detail. The one in the root
+ * layout covers the basics; this extended version is for the /about page
+ * and adds areas served, price range, and same-as links that help AI
+ * engines connect Enki to its external identity.
+ */
+export const localBusinessJsonLd = () => ({
+  "@context": "https://schema.org",
+  "@type": ["Store", "JewelryStore"],
+  "@id": BUSINESS_ID,
+  name: "Enki",
+  description:
+    "Independent gift shop and working jewellers in Kings Heath, Birmingham: jewellery repairs, wedding ring workshops, craft classes, cards and gifts.",
+  url: SITE_URL,
+  telephone: "+44 121 444 4453",
+  email: REPAIRS_EMAIL,
+  foundingDate: "2017",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "30 High Street, Kings Heath",
+    addressLocality: "Birmingham",
+    postalCode: "B14 7JT",
+    addressCountry: "GB",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 52.43718715965811,
+    longitude: -1.892812886574717,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    opens: "10:00",
+    closes: "17:00",
+  },
+  areaServed: [
+    { "@type": "City", name: "Birmingham" },
+    { "@type": "Place", name: "Kings Heath" },
+    { "@type": "Place", name: "Moseley" },
+    { "@type": "Place", name: "Harborne" },
+    { "@type": "Place", name: "Stirchley" },
+  ],
+  priceRange: "££",
+  sameAs: [
+    "https://www.instagram.com/enkionline/",
+    "https://www.facebook.com/Enki-1665334930147391",
+    GOOGLE_REVIEWS_URL,
+  ],
+});
+
+/**
+ * Review snippets aren't pulled from third-party platforms by Google
+ * automatically, but providing a few inline with the business card helps
+ * AI overviews surface social proof.
+ */
+export const reviewJsonLd = (reviews: Faq[]) => ({
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "@id": BUSINESS_ID,
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: reviews.length.toString(),
+    bestRating: "5",
+  },
+  review: reviews.map((r) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: r.question },
+    reviewBody: r.answer,
+  })),
+});
