@@ -9,7 +9,7 @@
       ? "Enki - Page not found"
       : "Enki - Something went wrong"}</title
   >
-  <meta name="robots" content="noindex, follow" />
+  <meta name="robots" content="follow" />
 </svelte:head>
 
 <div>

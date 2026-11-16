@@ -19,6 +19,39 @@
   import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
+  import { faqJsonLd, jsonLdScript } from "#lib/utils/structuredData.js";
+
+  // FAQ content surfaced to AI answer engines (Google AI Overviews, Perplexity,
+  // ChatGPT). These Q&As are the definitive answers about the service and
+  // should be kept current.
+  const weddingFaqs = [
+    {
+      question:
+        "Do we need any jewellery-making experience to make our own wedding rings?",
+      answer:
+        "No experience needed. You'll start with a silver practice ring so you can get comfortable with the tools and techniques before making the real rings in your chosen metal.",
+    },
+    {
+      question: "Which metals and ring styles can we choose?",
+      answer:
+        "You can make your rings in silver, 9ct gold, 18ct gold, or platinum. We'll talk through profile shapes (D-shape, court, flat) and widths in your pre-class consultation so the materials are ready on the day.",
+    },
+    {
+      question: "How far ahead of our wedding should we book?",
+      answer:
+        "We recommend booking at least 3 months before your wedding. The class itself is a full day, and hallmarking takes around 2-3 weeks afterwards, so your rings will be back in plenty of time.",
+    },
+    {
+      question: "We're not local. Can you help?",
+      answer:
+        "Absolutely. Kings Heath has great places to stay and eat, and we're 20 minutes from central Birmingham. We can give you recommendations for hotels, restaurants and things to do if you'd like to make a mini-break of it.",
+    },
+    {
+      question: "How do we pay?",
+      answer:
+        "We take a deposit when you book and the balance on the day. The class fee covers tuition, tools, cake and your silver practice rings. The cost of gold or platinum for your finished rings is additional and we'll give you a quote before you book.",
+    },
+  ];
 
   let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 960);
@@ -38,6 +71,8 @@
     property="og:description"
     content="Make each other's wedding rings in a private class with our jewellers in Kings Heath, Birmingham. Silver, gold or platinum, hallmarked before the big day."
   />
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html jsonLdScript(faqJsonLd(weddingFaqs))}
 </svelte:head>
 
 <svelte:window bind:outerWidth />

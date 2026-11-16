@@ -16,6 +16,58 @@
   import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
+  import { jsonLdScript, serviceJsonLd } from "#lib/utils/structuredData.js";
+
+  // Service list surfaced to AI answer engines — these are the canonical
+  // descriptions of what the workshop can repair.
+  const repairServices = [
+    {
+      name: "Ring resizing",
+      description:
+        "Resize gold, silver and platinum rings — up or down — in our Kings Heath workshop.",
+      url: `${SITE_URL}/repairs`,
+      price: "from £30",
+    },
+    {
+      name: "Chain repair",
+      description:
+        "Solder broken chain links and rebuild worn sections so you can wear your favourite necklace again.",
+      url: `${SITE_URL}/repairs`,
+      price: "from £25",
+    },
+    {
+      name: "Clasp replacement",
+      description:
+        "Fit a new secure clasp to necklaces, bracelets and anklets.",
+      url: `${SITE_URL}/repairs`,
+      price: "from £20",
+    },
+    {
+      name: "Stone re-setting",
+      description:
+        "Re-set loose or fallen stones and re-tip worn claws on rings, pendants and earrings.",
+      url: `${SITE_URL}/repairs`,
+      price: "from £35",
+    },
+    {
+      name: "Antique jewellery restoration",
+      description:
+        "Sympathetic repair and restoration of antique and heirloom pieces, including remodelling inherited jewellery into something new.",
+      url: `${SITE_URL}/repairs`,
+    },
+    {
+      name: "Earring match making",
+      description:
+        "Make a new partner for a lonely earring so you can wear the pair again.",
+      url: `${SITE_URL}/repairs`,
+    },
+    {
+      name: "Jewellery cleaning and polishing",
+      description:
+        "Professional clean and polish to bring tired jewellery back to life.",
+      url: `${SITE_URL}/repairs`,
+    },
+  ];
 
   let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 960);
@@ -36,6 +88,8 @@
     content="Ring resizing, chain and clasp repairs, claw re-tipping, re-stringing and more, done by jewellers in our Kings Heath workshop. Estimates before any work."
   />
   <meta property="og:image" content={`${SITE_URL}${servicesFourJpg}`} />
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html jsonLdScript(serviceJsonLd(repairServices))}
 </svelte:head>
 
 <svelte:window bind:outerWidth />

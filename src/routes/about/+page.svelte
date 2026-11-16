@@ -12,6 +12,10 @@
   import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
+  import {
+    jsonLdScript,
+    localBusinessJsonLd,
+  } from "#lib/utils/structuredData.js";
 
   let outerWidth = $state(initialViewportWidth());
   const isMobile = $derived(outerWidth < 960);
@@ -31,6 +35,8 @@
     property="og:description"
     content="Enki has been on Kings Heath High Street since 2017: a gift shop downstairs and a working jewellery workshop upstairs. Meet the people behind it."
   />
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html jsonLdScript(localBusinessJsonLd())}
 </svelte:head>
 
 <svelte:window bind:outerWidth />
