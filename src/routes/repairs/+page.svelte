@@ -16,7 +16,63 @@
   import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
   import { fade } from "svelte/transition";
   import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
-  import { jsonLdScript, serviceJsonLd } from "#lib/utils/structuredData.js";
+  import {
+    faqJsonLd,
+    jsonLdScript,
+    reviewJsonLd,
+    serviceJsonLd,
+  } from "#lib/utils/structuredData.js";
+
+  const repairFaqs = [
+    {
+      question: "How long do jewellery repairs take?",
+      answer:
+        "Most repairs are ready within 5–7 working days. Simple jobs like soldering a chain or cleaning can sometimes be done while you wait if a jeweller is free. Complex restorations and remodelling take longer — we'll give you a timeframe when you bring the piece in.",
+    },
+    {
+      question: "Do I need an appointment for a jewellery repair?",
+      answer:
+        "No appointment needed. Drop in any day 10am–5pm. A jeweller is in most days except Tuesdays and Sundays — if you want a quote on the spot it's best to come when a jeweller is in, but you can leave your piece with us any day.",
+    },
+    {
+      question: "How much do jewellery repairs cost?",
+      answer:
+        "Prices depend on the metal, the piece, and what needs doing. Ring resizing starts from around £30, chain repairs from £25, and clasp replacements from £20. We always give a free quote before starting any work — no obligation.",
+    },
+    {
+      question: "What don't you repair?",
+      answer:
+        "We don't repair watches. For everything else — rings, chains, clasps, earrings, antique pieces — just bring it in and we'll take a look. We can also remodel inherited or broken jewellery into something new.",
+    },
+    {
+      question: "Can you send me a quote from a photo?",
+      answer:
+        "We can give you a rough idea from a photo, but for an exact quote we need to see the piece in person. Email photos to faith@enkionline.com or drop into the shop.",
+    },
+  ];
+
+  const repairReviews = [
+    {
+      question: "Alexandra B",
+      answer:
+        "Beautiful little shop. I needed a bracelet repaired and a ring setting. Faith gave me some great advice and the repairs were done quickly.",
+    },
+    {
+      question: "Dave T",
+      answer:
+        "I'd been restoring a snare drum of huge sentimental value to me but the part I'd sourced needed some delicate filing to fit the existing mechanism… The staff took a real interest in the project and carried out the job there and then. I could not be happier and would highly recommend.",
+    },
+    {
+      question: "Will M",
+      answer:
+        "Had my wedding ring cut off due to swollen finger, it was repaired with an additional piece added, not the slightest sign anything had happened. Would recommend her to anyone. Thank you.",
+    },
+    {
+      question: "Claire B",
+      answer:
+        "I took a diamond ring to Enki to be repaired. The lady listened to my description of what was wrong. I was in and out in ten minutes with my ring repaired and very shiny. Fantastic service and very knowledgeable. Highly recommended.",
+    },
+  ];
 
   // Service list surfaced to AI answer engines — these are the canonical
   // descriptions of what the workshop can repair.
@@ -90,6 +146,10 @@
   <meta property="og:image" content={`${SITE_URL}${servicesFourJpg}`} />
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html jsonLdScript(serviceJsonLd(repairServices))}
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html jsonLdScript(faqJsonLd(repairFaqs))}
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html jsonLdScript(reviewJsonLd(repairReviews))}
 </svelte:head>
 
 <svelte:window bind:outerWidth />
