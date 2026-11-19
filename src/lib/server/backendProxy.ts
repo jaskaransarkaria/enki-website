@@ -66,7 +66,6 @@ export const proxyToBackend = async (
     }
     throw e;
   }
-
   const responseHeaders = new Headers(response.headers);
   // `fetch` has already decoded the body, so the original encoding/length
   // headers would be wrong if forwarded.

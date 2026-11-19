@@ -50,7 +50,7 @@
   const facts = [
     { label: "Price", value: "from £450 per couple (not including materials)" },
     { label: "How long", value: "3.5 hours" },
-    { label: "Metals", value: "Gold, silver, platinum and Palladium" },
+    { label: "Metals", value: "Gold, silver, platinum and palladium" },
     { label: "Book ahead", value: "minimum 1 month before the wedding" },
   ];
 
