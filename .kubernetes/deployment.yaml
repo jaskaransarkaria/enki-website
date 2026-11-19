@@ -21,6 +21,11 @@ spec:
           value: https://storage.googleapis.com/enki-website 
         - name: PUBLIC_SERVER_URL
           value: https://server.enkionline.com
+        # Enquiry forms (with photos) are proxied through this server to the
+        # backend; adapter-node rejects bodies over 512K by default. Keep in
+        # line with the ingress proxy-body-size (30m).
+        - name: BODY_SIZE_LIMIT
+          value: 30M
         - name: PUBLIC_STRIPE_KEY
           value: pk_live_51HpvnTAk37gvJ51oKXsYuAZsyletQkgqOky7L2yV9c9nDMj1koLPMvsC6sKBOCqveZMk8CHy730HDFSkiFsbzSRB0059ZpWGau
         image: jaskaransarkaria/enki-website:v7.3.1

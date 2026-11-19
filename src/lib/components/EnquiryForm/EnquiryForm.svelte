@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { PUBLIC_SERVER_URL } from "$app/env/public";
+  import { CLIENT_API_BASE } from "#lib/utils/setServerUrl.js";
 
   interface Props {
     /** Address the enquiry is sent to. */
@@ -41,7 +41,10 @@
     error = "";
     sent = false;
     try {
-      const res = await fetch(`${PUBLIC_SERVER_URL}/api/enquiry`, {
+      // Same-origin: `src/routes/api/enquiry/+server.ts` proxies this to the
+      // backend, so the browser never calls the API cross-origin (which the
+      // backend's oauth2-proxy rejects).
+      const res = await fetch(`${CLIENT_API_BASE}/enquiry`, {
         method: "POST",
         body: fd,
       });
