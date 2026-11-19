@@ -33,7 +33,7 @@
     {
       question: "How far ahead of our wedding should we book?",
       answer:
-        "We recommend booking at least 3 months before your wedding. The class itself is a full day, and hallmarking takes around 2-3 weeks afterwards, so your rings will be back in plenty of time.",
+        "Allow at least 3 weeks for hallmarking. If you’d like platinum casting, engraving or stone setting, allow another 2 to 3 weeks. If your class is closer to the wedding, you can take your rings home on the day and bring them back to be hallmarked afterwards.",
     },
     {
       question: "We're not local. Can you help?",
@@ -50,7 +50,7 @@
   const facts = [
     { label: "Price", value: "from £450 per couple (not including materials)" },
     { label: "How long", value: "3.5 hours" },
-    { label: "Metals", value: "[Gold, silver, platinum…]" },
+    { label: "Metals", value: "Gold, silver, platinum and Palladium" },
     { label: "Book ahead", value: "minimum 1 month before the wedding" },
   ];
 
@@ -65,7 +65,7 @@
     },
     {
       title: "Hallmarking",
-      text: "We send your rings away to be officially hallmarked. This takes about [X] weeks.",
+      text: "We send your rings away to be officially hallmarked. This takes about 2 weeks.",
     },
     {
       title: "Ready for the big day",
@@ -73,29 +73,23 @@
     },
   ];
 
-  const reviews = [
-    {
-      quote: "[A review from a couple who made their rings with you]",
-      by: "[Names], [month and year]",
-    },
-    { quote: "[A second review]", by: "[Names], [month and year]" },
-  ];
-
   const faqs = [
     {
       q: "Do we need any jewellery-making experience?",
-      a: "[Your answer]",
+      a: "No experience needed. You'll start with a silver practice ring so you can get comfortable with the tools and techniques before making the real rings in your chosen metal.",
     },
-    { q: "Which metals and ring styles can we choose?", a: "[Your answer]" },
+    {
+      q: "Which metals and ring styles can we choose?",
+      a: "You can make your rings in silver, 9ct gold, 18ct gold, or platinum. If you'd like to fit your ring around an engagement ring we can do that and we'll talk through profile shapes (D-shape, court, flat) and widths in your pre-class consultation so the materials are ready on the day.",
+    },
     {
       q: "How far ahead of our wedding should we book?",
-      a: "[Your answer, including hallmarking time]",
+      a: "Allow at least 3 weeks for hallmarking. If you’d like platinum casting, engraving or stone setting, allow another 2 to 3 weeks. If your class is closer to the wedding, you can take your rings home on the day and bring them back to be hallmarked afterwards.",
     },
     {
       q: "We're not local. Can you help?",
       a: "We can give you lots of tips on where to stay and what to do in the area if you'd like to make a mini-break of it.",
     },
-    { q: "How do we pay?", a: "[Your answer: deposit, metal costs, etc.]" },
   ];
 
   const gallery = $derived([
@@ -197,18 +191,6 @@
     {#each gallery as image (image.alt)}
       <img class="photo" src={image.src} alt={image.alt} loading="lazy" />
     {/each}
-  </section>
-
-  <section class="section" aria-labelledby="reviews-title">
-    <h2 class="section-title" id="reviews-title">What couples say</h2>
-    <div class="grid grid-2">
-      {#each reviews as review (review.quote)}
-        <blockquote class="review">
-          <p>“{review.quote}”</p>
-          <footer>{review.by}</footer>
-        </blockquote>
-      {/each}
-    </div>
   </section>
 
   <section class="section" aria-labelledby="faq-title">
