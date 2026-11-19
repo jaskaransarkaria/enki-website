@@ -40,9 +40,12 @@
 
   const goodToKnow = [
     { label: "Group size", value: "Jewellery up to 12, craft up to 20" },
-    { label: "Minimum booking", value: "[X] people" },
-    { label: "Food & drink", value: "[Your policy, e.g. bring your own cake]" },
-    { label: "When", value: "[Days and times available]" },
+    { label: "Minimum booking", value: "6 people" },
+    {
+      label: "Food & drink",
+      value: "Bring your own food, we have an oven and microwave!",
+    },
+    { label: "When", value: "We can make most days work, just get in contact" },
   ];
 
   const crafts = [

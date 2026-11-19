@@ -37,7 +37,6 @@
   const offers = [
     {
       title: "Scheduled workshops",
-      meta: "from [£PRICE] · [LENGTH] · up to 8 for jewellery",
       text: "Jewellery, lino printing and more. All tools, materials and light refreshments included.",
       href: "/workshops/scheduled",
       cta: "See dates",
@@ -45,7 +44,6 @@
     },
     {
       title: "Wedding ring workshops",
-      meta: "from [£PRICE] · one day · for two",
       text: "A private day for you and your partner to make each other's wedding rings.",
       href: "/workshops/wedding-rings",
       cta: "Find out more",
@@ -53,7 +51,6 @@
     },
     {
       title: "Parties & groups",
-      meta: "from [£PRICE] per person · [GROUP SIZE]",
       text: "Children's parties, hens, birthdays and work team days.",
       href: "/workshops/craft",
       cta: "Plan a party",
@@ -105,8 +102,9 @@
   <header class="hero center">
     <h1>Enki Workshop</h1>
     <p class="lead narrow">
-      Make something you'll keep. Jewellery and craft classes, wedding ring days
-      and parties in our workshop upstairs at 30 High Street, Kings Heath.
+      Make something you'll keep. Jewellery and craft classes, wedding ring
+      workshops and parties in our workshop upstairs at 30 High Street, Kings
+      Heath.
     </p>
     <div class="btn-row center">
       <a class="btn" href="#upcoming">See upcoming classes</a>
@@ -128,7 +126,6 @@
             <Drawing illustrationOnly />
           </div>
           <h2>{offer.title}</h2>
-          <p class="muted">{offer.meta}</p>
           <p>{offer.text}</p>
           <a class="btn offer-cta" data-sveltekit-preload-data href={offer.href}
             >{offer.cta}</a
