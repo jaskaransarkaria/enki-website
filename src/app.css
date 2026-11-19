@@ -36,6 +36,12 @@
 }
 
 @font-face {
+  font-family: "Caviar Dreams";
+  src: url(/fonts/CaviarDreams_Bold.ttf) format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
   font-family: "Caviar Dreams Italic";
   src: url(/fonts/CaviarDreams_Italic.ttf) format("truetype");
 }

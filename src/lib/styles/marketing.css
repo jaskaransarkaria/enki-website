@@ -1,0 +1,556 @@
+/*
+ * Shared styling for the workshop and repairs marketing pages, based on the
+ * "Enki Workshops & Repairs" wireframes. Everything is scoped under
+ * `.enki-page` so it can't leak into the shop or other existing pages.
+ */
+
+.enki-page {
+  --enki-orange: #e8590b;
+  --enki-orange-dark: #c3410d;
+  --enki-orange-darker: #a3360b;
+  --enki-blue: #2a9bb9;
+  --enki-teal: #0f7c7f;
+  --enki-teal-dark: #0b5f61;
+  --enki-cream: #fef1e9;
+  --enki-mint: #e6f2f2;
+  --enki-ink: #222222;
+  --enki-muted: #5c5c5c;
+  --enki-line: #e3e3e3;
+  --enki-radius: 4px;
+  --enki-gap: 1.5rem;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+  color: var(--enki-ink);
+  font-family: "Caviar Dreams", sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.enki-page *,
+.enki-page *::before,
+.enki-page *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- Typography ---------- */
+
+.enki-page h1,
+.enki-page h2,
+.enki-page h3 {
+  margin: 0 0 0.5em;
+  color: var(--enki-ink);
+  font-family: "Welcomehome5 Regular", sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.enki-page h1 {
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 2.9rem);
+}
+
+.enki-page h2 {
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+}
+
+.enki-page h3 {
+  font-size: 1.35rem;
+}
+
+.enki-page p {
+  margin: 0 0 1em;
+}
+
+.enki-page a {
+  color: var(--enki-teal);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.enki-page a:visited {
+  color: var(--enki-teal);
+}
+
+.enki-page a:hover {
+  color: var(--enki-teal-dark);
+}
+
+.enki-page strong,
+.enki-page b {
+  font-weight: bold;
+}
+
+.enki-page .lead {
+  font-size: 1.1rem;
+}
+
+.enki-page .muted {
+  color: var(--enki-muted);
+  font-size: 0.9rem;
+}
+
+.enki-page .center {
+  text-align: center;
+}
+
+.enki-page .section {
+  margin-top: 4.5rem;
+}
+
+.enki-page .section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.enki-page .section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.enki-page .section-head h2 {
+  margin: 0;
+}
+
+.enki-page .narrow {
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Breadcrumb ---------- */
+
+.enki-page .breadcrumb {
+  margin: 0 0 1.25rem;
+  color: var(--enki-muted);
+  font-size: 0.85rem;
+}
+
+.enki-page .breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.enki-page .breadcrumb li + li::before {
+  content: "›";
+  margin-right: 0.35rem;
+}
+
+/* ---------- Buttons ---------- */
+
+.enki-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0.6rem 1.4rem;
+  border: 2px solid var(--enki-orange-dark);
+  border-radius: var(--enki-radius);
+  background: var(--enki-orange-dark);
+  color: #fff;
+  font-family: "Caviar Dreams", sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.enki-page .btn:visited {
+  color: #fff;
+}
+
+.enki-page .btn:hover,
+.enki-page .btn:focus-visible {
+  border-color: var(--enki-orange-darker);
+  background: var(--enki-orange-darker);
+  color: #fff;
+  text-decoration: none;
+}
+
+.enki-page .btn:focus-visible,
+.enki-page .chip:focus-visible,
+.enki-page summary:focus-visible {
+  outline: 3px solid var(--enki-blue);
+  outline-offset: 2px;
+}
+
+.enki-page .btn-outline,
+.enki-page .btn-outline:visited {
+  border-color: var(--enki-teal);
+  background: #fff;
+  color: var(--enki-teal);
+}
+
+.enki-page .btn-outline:hover,
+.enki-page .btn-outline:focus-visible {
+  border-color: var(--enki-teal);
+  background: var(--enki-teal);
+  color: #fff;
+}
+
+.enki-page .btn-block {
+  width: 100%;
+}
+
+.enki-page .btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.enki-page .btn-row.center {
+  justify-content: center;
+}
+
+/* ---------- Panels & cards ---------- */
+
+.enki-page .panel {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: var(--enki-radius);
+  background: var(--enki-cream);
+}
+
+.enki-page .panel-mint {
+  background: var(--enki-mint);
+}
+
+.enki-page .panel > :last-child {
+  margin-bottom: 0;
+}
+
+/*
+ * The orange / blue double frame echoes the hand drawn frames used on the
+ * existing illustrations.
+ */
+.enki-page .framed {
+  display: flex;
+  flex-direction: column;
+  border: 6px solid var(--enki-orange);
+  background: #fff;
+}
+
+/* Grows to fill the frame (so cards in a row stay equal height) while keeping
+   an even 4px gap on every side. */
+.enki-page .framed > .framed-inner {
+  flex: 1 1 auto;
+  margin: 4px;
+  padding: 1.25rem;
+  border: 4px solid var(--enki-blue);
+  background: #fff;
+}
+
+.enki-page .review {
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--enki-teal);
+  border-radius: var(--enki-radius);
+  background: #fff;
+}
+
+.enki-page .review p {
+  margin: 0 0 0.5rem;
+}
+
+.enki-page .review footer {
+  color: var(--enki-muted);
+  font-size: 0.85rem;
+}
+
+/* Key facts, e.g. price / duration tiles */
+.enki-page .facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.enki-page .fact {
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--enki-radius);
+  background: var(--enki-cream);
+}
+
+.enki-page .fact dt {
+  color: var(--enki-muted);
+  font-size: 0.75rem;
+}
+
+.enki-page .fact dd {
+  margin: 0.15rem 0 0;
+  font-weight: bold;
+}
+
+/* ---------- Grids ---------- */
+
+.enki-page .grid {
+  display: grid;
+  gap: var(--enki-gap);
+}
+
+.enki-page .grid-2,
+.enki-page .grid-3,
+.enki-page .grid-4 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .enki-page .grid-2,
+  .enki-page .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .enki-page .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .enki-page .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.enki-page .photo-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+@media (min-width: 700px) {
+  .enki-page .photo-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.enki-page .photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--enki-radius);
+  background: var(--enki-line);
+}
+
+.enki-page .photo-row .photo {
+  aspect-ratio: 1 / 1;
+}
+
+/* Media + text split, used for hero blocks and feature bands */
+.enki-page .split {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .enki-page .split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- Steps ("How it works") ---------- */
+
+.enki-page .steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.enki-page .step-number {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--enki-orange-dark);
+  font-family: "Welcomehome5 Regular", sans-serif;
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.enki-page .step h3 {
+  margin-bottom: 0.4rem;
+  font-family: "Caviar Dreams", sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.enki-page .step p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- FAQ ---------- */
+
+.enki-page .faq {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.enki-page .faq details {
+  border-bottom: 1px solid var(--enki-line);
+}
+
+.enki-page .faq summary {
+  padding: 0.9rem 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.enki-page .faq details p {
+  margin: 0 0 1rem 1.1rem;
+}
+
+/* ---------- Chips ---------- */
+
+.enki-page .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.enki-page .chip {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--enki-teal);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--enki-ink);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.enki-page a.chip:hover {
+  background: var(--enki-mint);
+  color: var(--enki-ink);
+}
+
+.enki-page .chip-dashed,
+.enki-page .chip-dashed:visited {
+  border-style: dashed;
+  color: var(--enki-teal);
+}
+
+/* ---------- Forms ---------- */
+
+.enki-page .form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 700px) {
+  .enki-page .form-grid {
+    grid-template-columns: repeat(var(--cols, 3), 1fr);
+  }
+}
+
+.enki-page .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.enki-page .field-full {
+  grid-column: 1 / -1;
+}
+
+.enki-page .field label {
+  color: var(--enki-ink);
+  font-size: 0.85rem;
+}
+
+.enki-page .field input,
+.enki-page .field select,
+.enki-page .field textarea {
+  width: 100%;
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #b9b9b9;
+  border-radius: var(--enki-radius);
+  background: #fff;
+  color: var(--enki-ink);
+  font-family: "Caviar Dreams", sans-serif;
+  font-size: 1rem;
+}
+
+.enki-page .field textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+}
+
+.enki-page .field input:focus,
+.enki-page .field select:focus,
+.enki-page .field textarea:focus {
+  border-color: var(--enki-teal);
+  outline: 2px solid var(--enki-teal);
+  outline-offset: 0;
+}
+
+.enki-page .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.enki-page .form-note {
+  margin: 0;
+  color: var(--enki-muted);
+  font-size: 0.9rem;
+}
+
+.enki-page .form-success {
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--enki-radius);
+  background: var(--enki-mint);
+}
+
+/* Announcement strip that sits flush under the site header */
+.enki-announcement {
+  padding: 0.7rem 1rem;
+  background: #0f7c7f;
+  color: #fff;
+  font-family: "Caviar Dreams", sans-serif;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.enki-announcement a,
+.enki-announcement a:visited {
+  margin-left: 0.75rem;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { MAILCHIMP_SUBSCRIBE_URL } from "#lib/constants.js";
+
   interface Props {
     onSignupFn?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
     mcEmailInput?: string;
@@ -24,10 +26,11 @@
       onSignupFn(mcEmailInput);
       let formData = new FormData();
       formData.append("EMAIL", mcEmailInput);
-      await fetch(
-        "https://enkionline.us7.list-manage.com/subscribe/post?u=e1b4cd47e0fcd668196954f5e&amp;id=8e91d212c7",
-        { method: "post", body: formData, mode: "no-cors" },
-      );
+      await fetch(MAILCHIMP_SUBSCRIBE_URL, {
+        method: "post",
+        body: formData,
+        mode: "no-cors",
+      });
     }}
   >
     <div id="mc_embed_signup_scroll">

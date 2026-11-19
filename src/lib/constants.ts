@@ -5,5 +5,10 @@
  */
 export const SITE_URL = "https://enkionline.com";
 
-export const GOOGLE_REVIEWS_URL = "https://goo.gl/maps/vEXPs22hUBs2CgdH8";
+export const MAILCHIMP_SUBSCRIBE_URL =
+  "https://enkionline.us7.list-manage.com/subscribe/post?u=e1b4cd47e0fcd668196954f5e&amp;id=8e91d212c7";
+
+export const WORKSHOP_EMAIL = "workshop@enkionline.com";
 export const REPAIRS_EMAIL = "faith@enkionline.com";
+export const GIFT_VOUCHER_URL = "https://buytickets.at/enki/store";
+export const GOOGLE_REVIEWS_URL = "https://goo.gl/maps/vEXPs22hUBs2CgdH8";

@@ -1,9 +1,21 @@
-<script>
-  let privateHover = $derived(false);
+<script lang="ts">
+  interface Props {
+    /**
+     * Crop to just the drawing (no frame or title) and hide the link from
+     * assistive tech, for use inside a card that has its own heading and link.
+     */
+    illustrationOnly?: boolean;
+  }
+
+  let { illustrationOnly = false }: Props = $props();
+  let privateHover = $state(false);
 </script>
 
 <a
   data-sveltekit-preload-data
+  class:illustration={illustrationOnly}
+  aria-hidden={illustrationOnly ? "true" : undefined}
+  tabindex={illustrationOnly ? -1 : undefined}
   href="/workshops/craft"
   data-test-id="private-class"
   onmouseenter={() => (privateHover = true)}
@@ -13,7 +25,7 @@
     xmlns="http://www.w3.org/2000/svg"
     width="471.032"
     height="529.138"
-    viewBox="0 0 124.627 140.001"
+    viewBox={illustrationOnly ? "22 46 82 58" : "0 0 124.627 140.001"}
   >
     <g
       class={privateHover ? "layer1" : ""}
@@ -303,6 +315,22 @@
 <style>
   a {
     margin: 2em;
+  }
+
+  a.illustration {
+    display: block;
+    margin: 0;
+  }
+
+  a.illustration svg {
+    width: 100%;
+    display: block;
+    height: auto;
+    overflow: hidden;
+  }
+
+  a.illustration text {
+    display: none;
   }
 
   svg {

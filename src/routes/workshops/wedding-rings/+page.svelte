@@ -1,24 +1,18 @@
 <script lang="ts">
-  import { initialViewportWidth } from "#lib/utils/initialViewportWidth.js";
+  import "#lib/styles/marketing.css";
+  import EnquiryForm from "#lib/components/EnquiryForm/EnquiryForm.svelte";
+  import { GIFT_VOUCHER_URL, WORKSHOP_EMAIL } from "#lib/constants.js";
+  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
   import weddingBandsThreeJpg from "#lib/assets/wedding_bands_3.jpg";
   import weddingBandsNineJpg from "#lib/assets/wedding_bands_9.jpg";
-  import weddingBandsTenJpg from "#lib/assets/wedding_bands_10.jpg";
   import weddingBandsElevenJpg from "#lib/assets/wedding_bands_11.jpg";
-  import weddingBandsTwelveJpg from "#lib/assets/wedding_bands_12.jpg";
   import weddingBandsThirteenJpg from "#lib/assets/wedding_bands_13.jpg";
-  import weddingBandsFourteenJpg from "#lib/assets/wedding_bands_14.jpg";
   import weddingBandsFifteenJpg from "#lib/assets/wedding_bands_15.jpg";
   import weddingBandsThreeAvif from "#lib/assets/wedding_bands_3.avif";
   import weddingBandsNineAvif from "#lib/assets/wedding_bands_9.avif";
-  import weddingBandsTenAvif from "#lib/assets/wedding_bands_10.avif";
   import weddingBandsElevenAvif from "#lib/assets/wedding_bands_11.avif";
-  import weddingBandsTwelveAvif from "#lib/assets/wedding_bands_12.avif";
   import weddingBandsThirteenAvif from "#lib/assets/wedding_bands_13.avif";
-  import weddingBandsFourteenAvif from "#lib/assets/wedding_bands_14.avif";
   import weddingBandsFifteenAvif from "#lib/assets/wedding_bands_15.avif";
-  import SwipeImage from "#lib/components/SwipeImage/SwipeImage.svelte";
-  import { fade } from "svelte/transition";
-  import { isAvifSupported } from "#lib/stores/isAvifSupported.js";
   import { faqJsonLd, jsonLdScript } from "#lib/utils/structuredData.js";
 
   // FAQ content surfaced to AI answer engines (Google AI Overviews, Perplexity,
@@ -53,8 +47,77 @@
     },
   ];
 
-  let outerWidth = $state(initialViewportWidth());
-  const isMobile = $derived(outerWidth < 960);
+  const facts = [
+    { label: "Price", value: "from £450 per couple (not including materials)" },
+    { label: "How long", value: "3.5 hours" },
+    { label: "Metals", value: "[Gold, silver, platinum…]" },
+    { label: "Book ahead", value: "minimum 1 month before the wedding" },
+  ];
+
+  const steps = [
+    {
+      title: "Practise in silver",
+      text: "Start with a silver practice ring, which you take home after the class.",
+    },
+    {
+      title: "Make the real thing",
+      text: "Make each other's rings in gold or the metal of your choice, with cake from Early Bird Bakery next door.",
+    },
+    {
+      title: "Hallmarking",
+      text: "We send your rings away to be officially hallmarked. This takes about [X] weeks.",
+    },
+    {
+      title: "Ready for the big day",
+      text: "Your rings come back to you in plenty of time for your wedding.",
+    },
+  ];
+
+  const reviews = [
+    {
+      quote: "[A review from a couple who made their rings with you]",
+      by: "[Names], [month and year]",
+    },
+    { quote: "[A second review]", by: "[Names], [month and year]" },
+  ];
+
+  const faqs = [
+    {
+      q: "Do we need any jewellery-making experience?",
+      a: "[Your answer]",
+    },
+    { q: "Which metals and ring styles can we choose?", a: "[Your answer]" },
+    {
+      q: "How far ahead of our wedding should we book?",
+      a: "[Your answer, including hallmarking time]",
+    },
+    {
+      q: "We're not local. Can you help?",
+      a: "We can give you lots of tips on where to stay and what to do in the area if you'd like to make a mini-break of it.",
+    },
+    { q: "How do we pay?", a: "[Your answer: deposit, metal costs, etc.]" },
+  ];
+
+  const gallery = $derived([
+    {
+      src: $isAvifSupported ? weddingBandsElevenAvif : weddingBandsElevenJpg,
+      alt: "a couple's hands showing their gothic wedding rings",
+    },
+    {
+      src: $isAvifSupported
+        ? weddingBandsThirteenAvif
+        : weddingBandsThirteenJpg,
+      alt: "a couple midway through creating their wedding bands",
+    },
+    {
+      src: $isAvifSupported ? weddingBandsThreeAvif : weddingBandsThreeJpg,
+      alt: "finished wedding rings in Enki ring boxes",
+    },
+    {
+      src: $isAvifSupported ? weddingBandsFifteenAvif : weddingBandsFifteenJpg,
+      alt: "a lady with a blow torch, heating her ring while her partner watches",
+    },
+  ]);
 </script>
 
 <svelte:head>
@@ -75,205 +138,154 @@
   {@html jsonLdScript(faqJsonLd(weddingFaqs))}
 </svelte:head>
 
-<svelte:window bind:outerWidth />
-<div class="container">
-  <div class="class-pics">
-    {#if isMobile}
-      <SwipeImage
-        imgArr={[
-          {
-            src: $isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg,
-            alt: "a couple enjoying their finished rings",
-          },
-          {
-            src: $isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg,
-            alt: "a couple holding hands having finished making their rings",
-          },
-          {
-            src: $isAvifSupported
-              ? weddingBandsThreeAvif
-              : weddingBandsThreeJpg,
-            alt: "enki jewellery ring boxes",
-          },
-          {
-            src: $isAvifSupported
-              ? weddingBandsElevenAvif
-              : weddingBandsElevenJpg,
-            alt: "a couple's hands showing their gothic wedding rings",
-          },
-          {
-            src: $isAvifSupported
-              ? weddingBandsTwelveAvif
-              : weddingBandsTwelveJpg,
-            alt: "a couple holding their hands up sporting their new rings",
-          },
-          {
-            src: $isAvifSupported
-              ? weddingBandsThirteenAvif
-              : weddingBandsThirteenJpg,
-            alt: "a couple midway through creating their wedding bands",
-          },
-          {
-            src: $isAvifSupported
-              ? weddingBandsFourteenAvif
-              : weddingBandsFourteenJpg,
-            alt: "a couple smiling as they stand and inspect their rings",
-          },
-          {
-            src: $isAvifSupported
-              ? weddingBandsFifteenAvif
-              : weddingBandsFifteenJpg,
-            alt: "a lady with a blow torch, heating her ring while her partner watches",
-          },
-        ]}
-      />
-    {:else}
-      <div class="class-pics">
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg}
-          alt="a couple enjoying their finished rings"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? weddingBandsTenAvif : weddingBandsTenJpg}
-          alt="a couple holding hands having finished making their rings"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported ? weddingBandsThreeAvif : weddingBandsThreeJpg}
-          alt="enki jewellery ring boxes"
-        />
-        <img
-          in:fade={{ duration: 600 }}
-          src={$isAvifSupported
-            ? weddingBandsElevenAvif
-            : weddingBandsElevenJpg}
-          alt="a couple's hands showing their gothic wedding rings"
+<main class="enki-page">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/workshops">Workshops</a></li>
+      <li aria-current="page">Wedding ring workshops</li>
+    </ol>
+  </nav>
+
+  <section class="split hero">
+    <img
+      class="photo hero-photo"
+      src={$isAvifSupported ? weddingBandsNineAvif : weddingBandsNineJpg}
+      alt="a couple enjoying their finished rings at the workbench"
+    />
+    <div>
+      <h1>Make each other's wedding rings</h1>
+      <p>
+        A private class for you and your partner, guided by one of our resident
+        jewellers, in our Kings Heath workshop.
+      </p>
+      <dl class="facts facts-2">
+        {#each facts as fact (fact.label)}
+          <div class="fact">
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        {/each}
+      </dl>
+      <div class="btn-row">
+        <a class="btn" href="#enquire">Enquire about dates</a>
+        <a
+          class="btn btn-outline"
+          href={GIFT_VOUCHER_URL}
+          target="_blank"
+          rel="noreferrer">Give it as a voucher</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="how-title">
+    <h2 class="section-title" id="how-title">How the day works</h2>
+    <ol class="steps grid grid-4">
+      {#each steps as step, i (step.title)}
+        <li class="framed step">
+          <div class="framed-inner">
+            <span class="step-number" aria-hidden="true">{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </div>
+        </li>
+      {/each}
+    </ol>
+  </section>
+
+  <section class="section photo-row" aria-label="Photos from our classes">
+    {#each gallery as image (image.alt)}
+      <img class="photo" src={image.src} alt={image.alt} loading="lazy" />
+    {/each}
+  </section>
+
+  <section class="section" aria-labelledby="reviews-title">
+    <h2 class="section-title" id="reviews-title">What couples say</h2>
+    <div class="grid grid-2">
+      {#each reviews as review (review.quote)}
+        <blockquote class="review">
+          <p>“{review.quote}”</p>
+          <footer>{review.by}</footer>
+        </blockquote>
+      {/each}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-title">
+    <h2 class="section-title" id="faq-title">Questions</h2>
+    <div class="faq">
+      {#each faqs as faq (faq.q)}
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      {/each}
+    </div>
+  </section>
+
+  <section class="section panel" id="enquire" aria-labelledby="enquire-title">
+    <h2 id="enquire-title">Enquire about dates</h2>
+    <p>Tell us a little about you and we'll get back to you within 3 days.</p>
+    <EnquiryForm to={WORKSHOP_EMAIL} subject="Wedding ring workshop enquiry">
+      <div class="field">
+        <label for="wr-names">Your names</label>
+        <input id="wr-names" name="names" autocomplete="name" required />
+      </div>
+      <div class="field">
+        <label for="wr-email">Email</label>
+        <input
+          id="wr-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
         />
       </div>
-    {/if}
-  </div>
-  <h1>
-    Make your partner the most important piece of jewellery they’ll ever own
-  </h1>
-
-  <p>
-    In this private class for you and your partner, you will make each other a
-    wedding ring, guided by one of our resident jewellers.
-    <br />
-    <br />
-    You will start with an initial silver practice ring which you will be able to
-    take home after the class. You will then make the real thing in gold or the metal
-    of your choice which will be taken away to be hallmarked before being returned
-    to you in plenty of time for your big day.
-    <br />
-    <br />
-    To make the experience extra special we provide cake from the wonderful Early
-    Bird Bakery next door. If you aren't local we can give you lots of tips on where
-    to stay and what to do in the area if you want to make a mini-break of it.
-  </p>
-  <br />
-  <p>
-    If you have any queries please <a href="mailto: workshop@enkionline.com"
-      >contact us</a
-    >.
-  </p>
-  <br />
-  <br />
-  <br />
-  {#if !isMobile}
-    <div class="class-pics">
-      <img
-        in:fade={{ duration: 600 }}
-        src={$isAvifSupported ? weddingBandsTwelveAvif : weddingBandsTwelveJpg}
-        alt="a couple holding their hands up sporting their new rings"
-      />
-      <img
-        in:fade={{ duration: 600 }}
-        src={$isAvifSupported
-          ? weddingBandsThirteenAvif
-          : weddingBandsThirteenJpg}
-        alt="a couple midway through creating their wedding bands"
-      />
-      <img
-        in:fade={{ duration: 600 }}
-        src={$isAvifSupported
-          ? weddingBandsFourteenAvif
-          : weddingBandsFourteenJpg}
-        alt="a couple smiling as they stand and inspect their rings"
-      />
-      <img
-        in:fade={{ duration: 600 }}
-        src={$isAvifSupported
-          ? weddingBandsFifteenAvif
-          : weddingBandsFifteenJpg}
-        alt="a lady with a blow torch, heating her ring while her partner watches"
-      />
-    </div>
-  {/if}
-</div>
+      <div class="field">
+        <label for="wr-date">Wedding date</label>
+        <input id="wr-date" name="wedding-date" type="date" />
+      </div>
+      <div class="field">
+        <label for="wr-metal">Metal you're thinking of</label>
+        <select id="wr-metal" name="metal">
+          <option>Not sure yet</option>
+          <option>Silver</option>
+          <option>Gold</option>
+          <option>Platinum</option>
+        </select>
+      </div>
+      <div class="field field-full">
+        <label for="wr-notes"
+          >Anything else? Dates that suit you, ring ideas, questions</label
+        >
+        <textarea id="wr-notes" name="notes"></textarea>
+      </div>
+      <div class="field field-full">
+        <label for="wr-photos">Inspiration photos (optional)</label>
+        <input
+          id="wr-photos"
+          name="photos"
+          type="file"
+          multiple
+          accept="image/*"
+        />
+      </div>
+    </EnquiryForm>
+  </section>
+</main>
 
 <style>
-  h1,
-  p {
-    text-align: center;
-    font-family: "Caviar Dreams";
+  .hero {
+    align-items: start;
   }
 
-  p {
-    text-align: center;
-    width: 90%;
-  }
-
-  .container {
-    display: flex;
-    min-height: 100vh;
-    width: 100vw;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 5%;
-  }
-
-  .class-pics {
-    display: flex;
-    flex-direction: row;
-    width: 70%;
-    height: 10%;
-    align-self: center;
-    justify-content: center;
-  }
-
-  .class-pics > img {
-    height: 80px;
-    padding: 5px;
+  .hero-photo {
+    aspect-ratio: 5 / 4;
   }
 
   @media (min-width: 600px) {
-    .class-pics {
-      flex-direction: row;
-      width: 40%;
-      margin-bottom: 2%;
-    }
-
-    .class-pics > img {
-      height: 200px;
-    }
-  }
-
-  @media (min-width: 960px) {
-    .class-pics {
-      flex-direction: row;
-      width: 40%;
-      margin-bottom: 2%;
-    }
-
-    .class-pics > img {
-      height: 300px;
-    }
-
-    p {
-      width: 50%;
+    .facts-2 {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
