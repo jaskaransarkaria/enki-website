@@ -20,6 +20,12 @@ const forwardedHeaders = [
   "x-forwarded-uri",
 ];
 
+// Give up on the backend before Cloudflare does (100s, which surfaces as a bare
+// 524 page), so callers get a response they can handle. Kept above the
+// backend's own limits (e.g. ~40s for sending enquiry email) so its more
+// specific error wins when it has one.
+export const BACKEND_TIMEOUT_MS = 60_000;
+
 /**
  * Forwards a same-origin `/api` request to the backend. `path` is the backend
  * path to hit, without a leading slash.
@@ -44,11 +50,22 @@ export const proxyToBackend = async (
   const method = request.method;
   const hasBody = method !== "GET" && method !== "HEAD";
 
-  const response = await fetch(target, {
-    method,
-    headers,
-    body: hasBody ? await request.arrayBuffer() : undefined,
-  });
+  let response: Response;
+  try {
+    response = await fetch(target, {
+      method,
+      headers,
+      body: hasBody ? await request.arrayBuffer() : undefined,
+      signal: AbortSignal.timeout(BACKEND_TIMEOUT_MS),
+    });
+  } catch (e) {
+    if (e instanceof DOMException && e.name === "TimeoutError") {
+      return new Response("The server took too long to respond.", {
+        status: 504,
+      });
+    }
+    throw e;
+  }
 
   const responseHeaders = new Headers(response.headers);
   // `fetch` has already decoded the body, so the original encoding/length

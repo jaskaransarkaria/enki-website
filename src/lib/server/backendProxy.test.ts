@@ -73,6 +73,47 @@ describe("GIVEN proxyToBackend", () => {
     expect(headers.get("x-custom")).toBe("keep-me");
   });
 
+  it("WHEN proxying THEN bounds the backend request with a timeout", async () => {
+    const fetchMock = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValue(new Response("ok", { status: 200 }));
+
+    await proxyToBackend(
+      makeEvent("/api/enquiry", { method: "POST" }),
+      "api/enquiry",
+    );
+
+    const [, init] = fetchMock.mock.calls[0];
+    expect(init?.signal).toBeInstanceOf(AbortSignal);
+  });
+
+  it("WHEN the backend times out THEN responds 504", async () => {
+    vi.spyOn(globalThis, "fetch").mockRejectedValue(
+      new DOMException("The operation timed out.", "TimeoutError"),
+    );
+
+    const response = await proxyToBackend(
+      makeEvent("/api/enquiry", { method: "POST" }),
+      "api/enquiry",
+    );
+
+    expect(response.status).toBe(504);
+    expect(await response.text()).toBe("The server took too long to respond.");
+  });
+
+  it("WHEN the backend fails for another reason THEN rethrows", async () => {
+    vi.spyOn(globalThis, "fetch").mockRejectedValue(
+      new TypeError("fetch failed"),
+    );
+
+    await expect(
+      proxyToBackend(
+        makeEvent("/api/enquiry", { method: "GET" }),
+        "api/enquiry",
+      ),
+    ).rejects.toThrow("fetch failed");
+  });
+
   it("WHEN the backend responds THEN drops stale body-length headers", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(
       new Response("ok", {
