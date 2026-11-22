@@ -73,7 +73,6 @@ describe("GIVEN proxyToBackend", () => {
     expect(headers.get("x-custom")).toBe("keep-me");
   });
 
-<<<<<<< HEAD
   it("WHEN proxying THEN bounds the backend request with a timeout", async () => {
     const fetchMock = vi
       .spyOn(globalThis, "fetch")
