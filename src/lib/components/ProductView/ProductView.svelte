@@ -189,9 +189,7 @@
         data-testid="products-container"
       >
         {#each sortedCollatedArray as item (item.id)}
-          {#if item.item_data.variations.every((v) => {
-            return sortBy === "include-out-of-stock" || parseInt(v.item_variation_data.quantity, 10) > 0;
-          }) || Boolean(page.url.pathname === "/shop/search")}
+          {#if !item.item_data.variations.every((v) => parseInt(v.item_variation_data.quantity, 10) === 0) || Boolean(page.url.pathname === "/shop/search") || sortBy === "include-out-of-stock"}
             <SingleProduct product={item} {showDetailedView} />
           {/if}
         {/each}
