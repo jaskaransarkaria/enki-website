@@ -77,7 +77,7 @@
     </button>
     {#if sent}
       <p class="form-success" role="status">
-        Thank you — your enquiry has been sent. We'll get back to you soon.
+        ✔️ Thank you — your enquiry has been sent. We'll get back to you soon.
       </p>
     {:else if error}
       <p class="form-error" role="alert">
@@ -92,7 +92,6 @@
 
 <style>
   .form-success {
-    color: var(--enki-mint, #2e8b57);
     margin-top: 0.75rem;
     font-size: 0.95rem;
   }
