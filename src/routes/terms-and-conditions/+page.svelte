@@ -42,47 +42,38 @@
   </p>
 
   <h3>Delivery</h3>
+  <p>UK only (not the Isle of Man or Channel Islands).</p>
   <table>
     <thead>
       <tr>
-        <th>Where</th>
-        <th>Service</th>
+        <th>Option</th>
         <th>Cost</th>
         <th>Time</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>UK</td>
-        <td>Royal Mail 48</td>
-        <td>£4.50, free on orders over £40</td>
-        <td>Usually 3–5 working days</td>
+        <td>Standard</td>
+        <td>£4.50, free over £40</td>
+        <td>3–5 working days</td>
       </tr>
       <tr>
-        <td>UK</td>
-        <td>Express (not the Highlands and Islands)</td>
+        <td>Special Delivery</td>
         <td>£8.95</td>
-        <td>Usually 1–2 working days</td>
+        <td>1–2 working days</td>
       </tr>
       <tr>
-        <td>Isle of Man</td>
-        <td>Royal Mail 48</td>
-        <td>£5</td>
-        <td>Usually 4–6 working days</td>
-      </tr>
-      <tr>
-        <td>Channel Islands</td>
-        <td>Royal Mail 48</td>
-        <td>£5</td>
-        <td>Usually 4–6 working days</td>
+        <td>Collect in store</td>
+        <td>Free</td>
+        <td>Ready within 1 to–7 days; we'll email when it's ready</td>
       </tr>
     </tbody>
   </table>
   <p>
-    Delivery for larger items and furniture is worked out at checkout. We
-    usually dispatch the next working morning, or the same day for orders before
-    9am. Gift wrapping can add a day in busy times. Delivery times are estimates
-    from Royal Mail and aren't guaranteed.
+    We usually dispatch the next working morning, or the same day for orders
+    before 9am. Gift wrapping can add a day in busy times. If an order is very
+    heavy or bulky we'll contact you with a revised postage price; if you'd
+    rather not go ahead, we'll refund you straight away.
   </p>
 
   <h3>Changing your mind</h3>
@@ -98,10 +89,7 @@
   <ul>
     <li>personalised, engraved or made-to-order items</li>
     <li>food and other perishable items</li>
-    <li>
-      pierced earrings and other items sent sealed for hygiene reasons, once the
-      seal is opened
-    </li>
+    <li>items sent sealed for hygiene reasons, once the seal is opened</li>
   </ul>
 
   <h3>Faulty or damaged items</h3>
@@ -208,7 +196,7 @@
 
   <h3>If we have to cancel</h3>
   <p>
-    A class needs at least 6 people to run. Jewellery classes take up to 8
+    A class needs at least 4 people to run. Jewellery classes take up to 8
     people and craft classes 12 to 16. If a class is under-booked, or we have to
     cancel for any other reason such as tutor illness, we'll tell you as soon as
     we can and offer another date or a full refund, whichever you prefer. We
@@ -277,7 +265,7 @@
   <h2>Part 3: Wedding ring workshops</h2>
   <p>
     These apply alongside Part 2. You'll be asked to confirm you agree to these
-    terms before paying the workshop fee.
+    terms before paying your workshop fee.
   </p>
 
   <h3>What it costs</h3>
@@ -312,14 +300,6 @@
     shop.
   </p>
 
-  <h3>Wed-fit rings</h3>
-  <p>
-    If your ring needs to sit next to an engagement ring, we'll need to keep the
-    engagement ring for up to a week before your class so we can shape your ring
-    around it. We keep it securely while it's with us. We can't make a wed-fit
-    ring without the engagement ring itself.
-  </p>
-
   <h3>Timing</h3>
   <p>
     Please leave at least 6 weeks between your class and your wedding (8 weeks
@@ -350,8 +330,11 @@
     <li>One free resize per ring within 6 months of the class.</li>
     <li>
       If a ring breaks within 12 months through a fault in the making, we'll
-      repair it free. Accidental damage and normal wear aren't covered, but we
-      can quote to repair.
+      repair it free.
+    </li>
+    <li>
+      Accidental damage and normal wear aren't covered, but we can quote to
+      repair.
     </li>
   </ul>
 
@@ -419,7 +402,7 @@
     any resetting or replacement with you first.
   </p>
 
-  <h3>Reshaping (£10)</h3>
+  <h3>Reshaping</h3>
   <p>
     Bending metal back into shape can sometimes break it, especially if there
     are stones and we can't heat (anneal) the piece first. If that happens,
@@ -584,9 +567,11 @@
     contract and only for us:
   </p>
   <ul>
-    <li>Square: shop till, online shop, payments and customer records</li>
-    <li>Ticket Tailor and Stripe: class bookings and payments</li>
+    <li>Square: shop till, product listings, payments and customer records</li>
+    <li>Stripe: online shop and class payments</li>
+    <li>Ticket Tailor: class bookings</li>
     <li>ClassBento: class bookings made through their site</li>
+    <li>Zettle (PayPal): repair and wedding ring payments</li>
     <li>Mailchimp: our newsletter, if you've signed up</li>
     <li>Google Workspace: email and files</li>
     <li>
@@ -594,7 +579,7 @@
       wedding ring orders
     </li>
     <li>Royal Mail and couriers: delivering orders</li>
-    <li>Our accountant and HMRC: tax records</li>
+    <li>Xero, our accountant and HMRC: accounts and tax records</li>
   </ul>
   <p>
     Some of these services store data outside the UK, mainly in the US. Where
@@ -626,7 +611,10 @@
     delete it, to stop or limit how we use it, or to move it elsewhere. Where we
     rely on your consent, you can withdraw it at any time. Email us and we'll
     reply within a month. If you're unhappy with how we've handled your
-    information, you can complain to the Information Commissioner's Office.
+    information, you can complain to the
+    <a href="https://ico.org.uk/make-a-complaint/"
+      >Information Commissioner's Office</a
+    >.
   </p>
 
   <h3>Security</h3>
@@ -636,9 +624,7 @@
   </p>
 
   <h3>Changes</h3>
-  <p>
-    We'll update this page if anything changes. Last updated 25 October 2026.
-  </p>
+  <p>We'll update this page if anything changes. Last updated November 2026.</p>
 </div>
 
 <style>
